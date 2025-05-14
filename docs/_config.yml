@@ -1,0 +1,3 @@
+# Jekyll configuration to allow raw HTML files
+theme: jekyll-theme-minimal
+include: ['*.html', '*.css', '*.js', '*.png', '*.svg']
