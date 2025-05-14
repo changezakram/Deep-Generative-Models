@@ -1,8 +1,6 @@
 project:
   type: website
   output-dir: docs
-  include:
-    - .nojekyll  # Explicitly include to bypass Jekyll
 
 website:
   title: "Deep Generative Models"
@@ -29,4 +27,4 @@ format:
 
 resources:
   - styles.css
-  - .nojekyll
+  - docs/.nojekyll  # Changed to explicit path
