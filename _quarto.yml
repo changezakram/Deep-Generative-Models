@@ -1,6 +1,8 @@
 project:
   type: website
-  output-dir: docs  # Critical for GitHub Pages
+  output-dir: docs
+  include:
+    - .nojekyll  # Explicitly include to bypass Jekyll
 
 website:
   title: "Deep Generative Models"
@@ -15,9 +17,16 @@ website:
 
 format:
   html:
-    css: styles.css  # This will both link and copy the CSS file
-    include-in-header: 
+    css: styles.css
+    toc: false
+    copy-resources: true
+    include-in-header:
       text: |
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
         <link rel="stylesheet" href="styles.css">
 
-
+resources:
+  - styles.css
+  - .nojekyll
