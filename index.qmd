@@ -1,0 +1,22 @@
+---
+title: "Deep Generative Models"
+---
+
+## Variational Autoencoders (VAEs)
+
+The evidence lower bound (ELBO) for a VAE is:
+
+$$
+\mathcal{L}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})] - D_{KL}(q_\phi(\mathbf{z}|\mathbf{x}) \parallel p(\mathbf{z}))
+$$
+
+### Key Components:
+1. **Encoder**: $q_\phi(\mathbf{z}|\mathbf{x})$  
+2. **Decoder**: $p_\theta(\mathbf{x}|\mathbf{z})$  
+3. **Prior**: $p(\mathbf{z}) = \mathcal{N}(0, \mathbf{I})$
+
+:::{.theorem name="VAE Objective"}
+The VAE maximizes the ELBO, which simultaneously:
+1. Reconstructs inputs well (first term)
+2. Keeps latent space organized (KL term)
+:::
