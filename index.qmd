@@ -4,5 +4,10 @@ title: "Deep Generative Models"
 
 ## Variational Autoencoders (VAEs)
 
-Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. 
-However, they fall short in several areas:
+Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:
+
+\begin{itemize}
+    \item They lack \textbf{generative capabilities} — they cannot sample new data effectively.
+    \item The \textbf{latent space is unstructured}, offering little control or interpretation.
+    \item There is no \textbf{probabilistic modeling}, limiting uncertainty estimation.
+\end{itemize}
