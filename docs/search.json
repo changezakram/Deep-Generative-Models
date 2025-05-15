@@ -11,13 +11,13 @@
     "href": "index.html",
     "title": "Deep Generative Models",
     "section": "",
-    "text": "Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:"
+    "text": "Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:\nKey Limitations\n- They lack generative capabilities — they cannot sample new data effectively\n- The latent space is unstructured, offering little control or interpretation\n- There is no probabilistic modeling, limiting uncertainty estimation\n\n\nThe evidence lower bound (ELBO) for VAEs:\n\\[\n\\mathcal{L}(\\theta, \\phi; \\mathbf{x}) = \\mathbb{E}_{q_\\phi(\\mathbf{z}|\\mathbf{x})}[\\log p_\\theta(\\mathbf{x}|\\mathbf{z})] - D_{KL}(q_\\phi(\\mathbf{z}|\\mathbf{x}) \\parallel p(\\mathbf{z}))\n\\]"
   },
   {
     "objectID": "index.html#variational-autoencoders-vaes",
     "href": "index.html#variational-autoencoders-vaes",
     "title": "Deep Generative Models",
     "section": "",
-    "text": "Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:"
+    "text": "Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:\nKey Limitations\n- They lack generative capabilities — they cannot sample new data effectively\n- The latent space is unstructured, offering little control or interpretation\n- There is no probabilistic modeling, limiting uncertainty estimation\n\n\nThe evidence lower bound (ELBO) for VAEs:\n\\[\n\\mathcal{L}(\\theta, \\phi; \\mathbf{x}) = \\mathbb{E}_{q_\\phi(\\mathbf{z}|\\mathbf{x})}[\\log p_\\theta(\\mathbf{x}|\\mathbf{z})] - D_{KL}(q_\\phi(\\mathbf{z}|\\mathbf{x}) \\parallel p(\\mathbf{z}))\n\\]"
   }
 ]

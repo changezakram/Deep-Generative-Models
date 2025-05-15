@@ -6,8 +6,14 @@ title: "Deep Generative Models"
 
 Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:
 
-\begin{itemize}
-    \item They lack \textbf{generative capabilities} — they cannot sample new data effectively.
-    \item The \textbf{latent space is unstructured}, offering little control or interpretation.
-    \item There is no \textbf{probabilistic modeling}, limiting uncertainty estimation.
-\end{itemize}
+**Key Limitations**  
+- They lack **generative capabilities** — they cannot sample new data effectively  
+- The **latent space is unstructured**, offering little control or interpretation  
+- There is no **probabilistic modeling**, limiting uncertainty estimation  
+
+### Mathematical Formulation  
+The evidence lower bound (ELBO) for VAEs:  
+
+$$
+\mathcal{L}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})] - D_{KL}(q_\phi(\mathbf{z}|\mathbf{x}) \parallel p(\mathbf{z}))
+$$
