@@ -72,35 +72,6 @@ ul.task-list li input[type="checkbox"] {
 <meta http-equiv="Expires" content="0">
 <link rel="stylesheet" href="styles.css">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -170,25 +141,9 @@ window.Quarto = {
 
 <section id="variational-autoencoders-vaes" class="level2">
 <h2 class="anchored" data-anchor-id="variational-autoencoders-vaes">Variational Autoencoders (VAEs)</h2>
-<p>The evidence lower bound (ELBO) for a VAE is:</p>
-<p><span class="math display">\[
-\mathcal{L}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})] - D_{KL}(q_\phi(\mathbf{z}|\mathbf{x}) \parallel p(\mathbf{z}))
-\]</span></p>
-<section id="key-components" class="level3">
-<h3 class="anchored" data-anchor-id="key-components">Key Components:</h3>
-<ol type="1">
-<li><strong>Encoder</strong>: <span class="math inline">\(q_\phi(\mathbf{z}|\mathbf{x})\)</span><br>
-</li>
-<li><strong>Decoder</strong>: <span class="math inline">\(p_\theta(\mathbf{x}|\mathbf{z})\)</span><br>
-</li>
-<li><strong>Prior</strong>: <span class="math inline">\(p(\mathbf{z}) = \mathcal{N}(0, \mathbf{I})\)</span></li>
-</ol>
-<div class="theorem" name="VAE Objective">
-<p>The VAE maximizes the ELBO, which simultaneously: 1. Reconstructs inputs well (first term) 2. Keeps latent space organized (KL term)</p>
-</div>
+<p>Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
