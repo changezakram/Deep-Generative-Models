@@ -84,3 +84,73 @@ $$
 
 This gives us the **Evidence Lower Bound (ELBO)**, which is lower bounds the true log-likelihood.
 
+
+## Why Variational Inference?
+
+### The Intractability Problem
+In latent variable models, we need to compute:
+
+1. **Posterior Distribution**:
+   \begin{equation}
+   p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}
+   \end{equation}
+2. **Marginal Likelihood**:
+   \begin{equation}
+   p(x;\theta) = \int p(x,z;\theta) dz
+   \end{equation}
+
+These are intractable because:
+- High-dimensional integration in (2)
+- Complex dependencies in (1)
+
+### Variational Solution
+Introduce an **approximate distribution** $q(z;\phi)$ with:
+- Tractable form (e.g., Gaussian)
+- Parameters $\phi$ optimized to match $p(z|x;\theta)$
+
+## Core Derivation
+
+### Step 1: KL Divergence Objective
+\begin{equation}
+D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
+\end{equation}
+
+### Step 2: Apply Bayes' Rule
+Substitute $p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}$:
+\begin{equation}
+= \sum_z q(z) \log \left( \frac{q(z) \cdot p(x; \theta)}{p(z, x; \theta)} \right)
+\end{equation}
+
+### Step 3: Decompose Terms
+\begin{align}
+&= \sum_z q(z) \log q(z) + \sum_z q(z) \log p(x; \theta) \nonumber \\
+&\quad - \sum_z q(z) \log p(z, x; \theta) \\
+&= -H(q) + \log p(x; \theta) - \mathbb{E}_q[\log p(z,x;\theta)]
+\end{align}
+
+### Step 4: Rearrange for ELBO
+\begin{equation}
+\log p(x;\theta) = \underbrace{\mathbb{E}_q[\log p(z,x;\theta)] + H(q)}_{\text{ELBO}} + D_{KL}(q\|p)
+\end{equation}
+
+## Key Results
+
+1. **Evidence Lower Bound (ELBO)**:
+   \begin{equation}
+   \mathcal{L}(\theta,\phi) = \mathbb{E}_{q(z;\phi)}[\log p(x,z;\theta)] + H(q(z;\phi))
+   \end{equation}
+
+2. **Optimization**:
+   \begin{equation}
+   \max_{\theta,\phi} \mathcal{L}(\theta,\phi) \Rightarrow 
+   \begin{cases}
+   \text{Maximizes data likelihood} \\
+   \text{Minimizes } D_{KL}(q\|p)
+   \end{cases}
+   \end{equation}
+
+## Practical Implications
+
+- **For $q(z)$**: Choose simple distributions (e.g., Gaussian)
+- **For $\phi$**: Use gradient ascent on $\mathcal{L}$
+- **For VAEs**: $q(z|x;\phi)$ becomes the encoder network

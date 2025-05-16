@@ -26,5 +26,33 @@
     "title": "Deep Generative Models",
     "section": "Estimation Techniques",
     "text": "Estimation Techniques\n\nNaive Monte Carlo Estimation\nOne natural idea is to approximate the integral using samples from a simple distribution like the uniform distribution:\n\\[\np(x) \\approx \\frac{1}{K} \\sum_{j=1}^K p_\\theta(x, z_j), \\quad z_j \\sim \\text{Uniform}\n\\]\nHowever, this fails in practice. For most values of \\(z\\), the joint probability \\(p_\\theta(x, z)\\) is very low. Only a small region of the latent space contributes significantly to the integral. Since uniform sampling does not concentrate around these regions, the estimator has:\n\nHigh variance (sparse meaningful samples)\nLow hit rate (rarely samples likely \\(z\\) values)\n\n\n\nImportance Sampling\nTo address this, we use importance sampling, introducing a proposal distribution \\(q(z)\\):\n\\[\np(x) = \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right]\n\\]\nKey Properties: - Unbiased estimator when \\(\\text{supp}(q) \\supseteq \\text{supp}(p_\\theta)\\) - Optimal \\(q(z) \\approx p_\\theta(z|x)\\) (the true posterior) - More efficient sampling in high-probability regions\n\nThe Log-Likelihood Challenge\nFor optimization, we need the log-likelihood, but:\n\\[\n\\log \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right] \\neq \\mathbb{E}_{q(z)} \\left[ \\log \\frac{p_\\theta(x, z)}{q(z)} \\right]\n\\]\nJensen’s Inequality reveals the relationship:\n\\[\n\\log \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right] \\geq \\underbrace{\\mathbb{E}_{q(z)} \\left[ \\log \\frac{p_\\theta(x, z)}{q(z)} \\right]}_{\\text{ELBO}}\n\\]\nThis gives us the Evidence Lower Bound (ELBO), which is lower bounds the true log-likelihood."
+  },
+  {
+    "objectID": "index.html#why-variational-inference",
+    "href": "index.html#why-variational-inference",
+    "title": "Deep Generative Models",
+    "section": "Why Variational Inference?",
+    "text": "Why Variational Inference?\n\nThe Intractability Problem\nIn latent variable models, we need to compute:\n\nPosterior Distribution: \\[\\begin{equation}\np(z|x; \\theta) = \\frac{p(z,x;\\theta)}{p(x;\\theta)}\n\\end{equation}\\]\nMarginal Likelihood: \\[\\begin{equation}\np(x;\\theta) = \\int p(x,z;\\theta) dz\n\\end{equation}\\]\n\nThese are intractable because: - High-dimensional integration in (2) - Complex dependencies in (1)\n\n\nVariational Solution\nIntroduce an approximate distribution \\(q(z;\\phi)\\) with: - Tractable form (e.g., Gaussian) - Parameters \\(\\phi\\) optimized to match \\(p(z|x;\\theta)\\)"
+  },
+  {
+    "objectID": "index.html#core-derivation",
+    "href": "index.html#core-derivation",
+    "title": "Deep Generative Models",
+    "section": "Core Derivation",
+    "text": "Core Derivation\n\nStep 1: KL Divergence Objective\n\\[\\begin{equation}\nD_{KL}(q(z)\\|p(z|x; \\theta)) = \\sum_z q(z) \\log \\frac{q(z)}{p(z|x; \\theta)}\n\\end{equation}\\]\n\n\nStep 2: Apply Bayes’ Rule\nSubstitute \\(p(z|x; \\theta) = \\frac{p(z,x;\\theta)}{p(x;\\theta)}\\): \\[\\begin{equation}\n= \\sum_z q(z) \\log \\left( \\frac{q(z) \\cdot p(x; \\theta)}{p(z, x; \\theta)} \\right)\n\\end{equation}\\]\n\n\nStep 3: Decompose Terms\n\\[\\begin{align}\n&= \\sum_z q(z) \\log q(z) + \\sum_z q(z) \\log p(x; \\theta) \\nonumber \\\\\n&\\quad - \\sum_z q(z) \\log p(z, x; \\theta) \\\\\n&= -H(q) + \\log p(x; \\theta) - \\mathbb{E}_q[\\log p(z,x;\\theta)]\n\\end{align}\\]\n\n\nStep 4: Rearrange for ELBO\n\\[\\begin{equation}\n\\log p(x;\\theta) = \\underbrace{\\mathbb{E}_q[\\log p(z,x;\\theta)] + H(q)}_{\\text{ELBO}} + D_{KL}(q\\|p)\n\\end{equation}\\]"
+  },
+  {
+    "objectID": "index.html#key-results",
+    "href": "index.html#key-results",
+    "title": "Deep Generative Models",
+    "section": "Key Results",
+    "text": "Key Results\n\nEvidence Lower Bound (ELBO): \\[\\begin{equation}\n\\mathcal{L}(\\theta,\\phi) = \\mathbb{E}_{q(z;\\phi)}[\\log p(x,z;\\theta)] + H(q(z;\\phi))\n\\end{equation}\\]\nOptimization: \\[\\begin{equation}\n\\max_{\\theta,\\phi} \\mathcal{L}(\\theta,\\phi) \\Rightarrow\n\\begin{cases}\n\\text{Maximizes data likelihood} \\\\\n\\text{Minimizes } D_{KL}(q\\|p)\n\\end{cases}\n\\end{equation}\\]"
+  },
+  {
+    "objectID": "index.html#practical-implications",
+    "href": "index.html#practical-implications",
+    "title": "Deep Generative Models",
+    "section": "Practical Implications",
+    "text": "Practical Implications\n\nFor \\(q(z)\\): Choose simple distributions (e.g., Gaussian)\nFor \\(\\phi\\): Use gradient ascent on \\(\\mathcal{L}\\)\nFor VAEs: \\(q(z|x;\\phi)\\) becomes the encoder network"
   }
 ]

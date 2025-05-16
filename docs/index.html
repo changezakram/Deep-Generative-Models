@@ -235,10 +235,82 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 \log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \geq \underbrace{\mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]}_{\text{ELBO}}
 \]</span></p>
 <p>This gives us the <strong>Evidence Lower Bound (ELBO)</strong>, which is lower bounds the true log-likelihood.</p>
-
-
 </section>
 </section>
+</section>
+<section id="why-variational-inference" class="level2">
+<h2 class="anchored" data-anchor-id="why-variational-inference">Why Variational Inference?</h2>
+<section id="the-intractability-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-intractability-problem">The Intractability Problem</h3>
+<p>In latent variable models, we need to compute:</p>
+<ol type="1">
+<li><strong>Posterior Distribution</strong>: <span class="math display">\[\begin{equation}
+p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}
+\end{equation}\]</span></li>
+<li><strong>Marginal Likelihood</strong>: <span class="math display">\[\begin{equation}
+p(x;\theta) = \int p(x,z;\theta) dz
+\end{equation}\]</span></li>
+</ol>
+<p>These are intractable because: - High-dimensional integration in (2) - Complex dependencies in (1)</p>
+</section>
+<section id="variational-solution" class="level3">
+<h3 class="anchored" data-anchor-id="variational-solution">Variational Solution</h3>
+<p>Introduce an <strong>approximate distribution</strong> <span class="math inline">\(q(z;\phi)\)</span> with: - Tractable form (e.g., Gaussian) - Parameters <span class="math inline">\(\phi\)</span> optimized to match <span class="math inline">\(p(z|x;\theta)\)</span></p>
+</section>
+</section>
+<section id="core-derivation" class="level2">
+<h2 class="anchored" data-anchor-id="core-derivation">Core Derivation</h2>
+<section id="step-1-kl-divergence-objective" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-kl-divergence-objective">Step 1: KL Divergence Objective</h3>
+<p><span class="math display">\[\begin{equation}
+D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
+\end{equation}\]</span></p>
+</section>
+<section id="step-2-apply-bayes-rule" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-apply-bayes-rule">Step 2: Apply Bayes’ Rule</h3>
+<p>Substitute <span class="math inline">\(p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}\)</span>: <span class="math display">\[\begin{equation}
+= \sum_z q(z) \log \left( \frac{q(z) \cdot p(x; \theta)}{p(z, x; \theta)} \right)
+\end{equation}\]</span></p>
+</section>
+<section id="step-3-decompose-terms" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-decompose-terms">Step 3: Decompose Terms</h3>
+<p><span class="math display">\[\begin{align}
+&amp;= \sum_z q(z) \log q(z) + \sum_z q(z) \log p(x; \theta) \nonumber \\
+&amp;\quad - \sum_z q(z) \log p(z, x; \theta) \\
+&amp;= -H(q) + \log p(x; \theta) - \mathbb{E}_q[\log p(z,x;\theta)]
+\end{align}\]</span></p>
+</section>
+<section id="step-4-rearrange-for-elbo" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-rearrange-for-elbo">Step 4: Rearrange for ELBO</h3>
+<p><span class="math display">\[\begin{equation}
+\log p(x;\theta) = \underbrace{\mathbb{E}_q[\log p(z,x;\theta)] + H(q)}_{\text{ELBO}} + D_{KL}(q\|p)
+\end{equation}\]</span></p>
+</section>
+</section>
+<section id="key-results" class="level2">
+<h2 class="anchored" data-anchor-id="key-results">Key Results</h2>
+<ol type="1">
+<li><p><strong>Evidence Lower Bound (ELBO)</strong>: <span class="math display">\[\begin{equation}
+\mathcal{L}(\theta,\phi) = \mathbb{E}_{q(z;\phi)}[\log p(x,z;\theta)] + H(q(z;\phi))
+\end{equation}\]</span></p></li>
+<li><p><strong>Optimization</strong>: <span class="math display">\[\begin{equation}
+\max_{\theta,\phi} \mathcal{L}(\theta,\phi) \Rightarrow
+\begin{cases}
+\text{Maximizes data likelihood} \\
+\text{Minimizes } D_{KL}(q\|p)
+\end{cases}
+\end{equation}\]</span></p></li>
+</ol>
+</section>
+<section id="practical-implications" class="level2">
+<h2 class="anchored" data-anchor-id="practical-implications">Practical Implications</h2>
+<ul>
+<li><strong>For <span class="math inline">\(q(z)\)</span></strong>: Choose simple distributions (e.g., Gaussian)</li>
+<li><strong>For <span class="math inline">\(\phi\)</span></strong>: Use gradient ascent on <span class="math inline">\(\mathcal{L}\)</span></li>
+<li><strong>For VAEs</strong>: <span class="math inline">\(q(z|x;\phi)\)</span> becomes the encoder network</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
