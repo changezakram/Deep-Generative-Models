@@ -175,20 +175,19 @@ window.Quarto = {
 p(\mathbf{x}|\mathbf{z}) = \mathcal{N}(\mu_\theta(\mathbf{z}), \Sigma_\theta(\mathbf{z}))
 \]</span> where <span class="math inline">\(\mu_\theta\)</span> and <span class="math inline">\(\Sigma_\theta\)</span> are neural networks parameterized by <span class="math inline">\(\theta\)</span></li>
 </ol>
+<p>Here, <span class="math inline">\(\mathbf{z}\)</span> acts as a hidden or latent variable, which is <strong>unobserved during training</strong>. The model thus defines a — one for each <span class="math inline">\(\mathbf{z}\)</span>.</p>
+<p>To compute the likelihood of a data point <span class="math inline">\(\mathbf{x}\)</span>, we must marginalize over all possible latent variables: <span class="math display">\[
+  p(\mathbf{x}) = \int p(\mathbf{x}, \mathbf{z}) \, d\mathbf{z}
+  \]</span></p>
+<p>This integral requires integrating over all possible values of the latent variable <span class="math inline">\(\mathbf{z}\)</span>, which is often high-dimensional and enters the likelihood non-linearly through neural networks. Because of this, computing the marginal likelihood exactly is computationally intractable. This motivates the use of variational inference techniques like ELBO, which will be developed in the following sections.</p>
 </section>
-<section id="key-properties" class="level3">
-<h3 class="anchored" data-anchor-id="key-properties">Key Properties</h3>
+<section id="computational-challenge" class="level3">
+<h3 class="anchored" data-anchor-id="computational-challenge">Computational Challenge</h3>
+<p>This integral requires integrating over:</p>
 <ul>
-<li><span class="math inline">\(\mathbf{z}\)</span> is a <strong>hidden variable</strong>, unobserved during training</li>
-<li>Defines a <em>mixture of infinitely many Gaussians</em></li>
-<li>The marginal likelihood requires integration: <span class="math display">\[
-p(\mathbf{x}) = \int p(\mathbf{x}, \mathbf{z}) \, d\mathbf{z}
-\]</span></li>
+<li>All possible values of <span class="math inline">\(\mathbf{z}\)</span> (often high-dimensional)</li>
+<li>Non-linear transformations through neural networks</li>
 </ul>
-</section>
-<section id="computational-challenges" class="level3">
-<h3 class="anchored" data-anchor-id="computational-challenges">Computational Challenges</h3>
-<p>This integral requires integrating over: - All possible values of <span class="math inline">\(\mathbf{z}\)</span> (often high-dimensional) - Non-linear transformations through neural networks</p>
 <p><strong>Result:</strong> Exact computation is intractable, motivating variational inference techniques like ELBO (developed next).</p>
 </section>
 </section>
@@ -200,11 +199,7 @@ p(\mathbf{x}) = \int p(\mathbf{x}, \mathbf{z}) \, d\mathbf{z}
 <p><span class="math display">\[
 p(x) \approx \frac{1}{K} \sum_{j=1}^K p_\theta(x, z_j), \quad z_j \sim \text{Uniform}
 \]</span></p>
-<p>However, this fails in practice. For most values of <span class="math inline">\(z\)</span>, the joint probability <span class="math inline">\(p_\theta(x, z)\)</span> is very low. Only a small region of the latent space contributes significantly to the integral. Since uniform sampling does not concentrate around these regions, the estimator has:</p>
-<ul>
-<li><strong>High variance</strong> (sparse meaningful samples)</li>
-<li><strong>Low hit rate</strong> (rarely samples likely <span class="math inline">\(z\)</span> values)</li>
-</ul>
+<p>However, this fails in practice. For most values of <span class="math inline">\(z\)</span>, the joint probability <span class="math inline">\(p_\theta(x, z)\)</span> is very low. Only a small region of the latent space contributes significantly to the integral. Since uniform sampling does not concentrate around these regions, the estimator has high variance and rarely “hits” likely values of <span class="math inline">\(z\)</span>.</p>
 </section>
 <section id="importance-sampling" class="level3">
 <h3 class="anchored" data-anchor-id="importance-sampling">Importance Sampling</h3>
@@ -212,40 +207,45 @@ p(x) \approx \frac{1}{K} \sum_{j=1}^K p_\theta(x, z_j), \quad z_j \sim \text{Uni
 <p><span class="math display">\[
 p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 \]</span></p>
-<p><strong>Key Properties:</strong> - Unbiased estimator when <span class="math inline">\(\text{supp}(q) \supseteq \text{supp}(p_\theta)\)</span> - Optimal <span class="math inline">\(q(z) \approx p_\theta(z|x)\)</span> (the true posterior) - More efficient sampling in high-probability regions</p>
-<section id="the-log-likelihood-challenge" class="level4">
-<h4 class="anchored" data-anchor-id="the-log-likelihood-challenge">The Log-Likelihood Challenge</h4>
-<p>For optimization, we need the log-likelihood, but:</p>
+<p>This gives an <strong>unbiased estimator</strong> of <span class="math inline">\(p(x)\)</span> if <span class="math inline">\(q(z)\)</span> is well-chosen (ideally close to <span class="math inline">\(p_\theta(z|x)\)</span>). Intuitively, we sample <span class="math inline">\(z\)</span> more frequently in regions where <span class="math inline">\(p_\theta(x, z)\)</span> is high.</p>
+<p>However, our goal is to optimize the <strong>log-likelihood</strong>, and the log of an expectation is not the same as the expectation of the log. That is,</p>
 <p><span class="math display">\[
 \log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \neq \mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]
 \]</span></p>
-<p><strong>Jensen’s Inequality</strong> reveals the relationship:</p>
+<p>This discrepancy is captured by <strong>Jensen’s Inequality</strong>, which tells us:</p>
 <p><span class="math display">\[
 \log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \geq \underbrace{\mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]}_{\text{ELBO}}
 \]</span></p>
-<p>This gives us the <strong>Evidence Lower Bound (ELBO)</strong>, which is lower bounds the true log-likelihood.</p>
-</section>
+<p>The right-hand side provides a tractable lower bound on the log-likelihood and is referred to as the <strong>Evidence Lower Bound (ELBO)</strong>. Optimizing the ELBO allows us to indirectly maximize the intractable log-likelihood. In the next section, we derive this bound formally and explore its components in detail.</p>
 </section>
 </section>
 <section id="why-variational-inference" class="level2">
 <h2 class="anchored" data-anchor-id="why-variational-inference">Why Variational Inference?</h2>
-<section id="the-intractability-problem" class="level3">
-<h3 class="anchored" data-anchor-id="the-intractability-problem">The Intractability Problem</h3>
-<p>In latent variable models, we need to compute:</p>
+<p>Computing the true posterior distribution ( p( ; ) ) is intractable in most cases because it requires evaluating the marginal likelihood:</p>
+<p>[ p(; ) = p(, ; ) , d ]</p>
+<p>This integral poses three fundamental challenges:</p>
 <ol type="1">
-<li><strong>Posterior Distribution</strong>: <span class="math display">\[\begin{equation}
-p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}
-\end{equation}\]</span></li>
-<li><strong>Marginal Likelihood</strong>: <span class="math display">\[\begin{equation}
-p(x;\theta) = \int p(x,z;\theta) dz
-\end{equation}\]</span></li>
+<li><strong>High-dimensional integration</strong>: The latent space <span class="math inline">\(\mathbf{z}\)</span> is often high-dimensional (e.g., 100+ dimensions)</li>
+<li><strong>Non-linear dependencies</strong>: The mapping <span class="math inline">\(p(\mathbf{x}|\mathbf{z})\)</span> involves neural networks with complex, non-linear transformations</li>
+<li><strong>Exponential complexity</strong>: Exact computation would require enumerating all possible latent configurations</li>
 </ol>
-<p>These are intractable because: - High-dimensional integration in (2) - Complex dependencies in (1)</p>
-</section>
-<section id="variational-solution" class="level3">
-<h3 class="anchored" data-anchor-id="variational-solution">Variational Solution</h3>
-<p>Introduce an <strong>approximate distribution</strong> <span class="math inline">\(q(z;\phi)\)</span> with: - Tractable form (e.g., Gaussian) - Parameters <span class="math inline">\(\phi\)</span> optimized to match <span class="math inline">\(p(z|x;\theta)\)</span></p>
-</section>
+<p>Variational inference addresses these issues by:</p>
+<ol type="1">
+<li><strong>Approximation</strong>: Introducing a tractable family of distributions <span class="math inline">\(q(\mathbf{z}; \phi)\)</span> (typically Gaussian) parameterized by <span class="math inline">\(\phi\)</span></li>
+<li><strong>Optimization</strong>: Minimizing the KL divergence between <span class="math inline">\(q\)</span> and the true posterior:</li>
+</ol>
+<p>[ D_{}(q(; ) p( ; )) ]</p>
+<ol start="3" type="1">
+<li><strong>Reformulation</strong>: Converting the inference problem into an optimization problem through the ELBO:</li>
+</ol>
+<p>[ p(; ) _{(, )} ]</p>
+<p>Key advantages of this approach:</p>
+<ul>
+<li><strong>Computational tractability</strong>: Replaces integration with optimization</li>
+<li><strong>Flexibility</strong>: <span class="math inline">\(q(\mathbf{z}; \phi)\)</span> can be any parametric distribution (often chosen as Gaussian)</li>
+<li><strong>Scalability</strong>: Compatible with stochastic gradient descent</li>
+<li><strong>Theoretical guarantees</strong>: Maximizing ELBO simultaneously:</li>
+</ul>
 </section>
 <section id="core-derivation" class="level2">
 <h2 class="anchored" data-anchor-id="core-derivation">Core Derivation</h2>
@@ -297,6 +297,17 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <li><strong>For <span class="math inline">\(q(z)\)</span></strong>: Choose simple distributions (e.g., Gaussian)</li>
 <li><strong>For <span class="math inline">\(\phi\)</span></strong>: Use gradient ascent on <span class="math inline">\(\mathcal{L}\)</span></li>
 <li><strong>For VAEs</strong>: <span class="math inline">\(q(z|x;\phi)\)</span> becomes the encoder network</li>
+</ul>
+<p>Variational Autoencoders are widely used in:</p>
+</section>
+<section id="applications-of-vaes" class="level2">
+<h2 class="anchored" data-anchor-id="applications-of-vaes">Applications of VAEs</h2>
+<ul>
+<li><strong>Image Generation</strong>: VAEs can generate new images similar to the training data (e.g., MNIST digits)<br>
+</li>
+<li><strong>Anomaly Detection</strong>: High reconstruction error flags unusual data points<br>
+</li>
+<li><strong>Representation Learning</strong>: Latent space captures features for downstream tasks</li>
 </ul>
 
 
