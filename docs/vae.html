@@ -220,7 +220,7 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 </section>
 <section id="why-variational-inference" class="level3">
 <h3 class="anchored" data-anchor-id="why-variational-inference">Why Variational Inference?</h3>
-<p>Computing the true posterior distribution <span class="math inline">\(p(z|x)\)</span> is intractable in most cases because it requires evaluating the marginal likelihood:</p>
+<p>Computing the true posterior distribution <span class="math inline">\(p(z|x)\)</span> is intractable in most cases because it requires evaluating the marginal likelihood over all possible values of z:</p>
 <p><span class="math display">\[
 p(x) = \int p(x, z) \, dz
 \]</span></p>
@@ -233,6 +233,7 @@ D_{\text{KL}}(q(z) \| p(z|x))
 </section>
 <section id="deriving-the-elbo" class="level2">
 <h2 class="anchored" data-anchor-id="deriving-the-elbo">Deriving the ELBO</h2>
+<p>Now that we’ve introduced the challenge of approximating the intractable posterior using variational inference, we turn our attention to deriving the Evidence Lower Bound (ELBO). This derivation reveals how optimizing a surrogate objective allows us to approximate the true log-likelihood of the data while keeping the approximate posterior close to the prior. The steps below walk through this formulation.</p>
 <section id="step-1-kl-divergence-objective" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-kl-divergence-objective">Step 1: KL Divergence Objective</h3>
 <p><span class="math display">\[\begin{equation}
