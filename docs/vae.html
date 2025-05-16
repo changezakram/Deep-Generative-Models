@@ -293,7 +293,37 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <li><strong>For <span class="math inline">\(\phi\)</span></strong>: Use gradient ascent on <span class="math inline">\(\mathcal{L}\)</span></li>
 <li><strong>For VAEs</strong>: <span class="math inline">\(q(z|x;\phi)\)</span> becomes the encoder network</li>
 </ul>
+</section>
+<section id="reparameterization-trick" class="level2">
+<h2 class="anchored" data-anchor-id="reparameterization-trick">Reparameterization Trick</h2>
+<p>When training a Variational Autoencoder (VAE), we want to adjust the encoder parameters ( ) to improve our model. But part of the ELBO involves computing an expectation over a latent variable ( z ) drawn from a distribution ( q_(z|x) ). Since this distribution is parameterized by ( ), it creates a problem for optimization.</p>
+<p><strong>To put it simply:</strong><br>
+We want to compute a gradient, but the thing we’re sampling from depends on the parameters we’re trying to update.</p>
+<p>This makes it hard to apply standard gradient-based learning methods.</p>
+<hr>
+<section id="the-solution" class="level3">
+<h3 class="anchored" data-anchor-id="the-solution">The Solution</h3>
+<p>The <strong>reparameterization trick</strong> solves this by rewriting the sampling process in a way that separates the randomness from the learnable parameters. Instead of sampling ( z (, ^2) ) directly, we:</p>
+<ol type="1">
+<li>Sample ( (0, I) ) — fixed, standard Gaussian noise<br>
+</li>
+<li>Set ( z = + )</li>
+</ol>
+<p>Here, ( = <em>(x) ) and ( = </em>(x) ) come from the encoder network.</p>
+<p>This turns ( z ) into a deterministic function of ( ) and random noise ( ), allowing gradients to flow through ( z ) during backpropagation.</p>
+<hr>
+</section>
+<section id="why-this-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h3>
+<ul>
+<li>Enables standard backpropagation through the sampling step</li>
+<li>Makes VAEs trainable using efficient stochastic gradient descent</li>
+<li>Has lower variance than other gradient estimators (like REINFORCE)</li>
+<li>Works particularly well for Gaussian latent variables</li>
+</ul>
+<p>The reparameterization trick is one of the key innovations that makes VAEs practical to train.</p>
 <p>Variational Autoencoders are widely used in:</p>
+</section>
 </section>
 <section id="applications-of-vaes" class="level2">
 <h2 class="anchored" data-anchor-id="applications-of-vaes">Applications of VAEs</h2>
