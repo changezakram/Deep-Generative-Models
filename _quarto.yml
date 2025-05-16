@@ -10,8 +10,6 @@ website:
         text: Home
       - href: about.qmd
         text: Theory
-      - href: references.qmd
-        text: References
 
 format:
   html:
