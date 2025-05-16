@@ -352,6 +352,57 @@ z^{(k)} = \mu_\phi(x) + \sigma_\phi(x) \cdot \epsilon^{(k)}, \quad \epsilon^{(k)
 <hr>
 </section>
 </section>
+<section id="amortized-inference" class="level3">
+<h3 class="anchored" data-anchor-id="amortized-inference">Amortized Inference</h3>
+<p>In classical variational inference, we introduce a separate set of variational parameters <span class="math inline">\(\phi^i\)</span> for each datapoint <span class="math inline">\(x^i\)</span> to approximate the true posterior <span class="math inline">\(p(z|x^i)\)</span>.</p>
+<p>But this presents a problem:</p>
+<blockquote class="blockquote">
+<p>Optimizing a unique <span class="math inline">\(\phi^i\)</span> for every datapoint is computationally expensive and does not scale to large datasets.</p>
+</blockquote>
+<hr>
+<section id="the-key-idea-amortization" class="level4">
+<h4 class="anchored" data-anchor-id="the-key-idea-amortization">The Key Idea: Amortization</h4>
+<p>Instead of maintaining separate variational parameters <span class="math inline">\(\phi^1, \phi^2, \dots, \phi^M\)</span>, we learn a <strong>single shared function</strong> that maps any input <span class="math inline">\(x\)</span> to its own variational parameters.</p>
+<p>This is known as <strong>amortized inference</strong>.</p>
+<p>We define a neural network encoder <span class="math inline">\(f_\phi(x)\)</span>, parameterized by global parameters <span class="math inline">\(\phi\)</span>, which outputs the mean and standard deviation of a Gaussian:</p>
+<p><span class="math display">\[
+q_\phi(z|x) = \mathcal{N}(\mu_\phi(x), \sigma^2_\phi(x))
+\]</span></p>
+<p>This is like learning a regression function: <span class="math display">\[
+x^i \mapsto \phi^{i,*}
+\]</span> but shared across the entire dataset.</p>
+<hr>
+</section>
+<section id="why-it-works" class="level4">
+<h4 class="anchored" data-anchor-id="why-it-works">Why It Works</h4>
+<p>If <span class="math inline">\(q(z|x^i)\)</span> are Gaussians with different means <span class="math inline">\(\mu^1, \dots, \mu^M\)</span>, we can train a <strong>single encoder network</strong> to map each <span class="math inline">\(x^i\)</span> to its own <span class="math inline">\(\mu^i\)</span> and <span class="math inline">\(\sigma^i\)</span> — all using shared weights <span class="math inline">\(\phi\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="training-with-amortized-inference" class="level3">
+<h3 class="anchored" data-anchor-id="training-with-amortized-inference">Training with Amortized Inference</h3>
+<p>Our objective remains the ELBO, but now we optimize it with respect to global parameters <span class="math inline">\(\theta\)</span> (decoder) and <span class="math inline">\(\phi\)</span> (encoder):</p>
+<p><span class="math display">\[
+\mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x, z) - \log q_\phi(z|x)]
+\]</span></p>
+<p>Training proceeds as follows:</p>
+<ol type="1">
+<li><strong>Initialize</strong> parameters <span class="math inline">\(\theta^{(0)}\)</span>, <span class="math inline">\(\phi^{(0)}\)</span></li>
+<li><strong>Sample</strong> a datapoint <span class="math inline">\(x^i\)</span> from the dataset</li>
+<li><strong>Compute</strong> gradients <span class="math inline">\(\nabla_\theta \mathcal{L}(x^i; \theta, \phi)\)</span> and <span class="math inline">\(\nabla_\phi \mathcal{L}(x^i; \theta, \phi)\)</span></li>
+<li><strong>Update</strong> <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> in the gradient direction</li>
+</ol>
+<p>As before, the expectation over <span class="math inline">\(z \sim q_\phi(z|x)\)</span> is estimated using <strong>Monte Carlo sampling</strong>, and gradients with respect to <span class="math inline">\(\phi\)</span> are made possible by the <strong>reparameterization trick</strong>.</p>
+<hr>
+</section>
+<section id="summary-1" class="level3">
+<h3 class="anchored" data-anchor-id="summary-1">Summary</h3>
+<ul>
+<li><strong>Problem</strong>: Per-datapoint variational parameters don’t scale</li>
+<li><strong>Solution</strong>: Use a shared encoder network to output the variational parameters — this is amortized inference</li>
+<li><strong>Result</strong>: Scalable and efficient inference, trainable via backpropagation</li>
+</ul>
+</section>
 </section>
 <section id="applications-of-vaes" class="level2">
 <h2 class="anchored" data-anchor-id="applications-of-vaes">Applications of VAEs</h2>
