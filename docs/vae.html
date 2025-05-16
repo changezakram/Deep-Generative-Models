@@ -221,31 +221,13 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 </section>
 <section id="why-variational-inference" class="level2">
 <h2 class="anchored" data-anchor-id="why-variational-inference">Why Variational Inference?</h2>
-<p>Computing the true posterior distribution ( p( ; ) ) is intractable in most cases because it requires evaluating the marginal likelihood:</p>
-<p>[ p(; ) = p(, ; ) , d ]</p>
-<p>This integral poses three fundamental challenges:</p>
-<ol type="1">
-<li><strong>High-dimensional integration</strong>: The latent space <span class="math inline">\(\mathbf{z}\)</span> is often high-dimensional (e.g., 100+ dimensions)</li>
-<li><strong>Non-linear dependencies</strong>: The mapping <span class="math inline">\(p(\mathbf{x}|\mathbf{z})\)</span> involves neural networks with complex, non-linear transformations</li>
-<li><strong>Exponential complexity</strong>: Exact computation would require enumerating all possible latent configurations</li>
-</ol>
-<p>Variational inference addresses these issues by:</p>
-<ol type="1">
-<li><strong>Approximation</strong>: Introducing a tractable family of distributions <span class="math inline">\(q(\mathbf{z}; \phi)\)</span> (typically Gaussian) parameterized by <span class="math inline">\(\phi\)</span></li>
-<li><strong>Optimization</strong>: Minimizing the KL divergence between <span class="math inline">\(q\)</span> and the true posterior:</li>
-</ol>
-<p>[ D_{}(q(; ) p( ; )) ]</p>
-<ol start="3" type="1">
-<li><strong>Reformulation</strong>: Converting the inference problem into an optimization problem through the ELBO:</li>
-</ol>
-<p>[ p(; ) _{(, )} ]</p>
-<p>Key advantages of this approach:</p>
-<ul>
-<li><strong>Computational tractability</strong>: Replaces integration with optimization</li>
-<li><strong>Flexibility</strong>: <span class="math inline">\(q(\mathbf{z}; \phi)\)</span> can be any parametric distribution (often chosen as Gaussian)</li>
-<li><strong>Scalability</strong>: Compatible with stochastic gradient descent</li>
-<li><strong>Theoretical guarantees</strong>: Maximizing ELBO simultaneously:</li>
-</ul>
+<p>Computing the true posterior distribution <span class="math inline">\(p(z|x)\)</span> is intractable in most cases because it requires evaluating the marginal likelihood: [ p(x) = p(x, z) , dz ] This integral is hard to compute due to the high dimensionality and complexity of <span class="math inline">\(p(x, z)\)</span>.</p>
+<p>Variational inference tackles this problem by introducing a tractable, parameterized distribution <span class="math inline">\(q(z)\)</span> to approximate <span class="math inline">\(p(z|x)\)</span>. The goal is to make <span class="math inline">\(q(z)\)</span> as close as possible to the true posterior by minimizing their KL divergence: [ D_{KL}(q(z) | p(z|x)) ]</p>
+<p>This approach converts the inference problem into an optimization problem. A key result from this framework is the Evidence Lower Bound (ELBO), which provides a lower bound on the log-likelihood of the data:</p>
+<p>[ = <em>{q</em>(z|x)} - (q_(z|x) | p(z)) ]</p>
+<p>This ELBO can be optimized as a surrogate objective to approximate the log-likelihood.</p>
+<p>The ELBO has two parts:</p>
+<p>In simple terms, the ELBO helps VAEs learn a balance between making good reconstructions and maintaining a well-behaved, compact latent space.</p>
 </section>
 <section id="core-derivation" class="level2">
 <h2 class="anchored" data-anchor-id="core-derivation">Core Derivation</h2>

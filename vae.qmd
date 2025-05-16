@@ -81,48 +81,37 @@ The right-hand side provides a tractable lower bound on the log-likelihood and i
 
 ## Why Variational Inference?
 
-
-
-Computing the true posterior distribution \( p(\mathbf{z} \mid \mathbf{x}; \theta) \) is intractable in most cases because it requires evaluating the marginal likelihood:
-
+Computing the true posterior distribution $p(z|x)$ is intractable in most cases because it requires evaluating the marginal likelihood:
 \[
-p(\mathbf{x}; \theta) = \int p(\mathbf{x}, \mathbf{z}; \theta) \, d\mathbf{z}
+    p(x) = \int p(x, z) \, dz
+\]
+This integral is hard to compute due to the high dimensionality and complexity of $p(x, z)$.
+
+Variational inference tackles this problem by introducing a tractable, parameterized distribution $q(z)$ to approximate $p(z|x)$. The goal is to make $q(z)$ as close as possible to the true posterior by minimizing their KL divergence:
+\[
+    D_{KL}(q(z) \| p(z|x))
 \]
 
-This integral poses three fundamental challenges:
-
-1. **High-dimensional integration**: The latent space $\mathbf{z}$ is often high-dimensional (e.g., 100+ dimensions)
-2. **Non-linear dependencies**: The mapping $p(\mathbf{x}|\mathbf{z})$ involves neural networks with complex, non-linear transformations
-3. **Exponential complexity**: Exact computation would require enumerating all possible latent configurations
-
-Variational inference addresses these issues by:
-
-1. **Approximation**: Introducing a tractable family of distributions $q(\mathbf{z}; \phi)$ (typically Gaussian) parameterized by $\phi$
-2. **Optimization**: Minimizing the KL divergence between $q$ and the true posterior:
+This approach converts the inference problem into an optimization problem. A key result from this framework is the Evidence Lower Bound (ELBO), which provides a lower bound on the log-likelihood of the data:
 
 \[
-D_{\mathrm{KL}}\big(q(\mathbf{z}; \phi) \parallel p(\mathbf{z} \mid \mathbf{x}; \theta)\big)
+    \text{ELBO} = \mathbb{E}_{q_\phi(z|x)} \left[ \log p_\theta(x|z) \right] - \text{KL}(q_\phi(z|x) \| p(z))
 \]
 
-3. **Reformulation**: Converting the inference problem into an optimization problem through the ELBO:
-
-\[
-\log p(\mathbf{x}; \theta) \geq \underbrace{\mathbb{E}_{q(\mathbf{z}; \phi)}\big[\log p(\mathbf{x}, \mathbf{z}; \theta)\big] - \mathbb{E}_{q(\mathbf{z}; \phi)}\big[\log q(\mathbf{z}; \phi)\big]}_{\text{ELBO}(\theta, \phi)}
-\]
-
-Key advantages of this approach:
-
-- **Computational tractability**: Replaces integration with optimization
-- **Flexibility**: $q(\mathbf{z}; \phi)$ can be any parametric distribution (often chosen as Gaussian)
-- **Scalability**: Compatible with stochastic gradient descent
-- **Theoretical guarantees**: Maximizing ELBO simultaneously:
-  \begin{itemize}
-  \item Increases the data likelihood $\log p(\mathbf{x}; \theta)$
-  \item Decreases $D_{\mathrm{KL}}(q \parallel p)$
-  \end{itemize}
+This ELBO can be optimized as a surrogate objective to approximate the log-likelihood.
 
 
 
+\subsection*{Interpretation of the ELBO}
+
+The ELBO has two parts:
+
+\begin{itemize}
+    \item \textbf{Reconstruction Term:} $\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]$ — encourages the decoder to reconstruct input $x$ accurately from the latent variable $z$.
+    \item \textbf{Regularization Term:} $\mathrm{KL}(q_\phi(z|x) \| p(z))$ — ensures that the approximate posterior stays close to the prior, preventing overfitting and encouraging smooth latent spaces.
+\end{itemize}
+
+In simple terms, the ELBO helps VAEs learn a balance between making good reconstructions and maintaining a well-behaved, compact latent space.
 
 
 ## Core Derivation
