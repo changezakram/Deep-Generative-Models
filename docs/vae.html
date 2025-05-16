@@ -218,16 +218,35 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 \]</span></p>
 <p>The right-hand side provides a tractable lower bound on the log-likelihood and is referred to as the <strong>Evidence Lower Bound (ELBO)</strong>. Optimizing the ELBO allows us to indirectly maximize the intractable log-likelihood. In the next section, we derive this bound formally and explore its components in detail.</p>
 </section>
+<section id="why-variational-inference" class="level3">
+<h3 class="anchored" data-anchor-id="why-variational-inference">Why Variational Inference?</h3>
+<p>Computing the true posterior distribution <span class="math inline">\(p(z|x)\)</span> is intractable in most cases because it requires evaluating the marginal likelihood:</p>
+<p><span class="math display">\[
+p(x) = \int p(x, z) \, dz
+\]</span></p>
+<p>Variational inference tackles this by introducing a tractable, parameterized distribution <span class="math inline">\(q(z)\)</span> to approximate <span class="math inline">\(p(z|x)\)</span>. We aim to make <span class="math inline">\(q(z)\)</span> as close as possible to the true posterior by minimizing the KL divergence:</p>
+<p><span class="math display">\[
+D_{\text{KL}}(q(z) \| p(z|x))
+\]</span></p>
+<p>This turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO):</p>
+<p><span class="math display">\[
+\log p(x) \geq \mathbb{E}_{q(z)}\left[\log p(x, z) - \log q(z)\right]
+\]</span></p>
+<p>or equivalently:</p>
+<p><span class="math display">\[
+\text{ELBO} = \mathbb{E}_{q_\phi(z|x)} \left[ \log p_\theta(x|z) \right] - \text{KL}(q_\phi(z|x) \| p(z))
+\]</span></p>
+<hr>
 </section>
-<section id="why-variational-inference" class="level2">
-<h2 class="anchored" data-anchor-id="why-variational-inference">Why Variational Inference?</h2>
-<p>Computing the true posterior distribution <span class="math inline">\(p(z|x)\)</span> is intractable in most cases because it requires evaluating the marginal likelihood: [ p(x) = p(x, z) , dz ] This integral is hard to compute due to the high dimensionality and complexity of <span class="math inline">\(p(x, z)\)</span>.</p>
-<p>Variational inference tackles this problem by introducing a tractable, parameterized distribution <span class="math inline">\(q(z)\)</span> to approximate <span class="math inline">\(p(z|x)\)</span>. The goal is to make <span class="math inline">\(q(z)\)</span> as close as possible to the true posterior by minimizing their KL divergence: [ D_{KL}(q(z) | p(z|x)) ]</p>
-<p>This approach converts the inference problem into an optimization problem. A key result from this framework is the Evidence Lower Bound (ELBO), which provides a lower bound on the log-likelihood of the data:</p>
-<p>[ = <em>{q</em>(z|x)} - (q_(z|x) | p(z)) ]</p>
-<p>This ELBO can be optimized as a surrogate objective to approximate the log-likelihood.</p>
-<p>The ELBO has two parts:</p>
-<p>In simple terms, the ELBO helps VAEs learn a balance between making good reconstructions and maintaining a well-behaved, compact latent space.</p>
+<section id="interpretation-of-the-elbo" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-of-the-elbo">Interpretation of the ELBO</h3>
+<ul>
+<li><p><strong>Reconstruction Term</strong>:<br>
+<span class="math inline">\(\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]\)</span> — encourages the decoder to reconstruct <span class="math inline">\(x\)</span> accurately.</p></li>
+<li><p><strong>Regularization Term</strong>:<br>
+<span class="math inline">\(\text{KL}(q_\phi(z|x) \| p(z))\)</span> — keeps <span class="math inline">\(q(z|x)\)</span> close to the prior, ensuring a smooth and compact latent space.</p></li>
+</ul>
+</section>
 </section>
 <section id="core-derivation" class="level2">
 <h2 class="anchored" data-anchor-id="core-derivation">Core Derivation</h2>
