@@ -96,7 +96,7 @@ $$
 This turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO). See next section. 
 
 
-## Core Derivation
+## Deriving the ELBO
 
 ### Step 1: KL Divergence Objective
 \begin{equation}
