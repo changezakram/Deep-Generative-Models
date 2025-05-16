@@ -93,27 +93,8 @@ $$
 D_{\text{KL}}(q(z) \| p(z|x))
 $$
 
-This turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO):
+This turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO). See next section. 
 
-$$
-\log p(x) \geq \mathbb{E}_{q(z)}\left[\log p(x, z) - \log q(z)\right]
-$$
-
-or equivalently:
-
-$$
-\text{ELBO} = \mathbb{E}_{q_\phi(z|x)} \left[ \log p_\theta(x|z) \right] - \text{KL}(q_\phi(z|x) \| p(z))
-$$
-
----
-
-### Interpretation of the ELBO
-
-- **Reconstruction Term**:  
-  $\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]$ — encourages the decoder to reconstruct $x$ accurately.
-
-- **Regularization Term**:  
-  $\text{KL}(q_\phi(z|x) \| p(z))$ — keeps $q(z|x)$ close to the prior, ensuring a smooth and compact latent space.
 
 ## Core Derivation
 
@@ -140,6 +121,15 @@ Substitute $p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}$:
 \log p(x;\theta) = \underbrace{\mathbb{E}_q[\log p(z,x;\theta)] + H(q)}_{\text{ELBO}} + D_{KL}(q\|p)
 \end{equation}
 
+This equation shows that the log-likelihood $\log p(x)$ can be decomposed into the ELBO and the KL divergence between the approximate posterior and the true posterior:
+
+\[
+\log p(x) = \underbrace{\mathbb{E}_{q(z)} \left[ \log \frac{p(x, z)}{q(z)} \right]}_{\text{ELBO}} + \underbrace{D_{\text{KL}}(q(z) \| p(z|x))}_{\geq 0}
+\]
+
+Since the KL divergence is always non-negative, the ELBO serves as a lower bound to the log-likelihood. By maximizing the ELBO, we indirectly minimize the KL divergence, bringing $q(z)$ closer to $p(z|x)$.
+
+
 ## Key Results
 
 1. **Evidence Lower Bound (ELBO)**:
@@ -155,6 +145,14 @@ Substitute $p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}$:
    \text{Minimizes } D_{KL}(q\|p)
    \end{cases}
    \end{equation}
+
+### Interpretation of the ELBO
+
+- **Reconstruction Term**:  
+  $\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]$ — encourages the decoder to reconstruct $x$ accurately.
+
+- **Regularization Term**:  
+  $\text{KL}(q_\phi(z|x) \| p(z))$ — keeps $q(z|x)$ close to the prior, ensuring a smooth and compact latent space.
 
 ## Practical Implications
 
