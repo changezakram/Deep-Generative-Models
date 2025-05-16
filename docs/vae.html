@@ -258,11 +258,7 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <p><span class="math display">\[\begin{equation}
 \log p(x;\theta) = \underbrace{\mathbb{E}_q[\log p(z,x;\theta)] + H(q)}_{\text{ELBO}} + D_{KL}(q\|p)
 \end{equation}\]</span></p>
-<p>This equation shows that the log-likelihood <span class="math inline">\(\log p(x)\)</span> can be decomposed into the ELBO and the KL divergence between the approximate posterior and the true posterior:</p>
-<p><span class="math display">\[
-\log p(x) = \mathbb{E}_{q(z)} \left[ \log \frac{p(x, z)}{q(z)} \right] + D_{\text{KL}}(q(z) \| p(z|x))
-\]</span></p>
-<p>Since the KL divergence is always non-negative, the ELBO serves as a lower bound to the log-likelihood. By maximizing the ELBO, we indirectly minimize the KL divergence, bringing <span class="math inline">\(q(z)\)</span> closer to <span class="math inline">\(p(z|x)\)</span>.</p>
+<p>This equation shows that the log-likelihood <span class="math inline">\(\log p(x)\)</span> can be decomposed into the ELBO and the KL divergence between the approximate posterior and the true posterior. Since the KL divergence is always non-negative, the ELBO serves as a lower bound to the log-likelihood. By maximizing the ELBO, we indirectly minimize the KL divergence, bringing <span class="math inline">\(q(z)\)</span> closer to <span class="math inline">\(p(z|x)\)</span>.</p>
 </section>
 </section>
 <section id="key-results" class="level2">
