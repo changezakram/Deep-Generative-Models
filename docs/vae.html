@@ -295,15 +295,13 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 </ul>
 </section>
 </section>
-</section>
-<section id="reparameterization-trick" class="level3">
-<h3 class="anchored" data-anchor-id="reparameterization-trick">Reparameterization Trick</h3>
+<section id="reparameterization-trick" class="level4">
+<h4 class="anchored" data-anchor-id="reparameterization-trick">Reparameterization Trick</h4>
 <p>When training a Variational Autoencoder (VAE), we want to adjust the encoder parameters <span class="math inline">\(\phi\)</span> to improve our model. But part of the ELBO involves computing an expectation over a latent variable <span class="math inline">\(z\)</span> drawn from a distribution <span class="math inline">\(q_\phi(z|x)\)</span>. Since this distribution is parameterized by <span class="math inline">\(\phi\)</span>, it creates a problem for optimization.</p>
 <p><strong>To put it simply:</strong><br>
-We want to compute a gradient, but the thing we’re sampling from depends on the parameters we’re trying to update.</p>
-<p>This makes it hard to apply standard gradient-based learning methods.</p>
-<section id="the-solution" class="level4">
-<h4 class="anchored" data-anchor-id="the-solution">The Solution</h4>
+We want to compute a gradient, but the thing we’re sampling from depends on the parameters we’re trying to update. This makes it hard to apply standard gradient-based learning methods, because sampling introduces randomness that blocks the gradient from flowing backward through the computation graph.</p>
+<section id="the-solution" class="level5">
+<h5 class="anchored" data-anchor-id="the-solution">The Solution</h5>
 <p>The <strong>reparameterization trick</strong> solves this by rewriting the sampling process in a way that separates the randomness from the learnable parameters.</p>
 <p>Instead of sampling <span class="math inline">\(z \sim \mathcal{N}(\mu, \sigma^2)\)</span> directly, we:</p>
 <ol type="1">
@@ -317,8 +315,17 @@ z = \mu + \sigma \cdot \epsilon
 <p>Here, <span class="math inline">\(\mu = \mu_\phi(x)\)</span> and <span class="math inline">\(\sigma = \sigma_\phi(x)\)</span> come from the encoder network.</p>
 <p>This turns <span class="math inline">\(z\)</span> into a deterministic function of <span class="math inline">\(\phi\)</span> and random noise <span class="math inline">\(\epsilon\)</span>, allowing gradients to flow through <span class="math inline">\(z\)</span> during backpropagation.</p>
 </section>
-<section id="why-this-matters" class="level4">
-<h4 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h4>
+<section id="monte-carlo-approximation" class="level5">
+<h5 class="anchored" data-anchor-id="monte-carlo-approximation">Monte Carlo Approximation</h5>
+<p>In practice, we approximate the expected reconstruction term in the ELBO using Monte Carlo sampling:</p>
+<p><span class="math display">\[
+\mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)}[\log p_\theta(x | z)] \approx \frac{1}{L} \sum_{l=1}^{L} \log p_\theta(x | z^{(l)})
+\]</span></p>
+<p>where each <span class="math inline">\(z^{(l)} = \mu + \sigma \cdot \epsilon^{(l)}\)</span>, and <span class="math inline">\(L\)</span> is the number of samples (typically <span class="math inline">\(L=1\)</span> during training).</p>
+<p>This approximation is made possible by reparameterization — otherwise, computing the gradient of the expectation would not be feasible.</p>
+</section>
+<section id="why-this-matters" class="level5">
+<h5 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h5>
 <ul>
 <li>Enables standard backpropagation through the sampling step<br>
 </li>
@@ -328,8 +335,13 @@ z = \mu + \sigma \cdot \epsilon
 </li>
 <li>Works particularly well for Gaussian latent variables</li>
 </ul>
-<p>The reparameterization trick is one of the key innovations that makes VAEs practical to train.</p>
+</section>
+<section id="beyond-gaussians" class="level5">
+<h5 class="anchored" data-anchor-id="beyond-gaussians">Beyond Gaussians</h5>
+<p>The reparameterization trick is most straightforward for Gaussian latent variables, but it has been extended to other distributions using more advanced techniques such as Gumbel-Softmax and implicit reparameterization gradients.</p>
+<p>This innovation is one of the key reasons VAEs are practical and effective for generative modeling.</p>
 <p>Variational Autoencoders are widely used in:</p>
+</section>
 </section>
 </section>
 <section id="applications-of-vaes" class="level3">
