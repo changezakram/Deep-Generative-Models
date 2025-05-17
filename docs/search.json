@@ -77,6 +77,48 @@
     "text": "Key Model Families\n\n1. Variational Autoencoders (VAEs)\n\nProbabilistic encoder-decoder architecture\nLearn latent spaces with Gaussian distributions\nLearn more about VAEs\n\n\n\n2. Autoregressive Models\n\nGenerate sequences element-by-element\nExamples: PixelCNN, WaveNet\n\n\n\n3. Generative Adversarial Networks (GANs)\n\nAdversarial training with generator/discriminator\nHigh-quality image generation\n\n\n\n4. Normalizing Flows\n\nInvertible transformations for exact likelihood\nFlexible density estimation\n\n\n\n5. Energy-Based Models (EBMs)\n\nLearn energy functions for data distribution\nFlexible for discrete/continuous data\n\n\n\n6. Diffusion Models\n\nIterative denoising process\nState-of-the-art image generation"
   },
   {
+    "objectID": "vae_faces.html",
+    "href": "vae_faces.html",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "",
+    "text": "This notebook implements a convolutional variational autoencoder (VAE) trained on the CelebA face dataset using PyTorch.\nIt uses convolutional layers to encode and decode 64x64 face images, and demonstrates generation by sampling from the latent space.\n!pip install torch torchvision matplotlib"
+  },
+  {
+    "objectID": "vae_faces.html#import-required-libraries",
+    "href": "vae_faces.html#import-required-libraries",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "1. Import Required Libraries",
+    "text": "1. Import Required Libraries\n\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nimport torchvision\nimport torchvision.transforms as transforms\nfrom torchvision.utils import make_grid\nimport matplotlib.pyplot as plt\nfrom torch.utils.data import DataLoader\nimport numpy as np\nimport os"
+  },
+  {
+    "objectID": "vae_faces.html#load-celeba-dataset",
+    "href": "vae_faces.html#load-celeba-dataset",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "2. Load CelebA Dataset",
+    "text": "2. Load CelebA Dataset\n\ntransform = transforms.Compose([\n    transforms.CenterCrop(128),\n    transforms.Resize(64),\n    transforms.ToTensor()\n])\n\n# Download CelebA dataset (you must accept the license the first time)\nceleba = torchvision.datasets.CelebA(root=\"./data\", split=\"train\", download=True, transform=transform)\ndataloader = DataLoader(celeba, batch_size=128, shuffle=True)"
+  },
+  {
+    "objectID": "vae_faces.html#define-the-convolutional-vae",
+    "href": "vae_faces.html#define-the-convolutional-vae",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "3. Define the Convolutional VAE",
+    "text": "3. Define the Convolutional VAE\n\nVAE Architecture Explained\n\nEncoder: uses 4 convolutional layers to compress the image into a latent vector.\nLatent Space: the model learns a distribution (mean and variance) over latent variables.\nReparameterization: samples from this distribution to make training differentiable.\nDecoder: mirrors the encoder with transposed convolutions to reconstruct the image.\n\n\nclass ConvVAE(nn.Module):\n    def __init__(self, latent_dim=100):\n        super().__init__()\n        self.latent_dim = latent_dim\n\n        # Encoder\n        self.encoder = nn.Sequential(\n            nn.Conv2d(3, 32, 4, 2, 1),  # [B, 32, 32, 32]\n            nn.ReLU(),\n            nn.Conv2d(32, 64, 4, 2, 1),  # [B, 64, 16, 16]\n            nn.ReLU(),\n            nn.Conv2d(64, 128, 4, 2, 1), # [B, 128, 8, 8]\n            nn.ReLU(),\n            nn.Conv2d(128, 256, 4, 2, 1), # [B, 256, 4, 4]\n            nn.ReLU()\n        )\n        self.fc_mu = nn.Linear(256 * 4 * 4, latent_dim)\n        self.fc_logvar = nn.Linear(256 * 4 * 4, latent_dim)\n\n        # Decoder\n        self.fc_decode = nn.Linear(latent_dim, 256 * 4 * 4)\n        self.decoder = nn.Sequential(\n            nn.ConvTranspose2d(256, 128, 4, 2, 1),  # [B, 128, 8, 8]\n            nn.ReLU(),\n            nn.ConvTranspose2d(128, 64, 4, 2, 1),   # [B, 64, 16, 16]\n            nn.ReLU(),\n            nn.ConvTranspose2d(64, 32, 4, 2, 1),    # [B, 32, 32, 32]\n            nn.ReLU(),\n            nn.ConvTranspose2d(32, 3, 4, 2, 1),     # [B, 3, 64, 64]\n            nn.Sigmoid()\n        )\n\n    def encode(self, x):\n        h = self.encoder(x)\n        h = h.view(h.size(0), -1)\n        return self.fc_mu(h), self.fc_logvar(h)\n\n    def reparameterize(self, mu, logvar):\n        std = torch.exp(0.5 * logvar)\n        eps = torch.randn_like(std)\n        return mu + eps * std\n\n    def decode(self, z):\n        h = self.fc_decode(z).view(-1, 256, 4, 4)\n        return self.decoder(h)\n\n    def forward(self, x):\n        mu, logvar = self.encode(x)\n        z = self.reparameterize(mu, logvar)\n        return self.decode(z), mu, logvar"
+  },
+  {
+    "objectID": "vae_faces.html#define-elbo-loss",
+    "href": "vae_faces.html#define-elbo-loss",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "4. Define ELBO Loss",
+    "text": "4. Define ELBO Loss\n\ndef elbo_loss(recon_x, x, mu, logvar):\n    recon_loss = F.mse_loss(recon_x, x, reduction='sum')  # MSE for real-valued images\n    kld = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())\n    return recon_loss + kld"
+  },
+  {
+    "objectID": "vae_faces.html#generate-new-faces",
+    "href": "vae_faces.html#generate-new-faces",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "5. Generate New Faces",
+    "text": "5. Generate New Faces\nNow that the VAE is trained, we can sample new faces by drawing \\(z \\sim \\mathcal{N}(0, I)\\) and decoding it.\nThis works because the decoder has learned how to map points in latent space back to realistic face images.\n\nimport matplotlib.pyplot as plt\n\n# Function to visualize generated images\ndef show_generated_images(samples, nrow=8):\n    grid = make_grid(samples, nrow=nrow)\n    plt.figure(figsize=(12, 6))\n    plt.imshow(grid.permute(1, 2, 0).cpu().numpy())\n    plt.axis('off')\n    plt.title(\"Generated Faces\")\n    plt.show()\n\n# Sample z ~ N(0, I)\nmodel.eval()\nwith torch.no_grad():\n    z = torch.randn(64, model.latent_dim).to('cuda' if torch.cuda.is_available() else 'cpu')\n    generated = model.decode(z)\n\n# Show the generated images\nshow_generated_images(generated)"
+  },
+  {
     "objectID": "vae.html",
     "href": "vae.html",
     "title": "Variational Autoencoders",
@@ -126,11 +168,18 @@
     "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks"
   },
   {
-    "objectID": "vae.html#try-it-yourself",
-    "href": "vae.html#try-it-yourself",
+    "objectID": "vae.html#code-examples",
+    "href": "vae.html#code-examples",
     "title": "Variational Autoencoders",
-    "section": "Try It Yourself",
-    "text": "Try It Yourself\nYou can explore and run the full VAE implementation on MNIST in Google Colab (no setup required):\n\n\n\nOpen In Colab\n\n\n📓 View the notebook on GitHub\nThis notebook includes:\n\nA step-by-step walkthrough of the VAE architecture\nComments for beginners\nCode to train on MNIST and visualize reconstructions"
+    "section": "Code Examples",
+    "text": "Code Examples\n\nVAE on MNIST (Beginner Tutorial)\nA beginner-friendly VAE implementation trained on the MNIST digits dataset. Includes extensive comments, training loop, and latent space visualization.\n\n\n\nOpen In Colab\n\n\n📓 View on GitHub\n\n\n\nFace Generation with Convolutional VAE\nA convolutional VAE trained on the CelebA dataset. Learn how to generate realistic faces from latent samples.\n\n\n\nOpen In Colab"
+  },
+  {
+    "objectID": "vae.html#view-on-github",
+    "href": "vae.html#view-on-github",
+    "title": "Variational Autoencoders",
+    "section": "📓 View on GitHub",
+    "text": "📓 View on GitHub"
   },
   {
     "objectID": "vae.html#further-reading",
