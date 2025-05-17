@@ -275,9 +275,6 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <section id="step-4-rearrange-for-elbo" class="level5">
 <h5 class="anchored" data-anchor-id="step-4-rearrange-for-elbo">Step 4: Rearrange for ELBO</h5>
 <p><span class="math display">\[
-\log p(x;\theta) = \mathbb{E}_q[\log p(z,x;\theta)] + H(q) + D_{\text{KL}}(q \| p)
-\]</span></p>
-<p><span class="math display">\[
 \log p(x; \theta) =
 \underbrace{
     \mathbb{E}_q[\log p(z, x; \theta)] + \mathcal{H}(q)
