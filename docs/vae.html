@@ -302,17 +302,13 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <li><strong>For VAEs</strong>: <span class="math inline">\(q(z|x;\phi)\)</span> becomes the encoder network</li>
 </ul>
 </section>
-</section>
-<section id="reparameterization-trick" class="level3">
-<h3 class="anchored" data-anchor-id="reparameterization-trick">Reparameterization Trick</h3>
+<section id="gradient-challenge" class="level4">
+<h4 class="anchored" data-anchor-id="gradient-challenge">Gradient Challenge</h4>
 <p>In variational inference, we approximate the true posterior <span class="math inline">\(p(z|x)\)</span> with a tractable distribution <span class="math inline">\(q_\phi(z|x)\)</span>. This allows us to optimize the ELBO:</p>
 <p><span class="math display">\[
 \mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_\phi(z|x)}\left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
 \]</span></p>
 <p>Our goal is to maximize this objective with respect to both <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span>. While computing the gradient with respect to <span class="math inline">\(\theta\)</span> is straightforward, optimizing with respect to <span class="math inline">\(\phi\)</span> presents a challenge.</p>
-<hr>
-<section id="gradient-challenge" class="level4">
-<h4 class="anchored" data-anchor-id="gradient-challenge">Gradient Challenge</h4>
 <p>The complication arises because <span class="math inline">\(\phi\)</span> appears both in the density <span class="math inline">\(q_\phi(z|x)\)</span> and in the expectation operator. That is:</p>
 <p><span class="math display">\[
 \nabla_\phi \mathbb{E}_{q_\phi(z|x)} \left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
