@@ -350,6 +350,7 @@ z^{(k)} = \mu_\phi(x) + \sigma_\phi(x) \cdot \epsilon^{(k)}, \quad \epsilon^{(k)
 <li>This allows us to use backpropagation to optimize the ELBO efficiently</li>
 </ul>
 <hr>
+<hr>
 </section>
 </section>
 <section id="amortized-inference" class="level3">
@@ -361,16 +362,12 @@ z^{(k)} = \mu_\phi(x) + \sigma_\phi(x) \cdot \epsilon^{(k)}, \quad \epsilon^{(k)
 <hr>
 <section id="the-key-idea-amortization" class="level4">
 <h4 class="anchored" data-anchor-id="the-key-idea-amortization">The Key Idea: Amortization</h4>
-<p>Instead of learning and storing a separate <span class="math inline">\(\phi^i\)</span> for every datapoint, we learn a <strong>single parametric function</strong> <span class="math inline">\(f_\lambda\)</span> — typically a neural network — that maps each input <span class="math inline">\(x^i\)</span> to its corresponding variational parameters:</p>
+<p>Instead of learning and storing a separate <span class="math inline">\(\phi^i\)</span> for every datapoint, we learn a <strong>single parametric function</strong> <span class="math inline">\(f_\phi(x)\)</span> — typically a neural network — that maps each input <span class="math inline">\(x\)</span> to the parameters of the approximate posterior:</p>
 <p><span class="math display">\[
-f_\lambda(x^i) \mapsto \phi^i
+q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
 \]</span></p>
-<p>This is like learning a regression model that approximates the optimal variational parameters from data.</p>
-<p>If the variational family is Gaussian, we use this function to output the mean and variance of the approximate posterior:</p>
-<p><span class="math display">\[
-q_\lambda(z|x) = \mathcal{N}\left(\mu_\lambda(x), \sigma^2_\lambda(x)\right)
-\]</span></p>
-<p>Here, <span class="math inline">\(\lambda\)</span> are the <strong>shared parameters</strong> of the encoder network, and <span class="math inline">\(\mu_\lambda(x), \sigma_\lambda(x)\)</span> are its outputs.</p>
+<p>Here, <span class="math inline">\(\phi\)</span> are the shared parameters of the encoder network, and <span class="math inline">\(\mu_\phi(x), \sigma_\phi(x)\)</span> are its outputs.</p>
+<p>This is like learning a regression function that predicts the optimal variational parameters for any input <span class="math inline">\(x\)</span>.</p>
 <hr>
 </section>
 </section>
@@ -378,18 +375,18 @@ q_\lambda(z|x) = \mathcal{N}\left(\mu_\lambda(x), \sigma^2_\lambda(x)\right)
 <h3 class="anchored" data-anchor-id="training-with-amortized-inference">Training with Amortized Inference</h3>
 <p>Our training objective remains the ELBO:</p>
 <p><span class="math display">\[
-\mathcal{L}(x; \theta, \lambda) = \mathbb{E}_{q_\lambda(z|x)}\left[\log p_\theta(x, z) - \log q_\lambda(z|x)\right]
+\mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_\phi(z|x)}\left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
 \]</span></p>
-<p>We optimize both <span class="math inline">\(\theta\)</span> (decoder parameters) and <span class="math inline">\(\lambda\)</span> (encoder parameters) using stochastic gradient descent.</p>
+<p>We optimize both <span class="math inline">\(\theta\)</span> (decoder parameters) and <span class="math inline">\(\phi\)</span> (encoder parameters) using stochastic gradient descent.</p>
 <section id="algorithm" class="level4">
 <h4 class="anchored" data-anchor-id="algorithm">Algorithm:</h4>
 <ol type="1">
-<li><strong>Initialize</strong> <span class="math inline">\(\theta^{(0)}, \lambda^{(0)}\)</span></li>
+<li><strong>Initialize</strong> <span class="math inline">\(\theta^{(0)}, \phi^{(0)}\)</span></li>
 <li>Sample a datapoint <span class="math inline">\(x^i\)</span></li>
-<li>Use <span class="math inline">\(f_\lambda(x^i)\)</span> to produce <span class="math inline">\(\mu^i, \sigma^i\)</span></li>
+<li>Use <span class="math inline">\(f_\phi(x^i)\)</span> to produce <span class="math inline">\(\mu^i, \sigma^i\)</span></li>
 <li>Sample <span class="math inline">\(z^i = \mu^i + \sigma^i \cdot \epsilon\)</span>, with <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span></li>
-<li>Estimate the ELBO and compute gradients w.r.t. <span class="math inline">\(\theta, \lambda\)</span></li>
-<li>Update <span class="math inline">\(\theta, \lambda\)</span> using gradient descent</li>
+<li>Estimate the ELBO and compute gradients w.r.t. <span class="math inline">\(\theta, \phi\)</span></li>
+<li>Update <span class="math inline">\(\theta, \phi\)</span> using gradient descent</li>
 </ol>
 <hr>
 </section>
@@ -397,10 +394,14 @@ q_\lambda(z|x) = \mathcal{N}\left(\mu_\lambda(x), \sigma^2_\lambda(x)\right)
 <section id="summary-1" class="level3">
 <h3 class="anchored" data-anchor-id="summary-1">Summary</h3>
 <ul>
-<li>Amortized inference replaces per-datapoint optimization with a single learned mapping <span class="math inline">\(f_\lambda(x)\)</span></li>
+<li>Amortized inference replaces per-datapoint optimization with a single learned mapping <span class="math inline">\(f_\phi(x)\)</span></li>
 <li>This makes variational inference scalable and efficient</li>
 <li>The model can generalize to unseen inputs by predicting variational parameters on-the-fly</li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Following common practice in the literature, we use <span class="math inline">\(\phi\)</span> to denote the parameters of the encoder network, even though it now defines a function rather than individual variational parameters.</p>
+</blockquote>
+<hr>
 </section>
 </section>
 <section id="applications-of-vaes" class="level2">
