@@ -264,6 +264,13 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 &amp;\quad - \sum_z q(z) \log p(z, x; \theta) \\
 &amp;= -H(q) + \log p(x; \theta) - \mathbb{E}_q[\log p(z,x;\theta)]
 \end{align}\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The term <span class="math inline">\(\mathcal{H}(q)\)</span> represents the <strong>entropy</strong> of the variational distribution <span class="math inline">\(q(z|x)\)</span>:</p>
+<p><span class="math display">\[
+\mathcal{H}(q) = -\mathbb{E}_{q(z)}[\log q(z)]
+\]</span></p>
+<p>Entropy measures the amount of uncertainty or “spread” in a distribution. A high-entropy <span class="math inline">\(q(z)\)</span> places probability mass across a wide region of the latent space, while a low-entropy <span class="math inline">\(q(z)\)</span> is more concentrated. This term arises naturally in the decomposition of KL divergence and is essential to how the ELBO balances fitting the data and encouraging exploration in latent space.</p>
+</blockquote>
 </section>
 <section id="step-4-rearrange-for-elbo" class="level5">
 <h5 class="anchored" data-anchor-id="step-4-rearrange-for-elbo">Step 4: Rearrange for ELBO</h5>
