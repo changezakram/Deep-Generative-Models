@@ -60,7 +60,7 @@
     "href": "vae.html#further-reading",
     "title": "Variational Autoencoders",
     "section": "Further Reading",
-    "text": "Further Reading\nFor readers interested in diving deeper into the theory and applications of variational autoencoders and amortized inference, the following resources are recommended:\n\nTutorial on Variational Autoencoders\nCarl Doersch (2016)\nhttps://arxiv.org/pdf/1606.05908\nAuto-Encoding Variational Bayes\nKingma & Welling (2014) — the original VAE paper\nhttps://arxiv.org/pdf/1312.6114\nThe Challenges of Amortized Inference for Structured Prediction\nCremer, Li, & Duvenaud (2019)\nhttps://arxiv.org/pdf/1906.02691\nDeep Generative Models course notes\nhttps://deepgenerativemodels.github.io/notes/vae/"
+    "text": "Further Reading\nFor readers interested in diving deeper into the theory and applications of variational autoencoders, the following resources are recommended:\n\nTutorial on Variational Autoencoders\nCarl Doersch (2016)\nhttps://arxiv.org/pdf/1606.05908\nAuto-Encoding Variational Bayes\nKingma & Welling (2014) — the original VAE paper\nhttps://arxiv.org/pdf/1312.6114\nThe Challenges of Amortized Inference for Structured Prediction\nCremer, Li, & Duvenaud (2019)\nhttps://arxiv.org/pdf/1906.02691\nDeep Generative Models course notes\nhttps://deepgenerativemodels.github.io/notes/vae/"
   },
   {
     "objectID": "index.html",
