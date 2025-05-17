@@ -209,7 +209,11 @@ p(x) \approx \frac{1}{K} \sum_{j=1}^K p_\theta(x, z_j), \quad z_j \sim \text{Uni
 p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 \]</span></p>
 <p>This gives an <strong>unbiased estimator</strong> of <span class="math inline">\(p(x)\)</span> if <span class="math inline">\(q(z)\)</span> is well-chosen (ideally close to <span class="math inline">\(p_\theta(z|x)\)</span>). Intuitively, we sample <span class="math inline">\(z\)</span> more frequently in regions where <span class="math inline">\(p_\theta(x, z)\)</span> is high.</p>
-<p>However, our goal is to optimize the <strong>log-likelihood</strong>, and the log of an expectation is not the same as the expectation of the log. That is,</p>
+<hr>
+</section>
+<section id="log-likelihood" class="level3">
+<h3 class="anchored" data-anchor-id="log-likelihood">Log likelihood</h3>
+<p>Our goal is to optimize the <strong>log-likelihood</strong>, and the log of an expectation is not the same as the expectation of the log. That is,</p>
 <p><span class="math display">\[
 \log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \neq \mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]
 \]</span></p>
