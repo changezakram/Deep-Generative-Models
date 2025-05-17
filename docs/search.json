@@ -116,7 +116,7 @@
     "href": "vae.html#try-it-yourself",
     "title": "Variational Autoencoders",
     "section": "Try It Yourself",
-    "text": "Try It Yourself\nRun the VAE on MNIST in Google Colab:\n\n\n\nOpen In Colab"
+    "text": "Try It Yourself\nYou can explore and run the full VAE implementation on MNIST in Google Colab (no setup required):\n\n\n\nOpen In Colab\n\n\n📓 View the notebook on GitHub\nThis notebook includes: - A step-by-step walkthrough of the VAE architecture - Comments for beginners - Code to train on MNIST and visualize reconstructions"
   },
   {
     "objectID": "vae.html#further-reading",
