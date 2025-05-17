@@ -384,13 +384,21 @@ q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
 <section id="algorithm" class="level4">
 <h4 class="anchored" data-anchor-id="algorithm">Algorithm:</h4>
 <ol type="1">
-<li><strong>Initialize</strong> <span class="math inline">\(\theta^{(0)}, \phi^{(0)}\)</span></li>
-<li>Sample a datapoint <span class="math inline">\(x^i\)</span></li>
-<li>Use <span class="math inline">\(f_\phi(x^i)\)</span> to produce <span class="math inline">\(\mu^i, \sigma^i\)</span></li>
-<li>Sample <span class="math inline">\(z^i = \mu^i + \sigma^i \cdot \epsilon\)</span>, with <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span></li>
-<li>Estimate the ELBO and compute gradients w.r.t. <span class="math inline">\(\theta, \phi\)</span></li>
-<li>Update <span class="math inline">\(\theta, \phi\)</span> using gradient descent</li>
+<li><p><strong>Initialize</strong> <span class="math inline">\(\theta^{(0)}, \phi^{(0)}\)</span></p></li>
+<li><p>Sample a datapoint <span class="math inline">\(x^i\)</span></p></li>
+<li><p>Use <span class="math inline">\(f_\phi(x^i)\)</span> to produce <span class="math inline">\(\mu^i, \sigma^i\)</span></p></li>
+<li><p>Sample <span class="math inline">\(z^i = \mu^i + \sigma^i \cdot \epsilon\)</span>, with <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span></p></li>
+<li><p>Estimate the ELBO and compute gradients w.r.t. <span class="math inline">\(\theta, \phi\)</span></p></li>
+<li><p>Update <span class="math inline">\(\theta, \phi\)</span> using gradient descent</p></li>
+<li><p>Update <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\phi\)</span> using gradient descent:</p></li>
 </ol>
+<p><span class="math display">\[
+\phi \leftarrow \phi + \tilde{\nabla}_\phi \sum_{x \in \mathcal{B}} \text{ELBO}(x; \theta, \phi)
+\]</span></p>
+<p><span class="math display">\[
+\theta \leftarrow \theta + \tilde{\nabla}_\theta \sum_{x \in \mathcal{B}} \text{ELBO}(x; \theta, \phi)
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal{B}\)</span> is the current minibatch and <span class="math inline">\(\tilde{\nabla}\)</span> indicates a stochastic gradient approximation.</p>
 <hr>
 </section>
 </section>
