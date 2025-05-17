@@ -165,21 +165,7 @@
     "href": "vae.html#applications-of-vaes",
     "title": "Variational Autoencoders",
     "section": "Applications of VAEs",
-    "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks"
-  },
-  {
-    "objectID": "vae.html#code-examples",
-    "href": "vae.html#code-examples",
-    "title": "Variational Autoencoders",
-    "section": "Code Examples",
-    "text": "Code Examples\n\nVAE on MNIST (Beginner Tutorial)\nA beginner-friendly VAE implementation trained on the MNIST digits dataset. Includes extensive comments, training loop, and latent space visualization.\n\n\n\nOpen In Colab\n\n\n📓 View on GitHub\n\n\n\nFace Generation with Convolutional VAE\nA convolutional VAE trained on the CelebA dataset. Learn how to generate realistic faces from latent samples.\n\n\n\nOpen In Colab"
-  },
-  {
-    "objectID": "vae.html#view-on-github",
-    "href": "vae.html#view-on-github",
-    "title": "Variational Autoencoders",
-    "section": "📓 View on GitHub",
-    "text": "📓 View on GitHub"
+    "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks\n\n\n🧠 VAE on MNIST (Beginner Tutorial)\nA beginner-friendly VAE implementation trained on the MNIST digits dataset.\nIncludes extensive comments, training loop, and latent space visualization.\n\n📓 View on GitHub\n\n\n\n😎 Face Generation with Convolutional VAE\nA convolutional VAE trained on the CelebA dataset.\nLearn how to generate realistic faces from latent samples.\n\n📓 View on GitHub —"
   },
   {
     "objectID": "vae.html#further-reading",
