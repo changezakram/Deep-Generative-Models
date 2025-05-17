@@ -215,7 +215,7 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 <h3 class="anchored" data-anchor-id="log-likelihood">Log likelihood</h3>
 <p>Our goal is to optimize the <strong>log-likelihood</strong>, and the log of an expectation is not the same as the expectation of the log. That is,</p>
 <p><span class="math display">\[
-\log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \neq \mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]
+\log p(x) = log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \neq \mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]
 \]</span></p>
 <p>This discrepancy is captured by <strong>Jensen’s Inequality</strong>, which tells us:</p>
 <p><span class="math display">\[
