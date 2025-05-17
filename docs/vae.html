@@ -217,7 +217,7 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 <p><span class="math display">\[
 \log p(x) = log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \neq \mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]
 \]</span></p>
-<p>This discrepancy is captured by <strong>Jensen’s Inequality</strong>, which tells us:</p>
+<p>While the marginal likelihood p(x) can be estimated unbiasedly using importance sampling, estimating its logarithm <span class="math inline">\(p(x)\)</span> introduces bias due to the concavity of the log function. This is captured by <strong>Jensen’s Inequality</strong>, which tells us:</p>
 <p><span class="math display">\[
 \log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \geq \underbrace{\mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]}_{\text{ELBO}}
 \]</span></p>
