@@ -10,5 +10,11 @@
   },
   "intro.qmd": {
     "intro.html": "d5cc734d"
+  },
+  "vae_mnist.ipynb": {
+    "vae_mnist.html": "78f3b6ba"
+  },
+  "vae_faces.ipynb": {
+    "vae_faces.html": "fabd7511"
   }
 }
