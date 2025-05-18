@@ -317,7 +317,7 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <ul>
 <li>If <span class="math inline">\(\\beta\)</span> (the KL weight) is <strong>too small</strong>, the model may ignore the prior entirely and behave like a plain autoencoder — resulting in poor generative quality.</li>
 <li>If <span class="math inline">\(\\beta\)</span> is <strong>too large</strong>, reconstructions degrade because the model is too constrained by the prior.</li>
-<li>Choosing ( ) carefully is <strong>essential for balancing generalization and fidelity</strong>. The ( )-VAE framework explores this trade-off by treating ( ) as a tunable hyperparameter.</li>
+<li>Choosing <span class="math inline">\(\\beta\)</span> carefully is <strong>essential for balancing generalization and fidelity</strong>. The <span class="math inline">\(\\beta\)</span>-VAE framework explores this trade-off by treating <span class="math inline">\(\\beta\)</span> as a tunable hyperparameter.</li>
 </ul>
 <blockquote class="blockquote">
 <p>This weighting is one of the key parameters to tune when training a VAE.</p>
