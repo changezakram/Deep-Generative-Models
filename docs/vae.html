@@ -320,29 +320,26 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 \mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot D_{\text{KL}}(q(z|x) \,\|\, p(z))
 \]</span></p>
 <p>The parameter <span class="math inline">\(\beta\)</span> controls how strongly we enforce this regularization. Getting its value right is critical.</p>
-<hr>
-</section>
-<section id="when-beta-is-too-low" class="level3">
-<h3 class="anchored" data-anchor-id="when-beta-is-too-low">🔻 When <span class="math inline">\(\beta\)</span> is too low:</h3>
+<section id="when-beta-is-too-low" class="level4">
+<h4 class="anchored" data-anchor-id="when-beta-is-too-low">When <span class="math inline">\(\beta\)</span> is too low:</h4>
 <ul>
 <li>The model mostly ignores the KL term, behaving like a plain autoencoder</li>
 <li>The latent space becomes disorganized or fragmented</li>
 <li>Sampling from the prior <span class="math inline">\(p(z) = \mathcal{N}(0, I)\)</span> results in <strong>unrealistic or broken outputs</strong></li>
 </ul>
-<hr>
 </section>
-<section id="when-beta-is-too-high" class="level3">
-<h3 class="anchored" data-anchor-id="when-beta-is-too-high">🔺 When <span class="math inline">\(\beta\)</span> is too high:</h3>
+<section id="when-beta-is-too-high" class="level4">
+<h4 class="anchored" data-anchor-id="when-beta-is-too-high">When <span class="math inline">\(\beta\)</span> is too high:</h4>
 <ul>
 <li>The encoder is forced to keep <span class="math inline">\(q(z|x)\)</span> too close to the prior</li>
 <li>It encodes less information about the input</li>
 <li>Reconstructions become <strong>blurry or generic</strong>, since the decoder gets little to work with</li>
 </ul>
-<hr>
 <blockquote class="blockquote">
 <p><strong>Choosing <span class="math inline">\(\beta\)</span> carefully is essential for balancing generalization and fidelity.</strong><br>
 A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both reconstruct accurately and generate new samples that resemble the training data.</p>
 </blockquote>
+</section>
 </section>
 <section id="gradient-challenge" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-challenge">Gradient Challenge</h3>
