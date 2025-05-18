@@ -312,7 +312,7 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <h3 class="anchored" data-anchor-id="balancing-kl-divergence-and-reconstruction">Balancing KL Divergence and Reconstruction</h3>
 <p>In practice, the total VAE loss is:</p>
 <p><span class="math display">\[
-\mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot D_{\text{KL}}(q(z|x) \,\|\, p(z))
+\mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot \text{KL Divergence}
 \]</span></p>
 <ul>
 <li>If <span class="math inline">\(\\beta\)</span> (the KL weight) is <strong>too small</strong>, the model may ignore the prior entirely and behave like a plain autoencoder — resulting in poor generative quality.</li>
