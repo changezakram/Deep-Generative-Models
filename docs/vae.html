@@ -302,7 +302,7 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 </section>
 <section id="understanding-the-kl-divergence-term-in-the-vae-loss" class="level2">
 <h2 class="anchored" data-anchor-id="understanding-the-kl-divergence-term-in-the-vae-loss">Understanding the KL Divergence Term in the VAE Loss</h2>
-<p>In a VAE, the total loss is composed of two parts: the reconstruction loss and the KL divergence term. The KL divergence term <strong>penalizes the encoder</strong> for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:</p>
+<p>In a VAE, the KL divergence term <strong>penalizes the encoder</strong> for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:</p>
 <ul>
 <li>It ensures that the latent space has a <strong>consistent structure</strong>, enabling meaningful sampling and interpolation.</li>
 <li>It helps avoid <strong>large gaps between clusters</strong> in latent space by encouraging the encoder to distribute representations more uniformly.</li>
@@ -310,13 +310,19 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 </ul>
 <section id="balancing-kl-divergence-and-reconstruction" class="level3">
 <h3 class="anchored" data-anchor-id="balancing-kl-divergence-and-reconstruction">Balancing KL Divergence and Reconstruction</h3>
-<p>In practice, the total VAE loss is:</p>
+<p>In a Variational Autoencoder, the total loss combines two goals:</p>
+<ol type="1">
+<li><strong>Reconstruction</strong> — making the decoded output as close to the original input as possible<br>
+</li>
+<li><strong>Regularization</strong> — making the latent space follow a standard normal distribution (the prior)</li>
+</ol>
+<p>This is controlled by the loss function:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot \text{KL Divergence}
 \]</span></p>
 <ul>
-<li>If <span class="math inline">\(\\beta\)</span> (the KL weight) is <strong>too small</strong>, the model may ignore the prior entirely and behave like a plain autoencoder — resulting in poor generative quality.</li>
-<li>If <span class="math inline">\(\\beta\)</span> is <strong>too large</strong>, reconstructions degrade because the model is too constrained by the prior.</li>
+<li>If <span class="math inline">\(\\beta\)</span> (the KL weight) is <strong>too small</strong>, the KL divergence Loss will not have the desired regulatory effect and we will see the same problems that we experienced with the plain autoencoder — resulting in poor generative quality.</li>
+<li>If <span class="math inline">\(\\beta\)</span> is <strong>too large</strong>, the KL divergence loss will dominate and the reconstructed images will be poor because the model is too constrained by the prior.</li>
 <li>Choosing <span class="math inline">\(\\beta\)</span> carefully is <strong>essential for balancing generalization and fidelity</strong>. The <span class="math inline">\(\\beta\)</span>-VAE framework explores this trade-off by treating <span class="math inline">\(\\beta\)</span> as a tunable hyperparameter.</li>
 </ul>
 <blockquote class="blockquote">
