@@ -173,19 +173,7 @@ This equation shows that the log-likelihood $\log p(x)$ can be decomposed into t
 
 ## Understanding the KL Divergence Term in the VAE Loss
 
-In a VAE, the total loss is composed of two parts: the reconstruction loss and the KL divergence term. The KL divergence between the learned approximate posterior \( q(z|x) = \mathcal{N}(\mu, \sigma^2) \) and the standard normal prior \( p(z) = \mathcal{N}(0, I) \) is given by:
-
-$$
-D_{\text{KL}}\left[ \mathcal{N}(\mu, \sigma^2) \,\|\, \mathcal{N}(0, 1) \right] = \frac{1}{2} \sum \left(1 + \log(\sigma^2) - \mu^2 - \sigma^2 \right)
-$$
-
-- The sum is taken over all dimensions in the latent space.
-- The KL loss is minimized when \( \mu = 0 \) and \( \log(\sigma^2) = 0 \), i.e., when the learned distribution exactly matches the standard normal.
-- As these parameters deviate from the standard normal, the KL loss increases.
-
-### Why this helps
-
-The KL divergence term **penalizes the encoder** for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:
+In a VAE, the total loss is composed of two parts: the reconstruction loss and the KL divergence term. The KL divergence term **penalizes the encoder** for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:
 
 - It ensures that the latent space has a **consistent structure**, enabling meaningful sampling and interpolation.
 - It helps avoid **large gaps between clusters** in latent space by encouraging the encoder to distribute representations more uniformly.
@@ -199,8 +187,8 @@ $$
 \mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot D_{\text{KL}}(q(z|x) \,\|\, p(z))
 $$
 
-- If \( \beta \) (the KL weight) is **too small**, the model may ignore the prior entirely and behave like a plain autoencoder — resulting in poor generative quality.
-- If \( \beta \) is **too large**, reconstructions degrade because the model is too constrained by the prior.
+- If $\\beta$ (the KL weight) is **too small**, the model may ignore the prior entirely and behave like a plain autoencoder — resulting in poor generative quality.
+- If $\\beta$ is **too large**, reconstructions degrade because the model is too constrained by the prior.
 - Choosing \( \beta \) carefully is **essential for balancing generalization and fidelity**. The \( \beta \)-VAE framework explores this trade-off by treating \( \beta \) as a tunable hyperparameter.
 
 > This weighting is one of the key parameters to tune when training a VAE.
