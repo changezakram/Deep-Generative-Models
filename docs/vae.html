@@ -298,47 +298,26 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 \end{equation}\]</span></p></li>
 </ol>
 </section>
-<section id="interpretation-of-the-elbo" class="level5">
-<h5 class="anchored" data-anchor-id="interpretation-of-the-elbo">Interpretation of the ELBO</h5>
-<ul>
-<li><p><strong>Reconstruction Term</strong>:<br>
-<span class="math inline">\(\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]\)</span> — encourages the decoder to reconstruct <span class="math inline">\(x\)</span> accurately.</p></li>
-<li><p><strong>Regularization Term</strong>:<br>
-<span class="math inline">\(\text{KL}(q_\phi(z|x) \| p(z))\)</span> — keeps <span class="math inline">\(q(z|x)\)</span> close to the prior, ensuring a smooth and compact latent space.</p></li>
-</ul>
-</section>
 </section>
 </section>
 <section id="understanding-the-kl-divergence-term-in-the-vae-loss" class="level2">
 <h2 class="anchored" data-anchor-id="understanding-the-kl-divergence-term-in-the-vae-loss">Understanding the KL Divergence Term in the VAE Loss</h2>
-<p>In a VAE, the total loss is composed of two parts: the reconstruction loss and the KL divergence term. The KL divergence between the learned approximate posterior ( q(z|x) = (, ^2) ) and the standard normal prior ( p(z) = (0, I) ) is given by:</p>
-<p><span class="math display">\[
-D_{\text{KL}}\left[ \mathcal{N}(\mu, \sigma^2) \,\|\, \mathcal{N}(0, 1) \right] = \frac{1}{2} \sum \left(1 + \log(\sigma^2) - \mu^2 - \sigma^2 \right)
-\]</span></p>
-<ul>
-<li>The sum is taken over all dimensions in the latent space.</li>
-<li>The KL loss is minimized when ( = 0 ) and ( (^2) = 0 ), i.e., when the learned distribution exactly matches the standard normal.</li>
-<li>As these parameters deviate from the standard normal, the KL loss increases.</li>
-</ul>
-<section id="why-this-helps" class="level3">
-<h3 class="anchored" data-anchor-id="why-this-helps">Why this helps</h3>
-<p>The KL divergence term <strong>penalizes the encoder</strong> for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:</p>
+<p>In a VAE, the total loss is composed of two parts: the reconstruction loss and the KL divergence term. The KL divergence term <strong>penalizes the encoder</strong> for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:</p>
 <ul>
 <li>It ensures that the latent space has a <strong>consistent structure</strong>, enabling meaningful sampling and interpolation.</li>
 <li>It helps avoid <strong>large gaps between clusters</strong> in latent space by encouraging the encoder to distribute representations more uniformly.</li>
 <li>It pushes the model to use the space around the origin more symmetrically and efficiently.</li>
 </ul>
-</section>
 <section id="balancing-kl-divergence-and-reconstruction" class="level3">
 <h3 class="anchored" data-anchor-id="balancing-kl-divergence-and-reconstruction">Balancing KL Divergence and Reconstruction</h3>
 <p>In practice, the total VAE loss is:</p>
 <p><span class="math display">\[
-\mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot D_{\text{KL}}(q(z|x) \| p(z))
+\mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot D_{\text{KL}}(q(z|x) \,\|\, p(z))
 \]</span></p>
 <ul>
-<li>If ( ) (the KL weight) is <strong>too small</strong>, the model may ignore the prior entirely and behave like a plain autoencoder — resulting in poor generative quality.</li>
-<li>If ( ) is <strong>too large</strong>, reconstructions degrade because the model is too constrained by the prior.</li>
-<li>Choosing ( ) carefully is <strong>essential for balancing generalization and fidelity</strong>. The β-VAE framework explores this trade-off by treating ( ) as a tunable hyperparameter.</li>
+<li>If <span class="math inline">\(\\beta\)</span> (the KL weight) is <strong>too small</strong>, the model may ignore the prior entirely and behave like a plain autoencoder — resulting in poor generative quality.</li>
+<li>If <span class="math inline">\(\\beta\)</span> is <strong>too large</strong>, reconstructions degrade because the model is too constrained by the prior.</li>
+<li>Choosing ( ) carefully is <strong>essential for balancing generalization and fidelity</strong>. The ( )-VAE framework explores this trade-off by treating ( ) as a tunable hyperparameter.</li>
 </ul>
 <blockquote class="blockquote">
 <p>This weighting is one of the key parameters to tune when training a VAE.</p>
