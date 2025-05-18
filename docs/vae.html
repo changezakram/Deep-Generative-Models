@@ -326,11 +326,8 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <p>When <span class="math inline">\(\beta\)</span> is set too high, the model becomes <strong>overly focused on keeping the latent space close to the prior</strong>. It prioritizes making <span class="math inline">\(q(z|x)\)</span> look like a standard normal distribution — even if that means discarding useful information about the input.</p>
 <p>As a result: - The encoder is discouraged from encoding specific features of the input - The latent vectors for different inputs start looking very similar - The decoder receives less informative inputs and struggles to reconstruct details</p>
 <p>When the latent space stops carrying meaningful information, the decoder ends up producing <strong>blurry or average-looking outputs</strong>. This happens because it’s reconstructing from a representation that no longer captures the richness of the original input.</p>
-<ul>
-<li>Choosing <span class="math inline">\(\\beta\)</span> carefully is <strong>essential for balancing generalization and fidelity</strong>. The <span class="math inline">\(\\beta\)</span>-VAE framework explores this trade-off by treating <span class="math inline">\(\\beta\)</span> as a tunable hyperparameter.</li>
-</ul>
 <blockquote class="blockquote">
-<p>This weighting is one of the key parameters to tune when training a VAE.</p>
+<p>Choosing <span class="math inline">\(\\beta\)</span> carefully is <strong>essential for balancing generalization and fidelity</strong>. The <span class="math inline">\(\\beta\)</span>-VAE framework explores this trade-off by treating <span class="math inline">\(\\beta\)</span> as a tunable hyperparameter. This weighting is one of the key parameters to tune when training a VAE.</p>
 </blockquote>
 </section>
 <section id="gradient-challenge" class="level3">
