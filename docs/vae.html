@@ -310,24 +310,38 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 </ul>
 <section id="balancing-kl-divergence-and-reconstruction" class="level3">
 <h3 class="anchored" data-anchor-id="balancing-kl-divergence-and-reconstruction">Balancing KL Divergence and Reconstruction</h3>
-<p>In a Variational Autoencoder, the total loss combines two goals:</p>
+<p>In a Variational Autoencoder, the loss balances two goals:</p>
 <ol type="1">
-<li><strong>Reconstruction</strong> — making the decoded output as close to the original input as possible<br>
-</li>
-<li><strong>Regularization</strong> — making the latent space follow a standard normal distribution (the prior)</li>
+<li><strong>Reconstruction</strong> — making the output resemble the input</li>
+<li><strong>Regularization</strong> — keeping the latent space close to a standard normal distribution</li>
 </ol>
-<p>This is controlled by the loss function:</p>
+<p>This is captured by the loss function:</p>
 <p><span class="math display">\[
-\mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot \text{KL Divergence}
+\mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot D_{\text{KL}}(q(z|x) \,\|\, p(z))
 \]</span></p>
-<p>When <span class="math inline">\(\beta\)</span> is set too low, the KL divergence Loss will not have the desired regulatory effect and we will see the same problems that we experienced with the plain autoencoder. The model would place almost no emphasis on aligning the latent distribution <span class="math inline">\(q(z|x)\)</span> with the prior <span class="math inline">\(p(z)\)</span>. This allows the encoder to do whatever it wants to minimize the reconstruction loss — even if that means ignoring the prior altogether.</p>
-<p>As a result: - The latent space can become irregular, fragmented, or clustered in unpredictable ways - The decoder may learn to depend on very specific, overfitted patterns in <span class="math inline">\(z\)</span> - Sampling from the prior <span class="math inline">\(p(z) = \mathcal{N}(0, I)\)</span> no longer works well, because the training never forced <span class="math inline">\(q(z|x)\)</span> to match it</p>
-<p>With too little KL regularization, the model behaves more like a standard autoencoder. It may produce sharp reconstructions, but the latent space becomes <strong>disorganized</strong> — so sampling from it gives <strong>garbage or inconsistent outputs</strong>.</p>
-<p>When <span class="math inline">\(\beta\)</span> is set too high, the model becomes <strong>overly focused on keeping the latent space close to the prior</strong>. It prioritizes making <span class="math inline">\(q(z|x)\)</span> look like a standard normal distribution — even if that means discarding useful information about the input.</p>
-<p>As a result: - The encoder is discouraged from encoding specific features of the input - The latent vectors for different inputs start looking very similar - The decoder receives less informative inputs and struggles to reconstruct details</p>
-<p>When the latent space stops carrying meaningful information, the decoder ends up producing <strong>blurry or average-looking outputs</strong>. This happens because it’s reconstructing from a representation that no longer captures the richness of the original input.</p>
+<p>The parameter <span class="math inline">\(\beta\)</span> controls how strongly we enforce this regularization. Getting its value right is critical.</p>
+<hr>
+</section>
+<section id="when-beta-is-too-low" class="level3">
+<h3 class="anchored" data-anchor-id="when-beta-is-too-low">🔻 When <span class="math inline">\(\beta\)</span> is too low:</h3>
+<ul>
+<li>The model mostly ignores the KL term, behaving like a plain autoencoder</li>
+<li>The latent space becomes disorganized or fragmented</li>
+<li>Sampling from the prior <span class="math inline">\(p(z) = \mathcal{N}(0, I)\)</span> results in <strong>unrealistic or broken outputs</strong></li>
+</ul>
+<hr>
+</section>
+<section id="when-beta-is-too-high" class="level3">
+<h3 class="anchored" data-anchor-id="when-beta-is-too-high">🔺 When <span class="math inline">\(\beta\)</span> is too high:</h3>
+<ul>
+<li>The encoder is forced to keep <span class="math inline">\(q(z|x)\)</span> too close to the prior</li>
+<li>It encodes less information about the input</li>
+<li>Reconstructions become <strong>blurry or generic</strong>, since the decoder gets little to work with</li>
+</ul>
+<hr>
 <blockquote class="blockquote">
-<p>Choosing <span class="math inline">\(\\beta\)</span> carefully is <strong>essential for balancing generalization and fidelity</strong>. The <span class="math inline">\(\\beta\)</span>-VAE framework explores this trade-off by treating <span class="math inline">\(\\beta\)</span> as a tunable hyperparameter. This weighting is one of the key parameters to tune when training a VAE.</p>
+<p><strong>Choosing <span class="math inline">\(\beta\)</span> carefully is essential for balancing generalization and fidelity.</strong><br>
+A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both reconstruct accurately and generate new samples that resemble the training data.</p>
 </blockquote>
 </section>
 <section id="gradient-challenge" class="level3">
