@@ -166,12 +166,9 @@ window.Quarto = {
 <li>There is no <strong>probabilistic modeling</strong>, limiting uncertainty estimation</li>
 </ul>
 <p>Variational Autoencoders (VAEs) address these limitations by introducing a probabilistic framework. They aim not just to reconstruct data but to learn a structured, continuous, and interpretable latent space useful for generation.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Reparameterized_Variational_Autoencoder.png/960px-Reparameterized_Variational_Autoencoder.png" class="img-fluid figure-img"></p>
-<figcaption>Reparameterized Variational Autoencoder</figcaption>
-</figure>
-</div>
+<p>A Variational Autoencoder (VAE) looks very similar to a standard autoencoder in architecture, but with one key difference: the encoder doesn’t output a single latent vector. Instead, it learns to output the parameters of a probability distribution — typically a Gaussian — represented by a mean <code>μ</code> and standard deviation <code>σ</code>. During training, we sample from this distribution to obtain the latent vector <code>z</code>, using a technique called the <strong>reparameterization trick</strong> to ensure the process remains differentiable.</p>
+<p>The diagram below illustrates this process:</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Reparameterized_Variational_Autoencoder.png/960px-Reparameterized_Variational_Autoencoder.png" class="img-fluid"></p>
 <p><em>Source: <a href="https://commons.wikimedia.org/wiki/File:Reparameterized_Variational_Autoencoder.png">Wikimedia Commons</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</em></p>
 </section>
 <section id="probabilistic-framework" class="level2">
