@@ -225,8 +225,7 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 <p><span class="math display">\[
 \log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \geq \underbrace{\mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]}_{\text{ELBO}}
 \]</span></p>
-<p>This means that the <strong>expected log of the estimator underestimates the true log-likelihood</strong>. The right-hand side provides a tractable surrogate objective known as the <strong>Evidence Lower Bound (ELBO)</strong>, which is a biased lower bound to <span class="math inline">\(\log p(x)\)</span>.</p>
-<p>This bias is inherent in variational approximations and reflects a trade-off between <strong>computational tractability</strong> and <strong>estimation accuracy</strong>. Optimizing the ELBO allows us to indirectly maximize the intractable log-likelihood.</p>
+<p>This means that the <strong>expected log of the estimator underestimates the true log-likelihood</strong>. The right-hand side provides a tractable surrogate objective known as the <strong>Evidence Lower Bound (ELBO)</strong>, which is a biased lower bound to <span class="math inline">\(\log p(x)\)</span>. Optimizing the ELBO allows us to indirectly maximize the intractable log-likelihood.</p>
 <p>In the next section, we formally derive this bound and explore its components in detail.</p>
 <hr>
 </section>
