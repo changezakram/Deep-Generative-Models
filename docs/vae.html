@@ -352,6 +352,9 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <p><span class="math display">\[
 \mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_(z; \phi)}\left[\log p_(z, x; \theta) - \log q_(z; \theta)\right]
 \]</span></p>
+<p><span class="math display">\[
+\mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q(z; \phi)} \left[ \log p(z, x; \theta) - \log q(z; \phi) \right]
+\]</span></p>
 <p>Our goal is to maximize this objective with respect to both <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span>. While computing the gradient with respect to <span class="math inline">\(\theta\)</span> is straightforward, optimizing with respect to <span class="math inline">\(\phi\)</span> presents a challenge.</p>
 <p>The complication arises because <span class="math inline">\(\phi\)</span> appears both in the density <span class="math inline">\(q_\phi(z|x)\)</span> and in the expectation operator. That is:</p>
 <p><span class="math display">\[

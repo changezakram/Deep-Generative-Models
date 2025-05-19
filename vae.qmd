@@ -231,6 +231,10 @@ $$
 \mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_(z; \phi)}\left[\log p_(z, x; \theta) - \log q_(z; \theta)\right]
 $$
 
+$$
+\mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q(z; \phi)} \left[ \log p(z, x; \theta) - \log q(z; \phi) \right]
+$$
+
 Our goal is to maximize this objective with respect to both $\theta$ and $\phi$. While computing the gradient with respect to $\theta$ is straightforward, optimizing with respect to $\phi$ presents a challenge.
 
 The complication arises because $\phi$ appears both in the density $q_\phi(z|x)$ and in the expectation operator. That is:
