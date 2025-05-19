@@ -10,8 +10,7 @@ Traditional autoencoders learn to compress data into a lower-dimensional represe
 - The **latent space is unstructured**, offering little control or interpretation
 - There is no **probabilistic modeling**, limiting uncertainty estimation
 
-While a Variational Autoencoder (VAE) shares the same encoder–decoder structure as a traditional autoencoder, it differs fundamentally in the latent space. Instead of encoding an input into a fixed latent vector, the encoder outputs the **parameters of a probability distribution** — typically a Gaussian, defined by a mean \( \mu \) and standard deviation \( \sigma \). A latent vector \( z \) is then sampled from this distribution using the **reparameterization trick**, which ensures that the sampling process remains differentiable and trainable via backpropagation.  
-This approach not only enables reconstruction of input data, but also encourages the model to learn a **structured, continuous, and interpretable latent space** — a key property that makes VAEs powerful generative models.
+While a Variational Autoencoder (VAE) shares the same encoder–decoder structure as a traditional autoencoder, it differs fundamentally in the latent space. Instead of encoding an input into a fixed latent vector, the encoder outputs the **parameters of a probability distribution** — typically a Gaussian, defined by a mean $ \mu $ and standard deviation $ \sigma $. A latent vector $ z $ is then sampled from this distribution using the **reparameterization trick**, which ensures that the sampling process remains differentiable and trainable via backpropagation.
 
 The diagram below illustrates this process:
 
