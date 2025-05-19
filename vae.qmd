@@ -386,7 +386,7 @@ To complement the theory, I’ve built a full PyTorch implementation of a Variat
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/changezakram/Deep-Generative-Models/blob/main/vae_faces.ipynb)  
 📓 [View on GitHub](https://github.com/changezakram/Deep-Generative-Models/blob/main/vae_faces.ipynb)
 
-This example is designed to reinforce the theoretical concepts from earlier sections — feel free to clone, tweak, or extend it.
+This example is designed to reinforce the theoretical concepts from earlier sections.
 ---
 
 ## Further Reading
