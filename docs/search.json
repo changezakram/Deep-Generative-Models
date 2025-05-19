@@ -81,7 +81,7 @@
     "href": "vae_faces.html",
     "title": "Face Generation with Convolutional VAE",
     "section": "",
-    "text": "This notebook implements a convolutional variational autoencoder (VAE) trained on the CelebA face dataset using PyTorch.\nIt uses convolutional layers to encode and decode 64x64 face images, and demonstrates generation by sampling from the latent space.\n!pip install torch torchvision matplotlib"
+    "text": "This notebook implements a convolutional variational autoencoder (VAE) trained on the CelebA face dataset using PyTorch.\nIt uses convolutional layers to encode and decode 64x64 face images, and demonstrates generation by sampling from the latent space.\n!pip install torch torchvision matplotlib\n# Enable autoreloading in Jupyter (if applicable)\n%load_ext autoreload\n%autoreload 2\n\n# Core libraries\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\nfrom scipy.stats import norm  # Used for visualizing latent distributions\n\n# PyTorch imports\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nimport torch.optim as optim\n\nfrom torch.utils.data import DataLoader, Dataset\nimport torchvision\nfrom torchvision import transforms, utils\n# Hyperparameters\n\nIMAGE_SIZE = 32        # Input image resolution (32x32)\nCHANNELS = 3           # Number of color channels (RGB)\nBATCH_SIZE = 128       # Batch size for training\nNUM_FEATURES = 128     # Hidden layer size or intermediate feature size\nZ_DIM = 200            # Dimensionality of the latent space\nLEARNING_RATE = 5e-4   # Learning rate for optimizer\nEPOCHS = 1             # Number of training epochs\nBETA = 2000            # Weight for KL divergence term in loss (used in beta-VAE)"
   },
   {
     "objectID": "vae_faces.html#import-required-libraries",
@@ -201,5 +201,89 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "vae_faces.html#loading-and-preprocessing-the-celeba-dataset",
+    "href": "vae_faces.html#loading-and-preprocessing-the-celeba-dataset",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Loading and Preprocessing the CelebA Dataset",
+    "text": "Loading and Preprocessing the CelebA Dataset\n\nfrom torchvision.datasets import CelebA\nfrom torchvision import transforms\nfrom torch.utils.data import DataLoader\n\n# Transform pipeline: resize and convert to tensor\ntransform = transforms.Compose([\n    transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),\n    transforms.ToTensor()\n])\n\n# Load CelebA dataset\ntrain_data = CelebA(\n    root=\"./data\",                      # Where to download/save the data\n    split=\"train\",                      # Options: \"train\", \"valid\", \"test\", or \"all\"\n    download=True,                      # Download if not already there\n    transform=transform\n)\n\n# DataLoader\ntrain_loader = DataLoader(\n    train_data,\n    batch_size=BATCH_SIZE,\n    shuffle=True,\n    num_workers=2,\n    pin_memory=True\n)\n\n\nval_data = CelebA(\n    root=\"./data\",\n    split=\"valid\",\n    download=True,\n    transform=transform\n)\n\nval_loader = DataLoader(\n    val_data,\n    batch_size=BATCH_SIZE,\n    shuffle=False,\n    num_workers=2,\n    pin_memory=True\n)"
+  },
+  {
+    "objectID": "vae_faces.html#visualizing-training-data",
+    "href": "vae_faces.html#visualizing-training-data",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Visualizing Training Data",
+    "text": "Visualizing Training Data\n\ndef sample_batch(dataloader, num_samples=16):\n    \"\"\"\n    Sample one batch from the dataloader and return the first `num_samples` images.\n    \"\"\"\n    for images, _ in dataloader:\n        return images[:num_samples]\n\n\nimport matplotlib.pyplot as plt\nfrom torchvision.utils import make_grid\n\ndef display(images, cmap=None, nrow=8):\n    \"\"\"\n    Display a grid of images using matplotlib.\n    \"\"\"\n    grid = make_grid(images, nrow=nrow, padding=2, normalize=True)\n    np_img = grid.permute(1, 2, 0).cpu().numpy()\n\n    plt.figure(figsize=(10, 5))\n    plt.imshow(np_img, cmap=cmap)\n    plt.axis('off')\n    plt.show()\n\n\ntrain_sample = sample_batch(train_loader, num_samples=16)\ndisplay(train_sample)"
+  },
+  {
+    "objectID": "vae_faces.html#reparameterization-trick",
+    "href": "vae_faces.html#reparameterization-trick",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Reparameterization Trick",
+    "text": "Reparameterization Trick\n\ndef reparameterize(z_mean, z_log_var):\n    \"\"\"\n    Reparameterization trick: z = mu + sigma * epsilon\n    where epsilon ~ N(0, I)\n    \"\"\"\n    std = torch.exp(0.5 * z_log_var)\n    eps = torch.randn_like(std)\n    return z_mean + eps * std"
+  },
+  {
+    "objectID": "vae_faces.html#encoder",
+    "href": "vae_faces.html#encoder",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Encoder",
+    "text": "Encoder\n\nclass Encoder(nn.Module):\n    def __init__(self, z_dim):\n        super().__init__()\n        self.conv = nn.Sequential(\n            nn.Conv2d(CHANNELS, NUM_FEATURES, kernel_size=3, stride=2, padding=1),  # 32 → 16\n            nn.BatchNorm2d(NUM_FEATURES),\n            nn.LeakyReLU(),\n\n            nn.Conv2d(NUM_FEATURES, NUM_FEATURES, kernel_size=3, stride=2, padding=1),  # 16 → 8\n            nn.BatchNorm2d(NUM_FEATURES),\n            nn.LeakyReLU(),\n\n            nn.Conv2d(NUM_FEATURES, NUM_FEATURES, kernel_size=3, stride=2, padding=1),  # 8 → 4\n            nn.BatchNorm2d(NUM_FEATURES),\n            nn.LeakyReLU(),\n\n            nn.Conv2d(NUM_FEATURES, NUM_FEATURES, kernel_size=3, stride=2, padding=1),  # 4 → 2\n            nn.BatchNorm2d(NUM_FEATURES),\n            nn.LeakyReLU(),\n        )\n\n        self.flatten = nn.Flatten()\n        self.feature_shape = (NUM_FEATURES, IMAGE_SIZE // 16, IMAGE_SIZE // 16)\n        self.flat_dim = NUM_FEATURES * (IMAGE_SIZE // 16) ** 2\n\n        self.fc_mu = nn.Linear(self.flat_dim, z_dim)\n        self.fc_logvar = nn.Linear(self.flat_dim, z_dim)\n\n    def forward(self, x):\n        x = self.conv(x)\n        x_flat = self.flatten(x)\n        mu = self.fc_mu(x_flat)\n        logvar = self.fc_logvar(x_flat)\n        return mu, logvar"
+  },
+  {
+    "objectID": "vae_faces.html#vae-model-wrapper-encoder-reparameterization-and-decoder",
+    "href": "vae_faces.html#vae-model-wrapper-encoder-reparameterization-and-decoder",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "VAE Model Wrapper: Encoder, Reparameterization, and Decoder",
+    "text": "VAE Model Wrapper: Encoder, Reparameterization, and Decoder\n\nclass VAE(nn.Module):\n    def __init__(self, encoder, decoder):\n        super().__init__()\n        self.encoder = encoder\n        self.decoder = decoder\n\n    def reparameterize(self, mu, logvar):\n        \"\"\"\n        z = mu + sigma * epsilon\n        where epsilon ~ N(0, I)\n        \"\"\"\n        std = torch.exp(0.5 * logvar)\n        eps = torch.randn_like(std)\n        return mu + eps * std\n\n    def forward(self, x):\n        \"\"\"\n        Forward pass:\n        - Encode input to get mu and logvar\n        - Sample z using reparameterization trick\n        - Decode z to reconstruct image\n        \"\"\"\n        mu, logvar = self.encoder(x)\n        z = self.reparameterize(mu, logvar)\n        x_recon = self.decoder(z)\n        return x_recon, mu, logvar"
+  },
+  {
+    "objectID": "vae_faces.html#vae-loss",
+    "href": "vae_faces.html#vae-loss",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "VAE Loss",
+    "text": "VAE Loss\n\ndef vae_loss(x, x_recon, mu, logvar, beta=BETA):\n    \"\"\"\n    VAE loss = beta * reconstruction loss (MSE) + KL divergence\n    \"\"\"\n    # Reconstruction loss (MSE)\n    recon_loss = F.mse_loss(x_recon, x, reduction='mean') * beta\n\n    # KL divergence between q(z|x) and N(0, I)\n    kl_loss = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())\n    kl_loss = kl_loss / x.size(0)  # average over batch\n\n    return recon_loss + kl_loss, recon_loss, kl_loss"
+  },
+  {
+    "objectID": "vae_faces.html#generating-and-saving-sample-images-from-the-latent-space",
+    "href": "vae_faces.html#generating-and-saving-sample-images-from-the-latent-space",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Generating and Saving Sample Images from the Latent Space",
+    "text": "Generating and Saving Sample Images from the Latent Space\n\nfrom torchvision.utils import save_image\nimport os\n\ndef generate_images(model, epoch, z_dim, num_img=8, path=\"./output\"):\n    \"\"\"\n    Generate and save images from random latent vectors after each epoch.\n    \"\"\"\n    os.makedirs(path, exist_ok=True)\n    model.eval()\n    z = torch.randn(num_img, z_dim).to(next(model.parameters()).device)\n    with torch.no_grad():\n        generated = model.decoder(z)\n    for i in range(num_img):\n        save_image(generated[i], f\"{path}/generated_img_{epoch:03d}_{i}.png\")"
+  },
+  {
+    "objectID": "vae_faces.html#save-checkpoint",
+    "href": "vae_faces.html#save-checkpoint",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Save Checkpoint",
+    "text": "Save Checkpoint\n\ndef save_checkpoint(model, epoch, loss, best_loss, path=\"./checkpoint.pt\"):\n    if loss &lt; best_loss:\n        print(f\"Saving new best model at epoch {epoch} with loss {loss:.4f}\")\n        torch.save(model.state_dict(), path)\n        return loss\n    return best_loss"
+  },
+  {
+    "objectID": "vae_faces.html#training-step",
+    "href": "vae_faces.html#training-step",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Training Step",
+    "text": "Training Step\n\ndef train_step(model, dataloader, optimizer, device):\n    model.train()\n    total_loss = 0\n    total_recon = 0\n    total_kl = 0\n\n    for batch in dataloader:\n        x, _ = batch if isinstance(batch, (tuple, list)) else (batch, None)\n        x = x.to(device)\n\n        optimizer.zero_grad()\n\n        x_recon, mu, logvar = model(x)\n        loss, recon_loss, kl_loss = vae_loss(x, x_recon, mu, logvar)\n        loss.backward()\n        optimizer.step()\n\n        total_loss += loss.item()\n        total_recon += recon_loss.item()\n        total_kl += kl_loss.item()\n\n    num_batches = len(dataloader)\n    return {\n        \"loss\": total_loss / num_batches,\n        \"reconstruction_loss\": total_recon / num_batches,\n        \"kl_loss\": total_kl / num_batches\n    }"
+  },
+  {
+    "objectID": "vae_faces.html#validation-step",
+    "href": "vae_faces.html#validation-step",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Validation Step",
+    "text": "Validation Step\n\n@torch.no_grad()\ndef validate_epoch(model, dataloader, device):\n    model.eval()\n    total_loss = 0\n    total_recon = 0\n    total_kl = 0\n\n    for batch in dataloader:\n        x, _ = batch if isinstance(batch, (tuple, list)) else (batch, None)\n        x = x.to(device)\n        x_recon, mu, logvar = model(x)\n        loss, recon_loss, kl_loss = vae_loss(x, x_recon, mu, logvar)\n        total_loss += loss.item()\n        total_recon += recon_loss.item()\n        total_kl += kl_loss.item()\n\n    num_batches = len(dataloader)\n    return {\n        \"loss\": total_loss / num_batches,\n        \"reconstruction_loss\": total_recon / num_batches,\n        \"kl_loss\": total_kl / num_batches\n    }"
+  },
+  {
+    "objectID": "vae_faces.html#instantiate-model-optimizer-writer-device",
+    "href": "vae_faces.html#instantiate-model-optimizer-writer-device",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Instantiate model, optimizer, writer, device",
+    "text": "Instantiate model, optimizer, writer, device\n\nfrom torch.utils.tensorboard import SummaryWriter\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\nencoder = Encoder(z_dim=Z_DIM)\ndecoder = Decoder(z_dim=Z_DIM)\nvae = VAE(encoder, decoder).to(device)\n\noptimizer = optim.Adam(vae.parameters(), lr=LEARNING_RATE)\n\nwriter = SummaryWriter(log_dir=\"./logs\")"
+  },
+  {
+    "objectID": "vae_faces.html#training-the-vae-model",
+    "href": "vae_faces.html#training-the-vae-model",
+    "title": "Face Generation with Convolutional VAE",
+    "section": "Training the VAE Model",
+    "text": "Training the VAE Model\n\nbest_loss = float(\"inf\")\n\nfor epoch in range(EPOCHS):\n    train_logs = train_step(vae, train_loader, optimizer, device)\n    val_logs = validate_epoch(vae, val_loader, device)\n\n    print(f\"Epoch {epoch+1:02d} | \"\n          f\"Train Loss: {train_logs['loss']:.4f} | \"\n          f\"Val Loss: {val_logs['loss']:.4f}\")\n\n    # Save best model\n    best_loss = save_checkpoint(vae, epoch, val_logs[\"loss\"], best_loss)\n\n    # Generate and save sample images\n    generate_images(vae, epoch, Z_DIM)\n\n    # Log to TensorBoard\n    writer.add_scalar(\"Loss/train\", train_logs[\"loss\"], epoch)\n    writer.add_scalar(\"Loss/val\", val_logs[\"loss\"], epoch)\n    writer.add_scalar(\"KL/train\", train_logs[\"kl_loss\"], epoch)\n    writer.add_scalar(\"Recon/train\", train_logs[\"reconstruction_loss\"], epoch)"
   }
 ]
