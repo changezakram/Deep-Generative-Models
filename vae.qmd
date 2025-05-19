@@ -258,7 +258,7 @@ $$
 
 where $z$ is now a differentiable function of $\phi$ and $\epsilon$.
 
-![Reparameterization Trick Diagram](https://upload.wikimedia.org/wikipedia/commons/e/ea/Reparameterization_Trick.png)
+![Reparameterization Trick Diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Reparameterization_Trick.png/600px-Reparameterization_Trick.png){width=60%}
 
 *Image source: [Wikipedia (CC BY-SA 4.0)](https://en.wikipedia.org/wiki/File:Reparameterization_Trick.png)*
 
@@ -266,7 +266,7 @@ This diagram illustrates how the reparameterization trick enables **differentiab
 
 - In the **original formulation**, \( z \) is sampled directly from a learned distribution, breaking the gradient flow.
 - In the **reparameterized formulation**, we sample noise \( \epsilon \sim \mathcal{N}(0, I) \), and compute \( z = \mu + \sigma \cdot \epsilon \), making the sampling path fully differentiable.
----
+
 
 #### Monte Carlo Approximation
 

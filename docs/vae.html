@@ -361,7 +361,7 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <hr>
 </section>
 <section id="the-reparameterization-trick" class="level3">
-<h3 class="anchored">The Reparameterization Trick</h3>
+<h3 class="anchored" data-anchor-id="the-reparameterization-trick">The Reparameterization Trick</h3>
 <p>To make this expression differentiable, we <strong>reparameterize</strong> the random variable <span class="math inline">\(z\)</span> as a deterministic transformation of a parameter-free noise variable <span class="math inline">\(\epsilon\)</span>:</p>
 <p><span class="math display">\[
 \epsilon \sim \mathcal{N}(0, I), \quad z = \mu_\phi(x) + \sigma_\phi(x) \cdot \epsilon
@@ -373,7 +373,7 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <p>where <span class="math inline">\(z\)</span> is now a differentiable function of <span class="math inline">\(\phi\)</span> and <span class="math inline">\(\epsilon\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Reparameterization_Trick.png" class="img-fluid figure-img"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Reparameterization_Trick.png/600px-Reparameterization_Trick.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Reparameterization Trick Diagram</figcaption>
 </figure>
 </div>
@@ -381,7 +381,7 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <p>This diagram illustrates how the reparameterization trick enables <strong>differentiable sampling</strong>:</p>
 <ul>
 <li>In the <strong>original formulation</strong>, ( z ) is sampled directly from a learned distribution, breaking the gradient flow.</li>
-<li><h2 id="in-the-reparameterized-formulation-we-sample-noise-0-i-and-compute-z-making-the-sampling-path-fully-differentiable." class="anchored" data-anchor-id="the-reparameterization-trick">In the <strong>reparameterized formulation</strong>, we sample noise ( (0, I) ), and compute ( z = + ), making the sampling path fully differentiable.</h2></li>
+<li>In the <strong>reparameterized formulation</strong>, we sample noise ( (0, I) ), and compute ( z = + ), making the sampling path fully differentiable.</li>
 </ul>
 <section id="monte-carlo-approximation" class="level4">
 <h4 class="anchored" data-anchor-id="monte-carlo-approximation">Monte Carlo Approximation</h4>
