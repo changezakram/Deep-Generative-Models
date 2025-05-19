@@ -368,7 +368,7 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 \]</span></p>
 <p>This turns the expectation into:</p>
 <p><span class="math display">\[
-\mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)}\left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
+\mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)}\left[ \log p(z, x; \theta) - \log q(z; \phi) \right]
 \]</span></p>
 <p>where <span class="math inline">\(z\)</span> is now a differentiable function of <span class="math inline">\(\phi\)</span> and <span class="math inline">\(\epsilon\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
