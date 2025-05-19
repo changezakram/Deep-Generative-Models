@@ -264,8 +264,8 @@ where $z$ is now a differentiable function of $\phi$ and $\epsilon$.
 
 This diagram illustrates how the reparameterization trick enables **differentiable sampling**:
 
-- In the **original formulation**, \( z \) is sampled directly from a learned distribution, breaking the gradient flow.
-- In the **reparameterized formulation**, we sample noise \( \epsilon \sim \mathcal{N}(0, I) \), and compute \( z = \mu + \sigma \cdot \epsilon \), making the sampling path fully differentiable.
+- In the **original formulation**, $z$ is sampled directly from a learned distribution, breaking the gradient flow.
+- In the **reparameterized formulation**, we sample noise $\epsilon \sim \mathcal{N}(0, I)$, and compute $z = \mu + \sigma \cdot \epsilon$, making the sampling path fully differentiable.
 
 
 #### Monte Carlo Approximation

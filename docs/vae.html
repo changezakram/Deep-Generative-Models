@@ -380,8 +380,8 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <p><em>Image source: <a href="https://en.wikipedia.org/wiki/File:Reparameterization_Trick.png">Wikipedia (CC BY-SA 4.0)</a></em></p>
 <p>This diagram illustrates how the reparameterization trick enables <strong>differentiable sampling</strong>:</p>
 <ul>
-<li>In the <strong>original formulation</strong>, ( z ) is sampled directly from a learned distribution, breaking the gradient flow.</li>
-<li>In the <strong>reparameterized formulation</strong>, we sample noise ( (0, I) ), and compute ( z = + ), making the sampling path fully differentiable.</li>
+<li>In the <strong>original formulation</strong>, <span class="math inline">\(z\)</span> is sampled directly from a learned distribution, breaking the gradient flow.</li>
+<li>In the <strong>reparameterized formulation</strong>, we sample noise <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span>, and compute <span class="math inline">\(z = \mu + \sigma \cdot \epsilon\)</span>, making the sampling path fully differentiable.</li>
 </ul>
 <section id="monte-carlo-approximation" class="level4">
 <h4 class="anchored" data-anchor-id="monte-carlo-approximation">Monte Carlo Approximation</h4>
