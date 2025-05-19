@@ -221,7 +221,7 @@
     "href": "vae.html#applications-of-vaes",
     "title": "Variational Autoencoders",
     "section": "Applications of VAEs",
-    "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks\n\n\n😎 Face Generation with Convolutional VAE\nA convolutional VAE trained on the CelebA dataset.\nLearn how to generate realistic faces from latent samples.\n\n📓 View on GitHub —"
+    "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks\n\n\n😎 Face Generation with Convolutional VAE\nTo complement the theory, I’ve built a full PyTorch implementation of a Variational Autoencoder trained on the CelebA dataset.\n📘 The notebook walks through: - Defining the encoder, decoder, and reparameterization trick - Implementing the ELBO loss function (reconstruction + KL divergence) - Training the model on face images - Generating new faces from random latent vectors\n\n📓 View on GitHub"
   },
   {
     "objectID": "vae.html#further-reading",
@@ -236,5 +236,12 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "vae.html#this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections-feel-free-to-clone-tweak-or-extend-it.",
+    "href": "vae.html#this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections-feel-free-to-clone-tweak-or-extend-it.",
+    "title": "Variational Autoencoders",
+    "section": "This example is designed to reinforce the theoretical concepts from earlier sections — feel free to clone, tweak, or extend it.",
+    "text": "This example is designed to reinforce the theoretical concepts from earlier sections — feel free to clone, tweak, or extend it."
   }
 ]
