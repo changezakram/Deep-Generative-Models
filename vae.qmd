@@ -12,6 +12,10 @@ Traditional autoencoders learn to compress data into a lower-dimensional represe
 
 Variational Autoencoders (VAEs) address these limitations by introducing a probabilistic framework. They aim not just to reconstruct data but to learn a structured, continuous, and interpretable latent space useful for generation.
 
+A Variational Autoencoder (VAE) looks very similar to a standard autoencoder in architecture, but with one key difference: the encoder doesn't output a single latent vector. Instead, it learns to output the parameters of a probability distribution — typically a Gaussian — represented by a mean `μ` and standard deviation `σ`. During training, we sample from this distribution to obtain the latent vector `z`, using a technique called the **reparameterization trick** to ensure the process remains differentiable.
+
+The diagram below illustrates this process:
+
 ![Reparameterized Variational Autoencoder](https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Reparameterized_Variational_Autoencoder.png/960px-Reparameterized_Variational_Autoencoder.png)
 
 *Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Reparameterized_Variational_Autoencoder.png), licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
