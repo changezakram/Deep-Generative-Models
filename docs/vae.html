@@ -350,7 +350,7 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <h3 class="anchored" data-anchor-id="gradient-challenge">Gradient Challenge</h3>
 <p>In variational inference, we approximate the true posterior <span class="math inline">\(p(z|x)\)</span> with a tractable distribution <span class="math inline">\(q_\phi(z)\)</span>. This allows us to optimize the ELBO:</p>
 <p><span class="math display">\[
-\mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_(z, \phi)}\left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
+\mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_(z; \phi)}\left[\log p_(z, x; \theta) - \log q_(z; \theta)\right]
 \]</span></p>
 <p>Our goal is to maximize this objective with respect to both <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span>. While computing the gradient with respect to <span class="math inline">\(\theta\)</span> is straightforward, optimizing with respect to <span class="math inline">\(\phi\)</span> presents a challenge.</p>
 <p>The complication arises because <span class="math inline">\(\phi\)</span> appears both in the density <span class="math inline">\(q_\phi(z|x)\)</span> and in the expectation operator. That is:</p>

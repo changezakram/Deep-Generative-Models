@@ -228,7 +228,7 @@ The parameter $\beta$ controls how strongly we enforce this regularization. Gett
 In variational inference, we approximate the true posterior $p(z|x)$ with a tractable distribution $q_\phi(z)$. This allows us to optimize the ELBO:
 
 $$
-\mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_(z, \phi)}\left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
+\mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_(z; \phi)}\left[\log p_(z, x; \theta) - \log q_(z; \theta)\right]
 $$
 
 Our goal is to maximize this objective with respect to both $\theta$ and $\phi$. While computing the gradient with respect to $\theta$ is straightforward, optimizing with respect to $\phi$ presents a challenge.
