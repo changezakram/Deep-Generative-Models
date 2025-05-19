@@ -172,7 +172,7 @@
     "href": "vae.html",
     "title": "Variational Autoencoders",
     "section": "",
-    "text": "Variational Autoencoders (VAEs) combine the power of neural networks with probabilistic inference to model complex data distributions.\nThis blog unpacks the intuition, math, and implementation of VAEs — from KL divergence and the ELBO to PyTorch code that generates to generate new images."
+    "text": "Variational Autoencoders (VAEs) combine the power of neural networks with probabilistic inference to model complex data distributions. This blog unpacks the intuition, math, and implementation of VAEs — from KL divergence and the ELBO to PyTorch code that generates to generate new images."
   },
   {
     "objectID": "vae.html#autoencoders-vs-variational-autoencoders",
