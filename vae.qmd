@@ -257,7 +257,7 @@ $$
 \mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)}\left[ \log p(z, x; \theta) - \log q(z; \phi) \right]
 $$
 
-where $z$ is now a differentiable function of $\phi$ and $\epsilon$.
+where $z$ is now a differentiable function of $\phi$.
 
 ![Reparameterization Trick Diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Reparameterization_Trick.png/600px-Reparameterization_Trick.png){width=60%}
 
