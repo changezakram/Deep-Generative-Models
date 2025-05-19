@@ -261,8 +261,8 @@ where $z$ is now a differentiable function of $\phi$ and $\epsilon$.
 <div style="display: flex; align-items: flex-start; gap: 2em;">
 
 <div style="flex: 1;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Reparameterization_Trick.png/330px-Reparameterization_Trick.png"
-       alt="Reparameterization Trick Diagram" style="max-width: 100%;" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Reparameterization_Trick.png"
+     alt="Reparameterization Trick Diagram" style="max-width: 100%;" />
   <p style="font-size: 0.8em;"><em>Image source: <a href="https://en.wikipedia.org/wiki/Variational_autoencoder">Wikipedia (CC BY-SA 4.0)</a></em></p>
 </div>
 
