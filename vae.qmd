@@ -161,9 +161,8 @@ $$
 This equation shows that the log-likelihood $\log p(x)$ can be decomposed into the ELBO and the KL divergence between the approximate posterior and the true posterior. Since the KL divergence is always non-negative, the ELBO serves as a lower bound to the log-likelihood. By maximizing the ELBO, we indirectly minimize the KL divergence, bringing $q(z)$ closer to $p(z|x)$.
 
 ![](https://deepgenerativemodels.github.io/notes/vae/klgap.png)
-
-*Visualizing how $\log p(x)$ decomposes into the ELBO and KL divergence. 
-Source: [deepgenerativemodels.github.io](https://deepgenerativemodels.github.io/notes/vae/).*
+*Visualizing how $\log p(x)$ decomposes into the ELBO and KL divergence.*  
+Source: [deepgenerativemodels.github.io](https://deepgenerativemodels.github.io/notes/vae/)
 
 ##### Key Results
 
