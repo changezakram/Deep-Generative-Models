@@ -137,14 +137,14 @@
     "href": "vae.html",
     "title": "Variational Autoencoders",
     "section": "",
-    "text": "Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:\n\nThey lack generative capabilities — they cannot sample new data effectively\nThe latent space is unstructured, offering little control or interpretation\nThere is no probabilistic modeling, limiting uncertainty estimation\n\nVariational Autoencoders (VAEs) address these limitations by introducing a probabilistic framework. They aim not just to reconstruct data but to learn a structured, continuous, and interpretable latent space useful for generation."
+    "text": "Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:\n\nThey lack generative capabilities — they cannot sample new data effectively\nThe latent space is unstructured, offering little control or interpretation\nThere is no probabilistic modeling, limiting uncertainty estimation\n\nVariational Autoencoders (VAEs) address these limitations by introducing a probabilistic framework. They aim not just to reconstruct data but to learn a structured, continuous, and interpretable latent space useful for generation.\n\n\n\nReparameterized Variational Autoencoder\n\n\nSource: Wikimedia Commons, licensed under CC BY-SA 4.0."
   },
   {
     "objectID": "vae.html#autoencoders-vs-variational-autoencoders",
     "href": "vae.html#autoencoders-vs-variational-autoencoders",
     "title": "Variational Autoencoders",
     "section": "",
-    "text": "Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:\n\nThey lack generative capabilities — they cannot sample new data effectively\nThe latent space is unstructured, offering little control or interpretation\nThere is no probabilistic modeling, limiting uncertainty estimation\n\nVariational Autoencoders (VAEs) address these limitations by introducing a probabilistic framework. They aim not just to reconstruct data but to learn a structured, continuous, and interpretable latent space useful for generation."
+    "text": "Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:\n\nThey lack generative capabilities — they cannot sample new data effectively\nThe latent space is unstructured, offering little control or interpretation\nThere is no probabilistic modeling, limiting uncertainty estimation\n\nVariational Autoencoders (VAEs) address these limitations by introducing a probabilistic framework. They aim not just to reconstruct data but to learn a structured, continuous, and interpretable latent space useful for generation.\n\n\n\nReparameterized Variational Autoencoder\n\n\nSource: Wikimedia Commons, licensed under CC BY-SA 4.0."
   },
   {
     "objectID": "vae.html#probabilistic-framework",
@@ -186,7 +186,7 @@
     "href": "vae.html#applications-of-vaes",
     "title": "Variational Autoencoders",
     "section": "Applications of VAEs",
-    "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks\n\n\n🧠 VAE on MNIST (Beginner Tutorial)\nA beginner-friendly VAE implementation trained on the MNIST digits dataset.\nIncludes extensive comments, training loop, and latent space visualization.\n\n📓 View on GitHub\n\n\n\n😎 Face Generation with Convolutional VAE\nA convolutional VAE trained on the CelebA dataset.\nLearn how to generate realistic faces from latent samples.\n\n📓 View on GitHub —"
+    "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks\n\n\n😎 Face Generation with Convolutional VAE\nA convolutional VAE trained on the CelebA dataset.\nLearn how to generate realistic faces from latent samples.\n\n📓 View on GitHub —"
   },
   {
     "objectID": "vae.html#further-reading",

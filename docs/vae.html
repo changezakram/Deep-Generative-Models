@@ -166,6 +166,13 @@ window.Quarto = {
 <li>There is no <strong>probabilistic modeling</strong>, limiting uncertainty estimation</li>
 </ul>
 <p>Variational Autoencoders (VAEs) address these limitations by introducing a probabilistic framework. They aim not just to reconstruct data but to learn a structured, continuous, and interpretable latent space useful for generation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Reparameterized_Variational_Autoencoder.png/960px-Reparameterized_Variational_Autoencoder.png" class="img-fluid figure-img"></p>
+<figcaption>Reparameterized Variational Autoencoder</figcaption>
+</figure>
+</div>
+<p><em>Source: <a href="https://commons.wikimedia.org/wiki/File:Reparameterized_Variational_Autoencoder.png">Wikimedia Commons</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</em></p>
 </section>
 <section id="probabilistic-framework" class="level2">
 <h2 class="anchored" data-anchor-id="probabilistic-framework">Probabilistic Framework</h2>
@@ -459,14 +466,6 @@ q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
 </li>
 <li><strong>Representation Learning</strong>: Latent space captures features for downstream tasks</li>
 </ul>
-<section id="vae-on-mnist-beginner-tutorial" class="level3">
-<h3 class="anchored" data-anchor-id="vae-on-mnist-beginner-tutorial">🧠 VAE on MNIST (Beginner Tutorial)</h3>
-<p>A beginner-friendly VAE implementation trained on the MNIST digits dataset.<br>
-Includes extensive comments, training loop, and latent space visualization.</p>
-<p><a href="https://colab.research.google.com/github/changezakram/Deep-Generative-Models/blob/main/vae_mnist.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open In Colab"></a><br>
-📓 <a href="https://github.com/changezakram/Deep-Generative-Models/blob/main/vae_mnist.ipynb">View on GitHub</a></p>
-<hr>
-</section>
 <section id="face-generation-with-convolutional-vae" class="level3">
 <h3 class="anchored" data-anchor-id="face-generation-with-convolutional-vae">😎 Face Generation with Convolutional VAE</h3>
 <p>A convolutional VAE trained on the CelebA dataset.<br>
