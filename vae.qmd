@@ -258,9 +258,23 @@ $$
 
 where $z$ is now a differentiable function of $\phi$ and $\epsilon$.
 
-![Reparameterization Trick](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Reparameterization_Trick.png/330px-Reparameterization_Trick.png)
-*Image source: [Wikipedia (CC BY-SA 4.0)](https://en.wikipedia.org/wiki/File:Reparameterization_Trick.png)*
+<div style="display: flex; align-items: flex-start; gap: 2em;">
 
+<div style="flex: 1;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Reparameterization_Trick.png/330px-Reparameterization_Trick.png"
+       alt="Reparameterization Trick Diagram" style="max-width: 100%;" />
+  <p style="font-size: 0.8em;"><em>Image source: <a href="https://en.wikipedia.org/wiki/Variational_autoencoder">Wikipedia (CC BY-SA 4.0)</a></em></p>
+</div>
+
+<div style="flex: 2;">
+
+This diagram shows how the reparameterization trick enables **differentiable sampling**:
+
+- In the **original formulation**, \( z \) is sampled directly from a learned distribution, breaking the gradient flow.
+- In the **reparameterized formulation**, we sample noise \( \epsilon \sim \mathcal{N}(0, I) \), and compute \( z = \mu + \sigma \cdot \epsilon \), making the sampling path fully differentiable.
+
+</div>
+</div>
 ---
 
 #### Monte Carlo Approximation
