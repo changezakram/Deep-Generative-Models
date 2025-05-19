@@ -371,8 +371,13 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 \mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)}\left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
 \]</span></p>
 <p>where <span class="math inline">\(z\)</span> is now a differentiable function of <span class="math inline">\(\phi\)</span> and <span class="math inline">\(\epsilon\)</span>.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Reparameterization_Trick.png/800px-Reparameterization_Trick.png" class="img-fluid"></p>
-<p><em>Diagram showing the reparameterization trick. Instead of sampling</em> <span class="math inline">\(begin:math:text\)</span> z <span class="math inline">\(end:math:text\)</span> <em>directly from a Gaussian with learned parameters, we sample</em> <span class="math inline">\(begin:math:text\)</span> \epsilon \sim \mathcal{N}(0, 1) <span class="math inline">\(end:math:text\)</span> <em>and transform it using</em> <span class="math inline">\(begin:math:text\)</span> z = \mu + \sigma \cdot \epsilon <span class="math inline">\(end:math:text\)</span>. <em>This enables backpropagation through the sampling step.</em><br>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Reparameterization_Trick.png/330px-Reparameterization_Trick.png" class="img-fluid figure-img"></p>
+<figcaption>Reparameterization Trick</figcaption>
+</figure>
+</div>
+<p><em>Diagram showing the reparameterization trick. Instead of sampling <span class="math inline">\(begin:math:text\)</span> z <span class="math inline">\(end:math:text\)</span> directly from a Gaussian with learned parameters, we sample <span class="math inline">\(begin:math:text\)</span> \epsilon \sim \mathcal{N}(0, 1) <span class="math inline">\(end:math:text\)</span> and transform it using <span class="math inline">\(begin:math:text\)</span> z = \mu + \sigma \cdot \epsilon <span class="math inline">\(end:math:text\)</span>. This enables backpropagation through the sampling step.</em><br>
 <em>Image source: <a href="https://en.wikipedia.org/wiki/File:Reparameterization_Trick.png">Wikipedia (CC BY-SA 4.0)</a></em></p>
 <hr>
 <section id="monte-carlo-approximation" class="level4">

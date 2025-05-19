@@ -258,9 +258,9 @@ $$
 
 where $z$ is now a differentiable function of $\phi$ and $\epsilon$.
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Reparameterization_Trick.png/800px-Reparameterization_Trick.png)
+![Reparameterization Trick](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Reparameterization_Trick.png/330px-Reparameterization_Trick.png)
 
-*Diagram showing the reparameterization trick. Instead of sampling* $begin:math:text$ z $end:math:text$ *directly from a Gaussian with learned parameters, we sample* $begin:math:text$ \\epsilon \\sim \\mathcal{N}(0, 1) $end:math:text$ *and transform it using* $begin:math:text$ z = \\mu + \\sigma \\cdot \\epsilon $end:math:text$. *This enables backpropagation through the sampling step.*  
+*Diagram showing the reparameterization trick. Instead of sampling $begin:math:text$ z $end:math:text$ directly from a Gaussian with learned parameters, we sample $begin:math:text$ \\epsilon \\sim \\mathcal{N}(0, 1) $end:math:text$ and transform it using $begin:math:text$ z = \\mu + \\sigma \\cdot \\epsilon $end:math:text$. This enables backpropagation through the sampling step.*  
 *Image source: [Wikipedia (CC BY-SA 4.0)](https://en.wikipedia.org/wiki/File:Reparameterization_Trick.png)*
 
 ---
