@@ -258,7 +258,7 @@ $$
 
 where $z$ is now a differentiable function of $\phi$ and $\epsilon$.
 
-![Reparameterization Trick: Sampling $begin:math:text$ z = \\mu + \\sigma \\cdot \\epsilon $end:math:text$, with $begin:math:text$\\epsilon \\sim \\mathcal{N}(0, 1)$end:math:text$](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Reparameterization_Trick.png/800px-Reparameterization_Trick.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Reparameterization_Trick.png/800px-Reparameterization_Trick.png)
 
 <figcaption style="font-size:0.9em; margin-top: -10px;">
 <em>Diagram showing the reparameterization trick. Instead of sampling <code>z</code> directly from a Gaussian with learned parameters, we sample <code>ε ∼ N(0, 1)</code> and transform it using <code>z = μ + σ · ε</code>. This enables backpropagation through the sampling step.</em><br>
