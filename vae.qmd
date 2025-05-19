@@ -10,7 +10,7 @@ Traditional autoencoders learn to compress data into a lower-dimensional represe
 - The **latent space is unstructured**, offering little control or interpretation
 - There is no **probabilistic modeling**, limiting uncertainty estimation
 
-While a Variational Autoencoder (VAE) shares the same encoder–decoder structure as a traditional autoencoder, it differs fundamentally in the latent space. Instead of encoding an input into a fixed latent vector, the encoder outputs the **parameters of a probability distribution** — typically a Gaussian, defined by a mean $ \mu $ and standard deviation $ \sigma $. A latent vector $ z $ is then sampled from this distribution using the **reparameterization trick**, which ensures that the sampling process remains differentiable and trainable via backpropagation.
+Variational Autoencoders (VAEs) were introduced to overcome these limitations. Rather than encoding inputs into fixed latent vectors, VAEs learn a **probabilistic latent space** by modeling each input as a distribution — typically a Gaussian with a learned mean $\\mu$ and standard deviation $\\sigma$. This approach enables the model to sample latent variables $z$ using the **reparameterization trick**, allowing the entire architecture to remain differentiable and trainable. By doing so, VAEs not only enable reconstruction, but also promote the learning of a **continuous, interpretable latent space** — a key enabler for generation and interpolation.
 
 The diagram below illustrates this process:
 
@@ -160,6 +160,9 @@ $$
 
 This equation shows that the log-likelihood $\log p(x)$ can be decomposed into the ELBO and the KL divergence between the approximate posterior and the true posterior. Since the KL divergence is always non-negative, the ELBO serves as a lower bound to the log-likelihood. By maximizing the ELBO, we indirectly minimize the KL divergence, bringing $q(z)$ closer to $p(z|x)$.
 
+![KL divergence as the gap between approximate and true posterior](https://deepgenerativemodels.github.io/notes/vae/klgap.png)
+
+*Visualizing how $\log p(x)$ decomposes into the ELBO and KL divergence. Source: [deepgenerativemodels.github.io](https://deepgenerativemodels.github.io/notes/vae/).*
 
 ##### Key Results
 

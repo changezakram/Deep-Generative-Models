@@ -285,6 +285,13 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 +D_{KL}(q(z)\|p(z|x; \theta))
 \]</span></p>
 <p>This equation shows that the log-likelihood <span class="math inline">\(\log p(x)\)</span> can be decomposed into the ELBO and the KL divergence between the approximate posterior and the true posterior. Since the KL divergence is always non-negative, the ELBO serves as a lower bound to the log-likelihood. By maximizing the ELBO, we indirectly minimize the KL divergence, bringing <span class="math inline">\(q(z)\)</span> closer to <span class="math inline">\(p(z|x)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://deepgenerativemodels.github.io/notes/vae/klgap.png" class="img-fluid figure-img"></p>
+<figcaption>KL divergence as the gap between approximate and true posterior</figcaption>
+</figure>
+</div>
+<p><em>Visualizing how <span class="math inline">\(\log p(x)\)</span> decomposes into the ELBO and KL divergence. Source: <a href="https://deepgenerativemodels.github.io/notes/vae/">deepgenerativemodels.github.io</a>.</em></p>
 </section>
 <section id="key-results" class="level5">
 <h5 class="anchored" data-anchor-id="key-results">Key Results</h5>
