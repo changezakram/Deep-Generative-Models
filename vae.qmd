@@ -236,7 +236,7 @@ Our goal is to maximize this objective with respect to both $\theta$ and $\phi$.
 The complication arises because $\phi$ appears both in the density $q_\phi(z|x)$ and in the expectation operator. That is:
 
 $$
-\nabla_\phi \mathbb{E}_{q_\phi(z|x)} \left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
+\nabla_\phi \mathbb{E}_{q(z; \phi)} \left[ \log p(z, x; \theta) - \log q(z; \phi) \right]
 $$
 
 This gradient is hard to compute directly because we’re sampling from a distribution that depends on the parameters we're trying to update.
