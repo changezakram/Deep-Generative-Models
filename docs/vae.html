@@ -180,7 +180,7 @@ window.Quarto = {
 p(\mathbf{x}|\mathbf{z}) = \mathcal{N}(\mu_\theta(\mathbf{z}), \Sigma_\theta(\mathbf{z}))
 \]</span> where <span class="math inline">\(\mu_\theta\)</span> and <span class="math inline">\(\Sigma_\theta\)</span> are neural networks parameterized by <span class="math inline">\(\theta\)</span></li>
 </ol>
-<p>Here, <span class="math inline">\(\mathbf{z}\)</span> acts as a hidden or latent variable, which is <strong>unobserved during training</strong>. The model thus defines a — one for each <span class="math inline">\(\mathbf{z}\)</span>.</p>
+<p>Here, <span class="math inline">\(\mathbf{z}\)</span> acts as a hidden or latent variable, which is <strong>unobserved during training</strong>. The model thus defines a mixture of infinitely many Gaussians — one for each <span class="math inline">\(\mathbf{z}\)</span>.</p>
 <p>To compute the likelihood of a data point <span class="math inline">\(\mathbf{x}\)</span>, we must marginalize over all possible latent variables: <span class="math display">\[
   p(\mathbf{x}) = \int p(\mathbf{x}, \mathbf{z}) \, d\mathbf{z}
   \]</span></p>
