@@ -233,6 +233,7 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 <section id="why-variational-inference" class="level2">
 <h2 class="anchored" data-anchor-id="why-variational-inference">Why Variational Inference?</h2>
 <p>Computing the true posterior distribution <span class="math inline">\(p(z|x)\)</span> is intractable in most cases because it requires evaluating the marginal likelihood over all possible values of z:</p>
+<p>Computing the true posterior distribution <span class="math inline">\(p(z \mid x)\)</span> is intractable in most cases, because it requires evaluating the marginal likelihood <span class="math inline">\(p(x)\)</span>, which involves integrating over all possible values of <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[
 p(x) = \int p(x, z) \, dz
 \]</span></p>

@@ -101,6 +101,9 @@ In the next section, we formally derive this bound and explore its components in
 
 Computing the true posterior distribution $p(z|x)$ is intractable in most cases because it requires evaluating the marginal likelihood over all possible values of z:
 
+Computing the true posterior distribution $p(z \mid x)$ is intractable in most cases, because it requires evaluating the marginal likelihood $p(x)$, which involves integrating over all possible values of $z$:
+
+
 $$
 p(x) = \int p(x, z) \, dz
 $$
