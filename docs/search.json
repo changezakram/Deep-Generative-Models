@@ -200,7 +200,7 @@
     "href": "vae.html#why-variational-inference",
     "title": "Variational Autoencoders",
     "section": "Why Variational Inference?",
-    "text": "Why Variational Inference?\nComputing the true posterior distribution \\(p(z|x)\\) is intractable in most cases because it requires evaluating the marginal likelihood over all possible values of z:\nComputing the true posterior distribution \\(p(z \\mid x)\\) is intractable in most cases, because it requires evaluating the marginal likelihood \\(p(x)\\), which involves integrating over all possible values of \\(z\\):\n\\[\np(x) = \\int p(x, z) \\, dz\n\\]\nVariational inference tackles this by introducing a tractable, parameterized distribution \\(q(z)\\) to approximate \\(p(z|x)\\). We aim to make \\(q(z)\\) as close as possible to the true posterior by minimizing the KL divergence:\n\\[\nD_{\\text{KL}}(q(z) \\| p(z|x))\n\\]\nThis turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO). See next section."
+    "text": "Why Variational Inference?\nComputing the true posterior distribution \\(p(z \\mid x)\\) is intractable in most cases, because it requires evaluating the marginal likelihood \\(p(x)\\), which involves integrating over all possible values of \\(z\\):\n\\[\np(x) = \\int p(x, z) \\, dz\n\\]\nVariational inference tackles this by introducing a tractable, parameterized distribution \\(q(z)\\) to approximate \\(p(z|x)\\). We aim to make \\(q(z)\\) as close as possible to the true posterior by minimizing the KL divergence:\n\\[\nD_{\\text{KL}}(q(z) \\| p(z|x))\n\\]\nThis turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO). See next section."
   },
   {
     "objectID": "vae.html#training-a-vae",
