@@ -378,9 +378,10 @@ Variational Autoencoders are widely used in:
 To complement the theory, I’ve built a full PyTorch implementation of a Variational Autoencoder trained on the CelebA dataset.
 
 📘 The notebook walks through:
-- Defining the encoder, decoder, and reparameterization trick
-- Implementing the ELBO loss function (reconstruction + KL divergence)
-- Training the model on face images
+
+- Defining the encoder, decoder, and reparameterization trick  
+- Implementing the ELBO loss function (reconstruction + KL divergence)  
+- Training the model on face images  
 - Generating new faces from random latent vectors
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/changezakram/Deep-Generative-Models/blob/main/vae_faces.ipynb)  
