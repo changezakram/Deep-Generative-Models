@@ -399,7 +399,7 @@ z^{(k)} = \mu_\phi(x) + \sigma_\phi(x) \cdot \epsilon^{(k)}, \quad \epsilon^{(k)
 <section id="summary" class="level4">
 <h4 class="anchored" data-anchor-id="summary">Summary</h4>
 <ul>
-<li>Variational inference introduces a gradient challenge because <span class="math inline">\(q_\phi(z|x)\)</span> depends on <span class="math inline">\(\phi\)</span></li>
+<li>Variational inference introduces a gradient challenge because <span class="math inline">\(q_\phi(z)\)</span> depends on <span class="math inline">\(\phi\)</span></li>
 <li>The reparameterization trick expresses <span class="math inline">\(z\)</span> as a differentiable function of noise and <span class="math inline">\(\phi\)</span></li>
 <li>This allows us to use backpropagation to optimize the ELBO efficiently</li>
 </ul>

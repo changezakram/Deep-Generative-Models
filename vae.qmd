@@ -289,7 +289,7 @@ This enables us to compute gradients using backpropagation.
 
 #### Summary
 
-- Variational inference introduces a gradient challenge because $q_\phi(z|x)$ depends on $\phi$
+- Variational inference introduces a gradient challenge because $q_\phi(z)$ depends on $\phi$
 - The reparameterization trick expresses $z$ as a differentiable function of noise and $\phi$
 - This allows us to use backpropagation to optimize the ELBO efficiently
 
