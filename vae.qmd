@@ -274,7 +274,7 @@ This diagram illustrates how the reparameterization trick enables **differentiab
 We approximate the expectation using Monte Carlo sampling:
 
 $$
-\mathbb{E}_{\epsilon}[\log p_\theta(x, z) - \log q_\phi(z|x)] \approx \frac{1}{K} \sum_{k=1}^K \left[\log p_\theta(x, z^{(k)}) - \log q_\phi(z^{(k)}|x)\right]
+\mathbb{E}_{\epsilon}[\log p_\theta(x, z) - \log q_\phi(z)] \approx \frac{1}{K} \sum_{k=1}^K \left[\log p_\theta(x, z^{(k)}) - \log q_\phi(z^{(k)})\right]
 $$
 
 with:

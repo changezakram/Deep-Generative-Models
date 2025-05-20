@@ -387,7 +387,7 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <h4 class="anchored" data-anchor-id="monte-carlo-approximation">Monte Carlo Approximation</h4>
 <p>We approximate the expectation using Monte Carlo sampling:</p>
 <p><span class="math display">\[
-\mathbb{E}_{\epsilon}[\log p_\theta(x, z) - \log q_\phi(z|x)] \approx \frac{1}{K} \sum_{k=1}^K \left[\log p_\theta(x, z^{(k)}) - \log q_\phi(z^{(k)}|x)\right]
+\mathbb{E}_{\epsilon}[\log p_\theta(x, z) - \log q_\phi(z)] \approx \frac{1}{K} \sum_{k=1}^K \left[\log p_\theta(x, z^{(k)}) - \log q_\phi(z^{(k)})\right]
 \]</span></p>
 <p>with:</p>
 <p><span class="math display">\[
