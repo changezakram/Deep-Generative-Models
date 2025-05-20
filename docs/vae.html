@@ -184,7 +184,7 @@ p(\mathbf{x}|\mathbf{z}) = \mathcal{N}(\mu_\theta(\mathbf{z}), \Sigma_\theta(\ma
 <p>To compute the likelihood of a data point <span class="math inline">\(\mathbf{x}\)</span>, we must marginalize over all possible latent variables: <span class="math display">\[
   p(\mathbf{x}) = \int p(\mathbf{x}, \mathbf{z}) \, d\mathbf{z}
   \]</span></p>
-<p>This integral requires integrating over all possible values of the latent variable <span class="math inline">\(\mathbf{z}\)</span>, which is often high-dimensional and affects the likelihood in a non-linear way through neural networks. Because of this, computing the marginal likelihood exactly is computationally intractable. This motivates the use of variational inference techniques like ELBO, which will be developed in the following sections.</p>
+<p>This integral requires integrating over all possible values of the latent variable <span class="math inline">\(\mathbf{z}\)</span>, which is often high-dimensional and affects the likelihood in a non-linear way through neural networks. Because of this, computing the marginal likelihood exactly is computationally intractable. This motivates the use of variational inference technique.</p>
 <section id="computational-challenge" class="level4">
 <h4 class="anchored" data-anchor-id="computational-challenge">Computational Challenge</h4>
 <p>This integral requires integrating over:</p>
