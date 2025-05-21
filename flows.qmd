@@ -161,3 +161,57 @@ $$
 
 This generalizes the 1D rule and enables us to compute **exact likelihoods** for complex distributions as long as the transformation is invertible and differentiable.
 
+
+## Model Formulation
+
+A normalizing flow model defines a **one-to-one and reversible transformation** between observed variables $\mathbf{x}$ and latent variables $\mathbf{z}$. This transformation is given by an invertible, differentiable function $f_\theta$, parameterized by $\theta$:
+
+$$
+\mathbf{x} = f_\theta(\mathbf{z}) \quad \text{and} \quad \mathbf{z} = f_\theta^{-1}(\mathbf{x})
+$$
+
+Because the transformation is invertible, we can apply the **change-of-variable formula** to compute the exact probability of $\mathbf{x}$:
+
+$$
+p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left( \frac{\partial f_\theta^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right) \right|
+$$
+
+This makes it possible to evaluate **exact likelihoods** and learn the model via **maximum likelihood estimation (MLE)**.
+
+> **Note:** Both $\mathbf{x}$ and $\mathbf{z}$ must be continuous and have the same dimensionality since the transformation must be invertible.
+
+## A Flow of Transformations
+
+The term *flow* refers to the fact that we can compose multiple invertible functions to form a more expressive transformation:
+
+$$
+\mathbf{z}_m = f_\theta^{(m)} \circ f_\theta^{(m-1)} \circ \cdots \circ f_\theta^{(1)}(\mathbf{z}_0)
+$$
+
+In this setup:
+- $\mathbf{z}_0 \sim p_Z$ is sampled from a simple base distribution (e.g., standard Gaussian)
+- $\mathbf{x} = \mathbf{z}_M$ is the final transformed variable
+- The full transformation $f_\theta$ is the composition of all $M$ steps
+
+The density of $\mathbf{x}$ is given by the change-of-variable formula:
+
+$$
+p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \prod_{m=1}^M \left| \det \left( \frac{\partial (f_\theta^{(m)})^{-1}(\mathbf{z}_m)}{\partial \mathbf{z}_m} \right) \right|
+$$
+
+This approach allows the model to approximate highly complex distributions using simple building blocks.
+
+## Learning and Inference
+
+Training a flow-based model is done by maximizing the log-likelihood over the dataset $\mathcal{D}$:
+
+$$
+\max_\theta \log p_X(\mathcal{D}; \theta) = \sum_{\mathbf{x} \in \mathcal{D}} \log p_Z(f_\theta^{-1}(\mathbf{x})) + \log \left| \det \left( \frac{\partial f_\theta^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right) \right|
+$$
+
+**Key advantages of normalizing flows:**
+
+- ✅ **Exact likelihoods**: No approximation needed — just apply the change-of-variable rule
+- ✅ **Efficient sampling**: Generate new data by drawing $\mathbf{z} \sim p_Z$ and computing $\mathbf{x} = f_\theta(\mathbf{z})$
+- ✅ **Latent inference**: Invert $f_\theta$ to compute latent codes $\mathbf{z} = f_\theta^{-1}(\mathbf{x})$, without needing a separate encoder
+

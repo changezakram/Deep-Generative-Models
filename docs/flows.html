@@ -271,6 +271,47 @@ p_X(\mathbf{x}) = p_Z(f^{-1}(\mathbf{x})) \cdot \left| \det \left( \frac{\partia
 p_X(\mathbf{x}) = p_Z(\mathbf{z}) \cdot \left| \det \left( \frac{\partial f(\mathbf{z})}{\partial \mathbf{z}} \right) \right|^{-1}
 \]</span></p>
 <p>This generalizes the 1D rule and enables us to compute <strong>exact likelihoods</strong> for complex distributions as long as the transformation is invertible and differentiable.</p>
+</section>
+<section id="model-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="model-formulation">Model Formulation</h2>
+<p>A normalizing flow model defines a <strong>one-to-one and reversible transformation</strong> between observed variables <span class="math inline">\(\mathbf{x}\)</span> and latent variables <span class="math inline">\(\mathbf{z}\)</span>. This transformation is given by an invertible, differentiable function <span class="math inline">\(f_\theta\)</span>, parameterized by <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{x} = f_\theta(\mathbf{z}) \quad \text{and} \quad \mathbf{z} = f_\theta^{-1}(\mathbf{x})
+\]</span></p>
+<p>Because the transformation is invertible, we can apply the <strong>change-of-variable formula</strong> to compute the exact probability of <span class="math inline">\(\mathbf{x}\)</span>:</p>
+<p><span class="math display">\[
+p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left( \frac{\partial f_\theta^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right) \right|
+\]</span></p>
+<p>This makes it possible to evaluate <strong>exact likelihoods</strong> and learn the model via <strong>maximum likelihood estimation (MLE)</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Both <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{z}\)</span> must be continuous and have the same dimensionality since the transformation must be invertible.</p>
+</blockquote>
+</section>
+<section id="a-flow-of-transformations" class="level2">
+<h2 class="anchored" data-anchor-id="a-flow-of-transformations">A Flow of Transformations</h2>
+<p>The term <em>flow</em> refers to the fact that we can compose multiple invertible functions to form a more expressive transformation:</p>
+<p><span class="math display">\[
+\mathbf{z}_m = f_\theta^{(m)} \circ f_\theta^{(m-1)} \circ \cdots \circ f_\theta^{(1)}(\mathbf{z}_0)
+\]</span></p>
+<p>In this setup: - <span class="math inline">\(\mathbf{z}_0 \sim p_Z\)</span> is sampled from a simple base distribution (e.g., standard Gaussian) - <span class="math inline">\(\mathbf{x} = \mathbf{z}_M\)</span> is the final transformed variable - The full transformation <span class="math inline">\(f_\theta\)</span> is the composition of all <span class="math inline">\(M\)</span> steps</p>
+<p>The density of <span class="math inline">\(\mathbf{x}\)</span> is given by the change-of-variable formula:</p>
+<p><span class="math display">\[
+p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \prod_{m=1}^M \left| \det \left( \frac{\partial (f_\theta^{(m)})^{-1}(\mathbf{z}_m)}{\partial \mathbf{z}_m} \right) \right|
+\]</span></p>
+<p>This approach allows the model to approximate highly complex distributions using simple building blocks.</p>
+</section>
+<section id="learning-and-inference" class="level2">
+<h2 class="anchored" data-anchor-id="learning-and-inference">Learning and Inference</h2>
+<p>Training a flow-based model is done by maximizing the log-likelihood over the dataset <span class="math inline">\(\mathcal{D}\)</span>:</p>
+<p><span class="math display">\[
+\max_\theta \log p_X(\mathcal{D}; \theta) = \sum_{\mathbf{x} \in \mathcal{D}} \log p_Z(f_\theta^{-1}(\mathbf{x})) + \log \left| \det \left( \frac{\partial f_\theta^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right) \right|
+\]</span></p>
+<p><strong>Key advantages of normalizing flows:</strong></p>
+<ul>
+<li>✅ <strong>Exact likelihoods</strong>: No approximation needed — just apply the change-of-variable rule</li>
+<li>✅ <strong>Efficient sampling</strong>: Generate new data by drawing <span class="math inline">\(\mathbf{z} \sim p_Z\)</span> and computing <span class="math inline">\(\mathbf{x} = f_\theta(\mathbf{z})\)</span></li>
+<li>✅ <strong>Latent inference</strong>: Invert <span class="math inline">\(f_\theta\)</span> to compute latent codes <span class="math inline">\(\mathbf{z} = f_\theta^{-1}(\mathbf{x})\)</span>, without needing a separate encoder</li>
+</ul>
 
 
 </section>
