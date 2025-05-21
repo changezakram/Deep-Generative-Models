@@ -308,12 +308,40 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \prod_{m=1}^M \le
 \]</span></p>
 <p><strong>Key advantages of normalizing flows:</strong></p>
 <ul>
-<li>✅ <strong>Exact likelihoods</strong>: No approximation needed — just apply the change-of-variable rule</li>
-<li>✅ <strong>Efficient sampling</strong>: Generate new data by drawing <span class="math inline">\(\mathbf{z} \sim p_Z\)</span> and computing <span class="math inline">\(\mathbf{x} = f_\theta(\mathbf{z})\)</span></li>
-<li>✅ <strong>Latent inference</strong>: Invert <span class="math inline">\(f_\theta\)</span> to compute latent codes <span class="math inline">\(\mathbf{z} = f_\theta^{-1}(\mathbf{x})\)</span>, without needing a separate encoder</li>
+<li><strong>Exact likelihoods</strong>: No approximation needed — just apply the change-of-variable rule</li>
+<li><strong>Efficient sampling</strong>: Generate new data by drawing <span class="math inline">\(\mathbf{z} \sim p_Z\)</span> and computing <span class="math inline">\(\mathbf{x} = f_\theta(\mathbf{z})\)</span></li>
+<li><strong>Latent inference</strong>: Invert <span class="math inline">\(f_\theta\)</span> to compute latent codes <span class="math inline">\(\mathbf{z} = f_\theta^{-1}(\mathbf{x})\)</span>, without needing a separate encoder</li>
 </ul>
+</section>
+<section id="computational-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="computational-considerations">Computational Considerations</h2>
+<p>One challenge in training normalizing flow models is that computing the <strong>exact likelihood</strong> requires evaluating the <strong>determinant of the Jacobian matrix</strong> of the transformation:</p>
+<ul>
+<li>For a transformation <span class="math inline">\(f : \mathbb{R}^n \to \mathbb{R}^n\)</span>, the Jacobian is an <span class="math inline">\(n \times n\)</span> matrix.</li>
+<li>Computing its determinant has a cost of <span class="math inline">\(\mathcal{O}(n^3)\)</span>, which is <strong>computationally expensive</strong> during training — especially in high dimensions.</li>
+</ul>
+<section id="key-insight" class="level3">
+<h3 class="anchored" data-anchor-id="key-insight">Key Insight</h3>
+<p>To make normalizing flows scalable, we design transformations where the <strong>Jacobian has a special structure</strong> that makes the determinant <strong>easy to compute</strong>.</p>
+<p>For example: - If the Jacobian is a <strong>triangular matrix</strong>, the determinant is just the <strong>product of the diagonal entries</strong>, which can be computed in <span class="math inline">\(\mathcal{O}(n)\)</span> time. - This works because in a triangular matrix, all the off-diagonal elements are zero — so the determinant simplifies significantly.</p>
+<p>In practice, flow models like <strong>RealNVP</strong> and <strong>MAF</strong> are designed so that each output dimension <span class="math inline">\(x_i\)</span> depends only on some subset of the input dimensions <span class="math inline">\(z_{\leq i}\)</span> (for lower triangular structure) or <span class="math inline">\(z_{\geq i}\)</span> (for upper triangular structure). This results in a Jacobian of the form:</p>
+<p><span class="math display">\[
+J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
+\begin{pmatrix}
+\frac{\partial f_1}{\partial z_1} &amp; 0 &amp; \cdots &amp; 0 \\
+\ast &amp; \frac{\partial f_2}{\partial z_2} &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\ast &amp; \ast &amp; \cdots &amp; \frac{\partial f_n}{\partial z_n}
+\end{pmatrix}
+\]</span></p>
+<p>Because of this triangular structure, computing the determinant becomes as simple as multiplying the diagonal terms:</p>
+<p><span class="math display">\[
+\det(J) = \prod_{i=1}^{n} \frac{\partial f_i}{\partial z_i}
+\]</span></p>
+<p>This is why many modern flow models rely on <strong>coupling layers</strong> or <strong>autoregressive masking</strong>: they preserve invertibility and enable efficient, exact likelihood computation.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

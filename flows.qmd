@@ -211,7 +211,43 @@ $$
 
 **Key advantages of normalizing flows:**
 
-- ✅ **Exact likelihoods**: No approximation needed — just apply the change-of-variable rule
-- ✅ **Efficient sampling**: Generate new data by drawing $\mathbf{z} \sim p_Z$ and computing $\mathbf{x} = f_\theta(\mathbf{z})$
-- ✅ **Latent inference**: Invert $f_\theta$ to compute latent codes $\mathbf{z} = f_\theta^{-1}(\mathbf{x})$, without needing a separate encoder
+- **Exact likelihoods**: No approximation needed — just apply the change-of-variable rule
+- **Efficient sampling**: Generate new data by drawing $\mathbf{z} \sim p_Z$ and computing $\mathbf{x} = f_\theta(\mathbf{z})$
+- **Latent inference**: Invert $f_\theta$ to compute latent codes $\mathbf{z} = f_\theta^{-1}(\mathbf{x})$, without needing a separate encoder
+
+
+## Computational Considerations
+
+One challenge in training normalizing flow models is that computing the **exact likelihood** requires evaluating the **determinant of the Jacobian matrix** of the transformation:
+
+- For a transformation $f : \mathbb{R}^n \to \mathbb{R}^n$, the Jacobian is an $n \times n$ matrix.
+- Computing its determinant has a cost of $\mathcal{O}(n^3)$, which is **computationally expensive** during training — especially in high dimensions.
+
+### Key Insight
+
+To make normalizing flows scalable, we design transformations where the **Jacobian has a special structure** that makes the determinant **easy to compute**.
+
+For example:
+- If the Jacobian is a **triangular matrix**, the determinant is just the **product of the diagonal entries**, which can be computed in $\mathcal{O}(n)$ time.
+- This works because in a triangular matrix, all the off-diagonal elements are zero — so the determinant simplifies significantly.
+
+In practice, flow models like **RealNVP** and **MAF** are designed so that each output dimension $x_i$ depends only on some subset of the input dimensions $z_{\leq i}$ (for lower triangular structure) or $z_{\geq i}$ (for upper triangular structure). This results in a Jacobian of the form:
+
+$$
+J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
+\begin{pmatrix}
+\frac{\partial f_1}{\partial z_1} & 0 & \cdots & 0 \\
+\ast & \frac{\partial f_2}{\partial z_2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+\ast & \ast & \cdots & \frac{\partial f_n}{\partial z_n}
+\end{pmatrix}
+$$
+
+Because of this triangular structure, computing the determinant becomes as simple as multiplying the diagonal terms:
+
+$$
+\det(J) = \prod_{i=1}^{n} \frac{\partial f_i}{\partial z_i}
+$$
+
+This is why many modern flow models rely on **coupling layers** or **autoregressive masking**: they preserve invertibility and enable efficient, exact likelihood computation.
 
