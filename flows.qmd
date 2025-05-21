@@ -251,3 +251,13 @@ $$
 
 This is why many modern flow models rely on **coupling layers** or **autoregressive masking**: they preserve invertibility and enable efficient, exact likelihood computation.
 
+
+
+## References
+
+- [**Deep Generative Models: Flow Notes**](https://deepgenerativemodels.github.io/notes/flow/)
+- [**Flow-based Deep Generative Models – Lilian Weng**](https://lilianweng.github.io/posts/2018-10-13-flow-models/?utm_source=chatgpt.com)
+- [**Normalizing Flows Tutorial – Eric Jang, Part 1**](https://blog.evjang.com/2018/01/nf1.html)
+- [**Normalizing Flows Tutorial – Eric Jang, Part 2**](https://blog.evjang.com/2018/01/nf2.html)
+- [**UT Austin: Change of Variable in One Dimension**](https://web.ma.utexas.edu/users/m408s/m408d/CurrentWeb/LM15-10-2.php)
+
