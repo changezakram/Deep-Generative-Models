@@ -244,6 +244,13 @@ $$
 This is why many modern flow models rely on **coupling layers** or **autoregressive masking**: they preserve invertibility and enable efficient, exact likelihood computation.
 
 
+## 🧪 Try It Yourself
+
+You can explore a minimal PyTorch implementation of a Normalizing Flow model:
+
+- 📘 [**View Notebook on GitHub**](https://github.com/changezakram/Deep-Generative-Models/blob/main/normalizing_flow_pytorch.ipynb)
+- 🚀 [**Run in Google Colab**](https://colab.research.google.com/github/changezakram/Deep-Generative-Models/blob/main/normalizing_flow_pytorch.ipynb)
+
 
 ## References
 
