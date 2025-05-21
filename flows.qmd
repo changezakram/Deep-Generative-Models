@@ -9,7 +9,7 @@ In generative modeling, the objective is to learn a probability distribution ove
 
 Traditional generative models each offer distinct advantages but also come with limitations. **Autoregressive models** allow for exact likelihood estimation by factorizing the joint distribution into a sequence of conditional probabilities. However, they lack a **latent representation**, which means they do not explicitly capture high-level features or structure in the data.
 
-**Variational Autoencoders (VAEs)** address this limitation by introducing latent variables $z$, enabling the model to learn compressed, structured representations of the data. While VAEs are flexible and powerful, they face a key challenge: the marginal likelihood $p(x)$ — which integrates over all possible latent variables — is intractable
+**Variational Autoencoders (VAEs)** address this limitation by introducing latent variables $z$, enabling the model to learn compressed, structured representations of the data. While VAEs are flexible and powerful, they face a key challenge: the marginal likelihood $p(x)$ — which integrates over all possible latent variables $z$ — is intractable
 
 To overcome this, VAEs use **variational inference** and optimize the **Evidence Lower Bound (ELBO)**, a tractable surrogate objective. Combined with the **reparameterization trick**, this allows for efficient training despite the intractability of the exact likelihood.
 
