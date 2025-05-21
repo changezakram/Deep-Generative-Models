@@ -3,9 +3,15 @@ title: "Normalizing Flow Models"
 format: html
 ---
 
+# Normalizing Flow Models
+
 Normalizing Flows are a class of generative models that transform a simple base distribution into a complex one using a sequence of invertible, differentiable mappings. To understand how they work, we begin with a key mathematical tool: the **change of variables formula**.
 
-## Math Review: Change of Variables in 1D
+## Math Review
+
+This section covers the mathematical foundations necessary to understand how Normalizing Flows operate. We begin with the one-dimensional change of variables formula.
+
+### Change of Variables in 1D
 
 Suppose we have a **random variable** $z$ with a known distribution $p_Z(z)$, and we define a new variable:
 
@@ -21,7 +27,7 @@ $$
 
 Our goal is to compute the probability density function (PDF) of $x$, denoted $p_X(x)$, in terms of the known PDF $p_Z(z)$.
 
-### Step 1: Cumulative Distribution Function (CDF)
+#### Step 1: Cumulative Distribution Function (CDF)
 
 We begin with the cumulative distribution function of $x$:
 
@@ -35,7 +41,7 @@ $$
 P(f(Z) \leq x) = P(Z \leq f^{-1}(x)) = F_Z(h(x))
 $$
 
-### Step 2: Deriving the PDF via Chain Rule
+#### Step 2: Deriving the PDF via Chain Rule
 
 To obtain the PDF, we differentiate the CDF:
 
@@ -49,7 +55,7 @@ $$
 p_X(x) = F_Z'(h(x)) \cdot h'(x) = p_Z(h(x)) \cdot h'(x)
 $$
 
-### Step 3: Expressing $h'(x)$ Using $f$
+#### Step 3: Expressing $h'(x)$ Using $f$
 
 Recall that $z = h(x) = f^{-1}(x)$. Using the **inverse function theorem**, we write:
 
@@ -65,7 +71,7 @@ $$
 
 Note the **absolute value**: we include it because the derivative $f'(z)$ might be negative if the transformation is decreasing, but **probability densities must always be non-negative**. The absolute value ensures the result remains a valid PDF.
 
-### Final Form (1D Case)
+#### Final Form (1D Case)
 
 The final formula — which is the 1D version of the change-of-variables rule — is:
 
