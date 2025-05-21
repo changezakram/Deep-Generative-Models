@@ -157,9 +157,14 @@ window.Quarto = {
 </header>
 
 
+<section id="normalizing-flow-models" class="level1">
+<h1>Normalizing Flow Models</h1>
 <p>Normalizing Flows are a class of generative models that transform a simple base distribution into a complex one using a sequence of invertible, differentiable mappings. To understand how they work, we begin with a key mathematical tool: the <strong>change of variables formula</strong>.</p>
-<section id="math-review-change-of-variables-in-1d" class="level2">
-<h2 class="anchored" data-anchor-id="math-review-change-of-variables-in-1d">Math Review: Change of Variables in 1D</h2>
+<section id="math-review" class="level2">
+<h2 class="anchored" data-anchor-id="math-review">Math Review</h2>
+<p>This section covers the mathematical foundations necessary to understand how Normalizing Flows operate. We begin with the one-dimensional change of variables formula.</p>
+<section id="change-of-variables-in-1d" class="level3">
+<h3 class="anchored" data-anchor-id="change-of-variables-in-1d">Change of Variables in 1D</h3>
 <p>Suppose we have a <strong>random variable</strong> <span class="math inline">\(z\)</span> with a known distribution <span class="math inline">\(p_Z(z)\)</span>, and we define a new variable:</p>
 <p><span class="math display">\[
 x = f(z)
@@ -169,8 +174,8 @@ x = f(z)
 z = f^{-1}(x) = h(x)
 \]</span></p>
 <p>Our goal is to compute the probability density function (PDF) of <span class="math inline">\(x\)</span>, denoted <span class="math inline">\(p_X(x)\)</span>, in terms of the known PDF <span class="math inline">\(p_Z(z)\)</span>.</p>
-<section id="step-1-cumulative-distribution-function-cdf" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-cumulative-distribution-function-cdf">Step 1: Cumulative Distribution Function (CDF)</h3>
+<section id="step-1-cumulative-distribution-function-cdf" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-cumulative-distribution-function-cdf">Step 1: Cumulative Distribution Function (CDF)</h4>
 <p>We begin with the cumulative distribution function of <span class="math inline">\(x\)</span>:</p>
 <p><span class="math display">\[
 F_X(x) = P(X \leq x) = P(f(Z) \leq x)
@@ -180,8 +185,8 @@ F_X(x) = P(X \leq x) = P(f(Z) \leq x)
 P(f(Z) \leq x) = P(Z \leq f^{-1}(x)) = F_Z(h(x))
 \]</span></p>
 </section>
-<section id="step-2-deriving-the-pdf-via-chain-rule" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-deriving-the-pdf-via-chain-rule">Step 2: Deriving the PDF via Chain Rule</h3>
+<section id="step-2-deriving-the-pdf-via-chain-rule" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-deriving-the-pdf-via-chain-rule">Step 2: Deriving the PDF via Chain Rule</h4>
 <p>To obtain the PDF, we differentiate the CDF:</p>
 <p><span class="math display">\[
 p_X(x) = \frac{d}{dx} F_X(x) = \frac{d}{dx} F_Z(h(x))
@@ -191,8 +196,8 @@ p_X(x) = \frac{d}{dx} F_X(x) = \frac{d}{dx} F_Z(h(x))
 p_X(x) = F_Z'(h(x)) \cdot h'(x) = p_Z(h(x)) \cdot h'(x)
 \]</span></p>
 </section>
-<section id="step-3-expressing-hx-using-f" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-expressing-hx-using-f">Step 3: Expressing <span class="math inline">\(h'(x)\)</span> Using <span class="math inline">\(f\)</span></h3>
+<section id="step-3-expressing-hx-using-f" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-expressing-hx-using-f">Step 3: Expressing <span class="math inline">\(h'(x)\)</span> Using <span class="math inline">\(f\)</span></h4>
 <p>Recall that <span class="math inline">\(z = h(x) = f^{-1}(x)\)</span>. Using the <strong>inverse function theorem</strong>, we write:</p>
 <p><span class="math display">\[
 h'(x) = \frac{d}{dx} f^{-1}(x) = \frac{1}{f'(z)} = \frac{1}{f'(f^{-1}(x))}
@@ -203,8 +208,8 @@ p_X(x) = p_Z(f^{-1}(x)) \cdot \left| \frac{1}{f'(f^{-1}(x))} \right|
 \]</span></p>
 <p>Note the <strong>absolute value</strong>: we include it because the derivative <span class="math inline">\(f'(z)\)</span> might be negative if the transformation is decreasing, but <strong>probability densities must always be non-negative</strong>. The absolute value ensures the result remains a valid PDF.</p>
 </section>
-<section id="final-form-1d-case" class="level3">
-<h3 class="anchored" data-anchor-id="final-form-1d-case">Final Form (1D Case)</h3>
+<section id="final-form-1d-case" class="level4">
+<h4 class="anchored" data-anchor-id="final-form-1d-case">Final Form (1D Case)</h4>
 <p>The final formula — which is the 1D version of the change-of-variables rule — is:</p>
 <p><span class="math display">\[
 p_X(x) = p_Z(f^{-1}(x)) \cdot \left| \frac{d}{dx} f^{-1}(x) \right|
@@ -212,6 +217,8 @@ p_X(x) = p_Z(f^{-1}(x)) \cdot \left| \frac{d}{dx} f^{-1}(x) \right|
 <p>This is the fundamental tool Normalizing Flows use to model complex distributions by transforming simple ones.</p>
 
 
+</section>
+</section>
 </section>
 </section>
 
