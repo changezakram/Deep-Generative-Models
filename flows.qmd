@@ -3,8 +3,6 @@ title: "Normalizing Flow Models"
 format: html
 ---
 
-# Normalizing Flow Models
-
 Normalizing Flows are a class of generative models that transform a simple base distribution into a complex one using a sequence of invertible, differentiable mappings. To understand how they work, we begin with a key mathematical tool: the **change of variables formula**.
 
 ## Math Review: Change of Variables in 1D
