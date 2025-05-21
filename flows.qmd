@@ -92,14 +92,6 @@ $$
 
 The **absolute value** ensures the density remains non-negative, as required for any valid probability distribution.
 
-### Final Result (1D Case)
-
-The final result of the change-of-variables formula in 1D is:
-
-$$
-p_X(x) = p_Z(z) \cdot \left| \frac{1}{f'(z)} \right|, \quad \text{where } z = f^{-1}(x)
-$$
-
 This is the fundamental concept Normalizing Flows use to model complex distributions by transforming simple ones.
 
 
