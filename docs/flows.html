@@ -171,6 +171,7 @@ window.Quarto = {
 </figure>
 </div>
 <p><em>VAEs use an encoder-decoder architecture to learn a distribution over latent variables. The encoder approximates the posterior, while the decoder reconstructs the input. In contrast, flow-based models use a single invertible transformation for both inference and generation, allowing exact computation of the likelihood and latent variables.</em></p>
+<p>To understand how normalizing flows enable exact likelihood computation, we first need to explore a fundamental mathematical concept: the change-of-variable formula. This principle lies at the heart of flow models, allowing us to transform probability densities through invertible functions. We’ll begin with the 1D case and build up to the multivariate formulation.</p>
 </section>
 <section id="math-review-change-of-variables-in-1d" class="level2">
 <h2 class="anchored" data-anchor-id="math-review-change-of-variables-in-1d">Math Review: Change of Variables in 1D</h2>
