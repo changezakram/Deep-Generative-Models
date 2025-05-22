@@ -206,7 +206,7 @@ $$
 $$
 
 <div style="text-align: center;">
-![Flow model showing forward and inverse transformations](images/Flow_Model.png)
+<img src="images/Flow_Model.png" alt="Flow model showing forward and inverse transformations" style="display: block; margin: auto;" />
 <p style="color: gray; font-size: 0.95em;">Flow model showing forward and inverse transformations</p>
 </div>
 
