@@ -3,7 +3,7 @@ title: "Normalizing Flow Models"
 format: html
 ---
 
-## Introduction
+# Introduction
 
 In generative modeling, the objective is to learn a probability distribution over data that allows us to both **generate new examples** and **evaluate the likelihood** of observed ones. For a model to be practically useful, it must support **efficient sampling** and enable **exact or tractable likelihood computation** during training.
 
@@ -180,7 +180,7 @@ $$
 
 The Jacobian matrix generalizes derivatives to multivariable functions, capturing how a transformation scales and rotates space locally through all partial derivatives. Its determinant tells us how much the transformation stretches or compresses space — acting as a local volume scaling factor.
 
-## Multivariate Change-of-Variable Formula
+## Multivariate Change-of-Variable
 
 Given an invertible transformation $\mathbf{x} = f(\mathbf{z})$, the probability density transforms as:
 
