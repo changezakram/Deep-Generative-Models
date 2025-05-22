@@ -118,7 +118,7 @@ To make this idea concrete, consider the illustration below. The left figure sho
 
 *Figure: A linear transformation maps a unit square to a parallelogram.*
 
-This geometric intuition becomes essential when we apply the same logic to probability densities.
+This geometric intuition becomes essential when we apply the same logic to probability densities. The area of the parallelogram equals the absolute value of the determinant, |det(A)|, indicating how the transformation scales area.
 
 ## Determinants and Probability Density
 
@@ -159,7 +159,7 @@ This transformation stretches the square horizontally, doubling its width while 
 $$
 |\det(A)| = 2 \quad \text{and} \quad |\det(W)| = \frac{1}{2}
 $$ 
-Since the same total probability must be spread over a larger area, the density becomes thinner — it's halved to preserve the total probability. This is like stretching clay: the more space it covers, the thinner it gets.
+Since the same total probability must be spread over a larger area, the density decreases, meaning the probability per unit area is reduced due to the increased area over which the same total probability is distributed.
 
 Now, let’s say $p_Z(z) = 1$ inside the unit square (a uniform distribution). To compute $p_X(\mathbf{x})$ at a point $\mathbf{x}$ in the transformed space, we use:
 

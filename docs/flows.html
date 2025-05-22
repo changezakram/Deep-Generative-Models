@@ -246,7 +246,7 @@ p_X(x) = p_Z(z) \cdot \left| \frac{1}{f'(z)} \right|
 </figure>
 </div>
 <p><em>Figure: A linear transformation maps a unit square to a parallelogram.</em></p>
-<p>This geometric intuition becomes essential when we apply the same logic to probability densities.</p>
+<p>This geometric intuition becomes essential when we apply the same logic to probability densities. The area of the parallelogram equals the absolute value of the determinant, |det(A)|, indicating how the transformation scales area.</p>
 </section>
 <section id="determinants-and-probability-density" class="level2">
 <h2 class="anchored" data-anchor-id="determinants-and-probability-density">Determinants and Probability Density</h2>
@@ -277,7 +277,7 @@ W = A^{-1} =
 <p>This transformation stretches the square horizontally, doubling its width while keeping the height unchanged. As a result, the area is doubled:<br>
 <span class="math display">\[
 |\det(A)| = 2 \quad \text{and} \quad |\det(W)| = \frac{1}{2}
-\]</span> Since the same total probability must be spread over a larger area, the density becomes thinner — it’s halved to preserve the total probability. This is like stretching clay: the more space it covers, the thinner it gets.</p>
+\]</span> Since the same total probability must be spread over a larger area, the density decreases, meaning the probability per unit area is reduced due to the increased area over which the same total probability is distributed.</p>
 <p>Now, let’s say <span class="math inline">\(p_Z(z) = 1\)</span> inside the unit square (a uniform distribution). To compute <span class="math inline">\(p_X(\mathbf{x})\)</span> at a point <span class="math inline">\(\mathbf{x}\)</span> in the transformed space, we use:</p>
 <p><span class="math display">\[
 p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| = 1 \cdot \frac{1}{2} = \frac{1}{2}
