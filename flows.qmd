@@ -17,7 +17,7 @@ Despite these strengths, normalizing flows have limitations. Unlike VAEs, which 
 
 ![Comparison of VAE and Flow-based Models](images/vae_vs_flow.png)
 
-*VAEs compress the input into a lower-dimensional latent space using an encoder, then reconstruct it with a decoder. Flow-based models use a single invertible transformation that keeps the same dimensionality between input and latent space. This enables exact inference and likelihood computation.*
+*VAEs compress data into a lower-dimensional latent space using an encoder, then reconstruct it with a decoder. Flow-based models use a single invertible transformation that keeps the same dimensionality between input and latent space. This enables exact inference and likelihood computation.*
 
 To understand how normalizing flows enable exact likelihood computation, we first need to explore a fundamental mathematical concept: the change-of-variable formula. This principle lies at the heart of flow models, allowing us to transform probability densities through invertible functions. We'll begin with the 1D case and build up to the multivariate formulation.
 
