@@ -116,7 +116,7 @@ To make this idea concrete, consider the illustration below. The left figure sho
 
 ![Linear transformation of a unit square into a parallelogram](images/determinant_area.png)
 
-*Figure: A linear transformation maps a unit square to a parallelogram. The transformed shape has area equal to the absolute value of the determinant \( |\det(A)| = |ad - bc| \), which quantifies how the transformation scales the original volume.*
+*Figure: A linear transformation maps a unit square to a parallelogram.*
 
 
 ## Determinants and Probability Density
