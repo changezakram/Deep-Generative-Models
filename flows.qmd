@@ -127,6 +127,14 @@ $$
 p_X(\mathbf{x}) = p_Z(W \mathbf{x}) \cdot \left| \det(W) \right| \quad \text{where } W = A^{-1}
 $$
 
+This is directly analogous to the 1D change-of-variable rule:
+
+$$
+p_X(x) = p_Z(h(x)) \cdot |h'(x)|
+$$
+
+but now in multiple dimensions using the determinant of the **inverse transformation**.
+
 To make this more concrete, here’s a simple 2D example:
 
 Let $\mathbf{Z}$ be a random vector uniformly distributed over the unit square $[0, 1]^2$. Suppose we apply the transformation $\mathbf{X} = A\mathbf{Z}$, where
@@ -155,19 +163,6 @@ $$
 This means the density is halved because the same total probability is now spread over **twice the area**.
 
 
-The new density after transformation is:
-
-$$
-p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| \quad \text{where} \quad W = A^{-1}
-$$
-
-This is directly analogous to the 1D change-of-variable rule:
-
-$$
-p_X(x) = p_Z(h(x)) \cdot |h'(x)|
-$$
-
-but now in multiple dimensions using the determinant of the **inverse transformation**.
 
 ## Generalizing to Nonlinear Transformations
 
