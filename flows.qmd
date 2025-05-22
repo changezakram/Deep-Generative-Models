@@ -162,7 +162,7 @@ $$
 p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| = 1 \cdot \frac{1}{2} = \frac{1}{2}
 $$
 
-This means the density is halved because the same total probability is now spread over **twice the area**.
+This means the transformed density is halved because the same total probability is now spread over **twice the area**.
 
 
 
