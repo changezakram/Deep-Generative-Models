@@ -98,24 +98,41 @@ This is the fundamental concept normalizing flows use to model complex distribut
 
 ## Geometry: Determinants and Volume Changes
 
-To understand the multivariate change-of-variable formula, it's helpful to first explore how transformations affect **volume** in high-dimensional spaces.
+To understand the multivariate change-of-variable formula, it's helpful to first explore how linear transformations affect **volume** in high-dimensional spaces.
 
-Let $\mathbf{Z}$ be a random vector uniformly distributed in the unit cube $[0,1]^n$, and let $\mathbf{X} = A\mathbf{Z}$ where $A$ is a square, invertible matrix. Geometrically, the matrix $A$ maps the unit hypercube to a **parallelogram** (in 2D) or a **parallelotope** (in higher dimensions).
+Let $\mathbf{Z}$ be a random vector uniformly distributed in the unit cube $[0,1]^n$, and let $\mathbf{X} = A\mathbf{Z}$, where $A$ is a square, invertible matrix. Geometrically, the matrix $A$ maps the unit hypercube to a **parallelogram** in 2D or a **parallelotope** in higher dimensions.
 
-The **determinant** of a square matrix tells us how that matrix **scales volume** in space. For example, if the determinant of a $2 \times 2$ matrix is 3, then applying that matrix to a region will stretch its area by a factor of 3. A negative determinant also indicates a **reflection** (orientation reversal). The **absolute value** of the determinant is what we care about when measuring volume.
+The **determinant** of a square matrix tells us how the transformation **scales volume**. For instance, if the determinant of a $2 \times 2$ matrix is 3, applying that matrix will stretch the area of a region by a factor of 3. A negative determinant indicates a **reflection**, meaning the transformation also flips the orientation. When measuring volume, we care about the **absolute value** of the determinant.
 
-
-The **volume** of this parallelotope is equal to the **absolute value of the determinant** of matrix $A$:
+The volume of the resulting parallelotope is given by:
 
 $$
 \text{Volume} = |\det(A)|
 $$
 
-This tells us how much the transformation $A$ **scales space**. For example, if $|\det(A)| = 2$, the transformation doubles the volume. To make this idea more concrete, consider the following illustration:
+This expression tells us how much the transformation $A$ scales space. For example, if $|\det(A)| = 2$, the transformation doubles the volume.
+
+To make this idea concrete, consider the illustration below. The left figure shows a uniform distribution over the unit square $[0,1]^2$. When we apply the linear transformation $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, each point in the square is mapped to a new location, stretching the square into a parallelogram.
 
 ![Linear transformation of a unit square into a parallelogram](images/determinant_area.png)
 
-*Figure: A linear transformation maps a unit square to a parallelogram. The area of this parallelogram is equal to the absolute value of the determinant \( |\det(A)| = |ad - bc| \).*
+*Figure: A linear transformation maps a unit square to a parallelogram. The transformed shape has area equal to the absolute value of the determinant \( |\det(A)| = |ad - bc| \), which quantifies how the transformation scales the original volume.*
+
+### Example
+
+Let
+
+$$
+A = \begin{bmatrix} 2 & 1 \\ 1 & 1 \end{bmatrix}
+$$
+
+Then the transformed volume is:
+
+$$
+|\det(A)| = |(2)(1) - (1)(1)| = |2 - 1| = 1
+$$
+
+This tells us the transformation does **not** scale the area — the shape of the region changes (from square to parallelogram), but the volume (area) remains the same.
 
 ## Determinants and Probability Density
 
