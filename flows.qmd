@@ -19,6 +19,10 @@ This structure offers several advantages. First, **each $x$ maps to a unique $z$
 
 However, despite their strengths, Normalizing Flows are not without limitations. Unlike VAEs, which learn **lower-dimensional latent representations** by compressing the data, flows require the latent and data spaces to have **equal dimensionality** to preserve invertibility. This means flow models do **not inherently perform dimensionality reduction**, which can be a disadvantage in tasks where compact representations are desired.
 
+![Comparison of VAE and Flow-based Models](images/vae_vs_flow.png)
+
+*Figure: VAEs use an approximate inference network to encode data into a latent distribution. Flow-based models instead use a deterministic, invertible transformation for exact inference and likelihood computation.*
+
 
 ## Math Review: Change of Variables in 1D
 
