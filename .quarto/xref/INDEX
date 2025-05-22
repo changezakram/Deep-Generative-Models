@@ -19,5 +19,8 @@
   },
   "flows.qmd": {
     "flows.html": "5c1c0cc2"
+  },
+  "normalizing_flow_pytorch.ipynb": {
+    "normalizing_flow_pytorch.html": "15e771dd"
   }
 }
