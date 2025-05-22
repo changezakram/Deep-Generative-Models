@@ -178,7 +178,7 @@ $$
 J_f(\mathbf{z}) = \frac{\partial f}{\partial \mathbf{z}}
 $$
 
-The Jacobian matrix generalizes the derivative to multivariable functions, capturing how a transformation **scales and rotates space locally** by containing all partial derivatives. The **determinant** of this matrix tells us how much the transformation stretches or compresses space — acting as a **local volume scaling factor** at each point.
+The Jacobian matrix generalizes derivatives to multivariable functions, capturing how a transformation scales and rotates space locally through all partial derivatives. Its determinant tells us how much the transformation stretches or compresses space — acting as a local volume scaling factor.
 
 ## Multivariate Change-of-Variable Formula
 
