@@ -118,21 +118,6 @@ To make this idea concrete, consider the illustration below. The left figure sho
 
 *Figure: A linear transformation maps a unit square to a parallelogram. The transformed shape has area equal to the absolute value of the determinant \( |\det(A)| = |ad - bc| \), which quantifies how the transformation scales the original volume.*
 
-### Example
-
-Let
-
-$$
-A = \begin{bmatrix} 2 & 1 \\ 1 & 1 \end{bmatrix}
-$$
-
-Then the transformed volume is:
-
-$$
-|\det(A)| = |(2)(1) - (1)(1)| = |2 - 1| = 1
-$$
-
-This tells us the transformation does **not** scale the area — the shape of the region changes (from square to parallelogram), but the volume (area) remains the same.
 
 ## Determinants and Probability Density
 
