@@ -138,7 +138,7 @@ $$
 
 but now in multiple dimensions using the determinant of the **inverse transformation**.
 
-To make this more concrete, here’s a simple 2D example:
+To make this more concrete, here’s a simple 2D example demonstrating how linear transformations affect probability density.
 
 Let $\mathbf{Z}$ be a random vector uniformly distributed over the unit square $[0, 1]^2$. Suppose we apply the transformation $\mathbf{X} = A\mathbf{Z}$, where
 
@@ -167,8 +167,7 @@ $$
 p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| = 1 \cdot \frac{1}{2} = \frac{1}{2}
 $$
 
-This means the transformed density is halved because the same total probability (which must remain 1) is now spread over **twice the area**.
-
+So, the transformed density is halved — the same total probability (which must remain 1) is now spread over an area that is twice as large.
 
 
 ## Generalizing to Nonlinear Transformations
