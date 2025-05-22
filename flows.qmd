@@ -205,6 +205,10 @@ $$
 \mathbf{x} = f_\theta(\mathbf{z}) \quad \text{and} \quad \mathbf{z} = f_\theta^{-1}(\mathbf{x})
 $$
 
+![Flow model showing forward and inverse transformations](images/Flow_Model.PNG)
+
+*Figure: A flow-based model uses a forward transformation \( f_\theta \) to map from latent variables \( \mathbf{z} \) to data \( \mathbf{x} \), and an inverse transformation \( f_\theta^{-1} \) to compute likelihoods.*
+
 Because the transformation is invertible, we can apply the **change-of-variable formula** to compute the exact probability of $\mathbf{x}$:
 
 $$
