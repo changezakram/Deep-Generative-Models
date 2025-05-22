@@ -207,7 +207,7 @@ $$
 
 ![Flow model showing forward and inverse transformations](images/Flow_Model.png)
 
-*Figure: A flow-based model uses a forward transformation \( f_\theta \) to map from latent variables \( \mathbf{z} \) to data \( \mathbf{x} \), and an inverse transformation \( f_\theta^{-1} \) to compute likelihoods.*
+*Figure: A flow-based model uses a forward transformation \( f_\theta \) to map from latent variables \( \mathbf{z} \) to data \( \mathbf{x} \), and an inverse transformation \( f_\theta^{-1} \) to compute likelihoods. Adapted from class notes (XCS236, Stanford)*
 
 Because the transformation is invertible, we can apply the **change-of-variable formula** to compute the exact probability of $\mathbf{x}$:
 
