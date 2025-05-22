@@ -1,136 +1,143 @@
 [
   {
-    "objectID": "vae_mnist.html",
-    "href": "vae_mnist.html",
-    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
+    "objectID": "normalizing_flow_pytorch.html",
+    "href": "normalizing_flow_pytorch.html",
+    "title": "🔄 Normalizing Flow Model in PyTorch",
     "section": "",
-    "text": "This notebook explains a Variational Autoencoder (VAE) trained on the MNIST dataset using PyTorch.\nEach step is annotated with detailed comments to help beginners understand what’s happening.\n!pip install torch torchvision"
+    "text": "This notebook provides a simple implementation of a normalizing flow model using affine coupling layers. We’ll walk through model definition, sampling, and log-likelihood computation.\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nimport matplotlib.pyplot as plt"
   },
   {
-    "objectID": "vae_mnist.html#import-required-libraries",
-    "href": "vae_mnist.html#import-required-libraries",
-    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
-    "section": "1. Import Required Libraries",
-    "text": "1. Import Required Libraries\n\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nimport torchvision\nimport torchvision.transforms as transforms\nfrom torch.utils.data import DataLoader\nimport matplotlib.pyplot as plt\nimport numpy as np"
+    "objectID": "normalizing_flow_pytorch.html#define-the-affine-coupling-layer",
+    "href": "normalizing_flow_pytorch.html#define-the-affine-coupling-layer",
+    "title": "🔄 Normalizing Flow Model in PyTorch",
+    "section": "🧱 Define the Affine Coupling Layer",
+    "text": "🧱 Define the Affine Coupling Layer\n\nclass AffineCoupling(nn.Module):\n    def __init__(self, dim, hidden_dim=128):\n        super().__init__()\n        self.scale_net = nn.Sequential(\n            nn.Linear(dim // 2, hidden_dim),\n            nn.ReLU(),\n            nn.Linear(hidden_dim, dim // 2),\n            nn.Tanh()\n        )\n        self.shift_net = nn.Sequential(\n            nn.Linear(dim // 2, hidden_dim),\n            nn.ReLU(),\n            nn.Linear(hidden_dim, dim // 2)\n        )\n\n    def forward(self, x):\n        x1, x2 = x.chunk(2, dim=1)\n        s = self.scale_net(x1)\n        t = self.shift_net(x1)\n        y2 = x2 * torch.exp(s) + t\n        y = torch.cat([x1, y2], dim=1)\n        log_det = s.sum(dim=1)\n        return y, log_det\n\n    def inverse(self, y):\n        y1, y2 = y.chunk(2, dim=1)\n        s = self.scale_net(y1)\n        t = self.shift_net(y1)\n        x2 = (y2 - t) * torch.exp(-s)\n        x = torch.cat([y1, x2], dim=1)\n        log_det = -s.sum(dim=1)\n        return x, log_det"
   },
   {
-    "objectID": "vae_mnist.html#load-and-prepare-the-mnist-dataset",
-    "href": "vae_mnist.html#load-and-prepare-the-mnist-dataset",
-    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
-    "section": "2. Load and Prepare the MNIST Dataset",
-    "text": "2. Load and Prepare the MNIST Dataset\n\n# We transform MNIST images into tensors.\ntransform = transforms.ToTensor()\n\n# Download and load the training data\ntrain_data = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)\n\n# DataLoader for batching and shuffling\ntrain_loader = DataLoader(train_data, batch_size=128, shuffle=True)"
+    "objectID": "normalizing_flow_pytorch.html#build-the-flow-model",
+    "href": "normalizing_flow_pytorch.html#build-the-flow-model",
+    "title": "🔄 Normalizing Flow Model in PyTorch",
+    "section": "🔁 Build the Flow Model",
+    "text": "🔁 Build the Flow Model\n\nclass NormalizingFlowModel(nn.Module):\n    def __init__(self, dim, n_flows):\n        super().__init__()\n        self.dim = dim\n        self.base_dist = torch.distributions.MultivariateNormal(\n            torch.zeros(dim), torch.eye(dim)\n        )\n        self.flows = nn.ModuleList([AffineCoupling(dim) for _ in range(n_flows)])\n\n    def forward(self, x):\n        log_det_total = torch.zeros(x.size(0))\n        for flow in self.flows:\n            x, log_det = flow(x)\n            log_det_total += log_det\n        log_prob = self.base_dist.log_prob(x) + log_det_total\n        return log_prob\n\n    def sample(self, n_samples):\n        z = self.base_dist.sample((n_samples,))\n        for flow in reversed(self.flows):\n            z, _ = flow.inverse(z)\n        return z"
   },
   {
-    "objectID": "vae_mnist.html#define-the-vae-model",
-    "href": "vae_mnist.html#define-the-vae-model",
-    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
-    "section": "3. Define the VAE Model",
-    "text": "3. Define the VAE Model\n\nclass VAE(nn.Module):\n    def __init__(self, input_dim=784, hidden_dim=400, latent_dim=2):\n        super(VAE, self).__init__()\n        # Encoder layers: input -&gt; hidden -&gt; (mu, logvar)\n        self.fc1 = nn.Linear(input_dim, hidden_dim)\n        self.fc_mu = nn.Linear(hidden_dim, latent_dim)      # outputs mean of q(z|x)\n        self.fc_logvar = nn.Linear(hidden_dim, latent_dim)  # outputs log-variance of q(z|x)\n\n        # Decoder layers: latent -&gt; hidden -&gt; reconstruction\n        self.fc3 = nn.Linear(latent_dim, hidden_dim)\n        self.fc4 = nn.Linear(hidden_dim, input_dim)\n\n    def encode(self, x):\n        # Apply a hidden layer then split into mean and logvar\n        h = F.relu(self.fc1(x))\n        mu = self.fc_mu(h)\n        logvar = self.fc_logvar(h)\n        return mu, logvar\n\n    def reparameterize(self, mu, logvar):\n        # Apply the reparameterization trick\n        std = torch.exp(0.5 * logvar)      # standard deviation\n        eps = torch.randn_like(std)        # random normal noise\n        return mu + eps * std              # sample z\n\n    def decode(self, z):\n        # Reconstruct input from latent representation\n        h = F.relu(self.fc3(z))\n        return torch.sigmoid(self.fc4(h))  # Output in [0, 1] range for binary MNIST\n\n    def forward(self, x):\n        # Full VAE forward pass\n        mu, logvar = self.encode(x)\n        z = self.reparameterize(mu, logvar)\n        recon_x = self.decode(z)\n        return recon_x, mu, logvar"
+    "objectID": "normalizing_flow_pytorch.html#example-sampling-and-density-evaluation",
+    "href": "normalizing_flow_pytorch.html#example-sampling-and-density-evaluation",
+    "title": "🔄 Normalizing Flow Model in PyTorch",
+    "section": "🔍 Example: Sampling and Density Evaluation",
+    "text": "🔍 Example: Sampling and Density Evaluation\n\ndim = 4\nn_flows = 4\nflow_model = NormalizingFlowModel(dim, n_flows)\n\n# Evaluate log-likelihood\nx = torch.randn(10, dim)\nlog_probs = flow_model(x)\nprint(\"Log-likelihoods:\", log_probs)\n\n# Sample from model\nsamples = flow_model.sample(500).detach().numpy()\n\n# Visualize first two dimensions\nplt.figure(figsize=(6, 5))\nplt.scatter(samples[:, 0], samples[:, 1], alpha=0.6)\nplt.title(\"Samples from Flow Model (dim 0 vs 1)\")\nplt.xlabel(\"x0\")\nplt.ylabel(\"x1\")\nplt.grid(True)\nplt.show()"
   },
   {
-    "objectID": "vae_mnist.html#define-the-elbo-loss",
-    "href": "vae_mnist.html#define-the-elbo-loss",
-    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
-    "section": "4. Define the ELBO Loss",
-    "text": "4. Define the ELBO Loss\n\ndef elbo_loss(recon_x, x, mu, logvar):\n    # Binary cross-entropy for reconstruction\n    BCE = F.binary_cross_entropy(recon_x, x, reduction='sum')\n\n    # KL divergence term to regularize q(z|x) against standard normal p(z)\n    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())\n\n    # Total loss is negative ELBO\n    return BCE + KLD"
-  },
-  {
-    "objectID": "vae_mnist.html#train-the-vae",
-    "href": "vae_mnist.html#train-the-vae",
-    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
-    "section": "5. Train the VAE",
-    "text": "5. Train the VAE\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\nmodel = VAE().to(device)\noptimizer = torch.optim.Adam(model.parameters(), lr=1e-3)\n\nepochs = 5\nfor epoch in range(epochs):\n    model.train()\n    total_loss = 0\n    for x, _ in train_loader:\n        x = x.view(-1, 784).to(device)               # Flatten 28x28 images into 784 vectors\n        recon_x, mu, logvar = model(x)               # Forward pass\n        loss = elbo_loss(recon_x, x, mu, logvar)     # Compute loss\n        optimizer.zero_grad()\n        loss.backward()\n        optimizer.step()\n        total_loss += loss.item()\n    print(f\"Epoch {epoch+1}, Loss: {total_loss / len(train_loader.dataset):.2f}\")"
-  },
-  {
-    "objectID": "vae_mnist.html#visualize-original-and-reconstructed-digits",
-    "href": "vae_mnist.html#visualize-original-and-reconstructed-digits",
-    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
-    "section": "6. Visualize Original and Reconstructed Digits",
-    "text": "6. Visualize Original and Reconstructed Digits\n\nmodel.eval()\nwith torch.no_grad():\n    x, _ = next(iter(train_loader))\n    x = x.view(-1, 784).to(device)\n    recon_x, _, _ = model(x)\n\n    # Convert back to image format\n    x = x.view(-1, 1, 28, 28).cpu()\n    recon_x = recon_x.view(-1, 1, 28, 28).cpu()\n\n    fig, axs = plt.subplots(2, 10, figsize=(15, 3))\n    for i in range(10):\n        axs[0, i].imshow(x[i][0], cmap='gray')\n        axs[0, i].axis('off')\n        axs[1, i].imshow(recon_x[i][0], cmap='gray')\n        axs[1, i].axis('off')\n    axs[0, 0].set_ylabel(\"Original\", fontsize=12)\n    axs[1, 0].set_ylabel(\"Reconstruction\", fontsize=12)\n    plt.tight_layout()\n    plt.show()"
-  },
-  {
-    "objectID": "vae_mnist.html#visualize-latent-space",
-    "href": "vae_mnist.html#visualize-latent-space",
-    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
-    "section": "7. Visualize Latent Space",
-    "text": "7. Visualize Latent Space\n\nimport seaborn as sns\n\nmodel.eval()\nall_z = []\nall_labels = []\n\n# Go through a few batches and collect latent representations\nwith torch.no_grad():\n    for x, y in train_loader:\n        x = x.view(-1, 784).to(device)\n        mu, _ = model.encode(x)  # use the mean as representation\n        all_z.append(mu.cpu())\n        all_labels.append(y)\n\n# Concatenate all batches\nz = torch.cat(all_z, dim=0).numpy()\nlabels = torch.cat(all_labels, dim=0).numpy()\n\n# Plot with seaborn\nplt.figure(figsize=(8, 6))\nsns.scatterplot(x=z[:, 0], y=z[:, 1], hue=labels, palette=\"tab10\", s=15)\nplt.title(\"Latent Space Visualization (using μ)\")\nplt.xlabel(\"z[0]\")\nplt.ylabel(\"z[1]\")\nplt.legend(title=\"Digit\", bbox_to_anchor=(1.05, 1), loc='upper left')\nplt.tight_layout()\nplt.show()"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "flows.html",
+    "href": "flows.html",
+    "title": "Normalizing Flow Models",
     "section": "",
-    "text": "About this site"
+    "text": "In generative modeling, the objective is to learn a probability distribution over data that allows us to both generate new examples and evaluate the likelihood of observed ones. For a model to be practically useful, it must support efficient sampling and enable exact or tractable likelihood computation during training.\nVariational Autoencoders (VAEs) address this limitation by introducing latent variables \\(z\\), enabling the model to learn compressed, structured representations of the data. While VAEs are flexible and powerful, they face a key challenge: the marginal likelihood \\(p(x)\\) — which integrates over all possible latent variables \\(z\\) — is intractable\nTo overcome this, VAEs use variational inference and optimize the Evidence Lower Bound (ELBO), a tractable surrogate objective. Combined with the reparameterization trick, this allows for efficient training despite the intractability of the exact likelihood.\nNormalizing Flows present an elegant solution to these challenges. They define the data distribution through a deterministic and invertible transformation of a simple base distribution. In this setup, a data point \\(x\\) is generated via a function \\(x = f(z)\\), and the corresponding latent variable can be recovered exactly using the inverse function \\(z = f^{-1}(x)\\).\nThis structure offers several advantages. First, each \\(x\\) maps to a unique \\(z\\) — eliminating the need to integrate over latent variables. Second, the change-of-variables formula allows for exact computation of the likelihood. Third, sampling is straightforward: we simply draw \\(z \\sim p_Z(z)\\) (e.g., from a standard Gaussian) and transform it via \\(x = f(z)\\).\nHowever, despite their strengths, Normalizing Flows are not without limitations. Unlike VAEs, which learn lower-dimensional latent representations by compressing the data, flows require the latent and data spaces to have equal dimensionality to preserve invertibility. This means flow models do not inherently perform dimensionality reduction, which can be a disadvantage in tasks where compact representations are desired.\n\n\n\nComparison of VAE and Flow-based Models\n\n\nFigure: VAEs use an approximate inference network to encode data into a latent distribution. Flow-based models instead use a deterministic, invertible transformation for exact inference and likelihood computation."
   },
   {
-    "objectID": "vae.html",
-    "href": "vae.html",
-    "title": "Variational Autoencoders",
+    "objectID": "flows.html#introduction",
+    "href": "flows.html#introduction",
+    "title": "Normalizing Flow Models",
     "section": "",
-    "text": "Variational Autoencoders (VAEs) combine the power of neural networks with probabilistic inference to model complex data distributions. This blog unpacks the intuition, math, and implementation of VAEs — from KL divergence and the ELBO to PyTorch code that generates to generate new images."
+    "text": "In generative modeling, the objective is to learn a probability distribution over data that allows us to both generate new examples and evaluate the likelihood of observed ones. For a model to be practically useful, it must support efficient sampling and enable exact or tractable likelihood computation during training.\nVariational Autoencoders (VAEs) address this limitation by introducing latent variables \\(z\\), enabling the model to learn compressed, structured representations of the data. While VAEs are flexible and powerful, they face a key challenge: the marginal likelihood \\(p(x)\\) — which integrates over all possible latent variables \\(z\\) — is intractable\nTo overcome this, VAEs use variational inference and optimize the Evidence Lower Bound (ELBO), a tractable surrogate objective. Combined with the reparameterization trick, this allows for efficient training despite the intractability of the exact likelihood.\nNormalizing Flows present an elegant solution to these challenges. They define the data distribution through a deterministic and invertible transformation of a simple base distribution. In this setup, a data point \\(x\\) is generated via a function \\(x = f(z)\\), and the corresponding latent variable can be recovered exactly using the inverse function \\(z = f^{-1}(x)\\).\nThis structure offers several advantages. First, each \\(x\\) maps to a unique \\(z\\) — eliminating the need to integrate over latent variables. Second, the change-of-variables formula allows for exact computation of the likelihood. Third, sampling is straightforward: we simply draw \\(z \\sim p_Z(z)\\) (e.g., from a standard Gaussian) and transform it via \\(x = f(z)\\).\nHowever, despite their strengths, Normalizing Flows are not without limitations. Unlike VAEs, which learn lower-dimensional latent representations by compressing the data, flows require the latent and data spaces to have equal dimensionality to preserve invertibility. This means flow models do not inherently perform dimensionality reduction, which can be a disadvantage in tasks where compact representations are desired.\n\n\n\nComparison of VAE and Flow-based Models\n\n\nFigure: VAEs use an approximate inference network to encode data into a latent distribution. Flow-based models instead use a deterministic, invertible transformation for exact inference and likelihood computation."
   },
   {
-    "objectID": "vae.html#autoencoders-vs-variational-autoencoders",
-    "href": "vae.html#autoencoders-vs-variational-autoencoders",
-    "title": "Variational Autoencoders",
-    "section": "Autoencoders vs Variational Autoencoders",
-    "text": "Autoencoders vs Variational Autoencoders\nTraditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:\n\nThey lack generative capabilities — they cannot sample new data effectively\nThe latent space is unstructured, offering little control or interpretation\nThere is no probabilistic modeling, limiting uncertainty estimation\n\nVariational Autoencoders (VAEs) were introduced to overcome these limitations. Rather than encoding inputs into fixed latent vectors, VAEs learn a probabilistic latent space by modeling each input as a distribution — typically a Gaussian with a learned mean \\(\\\\mu\\) and standard deviation \\(\\\\sigma\\). This approach enables the model to sample latent variables \\(z\\) using the reparameterization trick, allowing the entire architecture to remain differentiable and trainable. By doing so, VAEs not only enable reconstruction, but also promote the learning of a continuous, interpretable latent space — a key enabler for generation and interpolation.\nThe diagram below illustrates this process:\n\nSource: Wikimedia Commons, licensed under CC BY-SA 4.0."
+    "objectID": "flows.html#math-review-change-of-variables-in-1d",
+    "href": "flows.html#math-review-change-of-variables-in-1d",
+    "title": "Normalizing Flow Models",
+    "section": "Math Review: Change of Variables in 1D",
+    "text": "Math Review: Change of Variables in 1D\nSuppose we have a random variable \\(z\\) with a known distribution \\(p_Z(z)\\), and we define a new variable:\n\\[\nx = f(z)\n\\]\nwhere \\(f\\) is a monotonic, differentiable function with an inverse:\n\\[\nz = f^{-1}(x) = h(x)\n\\]\nOur goal is to compute the probability density function (PDF) of \\(x\\), denoted \\(p_X(x)\\), in terms of the known PDF \\(p_Z(z)\\).\n\nStep 1: Cumulative Distribution Function (CDF)\nWe begin with the cumulative distribution function of \\(x\\):\n\\[\nF_X(x) = P(X \\leq x) = P(f(Z) \\leq x)\n\\]\nSince \\(f\\) is monotonic and invertible, this becomes:\n\\[\nP(f(Z) \\leq x) = P(Z \\leq f^{-1}(x)) = F_Z(h(x))\n\\]\n\n\nStep 2: Deriving the PDF via Chain Rule\nTo obtain the PDF, we differentiate the CDF:\n\\[\np_X(x) = \\frac{d}{dx} F_X(x) = \\frac{d}{dx} F_Z(h(x))\n\\]\nApplying the chain rule:\n\\[\np_X(x) = F_Z'(h(x)) \\cdot h'(x) = p_Z(h(x)) \\cdot h'(x)\n\\]\n\n\nStep 3: Rewrite in Terms of \\(z\\)\nFrom the previous step:\n\\[\np_X(x) = p_Z(h(x)) \\cdot h'(x)\n\\]\nSince \\(z = h(x)\\), we can rewrite:\n\\[\np_X(x) = p_Z(z) \\cdot h'(x)\n\\]\nNow, using the inverse function theorem, we express \\(h'(x)\\) as:\n\\[\nh'(x) = \\frac{d}{dx} f^{-1}(x) = \\frac{1}{f'(z)}\n\\]\nSo the final expression becomes:\n\\[\np_X(x) = p_Z(z) \\cdot \\left| \\frac{1}{f'(z)} \\right|\n\\]\nThe absolute value ensures the density remains non-negative, as required for any valid probability distribution.\nThis is the fundamental concept Normalizing Flows use to model complex distributions by transforming simple ones."
   },
   {
-    "objectID": "vae.html#probabilistic-framework",
-    "href": "vae.html#probabilistic-framework",
-    "title": "Variational Autoencoders",
-    "section": "Probabilistic Framework",
-    "text": "Probabilistic Framework\nMore formally, VAEs assume the data is generated by a two-step process:\n\nSample a latent variable \\(\\mathbf{z} \\sim \\mathcal{N}(0, I)\\)\nGenerate the observation \\(\\mathbf{x}\\) from: \\[\np(\\mathbf{x}|\\mathbf{z}) = \\mathcal{N}(\\mu_\\theta(\\mathbf{z}), \\Sigma_\\theta(\\mathbf{z}))\n\\] where \\(\\mu_\\theta\\) and \\(\\Sigma_\\theta\\) are neural networks parameterized by \\(\\theta\\)\n\nHere, \\(\\mathbf{z}\\) acts as a hidden or latent variable, which is unobserved during training. The model thus defines a mixture of infinitely many Gaussians — one for each \\(\\mathbf{z}\\).\nTo compute the likelihood of a data point \\(\\mathbf{x}\\), we must marginalize over all possible latent variables: \\[\n  p(\\mathbf{x}) = \\int p(\\mathbf{x}, \\mathbf{z}) \\, d\\mathbf{z}\n  \\]\nThis integral requires integrating over all possible values of the latent variable \\(\\mathbf{z}\\), which is often high-dimensional and affects the likelihood in a non-linear way through neural networks. Because of this, computing the marginal likelihood exactly is computationally intractable. This motivates the use of techniques like variational inference and ELBO.\n\nComputational Challenge\nThis integral requires integrating over:\n\nAll possible values of \\(\\mathbf{z}\\) (often high-dimensional)\nNon-linear transformations through neural networks\n\nResult: Exact computation is intractable, motivating techniques like variational inference and ELBO (developed next)."
+    "objectID": "flows.html#geometry-determinants-and-volume-changes",
+    "href": "flows.html#geometry-determinants-and-volume-changes",
+    "title": "Normalizing Flow Models",
+    "section": "Geometry: Determinants and Volume Changes",
+    "text": "Geometry: Determinants and Volume Changes\nTo understand the multivariate change-of-variable formula, it’s helpful to first explore how transformations affect volume in high-dimensional spaces.\nLet \\(\\mathbf{Z}\\) be a random vector uniformly distributed in the unit cube \\([0,1]^n\\), and let \\(\\mathbf{X} = A\\mathbf{Z}\\) where \\(A\\) is a square, invertible matrix. Geometrically, the matrix \\(A\\) maps the unit hypercube to a parallelogram (in 2D) or a parallelotope (in higher dimensions).\nThe determinant of a square matrix tells us how that matrix scales volume in space. For example, if the determinant of a \\(2 \\times 2\\) matrix is 3, then applying that matrix to a region will stretch its area by a factor of 3. A negative determinant also indicates a reflection (orientation reversal). The absolute value of the determinant is what we care about when measuring volume.\nThe volume of this parallelotope is equal to the absolute value of the determinant of matrix \\(A\\):\n\\[\n\\text{Volume} = |\\det(A)|\n\\]\nThis tells us how much the transformation \\(A\\) scales space. For example, if \\(|\\det(A)| = 2\\), the transformation doubles the volume."
   },
   {
-    "objectID": "vae.html#estimating-the-marginal-likelihood",
-    "href": "vae.html#estimating-the-marginal-likelihood",
-    "title": "Variational Autoencoders",
-    "section": "Estimating the Marginal Likelihood",
-    "text": "Estimating the Marginal Likelihood\n\nNaive Monte Carlo Estimation\nOne natural idea is to approximate the integral using samples from a simple distribution like the uniform distribution:\n\\[\np(x) \\approx \\frac{1}{K} \\sum_{j=1}^K p_\\theta(x, z_j), \\quad z_j \\sim \\text{Uniform}\n\\]\nHowever, this fails in practice. For most values of \\(z\\), the joint probability \\(p_\\theta(x, z)\\) is very low. Only a small region of the latent space contributes significantly to the integral. Since uniform sampling does not concentrate around these regions, the estimator has high variance and rarely “hits” likely values of \\(z\\).\n\n\nImportance Sampling\nTo address this, we use importance sampling, introducing a proposal distribution \\(q(z)\\):\n\\[\np(x) = \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right]\n\\]\nThis gives an unbiased estimator of \\(p(x)\\) if \\(q(z)\\) is well-chosen (ideally close to \\(p_\\theta(z|x)\\)). Intuitively, we sample \\(z\\) more frequently in regions where \\(p_\\theta(x, z)\\) is high.\n\n\n\nLog likelihood\nOur goal is to optimize the log-likelihood, and the log of an expectation is not the same as the expectation of the log. That is,\n\\[\n\\log p(x) = log \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right] \\neq \\mathbb{E}_{q(z)} \\left[ \\log \\frac{p_\\theta(x, z)}{q(z)} \\right]\n\\]\nWhile the marginal likelihood p(x) can be estimated unbiasedly using importance sampling, estimating its logarithm \\(p(x)\\) introduces bias due to the concavity of the log function. This is captured by Jensen’s Inequality, which tells us:\n\\[\n\\log \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right] \\geq \\underbrace{\\mathbb{E}_{q(z)} \\left[ \\log \\frac{p_\\theta(x, z)}{q(z)} \\right]}_{\\text{ELBO}}\n\\]\nThis means that the expected log of the estimator underestimates the true log-likelihood. The right-hand side provides a tractable surrogate objective known as the Evidence Lower Bound (ELBO), which is a biased lower bound to \\(\\log p(x)\\). Optimizing the ELBO allows us to indirectly maximize the intractable log-likelihood.\nIn the next section, we formally derive this bound and explore its components in detail."
+    "objectID": "flows.html#determinants-and-probability-density",
+    "href": "flows.html#determinants-and-probability-density",
+    "title": "Normalizing Flow Models",
+    "section": "Determinants and Probability Density",
+    "text": "Determinants and Probability Density\nNow suppose we apply the linear transformation \\(\\mathbf{X} = A\\mathbf{Z}\\) to a random vector \\(\\mathbf{Z}\\) with a known density \\(p_Z\\). The new density after transformation is:\n\\[\np_X(\\mathbf{x}) = p_Z(W\\mathbf{x}) \\cdot |\\det(W)| \\quad \\text{where} \\quad W = A^{-1}\n\\]\nThis is directly analogous to the 1D change-of-variable rule:\n\\[\np_X(x) = p_Z(h(x)) \\cdot |h'(x)|\n\\]\nbut now in multiple dimensions using the determinant of the inverse transformation."
   },
   {
-    "objectID": "vae.html#why-variational-inference",
-    "href": "vae.html#why-variational-inference",
-    "title": "Variational Autoencoders",
-    "section": "Why Variational Inference?",
-    "text": "Why Variational Inference?\nComputing the true posterior distribution \\(p(z \\mid x)\\) is intractable in most cases, because it requires evaluating the marginal likelihood \\(p(x)\\), which involves integrating over all possible values of \\(z\\):\n\\[\np(x) = \\int p(x, z) \\, dz\n\\]\nVariational inference tackles this by introducing a tractable, parameterized distribution \\(q(z)\\) to approximate \\(p(z|x)\\). We aim to make \\(q(z)\\) as close as possible to the true posterior by minimizing the KL divergence:\n\\[\nD_{\\text{KL}}(q(z) \\| p(z|x))\n\\]\nThis turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO). See next section."
+    "objectID": "flows.html#generalizing-to-nonlinear-transformations",
+    "href": "flows.html#generalizing-to-nonlinear-transformations",
+    "title": "Normalizing Flow Models",
+    "section": "Generalizing to Nonlinear Transformations",
+    "text": "Generalizing to Nonlinear Transformations\nFor nonlinear transformations \\(\\mathbf{x} = f(\\mathbf{z})\\), the idea is similar. But instead of a constant matrix \\(A\\), we now consider the Jacobian matrix of the function \\(f\\):\n\\[\nJ_f(\\mathbf{z}) = \\frac{\\partial f}{\\partial \\mathbf{z}}\n\\]\nThis Jacobian tells us how the function scales and rotates space locally around a point \\(\\mathbf{z}\\). The determinant of the Jacobian gives the volume change factor at that point."
   },
   {
-    "objectID": "vae.html#training-a-vae",
-    "href": "vae.html#training-a-vae",
-    "title": "Variational Autoencoders",
-    "section": "Training a VAE",
-    "text": "Training a VAE\n\nELBO Objective\nNow that we’ve introduced the challenge of approximating the intractable posterior using variational inference, we turn our attention to deriving the Evidence Lower Bound (ELBO). This derivation reveals how optimizing a surrogate objective allows us to approximate the true log-likelihood of the data while keeping the approximate posterior close to the prior. The steps below walk through this formulation.\n\nStep 1: KL Divergence Objective\n\\[\\begin{equation}\nD_{KL}(q(z)\\|p(z|x; \\theta)) = \\sum_z q(z) \\log \\frac{q(z)}{p(z|x; \\theta)}\n\\end{equation}\\]\n\n\nStep 2: Apply Bayes’ Rule\nSubstitute \\(p(z|x; \\theta) = \\frac{p(z,x;\\theta)}{p(x;\\theta)}\\): \\[\\begin{equation}\n= \\sum_z q(z) \\log \\left( \\frac{q(z) \\cdot p(x; \\theta)}{p(z, x; \\theta)} \\right)\n\\end{equation}\\]\n\n\nStep 3: Decompose Terms\n\\[\\begin{align}\n&= \\sum_z q(z) \\log q(z) + \\sum_z q(z) \\log p(x; \\theta) \\nonumber \\\\\n&\\quad - \\sum_z q(z) \\log p(z, x; \\theta) \\\\\n&= -H(q) + \\log p(x; \\theta) - \\mathbb{E}_q[\\log p(z,x;\\theta)]\n\\end{align}\\]\n\nNote: The term \\(\\mathcal{H}(q)\\) represents the entropy of the variational distribution \\(q(z|x)\\). Entropy is defined as:\n\\[\n\\mathcal{H}(q) = -\\sum_z q(z) \\log q(z) = -\\mathbb{E}_{q(z)}[\\log q(z)]\n\\]\nEntropy measures the amount of uncertainty or “spread” in a distribution. A high-entropy \\(q(z)\\) places probability mass across a wide region of the latent space, while a low-entropy \\(q(z)\\) is more concentrated. This decomposition is key to understanding the KL divergence term in the ELBO.\n\n\n\nStep 4: Rearrange for ELBO\n\\[\n\\log p(x; \\theta) =\n\\underbrace{\n    \\mathbb{E}_q[\\log p(z, x; \\theta)] + \\mathcal{H}(q)\n}_{\\text{ELBO}}\n+D_{KL}(q(z)\\|p(z|x; \\theta))\n\\]\nThis equation shows that the log-likelihood \\(\\log p(x)\\) can be decomposed into the ELBO and the KL divergence between the approximate posterior and the true posterior. Since the KL divergence is always non-negative, the ELBO serves as a lower bound to the log-likelihood. By maximizing the ELBO, we indirectly minimize the KL divergence, bringing \\(q(z)\\) closer to \\(p(z|x)\\).\n Visualizing how \\(\\log p(x)\\) decomposes into the ELBO and KL divergence.\nSource: deepgenerativemodels.github.io\n\n\nKey Results\n\nEvidence Lower Bound (ELBO): \\[\\begin{equation}\n\\mathcal{L}(\\theta,\\phi) = \\mathbb{E}_{q(z;\\phi)}[\\log p(x,z;\\theta)] + H(q(z;\\phi))\n\\end{equation}\\]\nOptimization: \\[\\begin{equation}\n\\max_{\\theta,\\phi} \\mathcal{L}(\\theta,\\phi) \\Rightarrow\n\\begin{cases}\n\\text{Maximizes data likelihood} \\\\\n\\text{Minimizes } D_{KL}(q\\|p)\n\\end{cases}\n\\end{equation}\\]"
+    "objectID": "flows.html#multivariate-change-of-variable-formula",
+    "href": "flows.html#multivariate-change-of-variable-formula",
+    "title": "Normalizing Flow Models",
+    "section": "Multivariate Change-of-Variable Formula",
+    "text": "Multivariate Change-of-Variable Formula\nGiven an invertible transformation \\(\\mathbf{x} = f(\\mathbf{z})\\), the probability density transforms as:\n\\[\np_X(\\mathbf{x}) = p_Z(f^{-1}(\\mathbf{x})) \\cdot \\left| \\det \\left( \\frac{\\partial f^{-1}(\\mathbf{x})}{\\partial \\mathbf{x}} \\right) \\right|\n\\]\nAlternatively, in the forward form (often used during training):\n\\[\np_X(\\mathbf{x}) = p_Z(\\mathbf{z}) \\cdot \\left| \\det \\left( \\frac{\\partial f(\\mathbf{z})}{\\partial \\mathbf{z}} \\right) \\right|^{-1}\n\\]\nThis generalizes the 1D rule and enables us to compute exact likelihoods for complex distributions as long as the transformation is invertible and differentiable."
   },
   {
-    "objectID": "vae.html#understanding-the-kl-divergence-term-in-the-vae-loss",
-    "href": "vae.html#understanding-the-kl-divergence-term-in-the-vae-loss",
-    "title": "Variational Autoencoders",
-    "section": "Understanding the KL Divergence Term in the VAE Loss",
-    "text": "Understanding the KL Divergence Term in the VAE Loss\nIn a VAE, the KL divergence term penalizes the encoder for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:\n\nIt ensures that the latent space has a consistent structure, enabling meaningful sampling and interpolation.\nIt helps avoid large gaps between clusters in latent space by encouraging the encoder to distribute representations more uniformly.\nIt pushes the model to use the space around the origin more symmetrically and efficiently.\n\n\nBalancing KL Divergence and Reconstruction\nIn a Variational Autoencoder, the loss balances two goals:\n\nReconstruction — making the output resemble the input\nRegularization — keeping the latent space close to a standard normal distribution\n\nThis is captured by the loss function:\n\\[\n\\mathcal{L}_{\\text{VAE}} = \\text{Reconstruction Loss} + \\beta \\cdot D_{\\text{KL}}(q(z|x) \\,\\|\\, p(z))\n\\]\nThe parameter \\(\\beta\\) controls how strongly we enforce this regularization. Getting its value right is critical.\n\nWhen \\(\\beta\\) is too low:\n\nThe model mostly ignores the KL term, behaving like a plain autoencoder\nThe latent space becomes disorganized or fragmented\nSampling from the prior \\(p(z) = \\mathcal{N}(0, I)\\) results in unrealistic or broken outputs\n\n\n\nWhen \\(\\beta\\) is too high:\n\nThe encoder is forced to keep \\(q(z|x)\\) too close to the prior\nIt encodes less information about the input\nReconstructions become blurry or generic, since the decoder gets little to work with\n\n\nChoosing \\(\\beta\\) carefully is essential for balancing generalization and fidelity.\nA well-tuned \\(\\beta\\) helps the VAE both reconstruct accurately and generate new samples that resemble the training data.\n\n\n\n\nGradient Challenge\nIn variational inference, we approximate the true posterior \\(p(z|x)\\) with a tractable distribution \\(q_\\phi(z)\\). This allows us to optimize the ELBO:\n\\[\n\\mathcal{L}(x; \\theta, \\phi) = \\mathbb{E}_{q(z; \\phi)} \\left[ \\log p(z, x; \\theta) - \\log q(z; \\phi) \\right]\n\\]\nOur goal is to maximize this objective with respect to both \\(\\theta\\) and \\(\\phi\\). While computing the gradient with respect to \\(\\theta\\) is straightforward, optimizing with respect to \\(\\phi\\) presents a challenge.\nThe complication arises because \\(\\phi\\) appears both in the density \\(q_\\phi(z|x)\\) and in the expectation operator. That is:\n\\[\n\\nabla_\\phi \\mathbb{E}_{q(z; \\phi)} \\left[ \\log p(z, x; \\theta) - \\log q(z; \\phi) \\right]\n\\]\nThis gradient is hard to compute directly because we’re sampling from a distribution that depends on the parameters we’re trying to update.\n\n\n\nThe Reparameterization Trick\nTo make this expression differentiable, we reparameterize the random variable \\(z\\) as a deterministic transformation of a parameter-free noise variable \\(\\epsilon\\):\n\\[\n\\epsilon \\sim \\mathcal{N}(0, I), \\quad z = \\mu_\\phi(x) + \\sigma_\\phi(x) \\cdot \\epsilon\n\\]\nThis turns the expectation into:\n\\[\n\\mathbb{E}_{\\epsilon \\sim \\mathcal{N}(0, I)}\\left[ \\log p(z, x; \\theta) - \\log q(z; \\phi) \\right]\n\\]\nwhere \\(z\\) is now a differentiable function of \\(\\phi\\).\n\n\n\nReparameterization Trick Diagram\n\n\nImage source: Wikipedia (CC BY-SA 4.0)\nThis diagram illustrates how the reparameterization trick enables differentiable sampling:\n\nIn the original formulation, \\(z\\) is sampled directly from a learned distribution, breaking the gradient flow.\nIn the reparameterized formulation, we sample noise \\(\\epsilon \\sim \\mathcal{N}(0, I)\\), and compute \\(z = \\mu + \\sigma \\cdot \\epsilon\\), making the sampling path fully differentiable.\n\n\nMonte Carlo Approximation\nWe approximate the expectation using Monte Carlo sampling:\n\\[\n\\mathbb{E}_{\\epsilon}[\\log p_\\theta(x, z) - \\log q_\\phi(z)] \\approx \\frac{1}{K} \\sum_{k=1}^K \\left[\\log p_\\theta(x, z^{(k)}) - \\log q_\\phi(z^{(k)})\\right]\n\\]\nwith:\n\\[\nz^{(k)} = \\mu_\\phi(x) + \\sigma_\\phi(x) \\cdot \\epsilon^{(k)}, \\quad \\epsilon^{(k)} \\sim \\mathcal{N}(0, I)\n\\]\nThis enables us to compute gradients using backpropagation.\n\n\n\nSummary\n\nVariational inference introduces a gradient challenge because \\(q_\\phi(z)\\) depends on \\(\\phi\\)\nThe reparameterization trick expresses \\(z\\) as a differentiable function of noise and \\(\\phi\\)\nThis allows us to use backpropagation to optimize the ELBO efficiently\n\n\n\n\n\nAmortized Inference\nIn classical variational inference, we introduce a separate set of variational parameters \\(\\phi^i\\) for each datapoint \\(x^i\\) to approximate the true posterior \\(p(z|x^i)\\). However:\n\nOptimizing a separate \\(\\phi^i\\) for every datapoint is computationally expensive and does not scale to large datasets.\n\n\n\nThe Key Idea: Amortization\nInstead of learning and storing a separate \\(\\phi^i\\) for every datapoint, we learn a single parametric function \\(f_\\phi(x)\\) — typically a neural network — that maps each input \\(x\\) to the parameters of the approximate posterior:\n\\[\nq_\\phi(z|x) = \\mathcal{N}\\left(\\mu_\\phi(x), \\sigma^2_\\phi(x)\\right)\n\\]\nHere, \\(\\phi\\) are the shared parameters of the encoder network, and \\(\\mu_\\phi(x), \\sigma_\\phi(x)\\) are its outputs.\nThis is like learning a regression function that predicts the optimal variational parameters for any input \\(x\\).\n\n\n\n\nTraining with Amortized Inference\nOur training objective remains the ELBO:\n\\[\n\\mathcal{L}(x; \\theta, \\phi) = \\mathbb{E}_{q_\\phi(z|x)}\\left[\\log p_\\theta(x, z) - \\log q_\\phi(z|x)\\right]\n\\]\nWe optimize both \\(\\theta\\) (decoder parameters) and \\(\\phi\\) (encoder parameters) using stochastic gradient descent.\n\nAlgorithm:\n\nInitialize \\(\\theta^{(0)}, \\phi^{(0)}\\)\nSample a datapoint \\(x^i\\)\nUse \\(f_\\phi(x^i)\\) to produce \\(\\mu^i, \\sigma^i\\)\nSample \\(z^i = \\mu^i + \\sigma^i \\cdot \\epsilon\\), with \\(\\epsilon \\sim \\mathcal{N}(0, I)\\)\nEstimate the ELBO and compute gradients w.r.t. \\(\\theta, \\phi\\)\nUpdate \\(\\theta, \\phi\\) using gradient descent\nUpdate \\(\\theta\\), \\(\\phi\\) using gradient descent:\n\n\\[\n\\phi \\leftarrow \\phi + \\tilde{\\nabla}_\\phi \\sum_{x \\in \\mathcal{B}} \\text{ELBO}(x; \\theta, \\phi)\n\\]\n\\[\n\\theta \\leftarrow \\theta + \\tilde{\\nabla}_\\theta \\sum_{x \\in \\mathcal{B}} \\text{ELBO}(x; \\theta, \\phi)\n\\]\nwhere \\(\\mathcal{B}\\) is the current minibatch and \\(\\tilde{\\nabla}\\) indicates a stochastic gradient approximation.\n\n\n\n\nSummary\n\nAmortized inference replaces per-datapoint optimization with a single learned mapping \\(f_\\phi(x)\\)\nThis makes variational inference scalable and efficient\nThe model can generalize to unseen inputs by predicting variational parameters on-the-fly\n\n\nNote: Following common practice in the literature, we use \\(\\phi\\) to denote the parameters of the encoder network, even though it now defines a function rather than individual variational parameters."
+    "objectID": "flows.html#model-formulation",
+    "href": "flows.html#model-formulation",
+    "title": "Normalizing Flow Models",
+    "section": "Model Formulation",
+    "text": "Model Formulation\nA normalizing flow model defines a one-to-one and reversible transformation between observed variables \\(\\mathbf{x}\\) and latent variables \\(\\mathbf{z}\\). This transformation is given by an invertible, differentiable function \\(f_\\theta\\), parameterized by \\(\\theta\\):\n\\[\n\\mathbf{x} = f_\\theta(\\mathbf{z}) \\quad \\text{and} \\quad \\mathbf{z} = f_\\theta^{-1}(\\mathbf{x})\n\\]\nBecause the transformation is invertible, we can apply the change-of-variable formula to compute the exact probability of \\(\\mathbf{x}\\):\n\\[\np_X(\\mathbf{x}; \\theta) = p_Z(f_\\theta^{-1}(\\mathbf{x})) \\cdot \\left| \\det \\left( \\frac{\\partial f_\\theta^{-1}(\\mathbf{x})}{\\partial \\mathbf{x}} \\right) \\right|\n\\]\nThis makes it possible to evaluate exact likelihoods and learn the model via maximum likelihood estimation (MLE).\n\nNote: Both \\(\\mathbf{x}\\) and \\(\\mathbf{z}\\) must be continuous and have the same dimensionality since the transformation must be invertible."
   },
   {
-    "objectID": "vae.html#applications-of-vaes",
-    "href": "vae.html#applications-of-vaes",
-    "title": "Variational Autoencoders",
-    "section": "Applications of VAEs",
-    "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks\n\n\n😎 Face Generation with Convolutional VAE\nTo complement the theory, I’ve built a full PyTorch implementation of a Variational Autoencoder trained on the CelebA dataset.\n📘 The notebook walks through:\n\nDefining the encoder, decoder, and reparameterization trick\n\nImplementing the ELBO loss function (reconstruction + KL divergence)\n\nTraining the model on face images\n\nGenerating new faces from random latent vectors\n\n\n📓 View on GitHub"
+    "objectID": "flows.html#a-flow-of-transformations",
+    "href": "flows.html#a-flow-of-transformations",
+    "title": "Normalizing Flow Models",
+    "section": "A Flow of Transformations",
+    "text": "A Flow of Transformations\nThe term flow refers to the fact that we can compose multiple invertible functions to form a more expressive transformation:\n\\[\n\\mathbf{z}_m = f_\\theta^{(m)} \\circ f_\\theta^{(m-1)} \\circ \\cdots \\circ f_\\theta^{(1)}(\\mathbf{z}_0)\n\\]\nIn this setup: - \\(\\mathbf{z}_0 \\sim p_Z\\) is sampled from a simple base distribution (e.g., standard Gaussian) - \\(\\mathbf{x} = \\mathbf{z}_M\\) is the final transformed variable - The full transformation \\(f_\\theta\\) is the composition of all \\(M\\) steps\nThe density of \\(\\mathbf{x}\\) is given by the change-of-variable formula:\n\\[\np_X(\\mathbf{x}; \\theta) = p_Z(f_\\theta^{-1}(\\mathbf{x})) \\cdot \\prod_{m=1}^M \\left| \\det \\left( \\frac{\\partial (f_\\theta^{(m)})^{-1}(\\mathbf{z}_m)}{\\partial \\mathbf{z}_m} \\right) \\right|\n\\]\nThis approach allows the model to approximate highly complex distributions using simple building blocks."
   },
   {
-    "objectID": "vae.html#this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections.",
-    "href": "vae.html#this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections.",
-    "title": "Variational Autoencoders",
-    "section": "This example is designed to reinforce the theoretical concepts from earlier sections.",
-    "text": "This example is designed to reinforce the theoretical concepts from earlier sections."
+    "objectID": "flows.html#learning-and-inference",
+    "href": "flows.html#learning-and-inference",
+    "title": "Normalizing Flow Models",
+    "section": "Learning and Inference",
+    "text": "Learning and Inference\nTraining a flow-based model is done by maximizing the log-likelihood over the dataset \\(\\mathcal{D}\\):\n\\[\n\\max_\\theta \\log p_X(\\mathcal{D}; \\theta) = \\sum_{\\mathbf{x} \\in \\mathcal{D}} \\log p_Z(f_\\theta^{-1}(\\mathbf{x})) + \\log \\left| \\det \\left( \\frac{\\partial f_\\theta^{-1}(\\mathbf{x})}{\\partial \\mathbf{x}} \\right) \\right|\n\\]\nKey advantages of normalizing flows:\n\nExact likelihoods: No approximation needed — just apply the change-of-variable rule\nEfficient sampling: Generate new data by drawing \\(\\mathbf{z} \\sim p_Z\\) and computing \\(\\mathbf{x} = f_\\theta(\\mathbf{z})\\)\nLatent inference: Invert \\(f_\\theta\\) to compute latent codes \\(\\mathbf{z} = f_\\theta^{-1}(\\mathbf{x})\\), without needing a separate encoder"
   },
   {
-    "objectID": "vae.html#further-reading",
-    "href": "vae.html#further-reading",
-    "title": "Variational Autoencoders",
-    "section": "Further Reading",
-    "text": "Further Reading\nFor readers interested in diving deeper into the theory and applications of variational autoencoders, the following resources are recommended:\n\nTutorial on Variational Autoencoders\nCarl Doersch (2016)\nhttps://arxiv.org/pdf/1606.05908\nAuto-Encoding Variational Bayes\nKingma & Welling (2014) — the original VAE paper\nhttps://arxiv.org/pdf/1312.6114\nThe Challenges of Amortized Inference for Structured Prediction\nCremer, Li, & Duvenaud (2019)\nhttps://arxiv.org/pdf/1906.02691\nDeep Generative Models course notes\nhttps://deepgenerativemodels.github.io/notes/vae/"
+    "objectID": "flows.html#computational-considerations",
+    "href": "flows.html#computational-considerations",
+    "title": "Normalizing Flow Models",
+    "section": "Computational Considerations",
+    "text": "Computational Considerations\nOne challenge in training normalizing flow models is that computing the exact likelihood requires evaluating the determinant of the Jacobian matrix of the transformation:\n\nFor a transformation \\(f : \\mathbb{R}^n \\to \\mathbb{R}^n\\), the Jacobian is an \\(n \\times n\\) matrix.\nComputing its determinant has a cost of \\(\\mathcal{O}(n^3)\\), which is computationally expensive during training — especially in high dimensions.\n\n\nKey Insight\nTo make normalizing flows scalable, we design transformations where the Jacobian has a special structure that makes the determinant easy to compute.\nFor example: - If the Jacobian is a triangular matrix, the determinant is just the product of the diagonal entries, which can be computed in \\(\\mathcal{O}(n)\\) time. - This works because in a triangular matrix, all the off-diagonal elements are zero — so the determinant simplifies significantly.\nIn practice, flow models like RealNVP and MAF are designed so that each output dimension \\(x_i\\) depends only on some subset of the input dimensions \\(z_{\\leq i}\\) (for lower triangular structure) or \\(z_{\\geq i}\\) (for upper triangular structure). This results in a Jacobian of the form:\n\\[\nJ = \\frac{\\partial \\mathbf{f}}{\\partial \\mathbf{z}} =\n\\begin{pmatrix}\n\\frac{\\partial f_1}{\\partial z_1} & 0 & \\cdots & 0 \\\\\n\\ast & \\frac{\\partial f_2}{\\partial z_2} & \\cdots & 0 \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\n\\ast & \\ast & \\cdots & \\frac{\\partial f_n}{\\partial z_n}\n\\end{pmatrix}\n\\]\nBecause of this triangular structure, computing the determinant becomes as simple as multiplying the diagonal terms:\n\\[\n\\det(J) = \\prod_{i=1}^{n} \\frac{\\partial f_i}{\\partial z_i}\n\\]\nThis is why many modern flow models rely on coupling layers or autoregressive masking: they preserve invertibility and enable efficient, exact likelihood computation."
+  },
+  {
+    "objectID": "flows.html#try-it-yourself",
+    "href": "flows.html#try-it-yourself",
+    "title": "Normalizing Flow Models",
+    "section": "🧪 Try It Yourself",
+    "text": "🧪 Try It Yourself\nYou can explore a minimal PyTorch implementation of a Normalizing Flow model:\n\n📘 View Notebook on GitHub\n🚀 Run in Google Colab"
+  },
+  {
+    "objectID": "flows.html#references",
+    "href": "flows.html#references",
+    "title": "Normalizing Flow Models",
+    "section": "References",
+    "text": "References\n\nDeep Generative Models: Flow Notes\nFlow-based Deep Generative Models – Lilian Weng\nNormalizing Flows Tutorial – Eric Jang, Part 1\nNormalizing Flows Tutorial – Eric Jang, Part 2\nUT Austin: Change of Variable in One Dimension"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Deep Generative Models",
+    "section": "",
+    "text": "Welcome to my deep generative models resource. This site covers:"
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Deep Generative Models",
+    "section": "",
+    "text": "Welcome to my deep generative models resource. This site covers:"
+  },
+  {
+    "objectID": "index.html#key-model-families",
+    "href": "index.html#key-model-families",
+    "title": "Deep Generative Models",
+    "section": "Key Model Families",
+    "text": "Key Model Families\n\n1. Variational Autoencoders (VAEs)\n\nProbabilistic encoder-decoder architecture\nLearn latent spaces with Gaussian distributions\nLearn more about VAEs\n\n\n\n2. Autoregressive Models\n\nGenerate sequences element-by-element\nExamples: PixelCNN, WaveNet\n\n\n\n3. Generative Adversarial Networks (GANs)\n\nAdversarial training with generator/discriminator\nHigh-quality image generation\n\n\n\n4. Normalizing Flows\n\nInvertible transformations for exact likelihood\nFlexible density estimation\n\n\n\n5. Energy-Based Models (EBMs)\n\nLearn energy functions for data distribution\nFlexible for discrete/continuous data\n\n\n\n6. Diffusion Models\n\nIterative denoising process\nState-of-the-art image generation"
   },
   {
     "objectID": "vae_faces.html",
@@ -238,38 +245,136 @@
     "text": "Generate New Faces\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Sample latent vectors from standard normal distribution\ngrid_width, grid_height = 10, 3\nnum_samples = grid_width * grid_height\nz_sample = torch.randn(num_samples, Z_DIM).to(device)\n\n# Decode to generate new faces\nvae.eval()\nwith torch.no_grad():\n    generated_faces = vae.decoder(z_sample).cpu()  # Shape: [N, C, H, W]\n\n# Plot grid of generated images\nfig = plt.figure(figsize=(18, 5))\nfig.subplots_adjust(hspace=0.4, wspace=0.4)\n\nfor i in range(num_samples):\n    ax = fig.add_subplot(grid_height, grid_width, i + 1)\n    ax.axis(\"off\")\n    img = generated_faces[i].permute(1, 2, 0).numpy()  # CHW → HWC\n    ax.imshow(img)\n\nplt.suptitle(\"Generated Faces from Sampled Latent Vectors\", fontsize=16)\nplt.show()"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Deep Generative Models",
+    "objectID": "vae.html",
+    "href": "vae.html",
+    "title": "Variational Autoencoders",
     "section": "",
-    "text": "Welcome to my deep generative models resource. This site covers:"
+    "text": "Variational Autoencoders (VAEs) combine the power of neural networks with probabilistic inference to model complex data distributions. This blog unpacks the intuition, math, and implementation of VAEs — from KL divergence and the ELBO to PyTorch code that generates to generate new images."
   },
   {
-    "objectID": "index.html#overview",
-    "href": "index.html#overview",
-    "title": "Deep Generative Models",
+    "objectID": "vae.html#autoencoders-vs-variational-autoencoders",
+    "href": "vae.html#autoencoders-vs-variational-autoencoders",
+    "title": "Variational Autoencoders",
+    "section": "Autoencoders vs Variational Autoencoders",
+    "text": "Autoencoders vs Variational Autoencoders\nTraditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:\n\nThey lack generative capabilities — they cannot sample new data effectively\nThe latent space is unstructured, offering little control or interpretation\nThere is no probabilistic modeling, limiting uncertainty estimation\n\nVariational Autoencoders (VAEs) were introduced to overcome these limitations. Rather than encoding inputs into fixed latent vectors, VAEs learn a probabilistic latent space by modeling each input as a distribution — typically a Gaussian with a learned mean \\(\\\\mu\\) and standard deviation \\(\\\\sigma\\). This approach enables the model to sample latent variables \\(z\\) using the reparameterization trick, allowing the entire architecture to remain differentiable and trainable. By doing so, VAEs not only enable reconstruction, but also promote the learning of a continuous, interpretable latent space — a key enabler for generation and interpolation.\nThe diagram below illustrates this process:\n\nSource: Wikimedia Commons, licensed under CC BY-SA 4.0."
+  },
+  {
+    "objectID": "vae.html#probabilistic-framework",
+    "href": "vae.html#probabilistic-framework",
+    "title": "Variational Autoencoders",
+    "section": "Probabilistic Framework",
+    "text": "Probabilistic Framework\nMore formally, VAEs assume the data is generated by a two-step process:\n\nSample a latent variable \\(\\mathbf{z} \\sim \\mathcal{N}(0, I)\\)\nGenerate the observation \\(\\mathbf{x}\\) from: \\[\np(\\mathbf{x}|\\mathbf{z}) = \\mathcal{N}(\\mu_\\theta(\\mathbf{z}), \\Sigma_\\theta(\\mathbf{z}))\n\\] where \\(\\mu_\\theta\\) and \\(\\Sigma_\\theta\\) are neural networks parameterized by \\(\\theta\\)\n\nHere, \\(\\mathbf{z}\\) acts as a hidden or latent variable, which is unobserved during training. The model thus defines a mixture of infinitely many Gaussians — one for each \\(\\mathbf{z}\\).\nTo compute the likelihood of a data point \\(\\mathbf{x}\\), we must marginalize over all possible latent variables: \\[\n  p(\\mathbf{x}) = \\int p(\\mathbf{x}, \\mathbf{z}) \\, d\\mathbf{z}\n  \\]\nThis integral requires integrating over all possible values of the latent variable \\(\\mathbf{z}\\), which is often high-dimensional and affects the likelihood in a non-linear way through neural networks. Because of this, computing the marginal likelihood exactly is computationally intractable. This motivates the use of techniques like variational inference and ELBO.\n\nComputational Challenge\nThis integral requires integrating over:\n\nAll possible values of \\(\\mathbf{z}\\) (often high-dimensional)\nNon-linear transformations through neural networks\n\nResult: Exact computation is intractable, motivating techniques like variational inference and ELBO (developed next)."
+  },
+  {
+    "objectID": "vae.html#estimating-the-marginal-likelihood",
+    "href": "vae.html#estimating-the-marginal-likelihood",
+    "title": "Variational Autoencoders",
+    "section": "Estimating the Marginal Likelihood",
+    "text": "Estimating the Marginal Likelihood\n\nNaive Monte Carlo Estimation\nOne natural idea is to approximate the integral using samples from a simple distribution like the uniform distribution:\n\\[\np(x) \\approx \\frac{1}{K} \\sum_{j=1}^K p_\\theta(x, z_j), \\quad z_j \\sim \\text{Uniform}\n\\]\nHowever, this fails in practice. For most values of \\(z\\), the joint probability \\(p_\\theta(x, z)\\) is very low. Only a small region of the latent space contributes significantly to the integral. Since uniform sampling does not concentrate around these regions, the estimator has high variance and rarely “hits” likely values of \\(z\\).\n\n\nImportance Sampling\nTo address this, we use importance sampling, introducing a proposal distribution \\(q(z)\\):\n\\[\np(x) = \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right]\n\\]\nThis gives an unbiased estimator of \\(p(x)\\) if \\(q(z)\\) is well-chosen (ideally close to \\(p_\\theta(z|x)\\)). Intuitively, we sample \\(z\\) more frequently in regions where \\(p_\\theta(x, z)\\) is high.\n\n\n\nLog likelihood\nOur goal is to optimize the log-likelihood, and the log of an expectation is not the same as the expectation of the log. That is,\n\\[\n\\log p(x) = log \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right] \\neq \\mathbb{E}_{q(z)} \\left[ \\log \\frac{p_\\theta(x, z)}{q(z)} \\right]\n\\]\nWhile the marginal likelihood p(x) can be estimated unbiasedly using importance sampling, estimating its logarithm \\(p(x)\\) introduces bias due to the concavity of the log function. This is captured by Jensen’s Inequality, which tells us:\n\\[\n\\log \\mathbb{E}_{q(z)} \\left[ \\frac{p_\\theta(x, z)}{q(z)} \\right] \\geq \\underbrace{\\mathbb{E}_{q(z)} \\left[ \\log \\frac{p_\\theta(x, z)}{q(z)} \\right]}_{\\text{ELBO}}\n\\]\nThis means that the expected log of the estimator underestimates the true log-likelihood. The right-hand side provides a tractable surrogate objective known as the Evidence Lower Bound (ELBO), which is a biased lower bound to \\(\\log p(x)\\). Optimizing the ELBO allows us to indirectly maximize the intractable log-likelihood.\nIn the next section, we formally derive this bound and explore its components in detail."
+  },
+  {
+    "objectID": "vae.html#why-variational-inference",
+    "href": "vae.html#why-variational-inference",
+    "title": "Variational Autoencoders",
+    "section": "Why Variational Inference?",
+    "text": "Why Variational Inference?\nComputing the true posterior distribution \\(p(z \\mid x)\\) is intractable in most cases, because it requires evaluating the marginal likelihood \\(p(x)\\), which involves integrating over all possible values of \\(z\\):\n\\[\np(x) = \\int p(x, z) \\, dz\n\\]\nVariational inference tackles this by introducing a tractable, parameterized distribution \\(q(z)\\) to approximate \\(p(z|x)\\). We aim to make \\(q(z)\\) as close as possible to the true posterior by minimizing the KL divergence:\n\\[\nD_{\\text{KL}}(q(z) \\| p(z|x))\n\\]\nThis turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO). See next section."
+  },
+  {
+    "objectID": "vae.html#training-a-vae",
+    "href": "vae.html#training-a-vae",
+    "title": "Variational Autoencoders",
+    "section": "Training a VAE",
+    "text": "Training a VAE\n\nELBO Objective\nNow that we’ve introduced the challenge of approximating the intractable posterior using variational inference, we turn our attention to deriving the Evidence Lower Bound (ELBO). This derivation reveals how optimizing a surrogate objective allows us to approximate the true log-likelihood of the data while keeping the approximate posterior close to the prior. The steps below walk through this formulation.\n\nStep 1: KL Divergence Objective\n\\[\\begin{equation}\nD_{KL}(q(z)\\|p(z|x; \\theta)) = \\sum_z q(z) \\log \\frac{q(z)}{p(z|x; \\theta)}\n\\end{equation}\\]\n\n\nStep 2: Apply Bayes’ Rule\nSubstitute \\(p(z|x; \\theta) = \\frac{p(z,x;\\theta)}{p(x;\\theta)}\\): \\[\\begin{equation}\n= \\sum_z q(z) \\log \\left( \\frac{q(z) \\cdot p(x; \\theta)}{p(z, x; \\theta)} \\right)\n\\end{equation}\\]\n\n\nStep 3: Decompose Terms\n\\[\\begin{align}\n&= \\sum_z q(z) \\log q(z) + \\sum_z q(z) \\log p(x; \\theta) \\nonumber \\\\\n&\\quad - \\sum_z q(z) \\log p(z, x; \\theta) \\\\\n&= -H(q) + \\log p(x; \\theta) - \\mathbb{E}_q[\\log p(z,x;\\theta)]\n\\end{align}\\]\n\nNote: The term \\(\\mathcal{H}(q)\\) represents the entropy of the variational distribution \\(q(z|x)\\). Entropy is defined as:\n\\[\n\\mathcal{H}(q) = -\\sum_z q(z) \\log q(z) = -\\mathbb{E}_{q(z)}[\\log q(z)]\n\\]\nEntropy measures the amount of uncertainty or “spread” in a distribution. A high-entropy \\(q(z)\\) places probability mass across a wide region of the latent space, while a low-entropy \\(q(z)\\) is more concentrated. This decomposition is key to understanding the KL divergence term in the ELBO.\n\n\n\nStep 4: Rearrange for ELBO\n\\[\n\\log p(x; \\theta) =\n\\underbrace{\n    \\mathbb{E}_q[\\log p(z, x; \\theta)] + \\mathcal{H}(q)\n}_{\\text{ELBO}}\n+D_{KL}(q(z)\\|p(z|x; \\theta))\n\\]\nThis equation shows that the log-likelihood \\(\\log p(x)\\) can be decomposed into the ELBO and the KL divergence between the approximate posterior and the true posterior. Since the KL divergence is always non-negative, the ELBO serves as a lower bound to the log-likelihood. By maximizing the ELBO, we indirectly minimize the KL divergence, bringing \\(q(z)\\) closer to \\(p(z|x)\\).\n Visualizing how \\(\\log p(x)\\) decomposes into the ELBO and KL divergence.\nSource: deepgenerativemodels.github.io\n\n\nKey Results\n\nEvidence Lower Bound (ELBO): \\[\\begin{equation}\n\\mathcal{L}(\\theta,\\phi) = \\mathbb{E}_{q(z;\\phi)}[\\log p(x,z;\\theta)] + H(q(z;\\phi))\n\\end{equation}\\]\nOptimization: \\[\\begin{equation}\n\\max_{\\theta,\\phi} \\mathcal{L}(\\theta,\\phi) \\Rightarrow\n\\begin{cases}\n\\text{Maximizes data likelihood} \\\\\n\\text{Minimizes } D_{KL}(q\\|p)\n\\end{cases}\n\\end{equation}\\]"
+  },
+  {
+    "objectID": "vae.html#understanding-the-kl-divergence-term-in-the-vae-loss",
+    "href": "vae.html#understanding-the-kl-divergence-term-in-the-vae-loss",
+    "title": "Variational Autoencoders",
+    "section": "Understanding the KL Divergence Term in the VAE Loss",
+    "text": "Understanding the KL Divergence Term in the VAE Loss\nIn a VAE, the KL divergence term penalizes the encoder for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:\n\nIt ensures that the latent space has a consistent structure, enabling meaningful sampling and interpolation.\nIt helps avoid large gaps between clusters in latent space by encouraging the encoder to distribute representations more uniformly.\nIt pushes the model to use the space around the origin more symmetrically and efficiently.\n\n\nBalancing KL Divergence and Reconstruction\nIn a Variational Autoencoder, the loss balances two goals:\n\nReconstruction — making the output resemble the input\nRegularization — keeping the latent space close to a standard normal distribution\n\nThis is captured by the loss function:\n\\[\n\\mathcal{L}_{\\text{VAE}} = \\text{Reconstruction Loss} + \\beta \\cdot D_{\\text{KL}}(q(z|x) \\,\\|\\, p(z))\n\\]\nThe parameter \\(\\beta\\) controls how strongly we enforce this regularization. Getting its value right is critical.\n\nWhen \\(\\beta\\) is too low:\n\nThe model mostly ignores the KL term, behaving like a plain autoencoder\nThe latent space becomes disorganized or fragmented\nSampling from the prior \\(p(z) = \\mathcal{N}(0, I)\\) results in unrealistic or broken outputs\n\n\n\nWhen \\(\\beta\\) is too high:\n\nThe encoder is forced to keep \\(q(z|x)\\) too close to the prior\nIt encodes less information about the input\nReconstructions become blurry or generic, since the decoder gets little to work with\n\n\nChoosing \\(\\beta\\) carefully is essential for balancing generalization and fidelity.\nA well-tuned \\(\\beta\\) helps the VAE both reconstruct accurately and generate new samples that resemble the training data.\n\n\n\n\nGradient Challenge\nIn variational inference, we approximate the true posterior \\(p(z|x)\\) with a tractable distribution \\(q_\\phi(z)\\). This allows us to optimize the ELBO:\n\\[\n\\mathcal{L}(x; \\theta, \\phi) = \\mathbb{E}_{q(z; \\phi)} \\left[ \\log p(z, x; \\theta) - \\log q(z; \\phi) \\right]\n\\]\nOur goal is to maximize this objective with respect to both \\(\\theta\\) and \\(\\phi\\). While computing the gradient with respect to \\(\\theta\\) is straightforward, optimizing with respect to \\(\\phi\\) presents a challenge.\nThe complication arises because \\(\\phi\\) appears both in the density \\(q_\\phi(z|x)\\) and in the expectation operator. That is:\n\\[\n\\nabla_\\phi \\mathbb{E}_{q(z; \\phi)} \\left[ \\log p(z, x; \\theta) - \\log q(z; \\phi) \\right]\n\\]\nThis gradient is hard to compute directly because we’re sampling from a distribution that depends on the parameters we’re trying to update.\n\n\n\nThe Reparameterization Trick\nTo make this expression differentiable, we reparameterize the random variable \\(z\\) as a deterministic transformation of a parameter-free noise variable \\(\\epsilon\\):\n\\[\n\\epsilon \\sim \\mathcal{N}(0, I), \\quad z = \\mu_\\phi(x) + \\sigma_\\phi(x) \\cdot \\epsilon\n\\]\nThis turns the expectation into:\n\\[\n\\mathbb{E}_{\\epsilon \\sim \\mathcal{N}(0, I)}\\left[ \\log p(z, x; \\theta) - \\log q(z; \\phi) \\right]\n\\]\nwhere \\(z\\) is now a differentiable function of \\(\\phi\\).\n\n\n\nReparameterization Trick Diagram\n\n\nImage source: Wikipedia (CC BY-SA 4.0)\nThis diagram illustrates how the reparameterization trick enables differentiable sampling:\n\nIn the original formulation, \\(z\\) is sampled directly from a learned distribution, breaking the gradient flow.\nIn the reparameterized formulation, we sample noise \\(\\epsilon \\sim \\mathcal{N}(0, I)\\), and compute \\(z = \\mu + \\sigma \\cdot \\epsilon\\), making the sampling path fully differentiable.\n\n\nMonte Carlo Approximation\nWe approximate the expectation using Monte Carlo sampling:\n\\[\n\\mathbb{E}_{\\epsilon}[\\log p_\\theta(x, z) - \\log q_\\phi(z)] \\approx \\frac{1}{K} \\sum_{k=1}^K \\left[\\log p_\\theta(x, z^{(k)}) - \\log q_\\phi(z^{(k)})\\right]\n\\]\nwith:\n\\[\nz^{(k)} = \\mu_\\phi(x) + \\sigma_\\phi(x) \\cdot \\epsilon^{(k)}, \\quad \\epsilon^{(k)} \\sim \\mathcal{N}(0, I)\n\\]\nThis enables us to compute gradients using backpropagation.\n\n\n\nSummary\n\nVariational inference introduces a gradient challenge because \\(q_\\phi(z)\\) depends on \\(\\phi\\)\nThe reparameterization trick expresses \\(z\\) as a differentiable function of noise and \\(\\phi\\)\nThis allows us to use backpropagation to optimize the ELBO efficiently\n\n\n\n\n\nAmortized Inference\nIn classical variational inference, we introduce a separate set of variational parameters \\(\\phi^i\\) for each datapoint \\(x^i\\) to approximate the true posterior \\(p(z|x^i)\\). However:\n\nOptimizing a separate \\(\\phi^i\\) for every datapoint is computationally expensive and does not scale to large datasets.\n\n\n\nThe Key Idea: Amortization\nInstead of learning and storing a separate \\(\\phi^i\\) for every datapoint, we learn a single parametric function \\(f_\\phi(x)\\) — typically a neural network — that maps each input \\(x\\) to the parameters of the approximate posterior:\n\\[\nq_\\phi(z|x) = \\mathcal{N}\\left(\\mu_\\phi(x), \\sigma^2_\\phi(x)\\right)\n\\]\nHere, \\(\\phi\\) are the shared parameters of the encoder network, and \\(\\mu_\\phi(x), \\sigma_\\phi(x)\\) are its outputs.\nThis is like learning a regression function that predicts the optimal variational parameters for any input \\(x\\).\n\n\n\n\nTraining with Amortized Inference\nOur training objective remains the ELBO:\n\\[\n\\mathcal{L}(x; \\theta, \\phi) = \\mathbb{E}_{q_\\phi(z|x)}\\left[\\log p_\\theta(x, z) - \\log q_\\phi(z|x)\\right]\n\\]\nWe optimize both \\(\\theta\\) (decoder parameters) and \\(\\phi\\) (encoder parameters) using stochastic gradient descent.\n\nAlgorithm:\n\nInitialize \\(\\theta^{(0)}, \\phi^{(0)}\\)\nSample a datapoint \\(x^i\\)\nUse \\(f_\\phi(x^i)\\) to produce \\(\\mu^i, \\sigma^i\\)\nSample \\(z^i = \\mu^i + \\sigma^i \\cdot \\epsilon\\), with \\(\\epsilon \\sim \\mathcal{N}(0, I)\\)\nEstimate the ELBO and compute gradients w.r.t. \\(\\theta, \\phi\\)\nUpdate \\(\\theta, \\phi\\) using gradient descent\nUpdate \\(\\theta\\), \\(\\phi\\) using gradient descent:\n\n\\[\n\\phi \\leftarrow \\phi + \\tilde{\\nabla}_\\phi \\sum_{x \\in \\mathcal{B}} \\text{ELBO}(x; \\theta, \\phi)\n\\]\n\\[\n\\theta \\leftarrow \\theta + \\tilde{\\nabla}_\\theta \\sum_{x \\in \\mathcal{B}} \\text{ELBO}(x; \\theta, \\phi)\n\\]\nwhere \\(\\mathcal{B}\\) is the current minibatch and \\(\\tilde{\\nabla}\\) indicates a stochastic gradient approximation.\n\n\n\n\nSummary\n\nAmortized inference replaces per-datapoint optimization with a single learned mapping \\(f_\\phi(x)\\)\nThis makes variational inference scalable and efficient\nThe model can generalize to unseen inputs by predicting variational parameters on-the-fly\n\n\nNote: Following common practice in the literature, we use \\(\\phi\\) to denote the parameters of the encoder network, even though it now defines a function rather than individual variational parameters."
+  },
+  {
+    "objectID": "vae.html#applications-of-vaes",
+    "href": "vae.html#applications-of-vaes",
+    "title": "Variational Autoencoders",
+    "section": "Applications of VAEs",
+    "text": "Applications of VAEs\nVariational Autoencoders are widely used in:\n\nImage Generation: VAEs can generate new images similar to the training data (e.g., MNIST digits)\n\nAnomaly Detection: High reconstruction error flags unusual data points\n\nRepresentation Learning: Latent space captures features for downstream tasks\n\n\n😎 Face Generation with Convolutional VAE\nTo complement the theory, I’ve built a full PyTorch implementation of a Variational Autoencoder trained on the CelebA dataset.\n📘 The notebook walks through:\n\nDefining the encoder, decoder, and reparameterization trick\n\nImplementing the ELBO loss function (reconstruction + KL divergence)\n\nTraining the model on face images\n\nGenerating new faces from random latent vectors\n\n\n📓 View on GitHub"
+  },
+  {
+    "objectID": "vae.html#this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections.",
+    "href": "vae.html#this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections.",
+    "title": "Variational Autoencoders",
+    "section": "This example is designed to reinforce the theoretical concepts from earlier sections.",
+    "text": "This example is designed to reinforce the theoretical concepts from earlier sections."
+  },
+  {
+    "objectID": "vae.html#further-reading",
+    "href": "vae.html#further-reading",
+    "title": "Variational Autoencoders",
+    "section": "Further Reading",
+    "text": "Further Reading\nFor readers interested in diving deeper into the theory and applications of variational autoencoders, the following resources are recommended:\n\nTutorial on Variational Autoencoders\nCarl Doersch (2016)\nhttps://arxiv.org/pdf/1606.05908\nAuto-Encoding Variational Bayes\nKingma & Welling (2014) — the original VAE paper\nhttps://arxiv.org/pdf/1312.6114\nThe Challenges of Amortized Inference for Structured Prediction\nCremer, Li, & Duvenaud (2019)\nhttps://arxiv.org/pdf/1906.02691\nDeep Generative Models course notes\nhttps://deepgenerativemodels.github.io/notes/vae/"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Welcome to my deep generative models resource. This site covers:"
+    "text": "About this site"
   },
   {
-    "objectID": "index.html#key-model-families",
-    "href": "index.html#key-model-families",
-    "title": "Deep Generative Models",
-    "section": "Key Model Families",
-    "text": "Key Model Families\n\n1. Variational Autoencoders (VAEs)\n\nProbabilistic encoder-decoder architecture\nLearn latent spaces with Gaussian distributions\nLearn more about VAEs\n\n\n\n2. Autoregressive Models\n\nGenerate sequences element-by-element\nExamples: PixelCNN, WaveNet\n\n\n\n3. Generative Adversarial Networks (GANs)\n\nAdversarial training with generator/discriminator\nHigh-quality image generation\n\n\n\n4. Normalizing Flows\n\nInvertible transformations for exact likelihood\nFlexible density estimation\n\n\n\n5. Energy-Based Models (EBMs)\n\nLearn energy functions for data distribution\nFlexible for discrete/continuous data\n\n\n\n6. Diffusion Models\n\nIterative denoising process\nState-of-the-art image generation"
-  },
-  {
-    "objectID": "flows.html",
-    "href": "flows.html",
-    "title": "Normalizing Flow Models",
+    "objectID": "vae_mnist.html",
+    "href": "vae_mnist.html",
+    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
     "section": "",
-    "text": "Normalizing Flows are a class of generative models that transform a simple base distribution into a complex one using a sequence of invertible, differentiable mappings. To understand how they work, we begin with a key mathematical tool: the change of variables formula."
+    "text": "This notebook explains a Variational Autoencoder (VAE) trained on the MNIST dataset using PyTorch.\nEach step is annotated with detailed comments to help beginners understand what’s happening.\n!pip install torch torchvision"
   },
   {
-    "objectID": "flows.html#math-review-change-of-variables-in-1d",
-    "href": "flows.html#math-review-change-of-variables-in-1d",
-    "title": "Normalizing Flow Models",
-    "section": "Math Review: Change of Variables in 1D",
-    "text": "Math Review: Change of Variables in 1D\nSuppose we have a random variable \\(z\\) with a known distribution \\(p_Z(z)\\), and we define a new variable:\n\\[\nx = f(z)\n\\]\nwhere \\(f\\) is a monotonic, differentiable function with an inverse:\n\\[\nz = f^{-1}(x) = h(x)\n\\]\nOur goal is to compute the probability density function (PDF) of \\(x\\), denoted \\(p_X(x)\\), in terms of the known PDF \\(p_Z(z)\\).\n\nStep 1: Cumulative Distribution Function (CDF)\nWe begin with the cumulative distribution function of \\(x\\):\n\\[\nF_X(x) = P(X \\leq x) = P(f(Z) \\leq x)\n\\]\nSince \\(f\\) is monotonic and invertible, this becomes:\n\\[\nP(f(Z) \\leq x) = P(Z \\leq f^{-1}(x)) = F_Z(h(x))\n\\]\n\n\nStep 2: Deriving the PDF via Chain Rule\nTo obtain the PDF, we differentiate the CDF:\n\\[\np_X(x) = \\frac{d}{dx} F_X(x) = \\frac{d}{dx} F_Z(h(x))\n\\]\nApplying the chain rule:\n\\[\np_X(x) = F_Z'(h(x)) \\cdot h'(x) = p_Z(h(x)) \\cdot h'(x)\n\\]\n\n\nStep 3: Expressing \\(h'(x)\\) Using \\(f\\)\nRecall that \\(z = h(x) = f^{-1}(x)\\). Using the inverse function theorem, we write:\n\\[\nh'(x) = \\frac{d}{dx} f^{-1}(x) = \\frac{1}{f'(z)} = \\frac{1}{f'(f^{-1}(x))}\n\\]\nSo the full expression becomes:\n\\[\np_X(x) = p_Z(f^{-1}(x)) \\cdot \\left| \\frac{1}{f'(f^{-1}(x))} \\right|\n\\]\nNote the absolute value: we include it because the derivative \\(f'(z)\\) might be negative if the transformation is decreasing, but probability densities must always be non-negative. The absolute value ensures the result remains a valid PDF.\n\n\nFinal Form (1D Case)\nThe final formula — which is the 1D version of the change-of-variables rule — is:\n\\[\np_X(x) = p_Z(f^{-1}(x)) \\cdot \\left| \\frac{d}{dx} f^{-1}(x) \\right|\n\\]\nThis is the fundamental tool Normalizing Flows use to model complex distributions by transforming simple ones."
+    "objectID": "vae_mnist.html#import-required-libraries",
+    "href": "vae_mnist.html#import-required-libraries",
+    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
+    "section": "1. Import Required Libraries",
+    "text": "1. Import Required Libraries\n\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nimport torchvision\nimport torchvision.transforms as transforms\nfrom torch.utils.data import DataLoader\nimport matplotlib.pyplot as plt\nimport numpy as np"
+  },
+  {
+    "objectID": "vae_mnist.html#load-and-prepare-the-mnist-dataset",
+    "href": "vae_mnist.html#load-and-prepare-the-mnist-dataset",
+    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
+    "section": "2. Load and Prepare the MNIST Dataset",
+    "text": "2. Load and Prepare the MNIST Dataset\n\n# We transform MNIST images into tensors.\ntransform = transforms.ToTensor()\n\n# Download and load the training data\ntrain_data = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)\n\n# DataLoader for batching and shuffling\ntrain_loader = DataLoader(train_data, batch_size=128, shuffle=True)"
+  },
+  {
+    "objectID": "vae_mnist.html#define-the-vae-model",
+    "href": "vae_mnist.html#define-the-vae-model",
+    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
+    "section": "3. Define the VAE Model",
+    "text": "3. Define the VAE Model\n\nclass VAE(nn.Module):\n    def __init__(self, input_dim=784, hidden_dim=400, latent_dim=2):\n        super(VAE, self).__init__()\n        # Encoder layers: input -&gt; hidden -&gt; (mu, logvar)\n        self.fc1 = nn.Linear(input_dim, hidden_dim)\n        self.fc_mu = nn.Linear(hidden_dim, latent_dim)      # outputs mean of q(z|x)\n        self.fc_logvar = nn.Linear(hidden_dim, latent_dim)  # outputs log-variance of q(z|x)\n\n        # Decoder layers: latent -&gt; hidden -&gt; reconstruction\n        self.fc3 = nn.Linear(latent_dim, hidden_dim)\n        self.fc4 = nn.Linear(hidden_dim, input_dim)\n\n    def encode(self, x):\n        # Apply a hidden layer then split into mean and logvar\n        h = F.relu(self.fc1(x))\n        mu = self.fc_mu(h)\n        logvar = self.fc_logvar(h)\n        return mu, logvar\n\n    def reparameterize(self, mu, logvar):\n        # Apply the reparameterization trick\n        std = torch.exp(0.5 * logvar)      # standard deviation\n        eps = torch.randn_like(std)        # random normal noise\n        return mu + eps * std              # sample z\n\n    def decode(self, z):\n        # Reconstruct input from latent representation\n        h = F.relu(self.fc3(z))\n        return torch.sigmoid(self.fc4(h))  # Output in [0, 1] range for binary MNIST\n\n    def forward(self, x):\n        # Full VAE forward pass\n        mu, logvar = self.encode(x)\n        z = self.reparameterize(mu, logvar)\n        recon_x = self.decode(z)\n        return recon_x, mu, logvar"
+  },
+  {
+    "objectID": "vae_mnist.html#define-the-elbo-loss",
+    "href": "vae_mnist.html#define-the-elbo-loss",
+    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
+    "section": "4. Define the ELBO Loss",
+    "text": "4. Define the ELBO Loss\n\ndef elbo_loss(recon_x, x, mu, logvar):\n    # Binary cross-entropy for reconstruction\n    BCE = F.binary_cross_entropy(recon_x, x, reduction='sum')\n\n    # KL divergence term to regularize q(z|x) against standard normal p(z)\n    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())\n\n    # Total loss is negative ELBO\n    return BCE + KLD"
+  },
+  {
+    "objectID": "vae_mnist.html#train-the-vae",
+    "href": "vae_mnist.html#train-the-vae",
+    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
+    "section": "5. Train the VAE",
+    "text": "5. Train the VAE\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\nmodel = VAE().to(device)\noptimizer = torch.optim.Adam(model.parameters(), lr=1e-3)\n\nepochs = 5\nfor epoch in range(epochs):\n    model.train()\n    total_loss = 0\n    for x, _ in train_loader:\n        x = x.view(-1, 784).to(device)               # Flatten 28x28 images into 784 vectors\n        recon_x, mu, logvar = model(x)               # Forward pass\n        loss = elbo_loss(recon_x, x, mu, logvar)     # Compute loss\n        optimizer.zero_grad()\n        loss.backward()\n        optimizer.step()\n        total_loss += loss.item()\n    print(f\"Epoch {epoch+1}, Loss: {total_loss / len(train_loader.dataset):.2f}\")"
+  },
+  {
+    "objectID": "vae_mnist.html#visualize-original-and-reconstructed-digits",
+    "href": "vae_mnist.html#visualize-original-and-reconstructed-digits",
+    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
+    "section": "6. Visualize Original and Reconstructed Digits",
+    "text": "6. Visualize Original and Reconstructed Digits\n\nmodel.eval()\nwith torch.no_grad():\n    x, _ = next(iter(train_loader))\n    x = x.view(-1, 784).to(device)\n    recon_x, _, _ = model(x)\n\n    # Convert back to image format\n    x = x.view(-1, 1, 28, 28).cpu()\n    recon_x = recon_x.view(-1, 1, 28, 28).cpu()\n\n    fig, axs = plt.subplots(2, 10, figsize=(15, 3))\n    for i in range(10):\n        axs[0, i].imshow(x[i][0], cmap='gray')\n        axs[0, i].axis('off')\n        axs[1, i].imshow(recon_x[i][0], cmap='gray')\n        axs[1, i].axis('off')\n    axs[0, 0].set_ylabel(\"Original\", fontsize=12)\n    axs[1, 0].set_ylabel(\"Reconstruction\", fontsize=12)\n    plt.tight_layout()\n    plt.show()"
+  },
+  {
+    "objectID": "vae_mnist.html#visualize-latent-space",
+    "href": "vae_mnist.html#visualize-latent-space",
+    "title": "Variational Autoencoder (VAE) on MNIST — Beginner Friendly Walkthrough",
+    "section": "7. Visualize Latent Space",
+    "text": "7. Visualize Latent Space\n\nimport seaborn as sns\n\nmodel.eval()\nall_z = []\nall_labels = []\n\n# Go through a few batches and collect latent representations\nwith torch.no_grad():\n    for x, y in train_loader:\n        x = x.view(-1, 784).to(device)\n        mu, _ = model.encode(x)  # use the mean as representation\n        all_z.append(mu.cpu())\n        all_labels.append(y)\n\n# Concatenate all batches\nz = torch.cat(all_z, dim=0).numpy()\nlabels = torch.cat(all_labels, dim=0).numpy()\n\n# Plot with seaborn\nplt.figure(figsize=(8, 6))\nsns.scatterplot(x=z[:, 0], y=z[:, 1], hue=labels, palette=\"tab10\", s=15)\nplt.title(\"Latent Space Visualization (using μ)\")\nplt.xlabel(\"z[0]\")\nplt.ylabel(\"z[1]\")\nplt.legend(title=\"Digit\", bbox_to_anchor=(1.05, 1), loc='upper left')\nplt.tight_layout()\nplt.show()"
   }
 ]
