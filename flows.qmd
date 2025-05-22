@@ -194,7 +194,7 @@ $$
 p_X(\mathbf{x}) = p_Z(\mathbf{z}) \cdot \left| \det \left( \frac{\partial f(\mathbf{z})}{\partial \mathbf{z}} \right) \right|^{-1}
 $$
 
-This generalizes the 1D rule and enables us to compute **exact likelihoods** for complex distributions as long as the transformation is invertible and differentiable. This formula is pivotal in fields like machine learning, where transformations of probability distributions are common — such as in the implementation of normalizing flows for generative modeling.
+This generalizes the 1D rule and enables us to compute **exact likelihoods** for complex distributions as long as the transformation is invertible and differentiable. This formula is pivotal in machine learning, where transformations of probability distributions are common — such as in the implementation of normalizing flows for generative modeling.
 
 
 ## Model Formulation
