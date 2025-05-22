@@ -273,7 +273,9 @@ W = A^{-1} =
 0 &amp; 1
 \end{bmatrix}
 \]</span></p>
-<p>This transformation doubles the width of the square while keeping the height unchanged, so it <strong>doubles the area</strong>: <span class="math inline">\(|\det(A)| = 2\)</span> and <span class="math inline">\(|\det(W)| = \frac{1}{2}\)</span>.</p>
+<p>This transformation stretches the square horizontally, doubling its width while keeping the height unchanged. As a result, the area is doubled:<br>
+<span class="math inline">\(|\det(A)| = 2\)</span> and <span class="math inline">\(|\det(W)| = \frac{1}{2}\)</span>.<br>
+Since the same total probability must be spread over a larger area, the density becomes thinner — it’s halved to preserve the total probability. This is like stretching clay: the more space it covers, the thinner it gets.</p>
 <p>Now, let’s say <span class="math inline">\(p_Z(z) = 1\)</span> inside the unit square (a uniform distribution). To compute <span class="math inline">\(p_X(\mathbf{x})\)</span> at a point <span class="math inline">\(\mathbf{x}\)</span> in the transformed space, we use:</p>
 <p><span class="math display">\[
 p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| = 1 \cdot \frac{1}{2} = \frac{1}{2}
