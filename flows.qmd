@@ -121,7 +121,7 @@ To make this idea concrete, consider the illustration below. The left figure sho
 
 ## Determinants and Probability Density
 
-Now suppose we apply the linear transformation $\mathbf{X} = A\mathbf{Z}$ to a random vector $\mathbf{Z}$ with a known density $p_Z$. The new density after transformation is:
+Now that we’ve seen how linear transformations scale volume, let’s see how this idea plays a key role in transforming probability densities. Suppose we apply the linear transformation $\mathbf{X} = A\mathbf{Z}$ to a random vector $\mathbf{Z}$ with a known density $p_Z$. The new density after transformation is:
 
 $$
 p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| \quad \text{where} \quad W = A^{-1}
