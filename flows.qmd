@@ -3,7 +3,7 @@ title: "Normalizing Flow Models"
 format: html
 ---
 
-# Introduction
+## Introduction
 
 In generative modeling, the objective is to learn a probability distribution over data that allows us to both **generate new examples** and **evaluate the likelihood** of observed ones. For a model to be practically useful, it must support **efficient sampling** and enable **exact or tractable likelihood computation** during training.
 
@@ -21,7 +21,9 @@ Despite these strengths, normalizing flows have limitations. Unlike VAEs, which 
 
 To understand how normalizing flows enable exact likelihood computation, we first need to explore a fundamental mathematical concept: the change-of-variable formula. This principle lies at the heart of flow models, allowing us to transform probability densities through invertible functions. We'll begin with the 1D case and build up to the multivariate formulation.
 
-## Math Review: Change of Variables in 1D
+## Math Review
+
+### Change of Variables in 1D
 
 Suppose we have a **random variable** $z$ with a known distribution $p_Z(z)$, and we define a new variable:
 
@@ -37,7 +39,7 @@ $$
 
 Our goal is to compute the probability density function (PDF) of $x$, denoted $p_X(x)$, in terms of the known PDF $p_Z(z)$.
 
-### Step 1: Cumulative Distribution Function (CDF)
+#### Step 1: Cumulative Distribution Function (CDF)
 
 We begin with the cumulative distribution function of $x$:
 
@@ -51,7 +53,7 @@ $$
 P(f(Z) \leq x) = P(Z \leq f^{-1}(x)) = F_Z(h(x))
 $$
 
-### Step 2: Deriving the PDF via Chain Rule
+#### Step 2: Deriving the PDF via Chain Rule
 
 To obtain the PDF, we differentiate the CDF:
 
@@ -65,7 +67,7 @@ $$
 p_X(x) = F_Z'(h(x)) \cdot h'(x) = p_Z(h(x)) \cdot h'(x)
 $$
 
-### Step 3: Rewrite in Terms of $z$
+#### Step 3: Rewrite in Terms of $z$
 
 From the previous step:
 
@@ -96,7 +98,7 @@ The **absolute value** ensures the density remains non-negative, as required for
 This is the fundamental concept normalizing flows use to model complex distributions by transforming simple ones.
 
 
-## Geometry: Determinants and Volume Changes
+### Geometry: Determinants and Volume Changes
 
 To further understand the multivariate change-of-variable formula, it's helpful to first explore how linear transformations affect **volume** in high-dimensional spaces.
 
@@ -120,7 +122,7 @@ To make this idea concrete, consider the illustration below. The left figure sho
 
 This geometric intuition becomes essential when we apply the same logic to probability densities. The area of the parallelogram equals the absolute value of the determinant, |det(A)|, indicating how the transformation scales area.
 
-## Determinants and Probability Density
+### Determinants and Probability Density
 
 Previously, we saw how a linear transformation scales volume. Now we apply the same idea to probability densities — since density is defined per unit volume, scaling the volume also affects the density. 
 
@@ -170,7 +172,7 @@ $$
 So, the transformed density is halved — the same total probability (which must remain 1) is now spread over an area that is twice as large.
 
 
-## Generalizing to Nonlinear Transformations
+### Generalizing to Nonlinear Transformations
 
 For **nonlinear** transformations $\mathbf{x} = f(\mathbf{z})$, the idea is similar. But instead of a constant matrix $A$, we now consider the **Jacobian matrix** of the function $f$:
 
@@ -180,7 +182,7 @@ $$
 
 The Jacobian matrix generalizes derivatives to multivariable functions, capturing how a transformation scales and rotates space locally through all partial derivatives. Its determinant tells us how much the transformation stretches or compresses space — acting as a local volume scaling factor.
 
-## Multivariate Change-of-Variable
+### Multivariate Change-of-Variable
 
 Given an invertible transformation $\mathbf{x} = f(\mathbf{z})$, the probability density transforms as:
 
@@ -197,7 +199,7 @@ $$
 This generalizes the 1D rule and enables us to compute **exact likelihoods** for complex distributions as long as the transformation is invertible and differentiable. This formula is pivotal in machine learning, where transformations of probability distributions are common — such as in the implementation of normalizing flows for generative modeling.
 
 
-## Model Formulation
+## Flow Model
 
 A normalizing flow model defines a **one-to-one and reversible transformation** between observed variables $\mathbf{x}$ and latent variables $\mathbf{z}$. This transformation is given by an invertible, differentiable function $f_\theta$, parameterized by $\theta$:
 
@@ -222,7 +224,7 @@ This makes it possible to evaluate **exact likelihoods** and learn the model via
 
 > **Note:** Both $\mathbf{x}$ and $\mathbf{z}$ must be continuous and have the same dimensionality since the transformation must be invertible.
 
-## A Flow of Transformations
+### A Flow of Transformations
 
 The term *flow* refers to the fact that we can compose multiple invertible functions to form a more expressive transformation:
 
@@ -262,14 +264,14 @@ $$
 - **Latent inference**: Invert $f_\theta$ to compute latent codes $\mathbf{z} = f_\theta^{-1}(\mathbf{x})$, without needing a separate encoder
 
 
-## Computational Considerations
+### Computational Considerations
 
 One challenge in training normalizing flow models is that computing the **exact likelihood** requires evaluating the **determinant of the Jacobian matrix** of the transformation:
 
 - For a transformation $f : \mathbb{R}^n \to \mathbb{R}^n$, the Jacobian is an $n \times n$ matrix.
 - Computing its determinant has a cost of $\mathcal{O}(n^3)$, which is **computationally expensive** during training — especially in high dimensions.
 
-### Key Insight
+#### Key Insight
 
 To make normalizing flows scalable, we design transformations where the **Jacobian has a special structure** that makes the determinant **easy to compute**.
 
