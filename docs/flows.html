@@ -310,6 +310,13 @@ p_X(\mathbf{x}) = p_Z(\mathbf{z}) \cdot \left| \det \left( \frac{\partial f(\mat
 <p><span class="math display">\[
 \mathbf{x} = f_\theta(\mathbf{z}) \quad \text{and} \quad \mathbf{z} = f_\theta^{-1}(\mathbf{x})
 \]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Flow_Model.PNG" class="img-fluid figure-img"></p>
+<figcaption>Flow model showing forward and inverse transformations</figcaption>
+</figure>
+</div>
+<p><em>Figure: A flow-based model uses a forward transformation ( f_) to map from latent variables ( ) to data ( ), and an inverse transformation ( f_^{-1} ) to compute likelihoods.</em></p>
 <p>Because the transformation is invertible, we can apply the <strong>change-of-variable formula</strong> to compute the exact probability of <span class="math inline">\(\mathbf{x}\)</span>:</p>
 <p><span class="math display">\[
 p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left( \frac{\partial f_\theta^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right) \right|
