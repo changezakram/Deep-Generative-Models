@@ -121,7 +121,7 @@ To make this idea concrete, consider the illustration below. The left figure sho
 
 ## Determinants and Probability Density
 
-To transform the density from $\mathbf{Z}$ to $\mathbf{X}$, we use the **change-of-variable formula**. Since $\mathbf{X} = A\mathbf{Z}$, the inverse transformation is $\mathbf{Z} = A^{-1} \mathbf{X}$. This tells us how to evaluate the density at $\mathbf{x}$ by "pulling it back" through the inverse mapping. Applying the multivariate change-of-variable rule:
+Previously, we saw how a linear transformation scales volume. Now we apply the same idea to probability densities — since density is defined per unit volume, scaling the volume also affects the density. To transform the density from $\mathbf{Z}$ to $\mathbf{X}$, we use the **change-of-variable formula**. Since $\mathbf{X} = A\mathbf{Z}$, the inverse transformation is $\mathbf{Z} = A^{-1} \mathbf{X}$. This tells us how to evaluate the density at $\mathbf{x}$ by "pulling it back" through the inverse mapping. Applying the multivariate change-of-variable rule:
 
 $$
 p_X(\mathbf{x}) = p_Z(W \mathbf{x}) \cdot \left| \det(W) \right| \quad \text{where } W = A^{-1}
