@@ -249,7 +249,8 @@ p_X(x) = p_Z(z) \cdot \left| \frac{1}{f'(z)} \right|
 </section>
 <section id="determinants-and-probability-density" class="level2">
 <h2 class="anchored" data-anchor-id="determinants-and-probability-density">Determinants and Probability Density</h2>
-<p>Previously, we saw how a linear transformation scales volume. Now we apply the same idea to probability densities — since density is defined per unit volume, scaling the volume also affects the density. To transform the density from <span class="math inline">\(\mathbf{Z}\)</span> to <span class="math inline">\(\mathbf{X}\)</span>, we use the <strong>change-of-variable formula</strong>. Since <span class="math inline">\(\mathbf{X} = A\mathbf{Z}\)</span>, the inverse transformation is <span class="math inline">\(\mathbf{Z} = A^{-1} \mathbf{X}\)</span>. This tells us how to evaluate the density at <span class="math inline">\(\mathbf{x}\)</span> by “pulling it back” through the inverse mapping. Applying the multivariate change-of-variable rule:</p>
+<p>Previously, we saw how a linear transformation scales volume. Now we apply the same idea to probability densities — since density is defined per unit volume, scaling the volume also affects the density.</p>
+<p>To transform the density from <span class="math inline">\(\mathbf{Z}\)</span> to <span class="math inline">\(\mathbf{X}\)</span>, we use the <strong>change-of-variable formula</strong>. Since <span class="math inline">\(\mathbf{X} = A\mathbf{Z}\)</span>, the inverse transformation is <span class="math inline">\(\mathbf{Z} = A^{-1} \mathbf{X}\)</span>. This tells us how to evaluate the density at <span class="math inline">\(\mathbf{x}\)</span> by “pulling it back” through the inverse mapping. Applying the multivariate change-of-variable rule:</p>
 <p><span class="math display">\[
 p_X(\mathbf{x}) = p_Z(W \mathbf{x}) \cdot \left| \det(W) \right| \quad \text{where } W = A^{-1}
 \]</span></p>
