@@ -98,7 +98,7 @@ This is the fundamental concept normalizing flows use to model complex distribut
 
 ## Geometry: Determinants and Volume Changes
 
-To understand the multivariate change-of-variable formula, it's helpful to first explore how linear transformations affect **volume** in high-dimensional spaces.
+To further understand the multivariate change-of-variable formula, it's helpful to first explore how linear transformations affect **volume** in high-dimensional spaces.
 
 Let $\mathbf{Z}$ be a random vector uniformly distributed in the unit cube $[0,1]^n$, and let $\mathbf{X} = A\mathbf{Z}$, where $A$ is a square, invertible matrix. Geometrically, the matrix $A$ maps the unit hypercube to a **parallelogram** in 2D or a **parallelotope** in higher dimensions.
 
