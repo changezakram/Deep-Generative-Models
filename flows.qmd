@@ -20,7 +20,7 @@ Despite these strengths, normalizing flows have limitations. Unlike VAEs, which 
 
 ![Comparison of VAE and Flow-based Models](images/vae_vs_flow.png)
 
-*Figure: VAEs use an approximate inference network to encode data into a latent distribution. Flow-based models instead use a deterministic, invertible transformation for exact inference and likelihood computation.*
+*VAEs use an encoder-decoder architecture to learn a distribution over latent variables. The encoder approximates the posterior, while the decoder reconstructs the input. In contrast, flow-based models use a single invertible transformation for both inference and generation, allowing exact computation of the likelihood and latent variables.*
 
 
 ## Math Review: Change of Variables in 1D
