@@ -155,7 +155,9 @@ W = A^{-1} =
 $$
 
 This transformation stretches the square horizontally, doubling its width while keeping the height unchanged. As a result, the area is doubled:  
-$|\det(A)| = 2$ and $|\det(W)| = \frac{1}{2}$.  
+$$
+|\det(A)| = 2 \quad \text{and} \quad |\det(W)| = \frac{1}{2}
+$$ 
 Since the same total probability must be spread over a larger area, the density becomes thinner — it's halved to preserve the total probability. This is like stretching clay: the more space it covers, the thinner it gets.
 
 Now, let’s say $p_Z(z) = 1$ inside the unit square (a uniform distribution). To compute $p_X(\mathbf{x})$ at a point $\mathbf{x}$ in the transformed space, we use:
