@@ -186,7 +186,7 @@ In this setup:
 - $\mathbf{x} = \mathbf{z}_M$ is the final transformed variable
 - The full transformation $f_\theta$ is the composition of all $M$ steps
 
-![](https://upload.wikimedia.org/wikipedia/commons/3/3a/Normalizing-flow.svg)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Normalizing-flow.svg/250px-Normalizing-flow.svg.png)
 
 *Figure: A normalizing flow transforms a simple distribution (e.g., Gaussian) into a complex one by applying a sequence of invertible functions. Source: [Wikipedia](https://en.wikipedia.org/wiki/Flow-based_generative_model)*
 
