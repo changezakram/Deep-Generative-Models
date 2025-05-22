@@ -23,6 +23,8 @@ To understand how normalizing flows enable exact likelihood computation, we firs
 
 ## Math Review
 
+This section builds the mathematical foundation for understanding flow models, starting with change-of-variable and extending to multivariate transformations and Jacobians.
+
 ### Change of Variables in 1D
 
 Suppose we have a **random variable** $z$ with a known distribution $p_Z(z)$, and we define a new variable:
@@ -224,7 +226,7 @@ This makes it possible to evaluate **exact likelihoods** and learn the model via
 
 > **Note:** Both $\mathbf{x}$ and $\mathbf{z}$ must be continuous and have the same dimensionality since the transformation must be invertible.
 
-### A Flow of Transformations
+### Model Architecture: A Sequence of Invertible Transformations
 
 The term *flow* refers to the fact that we can compose multiple invertible functions to form a more expressive transformation:
 
@@ -300,7 +302,7 @@ $$
 This is why many modern flow models rely on **coupling layers** or **autoregressive masking**: they preserve invertibility and enable efficient, exact likelihood computation.
 
 
-## 🧪 Try It Yourself
+## 🧪 Try It Yourself: Flow Model in Pytorch
 
 You can explore a minimal PyTorch implementation of a normalizing flow model:
 

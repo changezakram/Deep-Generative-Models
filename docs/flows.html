@@ -175,6 +175,7 @@ window.Quarto = {
 </section>
 <section id="math-review" class="level2">
 <h2 class="anchored" data-anchor-id="math-review">Math Review</h2>
+<p>This section builds the mathematical foundation for understanding flow models, starting with change-of-variable and extending to multivariate transformations and Jacobians.</p>
 <section id="change-of-variables-in-1d" class="level3">
 <h3 class="anchored" data-anchor-id="change-of-variables-in-1d">Change of Variables in 1D</h3>
 <p>Suppose we have a <strong>random variable</strong> <span class="math inline">\(z\)</span> with a known distribution <span class="math inline">\(p_Z(z)\)</span>, and we define a new variable:</p>
@@ -328,8 +329,8 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left
 <blockquote class="blockquote">
 <p><strong>Note:</strong> Both <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{z}\)</span> must be continuous and have the same dimensionality since the transformation must be invertible.</p>
 </blockquote>
-<section id="a-flow-of-transformations" class="level3">
-<h3 class="anchored" data-anchor-id="a-flow-of-transformations">A Flow of Transformations</h3>
+<section id="model-architecture-a-sequence-of-invertible-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="model-architecture-a-sequence-of-invertible-transformations">Model Architecture: A Sequence of Invertible Transformations</h3>
 <p>The term <em>flow</em> refers to the fact that we can compose multiple invertible functions to form a more expressive transformation:</p>
 <p><span class="math display">\[
 \mathbf{z}_m = f_\theta^{(m)} \circ f_\theta^{(m-1)} \circ \cdots \circ f_\theta^{(1)}(\mathbf{z}_0)
@@ -385,8 +386,8 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </section>
 </section>
 </section>
-<section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">🧪 Try It Yourself</h2>
+<section id="try-it-yourself-flow-model-in-pytorch" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself-flow-model-in-pytorch">🧪 Try It Yourself: Flow Model in Pytorch</h2>
 <p>You can explore a minimal PyTorch implementation of a normalizing flow model:</p>
 <ul>
 <li>📘 <a href="https://github.com/changezakram/Deep-Generative-Models/blob/main/normalizing_flow_pytorch.ipynb"><strong>View Notebook on GitHub</strong></a></li>
