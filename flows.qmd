@@ -118,6 +118,7 @@ To make this idea concrete, consider the illustration below. The left figure sho
 
 *Figure: A linear transformation maps a unit square to a parallelogram.*
 
+This geometric intuition becomes essential when we apply the same logic to probability densities.
 
 ## Determinants and Probability Density
 
