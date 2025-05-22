@@ -112,7 +112,7 @@ $$
 
 This expression tells us how much the transformation $A$ scales space. For example, if $|\det(A)| = 2$, the transformation doubles the volume.
 
-To make this idea concrete, consider the illustration below. The left figure shows a uniform distribution over the unit square $[0,1]^2$. When we apply the linear transformation $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, each point in the square is mapped to a new location, stretching the square into a parallelogram.
+To make this idea concrete, consider the illustration below. The left figure shows a uniform distribution over the unit square $[0, 1]^2$. When we apply the linear transformation $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, each point in the square is mapped to a new location, stretching the square into a parallelogram. The area of this parallelogram — and hence the volume scaling — is given by the **absolute value of the determinant** $|\det(A)| = |ad - bc|$.
 
 ![Linear transformation of a unit square into a parallelogram](images/determinant_area.png)
 
