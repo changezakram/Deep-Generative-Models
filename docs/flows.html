@@ -291,23 +291,8 @@ p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| = 1 \cdot \frac{1}{2} = \frac
 J_f(\mathbf{z}) = \frac{\partial f}{\partial \mathbf{z}}
 \]</span></p>
 <p>This Jacobian tells us how the function scales and rotates space <strong>locally</strong> around a point <span class="math inline">\(\mathbf{z}\)</span>. The determinant of the Jacobian gives the local volume scaling at that point — it tells us how much the transformation stretches or compresses space around .</p>
-<div class="callout callout-style-default callout-note callout-titled" title="What is the Jacobian and its Determinant?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-What is the Jacobian and its Determinant?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <strong>Jacobian matrix</strong> captures how a function transforms space locally. Each entry in the Jacobian tells you how a small change in one input dimension affects one output dimension — it’s like a zoomed-in derivative map.</p>
-<p>The <strong>determinant of the Jacobian</strong> tells you how much a tiny volume around a point gets stretched or squished.<br>
-- If the determinant is 2, the volume doubles.<br>
-- If it’s 0.5, the volume is halved.<br>
-- If it’s 0, space is flattened (i.e., not invertible).</p>
-<p>This is essential when transforming probability densities — because stretching the space means the same probability must spread thinner.</p>
-</div>
+<div class="note">
+<p>The Jacobian matrix generalizes the derivative to multivariable functions. It captures how a function scales and rotates space <strong>locally</strong> by containing all partial derivatives. The determinant of this matrix tells us how volume changes under the transformation — acting as a local scaling factor at each point.</p>
 </div>
 </section>
 <section id="multivariate-change-of-variable-formula" class="level2">
