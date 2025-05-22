@@ -252,7 +252,29 @@ p_X(x) = p_Z(z) \cdot \left| \frac{1}{f'(z)} \right|
 <p>To transform the density from <span class="math inline">\(\mathbf{Z}\)</span> to <span class="math inline">\(\mathbf{X}\)</span>, we use the <strong>change-of-variable formula</strong>. Since <span class="math inline">\(\mathbf{X} = A\mathbf{Z}\)</span>, the inverse transformation is <span class="math inline">\(\mathbf{Z} = A^{-1} \mathbf{X}\)</span>. This tells us how to evaluate the density at <span class="math inline">\(\mathbf{x}\)</span> by “pulling it back” through the inverse mapping. Applying the multivariate change-of-variable rule:</p>
 <p><span class="math display">\[
 p_X(\mathbf{x}) = p_Z(W \mathbf{x}) \cdot \left| \det(W) \right| \quad \text{where } W = A^{-1}
-\]</span> —</p>
+\]</span></p>
+<p>To make this more concrete, here’s a simple 2D example:</p>
+<p>Let <span class="math inline">\(\mathbf{Z}\)</span> be a random vector uniformly distributed over the unit square <span class="math inline">\([0, 1]^2\)</span>. Suppose we apply the transformation <span class="math inline">\(\mathbf{X} = A\mathbf{Z}\)</span>, where</p>
+<p><span class="math display">\[
+A = \begin{bmatrix}
+2 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\quad \text{so that} \quad
+W = A^{-1} =
+\begin{bmatrix}
+\frac{1}{2} &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>This transformation doubles the width of the square while keeping the height unchanged, so it <strong>doubles the area</strong>: <span class="math inline">\(|\det(A)| = 2\)</span> and <span class="math inline">\(|\det(W)| = \frac{1}{2}\)</span>.</p>
+<p>Now, let’s say <span class="math inline">\(p_Z(z) = 1\)</span> inside the unit square (a uniform distribution). To compute <span class="math inline">\(p_X(\mathbf{x})\)</span> at a point <span class="math inline">\(\mathbf{x}\)</span> in the transformed space, we use:</p>
+<p><span class="math display">\[
+p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| = 1 \cdot \frac{1}{2} = \frac{1}{2}
+\]</span></p>
+</section>
+<section id="this-means-the-density-is-halved-because-the-same-total-probability-is-now-spread-over-twice-the-area." class="level2">
+<h2 class="anchored" data-anchor-id="this-means-the-density-is-halved-because-the-same-total-probability-is-now-spread-over-twice-the-area.">This means the density is halved because the same total probability is now spread over <strong>twice the area</strong>.</h2>
 <p>Now that we’ve seen how linear transformations scale volume, let’s see how this idea plays a key role in transforming probability densities. Suppose we apply the linear transformation <span class="math inline">\(\mathbf{X} = A\mathbf{Z}\)</span> to a random vector <span class="math inline">\(\mathbf{Z}\)</span> with a known density <span class="math inline">\(p_Z\)</span>. The new density after transformation is:</p>
 <p><span class="math display">\[
 p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| \quad \text{where} \quad W = A^{-1}

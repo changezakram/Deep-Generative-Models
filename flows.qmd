@@ -126,6 +126,33 @@ To transform the density from $\mathbf{Z}$ to $\mathbf{X}$, we use the **change-
 $$
 p_X(\mathbf{x}) = p_Z(W \mathbf{x}) \cdot \left| \det(W) \right| \quad \text{where } W = A^{-1}
 $$
+
+To make this more concrete, here’s a simple 2D example:
+
+Let $\mathbf{Z}$ be a random vector uniformly distributed over the unit square $[0, 1]^2$. Suppose we apply the transformation $\mathbf{X} = A\mathbf{Z}$, where
+
+$$
+A = \begin{bmatrix}
+2 & 0 \\
+0 & 1
+\end{bmatrix}
+\quad \text{so that} \quad
+W = A^{-1} =
+\begin{bmatrix}
+\frac{1}{2} & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+This transformation doubles the width of the square while keeping the height unchanged, so it **doubles the area**: $|\det(A)| = 2$ and $|\det(W)| = \frac{1}{2}$.
+
+Now, let’s say $p_Z(z) = 1$ inside the unit square (a uniform distribution). To compute $p_X(\mathbf{x})$ at a point $\mathbf{x}$ in the transformed space, we use:
+
+$$
+p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| = 1 \cdot \frac{1}{2} = \frac{1}{2}
+$$
+
+This means the density is halved because the same total probability is now spread over **twice the area**.
 ---
 
 Now that we’ve seen how linear transformations scale volume, let’s see how this idea plays a key role in transforming probability densities. Suppose we apply the linear transformation $\mathbf{X} = A\mathbf{Z}$ to a random vector $\mathbf{Z}$ with a known density $p_Z$. The new density after transformation is:
