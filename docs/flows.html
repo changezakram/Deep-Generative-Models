@@ -170,7 +170,7 @@ window.Quarto = {
 <figcaption>Comparison of VAE and Flow-based Models</figcaption>
 </figure>
 </div>
-<p><em>Figure: VAEs use an approximate inference network to encode data into a latent distribution. Flow-based models instead use a deterministic, invertible transformation for exact inference and likelihood computation.</em></p>
+<p><em>VAEs use an encoder-decoder architecture to learn a distribution over latent variables. The encoder approximates the posterior, while the decoder reconstructs the input. In contrast, flow-based models use a single invertible transformation for both inference and generation, allowing exact computation of the likelihood and latent variables.</em></p>
 </section>
 <section id="math-review-change-of-variables-in-1d" class="level2">
 <h2 class="anchored" data-anchor-id="math-review-change-of-variables-in-1d">Math Review: Change of Variables in 1D</h2>
