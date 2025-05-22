@@ -178,7 +178,7 @@ $$
 J_f(\mathbf{z}) = \frac{\partial f}{\partial \mathbf{z}}
 $$
 
-This Jacobian tells us how the function scales and rotates space **locally** around a point $\mathbf{z}$. The **determinant of the Jacobian** gives the volume change factor at that point.
+This Jacobian tells us how the function scales and rotates space **locally** around a point $\mathbf{z}$. The determinant of the Jacobian gives the local volume scaling at that point — it tells us how much the transformation stretches or compresses space around \mathbf{z}.
 
 ## Multivariate Change-of-Variable Formula
 
