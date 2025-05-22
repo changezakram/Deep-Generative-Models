@@ -104,9 +104,6 @@ Let $\mathbf{Z}$ be a random vector uniformly distributed in the unit cube $[0,1
 
 The **determinant** of a square matrix tells us how that matrix **scales volume** in space. For example, if the determinant of a $2 \times 2$ matrix is 3, then applying that matrix to a region will stretch its area by a factor of 3. A negative determinant also indicates a **reflection** (orientation reversal). The **absolute value** of the determinant is what we care about when measuring volume.
 
-![Linear transformation of a unit square into a parallelogram](images/determinant_area.png)
-
-*Figure: A linear transformation maps a unit square to a parallelogram. The area of the parallelogram is given by the absolute value of the determinant of the transformation matrix \( A \), i.e., \( |\det(A)| = |ad - bc| \).*
 
 The **volume** of this parallelotope is equal to the **absolute value of the determinant** of matrix $A$:
 
@@ -114,7 +111,11 @@ $$
 \text{Volume} = |\det(A)|
 $$
 
-This tells us how much the transformation $A$ **scales space**. For example, if $|\det(A)| = 2$, the transformation doubles the volume.
+This tells us how much the transformation $A$ **scales space**. For example, if $|\det(A)| = 2$, the transformation doubles the volume. To make this idea more concrete, consider the following illustration:
+
+![Linear transformation of a unit square into a parallelogram](images/determinant_area.png)
+
+*Figure: A linear transformation maps a unit square to a parallelogram. The area of this parallelogram is equal to the absolute value of the determinant \( |\det(A)| = |ad - bc| \).*
 
 ## Determinants and Probability Density
 
