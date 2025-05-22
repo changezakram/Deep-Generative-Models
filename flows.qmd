@@ -180,6 +180,17 @@ $$
 
 This Jacobian tells us how the function scales and rotates space **locally** around a point $\mathbf{z}$. The determinant of the Jacobian gives the local volume scaling at that point — it tells us how much the transformation stretches or compresses space around \mathbf{z}.
 
+::: {.callout-note title="What is the Jacobian and its Determinant?"}
+The **Jacobian matrix** captures how a function transforms space locally. Each entry in the Jacobian tells you how a small change in one input dimension affects one output dimension — it's like a zoomed-in derivative map.
+
+The **determinant of the Jacobian** tells you how much a tiny volume around a point gets stretched or squished.  
+- If the determinant is 2, the volume doubles.  
+- If it's 0.5, the volume is halved.  
+- If it's 0, space is flattened (i.e., not invertible).
+
+This is essential when transforming probability densities — because stretching the space means the same probability must spread thinner.
+:::
+
 ## Multivariate Change-of-Variable Formula
 
 Given an invertible transformation $\mathbf{x} = f(\mathbf{z})$, the probability density transforms as:
