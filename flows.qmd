@@ -20,7 +20,7 @@ Despite these strengths, normalizing flows have limitations. Unlike VAEs, which 
 
 ![Comparison of VAE and Flow-based Models](images/vae_vs_flow.png)
 
-*VAEs use an encoder-decoder architecture to learn a distribution over latent variables. The encoder approximates the posterior, while the decoder reconstructs the input. In contrast, flow-based models use a single invertible transformation for both inference and generation, allowing exact computation of the likelihood and latent variables.*
+*VAEs use an encoder-decoder setup to compress data into a lower-dimensional latent space. The encoder maps the input to a distribution over latent variables, and the decoder reconstructs the data. In contrast, flow-based models use a single invertible transformation that keeps the same dimensionality between input and latent space. This allows for exact inference and likelihood computation.*
 
 To understand how normalizing flows enable exact likelihood computation, we first need to explore a fundamental mathematical concept: the change-of-variable formula. This principle lies at the heart of flow models, allowing us to transform probability densities through invertible functions. We'll begin with the 1D case and build up to the multivariate formulation.
 
