@@ -240,11 +240,11 @@ In this setup:
 - $\mathbf{x} = \mathbf{z}_M$ is the final transformed variable
 - The full transformation $f_\theta$ is the composition of all $M$ sequential invertible steps, each refining the distribution further.
 
+The visuals below show how a series of simple, invertible transformations can gradually turn a basic distribution into a much more complex one.
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" style="display: block; margin-left: auto; margin-right: auto;" />
 
 *Figure: A normalizing flow transforms a simple distribution into a complex one using invertible transformations. (Adapted from Wikipedia)*
-
-To visualize this process, the following example demonstrates how stacking multiple planar flows can progressively transform a simple base distribution—such as a Gaussian or uniform—into a much more complex one.
 
 <div style="text-align: center;">
   <img src="images/planar_flow_transformations.png" alt="Planar Flow Transformations" width="600"/>

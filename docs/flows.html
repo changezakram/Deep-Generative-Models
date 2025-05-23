@@ -341,9 +341,9 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left
 <li><span class="math inline">\(\mathbf{x} = \mathbf{z}_M\)</span> is the final transformed variable</li>
 <li>The full transformation <span class="math inline">\(f_\theta\)</span> is the composition of all <span class="math inline">\(M\)</span> sequential invertible steps, each refining the distribution further.</li>
 </ul>
+<p>The visuals below show how a series of simple, invertible transformations can gradually turn a basic distribution into a much more complex one.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" style="display: block; margin-left: auto; margin-right: auto;"></p>
 <p><em>Figure: A normalizing flow transforms a simple distribution into a complex one using invertible transformations. (Adapted from Wikipedia)</em></p>
-<p>To visualize this process, the following example demonstrates how stacking multiple planar flows can progressively transform a simple base distribution—such as a Gaussian or uniform—into a much more complex one.</p>
 <div style="text-align: center;">
 <img src="images/planar_flow_transformations.png" alt="Planar Flow Transformations" width="600">
 <p style="color: gray; font-size: 0.95em;">
