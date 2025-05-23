@@ -235,9 +235,10 @@ $$
 $$
 
 In this setup:
+
 - $\mathbf{z}_0 \sim p_Z$ is sampled from a simple base distribution (e.g., standard Gaussian)
 - $\mathbf{x} = \mathbf{z}_M$ is the final transformed variable
-- The full transformation $f_\theta$ is the composition of all $M$ steps
+- The full transformation $f_\theta$ is the composition of all $M$ sequential invertible steps, each refining the distribution further.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" style="display: block; margin-left: auto; margin-right: auto;" />
 

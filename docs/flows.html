@@ -335,7 +335,12 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left
 <p><span class="math display">\[
 \mathbf{z}_m = f_\theta^{(m)} \circ f_\theta^{(m-1)} \circ \cdots \circ f_\theta^{(1)}(\mathbf{z}_0)
 \]</span></p>
-<p>In this setup: - <span class="math inline">\(\mathbf{z}_0 \sim p_Z\)</span> is sampled from a simple base distribution (e.g., standard Gaussian) - <span class="math inline">\(\mathbf{x} = \mathbf{z}_M\)</span> is the final transformed variable - The full transformation <span class="math inline">\(f_\theta\)</span> is the composition of all <span class="math inline">\(M\)</span> steps</p>
+<p>In this setup:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{z}_0 \sim p_Z\)</span> is sampled from a simple base distribution (e.g., standard Gaussian)</li>
+<li><span class="math inline">\(\mathbf{x} = \mathbf{z}_M\)</span> is the final transformed variable</li>
+<li>The full transformation <span class="math inline">\(f_\theta\)</span> is the composition of all <span class="math inline">\(M\)</span> sequential invertible steps, each refining the distribution further.</li>
+</ul>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" style="display: block; margin-left: auto; margin-right: auto;"></p>
 <p><em>Figure: A normalizing flow transforms a simple distribution into a complex one using invertible transformations. (Adapted from Wikipedia)</em></p>
 <p>To visualize this process, the following example demonstrates how stacking multiple planar flows can progressively transform a simple base distribution—such as a Gaussian or uniform—into a much more complex one.</p>
