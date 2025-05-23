@@ -249,8 +249,6 @@ The visuals below show how a series of simple, invertible transformations can gr
   </em></p>
 </div>
 
-*Figure: A normalizing flow transforms a simple distribution into a complex one using invertible transformations. (Adapted from Wikipedia)*
-
 <div style="text-align: center;">
   <img src="images/planar_flow_transformations.png" alt="Planar Flow Transformations" width="600"/>
   <p style="color: gray; font-size: 0.95em;"><em>
