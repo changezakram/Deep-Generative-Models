@@ -325,9 +325,9 @@ You can explore a minimal PyTorch implementation of a normalizing flow model:
 
 ## 📚 References
 
+- **Stanford CS236 Notes.** *Normalizing Flows*. [deepgenerativemodels.github.io](https://deepgenerativemodels.github.io/notes/flow/)
 - **Rezende, D. J., & Mohamed, S.** (2015). *Variational Inference with Normalizing Flows*. [arXiv:1505.05770](https://arxiv.org/abs/1505.05770)  
 - **Wikipedia.** *Normalizing Flow*. [Link](https://en.wikipedia.org/wiki/Flow-based_generative_model)  
-- **Stanford CS236 Notes.** *Normalizing Flows*. [deepgenerativemodels.github.io](https://deepgenerativemodels.github.io/notes/flow/)
 
 ## 🔍 Further Reading
 
