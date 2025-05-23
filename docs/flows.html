@@ -403,18 +403,9 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </section>
 <section id="popular-flow-models" class="level2">
 <h2 class="anchored" data-anchor-id="popular-flow-models">Popular Flow Models</h2>
-<p>Normalizing flows can be built using many different types of invertible transformations. Over time, several popular architectures have emerged—each offering a unique trade-off between expressiveness, invertibility, and computational efficiency.</p>
-<p>In this section, we’ll introduce some of the most influential models:</p>
-<ul>
-<li><strong>NICE</strong> (Nonlinear Independent Components Estimation)<br>
-</li>
-<li><strong>Real-NVP</strong> (Real-valued Non-Volume Preserving Transformations)<br>
-</li>
-<li><strong>IAF</strong> (Inverse Autoregressive Flow)<br>
-</li>
-<li><strong>MAF</strong> (Masked Autoregressive Flow)</li>
-</ul>
-<p>Each model builds on the same core ideas—composing simple invertible transformations—but differs in how it parameterizes those transformations and handles tractability of the Jacobian determinant.</p>
+<p>To implement scalable and expressive normalizing flows, researchers have designed several model families based on clever transformation strategies—particularly <strong>coupling layers</strong> and <strong>autoregressive masking</strong>.</p>
+<p>In this section, we’ll introduce a few influential architectures: - <strong>NICE</strong>: Introduces additive coupling layers for tractable Jacobians. - <strong>Real-NVP</strong>: Extends NICE with scaling and better expressivity. - <strong>Inverse Autoregressive Flow (IAF)</strong>: Uses autoregressive masking for high flexibility. - <strong>Masked Autoregressive Flow (MAF)</strong>: Reverses the computation flow of IAF for efficient density evaluation.</p>
+<p>We’ll walk through the core design behind each and how they achieve invertibility and efficient learning.</p>
 </section>
 <section id="try-it-yourself-flow-model-in-pytorch" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself-flow-model-in-pytorch">🧪 Try It Yourself: Flow Model in Pytorch</h2>
