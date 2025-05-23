@@ -331,6 +331,72 @@ In this section, we’ll introduce few of these architectures:
 
 We’ll walk through the core design behind each and how they achieve invertibility and efficient learning.
 
+### NICE: Nonlinear Independent Components Estimation
+
+The NICE model (Dinh et al., 2014) introduces a simple yet effective approach to designing invertible transformations. It composes two types of layers:
+
+- **Additive coupling layers**, which are volume preserving and keep the Jacobian tractable.  
+- **Rescaling layers**, which allow the transformation to scale volume.
+
+#### Additive Coupling Layer
+
+The input vector $\mathbf{z} \in \mathbb{R}^n$ is split into two disjoint subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$ for some $1 \leq d < n$.
+
+- **Forward transformation** $\mathbf{z} \mapsto \mathbf{x}$:
+
+$$
+\begin{aligned}
+\mathbf{x}_{1:d} &= \mathbf{z}_{1:d} \quad \text{(identity)} \\\\
+\mathbf{x}_{d+1:n} &= \mathbf{z}_{d+1:n} + m_\theta(\mathbf{z}_{1:d})
+\end{aligned}
+$$
+
+- **Inverse transformation** $\mathbf{x} \mapsto \mathbf{z}$:
+
+$$
+\begin{aligned}
+\mathbf{z}_{1:d} &= \mathbf{x}_{1:d} \\\\
+\mathbf{z}_{d+1:n} &= \mathbf{x}_{d+1:n} - m_\theta(\mathbf{x}_{1:d})
+\end{aligned}
+$$
+
+- **Jacobian of forward mapping**:
+
+$$
+J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
+\begin{pmatrix}
+I_d & 0 \\\\
+\frac{\partial m_\theta}{\partial \mathbf{z}_{1:d}} & I_{n-d}
+\end{pmatrix}
+\quad \Rightarrow \quad \det(J) = 1
+$$
+
+This makes the transformation **volume preserving**.
+
+#### Rescaling Layer
+
+To enable volume changes, NICE adds a rescaling layer:
+
+- **Forward transformation**:
+
+$$
+x_i = s_i z_i, \quad \text{where } s_i > 0
+$$
+
+- **Inverse transformation**:
+
+$$
+z_i = \frac{x_i}{s_i}
+$$
+
+- **Jacobian and determinant**:
+
+$$
+J = \text{diag}(\mathbf{s}) \quad \Rightarrow \quad \det(J) = \prod_{i=1}^n s_i
+$$
+
+The rescaling layer enables the model to expand or shrink volume as needed.
+
 ## 🧪 Try It Yourself: Flow Model in Pytorch
 
 You can explore a minimal PyTorch implementation of a normalizing flow model:
