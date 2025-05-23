@@ -238,9 +238,9 @@ In this setup:
 
 - $\mathbf{z}_0 \sim p_Z$ is sampled from a simple base distribution (e.g., standard Gaussian)
 - $\mathbf{x} = \mathbf{z}_M$ is the final transformed variable
-- The full transformation $f_\theta$ is the composition of all $M$ sequential invertible steps, each refining the distribution further.
+- The full transformation $f_\theta$ is the composition of $M$ sequential invertible functions. Each function slightly reshapes the distribution, and together they produce a highly expressive mapping from a simple base distribution to a complex one.
 
-The visuals below show how a series of simple, invertible transformations can gradually turn a basic distribution into a much more complex one.
+The visuals below illustrate this idea from two angles. The first diagram shows the architectural structure of a normalizing flow, highlighting the composition of invertible steps. The second visual demonstrates the effect of stacking transformations — showing how a simple distribution is progressively warped into a more complex one.
 
 <div style="text-align: center;">
   <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" alt="Normalizing Flow Illustration" />

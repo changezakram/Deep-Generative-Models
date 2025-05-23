@@ -339,9 +339,9 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left
 <ul>
 <li><span class="math inline">\(\mathbf{z}_0 \sim p_Z\)</span> is sampled from a simple base distribution (e.g., standard Gaussian)</li>
 <li><span class="math inline">\(\mathbf{x} = \mathbf{z}_M\)</span> is the final transformed variable</li>
-<li>The full transformation <span class="math inline">\(f_\theta\)</span> is the composition of all <span class="math inline">\(M\)</span> sequential invertible steps, each refining the distribution further.</li>
+<li>The full transformation <span class="math inline">\(f_\theta\)</span> is the composition of <span class="math inline">\(M\)</span> sequential invertible functions. Each function slightly reshapes the distribution, and together they produce a highly expressive mapping from a simple base distribution to a complex one.</li>
 </ul>
-<p>The visuals below show how a series of simple, invertible transformations can gradually turn a basic distribution into a much more complex one.</p>
+<p>The visuals below illustrate this idea from two angles. The first diagram shows the architectural structure of a normalizing flow, highlighting the composition of invertible steps. The second visual demonstrates the effect of stacking transformations — showing how a simple distribution is progressively warped into a more complex one.</p>
 <div style="text-align: center;">
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" alt="Normalizing Flow Illustration">
 <p style="color: gray; font-size: 0.95em;">
