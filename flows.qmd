@@ -245,7 +245,7 @@ The visuals below show how a series of simple, invertible transformations can gr
 <div style="text-align: center;">
   <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" alt="Normalizing Flow Illustration" />
   <p style="color: gray; font-size: 0.95em;"><em>
-    Adapted from Wikipedia: A normalizing flow transforms a simple distribution into a complex one using invertible transformations.
+    Adapted from Wikipedia: A normalizing flow uses invertible transformations to map simple distributions to complex ones.
   </em></p>
 </div>
 
