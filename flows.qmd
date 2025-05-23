@@ -243,11 +243,13 @@ In this setup:
 
 *Figure: A normalizing flow transforms a simple distribution into a complex one using invertible transformations. (Adapted from Wikipedia)*
 
+To visualize this process, the following example demonstrates how stacking multiple planar flows can progressively transform a simple base distribution—such as a Gaussian or uniform—into a much more complex one.
+
 <div style="text-align: center;">
   <img src="images/planar_flow_transformations.png" alt="Planar Flow Transformations" width="600"/>
   <p style="color: gray; font-size: 0.95em;">
-    Transformation of simple base distributions (Gaussian, Uniform) into complex target distributions using a sequence of planar flows.  
-    Adapted from course slides, originally based on <i>Rezende & Mohamed, 2016</i>.
+    Transformation of simple base distributions (Gaussian, Uniform) into complex target distributions.  
+    Adapted from class notes (XCS236, Stanford), originally based on <i>Rezende & Mohamed, 2016</i>.
   </p>
 </div>
 

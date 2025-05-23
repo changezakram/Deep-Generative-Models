@@ -338,11 +338,12 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left
 <p>In this setup: - <span class="math inline">\(\mathbf{z}_0 \sim p_Z\)</span> is sampled from a simple base distribution (e.g., standard Gaussian) - <span class="math inline">\(\mathbf{x} = \mathbf{z}_M\)</span> is the final transformed variable - The full transformation <span class="math inline">\(f_\theta\)</span> is the composition of all <span class="math inline">\(M\)</span> steps</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" style="display: block; margin-left: auto; margin-right: auto;"></p>
 <p><em>Figure: A normalizing flow transforms a simple distribution into a complex one using invertible transformations. (Adapted from Wikipedia)</em></p>
+<p>To visualize this process, the following example demonstrates how stacking multiple planar flows can progressively transform a simple base distribution—such as a Gaussian or uniform—into a much more complex one.</p>
 <div style="text-align: center;">
 <img src="images/planar_flow_transformations.png" alt="Planar Flow Transformations" width="600">
 <p style="color: gray; font-size: 0.95em;">
-Transformation of simple base distributions (Gaussian, Uniform) into complex target distributions using a sequence of planar flows.<br>
-Adapted from course slides, originally based on <i>Rezende &amp; Mohamed, 2016</i>.
+Transformation of simple base distributions (Gaussian, Uniform) into complex target distributions.<br>
+Adapted from class notes (XCS236, Stanford), originally based on <i>Rezende &amp; Mohamed, 2016</i>.
 </p>
 </div>
 <p>The density of <span class="math inline">\(\mathbf{x}\)</span> is given by the change-of-variable formula:</p>
