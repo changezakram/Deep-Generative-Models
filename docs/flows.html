@@ -404,7 +404,13 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <section id="popular-flow-models" class="level2">
 <h2 class="anchored" data-anchor-id="popular-flow-models">Popular Flow Models</h2>
 <p>To implement scalable and expressive normalizing flows, researchers have designed several model families based on clever transformation strategies—particularly <strong>coupling layers</strong> and <strong>autoregressive masking</strong>.</p>
-<p>In this section, we’ll introduce a few influential architectures: - <strong>NICE</strong>: Introduces additive coupling layers for tractable Jacobians. - <strong>Real-NVP</strong>: Extends NICE with scaling and better expressivity. - <strong>Inverse Autoregressive Flow (IAF)</strong>: Uses autoregressive masking for high flexibility. - <strong>Masked Autoregressive Flow (MAF)</strong>: Reverses the computation flow of IAF for efficient density evaluation.</p>
+<p>In this section, we’ll introduce a few influential architectures:</p>
+<ul>
+<li><strong>NICE</strong>: Introduces additive coupling layers for tractable Jacobians.</li>
+<li><strong>Real-NVP</strong>: Extends NICE with scaling and better expressivity.</li>
+<li><strong>Inverse Autoregressive Flow (IAF)</strong>: Uses autoregressive masking for high flexibility.</li>
+<li><strong>Masked Autoregressive Flow (MAF)</strong>: Reverses the computation flow of IAF for efficient density evaluation.</li>
+</ul>
 <p>We’ll walk through the core design behind each and how they achieve invertibility and efficient learning.</p>
 </section>
 <section id="try-it-yourself-flow-model-in-pytorch" class="level2">

@@ -323,12 +323,13 @@ This is why many modern flow models rely on **coupling layers** or **autoregress
 To implement scalable and expressive normalizing flows, researchers have designed several model families based on clever transformation strategies—particularly **coupling layers** and **autoregressive masking**.
 
 In this section, we’ll introduce a few influential architectures:
+
 - **NICE**: Introduces additive coupling layers for tractable Jacobians.
 - **Real-NVP**: Extends NICE with scaling and better expressivity.
 - **Inverse Autoregressive Flow (IAF)**: Uses autoregressive masking for high flexibility.
 - **Masked Autoregressive Flow (MAF)**: Reverses the computation flow of IAF for efficient density evaluation.
 
-We'll walk through the core design behind each and how they achieve invertibility and efficient learning.
+We’ll walk through the core design behind each and how they achieve invertibility and efficient learning.
 
 ## 🧪 Try It Yourself: Flow Model in Pytorch
 
