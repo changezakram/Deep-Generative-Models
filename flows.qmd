@@ -323,11 +323,17 @@ You can explore a minimal PyTorch implementation of a normalizing flow model:
 - 🚀 [**Run in Google Colab**](https://colab.research.google.com/github/changezakram/Deep-Generative-Models/blob/main/normalizing_flow_pytorch.ipynb)
 
 
-## References
+## 📚 References
 
-- [**Deep Generative Models: Flow Notes**](https://deepgenerativemodels.github.io/notes/flow/)
-- [**Flow-based Deep Generative Models – Lilian Weng**](https://lilianweng.github.io/posts/2018-10-13-flow-models/?utm_source=chatgpt.com)
-- [**Normalizing Flows Tutorial – Eric Jang, Part 1**](https://blog.evjang.com/2018/01/nf1.html)
-- [**Normalizing Flows Tutorial – Eric Jang, Part 2**](https://blog.evjang.com/2018/01/nf2.html)
-- [**UT Austin: Change of Variable in One Dimension**](https://web.ma.utexas.edu/users/m408s/m408d/CurrentWeb/LM15-10-2.php)
+- **Rezende, D. J., & Mohamed, S.** (2015). *Variational Inference with Normalizing Flows*. [arXiv:1505.05770](https://arxiv.org/abs/1505.05770)  
+- **Wikipedia.** *Normalizing Flow*. [Link](https://en.wikipedia.org/wiki/Flow-based_generative_model)  
+- **Stanford CS236 Notes.** *Normalizing Flows*. [deepgenerativemodels.github.io](https://deepgenerativemodels.github.io/notes/flow/)
+
+## 🔍 Further Reading
+
+- **Papamakarios et al.** (2019). *Normalizing Flows for Probabilistic Modeling and Inference*. [arXiv:1912.02762](https://arxiv.org/abs/1912.02762)  
+- **Lilian Weng.** (2018). *Flow-based Models*. [Blog](https://lilianweng.github.io/posts/2018-10-13-flow-models/)  
+- **Eric Jang.** (2018). *Normalizing Flows Tutorial – Part 1*. [Blog](https://blog.evjang.com/2018/01/nf1.html)  
+- **Eric Jang.** (2018). *Normalizing Flows Tutorial – Part 2*. [Blog](https://blog.evjang.com/2018/01/nf2.html)  
+- **UT Austin Calculus Notes.** *Jacobian and Change of Variables*. [Web](https://web.ma.utexas.edu/users/m408s/m408d/CurrentWeb/LM15-10-2.php)
 
