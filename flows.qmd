@@ -331,71 +331,63 @@ In this section, we’ll introduce few of these architectures:
 
 We’ll walk through the core design behind each and how they achieve invertibility and efficient learning.
 
-### NICE: Nonlinear Independent Components Estimation
+## NICE: Nonlinear Independent Components Estimation
 
-The NICE model (Dinh et al., 2014) introduces a simple yet effective approach to designing invertible transformations. It composes two types of layers:
+The NICE model introduces two key components to construct invertible transformations:
 
-- **Additive coupling layers**, which are volume preserving and keep the Jacobian tractable.  
-- **Rescaling layers**, which allow the transformation to scale volume.
+- **Additive Coupling Layers**: These preserve volume and maintain a simple Jacobian structure.
+- **Rescaling Layers**: These adjust volume and allow the model to capture more expressive distributions.
 
-#### Additive Coupling Layer
+### Additive Coupling Layer
 
-The input vector $\mathbf{z} \in \mathbb{R}^n$ is split into two disjoint subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$ for some $1 \leq d < n$.
+We partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$ for some $1 \leq d < n$.
 
-- **Forward transformation** $\mathbf{z} \mapsto \mathbf{x}$:
+- **Forward Mapping** $\mathbf{z} \mapsto \mathbf{x}$:
+  \[
+  \begin{aligned}
+  \mathbf{x}_{1:d} &= \mathbf{z}_{1:d} \quad \text{(identity)} \\
+  \mathbf{x}_{d+1:n} &= \mathbf{z}_{d+1:n} + m_\theta(\mathbf{z}_{1:d})
+  \end{aligned}
+  \]
 
-$$
-\begin{aligned}
-\mathbf{x}_{1:d} &= \mathbf{z}_{1:d} \quad \text{(identity)} \\\\
-\mathbf{x}_{d+1:n} &= \mathbf{z}_{d+1:n} + m_\theta(\mathbf{z}_{1:d})
-\end{aligned}
-$$
+- **Inverse Mapping** $\mathbf{x} \mapsto \mathbf{z}$:
+  \[
+  \begin{aligned}
+  \mathbf{z}_{1:d} &= \mathbf{x}_{1:d} \\
+  \mathbf{z}_{d+1:n} &= \mathbf{x}_{d+1:n} - m_\theta(\mathbf{x}_{1:d})
+  \end{aligned}
+  \]
 
-- **Inverse transformation** $\mathbf{x} \mapsto \mathbf{z}$:
+- **Jacobian**:
+  \[
+  J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
+  \begin{pmatrix}
+  I_d & 0 \\
+  \frac{\partial m_\theta}{\partial \mathbf{z}_{1:d}} & I_{n-d}
+  \end{pmatrix},
+  \qquad \det(J) = 1
+  \]
 
-$$
-\begin{aligned}
-\mathbf{z}_{1:d} &= \mathbf{x}_{1:d} \\\\
-\mathbf{z}_{d+1:n} &= \mathbf{x}_{d+1:n} - m_\theta(\mathbf{x}_{1:d})
-\end{aligned}
-$$
+Hence, additive coupling is a **volume-preserving transformation**.
 
-- **Jacobian of forward mapping**:
+### Rescaling Layer
 
-$$
-J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
-\begin{pmatrix}
-I_d & 0 \\\\
-\frac{\partial m_\theta}{\partial \mathbf{z}_{1:d}} & I_{n-d}
-\end{pmatrix}
-\quad \Rightarrow \quad \det(J) = 1
-$$
+To enable volume changes, NICE appends a final rescaling layer:
 
-This makes the transformation **volume preserving**.
+- **Forward Mapping**:
+  \[
+  x_i = s_i z_i \quad \text{where } s_i > 0
+  \]
 
-#### Rescaling Layer
+- **Inverse Mapping**:
+  \[
+  z_i = \frac{x_i}{s_i}
+  \]
 
-To enable volume changes, NICE adds a rescaling layer:
-
-- **Forward transformation**:
-
-$$
-x_i = s_i z_i, \quad \text{where } s_i > 0
-$$
-
-- **Inverse transformation**:
-
-$$
-z_i = \frac{x_i}{s_i}
-$$
-
-- **Jacobian and determinant**:
-
-$$
-J = \text{diag}(\mathbf{s}) \quad \Rightarrow \quad \det(J) = \prod_{i=1}^n s_i
-$$
-
-The rescaling layer enables the model to expand or shrink volume as needed.
+- **Jacobian**:
+  \[
+  J = \text{diag}(\mathbf{s}), \qquad \det(J) = \prod_{i=1}^n s_i
+  \]
 
 ## 🧪 Try It Yourself: Flow Model in Pytorch
 
