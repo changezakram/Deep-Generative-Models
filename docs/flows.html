@@ -427,16 +427,17 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </ul>
 <p><span class="math display">\[
 \begin{aligned}
-\mathbf{x}_{1:d} &amp;= \mathbf{z}_{1:d} \quad \text{(identity)} \\
+\mathbf{x}_{1:d} &amp;= \mathbf{z}_{1:d} \quad \text{(identity transformation)} \\
 \mathbf{x}_{d+1:n} &amp;= \mathbf{z}_{d+1:n} + m_\theta(\mathbf{z}_{1:d})
 \end{aligned}
 \]</span></p>
+<p>where <span class="math inline">\(m_\theta(\cdot)\)</span> is a neural network with parameters <span class="math inline">\(\theta\)</span>, <span class="math inline">\(d\)</span> input units, and <span class="math inline">\(n - d\)</span> output units.</p>
 <ul>
 <li><strong>Inverse Mapping</strong> <span class="math inline">\(\mathbf{x} \mapsto \mathbf{z}\)</span>:</li>
 </ul>
 <p><span class="math display">\[
 \begin{aligned}
-\mathbf{z}_{1:d} &amp;= \mathbf{x}_{1:d} \\
+\mathbf{z}_{1:d} &amp;= \mathbf{x}_{1:d} \quad \text{(identity transformation)} \\
 \mathbf{z}_{d+1:n} &amp;= \mathbf{x}_{d+1:n} - m_\theta(\mathbf{x}_{1:d})
 \end{aligned}
 \]</span></p>

@@ -347,16 +347,18 @@ We partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{
 
 $$
 \begin{aligned}
-\mathbf{x}_{1:d} &= \mathbf{z}_{1:d} \quad \text{(identity)} \\
+\mathbf{x}_{1:d} &= \mathbf{z}_{1:d} \quad \text{(identity transformation)} \\
 \mathbf{x}_{d+1:n} &= \mathbf{z}_{d+1:n} + m_\theta(\mathbf{z}_{1:d})
 \end{aligned}
 $$
+
+where $m_\theta(\cdot)$ is a neural network with parameters $\theta$, $d$ input units, and $n - d$ output units.
 
 - **Inverse Mapping** $\mathbf{x} \mapsto \mathbf{z}$:
 
 $$
 \begin{aligned}
-\mathbf{z}_{1:d} &= \mathbf{x}_{1:d} \\
+\mathbf{z}_{1:d} &= \mathbf{x}_{1:d} \quad \text{(identity transformation)} \\
 \mathbf{z}_{d+1:n} &= \mathbf{x}_{d+1:n} - m_\theta(\mathbf{x}_{1:d})
 \end{aligned}
 $$
@@ -376,7 +378,6 @@ $$
 $$
 
 Hence, additive coupling is a **volume-preserving transformation**.
-
 
 #### Rescaling Layer
 
