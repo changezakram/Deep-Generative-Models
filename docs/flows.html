@@ -422,7 +422,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <section id="additive-coupling-layer" class="level4">
 <h4 class="anchored" data-anchor-id="additive-coupling-layer">Additive Coupling Layer</h4>
 <p>To make the transformation invertible and computationally efficient, NICE splits the input vector into two parts. One part is kept unchanged, while the other part is modified using a function of the unchanged part. This way, we can easily reverse the process because we always know what was kept intact.</p>
-<p>We partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> for some <span class="math inline">\(1 \leq d &lt; n\)</span>.</p>
+<p>Let’s partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> for some <span class="math inline">\(1 \leq d &lt; n\)</span>.</p>
 <ul>
 <li><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</li>
 </ul>
@@ -496,6 +496,7 @@ J = \text{diag}(\mathbf{s})
 \mathbf{x}_{d+1:n} &amp;= \mathbf{z}_{d+1:n} \odot \exp(\alpha_\theta(\mathbf{z}_{1:d})) + \mu_\theta(\mathbf{z}_{1:d})
 \end{aligned}
 \]</span></p>
+<p>This equation modifies the second half of the input by scaling and shifting it, based on the first half. The use of the exponential function ensures that scaling is always positive, which is important for invertibility.</p>
 <ul>
 <li><strong>Inverse Mapping</strong> <span class="math inline">\(\mathbf{x} \mapsto \mathbf{z}\)</span>:</li>
 </ul>

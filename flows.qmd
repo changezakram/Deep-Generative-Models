@@ -343,7 +343,7 @@ The NICE model introduces two key components to construct invertible transformat
 
 To make the transformation invertible and computationally efficient, NICE splits the input vector into two parts. One part is kept unchanged, while the other part is modified using a function of the unchanged part. This way, we can easily reverse the process because we always know what was kept intact.
 
-We partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$ for some $1 \leq d < n$.
+Let's partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$ for some $1 \leq d < n$.
 
 - **Forward Mapping** $\mathbf{z} \mapsto \mathbf{x}$:
 
@@ -422,6 +422,8 @@ $$
 \mathbf{x}_{d+1:n} &= \mathbf{z}_{d+1:n} \odot \exp(\alpha_\theta(\mathbf{z}_{1:d})) + \mu_\theta(\mathbf{z}_{1:d})
 \end{aligned}
 $$
+
+This equation modifies the second half of the input by scaling and shifting it, based on the first half. The use of the exponential function ensures that scaling is always positive, which is important for invertibility.
 
 - **Inverse Mapping** $\mathbf{x} \mapsto \mathbf{z}$:
 
