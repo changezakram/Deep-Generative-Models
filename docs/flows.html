@@ -412,47 +412,66 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <li><strong>Masked Autoregressive Flow (MAF)</strong>: Reverses the computation flow of IAF for efficient density evaluation.</li>
 </ul>
 <p>We’ll walk through the core design behind each and how they achieve invertibility and efficient learning.</p>
-</section>
-<section id="nice-nonlinear-independent-components-estimation" class="level2">
-<h2 class="anchored" data-anchor-id="nice-nonlinear-independent-components-estimation">NICE: Nonlinear Independent Components Estimation</h2>
-<p>The NICE model introduces two key components to construct invertible transformations:</p>
-<ul>
-<li><strong>Additive Coupling Layers</strong>: These preserve volume and maintain a simple Jacobian structure.</li>
-<li><strong>Rescaling Layers</strong>: These adjust volume and allow the model to capture more expressive distributions.</li>
-</ul>
 <section id="additive-coupling-layer" class="level3">
 <h3 class="anchored" data-anchor-id="additive-coupling-layer">Additive Coupling Layer</h3>
 <p>We partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> for some <span class="math inline">\(1 \leq d &lt; n\)</span>.</p>
 <ul>
-<li><p><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>: [</p>
-<span class="math display">\[\begin{aligned}
+<li><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
 \mathbf{x}_{1:d} &amp;= \mathbf{z}_{1:d} \quad \text{(identity)} \\
 \mathbf{x}_{d+1:n} &amp;= \mathbf{z}_{d+1:n} + m_\theta(\mathbf{z}_{1:d})
-\end{aligned}\]</span>
-<p>]</p></li>
-<li><p><strong>Inverse Mapping</strong> <span class="math inline">\(\mathbf{x} \mapsto \mathbf{z}\)</span>: [</p>
-<span class="math display">\[\begin{aligned}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><strong>Inverse Mapping</strong> <span class="math inline">\(\mathbf{x} \mapsto \mathbf{z}\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
 \mathbf{z}_{1:d} &amp;= \mathbf{x}_{1:d} \\
 \mathbf{z}_{d+1:n} &amp;= \mathbf{x}_{d+1:n} - m_\theta(\mathbf{x}_{1:d})
-\end{aligned}\]</span>
-<p>]</p></li>
-<li><p><strong>Jacobian</strong>: [ J = =</p>
-<span class="math display">\[\begin{pmatrix}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><strong>Jacobian</strong> of the forward mapping:</li>
+</ul>
+<p><span class="math display">\[
+J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
+\begin{pmatrix}
 I_d &amp; 0 \\
 \frac{\partial m_\theta}{\partial \mathbf{z}_{1:d}} &amp; I_{n-d}
-\end{pmatrix}\]</span>
-<p>, (J) = 1 ]</p></li>
-</ul>
+\end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\det(J) = 1
+\]</span></p>
 <p>Hence, additive coupling is a <strong>volume-preserving transformation</strong>.</p>
+<hr>
 </section>
 <section id="rescaling-layer" class="level3">
 <h3 class="anchored" data-anchor-id="rescaling-layer">Rescaling Layer</h3>
 <p>To enable volume changes, NICE appends a final rescaling layer:</p>
 <ul>
-<li><p><strong>Forward Mapping</strong>: [ x_i = s_i z_i s_i &gt; 0 ]</p></li>
-<li><p><strong>Inverse Mapping</strong>: [ z_i = ]</p></li>
-<li><p><strong>Jacobian</strong>: [ J = (), (J) = _{i=1}^n s_i ]</p></li>
+<li><strong>Forward Mapping</strong>:</li>
 </ul>
+<p><span class="math display">\[
+x_i = s_i z_i \quad \text{with} \quad s_i &gt; 0
+\]</span></p>
+<ul>
+<li><strong>Inverse Mapping</strong>:</li>
+</ul>
+<p><span class="math display">\[
+z_i = \frac{x_i}{s_i}
+\]</span></p>
+<ul>
+<li><strong>Jacobian</strong>:</li>
+</ul>
+<p><span class="math display">\[
+J = \text{diag}(\mathbf{s})
+\quad \Rightarrow \quad
+\det(J) = \prod_{i=1}^n s_i
+\]</span></p>
 </section>
 </section>
 <section id="try-it-yourself-flow-model-in-pytorch" class="level2">
