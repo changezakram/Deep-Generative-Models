@@ -240,7 +240,7 @@ In this setup:
 - $\mathbf{x} = \mathbf{z}_M$ is the final transformed variable
 - The full transformation $f_\theta$ is the composition of $M$ sequential invertible functions. Each function slightly reshapes the distribution, and together they produce a highly expressive mapping from a simple base distribution to a complex one.
 
-The visuals below illustrate this idea from two angles. The first diagram shows the architectural structure of a normalizing flow, highlighting the composition of invertible steps. The second visual demonstrates the effect of stacking transformations — showing how a simple distribution is progressively warped into a more complex one.
+The visuals below illustrate this idea from two angles. The first diagram illustrates the structure of a normalizing flow as a composition of invertible steps, while the second shows how this architecture reshapes simple distributions into complex ones through repeated transformations.
 
 <div style="text-align: center;">
   <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Normalizing-flow.svg" width="700" alt="Normalizing Flow Illustration" />
