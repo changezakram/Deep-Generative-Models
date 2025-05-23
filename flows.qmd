@@ -322,7 +322,7 @@ This is why many modern flow models rely on **coupling layers** or **autoregress
 
 To implement scalable and expressive normalizing flows, researchers have designed several model families based on clever transformation strategies—particularly **coupling layers** and **autoregressive masking**.
 
-In this section, we’ll introduce a few influential architectures:
+In this section, we’ll introduce few of these architectures:
 
 - **NICE**: Introduces additive coupling layers for tractable Jacobians.
 - **Real-NVP**: Extends NICE with scaling and better expressivity.
