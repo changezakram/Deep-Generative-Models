@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>🔄 Normalizing Flow Model in PyTorch – Deep Generative Models</title>
+<title>RealNVP Model in PyTorch – Deep Generative Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">🔄 Normalizing Flow Model in PyTorch</h1>
+<h1 class="title">RealNVP Model in PyTorch</h1>
 </div>
 
 
@@ -163,100 +163,489 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This notebook provides a simple implementation of a normalizing flow model using affine coupling layers. We’ll walk through model definition, sampling, and log-likelihood computation.</p>
-<div id="753aafc9" class="cell">
+<p>This notebook provides a simple implementation of a RealNVP flow model.</p>
+<div id="753aafc9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> TensorDataset, DataLoader, random_split</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.distributions <span class="im">import</span> MultivariateNormal</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_moons</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="define-the-affine-coupling-layer" class="level2">
-<h2 class="anchored" data-anchor-id="define-the-affine-coupling-layer">🧱 Define the Affine Coupling Layer</h2>
-<div id="37e8fc24" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AffineCoupling(nn.Module):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, dim, hidden_dim<span class="op">=</span><span class="dv">128</span>):</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.scale_net <span class="op">=</span> nn.Sequential(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            nn.Linear(dim <span class="op">//</span> <span class="dv">2</span>, hidden_dim),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, dim <span class="op">//</span> <span class="dv">2</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            nn.Tanh()</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.shift_net <span class="op">=</span> nn.Sequential(</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            nn.Linear(dim <span class="op">//</span> <span class="dv">2</span>, hidden_dim),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, dim <span class="op">//</span> <span class="dv">2</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        x1, x2 <span class="op">=</span> x.chunk(<span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="va">self</span>.scale_net(x1)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> <span class="va">self</span>.shift_net(x1)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        y2 <span class="op">=</span> x2 <span class="op">*</span> torch.exp(s) <span class="op">+</span> t</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> torch.cat([x1, y2], dim<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        log_det <span class="op">=</span> s.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y, log_det</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> inverse(<span class="va">self</span>, y):</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        y1, y2 <span class="op">=</span> y.chunk(<span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="va">self</span>.scale_net(y1)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> <span class="va">self</span>.shift_net(y1)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        x2 <span class="op">=</span> (y2 <span class="op">-</span> t) <span class="op">*</span> torch.exp(<span class="op">-</span>s)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> torch.cat([y1, x2], dim<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        log_det <span class="op">=</span> <span class="op">-</span>s.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x, log_det</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="create-dataset" class="level1">
+<h1>Create Dataset</h1>
+<p>The dataset we will use is created by the make_moons function from the Python library sklearn. This create a noisy dataset of points in 2D that resemble two crescents.</p>
+<div id="T5m7kEM-aTkW" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:545}}" data-outputid="ef01c0bf-fdd9-43d7-e3d4-a020c2713946" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the two moons dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data, _ <span class="op">=</span> make_moons(n_samples<span class="op">=</span><span class="dv">10000</span>, noise<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.astype(<span class="st">"float32"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize using sklearn's StandardScaler</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>normalized_data <span class="op">=</span> scaler.fit_transform(data)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>normalized_data <span class="op">=</span> torch.tensor(normalized_data, dtype<span class="op">=</span>torch.float32)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.scatter(normalized_data[:, <span class="dv">0</span>], normalized_data[:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">"green"</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Normalized Two Moons Dataset"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"equal"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="normalizing_flow_pytorch_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-</section>
-<section id="build-the-flow-model" class="level2">
-<h2 class="anchored" data-anchor-id="build-the-flow-model">🔁 Build the Flow Model</h2>
-<div id="e5b810e1" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NormalizingFlowModel(nn.Module):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, dim, n_flows):</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dim <span class="op">=</span> dim</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base_dist <span class="op">=</span> torch.distributions.MultivariateNormal(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            torch.zeros(dim), torch.eye(dim)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flows <span class="op">=</span> nn.ModuleList([AffineCoupling(dim) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_flows)])</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        log_det_total <span class="op">=</span> torch.zeros(x.size(<span class="dv">0</span>))</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> flow <span class="kw">in</span> <span class="va">self</span>.flows:</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            x, log_det <span class="op">=</span> flow(x)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            log_det_total <span class="op">+=</span> log_det</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        log_prob <span class="op">=</span> <span class="va">self</span>.base_dist.log_prob(x) <span class="op">+</span> log_det_total</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> log_prob</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sample(<span class="va">self</span>, n_samples):</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="va">self</span>.base_dist.sample((n_samples,))</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> flow <span class="kw">in</span> <span class="bu">reversed</span>(<span class="va">self</span>.flows):</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            z, _ <span class="op">=</span> flow.inverse(z)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </section>
-<section id="example-sampling-and-density-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="example-sampling-and-density-evaluation">🔍 Example: Sampling and Density Evaluation</h2>
-<div id="5faba53e" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dim <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>n_flows <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>flow_model <span class="op">=</span> NormalizingFlowModel(dim, n_flows)</span>
+<section id="coupling-network-for-realnvp" class="level1">
+<h1>Coupling Network for RealNVP</h1>
+<div id="qiRmG_JTghvG" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CouplingMLP(nn.Module):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Neural network that outputs scale (s) and translation (t) vectors</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">    for a RealNVP coupling layer.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_dim, hidden_dim<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Translation network (output is linear)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.t_net <span class="op">=</span> nn.Sequential(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            nn.Linear(input_dim, hidden_dim),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, hidden_dim),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, hidden_dim),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, hidden_dim),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, input_dim)  <span class="co"># linear output</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Scale network (output is tanh)</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.s_net <span class="op">=</span> nn.Sequential(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>            nn.Linear(input_dim, hidden_dim),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, hidden_dim),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, hidden_dim),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, hidden_dim),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>            nn.Linear(hidden_dim, input_dim),</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>            nn.Tanh()  <span class="co"># ensure output scale stays within range</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns the scale (s) and translation (t) outputs for input x.</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="va">self</span>.s_net(x)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> <span class="va">self</span>.t_net(x)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> s, t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="realnvp" class="level1">
+<h1>RealNVP</h1>
+<div id="KzWPpqJIiLV5" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RealNVP(nn.Module):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_coupling_layers, input_dim<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate log-likelihood</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">10</span>, dim)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>log_probs <span class="op">=</span> flow_model(x)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Log-likelihoods:"</span>, log_probs)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.num_coupling_layers <span class="op">=</span> num_coupling_layers</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Prior distribution in latent space</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.prior <span class="op">=</span> MultivariateNormal(torch.zeros(input_dim), torch.eye(input_dim))</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample from model</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> flow_model.sample(<span class="dv">500</span>).detach().numpy()</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize first two dimensions</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(samples[:, <span class="dv">0</span>], samples[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Samples from Flow Model (dim 0 vs 1)"</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x0"</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"x1"</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Alternating binary masks, e.g., [0,1], [1,0], ...</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.masks <span class="op">=</span> torch.tensor(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            [[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]] <span class="op">*</span> (num_coupling_layers <span class="op">//</span> <span class="dv">2</span>),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            dtype<span class="op">=</span>torch.float32</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create coupling networks (scale and translate nets)</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.coupling_layers <span class="op">=</span> nn.ModuleList([</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            CouplingMLP(input_dim) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(num_coupling_layers)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, reverse<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">        Performs the RealNVP transformation.</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">        If reverse=False, maps data -&gt; latent space.</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">        If reverse=True, maps latent space -&gt; data.</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        log_det <span class="op">=</span> torch.zeros(x.size(<span class="dv">0</span>))</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        direction <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">if</span> <span class="kw">not</span> reverse <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        layers <span class="op">=</span> <span class="bu">range</span>(<span class="va">self</span>.num_coupling_layers)[::direction]</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> layers:</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>            mask <span class="op">=</span> <span class="va">self</span>.masks[i].to(x.device)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>            x_masked <span class="op">=</span> x <span class="op">*</span> mask</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>            s, t <span class="op">=</span> <span class="va">self</span>.coupling_layers[i](x_masked)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Only apply scale/translate to unmasked dims</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>            s <span class="op">=</span> s <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> mask)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> t <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> mask)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>            gate <span class="op">=</span> (direction <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>  <span class="co"># -1 if forward, 0 if reverse</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> reverse:</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                x <span class="op">=</span> (x <span class="op">-</span> t) <span class="op">*</span> torch.exp(<span class="op">-</span>s) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> mask) <span class="op">+</span> x_masked</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>                x <span class="op">=</span> (x <span class="op">*</span> torch.exp(s) <span class="op">+</span> t) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> mask) <span class="op">+</span> x_masked</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>            log_det <span class="op">+=</span> gate <span class="op">*</span> torch.<span class="bu">sum</span>(s, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x, log_det</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> log_prob(<span class="va">self</span>, x):</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co">        Computes the log-likelihood of the input data.</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>        z, log_det <span class="op">=</span> <span class="va">self</span>.forward(x, reverse<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>        log_likelihood <span class="op">=</span> <span class="va">self</span>.prior.log_prob(z) <span class="op">+</span> log_det</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> log_likelihood</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> loss(<span class="va">self</span>, x):</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="co">        Negative log-likelihood loss.</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="va">self</span>.log_prob(x).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="xU1oys_2ic1H" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RealNVP(num_coupling_layers<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.to(device)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">1e-4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="VqQs4FSqifeV" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume normalized_data is a (N, 2) torch tensor</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> TensorDataset(normalized_data)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>train_size <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.8</span> <span class="op">*</span> <span class="bu">len</span>(dataset))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>val_size <span class="op">=</span> <span class="bu">len</span>(dataset) <span class="op">-</span> train_size</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>train_data, val_data <span class="op">=</span> random_split(dataset, [train_size, val_size])</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(train_data, batch_size<span class="op">=</span><span class="dv">256</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>val_loader <span class="op">=</span> DataLoader(val_data, batch_size<span class="op">=</span><span class="dv">256</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="k_6IhO9dihix" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0143ebaa-8a6b-43af-d650-e3da1cf04f3b" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>EPOCHS <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>model.train()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(EPOCHS):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    train_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    model.train()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> batch <span class="kw">in</span> train_loader:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> batch[<span class="dv">0</span>].to(device)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> model.loss(x)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        train_loss <span class="op">+=</span> loss.item() <span class="op">*</span> x.size(<span class="dv">0</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    val_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">eval</span>()</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> batch <span class="kw">in</span> val_loader:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> batch[<span class="dv">0</span>].to(device)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            val_loss <span class="op">+=</span> model.loss(x).item() <span class="op">*</span> x.size(<span class="dv">0</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>EPOCHS<span class="sc">}</span><span class="ss"> | Train Loss: </span><span class="sc">{</span>train_loss<span class="op">/</span>train_size<span class="sc">:.4f}</span><span class="ss"> | Val Loss: </span><span class="sc">{</span>val_loss<span class="op">/</span>val_size<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 1/200 | Train Loss: 1.5478 | Val Loss: -0.3208
+Epoch 2/200 | Train Loss: -2.2334 | Val Loss: -3.7980
+Epoch 3/200 | Train Loss: -4.0444 | Val Loss: -4.1352
+Epoch 4/200 | Train Loss: -4.1448 | Val Loss: -4.1510
+Epoch 5/200 | Train Loss: -4.1534 | Val Loss: -4.1554
+Epoch 6/200 | Train Loss: -4.1564 | Val Loss: -4.1573
+Epoch 7/200 | Train Loss: -4.1579 | Val Loss: -4.1583
+Epoch 8/200 | Train Loss: -4.1586 | Val Loss: -4.1589
+Epoch 9/200 | Train Loss: -4.1591 | Val Loss: -4.1592
+Epoch 10/200 | Train Loss: -4.1594 | Val Loss: -4.1595
+Epoch 11/200 | Train Loss: -4.1596 | Val Loss: -4.1596
+Epoch 12/200 | Train Loss: -4.1597 | Val Loss: -4.1598
+Epoch 13/200 | Train Loss: -4.1599 | Val Loss: -4.1599
+Epoch 14/200 | Train Loss: -4.1600 | Val Loss: -4.1600
+Epoch 15/200 | Train Loss: -4.1601 | Val Loss: -4.1599
+Epoch 16/200 | Train Loss: -4.1601 | Val Loss: -4.1600
+Epoch 17/200 | Train Loss: -4.1602 | Val Loss: -4.1602
+Epoch 18/200 | Train Loss: -4.1602 | Val Loss: -4.1602
+Epoch 19/200 | Train Loss: -4.1602 | Val Loss: -4.1602
+Epoch 20/200 | Train Loss: -4.1603 | Val Loss: -4.1603
+Epoch 21/200 | Train Loss: -4.1603 | Val Loss: -4.1603
+Epoch 22/200 | Train Loss: -4.1603 | Val Loss: -4.1603
+Epoch 23/200 | Train Loss: -4.1603 | Val Loss: -4.1603
+Epoch 24/200 | Train Loss: -4.1603 | Val Loss: -4.1602
+Epoch 25/200 | Train Loss: -4.1603 | Val Loss: -4.1603
+Epoch 26/200 | Train Loss: -4.1604 | Val Loss: -4.1604
+Epoch 27/200 | Train Loss: -4.1604 | Val Loss: -4.1604
+Epoch 28/200 | Train Loss: -4.1604 | Val Loss: -4.1604
+Epoch 29/200 | Train Loss: -4.1604 | Val Loss: -4.1604
+Epoch 30/200 | Train Loss: -4.1604 | Val Loss: -4.1605
+Epoch 31/200 | Train Loss: -4.1604 | Val Loss: -4.1605
+Epoch 32/200 | Train Loss: -4.1605 | Val Loss: -4.1605
+Epoch 33/200 | Train Loss: -4.1605 | Val Loss: -4.1605
+Epoch 34/200 | Train Loss: -4.1605 | Val Loss: -4.1606
+Epoch 35/200 | Train Loss: -4.1605 | Val Loss: -4.1606
+Epoch 36/200 | Train Loss: -4.1606 | Val Loss: -4.1606
+Epoch 37/200 | Train Loss: -4.1606 | Val Loss: -4.1606
+Epoch 38/200 | Train Loss: -4.1606 | Val Loss: -4.1606
+Epoch 39/200 | Train Loss: -4.1606 | Val Loss: -4.1606
+Epoch 40/200 | Train Loss: -4.1606 | Val Loss: -4.1606
+Epoch 41/200 | Train Loss: -4.1606 | Val Loss: -4.1607
+Epoch 42/200 | Train Loss: -4.1606 | Val Loss: -4.1607
+Epoch 43/200 | Train Loss: -4.1606 | Val Loss: -4.1606
+Epoch 44/200 | Train Loss: -4.1606 | Val Loss: -4.1607
+Epoch 45/200 | Train Loss: -4.1607 | Val Loss: -4.1606
+Epoch 46/200 | Train Loss: -4.1607 | Val Loss: -4.1606
+Epoch 47/200 | Train Loss: -4.1607 | Val Loss: -4.1607
+Epoch 48/200 | Train Loss: -4.1607 | Val Loss: -4.1608
+Epoch 49/200 | Train Loss: -4.1607 | Val Loss: -4.1606
+Epoch 50/200 | Train Loss: -4.1607 | Val Loss: -4.1607
+Epoch 51/200 | Train Loss: -4.1607 | Val Loss: -4.1607
+Epoch 52/200 | Train Loss: -4.1607 | Val Loss: -4.1607
+Epoch 53/200 | Train Loss: -4.1608 | Val Loss: -4.1608
+Epoch 54/200 | Train Loss: -4.1608 | Val Loss: -4.1608
+Epoch 55/200 | Train Loss: -4.1608 | Val Loss: -4.1609
+Epoch 56/200 | Train Loss: -4.1608 | Val Loss: -4.1608
+Epoch 57/200 | Train Loss: -4.1608 | Val Loss: -4.1609
+Epoch 58/200 | Train Loss: -4.1608 | Val Loss: -4.1609
+Epoch 59/200 | Train Loss: -4.1608 | Val Loss: -4.1609
+Epoch 60/200 | Train Loss: -4.1609 | Val Loss: -4.1609
+Epoch 61/200 | Train Loss: -4.1609 | Val Loss: -4.1610
+Epoch 62/200 | Train Loss: -4.1610 | Val Loss: -4.1610
+Epoch 63/200 | Train Loss: -4.1609 | Val Loss: -4.1610
+Epoch 64/200 | Train Loss: -4.1610 | Val Loss: -4.1610
+Epoch 65/200 | Train Loss: -4.1610 | Val Loss: -4.1610
+Epoch 66/200 | Train Loss: -4.1610 | Val Loss: -4.1611
+Epoch 67/200 | Train Loss: -4.1610 | Val Loss: -4.1610
+Epoch 68/200 | Train Loss: -4.1610 | Val Loss: -4.1609
+Epoch 69/200 | Train Loss: -4.1610 | Val Loss: -4.1611
+Epoch 70/200 | Train Loss: -4.1610 | Val Loss: -4.1611
+Epoch 71/200 | Train Loss: -4.1611 | Val Loss: -4.1611
+Epoch 72/200 | Train Loss: -4.1611 | Val Loss: -4.1611
+Epoch 73/200 | Train Loss: -4.1611 | Val Loss: -4.1612
+Epoch 74/200 | Train Loss: -4.1612 | Val Loss: -4.1612
+Epoch 75/200 | Train Loss: -4.1611 | Val Loss: -4.1611
+Epoch 76/200 | Train Loss: -4.1612 | Val Loss: -4.1612
+Epoch 77/200 | Train Loss: -4.1611 | Val Loss: -4.1611
+Epoch 78/200 | Train Loss: -4.1611 | Val Loss: -4.1612
+Epoch 79/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 80/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 81/200 | Train Loss: -4.1612 | Val Loss: -4.1612
+Epoch 82/200 | Train Loss: -4.1612 | Val Loss: -4.1612
+Epoch 83/200 | Train Loss: -4.1612 | Val Loss: -4.1609
+Epoch 84/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 85/200 | Train Loss: -4.1612 | Val Loss: -4.1612
+Epoch 86/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 87/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 88/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 89/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 90/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 91/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 92/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 93/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 94/200 | Train Loss: -4.1613 | Val Loss: -4.1612
+Epoch 95/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 96/200 | Train Loss: -4.1613 | Val Loss: -4.1612
+Epoch 97/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 98/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 99/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 100/200 | Train Loss: -4.1613 | Val Loss: -4.1611
+Epoch 101/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 102/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 103/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 104/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 105/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 106/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 107/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 108/200 | Train Loss: -4.1613 | Val Loss: -4.1611
+Epoch 109/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 110/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 111/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 112/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 113/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 114/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 115/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 116/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 117/200 | Train Loss: -4.1613 | Val Loss: -4.1611
+Epoch 118/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 119/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 120/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 121/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 122/200 | Train Loss: -4.1612 | Val Loss: -4.1613
+Epoch 123/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 124/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 125/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 126/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 127/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 128/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 129/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 130/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 131/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 132/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 133/200 | Train Loss: -4.1614 | Val Loss: -4.1613
+Epoch 134/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 135/200 | Train Loss: -4.1614 | Val Loss: -4.1612
+Epoch 136/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 137/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 138/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 139/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 140/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 141/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 142/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 143/200 | Train Loss: -4.1614 | Val Loss: -4.1613
+Epoch 144/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 145/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 146/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 147/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 148/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 149/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 150/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 151/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 152/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 153/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 154/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 155/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 156/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 157/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 158/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 159/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 160/200 | Train Loss: -4.1614 | Val Loss: -4.1611
+Epoch 161/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 162/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 163/200 | Train Loss: -4.1614 | Val Loss: -4.1613
+Epoch 164/200 | Train Loss: -4.1613 | Val Loss: -4.1613
+Epoch 165/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 166/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 167/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 168/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 169/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 170/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 171/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 172/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 173/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 174/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 175/200 | Train Loss: -4.1613 | Val Loss: -4.1614
+Epoch 176/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 177/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 178/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 179/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 180/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 181/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 182/200 | Train Loss: -4.1614 | Val Loss: -4.1613
+Epoch 183/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 184/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 185/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 186/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 187/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 188/200 | Train Loss: -4.1615 | Val Loss: -4.1615
+Epoch 189/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 190/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 191/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 192/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 193/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 194/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 195/200 | Train Loss: -4.1614 | Val Loss: -4.1614
+Epoch 196/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 197/200 | Train Loss: -4.1614 | Val Loss: -4.1613
+Epoch 198/200 | Train Loss: -4.1614 | Val Loss: -4.1615
+Epoch 199/200 | Train Loss: -4.1615 | Val Loss: -4.1614
+Epoch 200/200 | Train Loss: -4.1614 | Val Loss: -4.1614</code></pre>
+</div>
+</div>
+<div id="j-uQidARqr5N" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:899}}" data-outputid="2a12ddcb-ae3a-48fe-c679-00b3157a2663" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot loss manually if tracked</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (Skip if you didn't store loss during training)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Inference: X → Z</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    z, _ <span class="op">=</span> model(normalized_data.to(device), reverse<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> z.cpu().numpy()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generation: Z → X</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> torch.randn(<span class="dv">3000</span>, <span class="dv">2</span>).to(device)  <span class="co"># latent samples</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    x_gen, _ <span class="op">=</span> model(samples, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    x_gen <span class="op">=</span> x_gen.cpu().numpy()</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> samples.cpu().numpy()</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>f, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">15</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Original data</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].scatter(normalized_data[:, <span class="dv">0</span>], normalized_data[:, <span class="dv">1</span>], color<span class="op">=</span><span class="st">"r"</span>, s<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Inference data space X"</span>, xlabel<span class="op">=</span><span class="st">"x"</span>, ylabel<span class="op">=</span><span class="st">"y"</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Encoded latent space</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].scatter(z[:, <span class="dv">0</span>], z[:, <span class="dv">1</span>], color<span class="op">=</span><span class="st">"r"</span>, s<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Inference latent space Z"</span>, xlabel<span class="op">=</span><span class="st">"x"</span>, ylabel<span class="op">=</span><span class="st">"y"</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_xlim([<span class="op">-</span><span class="fl">3.5</span>, <span class="dv">4</span>])</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_ylim([<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>])</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Sampled latent Z</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].scatter(samples[:, <span class="dv">0</span>], samples[:, <span class="dv">1</span>], color<span class="op">=</span><span class="st">"g"</span>, s<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Generated latent space Z"</span>, xlabel<span class="op">=</span><span class="st">"x"</span>, ylabel<span class="op">=</span><span class="st">"y"</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Generated data</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].scatter(x_gen[:, <span class="dv">0</span>], x_gen[:, <span class="dv">1</span>], color<span class="op">=</span><span class="st">"g"</span>, s<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Generated data space X"</span>, xlabel<span class="op">=</span><span class="st">"x"</span>, ylabel<span class="op">=</span><span class="st">"y"</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_xlim([<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>])</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_ylim([<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>])</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="normalizing_flow_pytorch_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="pa8bSB1oqMcx" class="cell" data-outputid="9ee2694a-f0be-41d3-93fe-75de770ac94d" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:545}}" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Sample from base distribution (latent space)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> torch.randn(<span class="dv">1000</span>, <span class="dv">2</span>).to(device)  <span class="co"># &lt;-- This is where the line goes</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Pass through RealNVP model in reverse to generate data</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    x_sampled, _ <span class="op">=</span> model(z, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    x_sampled <span class="op">=</span> x_sampled.cpu().numpy()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Visualize</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_sampled[:, <span class="dv">0</span>], x_sampled[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'coral'</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Samples Generated from RealNVP Model"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"equal"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="normalizing_flow_pytorch_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
