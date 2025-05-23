@@ -22,8 +22,8 @@ Welcome to my deep generative models resource. This site covers:
 - High-quality image generation
 
 ### 4. Normalizing Flows
-- Invertible transformations for exact likelihood
-- Flexible density estimation
+- Invertible transformations for exact likelihood  
+- Flexible density estimation  
 - [Learn more about Normalizing Flows](flows.html)
 
 ### 5. Energy-Based Models (EBMs)
