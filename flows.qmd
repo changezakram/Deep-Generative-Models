@@ -446,6 +446,7 @@ $$
 $$
 
 This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
+
 ## 🧪 Try It Yourself: Flow Model in Pytorch
 
 You can explore a minimal PyTorch implementation of a normalizing flow model:
