@@ -118,9 +118,12 @@ This expression tells us how much the transformation $A$ scales space. For examp
 
 To make this idea concrete, consider the illustration below. The left figure shows a uniform distribution over the unit square $[0, 1]^2$. When we apply the linear transformation $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, each point in the square is mapped to a new location, stretching the square into a parallelogram. The area of this parallelogram — and hence the volume scaling — is given by the **absolute value of the determinant** $|\det(A)| = |ad - bc|$.
 
-![Linear transformation of a unit square into a parallelogram](images/determinant_area.png)
-
-*Figure: A linear transformation maps a unit square to a parallelogram.*
+<div style="text-align: center;">
+  <img src="images/determinant_area.png" alt="Linear transformation of a unit square into a parallelogram" width="500"/>
+  <p style="color: gray; font-size: 0.95em;"><em>
+    A linear transformation maps a unit square to a parallelogram.
+  </em></p>
+</div>
 
 This geometric intuition becomes essential when we apply the same logic to probability densities. The area of the parallelogram equals the absolute value of the determinant, |det(A)|, indicating how the transformation scales area.
 

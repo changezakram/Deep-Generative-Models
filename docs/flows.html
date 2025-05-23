@@ -242,13 +242,12 @@ p_X(x) = p_Z(z) \cdot \left| \frac{1}{f'(z)} \right|
 \]</span></p>
 <p>This expression tells us how much the transformation <span class="math inline">\(A\)</span> scales space. For example, if <span class="math inline">\(|\det(A)| = 2\)</span>, the transformation doubles the volume.</p>
 <p>To make this idea concrete, consider the illustration below. The left figure shows a uniform distribution over the unit square <span class="math inline">\([0, 1]^2\)</span>. When we apply the linear transformation <span class="math inline">\(A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)</span>, each point in the square is mapped to a new location, stretching the square into a parallelogram. The area of this parallelogram — and hence the volume scaling — is given by the <strong>absolute value of the determinant</strong> <span class="math inline">\(|\det(A)| = |ad - bc|\)</span>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/determinant_area.png" class="img-fluid figure-img"></p>
-<figcaption>Linear transformation of a unit square into a parallelogram</figcaption>
-</figure>
+<div style="text-align: center;">
+<img src="images/determinant_area.png" alt="Linear transformation of a unit square into a parallelogram" width="500">
+<p style="color: gray; font-size: 0.95em;">
+<em> A linear transformation maps a unit square to a parallelogram. </em>
+</p>
 </div>
-<p><em>Figure: A linear transformation maps a unit square to a parallelogram.</em></p>
 <p>This geometric intuition becomes essential when we apply the same logic to probability densities. The area of the parallelogram equals the absolute value of the determinant, |det(A)|, indicating how the transformation scales area.</p>
 </section>
 <section id="determinants-and-probability-density" class="level3">
