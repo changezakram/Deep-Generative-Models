@@ -247,10 +247,9 @@ To visualize this process, the following example demonstrates how stacking multi
 
 <div style="text-align: center;">
   <img src="images/planar_flow_transformations.png" alt="Planar Flow Transformations" width="600"/>
-  <p style="color: gray; font-size: 0.95em;">
-    Transformation of simple base distributions (Gaussian, Uniform) into complex target distributions.  
+  <p style="color: gray; font-size: 0.95em;"><em>
     Adapted from class notes (XCS236, Stanford), originally based on <i>Rezende & Mohamed, 2016</i>.
-  </p>
+  </em></p>
 </div>
 
 The density of $\mathbf{x}$ is given by the change-of-variable formula:
