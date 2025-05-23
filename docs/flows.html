@@ -421,6 +421,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </ul>
 <section id="additive-coupling-layer" class="level4">
 <h4 class="anchored" data-anchor-id="additive-coupling-layer">Additive Coupling Layer</h4>
+<p>To make the transformation invertible and computationally efficient, NICE splits the input vector into two parts. One part is kept unchanged, while the other part is modified using a function of the unchanged part. This way, we can easily reverse the process because we always know what was kept intact.</p>
 <p>We partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> for some <span class="math inline">\(1 \leq d &lt; n\)</span>.</p>
 <ul>
 <li><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</li>
@@ -444,6 +445,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <ul>
 <li><strong>Jacobian</strong> of the forward mapping:</li>
 </ul>
+<p>The Jacobian matrix captures how much the transformation stretches or compresses space. Because part of the input is unchanged and the other part is only shifted (not scaled), the determinant of the Jacobian is 1 — meaning the transformation preserves volume.</p>
 <p><span class="math display">\[
 J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
 \begin{pmatrix}
