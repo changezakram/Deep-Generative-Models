@@ -331,7 +331,15 @@ In this section, we’ll introduce few of these architectures:
 
 We’ll walk through the core design behind each and how they achieve invertibility and efficient learning.
 
-### Additive Coupling Layer
+
+### NICE: Nonlinear Independent Components Estimation
+
+The NICE model introduces two key components to construct invertible transformations:
+
+- **Additive Coupling Layers**: These preserve volume and maintain a simple Jacobian structure.
+- **Rescaling Layers**: These adjust volume and allow the model to capture more expressive distributions.
+
+#### Additive Coupling Layer
 
 We partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$ for some $1 \leq d < n$.
 
@@ -369,9 +377,8 @@ $$
 
 Hence, additive coupling is a **volume-preserving transformation**.
 
----
 
-### Rescaling Layer
+#### Rescaling Layer
 
 To enable volume changes, NICE appends a final rescaling layer:
 
