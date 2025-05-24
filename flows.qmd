@@ -474,4 +474,6 @@ You can explore a minimal PyTorch implementation of a normalizing flow model:
 - **Eric Jang.** (2018). *Normalizing Flows Tutorial – Part 1*. [Blog](https://blog.evjang.com/2018/01/nf1.html)  
 - **Eric Jang.** (2018). *Normalizing Flows Tutorial – Part 2*. [Blog](https://blog.evjang.com/2018/01/nf2.html)  
 - **UT Austin Calculus Notes.** *Jacobian and Change of Variables*. [Web](https://web.ma.utexas.edu/users/m408s/m408d/CurrentWeb/LM15-10-2.php)
+- **Kobyzev, Prince, & Brubaker.** (2019). *Normalizing Flows: An Introduction and Review of Current Methods*. [arXiv PDF](https://arxiv.org/pdf/1908.09257)  
+
 
