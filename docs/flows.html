@@ -465,9 +465,8 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <h3 class="anchored" data-anchor-id="nice-nonlinear-independent-components-estimation">NICE: Nonlinear Independent Components Estimation</h3>
 <p>The NICE (Nonlinear Independent Components Estimation) model, introduced by Laurent Dinh, David Krueger, and Yoshua Bengio in 2014, is a foundational work in the development of normalizing flows.</p>
 <p>It provides a framework for modeling complex high-dimensional data distributions through a series of <strong>invertible transformations</strong> that map data to a latent space with a factorized distribution. Its design enables exact log-likelihood computation and efficient sampling — a powerful combination in generative modeling.</p>
-</section>
-<section id="core-concepts" class="level3">
-<h3 class="anchored" data-anchor-id="core-concepts">Core Concepts</h3>
+<section id="core-concepts" class="level4">
+<h4 class="anchored" data-anchor-id="core-concepts">Core Concepts</h4>
 <ul>
 <li><p><strong>Invertible Transformations</strong>:<br>
 NICE constructs a chain of invertible functions to map inputs to latent variables. This ensures that both the forward and inverse transformations are tractable.</p></li>
@@ -480,6 +479,7 @@ The original NICE paper includes an optional scaling layer at the end to allow s
 <li><p><strong>Exact Log-Likelihood</strong>:<br>
 Unlike VAEs or GANs, which rely on approximations, NICE enables <strong>exact</strong> evaluation of the log-likelihood, making it a fully probabilistic, likelihood-based model.</p></li>
 </ul>
+</section>
 <section id="additive-coupling-layer" class="level4">
 <h4 class="anchored" data-anchor-id="additive-coupling-layer">Additive Coupling Layer</h4>
 <p>To make the transformation invertible and computationally efficient, NICE splits the input vector into two parts. One part is kept unchanged, while the other part is modified using a function of the unchanged part. This way, we can easily reverse the process because we always know what was kept intact.</p>

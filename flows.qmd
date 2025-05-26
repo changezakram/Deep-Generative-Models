@@ -371,7 +371,7 @@ The NICE (Nonlinear Independent Components Estimation) model, introduced by Laur
 
 It provides a framework for modeling complex high-dimensional data distributions through a series of **invertible transformations** that map data to a latent space with a factorized distribution. Its design enables exact log-likelihood computation and efficient sampling — a powerful combination in generative modeling.
 
-### Core Concepts
+#### Core Concepts
 
 - **Invertible Transformations**:  
   NICE constructs a chain of invertible functions to map inputs to latent variables. This ensures that both the forward and inverse transformations are tractable.
