@@ -472,16 +472,6 @@ $$
 
 This equation modifies the second half of the input by **scaling** and **shifting** it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.
 
-<div style="text-align: center;">
-  <img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800"/>
-  <p style="color: gray; font-size: 0.95em;"><em>
-    Top-left: Original two-moons data (\(X\))  
-    Top-right: Encoded latent space (\(Z\))  
-    Bottom-left: Latent samples from base distribution  
-    Bottom-right: Generated samples mapped back to \(X\) space  
-  </em></p>
-</div>
-
 ### 📐 Efficient Jacobian
 
 Because the first half \( \mathbf{x}_{1:d} \) is copied directly and only \( \mathbf{x}_{d+1:n} \) is transformed element-wise, the Jacobian of this transformation has a triangular structure:
@@ -547,8 +537,6 @@ The following plots illustrate how RealNVP transforms data in practice:
     Bottom-right: Generated samples mapped back to \(X\) space  
   </em></p>
 </div>
-
-These results show how RealNVP learns both directions: transforming structured data to a Gaussian latent space and generating realistic samples from noise.
 
 ---
 
