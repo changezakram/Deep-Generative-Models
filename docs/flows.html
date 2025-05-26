@@ -492,7 +492,7 @@ J = \text{diag}(\mathbf{s})
 <em> Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation. </em>
 </p>
 </div>
-<p>We again partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>.</p>
+<p>We partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>.</p>
 <ul>
 <li><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</li>
 </ul>
@@ -512,69 +512,96 @@ J = \text{diag}(\mathbf{s})
 \mathbf{z}_{d+1:n} &amp;= \left( \mathbf{x}_{d+1:n} - \mu_\theta(\mathbf{x}_{1:d}) \right) \odot \exp(-\alpha_\theta(\mathbf{x}_{1:d}))
 \end{aligned}
 \]</span></p>
-<p>We again partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>.</p>
-<ul>
-<li><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</li>
-</ul>
-<p><span class="math display">\[
+<p>The inverse mapping recovers the latent variable <span class="math inline">\(\mathbf{z}\)</span> from the data <span class="math inline">\(\mathbf{x}\)</span>. The first subset <span class="math inline">\(\mathbf{x}_{1:d}\)</span> remains unchanged and directly becomes <span class="math inline">\(\mathbf{z}_{1:d}\)</span>. To reconstruct <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>, we first subtract the shift <span class="math inline">\(\boldsymbol{\mu}_\theta(\mathbf{x}_{1:d})\)</span> from <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span>, and then apply an elementwise rescaling using <span class="math inline">\(\exp(-\boldsymbol{\alpha}_\theta(\mathbf{x}_{1:d}))\)</span>. This inversion relies on the same neural networks used in the forward pass and ensures that the transformation is exactly reversible.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>We again partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>.</td>
+</tr>
+<tr class="even">
+<td>- <strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</td>
+</tr>
+<tr class="odd">
+<td><span class="math display">\[
 \mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
-\]</span></p>
-<p><span class="math display">\[
+\]</span></td>
+</tr>
+<tr class="even">
+<td><span class="math display">\[
 \mathbf{x}_{d+1:n} = \mathbf{z}_{d+1:n} \odot \exp(s(\mathbf{z}_{1:d})) + t(\mathbf{z}_{1:d})
-\]</span></p>
-<p>This equation modifies the second half of the input by <strong>scaling</strong> and <strong>shifting</strong> it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.</p>
-<ul>
-<li><strong>Inverse Mapping</strong> <span class="math inline">\(\mathbf{x} \mapsto \mathbf{z}\)</span>:</li>
-</ul>
-<p><span class="math display">\[
+\]</span></td>
+</tr>
+<tr class="odd">
+<td>This equation modifies the second half of the input by <strong>scaling</strong> and <strong>shifting</strong> it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.</td>
+</tr>
+<tr class="even">
+<td>- <strong>Inverse Mapping</strong> <span class="math inline">\(\mathbf{x} \mapsto \mathbf{z}\)</span>:</td>
+</tr>
+<tr class="odd">
+<td><span class="math display">\[
 \mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
-\]</span></p>
-<p><span class="math display">\[
+\]</span></td>
+</tr>
+<tr class="even">
+<td><span class="math display">\[
 \mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
-\]</span></p>
-<section id="efficient-jacobian" class="level4">
-<h4 class="anchored" data-anchor-id="efficient-jacobian">Efficient Jacobian</h4>
-<p>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</p>
-<p><span class="math display">\[
+\]</span></td>
+</tr>
+<tr class="odd">
+<td>#### Efficient Jacobian</td>
+</tr>
+<tr class="even">
+<td>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</td>
+</tr>
+<tr class="odd">
+<td><span class="math display">\[
 \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
 \begin{pmatrix}
 I_d &amp; 0 \\
 \frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} &amp; \text{diag} \left( \exp(s(\mathbf{z}_{1:d})) \right)
 \end{pmatrix}
-\]</span></p>
-<p>The lower-right block is a diagonal matrix because each element of ( _{d+1:n} ) is scaled independently. This makes the <strong>Jacobian determinant</strong> simply the product of diagonal entries:</p>
-<p><span class="math display">\[
+\]</span></td>
+</tr>
+<tr class="even">
+<td>The lower-right block is a diagonal matrix because each element of ( _{d+1:n} ) is scaled independently. This makes the <strong>Jacobian determinant</strong> simply the product of diagonal entries:</td>
+</tr>
+<tr class="odd">
+<td><span class="math display">\[
 \det(J) = \prod_{i=d+1}^{n} \exp(s(\mathbf{z}_{1:d})_i) = \exp \left( \sum_{i=d+1}^{n} s(\mathbf{z}_{1:d})_i \right)
-\]</span></p>
-<blockquote class="blockquote">
-<p><strong>Why this matters:</strong> The design ensures that the transformation is invertible <strong>and</strong> the log-determinant is <strong>easy to compute</strong> — both are essential for tractable likelihood estimation.</p>
-</blockquote>
-<p>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</p>
-</section>
-<section id="stacking-coupling-layers" class="level4">
-<h4 class="anchored" data-anchor-id="stacking-coupling-layers">Stacking Coupling Layers</h4>
-<p>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</p>
-<ul>
-<li>In one layer, the first half is fixed, and the second half is transformed.</li>
-<li>In the next layer, the roles are reversed.</li>
-</ul>
-<p>This alternating structure ensures: - All input dimensions are updated across layers - The full transformation remains invertible - The total log-determinant is the <strong>sum of the log-determinants</strong> of each layer</p>
-</section>
-<section id="realnvp-in-action-two-moons" class="level4">
-<h4 class="anchored" data-anchor-id="realnvp-in-action-two-moons">RealNVP in Action (Two Moons)</h4>
-<p>The following plots illustrate how RealNVP transforms data in practice:</p>
-<div style="text-align: center;">
-<img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800">
-<p style="color: gray; font-size: 0.95em;">
-<em> Top-left: Original two-moons data ((X))<br>
-Top-right: Encoded latent space ((Z))<br>
-Bottom-left: Latent samples from base distribution<br>
-Bottom-right: Generated samples mapped back to (X) space<br>
-</em>
-</p>
-</div>
-<hr>
-</section>
+\]</span></td>
+</tr>
+<tr class="even">
+<td>&gt; <strong>Why this matters:</strong> The design ensures that the transformation is invertible <strong>and</strong> the log-determinant is <strong>easy to compute</strong> — both are essential for tractable likelihood estimation.</td>
+</tr>
+<tr class="odd">
+<td>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</td>
+</tr>
+<tr class="even">
+<td>#### Stacking Coupling Layers</td>
+</tr>
+<tr class="odd">
+<td>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</td>
+</tr>
+<tr class="even">
+<td>- In one layer, the first half is fixed, and the second half is transformed. - In the next layer, the roles are reversed.</td>
+</tr>
+<tr class="odd">
+<td>This alternating structure ensures: - All input dimensions are updated across layers - The full transformation remains invertible - The total log-determinant is the <strong>sum of the log-determinants</strong> of each layer</td>
+</tr>
+<tr class="even">
+<td>#### RealNVP in Action (Two Moons)</td>
+</tr>
+<tr class="odd">
+<td>The following plots illustrate how RealNVP transforms data in practice:</td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="try-it-yourself-flow-model-in-pytorch" class="level2">

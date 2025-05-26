@@ -420,7 +420,7 @@ Real-NVP (Dinh et al., 2017) extends NICE by introducing a **scaling function** 
 </div>
 
 
-We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
+We partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
 
 - **Forward Mapping** $\mathbf{z} \mapsto \mathbf{x}$:
 
@@ -442,9 +442,9 @@ $$
 \end{aligned}
 $$
 
+The inverse mapping recovers the latent variable $\mathbf{z}$ from the data $\mathbf{x}$. The first subset $\mathbf{x}_{1:d}$ remains unchanged and directly becomes $\mathbf{z}_{1:d}$. To reconstruct $\mathbf{z}_{d+1:n}$, we first subtract the shift $\boldsymbol{\mu}_\theta(\mathbf{x}_{1:d})$ from $\mathbf{x}_{d+1:n}$, and then apply an elementwise rescaling using $\exp(-\boldsymbol{\alpha}_\theta(\mathbf{x}_{1:d}))$. This inversion relies on the same neural networks used in the forward pass and ensures that the transformation is exactly reversible.
 
-
-
+---
 We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
 
 - **Forward Mapping** $\mathbf{z} \mapsto \mathbf{x}$:
