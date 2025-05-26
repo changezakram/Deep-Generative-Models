@@ -492,6 +492,12 @@ J = \text{diag}(\mathbf{s})
 <em> Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation. </em>
 </p>
 </div>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{x}_{1:d} &amp;= \mathbf{z}_{1:d} \quad \text{(identity transformation)} \\\\
+\mathbf{x}_{d+1:n} &amp;= \mathbf{z}_{d+1:n} \odot \exp(\alpha_\theta(\mathbf{z}_{1:d})) + \mu_\theta(\mathbf{z}_{1:d})
+\end{aligned}
+\]</span></p>
 <p>We again partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>.</p>
 <ul>
 <li><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</li>

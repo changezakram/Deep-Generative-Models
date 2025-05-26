@@ -419,6 +419,15 @@ Real-NVP (Dinh et al., 2017) extends NICE by introducing a **scaling function** 
   </em></p>
 </div>
 
+
+$$
+\begin{aligned}
+\mathbf{x}_{1:d} &= \mathbf{z}_{1:d} \quad \text{(identity transformation)} \\\\
+\mathbf{x}_{d+1:n} &= \mathbf{z}_{d+1:n} \odot \exp(\alpha_\theta(\mathbf{z}_{1:d})) + \mu_\theta(\mathbf{z}_{1:d})
+\end{aligned}
+$$
+
+
 We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
 
 - **Forward Mapping** $\mathbf{z} \mapsto \mathbf{x}$:
