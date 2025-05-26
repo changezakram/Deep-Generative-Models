@@ -420,6 +420,10 @@ Real-NVP (Dinh et al., 2017) extends NICE by introducing a **scaling function** 
 </div>
 
 
+We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
+
+- **Forward Mapping** $\mathbf{z} \mapsto \mathbf{x}$:
+
 $$
 \begin{aligned}
 \mathbf{x}_{1:d} &= \mathbf{z}_{1:d} \quad \text{(identity transformation)} \\\\
@@ -428,6 +432,18 @@ $$
 $$
 
 Here, $\boldsymbol{\alpha}_\theta(\cdot)$ and $\boldsymbol{\mu}_\theta(\cdot)$ are **neural networks with parameters $\theta$** that take the unchanged subset $\mathbf{z}_{1:d}$ as input and produce scale and shift parameters, respectively, for the transformed subset $\mathbf{z}_{d+1:n}$. These functions enable flexible, learnable affine transformations while preserving invertibility.
+
+- **Inverse Mapping** $\mathbf{x} \mapsto \mathbf{z}$:
+
+$$
+\begin{aligned}
+\mathbf{z}_{1:d} &= \mathbf{x}_{1:d} \quad \text{(identity transformation)} \\\\
+\mathbf{z}_{d+1:n} &= \left( \mathbf{x}_{d+1:n} - \mu_\theta(\mathbf{x}_{1:d}) \right) \odot \exp(-\alpha_\theta(\mathbf{x}_{1:d}))
+\end{aligned}
+$$
+
+
+
 
 We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
 
