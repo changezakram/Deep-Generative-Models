@@ -453,6 +453,103 @@ $$
 
 This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
 
+------
+## 🔄 Real-NVP: Non-Volume Preserving Extension of NICE
+
+Real-NVP (Dinh et al., 2017) extends NICE by introducing a **scaling function** that allows the model to change volume, enabling more expressive transformations. This is achieved using **affine coupling layers** that apply learned scaling and translation functions to part of the input while keeping the rest unchanged.
+
+### 🔀 Coupling Layer Transformation
+
+We again partition the input \( \mathbf{z} \in \mathbb{R}^n \) into two disjoint subsets: \( \mathbf{z}_{1:d} \) and \( \mathbf{z}_{d+1:n} \). The transformation is defined as follows:
+
+$$
+\mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
+$$
+
+$$
+\mathbf{x}_{d+1:n} = \mathbf{z}_{d+1:n} \odot \exp(s(\mathbf{z}_{1:d})) + t(\mathbf{z}_{1:d})
+$$
+
+This equation modifies the second half of the input by **scaling** and **shifting** it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.
+
+<div style="text-align: center;">
+  <img src="images/coupling-layer.png" alt="Coupling Layer RealNVP" width="700"/>
+  <p style="color: gray; font-size: 0.95em;"><em>
+    Visualization of a single affine coupling layer in Real-NVP showing both forward and inverse mappings. The identity path and affine transform structure allow exact inversion and efficient computation.
+  </em></p>
+</div>
+
+### 📐 Efficient Jacobian
+
+Because the first half \( \mathbf{x}_{1:d} \) is copied directly and only \( \mathbf{x}_{d+1:n} \) is transformed element-wise, the Jacobian of this transformation has a triangular structure:
+
+$$
+\frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
+\begin{pmatrix}
+I_d & 0 \\
+\frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} & \text{diag} \left( \exp(s(\mathbf{z}_{1:d})) \right)
+\end{pmatrix}
+$$
+
+The lower-right block is a diagonal matrix because each element of \( \mathbf{z}_{d+1:n} \) is scaled independently. This makes the **Jacobian determinant** simply the product of diagonal entries:
+
+$$
+\det(J) = \prod_{i=d+1}^{n} \exp(s(\mathbf{z}_{1:d})_i) = \exp \left( \sum_{i=d+1}^{n} s(\mathbf{z}_{1:d})_i \right)
+$$
+
+> 💡 **Why this matters:** The design ensures that the transformation is invertible **and** the log-determinant is **easy to compute** — both are essential for tractable likelihood estimation.
+
+### 🔁 Inverse Mapping
+
+To recover \( \mathbf{z} \) from \( \mathbf{x} \), the process is symmetric:
+
+$$
+\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
+$$
+
+$$
+\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
+$$
+
+The same coupling structure is reused, with subtraction and elementwise division instead of addition and multiplication.
+
+---
+
+### 🔁 Updating All Dimensions: Stacking Coupling Layers
+
+Each coupling layer only transforms part of the input. To ensure that **every dimension is eventually updated**, RealNVP stacks multiple coupling layers and **alternates the masking pattern** between them:
+
+- In one layer, the first half is fixed, and the second half is transformed.
+- In the next layer, the roles are reversed.
+
+This alternating structure ensures:
+- All input dimensions are updated across layers
+- The full transformation remains invertible
+- The total log-determinant is the **sum of the log-determinants** of each layer
+
+> This stacking strategy is what gives RealNVP its power — simple, local transformations that combine to model globally complex distributions.
+
+---
+
+### 🧪 RealNVP in Action (Two Moons)
+
+The following plots illustrate how RealNVP transforms data in practice:
+
+<div style="text-align: center;">
+  <img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800"/>
+  <p style="color: gray; font-size: 0.95em;"><em>
+    Top-left: Original two-moons data (\(X\))  
+    Top-right: Encoded latent space (\(Z\))  
+    Bottom-left: Latent samples from base distribution  
+    Bottom-right: Generated samples mapped back to \(X\) space  
+  </em></p>
+</div>
+
+These results show how RealNVP learns both directions: transforming structured data to a Gaussian latent space and generating realistic samples from noise.
+
+---
+
+-----
 ## 🧪 Try It Yourself: Flow Model in Pytorch
 
 You can explore a minimal PyTorch implementation of a normalizing flow model:
