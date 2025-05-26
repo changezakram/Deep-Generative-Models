@@ -60,14 +60,14 @@
     "href": "flows.html#references",
     "title": "Normalizing Flow Models",
     "section": "References",
-    "text": "References\n[1] Stanford CS236 Notes. “Normalizing Flows”\n[2] Danilo Jimenez Rezende, and Shakir Mohamed. “Variational Inference with Normalizing Flows”\n[3] Wikipedia. “Normalizing Flow”"
+    "text": "References\n[1] Stanford CS236 Notes. “Normalizing Flows”\n[2] Danilo Jimenez Rezende, and Shakir Mohamed. “Variational Inference with Normalizing Flows”\n[3] UT Austin Calculus Notes. “Jacobian and Change of Variables”\n[4] Wikipedia. “Normalizing Flow”\n[5] Kobyzev, Prince, and Brubaker. (2019). “Normalizing Flows: An Introduction and Review of Current Methods”"
   },
   {
     "objectID": "flows.html#further-reading",
     "href": "flows.html#further-reading",
     "title": "Normalizing Flow Models",
     "section": "Further Reading",
-    "text": "Further Reading\n[1] George Papamakarios et al. (2019). “Normalizing Flows for Probabilistic Modeling and Inference”\n[2] Lilian Weng. (2018). “Flow-based Models”\n[3] Eric Jang. (2018). “Normalizing Flows Tutorial – Part 1”\n[4] Eric Jang. (2018). “Normalizing Flows Tutorial – Part 2”\n[5] UT Austin Calculus Notes. “Jacobian and Change of Variables”\n[6] Kobyzev, Prince, and Brubaker. (2019). “Normalizing Flows: An Introduction and Review of Current Methods”"
+    "text": "Further Reading\n[1] George Papamakarios et al. (2019). “Normalizing Flows for Probabilistic Modeling and Inference”\n[2] Lilian Weng. (2018). “Flow-based Models”\n[3] Eric Jang. (2018). “Normalizing Flows Tutorial – Part 1”\n[4] Eric Jang. (2018). “Normalizing Flows Tutorial – Part 2”"
   },
   {
     "objectID": "index.html",
