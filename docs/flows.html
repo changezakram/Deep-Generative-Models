@@ -525,16 +525,16 @@ I_d &amp; 0 \\\\
 \]</span></p>
 <p>The Jacobian matrix of the RealNVP forward transformation has a special block structure due to the design of the affine coupling layer:</p>
 <ul>
-<li><p><strong>Upper left block</strong>: ( _d )<br>
+<li><p><strong>Upper left block</strong>: <span class="math inline">\(\mathbf{I}_d\)</span><br>
 This corresponds to the partial derivatives of <span class="math inline">\(\mathbf{x}_{1:d}\)</span> with respect to <span class="math inline">\(\mathbf{z}_{1:d}\)</span>. Since the first <span class="math inline">\(d\)</span> variables are passed through unchanged (<span class="math inline">\(\mathbf{x}_{1:d} = \mathbf{z}_{1:d}\)</span>), their derivatives form an identity matrix.</p></li>
-<li><p><strong>Upper right block ( 0 ):</strong><br>
+<li><p><strong>Upper right block</strong>: <span class="math inline">\(0\)</span><br>
 These derivatives are zero because <span class="math inline">\(\mathbf{x}_{1:d}\)</span> does not depend on <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> at all — they’re completely decoupled.</p></li>
-<li><p><strong>Lower right block (diagonal):</strong><br>
+<li><p><strong>Lower right block</strong>: (diagonal)<br>
 Each element of <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span> is scaled elementwise by <span class="math inline">\(\exp\left(\left[\alpha_\theta(\mathbf{z}_{1:d})\right]_i\right)\)</span>. This means the Jacobian of this part is a diagonal matrix, where each diagonal entry is the corresponding scale factor.</p></li>
-<li><p><strong>Lower left block:</strong><br>
+<li><p><strong>Lower left block</strong>:<br>
 This part can contain non-zero values because <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span> depends on <span class="math inline">\(\mathbf{z}_{1:d}\)</span> via the neural networks. But thanks to the triangular structure of the Jacobian, we don’t need this block to compute the determinant.</p></li>
 </ul>
-<p>**Why This Structure Matters</p>
+<p><strong>Why This Structure Matters</strong></p>
 <p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries.</p>
 <p><span class="math display">\[
 \det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)

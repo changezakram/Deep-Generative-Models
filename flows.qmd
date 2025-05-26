@@ -458,19 +458,19 @@ $$
 
 The Jacobian matrix of the RealNVP forward transformation has a special block structure due to the design of the affine coupling layer:
 
-- **Upper left block**: \( \mathbf{I}_d \)  
+- **Upper left block**: $\mathbf{I}_d$  
   This corresponds to the partial derivatives of $\mathbf{x}_{1:d}$ with respect to $\mathbf{z}_{1:d}$. Since the first $d$ variables are passed through unchanged ($\mathbf{x}_{1:d} = \mathbf{z}_{1:d}$), their derivatives form an identity matrix.
 
-- **Upper right block \( 0 \):**  
+- **Upper right block**: $0$  
   These derivatives are zero because $\mathbf{x}_{1:d}$ does not depend on $\mathbf{z}_{d+1:n}$ at all — they’re completely decoupled.
 
-- **Lower right block (diagonal):**  
+- **Lower right block**: (diagonal)  
   Each element of $\mathbf{x}_{d+1:n}$ is scaled elementwise by $\exp\left(\left[\alpha_\theta(\mathbf{z}_{1:d})\right]_i\right)$. This means the Jacobian of this part is a diagonal matrix, where each diagonal entry is the corresponding scale factor.
 
-- **Lower left block:**  
+- **Lower left block**:  
   This part can contain non-zero values because $\mathbf{x}_{d+1:n}$ depends on $\mathbf{z}_{1:d}$ via the neural networks. But thanks to the triangular structure of the Jacobian, we don’t need this block to compute the determinant.
 
-**Why This Structure Matters
+**Why This Structure Matters**
 
 Because the Jacobian is **triangular**, its determinant is simply the product of the diagonal entries. 
 
