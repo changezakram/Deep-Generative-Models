@@ -460,7 +460,7 @@ This makes Real-NVP a **non-volume preserving transformation**, allowing for bot
 
 The Jacobian matrix of the RealNVP forward transformation has a special block structure due to the design of the affine coupling layer:
 
-- **Upper left block \( \mathbf{I}_d \):**  
+- **Upper left block \( \mathbf{I}_d \):**
   This corresponds to the partial derivatives of $\mathbf{x}_{1:d}$ with respect to $\mathbf{z}_{1:d}$. Since the first $d$ variables are passed through unchanged ($\mathbf{x}_{1:d} = \mathbf{z}_{1:d}$), their derivatives form an identity matrix.
 
 - **Upper right block \( 0 \):**  

@@ -526,8 +526,7 @@ I_d &amp; 0 \\\\
 <p>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</p>
 <p>The Jacobian matrix of the RealNVP forward transformation has a special block structure due to the design of the affine coupling layer:</p>
 <ul>
-<li><p>**Upper left block ( _d ):**<br>
-This corresponds to the partial derivatives of <span class="math inline">\(\mathbf{x}_{1:d}\)</span> with respect to <span class="math inline">\(\mathbf{z}_{1:d}\)</span>. Since the first <span class="math inline">\(d\)</span> variables are passed through unchanged (<span class="math inline">\(\mathbf{x}_{1:d} = \mathbf{z}_{1:d}\)</span>), their derivatives form an identity matrix.</p></li>
+<li><p>**Upper left block ( _d ):** This corresponds to the partial derivatives of <span class="math inline">\(\mathbf{x}_{1:d}\)</span> with respect to <span class="math inline">\(\mathbf{z}_{1:d}\)</span>. Since the first <span class="math inline">\(d\)</span> variables are passed through unchanged (<span class="math inline">\(\mathbf{x}_{1:d} = \mathbf{z}_{1:d}\)</span>), their derivatives form an identity matrix.</p></li>
 <li><p><strong>Upper right block ( 0 ):</strong><br>
 These derivatives are zero because <span class="math inline">\(\mathbf{x}_{1:d}\)</span> does not depend on <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> at all — they’re completely decoupled.</p></li>
 <li><p><strong>Lower right block (diagonal):</strong><br>
