@@ -464,7 +464,7 @@ The Jacobian matrix of the RealNVP forward transformation has a special block st
 - **Upper right block**: $0$  
   These derivatives are zero because $\mathbf{x}_{1:d}$ does not depend on $\mathbf{z}_{d+1:n}$ at all — they’re completely decoupled.
 
-- **Lower right block**: (diagonal)  
+- **Lower right block: (diagonal)**  
   Each element of $\mathbf{x}_{d+1:n}$ is scaled elementwise by $\exp\left(\left[\alpha_\theta(\mathbf{z}_{1:d})\right]_i\right)$. This means the Jacobian of this part is a diagonal matrix, where each diagonal entry is the corresponding scale factor.
 
 - **Lower left block**:  
