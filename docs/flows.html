@@ -544,6 +544,50 @@ J = \text{diag}(\mathbf{s})
 \]</span></p>
 <p>However, the volume-preserving property of NICE limits its expressiveness. RealNVP extends this idea by introducing affine coupling layers that enable volume changes during transformation.</p>
 </section>
+<section id="summary" class="level4">
+<h4 class="anchored" data-anchor-id="summary">✅ Summary</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 42%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>NICE</th>
+<th>RealNVP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Type of coupling</strong></td>
+<td>Additive</td>
+<td>Affine (scaling + shift)</td>
+</tr>
+<tr class="even">
+<td><strong>Volume change</strong></td>
+<td>Only possible with rescaling layer</td>
+<td>Built into each coupling layer</td>
+</tr>
+<tr class="odd">
+<td><strong>Jacobian determinant</strong></td>
+<td>1 (in coupling layers)</td>
+<td>Varies (depends on learned scale)</td>
+</tr>
+<tr class="even">
+<td><strong>Expressiveness</strong></td>
+<td>Limited (volume-preserving layers)</td>
+<td>Higher (learns scale &amp; shift)</td>
+</tr>
+<tr class="odd">
+<td><strong>Log-likelihood</strong></td>
+<td>Exact</td>
+<td>Exact</td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="real-nvp-non-volume-preserving-extension-of-nice" class="level3">
 <h3 class="anchored" data-anchor-id="real-nvp-non-volume-preserving-extension-of-nice">Real-NVP: Non-Volume Preserving Extension of NICE</h3>

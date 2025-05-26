@@ -458,6 +458,16 @@ $$
 
 However, the volume-preserving property of NICE limits its expressiveness. RealNVP extends this idea by introducing affine coupling layers that enable volume changes during transformation.
 
+#### ✅ Summary
+
+| Aspect                 | NICE                                        | RealNVP                              |
+|------------------------|---------------------------------------------|--------------------------------------|
+| **Type of coupling**   | Additive                                    | Affine (scaling + shift)             |
+| **Volume change**      | Only possible with rescaling layer          | Built into each coupling layer       |
+| **Jacobian determinant** | 1 (in coupling layers)                    | Varies (depends on learned scale)    |
+| **Expressiveness**     | Limited (volume-preserving layers)          | Higher (learns scale & shift)        |
+| **Log-likelihood**     | Exact                                       | Exact                                |
+
 
 ### Real-NVP: Non-Volume Preserving Extension of NICE
 
