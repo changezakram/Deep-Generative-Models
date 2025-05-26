@@ -575,7 +575,7 @@ The following plots illustrate how RealNVP transforms data in practice:
   </em></p>
 </div>
 
-#### ✅ Summary
+#### Summary
 
 | Aspect                 | NICE                                        | RealNVP                              |
 |------------------------|---------------------------------------------|--------------------------------------|
