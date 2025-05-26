@@ -401,17 +401,66 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </section>
 </section>
 </section>
-<section id="popular-flow-models" class="level2">
-<h2 class="anchored" data-anchor-id="popular-flow-models">Popular Flow Models</h2>
-<p>To implement scalable and expressive normalizing flows, researchers have designed several model families based on clever transformation strategies—particularly <strong>coupling layers</strong> and <strong>autoregressive masking</strong>.</p>
-<p>In this section, we’ll introduce few of these architectures:</p>
+<section id="types-of-flow-architectures" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-flow-architectures">Types of Flow Architectures</h2>
+<p>This section introduces common architectural families used in normalizing flows, highlighting their core ideas, strengths, and limitations.</p>
+<section id="elementwise-flows" class="level3">
+<h3 class="anchored" data-anchor-id="elementwise-flows">1. Elementwise Flows</h3>
 <ul>
-<li><strong>NICE</strong>: Introduces additive coupling layers for tractable Jacobians.</li>
-<li><strong>Real-NVP</strong>: Extends NICE with scaling and better expressivity.</li>
-<li><strong>Inverse Autoregressive Flow (IAF)</strong>: Uses autoregressive masking for high flexibility.</li>
-<li><strong>Masked Autoregressive Flow (MAF)</strong>: Reverses the computation flow of IAF for efficient density evaluation.</li>
+<li><strong>Idea</strong>: Apply a simple invertible function to each variable independently.</li>
+<li><strong>Examples</strong>: Leaky ReLU, Softplus, ELU.</li>
+<li><strong>Strengths</strong>: Extremely fast; easy to implement; analytically tractable.</li>
+<li><strong>Limitations</strong>: Cannot model interactions or dependencies between variables.</li>
 </ul>
-<p>We’ll walk through the core design behind each and how they achieve invertibility and efficient learning.</p>
+</section>
+<section id="linear-flows" class="level3">
+<h3 class="anchored" data-anchor-id="linear-flows">2. Linear Flows</h3>
+<ul>
+<li><strong>Idea</strong>: Apply a linear transformation using an invertible matrix (e.g., permutation, rotation, LU decomposition).</li>
+<li><strong>Examples</strong>: Glow’s 1x1 Convolution, LU flows.</li>
+<li><strong>Strengths</strong>: Efficiently models global dependencies; can be used to permute variables.</li>
+<li><strong>Limitations</strong>: Limited expressiveness when used alone.</li>
+</ul>
+</section>
+<section id="coupling-flows" class="level3">
+<h3 class="anchored" data-anchor-id="coupling-flows">3. Coupling Flows</h3>
+<ul>
+<li><strong>Idea</strong>: Split the input into two parts. One half remains unchanged while the other is transformed based on it.</li>
+<li><strong>Examples</strong>: NICE (additive), RealNVP (affine).</li>
+<li><strong>Strengths</strong>: Easy to invert and compute Jacobians; scalable to high dimensions.</li>
+<li><strong>Limitations</strong>: Requires stacking multiple layers to mix information across all dimensions.</li>
+</ul>
+</section>
+<section id="autoregressive-flows" class="level3">
+<h3 class="anchored" data-anchor-id="autoregressive-flows">4. Autoregressive Flows</h3>
+<ul>
+<li><strong>Idea</strong>: Model the transformation of each variable conditioned on the previous ones in a fixed order.</li>
+<li><strong>Examples</strong>: Masked Autoregressive Flow (MAF), Inverse Autoregressive Flow (IAF).</li>
+<li><strong>Strengths</strong>: Highly expressive; models arbitrary dependencies.</li>
+<li><strong>Limitations</strong>: Slower sampling or density evaluation depending on flow direction.</li>
+</ul>
+</section>
+<section id="residual-flows" class="level3">
+<h3 class="anchored" data-anchor-id="residual-flows">5. Residual Flows</h3>
+<ul>
+<li><strong>Idea</strong>: Add residual connections while enforcing invertibility (e.g., using constraints on Jacobian eigenvalues).</li>
+<li><strong>Examples</strong>: Planar flows, Radial flows, Residual Flows (Behrmann et al.).</li>
+<li><strong>Strengths</strong>: Flexible and capable of complex transformations.</li>
+<li><strong>Limitations</strong>: May require care to ensure invertibility; harder to train.</li>
+</ul>
+</section>
+<section id="continuous-flows" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-flows">6. Continuous Flows</h3>
+<ul>
+<li><strong>Idea</strong>: Model the transformation as the solution to a differential equation parameterized by a neural network.</li>
+<li><strong>Examples</strong>: Neural ODEs, FFJORD.</li>
+<li><strong>Strengths</strong>: Highly flexible; enables continuous-time modeling.</li>
+<li><strong>Limitations</strong>: Computationally expensive; uses ODE solvers during training and inference.</li>
+</ul>
+<hr>
+<p>These architectures can be mixed and matched in real-world models to balance expressiveness, efficiency, and tractability. Each comes with trade-offs, and their selection often depends on the task and data at hand.</p>
+<p>In the rest of this article, we focus on <strong>Coupling Flows</strong>, briefly introducing NICE and then diving deeper into the structure, intuition, and implementation details of <strong>RealNVP</strong>.</p>
+</section>
 <section id="nice-nonlinear-independent-components-estimation" class="level3">
 <h3 class="anchored" data-anchor-id="nice-nonlinear-independent-components-estimation">NICE: Nonlinear Independent Components Estimation</h3>
 <p>The NICE model introduces two key components to construct invertible transformations:</p>
@@ -593,15 +642,15 @@ Bottom-right: Generated samples mapped back to (X) space<br>
 <p>[1] Stanford CS236 Notes. “<a href="https://deepgenerativemodels.github.io/">Normalizing Flows</a>”</p>
 <p>[2] UT Austin Calculus Notes. “<a href="https://services.math.duke.edu/~jtwong/calculus/change-of-variables.html">Jacobian and Change of Variables</a>”</p>
 <p>[3] Danilo Jimenez Rezende, and Shakir Mohamed. “<a href="https://arxiv.org/abs/1505.05770">Variational Inference with Normalizing Flows</a>”</p>
-<p>[4] Kobyzev, Prince, and Brubaker. (2019). “<a href="https://arxiv.org/abs/1908.09257">Normalizing Flows: An Introduction and Review of Current Methods</a>”</p>
+<p>[4] Kobyzev, Prince, and Brubaker. “<a href="https://arxiv.org/abs/1908.09257">Normalizing Flows: An Introduction and Review of Current Methods</a>”</p>
 <p>[5] Wikipedia. “<a href="https://en.wikipedia.org/wiki/Normalizing_flow">Normalizing Flow</a>”</p>
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
-<p>[1] George Papamakarios et al.&nbsp;(2019). “<a href="https://arxiv.org/abs/1912.02762">Normalizing Flows for Probabilistic Modeling and Inference</a>”</p>
-<p>[2] Lilian Weng. (2018). “<a href="https://lilianweng.github.io/posts/2018-08-12-vae.html#normalizing-flows">Flow-based Models</a>”</p>
-<p>[3] Eric Jang. (2018). “<a href="https://blog.evjang.com/2018/01/nf1.html">Normalizing Flows Tutorial – Part 1</a>”</p>
-<p>[4] Eric Jang. (2018). “<a href="https://blog.evjang.com/2018/01/nf2.html">Normalizing Flows Tutorial – Part 2</a>”</p>
+<p>[1] George Papamakarios et al.&nbsp;“<a href="https://arxiv.org/abs/1912.02762">Normalizing Flows for Probabilistic Modeling and Inference</a>”</p>
+<p>[2] Lilian Weng. “<a href="https://lilianweng.github.io/posts/2018-08-12-vae.html#normalizing-flows">Flow-based Models</a>”</p>
+<p>[3] Eric Jang. “<a href="https://blog.evjang.com/2018/01/nf1.html">Normalizing Flows Tutorial – Part 1</a>”</p>
+<p>[4] Eric Jang. “<a href="https://blog.evjang.com/2018/01/nf2.html">Normalizing Flows Tutorial – Part 2</a>”</p>
 
 
 </section>
