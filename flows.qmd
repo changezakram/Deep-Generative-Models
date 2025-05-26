@@ -444,6 +444,25 @@ $$
 
 The inverse mapping recovers the latent variable $\mathbf{z}$ from the data $\mathbf{x}$. The first subset $\mathbf{x}_{1:d}$ remains unchanged and directly becomes $\mathbf{z}_{1:d}$. To reconstruct $\mathbf{z}_{d+1:n}$, we first subtract the shift $\boldsymbol{\mu}_\theta(\mathbf{x}_{1:d})$ from $\mathbf{x}_{d+1:n}$, and then apply an elementwise rescaling using $\exp(-\boldsymbol{\alpha}_\theta(\mathbf{x}_{1:d}))$. This inversion relies on the same neural networks used in the forward pass and ensures that the transformation is exactly reversible.
 
+- **Jacobian of Forward Mapping**:
+
+$$
+J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} = 
+\begin{pmatrix}
+I_d & 0 \\\\
+\frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} & \operatorname{diag}\left(\exp(\alpha_\theta(\mathbf{z}_{1:d}))\right)
+\end{pmatrix}
+$$
+
+- **Determinant of the Jacobian**:
+
+$$
+\det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
+= \exp\left( \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i \right)
+$$
+
+This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
+
 ---
 We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
 
