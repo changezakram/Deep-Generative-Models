@@ -543,9 +543,14 @@ Each element of <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span> is scale
 This part can contain non-zero values because <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span> depends on <span class="math inline">\(\mathbf{z}_{1:d}\)</span> via the neural networks. But thanks to the triangular structure of the Jacobian, we don’t need this block to compute the determinant.</p></li>
 </ul>
 </section>
-<section id="why-this-structure-matters" class="level3">
-<h3 class="anchored" data-anchor-id="why-this-structure-matters">Why This Structure Matters</h3>
-<p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries. In log-space, this becomes a sum: [ (J) = <em>{i=d+1}^{n} </em>(_{1:d})_i ] This makes the computation of log-likelihoods fast and tractable.</p>
+</section>
+<section id="why-this-structure-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-structure-matters">Why This Structure Matters</h2>
+<p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries. In log-space, this becomes a sum:</p>
+<p><span class="math display">\[
+\log \det(J) = \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i
+\]</span></p>
+<p>This makes the computation of log-likelihoods fast and tractable.</p>
 <p>Taking the product of the diagonal entries gives us a measure of <strong>how much the transformation expands or contracts local volume</strong>. If the determinant is greater than 1, the transformation expands space; if it’s less than 1, it contracts space. Since the determinant is not fixed, RealNVP performs a <strong>non-volume preserving transformation</strong> — allowing it to model more complex distributions than NICE, which preserves volume by design.</p>
 <table class="caption-top table">
 <colgroup>
@@ -636,7 +641,6 @@ I_d &amp; 0 \\
 </tr>
 </tbody>
 </table>
-</section>
 </section>
 <section id="try-it-yourself-flow-model-in-pytorch" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself-flow-model-in-pytorch">🧪 Try It Yourself: Flow Model in Pytorch</h2>

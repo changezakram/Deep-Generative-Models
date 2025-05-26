@@ -470,7 +470,7 @@ The Jacobian matrix of the RealNVP forward transformation has a special block st
   This corresponds to the partial derivatives of $\mathbf{x}_{1:d}$ with respect to $\mathbf{z}_{1:d}$. Since the first $d$ variables are passed through unchanged ($\mathbf{x}_{1:d} = \mathbf{z}_{1:d}$), their derivatives form an identity matrix.
 
 - **Upper right block \( 0 \):**  
-  These derivatives are zero because $\mathbf{x}_{1:d}$ does not depend on $\mathbf{z}_{d+1:n}$ at all — they’re completely decoupled.
+  These derivatives are zero because $\mathbf{x}_{1:d}$ does not depend on $\mathbf{z}_{d+1:n}$ at all — they're completely decoupled.
 
 - **Lower right block (diagonal):**  
   Each element of $\mathbf{x}_{d+1:n}$ is scaled elementwise by $\exp(\alpha_\theta(\mathbf{z}_{1:d})_i)$. This means the Jacobian of this part is a diagonal matrix, where each diagonal entry is the corresponding scale factor.
@@ -478,12 +478,14 @@ The Jacobian matrix of the RealNVP forward transformation has a special block st
 - **Lower left block:**  
   This part can contain non-zero values because $\mathbf{x}_{d+1:n}$ depends on $\mathbf{z}_{1:d}$ via the neural networks. But thanks to the triangular structure of the Jacobian, we don't need this block to compute the determinant.
 
-### Why This Structure Matters
+## Why This Structure Matters
 
 Because the Jacobian is **triangular**, its determinant is simply the product of the diagonal entries. In log-space, this becomes a sum:
-\[
+
+$$
 \log \det(J) = \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i
-\]
+$$
+
 This makes the computation of log-likelihoods fast and tractable.
 
 Taking the product of the diagonal entries gives us a measure of **how much the transformation expands or contracts local volume**. If the determinant is greater than 1, the transformation expands space; if it's less than 1, it contracts space. Since the determinant is not fixed, RealNVP performs a **non-volume preserving transformation** — allowing it to model more complex distributions than NICE, which preserves volume by design.
