@@ -19,5 +19,6 @@ format:
         <link rel="stylesheet" href="styles.css">
 
 resources:
+  - images
   - styles.css
   - docs/.nojekyll
