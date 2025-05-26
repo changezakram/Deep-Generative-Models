@@ -56,18 +56,18 @@
     "text": "🧪 Try It Yourself: Flow Model in Pytorch\nYou can explore a minimal PyTorch implementation of a normalizing flow model:\n\n📘 View Notebook on GitHub\n🚀 Run in Google Colab"
   },
   {
-    "objectID": "flows.html#reference",
-    "href": "flows.html#reference",
+    "objectID": "flows.html#references",
+    "href": "flows.html#references",
     "title": "Normalizing Flow Models",
-    "section": "Reference",
-    "text": "Reference\n\nStanford CS236 Notes. Normalizing Flows.\ndeepgenerativemodels.github.io\nRezende, D. J., & Mohamed, S. (2015). Variational Inference with Normalizing Flows.\narXiv:1505.05770\nWikipedia. Normalizing Flow.\nLink"
+    "section": "References",
+    "text": "References\n[1] Stanford CS236 Notes.\n“Normalizing Flows”\ndeepgenerativemodels.github.io\n[2] Danilo Jimenez Rezende, and Shakir Mohamed.\n“Variational Inference with Normalizing Flows”\nICML 2015.\n[3] Wikipedia.\n“Normalizing Flow”"
   },
   {
     "objectID": "flows.html#further-reading",
     "href": "flows.html#further-reading",
     "title": "Normalizing Flow Models",
     "section": "Further Reading",
-    "text": "Further Reading\n\nPapamakarios et al. (2019). Normalizing Flows for Probabilistic Modeling and Inference.\narXiv:1912.02762\nLilian Weng. (2018). Flow-based Models.\nBlog\nEric Jang. (2018). Normalizing Flows Tutorial – Part 1.\nBlog\nEric Jang. (2018). Normalizing Flows Tutorial – Part 2.\nBlog\nUT Austin Calculus Notes. Jacobian and Change of Variables.\nWeb\nKobyzev, Prince, & Brubaker. (2019). Normalizing Flows: An Introduction and Review of Current Methods.\narXiv PDF"
+    "text": "Further Reading\n[1] George Papamakarios et al. (2019).\n“Normalizing Flows for Probabilistic Modeling and Inference”\narXiv:1912.02762\n[2] Lilian Weng. (2018).\n“Flow-based Models”\n[3] Eric Jang. (2018).\n“Normalizing Flows Tutorial – Part 1”\n[4] Eric Jang. (2018).\n“Normalizing Flows Tutorial – Part 2”\n[5] UT Austin Calculus Notes.\n“Jacobian and Change of Variables”\n[6] Kobyzev, Prince, and Brubaker. (2019).\n“Normalizing Flows: An Introduction and Review of Current Methods”\narXiv:1908.09257"
   },
   {
     "objectID": "index.html",
