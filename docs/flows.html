@@ -534,6 +534,12 @@ Each element of <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span> is scale
 <li><p><strong>Lower left block</strong>:<br>
 This part can contain non-zero values because <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span> depends on <span class="math inline">\(\mathbf{z}_{1:d}\)</span> via the neural networks. But thanks to the triangular structure of the Jacobian, we don’t need this block to compute the determinant.</p></li>
 </ul>
+<div style="text-align: center;">
+<img src="images/realnvp_jacobian_upper_triangular.png" alt="Jacobian of RealNVP Forward Mapping" width="700">
+<p style="color: gray; font-size: 0.95em;">
+<em> Visualization of the Jacobian matrix of the RealNVP forward transformation. The structure is upper triangular due to the affine coupling design: the first subset of variables is unchanged, while the second subset is scaled and shifted based only on the first. </em>
+</p>
+</div>
 <p><strong>Why This Structure Matters</strong></p>
 <p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries.</p>
 <p><span class="math display">\[

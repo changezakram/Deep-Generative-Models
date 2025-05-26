@@ -470,6 +470,14 @@ The Jacobian matrix of the RealNVP forward transformation has a special block st
 - **Lower left block**:  
   This part can contain non-zero values because $\mathbf{x}_{d+1:n}$ depends on $\mathbf{z}_{1:d}$ via the neural networks. But thanks to the triangular structure of the Jacobian, we don’t need this block to compute the determinant.
 
+<div style="text-align: center;">
+  <img src="images/realnvp_jacobian_upper_triangular.png" alt="Jacobian of RealNVP Forward Mapping" width="700"/>
+  <p style="color: gray; font-size: 0.95em;"><em>
+    Visualization of the Jacobian matrix of the RealNVP forward transformation. The structure is upper triangular due to the affine coupling design: 
+    the first subset of variables is unchanged, while the second subset is scaled and shifted based only on the first.
+  </em></p>
+</div>
+
 **Why This Structure Matters**
 
 Because the Jacobian is **triangular**, its determinant is simply the product of the diagonal entries. 
