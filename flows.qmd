@@ -537,13 +537,13 @@ You can explore a minimal PyTorch implementation of a normalizing flow model:
 
 [1] Stanford CS236 Notes. “[Normalizing Flows](https://deepgenerativemodels.github.io/)”
 
-[2] Danilo Jimenez Rezende, and Shakir Mohamed. “[Variational Inference with Normalizing Flows](https://arxiv.org/abs/1505.05770)”
+[2] UT Austin Calculus Notes. “[Jacobian and Change of Variables](https://services.math.duke.edu/~jtwong/calculus/change-of-variables.html)”
 
-[3] UT Austin Calculus Notes. “[Jacobian and Change of Variables](https://services.math.duke.edu/~jtwong/calculus/change-of-variables.html)”
+[3] Danilo Jimenez Rezende, and Shakir Mohamed. “[Variational Inference with Normalizing Flows](https://arxiv.org/abs/1505.05770)”
 
-[4] Wikipedia. “[Normalizing Flow](https://en.wikipedia.org/wiki/Normalizing_flow)”
+[4] Kobyzev, Prince, and Brubaker. (2019). “[Normalizing Flows: An Introduction and Review of Current Methods](https://arxiv.org/abs/1908.09257)”
 
-[5] Kobyzev, Prince, and Brubaker. (2019). “[Normalizing Flows: An Introduction and Review of Current Methods](https://arxiv.org/abs/1908.09257)”
+[5] Wikipedia. “[Normalizing Flow](https://en.wikipedia.org/wiki/Normalizing_flow)”
 
 ## Further Reading
 

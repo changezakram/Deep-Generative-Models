@@ -60,7 +60,7 @@
     "href": "flows.html#references",
     "title": "Normalizing Flow Models",
     "section": "References",
-    "text": "References\n[1] Stanford CS236 Notes. “Normalizing Flows”\n[2] Danilo Jimenez Rezende, and Shakir Mohamed. “Variational Inference with Normalizing Flows”\n[3] UT Austin Calculus Notes. “Jacobian and Change of Variables”\n[4] Wikipedia. “Normalizing Flow”\n[5] Kobyzev, Prince, and Brubaker. (2019). “Normalizing Flows: An Introduction and Review of Current Methods”"
+    "text": "References\n[1] Stanford CS236 Notes. “Normalizing Flows”\n[2] UT Austin Calculus Notes. “Jacobian and Change of Variables”\n[3] Danilo Jimenez Rezende, and Shakir Mohamed. “Variational Inference with Normalizing Flows”\n[4] Kobyzev, Prince, and Brubaker. (2019). “Normalizing Flows: An Introduction and Review of Current Methods”\n[5] Wikipedia. “Normalizing Flow”"
   },
   {
     "objectID": "flows.html#further-reading",
