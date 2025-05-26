@@ -463,10 +463,22 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </section>
 <section id="nice-nonlinear-independent-components-estimation" class="level3">
 <h3 class="anchored" data-anchor-id="nice-nonlinear-independent-components-estimation">NICE: Nonlinear Independent Components Estimation</h3>
-<p>The NICE model introduces two key components to construct invertible transformations:</p>
+<p>The NICE (Nonlinear Independent Components Estimation) model, introduced by Laurent Dinh, David Krueger, and Yoshua Bengio in 2014, is a foundational work in the development of normalizing flows.</p>
+<p>It provides a framework for modeling complex high-dimensional data distributions through a series of <strong>invertible transformations</strong> that map data to a latent space with a factorized distribution. Its design enables exact log-likelihood computation and efficient sampling — a powerful combination in generative modeling.</p>
+</section>
+<section id="core-concepts" class="level3">
+<h3 class="anchored" data-anchor-id="core-concepts">Core Concepts</h3>
 <ul>
-<li><strong>Additive Coupling Layers</strong>: These preserve volume and maintain a simple Jacobian structure.</li>
-<li><strong>Rescaling Layers</strong>: These adjust volume and allow the model to capture more expressive distributions.</li>
+<li><p><strong>Invertible Transformations</strong>:<br>
+NICE constructs a chain of invertible functions to map inputs to latent variables. This ensures that both the forward and inverse transformations are tractable.</p></li>
+<li><p><strong>Additive Coupling Layers</strong>:<br>
+The model partitions the input into two parts and applies an additive transformation to one part using a function of the other. This design yields a triangular Jacobian with determinant 1, making log-likelihood computation efficient.</p></li>
+<li><p><strong>Volume-Preserving Mapping</strong>:<br>
+Because additive coupling layers do not scale the space, NICE preserves volume — i.e., the Jacobian determinant is exactly 1. While this limits expressiveness, it simplifies training and inference.</p></li>
+<li><p><strong>Scaling Layer (Optional)</strong>:<br>
+The original NICE paper includes an optional scaling layer at the end to allow some volume change per dimension.</p></li>
+<li><p><strong>Exact Log-Likelihood</strong>:<br>
+Unlike VAEs or GANs, which rely on approximations, NICE enables <strong>exact</strong> evaluation of the log-likelihood, making it a fully probabilistic, likelihood-based model.</p></li>
 </ul>
 <section id="additive-coupling-layer" class="level4">
 <h4 class="anchored" data-anchor-id="additive-coupling-layer">Additive Coupling Layer</h4>

@@ -367,10 +367,26 @@ In the rest of this article, we focus on **Coupling Flows**, briefly introducing
 
 ### NICE: Nonlinear Independent Components Estimation
 
-The NICE model introduces two key components to construct invertible transformations:
+The NICE (Nonlinear Independent Components Estimation) model, introduced by Laurent Dinh, David Krueger, and Yoshua Bengio in 2014, is a foundational work in the development of normalizing flows.
 
-- **Additive Coupling Layers**: These preserve volume and maintain a simple Jacobian structure.
-- **Rescaling Layers**: These adjust volume and allow the model to capture more expressive distributions.
+It provides a framework for modeling complex high-dimensional data distributions through a series of **invertible transformations** that map data to a latent space with a factorized distribution. Its design enables exact log-likelihood computation and efficient sampling — a powerful combination in generative modeling.
+
+### Core Concepts
+
+- **Invertible Transformations**:  
+  NICE constructs a chain of invertible functions to map inputs to latent variables. This ensures that both the forward and inverse transformations are tractable.
+
+- **Additive Coupling Layers**:  
+  The model partitions the input into two parts and applies an additive transformation to one part using a function of the other. This design yields a triangular Jacobian with determinant 1, making log-likelihood computation efficient.
+
+- **Volume-Preserving Mapping**:  
+  Because additive coupling layers do not scale the space, NICE preserves volume — i.e., the Jacobian determinant is exactly 1. While this limits expressiveness, it simplifies training and inference.
+
+- **Scaling Layer (Optional)**:  
+  The original NICE paper includes an optional scaling layer at the end to allow some volume change per dimension.
+
+- **Exact Log-Likelihood**:  
+  Unlike VAEs or GANs, which rely on approximations, NICE enables **exact** evaluation of the log-likelihood, making it a fully probabilistic, likelihood-based model.
 
 #### Additive Coupling Layer
 
