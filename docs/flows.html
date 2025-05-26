@@ -487,7 +487,7 @@ J = \text{diag}(\mathbf{s})
 <h3 class="anchored" data-anchor-id="real-nvp-non-volume-preserving-extension-of-nice">Real-NVP: Non-Volume Preserving Extension of NICE</h3>
 <p>Real-NVP (Dinh et al., 2017) extends NICE by introducing a <strong>scaling function</strong> that allows the model to change volume, enabling more expressive transformations. This is achieved using <strong>affine coupling layers</strong> that apply learned scaling and translation functions to part of the input while keeping the rest unchanged.</p>
 <div style="text-align: center;">
-<img src="images/coupling-layer-v2.png" alt="Affine Coupling Layer in RealNVP" width="700">
+<img src="images/coupling-layer.png" alt="Affine Coupling Layer in RealNVP" width="700">
 <p style="color: gray; font-size: 0.95em;">
 <em> Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation. </em>
 </p>
@@ -537,10 +537,11 @@ This part can contain non-zero values because <span class="math inline">\(\mathb
 <div style="text-align: center;">
 <img src="images/realnvp_jacobian_upper_triangular.png" alt="Jacobian of RealNVP Forward Mapping" width="700">
 <p style="color: gray; font-size: 0.95em;">
-<em> Visualization of the Jacobian matrix of the RealNVP forward transformation. The structure is upper triangular due to the affine coupling design: the first subset of variables is unchanged, while the second subset is scaled and shifted based only on the first. </em>
+<em> Jacobian of the RealNVP forward transformation. Upper triangular structure arises because the first subset is unchanged, while the second is scaled and shifted based on the first. </em>
 </p>
 </div>
-<p><strong>Why This Structure Matters</strong></p>
+<section id="why-this-structure-matters" class="level4">
+<h4 class="anchored" data-anchor-id="why-this-structure-matters">Why This Structure Matters</h4>
 <p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries.</p>
 <p><span class="math display">\[
 \det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
@@ -552,6 +553,7 @@ This part can contain non-zero values because <span class="math inline">\(\mathb
 \]</span></p>
 <p>This makes the computation of log-likelihoods fast and tractable.</p>
 <p>Taking the product of the diagonal entries gives us a measure of <strong>how much the transformation expands or contracts local volume</strong>. If the determinant is greater than 1, the transformation expands space; if it’s less than 1, it contracts space. Since the determinant is not fixed, RealNVP performs a <strong>non-volume preserving transformation</strong> — allowing it to model more complex distributions than NICE, which preserves volume by design.</p>
+</section>
 <section id="stacking-coupling-layers" class="level4">
 <h4 class="anchored" data-anchor-id="stacking-coupling-layers">Stacking Coupling Layers</h4>
 <p>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</p>

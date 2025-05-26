@@ -413,7 +413,7 @@ $$
 Real-NVP (Dinh et al., 2017) extends NICE by introducing a **scaling function** that allows the model to change volume, enabling more expressive transformations. This is achieved using **affine coupling layers** that apply learned scaling and translation functions to part of the input while keeping the rest unchanged.
 
 <div style="text-align: center;">
-  <img src="images/coupling-layer-v2.png" alt="Affine Coupling Layer in RealNVP" width="700"/>
+  <img src="images/coupling-layer.png" alt="Affine Coupling Layer in RealNVP" width="700"/>
   <p style="color: gray; font-size: 0.95em;"><em>
     Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation.
   </em></p>
@@ -473,12 +473,11 @@ The Jacobian matrix of the RealNVP forward transformation has a special block st
 <div style="text-align: center;">
   <img src="images/realnvp_jacobian_upper_triangular.png" alt="Jacobian of RealNVP Forward Mapping" width="700"/>
   <p style="color: gray; font-size: 0.95em;"><em>
-    Visualization of the Jacobian matrix of the RealNVP forward transformation. The structure is upper triangular due to the affine coupling design: 
-    the first subset of variables is unchanged, while the second subset is scaled and shifted based only on the first.
+    Jacobian of the RealNVP forward transformation. Upper triangular structure arises because the first subset is unchanged, while the second is scaled and shifted based on the first.
   </em></p>
 </div>
 
-**Why This Structure Matters**
+#### Why This Structure Matters
 
 Because the Jacobian is **triangular**, its determinant is simply the product of the diagonal entries. 
 
