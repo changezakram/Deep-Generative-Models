@@ -557,78 +557,55 @@ I_d &amp; 0 \\\\
 <tr class="even">
 <td></td>
 </tr>
-<tr class="odd">
-<td>### 📐 Efficient Jacobian</td>
-</tr>
-<tr class="even">
-<td>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</td>
-</tr>
-<tr class="odd">
-<td><span class="math display">\[
+</tbody>
+</table>
+</section>
+<section id="efficient-jacobian" class="level3">
+<h3 class="anchored" data-anchor-id="efficient-jacobian">📐 Efficient Jacobian</h3>
+<p>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</p>
+<p><span class="math display">\[
 \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
 \begin{pmatrix}
 I_d &amp; 0 \\
 \frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} &amp; \text{diag} \left( \exp(s(\mathbf{z}_{1:d})) \right)
 \end{pmatrix}
-\]</span></td>
-</tr>
-<tr class="even">
-<td>The lower-right block is a diagonal matrix because each element of ( _{d+1:n} ) is scaled independently. This makes the <strong>Jacobian determinant</strong> simply the product of diagonal entries:</td>
-</tr>
-<tr class="odd">
-<td><span class="math display">\[
+\]</span></p>
+<p>The lower-right block is a diagonal matrix because each element of ( _{d+1:n} ) is scaled independently. This makes the <strong>Jacobian determinant</strong> simply the product of diagonal entries:</p>
+<p><span class="math display">\[
 \det(J) = \prod_{i=d+1}^{n} \exp(s(\mathbf{z}_{1:d})_i) = \exp \left( \sum_{i=d+1}^{n} s(\mathbf{z}_{1:d})_i \right)
-\]</span></td>
-</tr>
-<tr class="even">
-<td>&gt; 💡 <strong>Why this matters:</strong> The design ensures that the transformation is invertible <strong>and</strong> the log-determinant is <strong>easy to compute</strong> — both are essential for tractable likelihood estimation.</td>
-</tr>
-<tr class="odd">
-<td>### 🔁 Inverse Mapping</td>
-</tr>
-<tr class="even">
-<td>To recover ( ) from ( ), the process is symmetric:</td>
-</tr>
-<tr class="odd">
-<td><span class="math display">\[
-\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
-\]</span></td>
-</tr>
-<tr class="even">
-<td><span class="math display">\[
-\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
-\]</span></td>
-</tr>
-<tr class="odd">
-<td>The same coupling structure is reused, with subtraction and elementwise division instead of addition and multiplication.</td>
-</tr>
-</tbody>
-</table>
+\]</span></p>
+<blockquote class="blockquote">
+<p>💡 <strong>Why this matters:</strong> The design ensures that the transformation is invertible <strong>and</strong> the log-determinant is <strong>easy to compute</strong> — both are essential for tractable likelihood estimation.</p>
+</blockquote>
+<hr>
 </section>
-<section id="updating-all-dimensions-stacking-coupling-layers" class="level3">
-<h3 class="anchored" data-anchor-id="updating-all-dimensions-stacking-coupling-layers">🔁 Updating All Dimensions: Stacking Coupling Layers</h3>
-<p>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them:</p>
+<section id="inverse-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="inverse-mapping">🔁 Inverse Mapping</h3>
+<p>To recover ( ) from ( ), the process is symmetric:</p>
+<p><span class="math display">\[
+\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
+\]</span></p>
+<hr>
+</section>
+<section id="stacking-coupling-layers" class="level3">
+<h3 class="anchored" data-anchor-id="stacking-coupling-layers">🧱 Stacking Coupling Layers</h3>
+<p>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</p>
 <ul>
 <li>In one layer, the first half is fixed, and the second half is transformed.</li>
 <li>In the next layer, the roles are reversed.</li>
 </ul>
 <p>This alternating structure ensures: - All input dimensions are updated across layers - The full transformation remains invertible - The total log-determinant is the <strong>sum of the log-determinants</strong> of each layer</p>
-<blockquote class="blockquote">
-<p>This stacking strategy is what gives RealNVP its power — simple, local transformations that combine to model globally complex distributions.</p>
-</blockquote>
 <hr>
 </section>
-<section id="realnvp-in-action-two-moons" class="level3">
-<h3 class="anchored" data-anchor-id="realnvp-in-action-two-moons">🧪 RealNVP in Action (Two Moons)</h3>
-<p>The following plots illustrate how RealNVP transforms data in practice:</p>
+<section id="affine-coupling-layer-visual" class="level3">
+<h3 class="anchored" data-anchor-id="affine-coupling-layer-visual">🖼 Affine Coupling Layer Visual</h3>
 <div style="text-align: center;">
-<img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800">
+<img src="images/coupling-layer-v2.png" alt="Affine Coupling Layer in RealNVP" width="700">
 <p style="color: gray; font-size: 0.95em;">
-<em> Top-left: Original two-moons data ((X))<br>
-Top-right: Encoded latent space ((Z))<br>
-Bottom-left: Latent samples from base distribution<br>
-Bottom-right: Generated samples mapped back to (X) space<br>
-</em>
+<em> Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation. </em>
 </p>
 </div>
 <hr>
