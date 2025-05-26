@@ -550,8 +550,8 @@ The following plots illustrate how RealNVP transforms data in practice:
 <div style="text-align: center;">
   <img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800"/>
   <p style="color: gray; font-size: 0.95em;"><em>
-    Top-left: Original two-moons data (\(X\))  
-    Top-right: Encoded latent space (\(Z\))  
+    Top-left: Original two-moons data \(X\)  
+    Top-right: Encoded latent space \(Z\)
     Bottom-left: Latent samples from base distribution  
     Bottom-right: Generated samples mapped back to \(X\) space  
   </em></p>
