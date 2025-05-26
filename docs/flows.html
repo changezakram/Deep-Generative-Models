@@ -637,22 +637,52 @@ Bottom-right: Generated samples mapped back to (X) space<br>
 </em>
 </p>
 </div>
+</section>
+<section id="summary" class="level4">
+<h4 class="anchored" data-anchor-id="summary">Summary</h4>
+<p>To recap the key distinctions between NICE and RealNVP, here’s a side-by-side comparison:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 6%">
+<col style="width: 22%">
+<col style="width: 42%">
+<col style="width: 35%">
 </colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>NICE</th>
+<th>RealNVP</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td>To recap the key distinctions between NICE and RealNVP, here’s a side-by-side comparison:</td>
+<td><strong>Type of coupling</strong></td>
+<td>Additive</td>
+<td>Affine (scaling + shift)</td>
 </tr>
 <tr class="even">
-<td>#### Summary</td>
+<td><strong>Volume change</strong></td>
+<td>Only possible with rescaling layer</td>
+<td>Built into each coupling layer</td>
 </tr>
 <tr class="odd">
-<td>| Aspect | NICE | RealNVP | |————————|———————————————|————————————–| | <strong>Type of coupling</strong> | Additive | Affine (scaling + shift) | | <strong>Volume change</strong> | Only possible with rescaling layer | Built into each coupling layer | | <strong>Jacobian determinant</strong> | 1 (in coupling layers) | Varies (depends on learned scale) | | <strong>Expressiveness</strong> | Limited (volume-preserving layers) | Higher (learns scale &amp; shift) | | <strong>Log-likelihood</strong> | Exact | Exact |</td>
+<td><strong>Jacobian determinant</strong></td>
+<td>1 (in coupling layers)</td>
+<td>Varies (depends on learned scale)</td>
+</tr>
+<tr class="even">
+<td><strong>Expressiveness</strong></td>
+<td>Limited (volume-preserving layers)</td>
+<td>Higher (learns scale &amp; shift)</td>
+</tr>
+<tr class="odd">
+<td><strong>Log-likelihood</strong></td>
+<td>Exact</td>
+<td>Exact</td>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
 </section>
 </section>

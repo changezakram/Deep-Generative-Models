@@ -575,10 +575,11 @@ The following plots illustrate how RealNVP transforms data in practice:
   </em></p>
 </div>
 
---- 
-To recap the key distinctions between NICE and RealNVP, here’s a side-by-side comparison:
 
 #### Summary
+
+To recap the key distinctions between NICE and RealNVP, here’s a side-by-side comparison:
+
 
 | Aspect                 | NICE                                        | RealNVP                              |
 |------------------------|---------------------------------------------|--------------------------------------|
