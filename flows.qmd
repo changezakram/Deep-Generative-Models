@@ -455,12 +455,10 @@ I_d & 0 \\\\
 $$
 
 
-This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
-
 
 The Jacobian matrix of the RealNVP forward transformation has a special block structure due to the design of the affine coupling layer:
 
-- **Upper left block \( \mathbf{I}_d \):**
+- **Upper left block**: \( \mathbf{I}_d \)  
   This corresponds to the partial derivatives of $\mathbf{x}_{1:d}$ with respect to $\mathbf{z}_{1:d}$. Since the first $d$ variables are passed through unchanged ($\mathbf{x}_{1:d} = \mathbf{z}_{1:d}$), their derivatives form an identity matrix.
 
 - **Upper right block \( 0 \):**  
@@ -472,7 +470,7 @@ The Jacobian matrix of the RealNVP forward transformation has a special block st
 - **Lower left block:**  
   This part can contain non-zero values because $\mathbf{x}_{d+1:n}$ depends on $\mathbf{z}_{1:d}$ via the neural networks. But thanks to the triangular structure of the Jacobian, we don’t need this block to compute the determinant.
 
-## Why This Structure Matters
+**Why This Structure Matters
 
 Because the Jacobian is **triangular**, its determinant is simply the product of the diagonal entries. 
 
@@ -490,54 +488,6 @@ $$
 This makes the computation of log-likelihoods fast and tractable.
 
 Taking the product of the diagonal entries gives us a measure of **how much the transformation expands or contracts local volume**. If the determinant is greater than 1, the transformation expands space; if it's less than 1, it contracts space. Since the determinant is not fixed, RealNVP performs a **non-volume preserving transformation** — allowing it to model more complex distributions than NICE, which preserves volume by design.
-
----
-We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
-
-- **Forward Mapping** $\mathbf{z} \mapsto \mathbf{x}$:
-
-$$
-\mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
-$$
-
-$$
-\mathbf{x}_{d+1:n} = \mathbf{z}_{d+1:n} \odot \exp(s(\mathbf{z}_{1:d})) + t(\mathbf{z}_{1:d})
-$$
-
-This equation modifies the second half of the input by **scaling** and **shifting** it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.
-
-- **Inverse Mapping** $\mathbf{x} \mapsto \mathbf{z}$:
-
-$$
-\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
-$$
-
-$$
-\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
-$$
-
-
-#### Efficient Jacobian
-
-Because the first half \( \mathbf{x}_{1:d} \) is copied directly and only \( \mathbf{x}_{d+1:n} \) is transformed element-wise, the Jacobian of this transformation has a triangular structure:
-
-$$
-\frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
-\begin{pmatrix}
-I_d & 0 \\
-\frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} & \text{diag} \left( \exp(s(\mathbf{z}_{1:d})) \right)
-\end{pmatrix}
-$$
-
-The lower-right block is a diagonal matrix because each element of \( \mathbf{z}_{d+1:n} \) is scaled independently. This makes the **Jacobian determinant** simply the product of diagonal entries:
-
-$$
-\det(J) = \prod_{i=d+1}^{n} \exp(s(\mathbf{z}_{1:d})_i) = \exp \left( \sum_{i=d+1}^{n} s(\mathbf{z}_{1:d})_i \right)
-$$
-
-> **Why this matters:** The design ensures that the transformation is invertible **and** the log-determinant is **easy to compute** — both are essential for tractable likelihood estimation.
-
-This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
 
 
 #### Stacking Coupling Layers

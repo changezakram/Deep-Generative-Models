@@ -523,10 +523,10 @@ I_d &amp; 0 \\\\
 \frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} &amp; \operatorname{diag}\left(\exp(\alpha_\theta(\mathbf{z}_{1:d}))\right)
 \end{pmatrix}
 \]</span></p>
-<p>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</p>
 <p>The Jacobian matrix of the RealNVP forward transformation has a special block structure due to the design of the affine coupling layer:</p>
 <ul>
-<li><p>**Upper left block ( _d ):** This corresponds to the partial derivatives of <span class="math inline">\(\mathbf{x}_{1:d}\)</span> with respect to <span class="math inline">\(\mathbf{z}_{1:d}\)</span>. Since the first <span class="math inline">\(d\)</span> variables are passed through unchanged (<span class="math inline">\(\mathbf{x}_{1:d} = \mathbf{z}_{1:d}\)</span>), their derivatives form an identity matrix.</p></li>
+<li><p><strong>Upper left block</strong>: ( _d )<br>
+This corresponds to the partial derivatives of <span class="math inline">\(\mathbf{x}_{1:d}\)</span> with respect to <span class="math inline">\(\mathbf{z}_{1:d}\)</span>. Since the first <span class="math inline">\(d\)</span> variables are passed through unchanged (<span class="math inline">\(\mathbf{x}_{1:d} = \mathbf{z}_{1:d}\)</span>), their derivatives form an identity matrix.</p></li>
 <li><p><strong>Upper right block ( 0 ):</strong><br>
 These derivatives are zero because <span class="math inline">\(\mathbf{x}_{1:d}\)</span> does not depend on <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> at all — they’re completely decoupled.</p></li>
 <li><p><strong>Lower right block (diagonal):</strong><br>
@@ -534,10 +534,7 @@ Each element of <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span> is scale
 <li><p><strong>Lower left block:</strong><br>
 This part can contain non-zero values because <span class="math inline">\(\mathbf{x}_{d+1:n}\)</span> depends on <span class="math inline">\(\mathbf{z}_{1:d}\)</span> via the neural networks. But thanks to the triangular structure of the Jacobian, we don’t need this block to compute the determinant.</p></li>
 </ul>
-</section>
-</section>
-<section id="why-this-structure-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-structure-matters">Why This Structure Matters</h2>
+<p>**Why This Structure Matters</p>
 <p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries.</p>
 <p><span class="math display">\[
 \det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
@@ -549,95 +546,31 @@ This part can contain non-zero values because <span class="math inline">\(\mathb
 \]</span></p>
 <p>This makes the computation of log-likelihoods fast and tractable.</p>
 <p>Taking the product of the diagonal entries gives us a measure of <strong>how much the transformation expands or contracts local volume</strong>. If the determinant is greater than 1, the transformation expands space; if it’s less than 1, it contracts space. Since the determinant is not fixed, RealNVP performs a <strong>non-volume preserving transformation</strong> — allowing it to model more complex distributions than NICE, which preserves volume by design.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 5%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>We again partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>.</td>
-</tr>
-<tr class="even">
-<td>- <strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</td>
-</tr>
-<tr class="odd">
-<td><span class="math display">\[
-\mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
-\]</span></td>
-</tr>
-<tr class="even">
-<td><span class="math display">\[
-\mathbf{x}_{d+1:n} = \mathbf{z}_{d+1:n} \odot \exp(s(\mathbf{z}_{1:d})) + t(\mathbf{z}_{1:d})
-\]</span></td>
-</tr>
-<tr class="odd">
-<td>This equation modifies the second half of the input by <strong>scaling</strong> and <strong>shifting</strong> it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.</td>
-</tr>
-<tr class="even">
-<td>- <strong>Inverse Mapping</strong> <span class="math inline">\(\mathbf{x} \mapsto \mathbf{z}\)</span>:</td>
-</tr>
-<tr class="odd">
-<td><span class="math display">\[
-\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
-\]</span></td>
-</tr>
-<tr class="even">
-<td><span class="math display">\[
-\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
-\]</span></td>
-</tr>
-<tr class="odd">
-<td>#### Efficient Jacobian</td>
-</tr>
-<tr class="even">
-<td>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</td>
-</tr>
-<tr class="odd">
-<td><span class="math display">\[
-\frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
-\begin{pmatrix}
-I_d &amp; 0 \\
-\frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} &amp; \text{diag} \left( \exp(s(\mathbf{z}_{1:d})) \right)
-\end{pmatrix}
-\]</span></td>
-</tr>
-<tr class="even">
-<td>The lower-right block is a diagonal matrix because each element of ( _{d+1:n} ) is scaled independently. This makes the <strong>Jacobian determinant</strong> simply the product of diagonal entries:</td>
-</tr>
-<tr class="odd">
-<td><span class="math display">\[
-\det(J) = \prod_{i=d+1}^{n} \exp(s(\mathbf{z}_{1:d})_i) = \exp \left( \sum_{i=d+1}^{n} s(\mathbf{z}_{1:d})_i \right)
-\]</span></td>
-</tr>
-<tr class="even">
-<td>&gt; <strong>Why this matters:</strong> The design ensures that the transformation is invertible <strong>and</strong> the log-determinant is <strong>easy to compute</strong> — both are essential for tractable likelihood estimation.</td>
-</tr>
-<tr class="odd">
-<td>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</td>
-</tr>
-<tr class="even">
-<td>#### Stacking Coupling Layers</td>
-</tr>
-<tr class="odd">
-<td>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</td>
-</tr>
-<tr class="even">
-<td>- In one layer, the first half is fixed, and the second half is transformed. - In the next layer, the roles are reversed.</td>
-</tr>
-<tr class="odd">
-<td>This alternating structure ensures: - All input dimensions are updated across layers - The full transformation remains invertible - The total log-determinant is the <strong>sum of the log-determinants</strong> of each layer</td>
-</tr>
-<tr class="even">
-<td>#### RealNVP in Action (Two Moons)</td>
-</tr>
-<tr class="odd">
-<td>The following plots illustrate how RealNVP transforms data in practice:</td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-</tbody>
-</table>
+<section id="stacking-coupling-layers" class="level4">
+<h4 class="anchored" data-anchor-id="stacking-coupling-layers">Stacking Coupling Layers</h4>
+<p>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</p>
+<ul>
+<li>In one layer, the first half is fixed, and the second half is transformed.</li>
+<li>In the next layer, the roles are reversed.</li>
+</ul>
+<p>This alternating structure ensures: - All input dimensions are updated across layers - The full transformation remains invertible - The total log-determinant is the <strong>sum of the log-determinants</strong> of each layer</p>
+</section>
+<section id="realnvp-in-action-two-moons" class="level4">
+<h4 class="anchored" data-anchor-id="realnvp-in-action-two-moons">RealNVP in Action (Two Moons)</h4>
+<p>The following plots illustrate how RealNVP transforms data in practice:</p>
+<div style="text-align: center;">
+<img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800">
+<p style="color: gray; font-size: 0.95em;">
+<em> Top-left: Original two-moons data ((X))<br>
+Top-right: Encoded latent space ((Z))<br>
+Bottom-left: Latent samples from base distribution<br>
+Bottom-right: Generated samples mapped back to (X) space<br>
+</em>
+</p>
+</div>
+<hr>
+</section>
+</section>
 </section>
 <section id="try-it-yourself-flow-model-in-pytorch" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself-flow-model-in-pytorch">🧪 Try It Yourself: Flow Model in Pytorch</h2>
