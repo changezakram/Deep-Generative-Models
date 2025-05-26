@@ -519,6 +519,13 @@ J = \text{diag}(\mathbf{s})
 \mathbf{z}_{d+1:n} &amp;= \left( \mathbf{x}_{d+1:n} - \mu_\theta(\mathbf{x}_{1:d}) \right) \odot \exp(-\alpha_\theta(\mathbf{x}_{1:d}))
 \end{aligned}
 \]</span></p>
+<p>To recover ( ) from ( ), the process is symmetric:</p>
+<p><span class="math display">\[
+\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
+\]</span></p>
 <ul>
 <li><strong>Jacobian of Forward Mapping</strong>:</li>
 </ul>
@@ -536,20 +543,10 @@ I_d &amp; 0 \\\\
 \det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
 = \exp\left( \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i \right)
 \]</span></p>
-<p>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</p>
-<hr>
-<div style="text-align: center;">
-<img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800">
-<p style="color: gray; font-size: 0.95em;">
-<em> Top-left: Original two-moons data ((X))<br>
-Top-right: Encoded latent space ((Z))<br>
-Bottom-left: Latent samples from base distribution<br>
-Bottom-right: Generated samples mapped back to (X) space<br>
-</em>
-</p>
-</div>
-<hr>
 </section>
+</section>
+<section id="this-makes-real-nvp-a-non-volume-preserving-transformation-allowing-for-both-expansion-and-contraction-of-volume." class="level2">
+<h2 class="anchored" data-anchor-id="this-makes-real-nvp-a-non-volume-preserving-transformation-allowing-for-both-expansion-and-contraction-of-volume.">This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</h2>
 <section id="efficient-jacobian" class="level3">
 <h3 class="anchored" data-anchor-id="efficient-jacobian">📐 Efficient Jacobian</h3>
 <p>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</p>
@@ -569,17 +566,6 @@ I_d &amp; 0 \\
 </blockquote>
 <hr>
 </section>
-<section id="inverse-mapping" class="level3">
-<h3 class="anchored" data-anchor-id="inverse-mapping">🔁 Inverse Mapping</h3>
-<p>To recover ( ) from ( ), the process is symmetric:</p>
-<p><span class="math display">\[
-\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
-\]</span></p>
-<hr>
-</section>
 <section id="stacking-coupling-layers" class="level3">
 <h3 class="anchored" data-anchor-id="stacking-coupling-layers">🧱 Stacking Coupling Layers</h3>
 <p>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</p>
@@ -588,16 +574,6 @@ I_d &amp; 0 \\
 <li>In the next layer, the roles are reversed.</li>
 </ul>
 <p>This alternating structure ensures: - All input dimensions are updated across layers - The full transformation remains invertible - The total log-determinant is the <strong>sum of the log-determinants</strong> of each layer</p>
-<hr>
-</section>
-<section id="affine-coupling-layer-visual" class="level3">
-<h3 class="anchored" data-anchor-id="affine-coupling-layer-visual">🖼 Affine Coupling Layer Visual</h3>
-<div style="text-align: center;">
-<img src="images/coupling-layer-v2.png" alt="Affine Coupling Layer in RealNVP" width="700">
-<p style="color: gray; font-size: 0.95em;">
-<em> Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation. </em>
-</p>
-</div>
 <hr>
 </section>
 <section id="realnvp-in-action-two-moons" class="level3">

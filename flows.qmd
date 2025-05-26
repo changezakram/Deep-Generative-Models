@@ -451,6 +451,17 @@ $$
 \end{aligned}
 $$
 
+To recover \( \mathbf{z} \) from \( \mathbf{x} \), the process is symmetric:
+
+$$
+\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
+$$
+
+$$
+\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
+$$
+
+
 - **Jacobian of Forward Mapping**:
 
 $$
@@ -469,25 +480,9 @@ $$
 $$
 
 This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
-
-
-
 ------
 
 
-
-
-<div style="text-align: center;">
-  <img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800"/>
-  <p style="color: gray; font-size: 0.95em;"><em>
-    Top-left: Original two-moons data (\(X\))  
-    Top-right: Encoded latent space (\(Z\))  
-    Bottom-left: Latent samples from base distribution  
-    Bottom-right: Generated samples mapped back to \(X\) space  
-  </em></p>
-</div>
-
----
 
 ### 📐 Efficient Jacobian
 
@@ -511,20 +506,6 @@ $$
 
 ---
 
-### 🔁 Inverse Mapping
-
-To recover \( \mathbf{z} \) from \( \mathbf{x} \), the process is symmetric:
-
-$$
-\mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
-$$
-
-$$
-\mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
-$$
-
----
-
 ### 🧱 Stacking Coupling Layers
 
 Each coupling layer only transforms part of the input. To ensure that **every dimension is eventually updated**, RealNVP stacks multiple coupling layers and **alternates the masking pattern** between them.
@@ -537,16 +518,6 @@ This alternating structure ensures:
 - The full transformation remains invertible
 - The total log-determinant is the **sum of the log-determinants** of each layer
 
----
-
-### 🖼 Affine Coupling Layer Visual
-
-<div style="text-align: center;">
-  <img src="images/coupling-layer-v2.png" alt="Affine Coupling Layer in RealNVP" width="700"/>
-  <p style="color: gray; font-size: 0.95em;"><em>
-    Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation.
-  </em></p>
-</div>
 ---
 
 ### 🧪 RealNVP in Action (Two Moons)
