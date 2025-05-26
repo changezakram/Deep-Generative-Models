@@ -456,6 +456,8 @@ J = \text{diag}(\mathbf{s})
 \det(J) = \prod_{i=1}^n s_i
 $$
 
+However, the volume-preserving property of NICE limits its expressiveness. RealNVP extends this idea by introducing affine coupling layers that enable volume changes during transformation.
+
 
 ### Real-NVP: Non-Volume Preserving Extension of NICE
 
