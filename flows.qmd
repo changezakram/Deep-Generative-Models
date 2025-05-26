@@ -540,6 +540,14 @@ The following plots illustrate how RealNVP transforms data in practice:
 
 ---
 
+<div style="text-align: center;">
+  <img src="images/coupling-layer-v2.png" alt="Affine Coupling Layer in RealNVP" width="700"/>
+  <p style="color: gray; font-size: 0.95em;"><em>
+    Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation.
+  </em></p>
+</div>
+
+
 -----
 ## 🧪 Try It Yourself: Flow Model in Pytorch
 
