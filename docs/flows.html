@@ -485,7 +485,13 @@ J = \text{diag}(\mathbf{s})
 </section>
 <section id="real-nvp-non-volume-preserving-extension-of-nice" class="level3">
 <h3 class="anchored" data-anchor-id="real-nvp-non-volume-preserving-extension-of-nice">Real-NVP: Non-Volume Preserving Extension of NICE</h3>
-<p>Real-NVP (Dinh et al., 2017) extends NICE by introducing a <strong>scaling function</strong> that allows the model to <strong>change volume</strong>, enabling more expressive transformations.</p>
+<p>Real-NVP (Dinh et al., 2017) extends NICE by introducing a <strong>scaling function</strong> that allows the model to change volume, enabling more expressive transformations. This is achieved using <strong>affine coupling layers</strong> that apply learned scaling and translation functions to part of the input while keeping the rest unchanged.</p>
+<div style="text-align: center;">
+<img src="images/coupling-layer-v2.png" alt="Affine Coupling Layer in RealNVP" width="700">
+<p style="color: gray; font-size: 0.95em;">
+<em> Visualization of a single affine coupling layer in RealNVP. The identity path and affine transform structure allow exact inversion and efficient computation. </em>
+</p>
+</div>
 <p>We again partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>.</p>
 <ul>
 <li><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</li>
