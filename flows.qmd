@@ -473,9 +473,12 @@ $$
 This equation modifies the second half of the input by **scaling** and **shifting** it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.
 
 <div style="text-align: center;">
-  <img src="images/coupling-layer-v2.png" width="700"/>
+  <img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800"/>
   <p style="color: gray; font-size: 0.95em;"><em>
-    Visualization of a single affine coupling layer in Real-NVP showing both forward and inverse mappings. The identity path and affine transform structure allow exact inversion and efficient computation.
+    Top-left: Original two-moons data (\(X\))  
+    Top-right: Encoded latent space (\(Z\))  
+    Bottom-left: Latent samples from base distribution  
+    Bottom-right: Generated samples mapped back to \(X\) space  
   </em></p>
 </div>
 
