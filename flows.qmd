@@ -369,7 +369,7 @@ In the rest of this article, we focus on **Coupling Flows**, briefly introducing
 
 The NICE (Nonlinear Independent Components Estimation) model, introduced by Laurent Dinh, David Krueger, and Yoshua Bengio in 2014, is a foundational work in the development of normalizing flows.
 
-It provides a framework for modeling complex high-dimensional data distributions through a series of **invertible transformations** that map data to a latent space with a factorized distribution. Its design enables exact log-likelihood computation and efficient sampling — a powerful combination in generative modeling.
+It provides a framework for transforming complex high-dimensional data into a simpler latent space (often a standard Gaussian), enabling both **exact likelihood estimation** and **sampling** — two fundamental goals in generative modeling.
 
 #### Core Concepts
 
@@ -416,7 +416,7 @@ $$
 
 - **Jacobian** of the forward mapping:
 
-The Jacobian matrix captures how much the transformation stretches or compresses space. Because part of the input is unchanged and the other part is only shifted (not scaled), the determinant of the Jacobian is 1 — meaning the transformation preserves volume.
+The Jacobian matrix captures how much the transformation stretches or compresses space. Because the unchanged subset passes through as-is and the transformation is purely additive (no scaling), the Jacobian is triangular with 1s on the diagonal — so its determinant is 1 — meaning the transformation preserves volume.
 
 $$
 J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} = 
@@ -434,7 +434,7 @@ Hence, additive coupling is a **volume-preserving transformation**.
 
 #### Rescaling Layer
 
-To enable volume changes, NICE appends a final rescaling layer:
+To overcome the limitation of fixed volume, NICE adds a diagonal scaling transformation at the end, allowing the model to contract or expand space. This is not part of the coupling layers, but is crucial to increase flexibility.
 
 - **Forward Mapping**:
 

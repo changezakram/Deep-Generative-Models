@@ -464,7 +464,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <section id="nice-nonlinear-independent-components-estimation" class="level3">
 <h3 class="anchored" data-anchor-id="nice-nonlinear-independent-components-estimation">NICE: Nonlinear Independent Components Estimation</h3>
 <p>The NICE (Nonlinear Independent Components Estimation) model, introduced by Laurent Dinh, David Krueger, and Yoshua Bengio in 2014, is a foundational work in the development of normalizing flows.</p>
-<p>It provides a framework for modeling complex high-dimensional data distributions through a series of <strong>invertible transformations</strong> that map data to a latent space with a factorized distribution. Its design enables exact log-likelihood computation and efficient sampling — a powerful combination in generative modeling.</p>
+<p>It provides a framework for transforming complex high-dimensional data into a simpler latent space (often a standard Gaussian), enabling both <strong>exact likelihood estimation</strong> and <strong>sampling</strong> — two fundamental goals in generative modeling.</p>
 <section id="core-concepts" class="level4">
 <h4 class="anchored" data-anchor-id="core-concepts">Core Concepts</h4>
 <ul>
@@ -506,7 +506,7 @@ Unlike VAEs or GANs, which rely on approximations, NICE enables <strong>exact</s
 <ul>
 <li><strong>Jacobian</strong> of the forward mapping:</li>
 </ul>
-<p>The Jacobian matrix captures how much the transformation stretches or compresses space. Because part of the input is unchanged and the other part is only shifted (not scaled), the determinant of the Jacobian is 1 — meaning the transformation preserves volume.</p>
+<p>The Jacobian matrix captures how much the transformation stretches or compresses space. Because the unchanged subset passes through as-is and the transformation is purely additive (no scaling), the Jacobian is triangular with 1s on the diagonal — so its determinant is 1 — meaning the transformation preserves volume.</p>
 <p><span class="math display">\[
 J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
 \begin{pmatrix}
@@ -521,7 +521,7 @@ I_d &amp; 0 \\
 </section>
 <section id="rescaling-layer" class="level4">
 <h4 class="anchored" data-anchor-id="rescaling-layer">Rescaling Layer</h4>
-<p>To enable volume changes, NICE appends a final rescaling layer:</p>
+<p>To overcome the limitation of fixed volume, NICE adds a diagonal scaling transformation at the end, allowing the model to contract or expand space. This is not part of the coupling layers, but is crucial to increase flexibility.</p>
 <ul>
 <li><strong>Forward Mapping</strong>:</li>
 </ul>
