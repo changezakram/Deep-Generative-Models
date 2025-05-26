@@ -512,9 +512,8 @@ J = \text{diag}(\mathbf{s})
 <p><span class="math display">\[
 \mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
 \]</span></p>
-</section>
-<section id="efficient-jacobian" class="level3">
-<h3 class="anchored" data-anchor-id="efficient-jacobian">Efficient Jacobian</h3>
+<section id="efficient-jacobian" class="level4">
+<h4 class="anchored" data-anchor-id="efficient-jacobian">Efficient Jacobian</h4>
 <p>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</p>
 <p><span class="math display">\[
 \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
@@ -528,23 +527,21 @@ I_d &amp; 0 \\
 \det(J) = \prod_{i=d+1}^{n} \exp(s(\mathbf{z}_{1:d})_i) = \exp \left( \sum_{i=d+1}^{n} s(\mathbf{z}_{1:d})_i \right)
 \]</span></p>
 <blockquote class="blockquote">
-<p>💡 <strong>Why this matters:</strong> The design ensures that the transformation is invertible <strong>and</strong> the log-determinant is <strong>easy to compute</strong> — both are essential for tractable likelihood estimation.</p>
+<p><strong>Why this matters:</strong> The design ensures that the transformation is invertible <strong>and</strong> the log-determinant is <strong>easy to compute</strong> — both are essential for tractable likelihood estimation.</p>
 </blockquote>
 <p>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</p>
-<hr>
 </section>
-<section id="stacking-coupling-layers" class="level3">
-<h3 class="anchored" data-anchor-id="stacking-coupling-layers">🧱 Stacking Coupling Layers</h3>
+<section id="stacking-coupling-layers" class="level4">
+<h4 class="anchored" data-anchor-id="stacking-coupling-layers">Stacking Coupling Layers</h4>
 <p>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</p>
 <ul>
 <li>In one layer, the first half is fixed, and the second half is transformed.</li>
 <li>In the next layer, the roles are reversed.</li>
 </ul>
 <p>This alternating structure ensures: - All input dimensions are updated across layers - The full transformation remains invertible - The total log-determinant is the <strong>sum of the log-determinants</strong> of each layer</p>
-<hr>
 </section>
-<section id="realnvp-in-action-two-moons" class="level3">
-<h3 class="anchored" data-anchor-id="realnvp-in-action-two-moons">🧪 RealNVP in Action (Two Moons)</h3>
+<section id="realnvp-in-action-two-moons" class="level4">
+<h4 class="anchored" data-anchor-id="realnvp-in-action-two-moons">🧪 RealNVP in Action (Two Moons)</h4>
 <p>The following plots illustrate how RealNVP transforms data in practice:</p>
 <div style="text-align: center;">
 <img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800">
@@ -557,6 +554,7 @@ Bottom-right: Generated samples mapped back to (X) space<br>
 </p>
 </div>
 <hr>
+</section>
 </section>
 </section>
 <section id="try-it-yourself-flow-model-in-pytorch" class="level2">

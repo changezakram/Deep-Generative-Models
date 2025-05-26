@@ -444,7 +444,7 @@ $$
 $$
 
 
-### Efficient Jacobian
+#### Efficient Jacobian
 
 Because the first half \( \mathbf{x}_{1:d} \) is copied directly and only \( \mathbf{x}_{d+1:n} \) is transformed element-wise, the Jacobian of this transformation has a triangular structure:
 
@@ -462,14 +462,12 @@ $$
 \det(J) = \prod_{i=d+1}^{n} \exp(s(\mathbf{z}_{1:d})_i) = \exp \left( \sum_{i=d+1}^{n} s(\mathbf{z}_{1:d})_i \right)
 $$
 
-> 💡 **Why this matters:** The design ensures that the transformation is invertible **and** the log-determinant is **easy to compute** — both are essential for tractable likelihood estimation.
+> **Why this matters:** The design ensures that the transformation is invertible **and** the log-determinant is **easy to compute** — both are essential for tractable likelihood estimation.
 
 This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
 
 
----
-
-### 🧱 Stacking Coupling Layers
+#### Stacking Coupling Layers
 
 Each coupling layer only transforms part of the input. To ensure that **every dimension is eventually updated**, RealNVP stacks multiple coupling layers and **alternates the masking pattern** between them.
 
@@ -481,9 +479,8 @@ This alternating structure ensures:
 - The full transformation remains invertible
 - The total log-determinant is the **sum of the log-determinants** of each layer
 
----
 
-### 🧪 RealNVP in Action (Two Moons)
+#### 🧪 RealNVP in Action (Two Moons)
 
 The following plots illustrate how RealNVP transforms data in practice:
 
