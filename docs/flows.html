@@ -503,6 +503,13 @@ J = \text{diag}(\mathbf{s})
 \end{aligned}
 \]</span></p>
 <p>This equation modifies the second half of the input by scaling and shifting it, based on the first half. The use of the exponential function ensures that scaling is always positive, which is important for invertibility.</p>
+<p><span class="math display">\[
+\mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{x}_{d+1:n} = \mathbf{z}_{d+1:n} \odot \exp(s(\mathbf{z}_{1:d})) + t(\mathbf{z}_{1:d})
+\]</span></p>
+<p>This equation modifies the second half of the input by <strong>scaling</strong> and <strong>shifting</strong> it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.</p>
 <ul>
 <li><strong>Inverse Mapping</strong> <span class="math inline">\(\mathbf{x} \mapsto \mathbf{z}\)</span>:</li>
 </ul>
@@ -530,41 +537,18 @@ I_d &amp; 0 \\\\
 = \exp\left( \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i \right)
 \]</span></p>
 <p>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 9%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>## 🔄 Real-NVP: Non-Volume Preserving Extension of NICE</td>
-</tr>
-<tr class="even">
-<td>Real-NVP (Dinh et al., 2017) extends NICE by introducing a <strong>scaling function</strong> that allows the model to change volume, enabling more expressive transformations. This is achieved using <strong>affine coupling layers</strong> that apply learned scaling and translation functions to part of the input while keeping the rest unchanged.</td>
-</tr>
-<tr class="odd">
-<td>### 🔀 Coupling Layer Transformation</td>
-</tr>
-<tr class="even">
-<td>We again partition the input ( ^n ) into two disjoint subsets: ( <em>{1:d} ) and ( </em>{d+1:n} ). The transformation is defined as follows:</td>
-</tr>
-<tr class="odd">
-<td><span class="math display">\[
-\mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
-\]</span></td>
-</tr>
-<tr class="even">
-<td><span class="math display">\[
-\mathbf{x}_{d+1:n} = \mathbf{z}_{d+1:n} \odot \exp(s(\mathbf{z}_{1:d})) + t(\mathbf{z}_{1:d})
-\]</span></td>
-</tr>
-<tr class="odd">
-<td>This equation modifies the second half of the input by <strong>scaling</strong> and <strong>shifting</strong> it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.</td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-</tbody>
-</table>
+<hr>
+<div style="text-align: center;">
+<img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800">
+<p style="color: gray; font-size: 0.95em;">
+<em> Top-left: Original two-moons data ((X))<br>
+Top-right: Encoded latent space ((Z))<br>
+Bottom-left: Latent samples from base distribution<br>
+Bottom-right: Generated samples mapped back to (X) space<br>
+</em>
+</p>
+</div>
+<hr>
 </section>
 <section id="efficient-jacobian" class="level3">
 <h3 class="anchored" data-anchor-id="efficient-jacobian">📐 Efficient Jacobian</h3>

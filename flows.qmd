@@ -432,6 +432,16 @@ $$
 
 This equation modifies the second half of the input by scaling and shifting it, based on the first half. The use of the exponential function ensures that scaling is always positive, which is important for invertibility.
 
+$$
+\mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
+$$
+
+$$
+\mathbf{x}_{d+1:n} = \mathbf{z}_{d+1:n} \odot \exp(s(\mathbf{z}_{1:d})) + t(\mathbf{z}_{1:d})
+$$
+
+This equation modifies the second half of the input by **scaling** and **shifting** it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.
+
 - **Inverse Mapping** $\mathbf{x} \mapsto \mathbf{z}$:
 
 $$
@@ -463,23 +473,9 @@ This makes Real-NVP a **non-volume preserving transformation**, allowing for bot
 
 
 ------
-## 🔄 Real-NVP: Non-Volume Preserving Extension of NICE
 
-Real-NVP (Dinh et al., 2017) extends NICE by introducing a **scaling function** that allows the model to change volume, enabling more expressive transformations. This is achieved using **affine coupling layers** that apply learned scaling and translation functions to part of the input while keeping the rest unchanged.
 
-### 🔀 Coupling Layer Transformation
 
-We again partition the input \( \mathbf{z} \in \mathbb{R}^n \) into two disjoint subsets: \( \mathbf{z}_{1:d} \) and \( \mathbf{z}_{d+1:n} \). The transformation is defined as follows:
-
-$$
-\mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
-$$
-
-$$
-\mathbf{x}_{d+1:n} = \mathbf{z}_{d+1:n} \odot \exp(s(\mathbf{z}_{1:d})) + t(\mathbf{z}_{1:d})
-$$
-
-This equation modifies the second half of the input by **scaling** and **shifting** it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.
 
 <div style="text-align: center;">
   <img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800"/>
