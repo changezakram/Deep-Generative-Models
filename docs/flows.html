@@ -498,6 +498,7 @@ J = \text{diag}(\mathbf{s})
 \mathbf{x}_{d+1:n} &amp;= \mathbf{z}_{d+1:n} \odot \exp(\alpha_\theta(\mathbf{z}_{1:d})) + \mu_\theta(\mathbf{z}_{1:d})
 \end{aligned}
 \]</span></p>
+<p>Here, <span class="math inline">\(\boldsymbol{\alpha}_\theta(\cdot)\)</span> and <span class="math inline">\(\boldsymbol{\mu}_\theta(\cdot)\)</span> are <strong>neural networks with parameters <span class="math inline">\(\theta\)</span></strong> that take the unchanged subset <span class="math inline">\(\mathbf{z}_{1:d}\)</span> as input and produce scale and shift parameters, respectively, for the transformed subset <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>. These functions enable flexible, learnable affine transformations while preserving invertibility.</p>
 <p>We again partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span>.</p>
 <ul>
 <li><strong>Forward Mapping</strong> <span class="math inline">\(\mathbf{z} \mapsto \mathbf{x}\)</span>:</li>

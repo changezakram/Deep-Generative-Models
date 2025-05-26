@@ -427,6 +427,7 @@ $$
 \end{aligned}
 $$
 
+Here, $\boldsymbol{\alpha}_\theta(\cdot)$ and $\boldsymbol{\mu}_\theta(\cdot)$ are **neural networks with parameters $\theta$** that take the unchanged subset $\mathbf{z}_{1:d}$ as input and produce scale and shift parameters, respectively, for the transformed subset $\mathbf{z}_{d+1:n}$. These functions enable flexible, learnable affine transformations while preserving invertibility.
 
 We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\mathbf{z}_{1:d}$ and $\mathbf{z}_{d+1:n}$.
 
