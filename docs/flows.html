@@ -555,12 +555,15 @@ I_d &amp; 0 \\\\
 <td>This equation modifies the second half of the input by <strong>scaling</strong> and <strong>shifting</strong> it based on the first half. The exponential ensures scaling is always positive (important for invertibility), while the identity path allows efficient inversion.</td>
 </tr>
 <tr class="even">
-<td>### 📐 Efficient Jacobian</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</td>
+<td>### 📐 Efficient Jacobian</td>
 </tr>
 <tr class="even">
+<td>Because the first half ( <em>{1:d} ) is copied directly and only ( </em>{d+1:n} ) is transformed element-wise, the Jacobian of this transformation has a triangular structure:</td>
+</tr>
+<tr class="odd">
 <td><span class="math display">\[
 \frac{\partial \mathbf{x}}{\partial \mathbf{z}} =
 \begin{pmatrix}
@@ -569,34 +572,34 @@ I_d &amp; 0 \\
 \end{pmatrix}
 \]</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>The lower-right block is a diagonal matrix because each element of ( _{d+1:n} ) is scaled independently. This makes the <strong>Jacobian determinant</strong> simply the product of diagonal entries:</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="math display">\[
 \det(J) = \prod_{i=d+1}^{n} \exp(s(\mathbf{z}_{1:d})_i) = \exp \left( \sum_{i=d+1}^{n} s(\mathbf{z}_{1:d})_i \right)
 \]</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>&gt; 💡 <strong>Why this matters:</strong> The design ensures that the transformation is invertible <strong>and</strong> the log-determinant is <strong>easy to compute</strong> — both are essential for tractable likelihood estimation.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>### 🔁 Inverse Mapping</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>To recover ( ) from ( ), the process is symmetric:</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="math display">\[
 \mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
 \]</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="math display">\[
 \mathbf{z}_{d+1:n} = \left( \mathbf{x}_{d+1:n} - t(\mathbf{x}_{1:d}) \right) \odot \exp(-s(\mathbf{x}_{1:d}))
 \]</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>The same coupling structure is reused, with subtraction and elementwise division instead of addition and multiplication.</td>
 </tr>
 </tbody>
