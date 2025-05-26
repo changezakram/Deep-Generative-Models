@@ -424,15 +424,6 @@ We again partition the input $\mathbf{z} \in \mathbb{R}^n$ into two subsets: $\m
 - **Forward Mapping** $\mathbf{z} \mapsto \mathbf{x}$:
 
 $$
-\begin{aligned}
-\mathbf{x}_{1:d} &= \mathbf{z}_{1:d} \quad \text{(identity transformation)} \\\\
-\mathbf{x}_{d+1:n} &= \mathbf{z}_{d+1:n} \odot \exp(\alpha_\theta(\mathbf{z}_{1:d})) + \mu_\theta(\mathbf{z}_{1:d})
-\end{aligned}
-$$
-
-This equation modifies the second half of the input by scaling and shifting it, based on the first half. The use of the exponential function ensures that scaling is always positive, which is important for invertibility.
-
-$$
 \mathbf{x}_{1:d} = \mathbf{z}_{1:d} \quad \text{(identity transformation)}
 $$
 
@@ -445,15 +436,6 @@ This equation modifies the second half of the input by **scaling** and **shiftin
 - **Inverse Mapping** $\mathbf{x} \mapsto \mathbf{z}$:
 
 $$
-\begin{aligned}
-\mathbf{z}_{1:d} &= \mathbf{x}_{1:d} \quad \text{(identity transformation)} \\\\
-\mathbf{z}_{d+1:n} &= \left( \mathbf{x}_{d+1:n} - \mu_\theta(\mathbf{x}_{1:d}) \right) \odot \exp(-\alpha_\theta(\mathbf{x}_{1:d}))
-\end{aligned}
-$$
-
-To recover \( \mathbf{z} \) from \( \mathbf{x} \), the process is symmetric:
-
-$$
 \mathbf{z}_{1:d} = \mathbf{x}_{1:d} \quad \text{(identity transformation)}
 $$
 
@@ -462,29 +444,7 @@ $$
 $$
 
 
-- **Jacobian of Forward Mapping**:
-
-$$
-J = \frac{\partial \mathbf{x}}{\partial \mathbf{z}} = 
-\begin{pmatrix}
-I_d & 0 \\\\
-\frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} & \operatorname{diag}\left(\exp(\alpha_\theta(\mathbf{z}_{1:d}))\right)
-\end{pmatrix}
-$$
-
-- **Determinant of the Jacobian**:
-
-$$
-\det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
-= \exp\left( \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i \right)
-$$
-
-This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
-------
-
-
-
-### 📐 Efficient Jacobian
+### Efficient Jacobian
 
 Because the first half \( \mathbf{x}_{1:d} \) is copied directly and only \( \mathbf{x}_{d+1:n} \) is transformed element-wise, the Jacobian of this transformation has a triangular structure:
 
@@ -503,6 +463,9 @@ $$
 $$
 
 > 💡 **Why this matters:** The design ensures that the transformation is invertible **and** the log-determinant is **easy to compute** — both are essential for tractable likelihood estimation.
+
+This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
+
 
 ---
 
