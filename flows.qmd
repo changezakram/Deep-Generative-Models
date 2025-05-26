@@ -480,7 +480,7 @@ This alternating structure ensures:
 - The total log-determinant is the **sum of the log-determinants** of each layer
 
 
-#### 🧪 RealNVP in Action (Two Moons)
+#### RealNVP in Action (Two Moons)
 
 The following plots illustrate how RealNVP transforms data in practice:
 
