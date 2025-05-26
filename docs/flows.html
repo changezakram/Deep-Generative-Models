@@ -523,17 +523,10 @@ I_d &amp; 0 \\\\
 \frac{\partial \mathbf{x}_{d+1:n}}{\partial \mathbf{z}_{1:d}} &amp; \operatorname{diag}\left(\exp(\alpha_\theta(\mathbf{z}_{1:d}))\right)
 \end{pmatrix}
 \]</span></p>
-<ul>
-<li><strong>Determinant of the Jacobian</strong>:</li>
-</ul>
-<p><span class="math display">\[
-\det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
-= \exp\left( \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i \right)
-\]</span></p>
 <p>This makes Real-NVP a <strong>non-volume preserving transformation</strong>, allowing for both expansion and contraction of volume.</p>
 <p>The Jacobian matrix of the RealNVP forward transformation has a special block structure due to the design of the affine coupling layer:</p>
 <ul>
-<li><p><strong>Upper left block ( I_d ):</strong><br>
+<li><p>**Upper left block ( _d ):**<br>
 This corresponds to the partial derivatives of <span class="math inline">\(\mathbf{x}_{1:d}\)</span> with respect to <span class="math inline">\(\mathbf{z}_{1:d}\)</span>. Since the first <span class="math inline">\(d\)</span> variables are passed through unchanged (<span class="math inline">\(\mathbf{x}_{1:d} = \mathbf{z}_{1:d}\)</span>), their derivatives form an identity matrix.</p></li>
 <li><p><strong>Upper right block ( 0 ):</strong><br>
 These derivatives are zero because <span class="math inline">\(\mathbf{x}_{1:d}\)</span> does not depend on <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> at all — they’re completely decoupled.</p></li>
@@ -546,7 +539,12 @@ This part can contain non-zero values because <span class="math inline">\(\mathb
 </section>
 <section id="why-this-structure-matters" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-structure-matters">Why This Structure Matters</h2>
-<p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries. In log-space, this becomes a sum:</p>
+<p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries.</p>
+<p><span class="math display">\[
+\det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
+= \exp\left( \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i \right)
+\]</span></p>
+<p>In log-space, this becomes a sum:</p>
 <p><span class="math display">\[
 \log \det(J) = \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i
 \]</span></p>

@@ -454,19 +454,13 @@ I_d & 0 \\\\
 \end{pmatrix}
 $$
 
-- **Determinant of the Jacobian**:
-
-$$
-\det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
-= \exp\left( \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i \right)
-$$
 
 This makes Real-NVP a **non-volume preserving transformation**, allowing for both expansion and contraction of volume.
 
 
 The Jacobian matrix of the RealNVP forward transformation has a special block structure due to the design of the affine coupling layer:
 
-- **Upper left block \( I_d \):**  
+- **Upper left block \( \mathbf{I}_d \):**  
   This corresponds to the partial derivatives of $\mathbf{x}_{1:d}$ with respect to $\mathbf{z}_{1:d}$. Since the first $d$ variables are passed through unchanged ($\mathbf{x}_{1:d} = \mathbf{z}_{1:d}$), their derivatives form an identity matrix.
 
 - **Upper right block \( 0 \):**  
@@ -480,7 +474,14 @@ The Jacobian matrix of the RealNVP forward transformation has a special block st
 
 ## Why This Structure Matters
 
-Because the Jacobian is **triangular**, its determinant is simply the product of the diagonal entries. In log-space, this becomes a sum:
+Because the Jacobian is **triangular**, its determinant is simply the product of the diagonal entries. 
+
+$$
+\det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
+= \exp\left( \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i \right)
+$$
+
+In log-space, this becomes a sum:
 
 $$
 \log \det(J) = \sum_{i=d+1}^{n} \alpha_\theta(\mathbf{z}_{1:d})_i
