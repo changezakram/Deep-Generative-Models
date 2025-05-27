@@ -380,9 +380,9 @@
   {
     "objectID": "gen-ai-use-cases/healthcare-use-cases.html",
     "href": "gen-ai-use-cases/healthcare-use-cases.html",
-    "title": "Generative AI Use Cases in Banking",
+    "title": "Generative AI Use Cases in Healthcare",
     "section": "",
-    "text": "Generative AI is transforming how banks interact with customers by offering personalized and proactive services through intelligent chatbots and virtual assistants.\n\n\n\nBank of America’s Erica: Provides personalized financial guidance, offering insights into spending habits, budgeting advice, and routine banking tasks through natural language interactions.\nNatWest’s Cora+: Enhances customer interactions with natural, personalized responses. Anticipates customer needs based on past interactions and provides proactive suggestions for financial management.\nWells Fargo’s Fargo: Understands and responds to customer queries in natural language, enabling tasks such as managing debit cards, checking credit limits, and reviewing transaction history. Supports English and Spanish.\nBNY’s AI platform, Eliza: Functions as both a chatbot trained on BNY knowledge and a platform where employees can select from a range of publicly available models to build AI tools and agents for specific use cases. Over 50% of BNY’s 52,000 employees actively use Eliza. Tools built include a lead generation app for salespeople.\n\n\n\n\n\nMorgan Stanley’s AI Debrief: Generates notes and action items during client meetings, enabling financial advisors to deliver tailored recommendations.\nBBVA’s ChatGPT Integration: Provides personalized investment recommendations by analyzing market trends and client portfolio performance."
+    "text": "Generative AI is significantly reducing the administrative burden on clinicians by automating the creation of clinical notes and summaries. AI tools can transcribe doctor-patient conversations, extract relevant medical details, and generate structured notes in real time or post-visit.\n\nNuance DAX Copilot (Microsoft): Automatically generates clinical notes during consultations, reducing documentation time for physicians.\n\nAWS HealthScribe: Extracts structured data and generates medical summaries from recorded conversations between patients and providers."
   },
   {
     "objectID": "gen-ai-use-cases/healthcare-use-cases.html#customer-engagement",
@@ -418,5 +418,40 @@
     "title": "Generative AI Use Cases in Banking",
     "section": "5 Personalized Marketing",
     "text": "5 Personalized Marketing\nAI-based systems can interact with potential clients to understand their needs and preferences, creating personalized product recommendations. This targeted approach improves marketing efficiency and enhances customer acquisition.\n\nJPMorgan Chase: Leverages generative AI to create hyper-personalized marketing materials, tailoring campaigns to individual customer profiles and increasing engagement."
+  },
+  {
+    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#clinical-documentation",
+    "href": "gen-ai-use-cases/healthcare-use-cases.html#clinical-documentation",
+    "title": "Generative AI Use Cases in Healthcare",
+    "section": "",
+    "text": "Generative AI is significantly reducing the administrative burden on clinicians by automating the creation of clinical notes and summaries. AI tools can transcribe doctor-patient conversations, extract relevant medical details, and generate structured notes in real time or post-visit.\n\nNuance DAX Copilot (Microsoft): Automatically generates clinical notes during consultations, reducing documentation time for physicians.\n\nAWS HealthScribe: Extracts structured data and generates medical summaries from recorded conversations between patients and providers."
+  },
+  {
+    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#medical-imaging-and-diagnostics",
+    "href": "gen-ai-use-cases/healthcare-use-cases.html#medical-imaging-and-diagnostics",
+    "title": "Generative AI Use Cases in Healthcare",
+    "section": "2 Medical Imaging and Diagnostics",
+    "text": "2 Medical Imaging and Diagnostics\nGenerative models such as GANs and diffusion are being used to enhance medical images, synthesize missing views, and even generate realistic training data for rare conditions. These techniques improve diagnostic quality and accelerate model development.\n\nGoogle DeepMind: Uses generative models to enhance resolution in retinal scans and chest X-rays.\n\nMIT CSAIL: Trains diagnostic AI systems using synthetic images generated via diffusion models, improving accuracy for rare diseases."
+  },
+  {
+    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#drug-discovery-and-molecular-design",
+    "href": "gen-ai-use-cases/healthcare-use-cases.html#drug-discovery-and-molecular-design",
+    "title": "Generative AI Use Cases in Healthcare",
+    "section": "3 Drug Discovery and Molecular Design",
+    "text": "3 Drug Discovery and Molecular Design\nPharmaceutical companies and AI research labs are using GenAI to generate novel molecular structures that satisfy biological and chemical constraints. This reduces the time and cost of early-stage drug discovery.\n\nInsilico Medicine: Uses generative chemistry platforms to propose new drug candidates and recently advanced one into Phase II trials.\n\nBenevolentAI: Uses AI models to generate molecules with desired properties based on disease pathways and target proteins."
+  },
+  {
+    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#patient-communication-and-education",
+    "href": "gen-ai-use-cases/healthcare-use-cases.html#patient-communication-and-education",
+    "title": "Generative AI Use Cases in Healthcare",
+    "section": "4 Patient Communication and Education",
+    "text": "4 Patient Communication and Education\nHealthcare providers are using GenAI to generate personalized educational materials, explain complex medical conditions in plain language, and respond to patient questions through virtual assistants.\n\nMayo Clinic and Microsoft Copilot: Exploring AI to generate patient-friendly summaries of lab results and discharge instructions.\n\nAda Health: Uses generative agents to guide patients through symptom checking and triage using everyday language."
+  },
+  {
+    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#administrative-workflow-automation",
+    "href": "gen-ai-use-cases/healthcare-use-cases.html#administrative-workflow-automation",
+    "title": "Generative AI Use Cases in Healthcare",
+    "section": "5 Administrative Workflow Automation",
+    "text": "5 Administrative Workflow Automation\nHospitals and health systems are adopting GenAI to streamline operational processes such as prior authorization, billing, appeals, and scheduling. This improves staff productivity and reduces manual paperwork.\n\nGoogle MedLM: Supports automation of prior authorization workflows and claim denials through natural language understanding and document generation.\n\nAbridge: Not only transcribes medical conversations, but also classifies, summarizes, and codes them for billing and documentation purposes."
   }
 ]

@@ -1,69 +1,50 @@
 ---
-title: "Generative AI Use Cases in Banking"
+title: "Generative AI Use Cases in Healthcare"
 format:
   html:
     toc: true
     number-sections: true
 ---
 
-## Customer Engagement
+## Clinical Documentation
 
-Generative AI is transforming how banks interact with customers by offering personalized and proactive services through intelligent chatbots and virtual assistants.
+Generative AI is significantly reducing the administrative burden on clinicians by automating the creation of clinical notes and summaries. AI tools can transcribe doctor-patient conversations, extract relevant medical details, and generate structured notes in real time or post-visit.
 
-### Virtual Assistants
-
-- **Bank of America’s Erica**: Provides personalized financial guidance, offering insights into spending habits, budgeting advice, and routine banking tasks through natural language interactions.
-- **NatWest’s Cora+**: Enhances customer interactions with natural, personalized responses. Anticipates customer needs based on past interactions and provides proactive suggestions for financial management.
-- **Wells Fargo’s Fargo**: Understands and responds to customer queries in natural language, enabling tasks such as managing debit cards, checking credit limits, and reviewing transaction history. Supports English and Spanish.
-- **BNY’s AI platform, Eliza**: Functions as both a chatbot trained on BNY knowledge and a platform where employees can select from a range of publicly available models to build AI tools and agents for specific use cases. Over 50% of BNY’s 52,000 employees actively use Eliza. Tools built include a lead generation app for salespeople.
-
-### Personalized Insights
-
-- **Morgan Stanley’s AI Debrief**: Generates notes and action items during client meetings, enabling financial advisors to deliver tailored recommendations.
-- **BBVA’s ChatGPT Integration**: Provides personalized investment recommendations by analyzing market trends and client portfolio performance.
+- **Nuance DAX Copilot (Microsoft)**: Automatically generates clinical notes during consultations, reducing documentation time for physicians.  
+- **AWS HealthScribe**: Extracts structured data and generates medical summaries from recorded conversations between patients and providers.
 
 ---
 
-## Operational Efficiency
+## Medical Imaging and Diagnostics
 
-Generative AI optimizes internal processes, reducing manual workloads and improving productivity.
+Generative models such as GANs and diffusion are being used to enhance medical images, synthesize missing views, and even generate realistic training data for rare conditions. These techniques improve diagnostic quality and accelerate model development.
 
-### Document Summarization
-
-- **JPMorgan’s LLM Suite**: Automates document summarization, content creation, and internal reporting, saving time and reducing errors.
-- **Morgan Stanley’s AskResearchGPT**: Summarizes insights from over 70,000 proprietary research reports annually, making critical information easily accessible.
-
-### Task Automation / Simplified Workflows
-
-- **PwC’s Compliance Automation**: Uses generative AI to analyze complex legal and compliance documents, identify key clauses, extract insights, and draft summaries. Significantly reduces time spent on routine compliance tasks while improving accuracy.
-- **Citi’s Reporting Automation**: Employs AI tools to streamline compliance reporting and data extraction, enabling employees to focus on strategic analysis.
-
-### Coding Assistance
-
-- **Citigroup’s AI Tools**: Accelerates software development by streamlining coding processes and improving developer productivity.
+- **Google DeepMind**: Uses generative models to enhance resolution in retinal scans and chest X-rays.  
+- **MIT CSAIL**: Trains diagnostic AI systems using synthetic images generated via diffusion models, improving accuracy for rare diseases.
 
 ---
 
-## Risk Management
+## Drug Discovery and Molecular Design
 
-Generative AI strengthens fraud detection and risk management capabilities by analyzing vast datasets in real-time to identify suspicious patterns, safeguarding both the bank and its customers.
+Pharmaceutical companies and AI research labs are using GenAI to generate novel molecular structures that satisfy biological and chemical constraints. This reduces the time and cost of early-stage drug discovery.
 
-### Fraud Detection
-
-- **Mastercard’s Decision Intelligence**: Analyzes over one trillion data points in real time to predict the legitimacy of transactions. Safely scores and approves over 143 billion transactions annually.
-- **Wells Fargo**: Utilizes generative AI to enhance anomaly detection in transactions and identify fraudulent activity more effectively.
+- **Insilico Medicine**: Uses generative chemistry platforms to propose new drug candidates and recently advanced one into Phase II trials.  
+- **BenevolentAI**: Uses AI models to generate molecules with desired properties based on disease pathways and target proteins.
 
 ---
 
-## Credit Approval and Loan Underwriting
+## Patient Communication and Education
 
-- **Moody’s Analytics – CreditLens**: Integrates generative AI into loan origination workflows. Automates credit memo creation, including executive summaries and sector analyses, by synthesizing large volumes of financial and industry data.
-- **JPMorgan Chase’s COiN Platform**: Analyzes legal documents to reduce the time required for loan underwriting, ensuring compliance and accuracy.
+Healthcare providers are using GenAI to generate personalized educational materials, explain complex medical conditions in plain language, and respond to patient questions through virtual assistants.
+
+- **Mayo Clinic and Microsoft Copilot**: Exploring AI to generate patient-friendly summaries of lab results and discharge instructions.  
+- **Ada Health**: Uses generative agents to guide patients through symptom checking and triage using everyday language.
 
 ---
 
-## Personalized Marketing
+## Administrative Workflow Automation
 
-AI-based systems can interact with potential clients to understand their needs and preferences, creating personalized product recommendations. This targeted approach improves marketing efficiency and enhances customer acquisition.
+Hospitals and health systems are adopting GenAI to streamline operational processes such as prior authorization, billing, appeals, and scheduling. This improves staff productivity and reduces manual paperwork.
 
-- **JPMorgan Chase**: Leverages generative AI to create hyper-personalized marketing materials, tailoring campaigns to individual customer profiles and increasing engagement.
+- **Google MedLM**: Supports automation of prior authorization workflows and claim denials through natural language understanding and document generation.  
+- **Abridge**: Not only transcribes medical conversations, but also classifies, summarizes, and codes them for billing and documentation purposes.
