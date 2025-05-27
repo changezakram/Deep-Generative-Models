@@ -301,6 +301,13 @@
     "text": "Key Model Families\n\n1. Variational Autoencoders (VAEs)\n\nProbabilistic encoder-decoder architecture\nLearn latent spaces with Gaussian distributions\nLearn more about VAEs\n\n\n\n2. Autoregressive Models\n\nGenerate sequences element-by-element\nExamples: PixelCNN, WaveNet\n\n\n\n3. Generative Adversarial Networks (GANs)\n\nAdversarial training with generator/discriminator\nHigh-quality image generation\n\n\n\n4. Normalizing Flows\n\nInvertible transformations for exact likelihood\n\nFlexible density estimation\n\nLearn more about Normalizing Flows\n\n\n\n5. Energy-Based Models (EBMs)\n\nLearn energy functions for data distribution\nFlexible for discrete/continuous data\n\n\n\n6. Diffusion Models\n\nIterative denoising process\nState-of-the-art image generation"
   },
   {
+    "objectID": "index.html#explore-real-world-genai-use-cases",
+    "href": "index.html#explore-real-world-genai-use-cases",
+    "title": "Deep Generative Models",
+    "section": "✨ Explore Real-World GenAI Use Cases",
+    "text": "✨ Explore Real-World GenAI Use Cases\nWe are tracking real-world implementations of Generative AI across industries.\n\nBanking Use Cases →"
+  },
+  {
     "objectID": "flows.html",
     "href": "flows.html",
     "title": "Normalizing Flow Models",
