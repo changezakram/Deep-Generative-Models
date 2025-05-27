@@ -1,0 +1,69 @@
+---
+title: "Generative AI Use Cases in Banking"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
+## Customer Engagement
+
+Generative AI is transforming how banks interact with customers by offering personalized and proactive services through intelligent chatbots and virtual assistants.
+
+### Virtual Assistants
+
+- **Bank of America’s Erica**: Provides personalized financial guidance, offering insights into spending habits, budgeting advice, and routine banking tasks through natural language interactions.
+- **NatWest’s Cora+**: Enhances customer interactions with natural, personalized responses. Anticipates customer needs based on past interactions and provides proactive suggestions for financial management.
+- **Wells Fargo’s Fargo**: Understands and responds to customer queries in natural language, enabling tasks such as managing debit cards, checking credit limits, and reviewing transaction history. Supports English and Spanish.
+- **BNY’s AI platform, Eliza**: Functions as both a chatbot trained on BNY knowledge and a platform where employees can select from a range of publicly available models to build AI tools and agents for specific use cases. Over 50% of BNY’s 52,000 employees actively use Eliza. Tools built include a lead generation app for salespeople.
+
+### Personalized Insights
+
+- **Morgan Stanley’s AI Debrief**: Generates notes and action items during client meetings, enabling financial advisors to deliver tailored recommendations.
+- **BBVA’s ChatGPT Integration**: Provides personalized investment recommendations by analyzing market trends and client portfolio performance.
+
+---
+
+## Operational Efficiency
+
+Generative AI optimizes internal processes, reducing manual workloads and improving productivity.
+
+### Document Summarization
+
+- **JPMorgan’s LLM Suite**: Automates document summarization, content creation, and internal reporting, saving time and reducing errors.
+- **Morgan Stanley’s AskResearchGPT**: Summarizes insights from over 70,000 proprietary research reports annually, making critical information easily accessible.
+
+### Task Automation / Simplified Workflows
+
+- **PwC’s Compliance Automation**: Uses generative AI to analyze complex legal and compliance documents, identify key clauses, extract insights, and draft summaries. Significantly reduces time spent on routine compliance tasks while improving accuracy.
+- **Citi’s Reporting Automation**: Employs AI tools to streamline compliance reporting and data extraction, enabling employees to focus on strategic analysis.
+
+### Coding Assistance
+
+- **Citigroup’s AI Tools**: Accelerates software development by streamlining coding processes and improving developer productivity.
+
+---
+
+## Risk Management
+
+Generative AI strengthens fraud detection and risk management capabilities by analyzing vast datasets in real-time to identify suspicious patterns, safeguarding both the bank and its customers.
+
+### Fraud Detection
+
+- **Mastercard’s Decision Intelligence**: Analyzes over one trillion data points in real time to predict the legitimacy of transactions. Safely scores and approves over 143 billion transactions annually.
+- **Wells Fargo**: Utilizes generative AI to enhance anomaly detection in transactions and identify fraudulent activity more effectively.
+
+---
+
+## Credit Approval and Loan Underwriting
+
+- **Moody’s Analytics – CreditLens**: Integrates generative AI into loan origination workflows. Automates credit memo creation, including executive summaries and sector analyses, by synthesizing large volumes of financial and industry data.
+- **JPMorgan Chase’s COiN Platform**: Analyzes legal documents to reduce the time required for loan underwriting, ensuring compliance and accuracy.
+
+---
+
+## Personalized Marketing
+
+AI-based systems can interact with potential clients to understand their needs and preferences, creating personalized product recommendations. This targeted approach improves marketing efficiency and enhances customer acquisition.
+
+- **JPMorgan Chase**: Leverages generative AI to create hyper-personalized marketing materials, tailoring campaigns to individual customer profiles and increasing engagement.

@@ -43,3 +43,4 @@ It’s designed to document concepts clearly, walk through implementations step 
 We are tracking real-world implementations of Generative AI across industries.
 
 - [Banking Use Cases →](gen-ai-use-cases/banking-use-cases.html)
+- [Healthcare Use Cases →](gen-ai-use-cases/healthcare-use-cases.html)
