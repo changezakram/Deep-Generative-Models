@@ -13,7 +13,7 @@ It’s designed to document concepts clearly, walk through implementations step 
 
 ## Key Model Families
 
-#### 1. [Variational Autoencoders (VAEs)](vae.qmd) 
+### 1. [Variational Autoencoders (VAEs)](vae.qmd) 
 - Probabilistic encoder–decoder architecture  
 - Learns latent representations using Gaussian priors  
 
