@@ -35,3 +35,8 @@ Welcome to my deep generative models resource. This site covers:
 - State-of-the-art image generation
 
 
+## ✨ Explore Real-World GenAI Use Cases
+
+We are tracking real-world implementations of Generative AI across industries.
+
+- [Banking Use Cases →](gen-ai-use-cases/banking-use-cases.html)
