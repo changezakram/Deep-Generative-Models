@@ -4,7 +4,14 @@ title: "Deep Generative Models"
 
 ## Overview
 
-Welcome to my deep generative models resource. This site covers:
+## Overview
+
+This site explores the foundations and frontiers of deep generative models — from core mathematical principles to the architectures powering today’s most advanced AI systems.
+
+It’s designed to document concepts clearly, walk through implementations step by step, and connect theory with real-world relevance. Topics range from early probabilistic frameworks to cutting-edge diffusion models driving breakthroughs in image, text, and multimodal generation.
+
+> Learn by building · Backed by math · Inspired by real-world use cases
+
 
 ## Key Model Families
 
