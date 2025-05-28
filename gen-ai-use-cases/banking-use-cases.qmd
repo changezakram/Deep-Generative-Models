@@ -19,7 +19,9 @@ Generative AI is redefining how banks operate — from automating customer servi
 | Personalized Marketing    | JPMorgan Campaigns                   | Better targeting, higher engagement    |
 | Generative BI             | Copilot, ThoughtSpot, Custom Assistants| Self-service insights, exec summaries |
 
-## 🏦 Customer Engagement
+## Use Cases in Banking
+
+### 🏦 Customer Engagement
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -32,7 +34,7 @@ Generative AI enables banks to deliver faster, more intelligent, and more person
 - Wells Fargo – Fargo: Supports English and Spanish to help customers manage cards and access banking services via natural language.  
 - BNY Mellon – Eliza: Internal chatbot and tooling platform used by 52,000 employees to build GenAI-powered apps like lead generation tools.
 
-## 📊 Operational Efficiency
+### 📊 Operational Efficiency
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -46,7 +48,7 @@ Banks deal with vast volumes of reports, compliance documentation, and internal 
 - Citi – Reporting Automation: Streamlines compliance reporting and data extraction.  
 - Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance.
 
-## 🔐 Risk Management
+### 🔐 Risk Management
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -57,7 +59,7 @@ Fraud detection and risk modeling are core to banking safety. GenAI enhances tra
 - Mastercard – Decision Intelligence: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually.  
 - Wells Fargo – AI for Fraud: Uses GenAI for enhanced anomaly detection in transactional data.
 
-## 📝 Credit Approval and Loan Underwriting
+### 📝 Credit Approval and Loan Underwriting
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -68,7 +70,7 @@ Credit underwriting involves reviewing complex financial documents and assessing
 - Moody’s Analytics – CreditLens: Automates credit memo creation and industry analysis with generative tools.  
 - JPMorgan Chase – COiN Platform: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time.
 
-## 📣 Personalized Marketing
+### 📣 Personalized Marketing
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -78,7 +80,7 @@ Generative AI enables banks to move beyond mass marketing and deliver personaliz
 **Examples:**  
 - JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials.
 
-## 📈 Generative Business Intelligence (Gen BI)
+### 📈 Generative Business Intelligence (Gen BI)
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
