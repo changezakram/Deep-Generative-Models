@@ -65,5 +65,4 @@ Generative AI enables banks to move beyond mass marketing and deliver personaliz
 :::
 
 **Examples:**  
-- JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials.  
-- eBay – Product Optimization: Generates product descriptions at scale to enhance listings.
+- JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials. 
