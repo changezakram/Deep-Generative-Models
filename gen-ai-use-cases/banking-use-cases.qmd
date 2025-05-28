@@ -99,36 +99,34 @@ Generative BI transforms data consumption by allowing non-technical users to exp
 
 ## 📚 References
 
-Bank of America. (2024). *Erica: Virtual Financial Assistant*. https://info.bankofamerica.com/en/digital-banking/erica
+[1] Bank of America. (2024). *Erica: Virtual Financial Assistant*. [https://info.bankofamerica.com/en/digital-banking/erica](https://info.bankofamerica.com/en/digital-banking/erica)
 
-Citigroup. (2019). *Citi Global Trade uses AI to digitize compliance in next-generational project*. https://www.citigroup.com/global/news/press-release/2019/citi-global-trade-uses-ai-to-digitie-compliance-in-next-generational-project
+[2] NatWest Group. (2024). *NatWest launches Cora+*. [https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html](https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html)
 
-Citi Ventures. (2024). *Investing in Poolside*. https://www.citi.com/ventures/perspectives/pressrelease/investing-in-poolside.html
+[3] Wells Fargo. (2024). *Meet Fargo: AI-powered banking assistant*. [https://sites.wf.com/fargo/](https://sites.wf.com/fargo/)
 
-CTO Magazine. (2024). *JP Morgan Chase accelerates AI adoption*. https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/
+[4] Wall Street Journal. (2024). *BNY signs multiyear deal with OpenAI*. [https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d](https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d)
 
-Futurism. (2024). *An AI completed 360,000 hours of finance work in just seconds*. https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds
+[5] Morgan Stanley. (2024). *AI at Morgan Stanley Debrief launch*. [https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch](https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch)
 
-Mastercard. (2024, February). *Mastercard supercharges consumer protection with Gen AI*. https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/
+[6] Wall Street Journal. (2024). *Inside OpenAI’s deal with BBVA*. [https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03](https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03)
 
-Microsoft Power BI. (2023). *Introducing Copilot in Power BI*. https://powerbi.microsoft.com/en-us/blog/introducing-microsoft-fabric-and-copilot-in-microsoft-power-bi/
+[7] JPMorgan Chase. (2024). *Deploying ChatGPT-like Assistant*. [https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html](https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html)
 
-Moody’s Analytics. (2024). *Revolutionizing loan origination with GenAI*. https://www.moodys.com/web/en/us/insights/lending/revolutionizing-loan-origination-with-genai.html
+[8] Morgan Stanley. (2024). *Announces AskResearchGPT*. [https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt](https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt)
 
-Morgan Stanley. (2024a). *AI at Morgan Stanley Debrief launch*. https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch
+[9] PwC. (2023). *Building trust in AI for tax compliance*. [https://www.pwc.com/gx/en/services/tax/connected-tax-compliance/build-trust-ai-tax-compliance.html](https://www.pwc.com/gx/en/services/tax/connected-tax-compliance/build-trust-ai-tax-compliance.html)
 
-Morgan Stanley. (2024b). *Morgan Stanley Research announces AskResearchGPT*. https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt
+[10] Citigroup. (2019). *Citi Global Trade uses AI to digitize compliance in next-generational project*. [https://www.citigroup.com/global/news/press-release/2019/citi-global-trade-uses-ai-to-digitie-compliance-in-next-generational-project](https://www.citigroup.com/global/news/press-release/2019/citi-global-trade-uses-ai-to-digitie-compliance-in-next-generational-project)
 
-NatWest Group. (2024, June). *NatWest launches Cora+: The latest generative AI upgrade to their digital assistant*. https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html
+[11] Citi Ventures. (2024). *Investing in Poolside*. [https://www.citi.com/ventures/perspectives/pressrelease/investing-in-poolside.html](https://www.citi.com/ventures/perspectives/pressrelease/investing-in-poolside.html)
 
-PwC. (2023). *Building trust in AI for tax compliance*. https://www.pwc.com/gx/en/services/tax/connected-tax-compliance/build-trust-ai-tax-compliance.html
+[12] Mastercard. (2024, February). *Mastercard supercharges consumer protection with Gen AI*. [https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/](https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/)
 
-ThoughtSpot. (2024). *Introducing ThoughtSpot Sage*. https://www.thoughtspot.com/product/sage
+[13] Wells Fargo Stories. (2024). *How AI could reshape banking*. [https://stories.wf.com/artificial-intelligence-has-the-potential-to-reshape-banking/](https://stories.wf.com/artificial-intelligence-has-the-potential-to-reshape-banking/)
 
-Wall Street Journal. (2024a). *BNY signs multiyear deal with OpenAI*. https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d
+[14] Moody’s Analytics. (2024). *Revolutionizing loan origination with GenAI*. [https://www.moodys.com/web/en/us/insights/lending/revolutionizing-loan-origination-with-genai.html](https://www.moodys.com/web/en/us/insights/lending/revolutionizing-loan-origination-with-genai.html)
 
-Wall Street Journal. (2024b). *Inside OpenAI’s deal with BBVA*. https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03
+[15] Futurism. (2024). *AI completed 360,000 hours of finance work in just seconds*. [https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds](https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds)
 
-Wells Fargo. (2024). *Meet Fargo: AI-powered banking assistant*. https://sites.wf.com/fargo/
-
-Wells Fargo Stories. (2024). *How AI could reshape banking*. https://stories.wf.com/artificial-intelligence-has-the-potential-to-reshape-banking/
+[16] CTO Magazine. (2024). *JP Morgan Chase accelerates AI adoption*. [https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/](https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/)
