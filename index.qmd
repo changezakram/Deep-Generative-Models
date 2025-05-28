@@ -40,10 +40,10 @@ It’s designed to document concepts clearly, walk through implementations step 
 
 ## Industry Use Cases
 
-1. [Banking](gen-ai-use-cases/banking-use-cases.html)  
+### 1. [Banking](gen-ai-use-cases/banking-use-cases.html)  
 6 use cases spanning customer service, operational efficiency, fraud detection, business intelligence, and marketing.  
 Includes JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
 
-2. [Healthcare](gen-ai-use-cases/healthcare-use-cases.html)  
+### 2. [Healthcare](gen-ai-use-cases/healthcare-use-cases.html)  
 5 use cases spanning clinical scribing, imaging, triage, education, and drug discovery.  
 Based on real-world deployments by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico.
