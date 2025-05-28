@@ -12,10 +12,10 @@ format:
 Generative AI enables banks to deliver faster, more intelligent, and more personalized customer service. By automating routine interactions and offering real-time assistance, banks can improve customer satisfaction, reduce support costs, and scale their service capabilities without increasing headcount.
 
 **Examples:**  
-- **Bank of America – Erica**: Offers financial guidance through natural language interactions, helping users with budgeting, transactions, and account management. [Source](https://newsroom.bankofamerica.com/content/newsroom/press-releases/2023/03/erica-now-serves-over-1-billion-interactions.html)  
-- **NatWest – Cora+**: Anticipates customer needs and provides proactive responses using conversational AI. [Source](https://www.natwest.com/business/insights/innovation/ai-and-banking-the-cora-story.html)  
-- **Wells Fargo – Fargo**: Supports English and Spanish to help customers manage cards and access banking services via natural language. [Source](https://www.wellsfargo.com/press/2023/20230130-fargo-virtual-assistant)  
-- **BNY Mellon – Eliza**: Internal chatbot and tooling platform used by 52,000 employees to build GenAI-powered apps like lead generation tools. [Source](https://www.americanbanker.com/news/bny-mellon-rolls-out-internal-chatbot-eliza-to-all-52-000-employees)
+- Bank of America – Erica: Offers financial guidance through natural language interactions, helping users with budgeting, transactions, and account management. [Source](https://newsroom.bankofamerica.com/content/newsroom/press-releases/2023/03/erica-now-serves-over-1-billion-interactions.html)  
+- NatWest – Cora+: Anticipates customer needs and provides proactive responses using conversational AI. [Source](https://www.natwest.com/business/insights/innovation/ai-and-banking-the-cora-story.html)  
+- Wells Fargo – Fargo: Supports English and Spanish to help customers manage cards and access banking services via natural language. [Source](https://www.wellsfargo.com/press/2023/20230130-fargo-virtual-assistant)  
+- BNY Mellon – Eliza: Internal chatbot and tooling platform used by 52,000 employees to build GenAI-powered apps like lead generation tools. [Source](https://www.americanbanker.com/news/bny-mellon-rolls-out-internal-chatbot-eliza-to-all-52-000-employees)
 
 ---
 
@@ -25,11 +25,11 @@ Generative AI enables banks to deliver faster, more intelligent, and more person
 Banks deal with vast volumes of reports, compliance documentation, and internal knowledge. Generative AI improves productivity by summarizing documents, automating workflows, and assisting developers — freeing employees to focus on higher-value tasks and accelerating project delivery.
 
 **Examples:**  
-- **JPMorgan – LLM Suite**: Automates document summarization, content creation, and reporting. [Source](https://www.cnbc.com/2023/05/22/jpmorgan-is-developing-ai-models-similar-to-chatgpt-to-aid-clients.html)  
-- **Morgan Stanley – AskResearchGPT**: Provides natural language access to 70,000+ research reports. [Source](https://www.morganstanley.com/articles/research-access-ai-tool/)  
-- **PwC – Compliance Automation**: Uses GenAI to summarize regulatory documents and extract clauses. [Source](https://www.pwc.com/gx/en/news-room/press-releases/2023/pwc-and-microsoft-to-expand-strategic-alliance.html)  
-- **Citi – Reporting Automation**: Streamlines compliance reporting and data extraction. [Source](https://www.reuters.com/technology/citigroup-mulls-using-chatgpt-style-tools-improve-employee-productivity-2023-03-06/)  
-- **Citigroup – AI Tools for Developers**: Boosts engineering productivity with GenAI code assistance. [Source](https://www.reuters.com/technology/citigroup-mulls-using-chatgpt-style-tools-improve-employee-productivity-2023-03-06/)
+- JPMorgan – LLM Suite: Automates document summarization, content creation, and reporting. [Source](https://www.cnbc.com/2023/05/22/jpmorgan-is-developing-ai-models-similar-to-chatgpt-to-aid-clients.html)  
+- Morgan Stanley – AskResearchGPT: Provides natural language access to 70,000+ research reports. [Source](https://www.morganstanley.com/articles/research-access-ai-tool/)  
+- PwC – Compliance Automation: Uses GenAI to summarize regulatory documents and extract clauses. [Source](https://www.pwc.com/gx/en/news-room/press-releases/2023/pwc-and-microsoft-to-expand-strategic-alliance.html)  
+- Citi – Reporting Automation: Streamlines compliance reporting and data extraction. [Source](https://www.reuters.com/technology/citigroup-mulls-using-chatgpt-style-tools-improve-employee-productivity-2023-03-06/)  
+- Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance. [Source](https://www.reuters.com/technology/citigroup-mulls-using-chatgpt-style-tools-improve-employee-productivity-2023-03-06/)
 
 ---
 
@@ -39,8 +39,8 @@ Banks deal with vast volumes of reports, compliance documentation, and internal 
 Fraud detection and risk modeling are core to banking safety. GenAI enhances traditional models by spotting subtle anomalies, synthesizing potential fraud scenarios, and enabling faster investigation of suspicious transactions.
 
 **Examples:**  
-- **Mastercard – Decision Intelligence**: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually. [Source](https://www.mastercard.com/news/press/2023/decision-intelligence-protecting-digital-commerce/)  
-- **Wells Fargo – AI for Fraud**: Uses GenAI for enhanced anomaly detection in transactional data. [Source](https://www.wellsfargo.com/com/2023/02/ai-financial-crime-fraud-detection)
+- Mastercard – Decision Intelligence: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually. [Source](https://www.mastercard.com/news/press/2023/decision-intelligence-protecting-digital-commerce/)  
+- Wells Fargo – AI for Fraud: Uses GenAI for enhanced anomaly detection in transactional data. [Source](https://www.wellsfargo.com/com/2023/02/ai-financial-crime-fraud-detection)
 
 ---
 
@@ -50,8 +50,8 @@ Fraud detection and risk modeling are core to banking safety. GenAI enhances tra
 Credit underwriting involves reviewing complex financial documents and assessing risk within tight timeframes. Generative AI helps automate the analysis of financial statements, legal documents, and industry benchmarks, enabling faster loan decisions, improved accuracy, and streamlined compliance.
 
 **Examples:**  
-- **Moody’s Analytics – CreditLens**: Automates credit memo creation and industry analysis with generative tools. [Source](https://www.moodysanalytics.com/solutions-overview/creditlens)  
-- **JPMorgan Chase – COiN Platform**: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time. [Source](https://www.jpmorgan.com/news/jpmorgan-rolls-out-ai-platform)
+- Moody’s Analytics – CreditLens: Automates credit memo creation and industry analysis with generative tools. [Source](https://www.moodysanalytics.com/solutions-overview/creditlens)  
+- JPMorgan Chase – COiN Platform: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time. [Source](https://www.jpmorgan.com/news/jpmorgan-rolls-out-ai-platform)
 
 ---
 
@@ -61,5 +61,5 @@ Credit underwriting involves reviewing complex financial documents and assessing
 Generative AI enables banks to move beyond mass marketing and deliver personalized, data-driven messaging. This improves customer engagement, increases conversion rates, and enhances long-term loyalty.
 
 **Examples:**  
-- **JPMorgan Chase – Hyper-personalized Campaigns**: Uses GenAI to create individualized marketing materials. [Source](https://www.wsj.com/articles/jpmorgan-turns-to-ai-to-make-marketing-more-personal-11690001689)  
-- **eBay – Product Optimization**: Generates product descriptions at scale to enhance listings. [Source](https://tech.ebayinc.com/engineering/using-generative-ai-to-create-product-descriptions/)
+- JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials. [Source](https://www.wsj.com/articles/jpmorgan-turns-to-ai-to-make-marketing-more-personal-11690001689)  
+- eBay – Product Optimization: Generates product descriptions at scale to enhance listings. [Source](https://tech.ebayinc.com/engineering/using-generative-ai-to-create-product-descriptions/)
