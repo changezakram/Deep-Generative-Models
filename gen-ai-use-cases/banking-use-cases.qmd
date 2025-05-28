@@ -10,13 +10,13 @@ Generative AI is redefining how banks operate — from automating customer servi
 
 ## 📋 Summary of Use Cases
 
-| 💡 Use Case Area           | 🏦 Examples                          | 📈 Benefits                            |
-|---------------------------|--------------------------------------|----------------------------------------|
+| Use Case Area             | Examples                             | Benefits                                |
+|---------------------------|--------------------------------------|-----------------------------------------|
 | Customer Engagement       | Erica, Cora+, Fargo, Eliza           | 24/7 support, lower call volume         |
-| Operational Efficiency    | LLM Suite, AskResearchGPT, PwC       | Faster reporting, reduced manual work  |
-| Risk Management           | Mastercard DI, Wells Fargo Fraud     | Early fraud detection, loss prevention |
+| Operational Efficiency    | LLM Suite, AskResearchGPT, PwC       | Faster reporting, reduced manual work   |
+| Risk Management           | Mastercard DI, Wells Fargo Fraud     | Early fraud detection, loss prevention  |
 | Credit Underwriting       | CreditLens, COiN Platform            | Quicker approvals, lower compliance risk|
-| Personalized Marketing    | JPMorgan Campaigns                   | Better targeting, higher engagement    |
+| Personalized Marketing    | JPMorgan Campaigns                   | Better targeting, higher engagement     |
 | Generative BI             | Copilot, ThoughtSpot, Custom Assistants| Self-service insights, exec summaries |
 
 ## 🏦 Customer Engagement
