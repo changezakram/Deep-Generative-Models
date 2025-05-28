@@ -6,6 +6,7 @@ format:
     code-fold: true
     smooth-scroll: true
     theme: cosmo
+    math: mathjax
 ---
 
 ## 🧠 Energy-Based Models: A Flexible Approach to Generative Modeling
@@ -23,60 +24,58 @@ In the world of generative models, techniques like VAEs, GANs, and normalizing f
 | **Autoregressive Models** | Exact likelihood                    | Slow sampling; autoregressive dependency limits parallelism         |
 | **GANs**               | High-quality samples; flexible           | No likelihood; unstable training; mode collapse                     |
 
-These models attempt to approximate the true data distribution \( P_{\text{data}} \) by selecting a model \( P_\theta \) from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability.
+These models attempt to approximate the true data distribution $$P_{\text{data}}$$ by selecting a model $$P_\theta$$ from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability.
 
 ---
 
 ## ⚡ Enter Energy-Based Models (EBMs)
 
-Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution \( P(x) \), EBMs define an **energy function** \( E_\theta(x) \) that assigns lower energy to more likely data points:
+Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution $$P(x)$$, EBMs define an **energy function** $$E_\theta(x)$$ that assigns lower energy to more likely data points:
 
-\[
+$$
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
-\]
+$$
 
-Here, \( Z_\theta = \int e^{-E_\theta(x)} dx \) is the **partition function**, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use **any neural architecture** for \( E_\theta \), without needing invertibility, autoregressive factorization, or adversarial setup.
+Here, $$Z_\theta = \int e^{-E_\theta(x)} dx$$ is the **partition function**, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use **any neural architecture** for $$E_\theta$$, without needing invertibility, autoregressive factorization, or adversarial setup.
 
 ---
 
 ## 📐 Math Review: From Scores to Probabilities in Energy-Based Models
 
-In generative modeling, a valid probability distribution \( p(x) \) must satisfy:
+In generative modeling, a valid probability distribution $$p(x)$$ must satisfy:
 
 1. **Non-negativity**:  
-   \[
+   $$
    p(x) \geq 0
-   \]
+   $$
 2. **Normalization** (sum-to-one):  
-   \[
-   \sum_x p(x) = 1 \quad \text{or} \quad \int p(x)dx = 1
-   \]
+   $$
+   \int p(x)dx = 1
+   $$
 
-Creating functions \( g_\theta(x) \geq 0 \) is easy, but they often fail to normalize. Instead, we define:
+Creating functions $$g_\theta(x) \geq 0$$ is easy, but they often fail to normalize. Instead, we define:
 
-\[
-p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)} \quad \text{where} \quad Z(\theta) = \int g_\theta(x) dx
-\]
+$$
+p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad Z(\theta) = \int g_\theta(x) dx
+$$
 
 In EBMs, we use an exponential form:
 
-\[
+$$
 g_\theta(x) = \exp(f_\theta(x)) \Rightarrow p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
-\]
+$$
 
 and define energy as:
 
-\[
+$$
 E_\theta(x) := -f_\theta(x)
-\]
+$$
 
 So the model becomes:
 
-\[
+$$
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
-\]
-
-This is flexible, expressive, and connected to exponential family distributions.
+$$
 
 ---
 
@@ -95,14 +94,14 @@ Despite their elegance, EBMs pose serious challenges:
 
 ### 🔄 Hard Sampling
 
-- No direct way to draw samples from \( p_\theta(x) \)
+- No direct way to draw samples from $$p_\theta(x)$$
 - Requires iterative MCMC methods
 - Sampling cost is high and scales poorly in high dimensions
 
 ### 📉 Hard Likelihood Evaluation and Learning
 
-- Partition function \( Z(\theta) \) is intractable
-- Evaluating \( \log p_\theta(x) \) is not feasible
+- Partition function $$Z(\theta)$$ is intractable
+- Evaluating $$\log p_\theta(x)$$ is not feasible
 - Need to push down energy of incorrect configurations to make learning effective
 
 ### 🚫 No Feature Learning (by default)
@@ -115,17 +114,17 @@ Despite their elegance, EBMs pose serious challenges:
 
 We optimize the likelihood:
 
-\[
+$$
 \log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
-\]
+$$
 
 Gradient:
 
-\[
+$$
 \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
-\]
+$$
 
-Since \( Z(\theta) \) is intractable, this expectation is approximated using **sampling**.
+Since $$Z(\theta)$$ is intractable, this expectation is approximated using **sampling**.
 
 ---
 
@@ -133,11 +132,11 @@ Since \( Z(\theta) \) is intractable, this expectation is approximated using **s
 
 Contrastive Divergence approximates the gradient using:
 
-\[
+$$
 \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta f_\theta(x_{\text{sample}})
-\]
+$$
 
-Where \( x_{\text{sample}} \sim p_\theta \) (via MCMC). The goal is to increase \( f \) on training data and decrease it elsewhere.
+Where $$x_{\text{sample}} \sim p_\theta$$ (via MCMC). The goal is to increase $$f$$ on training data and decrease it elsewhere.
 
 ---
 
@@ -147,12 +146,12 @@ We can't sample directly from EBMs, but we can use **MCMC** methods.
 
 ### 🔄 Metropolis-Hastings
 
-1. Propose \( x' = x + \text{noise} \)
+1. Propose $$x' = x + \text{noise}$$  
 2. Accept:
-   - Always if \( f(x') \geq f(x) \)
-   - Otherwise with probability \( \exp(f(x') - f(x)) \)
+   - Always if $$f(x') \geq f(x)$$  
+   - Otherwise with probability $$\exp(f(x') - f(x))$$  
 
-Converges to \( p_\theta(x) \) as \( T \to \infty \), but is slow in high dimensions.
+Converges to $$p_\theta(x)$$ as $$T \to \infty$$, but is slow in high dimensions.
 
 ---
 
@@ -160,12 +159,11 @@ Converges to \( p_\theta(x) \) as \( T \to \infty \), but is slow in high dimens
 
 Uses gradients:
 
-\[
-x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
-\quad z^t \sim \mathcal{N}(0, I)
-\]
+$$
+x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t, \quad z^t \sim \mathcal{N}(0, I)
+$$
 
-Works well when \( \nabla_x f_\theta(x) \) is tractable (which it is in EBMs).
+Works well when $$\nabla_x f_\theta(x)$$ is tractable (which it is in EBMs).
 
 ---
 
@@ -174,7 +172,5 @@ Works well when \( \nabla_x f_\theta(x) \) is tractable (which it is in EBMs).
 - Convergence is **slow**, especially in high dimensions
 - Requires multiple steps **for every training iteration**
 - Can dominate training time in contrastive divergence
-
----
 
 > ⚠️ Sampling is the key bottleneck in training EBMs. Effective MCMC strategies are critical to making them practical in real-world settings.
