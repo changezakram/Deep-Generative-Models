@@ -38,9 +38,12 @@ It’s designed to document concepts clearly, walk through implementations step 
 - State-of-the-art in high-quality image generation
 
 
-## ✨ Explore Real-World GenAI Use Cases
+## Industry Use Cases
 
-We are tracking real-world implementations of Generative AI across industries.
+1. [Banking](gen-ai-use-cases/banking-use-cases.html)  
+   - 6 use cases across fraud detection, BI, underwriting, and marketing  
+   - Includes JPMorgan, Mastercard, Wells Fargo, Morgan Stanley
 
-- [Banking Use Cases →](gen-ai-use-cases/banking-use-cases.html)
-- [Healthcare Use Cases →](gen-ai-use-cases/healthcare-use-cases.html)
+2. [Healthcare](gen-ai-use-cases/healthcare-use-cases.html)  
+   - 5 use cases from scribing, imaging, triage, to drug discovery  
+   - Based on Nuance, Mayo Clinic, DeepMind, Insilico
