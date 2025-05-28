@@ -80,3 +80,29 @@ Hospitals and health systems are adopting GenAI to streamline operational proces
 - GenAI in healthcare is moving from pilots to production, especially in clinical documentation and imaging.
 - Hospitals, insurers, and biotech firms are exploring AI-powered assistants to streamline manual workflows and improve decision support.
 - Patient-facing use cases like education and triage are opening the door for more accessible, scalable care delivery.
+
+## 📚 References
+
+[1] Nuance Communications. (2024). *Automatically Document Care with DAX Copilot*. Retrieved from [https://www.nuance.com/DAXCopilot.html](https://www.nuance.com/DAXCopilot.html)
+
+[2] Amazon Web Services. (2024). *Generate Clinical Notes with AI – AWS HealthScribe*. Retrieved from [https://aws.amazon.com/healthscribe/](https://aws.amazon.com/healthscribe/)
+
+[3] DeepMind. (2023). *Developing Reliable AI Tools for Healthcare*. Retrieved from [https://deepmind.google/discover/blog/codoc-developing-reliable-ai-tools-for-healthcare/](https://deepmind.google/discover/blog/codoc-developing-reliable-ai-tools-for-healthcare/)
+
+[4] MIT CSAIL. (2023). *AI Generates High-Quality Images 30 Times Faster in a Single Step*. Retrieved from [https://www.csail.mit.edu/news/ai-generates-high-quality-images-30-times-faster-single-step](https://www.csail.mit.edu/news/ai-generates-high-quality-images-30-times-faster-single-step)
+
+[5] Insilico Medicine. (2023). *First Generative AI Drug Begins Phase II Trials with Patients*. Retrieved from [https://insilico.com/blog/first_phase2](https://insilico.com/blog/first_phase2)
+
+[6] BenevolentAI. (2023). *AI Drug Discovery*. Retrieved from [https://www.benevolent.com/](https://www.benevolent.com/)
+
+[7] Microsoft News Center. (2023). *Mayo Clinic to Deploy and Test Microsoft Generative AI Tools*. Retrieved from [https://news.microsoft.com/source/2023/09/28/mayo-clinic-to-deploy-and-test-microsoft-generative-ai-tools/](https://news.microsoft.com/source/2023/09/28/mayo-clinic-to-deploy-and-test-microsoft-generative-ai-tools/)
+
+[8] Ada Health. (2023). *Improving Digital Triage with AI*. Retrieved from [https://about.ada.com/improving-patient-pathways-with-ada-digital-triage/](https://about.ada.com/improving-patient-pathways-with-ada-digital-triage/)
+
+[9] Abridge. (2023). *AI Scribe Giant Abridge Touts Pittsburgh Roots*. Retrieved from [https://www.axios.com/local/pittsburgh/2025/03/10/ai-scribe-abridge-pittsburgh-roots](https://www.axios.com/local/pittsburgh/2025/03/10/ai-scribe-abridge-pittsburgh-roots)
+
+[10] Financial Times. (2024). *Healthcare Turns to AI for Medical Note-Taking 'Scribes'*. Retrieved from [https://www.ft.com/content/5c356658-6db4-47c1-940b-b2e3cf3a51f3](https://www.ft.com/content/5c356658-6db4-47c1-940b-b2e3cf3a51f3)
+
+- GenAI in healthcare is moving from pilots to production, especially in clinical documentation and imaging.
+- Hospitals, insurers, and biotech firms are exploring AI-powered assistants to streamline manual workflows and improve decision support.
+- Patient-facing use cases like education and triage are opening the door for more accessible, scalable care delivery.
