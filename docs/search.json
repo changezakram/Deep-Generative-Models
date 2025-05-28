@@ -81,21 +81,21 @@
     "href": "ebm.html#limitations-of-mainstream-generative-models",
     "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
     "section": "🔍 Limitations of Mainstream Generative Models",
-    "text": "🔍 Limitations of Mainstream Generative Models\n\n\n\n\n\n\n\n\nModel\nPros\nCons\n\n\n\n\nVAEs\nProbabilistic framework, tractable ELBO\nModel architecture restrictions; blurry samples\n\n\nNormalizing Flows\nExact likelihood, invertibility\nRestricted to invertible architectures; expensive Jacobian computation\n\n\nAutoregressive Models\nExact likelihood\nSlow sampling; autoregressive dependency limits parallelism\n\n\nGANs\nHigh-quality samples; flexible\nNo likelihood; unstable training; mode collapse\n\n\n\nThese models attempt to approximate the true data distribution ( P_{} ) by selecting a model ( P_) from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability."
+    "text": "🔍 Limitations of Mainstream Generative Models\n\n\n\n\n\n\n\n\nModel\nPros\nCons\n\n\n\n\nVAEs\nProbabilistic framework, tractable ELBO\nModel architecture restrictions; blurry samples\n\n\nNormalizing Flows\nExact likelihood, invertibility\nRestricted to invertible architectures; expensive Jacobian computation\n\n\nAutoregressive Models\nExact likelihood\nSlow sampling; autoregressive dependency limits parallelism\n\n\nGANs\nHigh-quality samples; flexible\nNo likelihood; unstable training; mode collapse\n\n\n\nThese models attempt to approximate the true data distribution \\[P_{\\text{data}}\\] by selecting a model \\[P_\\theta\\] from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability."
   },
   {
     "objectID": "ebm.html#enter-energy-based-models-ebms",
     "href": "ebm.html#enter-energy-based-models-ebms",
     "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
     "section": "⚡ Enter Energy-Based Models (EBMs)",
-    "text": "⚡ Enter Energy-Based Models (EBMs)\nEnergy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution ( P(x) ), EBMs define an energy function ( E_(x) ) that assigns lower energy to more likely data points:\n[ p_(x) = ]\nHere, ( Z_= e^{-E_(x)} dx ) is the partition function, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use any neural architecture for ( E_), without needing invertibility, autoregressive factorization, or adversarial setup."
+    "text": "⚡ Enter Energy-Based Models (EBMs)\nEnergy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution \\[P(x)\\], EBMs define an energy function \\[E_\\theta(x)\\] that assigns lower energy to more likely data points:\n\\[\np_\\theta(x) = \\frac{e^{-E_\\theta(x)}}{Z_\\theta}\n\\]\nHere, \\[Z_\\theta = \\int e^{-E_\\theta(x)} dx\\] is the partition function, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use any neural architecture for \\[E_\\theta\\], without needing invertibility, autoregressive factorization, or adversarial setup."
   },
   {
     "objectID": "ebm.html#math-review-from-scores-to-probabilities-in-energy-based-models",
     "href": "ebm.html#math-review-from-scores-to-probabilities-in-energy-based-models",
     "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
     "section": "📐 Math Review: From Scores to Probabilities in Energy-Based Models",
-    "text": "📐 Math Review: From Scores to Probabilities in Energy-Based Models\nIn generative modeling, a valid probability distribution ( p(x) ) must satisfy:\n\nNon-negativity:\n[ p(x) ]\nNormalization (sum-to-one):\n[ _x p(x) = 1 p(x)dx = 1 ]\n\nCreating functions ( g_(x) ) is easy, but they often fail to normalize. Instead, we define:\n[ p_(x) = Z() = g_(x) dx ]\nIn EBMs, we use an exponential form:\n[ g_(x) = (f_(x)) p_(x) = ]\nand define energy as:\n[ E_(x) := -f_(x) ]\nSo the model becomes:\n[ p_(x) = ]\nThis is flexible, expressive, and connected to exponential family distributions."
+    "text": "📐 Math Review: From Scores to Probabilities in Energy-Based Models\nIn generative modeling, a valid probability distribution \\[p(x)\\] must satisfy:\n\nNon-negativity:\n\\[\np(x) \\geq 0\n\\]\nNormalization (sum-to-one):\n\\[\n\\int p(x)dx = 1\n\\]\n\nCreating functions \\[g_\\theta(x) \\geq 0\\] is easy, but they often fail to normalize. Instead, we define:\n\\[\np_\\theta(x) = \\frac{g_\\theta(x)}{Z(\\theta)}, \\quad Z(\\theta) = \\int g_\\theta(x) dx\n\\]\nIn EBMs, we use an exponential form:\n\\[\ng_\\theta(x) = \\exp(f_\\theta(x)) \\Rightarrow p_\\theta(x) = \\frac{e^{f_\\theta(x)}}{Z(\\theta)}\n\\]\nand define energy as:\n\\[\nE_\\theta(x) := -f_\\theta(x)\n\\]\nSo the model becomes:\n\\[\np_\\theta(x) = \\frac{e^{-E_\\theta(x)}}{Z(\\theta)}\n\\]"
   },
   {
     "objectID": "ebm.html#key-benefits-of-ebms",
@@ -109,28 +109,28 @@
     "href": "ebm.html#limitations-of-energy-based-models",
     "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
     "section": "⚠️ Limitations of Energy-Based Models",
-    "text": "⚠️ Limitations of Energy-Based Models\nDespite their elegance, EBMs pose serious challenges:\n\n🔄 Hard Sampling\n\nNo direct way to draw samples from ( p_(x) )\nRequires iterative MCMC methods\nSampling cost is high and scales poorly in high dimensions\n\n\n\n📉 Hard Likelihood Evaluation and Learning\n\nPartition function ( Z() ) is intractable\nEvaluating ( p_(x) ) is not feasible\nNeed to push down energy of incorrect configurations to make learning effective\n\n\n\n🚫 No Feature Learning (by default)\n\nEBMs do not learn latent features unless explicitly modeled (e.g., RBMs)"
+    "text": "⚠️ Limitations of Energy-Based Models\nDespite their elegance, EBMs pose serious challenges:\n\n🔄 Hard Sampling\n\nNo direct way to draw samples from \\[p_\\theta(x)\\]\nRequires iterative MCMC methods\nSampling cost is high and scales poorly in high dimensions\n\n\n\n📉 Hard Likelihood Evaluation and Learning\n\nPartition function \\[Z(\\theta)\\] is intractable\nEvaluating \\[\\log p_\\theta(x)\\] is not feasible\nNeed to push down energy of incorrect configurations to make learning effective\n\n\n\n🚫 No Feature Learning (by default)\n\nEBMs do not learn latent features unless explicitly modeled (e.g., RBMs)"
   },
   {
     "objectID": "ebm.html#learning-and-inference-in-energy-based-models",
     "href": "ebm.html#learning-and-inference-in-energy-based-models",
     "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
     "section": "🧪 Learning and Inference in Energy-Based Models",
-    "text": "🧪 Learning and Inference in Energy-Based Models\nWe optimize the likelihood:\n[ p_(x_{}) = f_(x_{}) - Z() ]\nGradient:\n[ f(x_{}) - {x p}[f(x)] ]\nSince ( Z() ) is intractable, this expectation is approximated using sampling."
+    "text": "🧪 Learning and Inference in Energy-Based Models\nWe optimize the likelihood:\n\\[\n\\log p_\\theta(x_{\\text{train}}) = f_\\theta(x_{\\text{train}}) - \\log Z(\\theta)\n\\]\nGradient:\n\\[\n\\nabla_\\theta f_\\theta(x_{\\text{train}}) - \\mathbb{E}_{x \\sim p_\\theta}[\\nabla_\\theta f_\\theta(x)]\n\\]\nSince \\[Z(\\theta)\\] is intractable, this expectation is approximated using sampling."
   },
   {
     "objectID": "ebm.html#contrastive-divergence",
     "href": "ebm.html#contrastive-divergence",
     "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
     "section": "🔁 Contrastive Divergence",
-    "text": "🔁 Contrastive Divergence\nContrastive Divergence approximates the gradient using:\n[ f(x_{}) - f(x_{}) ]\nWhere ( x_{} p_) (via MCMC). The goal is to increase ( f ) on training data and decrease it elsewhere."
+    "text": "🔁 Contrastive Divergence\nContrastive Divergence approximates the gradient using:\n\\[\n\\nabla_\\theta f_\\theta(x_{\\text{train}}) - \\nabla_\\theta f_\\theta(x_{\\text{sample}})\n\\]\nWhere \\[x_{\\text{sample}} \\sim p_\\theta\\] (via MCMC). The goal is to increase \\[f\\] on training data and decrease it elsewhere."
   },
   {
     "objectID": "ebm.html#sampling-from-energy-based-models",
     "href": "ebm.html#sampling-from-energy-based-models",
     "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
     "section": "🎲 Sampling from Energy-Based Models",
-    "text": "🎲 Sampling from Energy-Based Models\nWe can’t sample directly from EBMs, but we can use MCMC methods.\n\n🔄 Metropolis-Hastings\n\nPropose ( x’ = x + )\nAccept:\n\nAlways if ( f(x’) f(x) )\nOtherwise with probability ( (f(x’) - f(x)) )\n\n\nConverges to ( p_(x) ) as ( T ), but is slow in high dimensions.\n\n\n\n🌪 Langevin Dynamics\nUses gradients:\n[ x^{t+1} = x^t + x f(x^t) + z^t z^t (0, I) ]\nWorks well when ( x f(x) ) is tractable (which it is in EBMs).\n\n\n\n⚠️ Challenges of MCMC Sampling\n\nConvergence is slow, especially in high dimensions\nRequires multiple steps for every training iteration\nCan dominate training time in contrastive divergence\n\n\n\n⚠️ Sampling is the key bottleneck in training EBMs. Effective MCMC strategies are critical to making them practical in real-world settings."
+    "text": "🎲 Sampling from Energy-Based Models\nWe can’t sample directly from EBMs, but we can use MCMC methods.\n\n🔄 Metropolis-Hastings\n\nPropose \\[x' = x + \\text{noise}\\]\n\nAccept:\n\nAlways if \\[f(x') \\geq f(x)\\]\n\nOtherwise with probability \\[\\exp(f(x') - f(x))\\]\n\n\nConverges to \\[p_\\theta(x)\\] as \\[T \\to \\infty\\], but is slow in high dimensions.\n\n\n\n🌪 Langevin Dynamics\nUses gradients:\n\\[\nx^{t+1} = x^t + \\epsilon \\nabla_x f_\\theta(x^t) + \\sqrt{2\\epsilon} z^t, \\quad z^t \\sim \\mathcal{N}(0, I)\n\\]\nWorks well when \\[\\nabla_x f_\\theta(x)\\] is tractable (which it is in EBMs).\n\n\n\n⚠️ Challenges of MCMC Sampling\n\nConvergence is slow, especially in high dimensions\nRequires multiple steps for every training iteration\nCan dominate training time in contrastive divergence\n\n\n⚠️ Sampling is the key bottleneck in training EBMs. Effective MCMC strategies are critical to making them practical in real-world settings."
   },
   {
     "objectID": "vae_mnist.html",
