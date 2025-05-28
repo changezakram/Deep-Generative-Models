@@ -185,3 +185,5 @@ Works well when $$\nabla_x f_\theta(x)$$ is tractable (which it is in EBMs).
 [3] MIT. (2022). *Energy-Based Models – MIT Class Project*. Retrieved from [https://energy-based-model.github.io/Energy-based-Model-MIT/](https://energy-based-model.github.io/Energy-based-Model-MIT/)
 
 [4] University of Amsterdam. (2021). *Deep Energy Models – UvA DL Notebooks*. Retrieved from [https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial8/Deep_Energy_Models.html](https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial8/Deep_Energy_Models.html)
+
+[5] MIT. (2022). *Compositional Generation and Inference with Energy-Based Models*. Retrieved from [https://energy-based-model.github.io/compositional-generation-inference/](https://energy-based-model.github.io/compositional-generation-inference/)
