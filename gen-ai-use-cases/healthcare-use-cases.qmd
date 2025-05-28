@@ -10,7 +10,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 ## 📋 Summary of Use Cases
 
-| 💡 Use Case Area             | 🏥 Examples                          | 📈 Benefits                               |
+| Use Case Area               | Examples                             | Benefits                                  |
 |-----------------------------|--------------------------------------|-------------------------------------------|
 | Clinical Documentation      | Nuance DAX, AWS HealthScribe         | Reduced burden, faster note capture       |
 | Medical Imaging & Diagnostics | DeepMind, MIT CSAIL                  | Enhanced resolution, rare disease training|
