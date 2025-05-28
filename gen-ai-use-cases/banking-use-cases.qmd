@@ -98,11 +98,34 @@ Generative BI transforms data consumption by allowing non-technical users to exp
 
 ## 📚 References
 
-1. Bank of America. “Meet Erica: Your Virtual Financial Assistant.” [https://www.bankofamerica.com/online-banking/erica-virtual-financial-assistant/](https://www.bankofamerica.com/online-banking/erica-virtual-financial-assistant/)
-2. JPMorgan Chase. “Using AI to Summarize Research.” [https://www.jpmorganchase.com/news-stories/ai-research-summarization](https://www.jpmorganchase.com/news-stories/ai-research-summarization)
-3. Mastercard. “Decision Intelligence™.” [https://www.mastercard.us/en-us/business/overview/safety-and-security/decision-intelligence.html](https://www.mastercard.us/en-us/business/overview/safety-and-security/decision-intelligence.html)
-4. Moody’s Analytics. “CreditLens™ Platform.” [https://www.moodysanalytics.com/creditlens](https://www.moodysanalytics.com/creditlens)
-5. Microsoft. “Power BI Copilot.” [https://powerbi.microsoft.com/en-us/blog/introducing-microsoft-fabric-and-copilot-in-microsoft-power-bi/](https://powerbi.microsoft.com/en-us/blog/introducing-microsoft-fabric-and-copilot-in-microsoft-power-bi/)
-6. BNY Mellon. “Eliza: BNY Mellon’s AI Platform.” [https://www.bnymellon.com](https://www.bnymellon.com)
-7. ThoughtSpot. “ThoughtSpot Sage.” [https://www.thoughtspot.com/product/sage](https://www.thoughtspot.com/product/sage)
-8. Morgan Stanley. “AskResearch.” [https://www.morganstanley.com/articles/genai-askresearch](https://www.morganstanley.com/articles/genai-askresearch)
+[1] Bank of America. “[Erica: Virtual Financial Assistant](https://info.bankofamerica.com/en/digital-banking/erica)”
+
+[2] NatWest. “[Launches Cora+: Latest Generative AI Upgrade](https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html)”
+
+[3] Wells Fargo. “[Meet Fargo: Virtual Assistant](https://sites.wf.com/fargo/)”
+
+[4] BNY Mellon. “[Signs Multiyear Deal with OpenAI](https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d?st=zWQR4X&reflink=article_email_share)”
+
+[5] Morgan Stanley. “[AI at Morgan Stanley Debrief](https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch)”
+
+[6] BBVA. “[Inside OpenAI’s Deal with BBVA](https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03)”
+
+[7] JPMorgan Chase. “[Deploying ChatGPT-like Assistant](https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html)”
+
+[8] Morgan Stanley. “[Announces AskResearchGPT](https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt)”
+
+[9] PwC. “[AI in Tax Compliance](https://www.pwc.com/gx/en/services/tax/connected-tax-compliance/build-trust-ai-tax-compliance.html?utm_source=chatgpt.com)”
+
+[10] Citi. “[AI to Digitize Trade Compliance](https://www.citigroup.com/global/news/press-release/2019/citi-global-trade-uses-ai-to-digitie-compliance-in-next-generational-project?utm_source=chatgpt.com)”
+
+[11] Citi Ventures. “[Investing in Poolside](https://www.citi.com/ventures/perspectives/pressrelease/investing-in-poolside.html)”
+
+[12] Mastercard. “[Supercharging Protection with GenAI](https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/)”
+
+[13] Wells Fargo. “[How AI Could Reshape Banking](https://stories.wf.com/artificial-intelligence-has-the-potential-to-reshape-banking/)”
+
+[14] Moody’s Analytics. “[Revolutionizing Loan Origination](https://www.moodys.com/web/en/us/insights/lending/revolutionizing-loan-origination-with-genai.html)”
+
+[15] JPMorgan. “[AI Completed 360,000 Hours of Work in Seconds](https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds)”
+
+[16] CTO Magazine. “[JP Morgan Chase Accelerates AI Adoption](https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/)”
