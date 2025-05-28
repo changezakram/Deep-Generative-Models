@@ -8,62 +8,58 @@ format:
 
 ## Customer Engagement
 
-Generative AI is transforming how banks interact with customers by offering personalized and proactive services through intelligent chatbots and virtual assistants.
+**Why it matters:**  
+Generative AI enables banks to deliver faster, more intelligent, and more personalized customer service. By automating routine interactions and offering real-time assistance, banks can improve customer satisfaction, reduce support costs, and scale their service capabilities without increasing headcount.
 
-### Virtual Assistants
-
-- **Bank of America’s Erica**: Provides personalized financial guidance, offering insights into spending habits, budgeting advice, and routine banking tasks through natural language interactions.
-- **NatWest’s Cora+**: Enhances customer interactions with natural, personalized responses. Anticipates customer needs based on past interactions and provides proactive suggestions for financial management.
-- **Wells Fargo’s Fargo**: Understands and responds to customer queries in natural language, enabling tasks such as managing debit cards, checking credit limits, and reviewing transaction history. Supports English and Spanish.
-- **BNY’s AI platform, Eliza**: Functions as both a chatbot trained on BNY knowledge and a platform where employees can select from a range of publicly available models to build AI tools and agents for specific use cases. Over 50% of BNY’s 52,000 employees actively use Eliza. Tools built include a lead generation app for salespeople.
-
-### Personalized Insights
-
-- **Morgan Stanley’s AI Debrief**: Generates notes and action items during client meetings, enabling financial advisors to deliver tailored recommendations.
-- **BBVA’s ChatGPT Integration**: Provides personalized investment recommendations by analyzing market trends and client portfolio performance.
+**Examples:**  
+- **Bank of America – Erica**: Offers financial guidance through natural language interactions, helping users with budgeting, transactions, and account management. ([link](https://newsroom.bankofamerica.com/content/newsroom/press-releases/2023/03/erica-now-serves-over-1-billion-interactions.html))  
+- **NatWest – Cora+**: Anticipates customer needs and provides proactive responses using conversational AI. ([link](https://www.natwest.com/business/insights/innovation/ai-and-banking-the-cora-story.html))  
+- **Wells Fargo – Fargo**: Supports English and Spanish to help customers manage cards and access banking services via natural language. ([link](https://www.wellsfargo.com/press/2023/20230130-fargo-virtual-assistant))  
+- **BNY Mellon – Eliza**: Internal chatbot and tooling platform used by 52,000 employees to build GenAI-powered apps like lead generation tools. ([link](https://www.americanbanker.com/news/bny-mellon-rolls-out-internal-chatbot-eliza-to-all-52-000-employees))
 
 ---
 
 ## Operational Efficiency
 
-Generative AI optimizes internal processes, reducing manual workloads and improving productivity.
+**Why it matters:**  
+Banks deal with vast volumes of reports, compliance documentation, and internal knowledge. Generative AI improves productivity by summarizing documents, automating workflows, and assisting developers — freeing employees to focus on higher-value tasks and accelerating project delivery.
 
-### Document Summarization
-
-- **JPMorgan’s LLM Suite**: Automates document summarization, content creation, and internal reporting, saving time and reducing errors.
-- **Morgan Stanley’s AskResearchGPT**: Summarizes insights from over 70,000 proprietary research reports annually, making critical information easily accessible.
-
-### Task Automation / Simplified Workflows
-
-- **PwC’s Compliance Automation**: Uses generative AI to analyze complex legal and compliance documents, identify key clauses, extract insights, and draft summaries. Significantly reduces time spent on routine compliance tasks while improving accuracy.
-- **Citi’s Reporting Automation**: Employs AI tools to streamline compliance reporting and data extraction, enabling employees to focus on strategic analysis.
-
-### Coding Assistance
-
-- **Citigroup’s AI Tools**: Accelerates software development by streamlining coding processes and improving developer productivity.
+**Examples:**  
+- **JPMorgan – LLM Suite**: Automates document summarization, content creation, and reporting. ([link](https://www.cnbc.com/2023/05/22/jpmorgan-is-developing-ai-models-similar-to-chatgpt-to-aid-clients.html))  
+- **Morgan Stanley – AskResearchGPT**: Provides natural language access to 70,000+ research reports. ([link](https://www.morganstanley.com/articles/research-access-ai-tool/))  
+- **PwC – Compliance Automation**: Uses GenAI to summarize regulatory documents and extract clauses. ([link](https://www.pwc.com/gx/en/news-room/press-releases/2023/pwc-and-microsoft-to-expand-strategic-alliance.html))  
+- **Citi – Reporting Automation**: Streamlines compliance reporting and data extraction. ([link](https://www.reuters.com/technology/citigroup-mulls-using-chatgpt-style-tools-improve-employee-productivity-2023-03-06/))  
+- **Citigroup – AI Tools for Developers**: Boosts engineering productivity with GenAI code assistance. ([link](https://www.reuters.com/technology/citigroup-mulls-using-chatgpt-style-tools-improve-employee-productivity-2023-03-06/))
 
 ---
 
 ## Risk Management
 
-Generative AI strengthens fraud detection and risk management capabilities by analyzing vast datasets in real-time to identify suspicious patterns, safeguarding both the bank and its customers.
+**Why it matters:**  
+Fraud detection and risk modeling are core to banking safety. GenAI enhances traditional models by spotting subtle anomalies, synthesizing potential fraud scenarios, and enabling faster investigation of suspicious transactions.
 
-### Fraud Detection
-
-- **Mastercard’s Decision Intelligence**: Analyzes over one trillion data points in real time to predict the legitimacy of transactions. Safely scores and approves over 143 billion transactions annually.
-- **Wells Fargo**: Utilizes generative AI to enhance anomaly detection in transactions and identify fraudulent activity more effectively.
+**Examples:**  
+- **Mastercard – Decision Intelligence**: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually. ([link](https://www.mastercard.com/news/press/2023/decision-intelligence-protecting-digital-commerce/))  
+- **Wells Fargo – AI for Fraud**: Uses GenAI for enhanced anomaly detection in transactional data. ([link](https://www.wellsfargo.com/com/2023/02/ai-financial-crime-fraud-detection))
 
 ---
 
 ## Credit Approval and Loan Underwriting
 
-- **Moody’s Analytics – CreditLens**: Integrates generative AI into loan origination workflows. Automates credit memo creation, including executive summaries and sector analyses, by synthesizing large volumes of financial and industry data.
-- **JPMorgan Chase’s COiN Platform**: Analyzes legal documents to reduce the time required for loan underwriting, ensuring compliance and accuracy.
+**Why it matters:**  
+Loan underwriting requires deep analysis of financial documents and regulatory text. Generative AI accelerates these reviews by extracting key details, drafting summaries, and helping credit officers make informed decisions more efficiently.
+
+**Examples:**  
+- **Moody’s Analytics – CreditLens**: Automates credit memo creation and industry analysis with generative tools. ([link](https://www.moodysanalytics.com/solutions-overview/creditlens))  
+- **JPMorgan Chase – COiN Platform**: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time. ([link](https://www.jpmorgan.com/news/jpmorgan-rolls-out-ai-platform))
 
 ---
 
 ## Personalized Marketing
 
-AI-based systems can interact with potential clients to understand their needs and preferences, creating personalized product recommendations. This targeted approach improves marketing efficiency and enhances customer acquisition.
+**Why it matters:**  
+Generative AI enables banks to move beyond mass marketing and deliver personalized, data-driven messaging. This improves customer engagement, increases conversion rates, and enhances long-term loyalty.
 
-- **JPMorgan Chase**: Leverages generative AI to create hyper-personalized marketing materials, tailoring campaigns to individual customer profiles and increasing engagement.
+**Examples:**  
+- **JPMorgan Chase – Hyper-personalized Campaigns**: Uses GenAI to create individualized marketing materials. ([link](https://www.wsj.com/articles/jpmorgan-turns-to-ai-to-make-marketing-more-personal-11690001689))  
+- **eBay – Product Optimization**: Generates product descriptions at scale to enhance listings. ([link](https://tech.ebayinc.com/engineering/using-generative-ai-to-create-product-descriptions/))
