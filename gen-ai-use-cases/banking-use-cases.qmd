@@ -10,8 +10,10 @@ Generative AI is redefining how banks operate — from automating customer servi
 
 ## 🏦 Customer Engagement
 
+::: {.callout appearance="simple" title=""}
 **Why it matters:**  
 Generative AI enables banks to deliver faster, more intelligent, and more personalized customer service. By automating routine interactions and offering real-time assistance, banks can improve customer satisfaction, reduce support costs, and scale their service capabilities without increasing headcount.
+:::
 
 **Examples:**  
 - Bank of America – Erica: Offers financial guidance through natural language interactions, helping users with budgeting, transactions, and account management.  
@@ -21,8 +23,10 @@ Generative AI enables banks to deliver faster, more intelligent, and more person
 
 ## 📊 Operational Efficiency
 
+::: {.callout appearance="simple" title=""}
 **Why it matters:**  
 Banks deal with vast volumes of reports, compliance documentation, and internal knowledge. Generative AI improves productivity by summarizing documents, automating workflows, and assisting developers — freeing employees to focus on higher-value tasks and accelerating project delivery.
+:::
 
 **Examples:**  
 - JPMorgan – LLM Suite: Automates document summarization, content creation, and reporting.  
@@ -33,8 +37,10 @@ Banks deal with vast volumes of reports, compliance documentation, and internal 
 
 ## 🔐 Risk Management
 
+::: {.callout appearance="simple" title=""}
 **Why it matters:**  
 Fraud detection and risk modeling are core to banking safety. GenAI enhances traditional models by spotting subtle anomalies, synthesizing potential fraud scenarios, and enabling faster investigation of suspicious transactions.
+:::
 
 **Examples:**  
 - Mastercard – Decision Intelligence: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually.  
@@ -42,8 +48,10 @@ Fraud detection and risk modeling are core to banking safety. GenAI enhances tra
 
 ## 📝 Credit Approval and Loan Underwriting
 
+::: {.callout appearance="simple" title=""}
 **Why it matters:**  
 Credit underwriting involves reviewing complex financial documents and assessing risk within tight timeframes. Generative AI helps automate the analysis of financial statements, legal documents, and industry benchmarks, enabling faster loan decisions, improved accuracy, and streamlined compliance.
+:::
 
 **Examples:**  
 - Moody’s Analytics – CreditLens: Automates credit memo creation and industry analysis with generative tools.  
@@ -51,8 +59,10 @@ Credit underwriting involves reviewing complex financial documents and assessing
 
 ## 📣 Personalized Marketing
 
+::: {.callout appearance="simple" title=""}
 **Why it matters:**  
 Generative AI enables banks to move beyond mass marketing and deliver personalized, data-driven messaging. This improves customer engagement, increases conversion rates, and enhances long-term loyalty.
+:::
 
 **Examples:**  
 - JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials.  
