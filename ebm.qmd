@@ -30,7 +30,7 @@ These models attempt to approximate the true data distribution $P_{\text{data}}$
 
 ## Enter Energy-Based Models (EBMs)
 
-Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution $$P(x)$$, EBMs define an **energy function** $$E_\theta(x)$$ that assigns lower energy to more likely data points:
+Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution $P(x)$, EBMs define an **energy function** $E_\theta(x)$ that assigns lower energy to more likely data points:
 
 $$
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
