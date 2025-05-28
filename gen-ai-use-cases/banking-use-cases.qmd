@@ -95,3 +95,14 @@ Generative BI transforms data consumption by allowing non-technical users to exp
 - GenAI is no longer experimental in banking — it's powering real customer-facing and internal systems.
 - Use cases like customer engagement, underwriting, and Gen BI deliver measurable productivity and experience gains.
 - As the industry matures, GenAI will likely integrate deeper into core banking platforms and regulatory processes.
+
+## 📚 References
+
+1. Bank of America. “Meet Erica: Your Virtual Financial Assistant.” [https://www.bankofamerica.com/online-banking/erica-virtual-financial-assistant/](https://www.bankofamerica.com/online-banking/erica-virtual-financial-assistant/)
+2. JPMorgan Chase. “Using AI to Summarize Research.” [https://www.jpmorganchase.com/news-stories/ai-research-summarization](https://www.jpmorganchase.com/news-stories/ai-research-summarization)
+3. Mastercard. “Decision Intelligence™.” [https://www.mastercard.us/en-us/business/overview/safety-and-security/decision-intelligence.html](https://www.mastercard.us/en-us/business/overview/safety-and-security/decision-intelligence.html)
+4. Moody’s Analytics. “CreditLens™ Platform.” [https://www.moodysanalytics.com/creditlens](https://www.moodysanalytics.com/creditlens)
+5. Microsoft. “Power BI Copilot.” [https://powerbi.microsoft.com/en-us/blog/introducing-microsoft-fabric-and-copilot-in-microsoft-power-bi/](https://powerbi.microsoft.com/en-us/blog/introducing-microsoft-fabric-and-copilot-in-microsoft-power-bi/)
+6. BNY Mellon. “Eliza: BNY Mellon’s AI Platform.” [https://www.bnymellon.com](https://www.bnymellon.com)
+7. ThoughtSpot. “ThoughtSpot Sage.” [https://www.thoughtspot.com/product/sage](https://www.thoughtspot.com/product/sage)
+8. Morgan Stanley. “AskResearch.” [https://www.morganstanley.com/articles/genai-askresearch](https://www.morganstanley.com/articles/genai-askresearch)
