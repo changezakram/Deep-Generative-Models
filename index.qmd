@@ -41,7 +41,7 @@ It’s designed to document concepts clearly, walk through implementations step 
 ## Industry Use Cases
 
 ### 1. [Banking](gen-ai-use-cases/banking-use-cases.html)
-**6 use cases** across fraud detection, BI, underwriting, and marketing  
+**6 use cases** spanning customer service, operational efficiency, fraud detection, business intelligence, and marketing. 
 Includes JPMorgan, Mastercard, Wells Fargo, Morgan Stanley
 
 ### 2. [Healthcare](gen-ai-use-cases/healthcare-use-cases.qmd) 
