@@ -8,6 +8,17 @@ format:
 
 Generative AI is redefining how banks operate — from automating customer service to streamlining underwriting. Below are practical examples showing how leading financial institutions are applying GenAI for real business value.
 
+## 🧭 Summary of Use Cases
+
+| 💡 Use Case Area           | 🏦 Examples                          | 📈 Benefits                            |
+|---------------------------|--------------------------------------|----------------------------------------|
+| Customer Engagement       | Erica, Cora+, Fargo, Eliza           | 24/7 support, lower call volume         |
+| Operational Efficiency    | LLM Suite, AskResearchGPT, PwC       | Faster reporting, reduced manual work  |
+| Risk Management           | Mastercard DI, Wells Fargo Fraud     | Early fraud detection, loss prevention |
+| Credit Underwriting       | CreditLens, COiN Platform            | Quicker approvals, lower compliance risk|
+| Personalized Marketing    | JPMorgan Campaigns                   | Better targeting, higher engagement    |
+| Generative BI             | Copilot, ThoughtSpot, Custom Assistants| Self-service insights, exec summaries |
+
 ## 🏦 Customer Engagement
 
 ::: {.callout appearance="simple" title=""}
@@ -65,7 +76,7 @@ Generative AI enables banks to move beyond mass marketing and deliver personaliz
 :::
 
 **Examples:**  
-- JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials. 
+- JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials.
 
 ## 📈 Generative Business Intelligence (Gen BI)
 
@@ -78,3 +89,9 @@ Generative BI transforms data consumption by allowing non-technical users to exp
 - Microsoft Copilot in Power BI: Enables users to ask natural-language questions and instantly generate charts or summaries.  
 - ThoughtSpot Sage: Combines search with GenAI to explain patterns and alert users to anomalies.  
 - Internal Gen BI tools: Many banks are building custom assistants on top of Snowflake, BigQuery, or Lakehouse environments to support executive dashboards and ops reviews.
+
+## 🧾 Key Takeaways
+
+- GenAI is no longer experimental in banking — it's powering real customer-facing and internal systems.
+- Use cases like customer engagement, underwriting, and Gen BI deliver measurable productivity and experience gains.
+- As the industry matures, GenAI will likely integrate deeper into core banking platforms and regulatory processes.
