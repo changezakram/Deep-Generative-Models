@@ -79,7 +79,7 @@ $$
 
 ---
 
-## ✅ Key Benefits of EBMs
+## Key Benefits of EBMs
 
 - **Very flexible model architectures**: No need for invertibility, factorization, or adversarial design.
 - **Stable training**: Compared to GANs, EBMs can be more robust.
@@ -88,29 +88,29 @@ $$
 
 ---
 
-## ⚠️ Limitations of Energy-Based Models
+## Limitations of Energy-Based Models
 
 Despite their elegance, EBMs pose serious challenges:
 
-### 🔄 Hard Sampling
+### Hard Sampling
 
 - No direct way to draw samples from $$p_\theta(x)$$
 - Requires iterative MCMC methods
 - Sampling cost is high and scales poorly in high dimensions
 
-### 📉 Hard Likelihood Evaluation and Learning
+### Hard Likelihood Evaluation and Learning
 
 - Partition function $$Z(\theta)$$ is intractable
 - Evaluating $$\log p_\theta(x)$$ is not feasible
 - Need to push down energy of incorrect configurations to make learning effective
 
-### 🚫 No Feature Learning (by default)
+### No Feature Learning (by default)
 
 - EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)
 
 ---
 
-## 🧪 Learning and Inference in Energy-Based Models
+## Learning and Inference in Energy-Based Models
 
 We optimize the likelihood:
 
@@ -128,7 +128,7 @@ Since $$Z(\theta)$$ is intractable, this expectation is approximated using **sam
 
 ---
 
-## 🔁 Contrastive Divergence
+## Contrastive Divergence
 
 Contrastive Divergence approximates the gradient using:
 
@@ -140,11 +140,11 @@ Where $$x_{\text{sample}} \sim p_\theta$$ (via MCMC). The goal is to increase $$
 
 ---
 
-## 🎲 Sampling from Energy-Based Models
+## Sampling from Energy-Based Models
 
 We can't sample directly from EBMs, but we can use **MCMC** methods.
 
-### 🔄 Metropolis-Hastings
+### Metropolis-Hastings
 
 1. Propose $$x' = x + \text{noise}$$  
 2. Accept:
@@ -155,7 +155,7 @@ Converges to $$p_\theta(x)$$ as $$T \to \infty$$, but is slow in high dimensions
 
 ---
 
-### 🌪 Langevin Dynamics
+### Langevin Dynamics
 
 Uses gradients:
 
@@ -167,10 +167,10 @@ Works well when $$\nabla_x f_\theta(x)$$ is tractable (which it is in EBMs).
 
 ---
 
-### ⚠️ Challenges of MCMC Sampling
+### Challenges of MCMC Sampling
 
 - Convergence is **slow**, especially in high dimensions
 - Requires multiple steps **for every training iteration**
 - Can dominate training time in contrastive divergence
 
-> ⚠️ Sampling is the key bottleneck in training EBMs. Effective MCMC strategies are critical to making them practical in real-world settings.
+> Sampling is the key bottleneck in training EBMs. Effective MCMC strategies are critical to making them practical in real-world settings.

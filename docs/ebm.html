@@ -144,20 +144,20 @@ window.Quarto = {
   <li><a href="#limitations-of-mainstream-generative-models" id="toc-limitations-of-mainstream-generative-models" class="nav-link" data-scroll-target="#limitations-of-mainstream-generative-models">Limitations of Mainstream Generative Models</a></li>
   <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
   <li><a href="#math-review-from-scores-to-probabilities-in-energy-based-models" id="toc-math-review-from-scores-to-probabilities-in-energy-based-models" class="nav-link" data-scroll-target="#math-review-from-scores-to-probabilities-in-energy-based-models">Math Review: From Scores to Probabilities in Energy-Based Models</a></li>
-  <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">✅ Key Benefits of EBMs</a></li>
-  <li><a href="#limitations-of-energy-based-models" id="toc-limitations-of-energy-based-models" class="nav-link" data-scroll-target="#limitations-of-energy-based-models">⚠️ Limitations of Energy-Based Models</a>
+  <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
+  <li><a href="#limitations-of-energy-based-models" id="toc-limitations-of-energy-based-models" class="nav-link" data-scroll-target="#limitations-of-energy-based-models">Limitations of Energy-Based Models</a>
   <ul class="collapse">
-  <li><a href="#hard-sampling" id="toc-hard-sampling" class="nav-link" data-scroll-target="#hard-sampling">🔄 Hard Sampling</a></li>
-  <li><a href="#hard-likelihood-evaluation-and-learning" id="toc-hard-likelihood-evaluation-and-learning" class="nav-link" data-scroll-target="#hard-likelihood-evaluation-and-learning">📉 Hard Likelihood Evaluation and Learning</a></li>
-  <li><a href="#no-feature-learning-by-default" id="toc-no-feature-learning-by-default" class="nav-link" data-scroll-target="#no-feature-learning-by-default">🚫 No Feature Learning (by default)</a></li>
+  <li><a href="#hard-sampling" id="toc-hard-sampling" class="nav-link" data-scroll-target="#hard-sampling">Hard Sampling</a></li>
+  <li><a href="#hard-likelihood-evaluation-and-learning" id="toc-hard-likelihood-evaluation-and-learning" class="nav-link" data-scroll-target="#hard-likelihood-evaluation-and-learning">Hard Likelihood Evaluation and Learning</a></li>
+  <li><a href="#no-feature-learning-by-default" id="toc-no-feature-learning-by-default" class="nav-link" data-scroll-target="#no-feature-learning-by-default">No Feature Learning (by default)</a></li>
   </ul></li>
-  <li><a href="#learning-and-inference-in-energy-based-models" id="toc-learning-and-inference-in-energy-based-models" class="nav-link" data-scroll-target="#learning-and-inference-in-energy-based-models">🧪 Learning and Inference in Energy-Based Models</a></li>
-  <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence">🔁 Contrastive Divergence</a></li>
-  <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models">🎲 Sampling from Energy-Based Models</a>
+  <li><a href="#learning-and-inference-in-energy-based-models" id="toc-learning-and-inference-in-energy-based-models" class="nav-link" data-scroll-target="#learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</a></li>
+  <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence">Contrastive Divergence</a></li>
+  <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models">Sampling from Energy-Based Models</a>
   <ul class="collapse">
-  <li><a href="#metropolis-hastings" id="toc-metropolis-hastings" class="nav-link" data-scroll-target="#metropolis-hastings">🔄 Metropolis-Hastings</a></li>
-  <li><a href="#langevin-dynamics" id="toc-langevin-dynamics" class="nav-link" data-scroll-target="#langevin-dynamics">🌪 Langevin Dynamics</a></li>
-  <li><a href="#challenges-of-mcmc-sampling" id="toc-challenges-of-mcmc-sampling" class="nav-link" data-scroll-target="#challenges-of-mcmc-sampling">⚠️ Challenges of MCMC Sampling</a></li>
+  <li><a href="#metropolis-hastings" id="toc-metropolis-hastings" class="nav-link" data-scroll-target="#metropolis-hastings">Metropolis-Hastings</a></li>
+  <li><a href="#langevin-dynamics" id="toc-langevin-dynamics" class="nav-link" data-scroll-target="#langevin-dynamics">Langevin Dynamics</a></li>
+  <li><a href="#challenges-of-mcmc-sampling" id="toc-challenges-of-mcmc-sampling" class="nav-link" data-scroll-target="#challenges-of-mcmc-sampling">Challenges of MCMC Sampling</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -271,7 +271,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <hr>
 </section>
 <section id="key-benefits-of-ebms" class="level2">
-<h2 class="anchored" data-anchor-id="key-benefits-of-ebms">✅ Key Benefits of EBMs</h2>
+<h2 class="anchored" data-anchor-id="key-benefits-of-ebms">Key Benefits of EBMs</h2>
 <ul>
 <li><strong>Very flexible model architectures</strong>: No need for invertibility, factorization, or adversarial design.</li>
 <li><strong>Stable training</strong>: Compared to GANs, EBMs can be more robust.</li>
@@ -281,10 +281,10 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <hr>
 </section>
 <section id="limitations-of-energy-based-models" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-of-energy-based-models">⚠️ Limitations of Energy-Based Models</h2>
+<h2 class="anchored" data-anchor-id="limitations-of-energy-based-models">Limitations of Energy-Based Models</h2>
 <p>Despite their elegance, EBMs pose serious challenges:</p>
 <section id="hard-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="hard-sampling">🔄 Hard Sampling</h3>
+<h3 class="anchored" data-anchor-id="hard-sampling">Hard Sampling</h3>
 <ul>
 <li>No direct way to draw samples from <span class="math display">\[p_\theta(x)\]</span></li>
 <li>Requires iterative MCMC methods</li>
@@ -292,7 +292,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 </ul>
 </section>
 <section id="hard-likelihood-evaluation-and-learning" class="level3">
-<h3 class="anchored" data-anchor-id="hard-likelihood-evaluation-and-learning">📉 Hard Likelihood Evaluation and Learning</h3>
+<h3 class="anchored" data-anchor-id="hard-likelihood-evaluation-and-learning">Hard Likelihood Evaluation and Learning</h3>
 <ul>
 <li>Partition function <span class="math display">\[Z(\theta)\]</span> is intractable</li>
 <li>Evaluating <span class="math display">\[\log p_\theta(x)\]</span> is not feasible</li>
@@ -300,7 +300,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 </ul>
 </section>
 <section id="no-feature-learning-by-default" class="level3">
-<h3 class="anchored" data-anchor-id="no-feature-learning-by-default">🚫 No Feature Learning (by default)</h3>
+<h3 class="anchored" data-anchor-id="no-feature-learning-by-default">No Feature Learning (by default)</h3>
 <ul>
 <li>EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)</li>
 </ul>
@@ -308,7 +308,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 </section>
 </section>
 <section id="learning-and-inference-in-energy-based-models" class="level2">
-<h2 class="anchored" data-anchor-id="learning-and-inference-in-energy-based-models">🧪 Learning and Inference in Energy-Based Models</h2>
+<h2 class="anchored" data-anchor-id="learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</h2>
 <p>We optimize the likelihood:</p>
 <p><span class="math display">\[
 \log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
@@ -321,7 +321,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <hr>
 </section>
 <section id="contrastive-divergence" class="level2">
-<h2 class="anchored" data-anchor-id="contrastive-divergence">🔁 Contrastive Divergence</h2>
+<h2 class="anchored" data-anchor-id="contrastive-divergence">Contrastive Divergence</h2>
 <p>Contrastive Divergence approximates the gradient using:</p>
 <p><span class="math display">\[
 \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta f_\theta(x_{\text{sample}})
@@ -330,10 +330,10 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <hr>
 </section>
 <section id="sampling-from-energy-based-models" class="level2">
-<h2 class="anchored" data-anchor-id="sampling-from-energy-based-models">🎲 Sampling from Energy-Based Models</h2>
+<h2 class="anchored" data-anchor-id="sampling-from-energy-based-models">Sampling from Energy-Based Models</h2>
 <p>We can’t sample directly from EBMs, but we can use <strong>MCMC</strong> methods.</p>
 <section id="metropolis-hastings" class="level3">
-<h3 class="anchored" data-anchor-id="metropolis-hastings">🔄 Metropolis-Hastings</h3>
+<h3 class="anchored" data-anchor-id="metropolis-hastings">Metropolis-Hastings</h3>
 <ol type="1">
 <li>Propose <span class="math display">\[x' = x + \text{noise}\]</span><br>
 </li>
@@ -348,7 +348,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <hr>
 </section>
 <section id="langevin-dynamics" class="level3">
-<h3 class="anchored" data-anchor-id="langevin-dynamics">🌪 Langevin Dynamics</h3>
+<h3 class="anchored" data-anchor-id="langevin-dynamics">Langevin Dynamics</h3>
 <p>Uses gradients:</p>
 <p><span class="math display">\[
 x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t, \quad z^t \sim \mathcal{N}(0, I)
@@ -357,14 +357,14 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t, \quad z^
 <hr>
 </section>
 <section id="challenges-of-mcmc-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="challenges-of-mcmc-sampling">⚠️ Challenges of MCMC Sampling</h3>
+<h3 class="anchored" data-anchor-id="challenges-of-mcmc-sampling">Challenges of MCMC Sampling</h3>
 <ul>
 <li>Convergence is <strong>slow</strong>, especially in high dimensions</li>
 <li>Requires multiple steps <strong>for every training iteration</strong></li>
 <li>Can dominate training time in contrastive divergence</li>
 </ul>
 <blockquote class="blockquote">
-<p>⚠️ Sampling is the key bottleneck in training EBMs. Effective MCMC strategies are critical to making them practical in real-world settings.</p>
+<p>Sampling is the key bottleneck in training EBMs. Effective MCMC strategies are critical to making them practical in real-world settings.</p>
 </blockquote>
 
 
