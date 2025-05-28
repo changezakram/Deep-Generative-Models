@@ -10,15 +10,17 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 ## 📋 Summary of Use Cases
 
-| Use Case Area               | Examples                             | Benefits                                  |
-|-----------------------------|--------------------------------------|-------------------------------------------|
-| Clinical Documentation      | Nuance DAX, AWS HealthScribe         | Reduced burden, faster note capture       |
-| Medical Imaging & Diagnostics | DeepMind, MIT CSAIL                  | Enhanced resolution, rare disease training|
-| Drug Discovery & Molecule Design | Insilico, BenevolentAI            | Faster R&D cycles, AI-generated molecules |
-| Patient Communication       | Mayo Copilot, Ada Health             | Simplified education, automated triage    |
-| Admin Workflow Automation   | MedLM, Abridge                       | Process improvement, reduced manual work  |
+| Use Case Area             | Examples                          | Benefits                               |
+|---------------------------|------------------------------------|------------------------------------------|
+| Clinical Documentation    | Nuance DAX, AWS HealthScribe       | Reduced burden, faster note capture      |
+| Medical Imaging & Diagnostics | DeepMind, MIT CSAIL              | Enhanced resolution, rare disease training|
+| Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Faster R&D cycles, AI-generated molecules |
+| Patient Communication     | Mayo Copilot, Ada Health           | Simplified education, automated triage   |
+| Admin Workflow Automation | MedLM, Abridge                     | Process improvement, reduced manual work |
 
-## 🩺 Clinical Documentation
+## Use Cases in Healthcare
+
+### 🩺 Clinical Documentation
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -29,7 +31,7 @@ Generative AI is significantly reducing the administrative burden on clinicians 
 - Nuance DAX Copilot (Microsoft): Automatically generates clinical notes during consultations, reducing documentation time for physicians.  
 - AWS HealthScribe: Extracts structured data and generates medical summaries from recorded conversations between patients and providers.
 
-## 🧠 Medical Imaging and Diagnostics
+### 🧠 Medical Imaging and Diagnostics
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -40,7 +42,7 @@ Generative models such as GANs and diffusion are being used to enhance medical i
 - Google DeepMind: Uses generative models to enhance resolution in retinal scans and chest X-rays.  
 - MIT CSAIL: Trains diagnostic AI systems using synthetic images generated via diffusion models, improving accuracy for rare diseases.
 
-## 💊 Drug Discovery and Molecular Design
+### 💊 Drug Discovery and Molecular Design
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -51,7 +53,7 @@ Pharmaceutical companies and AI research labs are using GenAI to generate novel 
 - Insilico Medicine: Uses generative chemistry platforms to propose new drug candidates and recently advanced one into Phase II trials.  
 - BenevolentAI: Uses AI models to generate molecules with desired properties based on disease pathways and target proteins.
 
-## 🗣️ Patient Communication and Education
+### 🗣️ Patient Communication and Education
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -62,7 +64,7 @@ Healthcare providers are using GenAI to generate personalized educational materi
 - Mayo Clinic and Microsoft Copilot: Exploring AI to generate patient-friendly summaries of lab results and discharge instructions.  
 - Ada Health: Uses generative agents to guide patients through symptom checking and triage using everyday language.
 
-## 🏥 Administrative Workflow Automation
+### 🏥 Administrative Workflow Automation
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
