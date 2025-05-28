@@ -46,6 +46,7 @@ Banks deal with vast volumes of reports, compliance documentation, and internal 
 - Morgan Stanley – AskResearchGPT: Provides natural language access to 70,000+ research reports.  
 - PwC – Compliance Automation: Uses GenAI to summarize regulatory documents and extract clauses.  
 - Citi – Reporting Automation: Streamlines compliance reporting and data extraction.  
+- Standard Chartered – SC GPT: A bank-wide GenAI platform deployed across 16 markets to enhance internal productivity. 
 - Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance.
 
 ### 🔐 Risk Management
@@ -132,3 +133,7 @@ Generative BI transforms data consumption by allowing non-technical users to exp
 [15] Futurism. (2024). *AI completed 360,000 hours of finance work in just seconds*. [https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds](https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds)
 
 [16] CTO Magazine. (2024). *JP Morgan Chase accelerates AI adoption*. [https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/](https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/)
+
+[17] Standard Chartered. (2024). *Standard Chartered Rolls Out SC GPT, Advancing AI-Driven Innovation in Banking*. Retrieved from [https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/](https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/)
+
+[18] Standard Chartered. (2024). *The Disruptive Potential of Generative AI*. Retrieved from [https://www.sc.com/en/overlay/the-disruptive-potential-of-generative-ai/](https://www.sc.com/en/overlay/the-disruptive-potential-of-generative-ai/)
