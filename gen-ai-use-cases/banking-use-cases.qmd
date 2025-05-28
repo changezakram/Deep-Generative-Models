@@ -96,7 +96,6 @@ Generative BI transforms data consumption by allowing non-technical users to exp
 - Use cases like customer engagement, underwriting, and Gen BI deliver measurable productivity and experience gains.
 - As the industry matures, GenAI will likely integrate deeper into core banking platforms and regulatory processes.
 
-
 ## 📚 References
 
 Bank of America. (2024). *Erica: Virtual Financial Assistant*. https://info.bankofamerica.com/en/digital-banking/erica
