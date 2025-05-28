@@ -4,42 +4,133 @@
     "href": "gen-ai-use-cases/banking-use-cases.html",
     "title": "Generative AI Use Cases in Banking",
     "section": "",
-    "text": "Generative AI is transforming how banks interact with customers by offering personalized and proactive services through intelligent chatbots and virtual assistants.\n\n\n\nBank of America’s Erica: Provides personalized financial guidance, offering insights into spending habits, budgeting advice, and routine banking tasks through natural language interactions.\nNatWest’s Cora+: Enhances customer interactions with natural, personalized responses. Anticipates customer needs based on past interactions and provides proactive suggestions for financial management.\nWells Fargo’s Fargo: Understands and responds to customer queries in natural language, enabling tasks such as managing debit cards, checking credit limits, and reviewing transaction history. Supports English and Spanish.\nBNY’s AI platform, Eliza: Functions as both a chatbot trained on BNY knowledge and a platform where employees can select from a range of publicly available models to build AI tools and agents for specific use cases. Over 50% of BNY’s 52,000 employees actively use Eliza. Tools built include a lead generation app for salespeople.\n\n\n\n\n\nMorgan Stanley’s AI Debrief: Generates notes and action items during client meetings, enabling financial advisors to deliver tailored recommendations.\nBBVA’s ChatGPT Integration: Provides personalized investment recommendations by analyzing market trends and client portfolio performance."
+    "text": "Generative AI is redefining how banks operate — from automating customer service to streamlining underwriting. Below are practical examples showing how leading financial institutions are applying GenAI for real business value."
+  },
+  {
+    "objectID": "gen-ai-use-cases/banking-use-cases.html#summary-of-use-cases",
+    "href": "gen-ai-use-cases/banking-use-cases.html#summary-of-use-cases",
+    "title": "Generative AI Use Cases in Banking",
+    "section": "1 📋 Summary of Use Cases",
+    "text": "1 📋 Summary of Use Cases\n\n\n\n\n\n\n\n\nUse Case Area\nExamples\nBenefits\n\n\n\n\nCustomer Engagement\nErica, Cora+, Fargo, Eliza\n24/7 support, lower call volume\n\n\nOperational Efficiency\nLLM Suite, AskResearchGPT, PwC\nProcess streamlining, reduced manual work\n\n\nRisk Management\nMastercard DI, Wells Fargo Fraud\nEarly fraud detection, loss prevention\n\n\nCredit Underwriting\nCreditLens, COiN Platform\nQuicker approvals, lower compliance risk\n\n\nPersonalized Marketing\nJPMorgan Campaigns\nBetter targeting, higher engagement\n\n\nGenerative BI\nCopilot, ThoughtSpot, Custom Assistants\nSelf-service insights, exec summaries"
   },
   {
     "objectID": "gen-ai-use-cases/banking-use-cases.html#customer-engagement",
     "href": "gen-ai-use-cases/banking-use-cases.html#customer-engagement",
     "title": "Generative AI Use Cases in Banking",
-    "section": "",
-    "text": "Generative AI is transforming how banks interact with customers by offering personalized and proactive services through intelligent chatbots and virtual assistants.\n\n\n\nBank of America’s Erica: Provides personalized financial guidance, offering insights into spending habits, budgeting advice, and routine banking tasks through natural language interactions.\nNatWest’s Cora+: Enhances customer interactions with natural, personalized responses. Anticipates customer needs based on past interactions and provides proactive suggestions for financial management.\nWells Fargo’s Fargo: Understands and responds to customer queries in natural language, enabling tasks such as managing debit cards, checking credit limits, and reviewing transaction history. Supports English and Spanish.\nBNY’s AI platform, Eliza: Functions as both a chatbot trained on BNY knowledge and a platform where employees can select from a range of publicly available models to build AI tools and agents for specific use cases. Over 50% of BNY’s 52,000 employees actively use Eliza. Tools built include a lead generation app for salespeople.\n\n\n\n\n\nMorgan Stanley’s AI Debrief: Generates notes and action items during client meetings, enabling financial advisors to deliver tailored recommendations.\nBBVA’s ChatGPT Integration: Provides personalized investment recommendations by analyzing market trends and client portfolio performance."
+    "section": "2 🏦 Customer Engagement",
+    "text": "2 🏦 Customer Engagement\n\n\n\n\n\n\nWhy it matters:\nGenerative AI enables banks to deliver faster, more intelligent, and more personalized customer service. By automating routine interactions and offering real-time assistance, banks can improve customer satisfaction, reduce support costs, and scale their service capabilities without increasing headcount.\n\n\n\nExamples:\n- Bank of America – Erica: Offers financial guidance through natural language interactions, helping users with budgeting, transactions, and account management.\n- NatWest – Cora+: Anticipates customer needs and provides proactive responses using conversational AI.\n- Wells Fargo – Fargo: Supports English and Spanish to help customers manage cards and access banking services via natural language.\n- BNY Mellon – Eliza: Internal chatbot and tooling platform used by 52,000 employees to build GenAI-powered apps like lead generation tools."
   },
   {
     "objectID": "gen-ai-use-cases/banking-use-cases.html#operational-efficiency",
     "href": "gen-ai-use-cases/banking-use-cases.html#operational-efficiency",
     "title": "Generative AI Use Cases in Banking",
-    "section": "2 Operational Efficiency",
-    "text": "2 Operational Efficiency\nGenerative AI optimizes internal processes, reducing manual workloads and improving productivity.\n\n2.1 Document Summarization\n\nJPMorgan’s LLM Suite: Automates document summarization, content creation, and internal reporting, saving time and reducing errors.\nMorgan Stanley’s AskResearchGPT: Summarizes insights from over 70,000 proprietary research reports annually, making critical information easily accessible.\n\n\n\n2.2 Task Automation / Simplified Workflows\n\nPwC’s Compliance Automation: Uses generative AI to analyze complex legal and compliance documents, identify key clauses, extract insights, and draft summaries. Significantly reduces time spent on routine compliance tasks while improving accuracy.\nCiti’s Reporting Automation: Employs AI tools to streamline compliance reporting and data extraction, enabling employees to focus on strategic analysis.\n\n\n\n2.3 Coding Assistance\n\nCitigroup’s AI Tools: Accelerates software development by streamlining coding processes and improving developer productivity."
+    "section": "3 📊 Operational Efficiency",
+    "text": "3 📊 Operational Efficiency\n\n\n\n\n\n\nWhy it matters:\nBanks deal with vast volumes of reports, compliance documentation, and internal knowledge. Generative AI improves productivity by summarizing documents, automating workflows, and assisting developers — freeing employees to focus on higher-value tasks and accelerating project delivery.\n\n\n\nExamples:\n- JPMorgan – LLM Suite: Automates document summarization, content creation, and reporting.\n- Morgan Stanley – AskResearchGPT: Provides natural language access to 70,000+ research reports.\n- PwC – Compliance Automation: Uses GenAI to summarize regulatory documents and extract clauses.\n- Citi – Reporting Automation: Streamlines compliance reporting and data extraction.\n- Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance."
   },
   {
     "objectID": "gen-ai-use-cases/banking-use-cases.html#risk-management",
     "href": "gen-ai-use-cases/banking-use-cases.html#risk-management",
     "title": "Generative AI Use Cases in Banking",
-    "section": "3 Risk Management",
-    "text": "3 Risk Management\nGenerative AI strengthens fraud detection and risk management capabilities by analyzing vast datasets in real-time to identify suspicious patterns, safeguarding both the bank and its customers.\n\n3.1 Fraud Detection\n\nMastercard’s Decision Intelligence: Analyzes over one trillion data points in real time to predict the legitimacy of transactions. Safely scores and approves over 143 billion transactions annually.\nWells Fargo: Utilizes generative AI to enhance anomaly detection in transactions and identify fraudulent activity more effectively."
+    "section": "4 🔐 Risk Management",
+    "text": "4 🔐 Risk Management\n\n\n\n\n\n\nWhy it matters:\nFraud detection and risk modeling are core to banking safety. GenAI enhances traditional models by spotting subtle anomalies, synthesizing potential fraud scenarios, and enabling faster investigation of suspicious transactions.\n\n\n\nExamples:\n- Mastercard – Decision Intelligence: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually.\n- Wells Fargo – AI for Fraud: Uses GenAI for enhanced anomaly detection in transactional data."
   },
   {
     "objectID": "gen-ai-use-cases/banking-use-cases.html#credit-approval-and-loan-underwriting",
     "href": "gen-ai-use-cases/banking-use-cases.html#credit-approval-and-loan-underwriting",
     "title": "Generative AI Use Cases in Banking",
-    "section": "4 Credit Approval and Loan Underwriting",
-    "text": "4 Credit Approval and Loan Underwriting\n\nMoody’s Analytics – CreditLens: Integrates generative AI into loan origination workflows. Automates credit memo creation, including executive summaries and sector analyses, by synthesizing large volumes of financial and industry data.\nJPMorgan Chase’s COiN Platform: Analyzes legal documents to reduce the time required for loan underwriting, ensuring compliance and accuracy."
+    "section": "5 📝 Credit Approval and Loan Underwriting",
+    "text": "5 📝 Credit Approval and Loan Underwriting\n\n\n\n\n\n\nWhy it matters:\nCredit underwriting involves reviewing complex financial documents and assessing risk within tight timeframes. Generative AI helps automate the analysis of financial statements, legal documents, and industry benchmarks, enabling faster loan decisions, improved accuracy, and streamlined compliance.\n\n\n\nExamples:\n- Moody’s Analytics – CreditLens: Automates credit memo creation and industry analysis with generative tools.\n- JPMorgan Chase – COiN Platform: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time."
   },
   {
     "objectID": "gen-ai-use-cases/banking-use-cases.html#personalized-marketing",
     "href": "gen-ai-use-cases/banking-use-cases.html#personalized-marketing",
     "title": "Generative AI Use Cases in Banking",
-    "section": "5 Personalized Marketing",
-    "text": "5 Personalized Marketing\nAI-based systems can interact with potential clients to understand their needs and preferences, creating personalized product recommendations. This targeted approach improves marketing efficiency and enhances customer acquisition.\n\nJPMorgan Chase: Leverages generative AI to create hyper-personalized marketing materials, tailoring campaigns to individual customer profiles and increasing engagement."
+    "section": "6 📣 Personalized Marketing",
+    "text": "6 📣 Personalized Marketing\n\n\n\n\n\n\nWhy it matters:\nGenerative AI enables banks to move beyond mass marketing and deliver personalized, data-driven messaging. This improves customer engagement, increases conversion rates, and enhances long-term loyalty.\n\n\n\nExamples:\n- JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials."
+  },
+  {
+    "objectID": "gen-ai-use-cases/banking-use-cases.html#generative-business-intelligence-gen-bi",
+    "href": "gen-ai-use-cases/banking-use-cases.html#generative-business-intelligence-gen-bi",
+    "title": "Generative AI Use Cases in Banking",
+    "section": "7 📈 Generative Business Intelligence (Gen BI)",
+    "text": "7 📈 Generative Business Intelligence (Gen BI)\n\n\n\n\n\n\nWhy it matters:\nGenerative BI transforms data consumption by allowing non-technical users to explore reports, uncover insights, and ask ad hoc questions using natural language — all without waiting on analysts. This boosts data literacy and speeds up decision-making across business units.\n\n\n\nExamples:\n- Microsoft Copilot in Power BI: Enables users to ask natural-language questions and instantly generate charts or summaries.\n- ThoughtSpot Sage: Combines search with GenAI to explain patterns and alert users to anomalies.\n- Internal Gen BI tools: Many banks are building custom assistants on top of Snowflake, BigQuery, or Lakehouse environments to support executive dashboards and ops reviews."
+  },
+  {
+    "objectID": "gen-ai-use-cases/banking-use-cases.html#key-takeaways",
+    "href": "gen-ai-use-cases/banking-use-cases.html#key-takeaways",
+    "title": "Generative AI Use Cases in Banking",
+    "section": "8 🧾 Key Takeaways",
+    "text": "8 🧾 Key Takeaways\n\nGenAI is no longer experimental in banking — it’s powering real customer-facing and internal systems.\nUse cases like customer engagement, underwriting, and Gen BI deliver measurable productivity and experience gains.\nAs the industry matures, GenAI will likely integrate deeper into core banking platforms and regulatory processes."
+  },
+  {
+    "objectID": "ebm.html",
+    "href": "ebm.html",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "",
+    "text": "In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. Energy-Based Models (EBMs) offer a powerful alternative that’s architecturally flexible, conceptually elegant, and growing in popularity in modern deep learning research."
+  },
+  {
+    "objectID": "ebm.html#energy-based-models-a-flexible-approach-to-generative-modeling",
+    "href": "ebm.html#energy-based-models-a-flexible-approach-to-generative-modeling",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "",
+    "text": "In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. Energy-Based Models (EBMs) offer a powerful alternative that’s architecturally flexible, conceptually elegant, and growing in popularity in modern deep learning research."
+  },
+  {
+    "objectID": "ebm.html#limitations-of-mainstream-generative-models",
+    "href": "ebm.html#limitations-of-mainstream-generative-models",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "🔍 Limitations of Mainstream Generative Models",
+    "text": "🔍 Limitations of Mainstream Generative Models\n\n\n\n\n\n\n\n\nModel\nPros\nCons\n\n\n\n\nVAEs\nProbabilistic framework, tractable ELBO\nModel architecture restrictions; blurry samples\n\n\nNormalizing Flows\nExact likelihood, invertibility\nRestricted to invertible architectures; expensive Jacobian computation\n\n\nAutoregressive Models\nExact likelihood\nSlow sampling; autoregressive dependency limits parallelism\n\n\nGANs\nHigh-quality samples; flexible\nNo likelihood; unstable training; mode collapse\n\n\n\nThese models attempt to approximate the true data distribution ( P_{} ) by selecting a model ( P_) from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability."
+  },
+  {
+    "objectID": "ebm.html#enter-energy-based-models-ebms",
+    "href": "ebm.html#enter-energy-based-models-ebms",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "⚡ Enter Energy-Based Models (EBMs)",
+    "text": "⚡ Enter Energy-Based Models (EBMs)\nEnergy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution ( P(x) ), EBMs define an energy function ( E_(x) ) that assigns lower energy to more likely data points:\n[ p_(x) = ]\nHere, ( Z_= e^{-E_(x)} dx ) is the partition function, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use any neural architecture for ( E_), without needing invertibility, autoregressive factorization, or adversarial setup."
+  },
+  {
+    "objectID": "ebm.html#math-review-from-scores-to-probabilities-in-energy-based-models",
+    "href": "ebm.html#math-review-from-scores-to-probabilities-in-energy-based-models",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "📐 Math Review: From Scores to Probabilities in Energy-Based Models",
+    "text": "📐 Math Review: From Scores to Probabilities in Energy-Based Models\nIn generative modeling, a valid probability distribution ( p(x) ) must satisfy:\n\nNon-negativity:\n[ p(x) ]\nNormalization (sum-to-one):\n[ _x p(x) = 1 p(x)dx = 1 ]\n\nCreating functions ( g_(x) ) is easy, but they often fail to normalize. Instead, we define:\n[ p_(x) = Z() = g_(x) dx ]\nIn EBMs, we use an exponential form:\n[ g_(x) = (f_(x)) p_(x) = ]\nand define energy as:\n[ E_(x) := -f_(x) ]\nSo the model becomes:\n[ p_(x) = ]\nThis is flexible, expressive, and connected to exponential family distributions."
+  },
+  {
+    "objectID": "ebm.html#key-benefits-of-ebms",
+    "href": "ebm.html#key-benefits-of-ebms",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "✅ Key Benefits of EBMs",
+    "text": "✅ Key Benefits of EBMs\n\nVery flexible model architectures: No need for invertibility, factorization, or adversarial design.\nStable training: Compared to GANs, EBMs can be more robust.\nRelatively high sample quality: Can model multi-modal data well.\nFlexible composition: Combine energies for multi-task objectives."
+  },
+  {
+    "objectID": "ebm.html#limitations-of-energy-based-models",
+    "href": "ebm.html#limitations-of-energy-based-models",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "⚠️ Limitations of Energy-Based Models",
+    "text": "⚠️ Limitations of Energy-Based Models\nDespite their elegance, EBMs pose serious challenges:\n\n🔄 Hard Sampling\n\nNo direct way to draw samples from ( p_(x) )\nRequires iterative MCMC methods\nSampling cost is high and scales poorly in high dimensions\n\n\n\n📉 Hard Likelihood Evaluation and Learning\n\nPartition function ( Z() ) is intractable\nEvaluating ( p_(x) ) is not feasible\nNeed to push down energy of incorrect configurations to make learning effective\n\n\n\n🚫 No Feature Learning (by default)\n\nEBMs do not learn latent features unless explicitly modeled (e.g., RBMs)"
+  },
+  {
+    "objectID": "ebm.html#learning-and-inference-in-energy-based-models",
+    "href": "ebm.html#learning-and-inference-in-energy-based-models",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "🧪 Learning and Inference in Energy-Based Models",
+    "text": "🧪 Learning and Inference in Energy-Based Models\nWe optimize the likelihood:\n[ p_(x_{}) = f_(x_{}) - Z() ]\nGradient:\n[ f(x_{}) - {x p}[f(x)] ]\nSince ( Z() ) is intractable, this expectation is approximated using sampling."
+  },
+  {
+    "objectID": "ebm.html#contrastive-divergence",
+    "href": "ebm.html#contrastive-divergence",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "🔁 Contrastive Divergence",
+    "text": "🔁 Contrastive Divergence\nContrastive Divergence approximates the gradient using:\n[ f(x_{}) - f(x_{}) ]\nWhere ( x_{} p_) (via MCMC). The goal is to increase ( f ) on training data and decrease it elsewhere."
+  },
+  {
+    "objectID": "ebm.html#sampling-from-energy-based-models",
+    "href": "ebm.html#sampling-from-energy-based-models",
+    "title": "Energy-Based Models: A Flexible Approach to Generative Modeling",
+    "section": "🎲 Sampling from Energy-Based Models",
+    "text": "🎲 Sampling from Energy-Based Models\nWe can’t sample directly from EBMs, but we can use MCMC methods.\n\n🔄 Metropolis-Hastings\n\nPropose ( x’ = x + )\nAccept:\n\nAlways if ( f(x’) f(x) )\nOtherwise with probability ( (f(x’) - f(x)) )\n\n\nConverges to ( p_(x) ) as ( T ), but is slow in high dimensions.\n\n\n\n🌪 Langevin Dynamics\nUses gradients:\n[ x^{t+1} = x^t + x f(x^t) + z^t z^t (0, I) ]\nWorks well when ( x f(x) ) is tractable (which it is in EBMs).\n\n\n\n⚠️ Challenges of MCMC Sampling\n\nConvergence is slow, especially in high dimensions\nRequires multiple steps for every training iteration\nCan dominate training time in contrastive divergence\n\n\n\n⚠️ Sampling is the key bottleneck in training EBMs. Effective MCMC strategies are critical to making them practical in real-world settings."
   },
   {
     "objectID": "vae_mnist.html",
@@ -382,76 +473,55 @@
     "href": "gen-ai-use-cases/healthcare-use-cases.html",
     "title": "Generative AI Use Cases in Healthcare",
     "section": "",
-    "text": "Generative AI is significantly reducing the administrative burden on clinicians by automating the creation of clinical notes and summaries. AI tools can transcribe doctor-patient conversations, extract relevant medical details, and generate structured notes in real time or post-visit.\n\nNuance DAX Copilot (Microsoft): Automatically generates clinical notes during consultations, reducing documentation time for physicians.\n\nAWS HealthScribe: Extracts structured data and generates medical summaries from recorded conversations between patients and providers."
+    "text": "Generative AI is accelerating transformation in healthcare by automating documentation, enhancing diagnostic imaging, improving drug discovery, and supporting clinical and administrative workflows. Below are key use cases currently being deployed by healthcare systems and life sciences firms."
   },
   {
-    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#customer-engagement",
-    "href": "gen-ai-use-cases/healthcare-use-cases.html#customer-engagement",
-    "title": "Generative AI Use Cases in Banking",
-    "section": "",
-    "text": "Generative AI is transforming how banks interact with customers by offering personalized and proactive services through intelligent chatbots and virtual assistants.\n\n\n\nBank of America’s Erica: Provides personalized financial guidance, offering insights into spending habits, budgeting advice, and routine banking tasks through natural language interactions.\nNatWest’s Cora+: Enhances customer interactions with natural, personalized responses. Anticipates customer needs based on past interactions and provides proactive suggestions for financial management.\nWells Fargo’s Fargo: Understands and responds to customer queries in natural language, enabling tasks such as managing debit cards, checking credit limits, and reviewing transaction history. Supports English and Spanish.\nBNY’s AI platform, Eliza: Functions as both a chatbot trained on BNY knowledge and a platform where employees can select from a range of publicly available models to build AI tools and agents for specific use cases. Over 50% of BNY’s 52,000 employees actively use Eliza. Tools built include a lead generation app for salespeople.\n\n\n\n\n\nMorgan Stanley’s AI Debrief: Generates notes and action items during client meetings, enabling financial advisors to deliver tailored recommendations.\nBBVA’s ChatGPT Integration: Provides personalized investment recommendations by analyzing market trends and client portfolio performance."
-  },
-  {
-    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#operational-efficiency",
-    "href": "gen-ai-use-cases/healthcare-use-cases.html#operational-efficiency",
-    "title": "Generative AI Use Cases in Banking",
-    "section": "2 Operational Efficiency",
-    "text": "2 Operational Efficiency\nGenerative AI optimizes internal processes, reducing manual workloads and improving productivity.\n\n2.1 Document Summarization\n\nJPMorgan’s LLM Suite: Automates document summarization, content creation, and internal reporting, saving time and reducing errors.\nMorgan Stanley’s AskResearchGPT: Summarizes insights from over 70,000 proprietary research reports annually, making critical information easily accessible.\n\n\n\n2.2 Task Automation / Simplified Workflows\n\nPwC’s Compliance Automation: Uses generative AI to analyze complex legal and compliance documents, identify key clauses, extract insights, and draft summaries. Significantly reduces time spent on routine compliance tasks while improving accuracy.\nCiti’s Reporting Automation: Employs AI tools to streamline compliance reporting and data extraction, enabling employees to focus on strategic analysis.\n\n\n\n2.3 Coding Assistance\n\nCitigroup’s AI Tools: Accelerates software development by streamlining coding processes and improving developer productivity."
-  },
-  {
-    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#risk-management",
-    "href": "gen-ai-use-cases/healthcare-use-cases.html#risk-management",
-    "title": "Generative AI Use Cases in Banking",
-    "section": "3 Risk Management",
-    "text": "3 Risk Management\nGenerative AI strengthens fraud detection and risk management capabilities by analyzing vast datasets in real-time to identify suspicious patterns, safeguarding both the bank and its customers.\n\n3.1 Fraud Detection\n\nMastercard’s Decision Intelligence: Analyzes over one trillion data points in real time to predict the legitimacy of transactions. Safely scores and approves over 143 billion transactions annually.\nWells Fargo: Utilizes generative AI to enhance anomaly detection in transactions and identify fraudulent activity more effectively."
-  },
-  {
-    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#credit-approval-and-loan-underwriting",
-    "href": "gen-ai-use-cases/healthcare-use-cases.html#credit-approval-and-loan-underwriting",
-    "title": "Generative AI Use Cases in Banking",
-    "section": "4 Credit Approval and Loan Underwriting",
-    "text": "4 Credit Approval and Loan Underwriting\n\nMoody’s Analytics – CreditLens: Integrates generative AI into loan origination workflows. Automates credit memo creation, including executive summaries and sector analyses, by synthesizing large volumes of financial and industry data.\nJPMorgan Chase’s COiN Platform: Analyzes legal documents to reduce the time required for loan underwriting, ensuring compliance and accuracy."
-  },
-  {
-    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#personalized-marketing",
-    "href": "gen-ai-use-cases/healthcare-use-cases.html#personalized-marketing",
-    "title": "Generative AI Use Cases in Banking",
-    "section": "5 Personalized Marketing",
-    "text": "5 Personalized Marketing\nAI-based systems can interact with potential clients to understand their needs and preferences, creating personalized product recommendations. This targeted approach improves marketing efficiency and enhances customer acquisition.\n\nJPMorgan Chase: Leverages generative AI to create hyper-personalized marketing materials, tailoring campaigns to individual customer profiles and increasing engagement."
+    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#summary-of-use-cases",
+    "href": "gen-ai-use-cases/healthcare-use-cases.html#summary-of-use-cases",
+    "title": "Generative AI Use Cases in Healthcare",
+    "section": "1 📋 Summary of Use Cases",
+    "text": "1 📋 Summary of Use Cases\n\n\n\n\n\n\n\n\nUse Case Area\nExamples\nBenefits\n\n\n\n\nClinical Documentation\nNuance DAX, AWS HealthScribe\nReduced burden, faster note capture\n\n\nMedical Imaging & Diagnostics\nDeepMind, MIT CSAIL\nEnhanced resolution, rare disease training\n\n\nDrug Discovery & Molecule Design\nInsilico, BenevolentAI\nFaster R&D cycles, AI-generated molecules\n\n\nPatient Communication\nMayo Copilot, Ada Health\nSimplified education, automated triage\n\n\nAdmin Workflow Automation\nMedLM, Abridge\nProcess improvement, reduced manual work"
   },
   {
     "objectID": "gen-ai-use-cases/healthcare-use-cases.html#clinical-documentation",
     "href": "gen-ai-use-cases/healthcare-use-cases.html#clinical-documentation",
     "title": "Generative AI Use Cases in Healthcare",
-    "section": "",
-    "text": "Generative AI is significantly reducing the administrative burden on clinicians by automating the creation of clinical notes and summaries. AI tools can transcribe doctor-patient conversations, extract relevant medical details, and generate structured notes in real time or post-visit.\n\nNuance DAX Copilot (Microsoft): Automatically generates clinical notes during consultations, reducing documentation time for physicians.\n\nAWS HealthScribe: Extracts structured data and generates medical summaries from recorded conversations between patients and providers."
+    "section": "2 🩺 Clinical Documentation",
+    "text": "2 🩺 Clinical Documentation\n\n\n\n\n\n\nWhy it matters:\nGenerative AI is significantly reducing the administrative burden on clinicians by automating the creation of clinical notes and summaries. AI tools can transcribe doctor-patient conversations, extract relevant medical details, and generate structured notes in real time or post-visit.\n\n\n\nExamples:\n- Nuance DAX Copilot (Microsoft): Automatically generates clinical notes during consultations, reducing documentation time for physicians.\n- AWS HealthScribe: Extracts structured data and generates medical summaries from recorded conversations between patients and providers."
   },
   {
     "objectID": "gen-ai-use-cases/healthcare-use-cases.html#medical-imaging-and-diagnostics",
     "href": "gen-ai-use-cases/healthcare-use-cases.html#medical-imaging-and-diagnostics",
     "title": "Generative AI Use Cases in Healthcare",
-    "section": "2 Medical Imaging and Diagnostics",
-    "text": "2 Medical Imaging and Diagnostics\nGenerative models such as GANs and diffusion are being used to enhance medical images, synthesize missing views, and even generate realistic training data for rare conditions. These techniques improve diagnostic quality and accelerate model development.\n\nGoogle DeepMind: Uses generative models to enhance resolution in retinal scans and chest X-rays.\n\nMIT CSAIL: Trains diagnostic AI systems using synthetic images generated via diffusion models, improving accuracy for rare diseases."
+    "section": "3 🧠 Medical Imaging and Diagnostics",
+    "text": "3 🧠 Medical Imaging and Diagnostics\n\n\n\n\n\n\nWhy it matters:\nGenerative models such as GANs and diffusion are being used to enhance medical images, synthesize missing views, and even generate realistic training data for rare conditions. These techniques improve diagnostic quality and accelerate model development.\n\n\n\nExamples:\n- Google DeepMind: Uses generative models to enhance resolution in retinal scans and chest X-rays.\n- MIT CSAIL: Trains diagnostic AI systems using synthetic images generated via diffusion models, improving accuracy for rare diseases."
   },
   {
     "objectID": "gen-ai-use-cases/healthcare-use-cases.html#drug-discovery-and-molecular-design",
     "href": "gen-ai-use-cases/healthcare-use-cases.html#drug-discovery-and-molecular-design",
     "title": "Generative AI Use Cases in Healthcare",
-    "section": "3 Drug Discovery and Molecular Design",
-    "text": "3 Drug Discovery and Molecular Design\nPharmaceutical companies and AI research labs are using GenAI to generate novel molecular structures that satisfy biological and chemical constraints. This reduces the time and cost of early-stage drug discovery.\n\nInsilico Medicine: Uses generative chemistry platforms to propose new drug candidates and recently advanced one into Phase II trials.\n\nBenevolentAI: Uses AI models to generate molecules with desired properties based on disease pathways and target proteins."
+    "section": "4 💊 Drug Discovery and Molecular Design",
+    "text": "4 💊 Drug Discovery and Molecular Design\n\n\n\n\n\n\nWhy it matters:\nPharmaceutical companies and AI research labs are using GenAI to generate novel molecular structures that satisfy biological and chemical constraints. This reduces the time and cost of early-stage drug discovery.\n\n\n\nExamples:\n- Insilico Medicine: Uses generative chemistry platforms to propose new drug candidates and recently advanced one into Phase II trials.\n- BenevolentAI: Uses AI models to generate molecules with desired properties based on disease pathways and target proteins."
   },
   {
     "objectID": "gen-ai-use-cases/healthcare-use-cases.html#patient-communication-and-education",
     "href": "gen-ai-use-cases/healthcare-use-cases.html#patient-communication-and-education",
     "title": "Generative AI Use Cases in Healthcare",
-    "section": "4 Patient Communication and Education",
-    "text": "4 Patient Communication and Education\nHealthcare providers are using GenAI to generate personalized educational materials, explain complex medical conditions in plain language, and respond to patient questions through virtual assistants.\n\nMayo Clinic and Microsoft Copilot: Exploring AI to generate patient-friendly summaries of lab results and discharge instructions.\n\nAda Health: Uses generative agents to guide patients through symptom checking and triage using everyday language."
+    "section": "5 🗣️ Patient Communication and Education",
+    "text": "5 🗣️ Patient Communication and Education\n\n\n\n\n\n\nWhy it matters:\nHealthcare providers are using GenAI to generate personalized educational materials, explain complex medical conditions in plain language, and respond to patient questions through virtual assistants.\n\n\n\nExamples:\n- Mayo Clinic and Microsoft Copilot: Exploring AI to generate patient-friendly summaries of lab results and discharge instructions.\n- Ada Health: Uses generative agents to guide patients through symptom checking and triage using everyday language."
   },
   {
     "objectID": "gen-ai-use-cases/healthcare-use-cases.html#administrative-workflow-automation",
     "href": "gen-ai-use-cases/healthcare-use-cases.html#administrative-workflow-automation",
     "title": "Generative AI Use Cases in Healthcare",
-    "section": "5 Administrative Workflow Automation",
-    "text": "5 Administrative Workflow Automation\nHospitals and health systems are adopting GenAI to streamline operational processes such as prior authorization, billing, appeals, and scheduling. This improves staff productivity and reduces manual paperwork.\n\nGoogle MedLM: Supports automation of prior authorization workflows and claim denials through natural language understanding and document generation.\n\nAbridge: Not only transcribes medical conversations, but also classifies, summarizes, and codes them for billing and documentation purposes."
+    "section": "6 🏥 Administrative Workflow Automation",
+    "text": "6 🏥 Administrative Workflow Automation\n\n\n\n\n\n\nWhy it matters:\nHospitals and health systems are adopting GenAI to streamline operational processes such as prior authorization, billing, appeals, and scheduling. This improves staff productivity and reduces manual paperwork.\n\n\n\nExamples:\n- Google MedLM: Supports automation of prior authorization workflows and claim denials through natural language understanding and document generation.\n- Abridge: Not only transcribes medical conversations, but also classifies, summarizes, and codes them for billing and documentation purposes."
+  },
+  {
+    "objectID": "gen-ai-use-cases/healthcare-use-cases.html#key-takeaways",
+    "href": "gen-ai-use-cases/healthcare-use-cases.html#key-takeaways",
+    "title": "Generative AI Use Cases in Healthcare",
+    "section": "7 🧾 Key Takeaways",
+    "text": "7 🧾 Key Takeaways\n\nGenAI in healthcare is moving from pilots to production, especially in clinical documentation and imaging.\nHospitals, insurers, and biotech firms are exploring AI-powered assistants to streamline manual workflows and improve decision support.\nPatient-facing use cases like education and triage are opening the door for more accessible, scalable care delivery."
   }
 ]

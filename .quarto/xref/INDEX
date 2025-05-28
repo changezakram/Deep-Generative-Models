@@ -22,5 +22,15 @@
   },
   "normalizing_flow_pytorch.ipynb": {
     "normalizing_flow_pytorch.html": "15e771dd"
+  },
+  "gen-ai-use-cases/banking-use-cases.qmd": {
+    "banking-use-cases.html": "e44a2f09",
+    "banking-use-cases.tex": "0a146eb3"
+  },
+  "gen-ai-use-cases/healthcare-use-cases.qmd": {
+    "healthcare-use-cases.html": "67ecc694"
+  },
+  "ebm.qmd": {
+    "ebm.html": "49c4609d"
   }
 }
