@@ -24,7 +24,7 @@ In the world of generative models, techniques like VAEs, GANs, and normalizing f
 | **Autoregressive Models** | Exact likelihood                    | Slow sampling; autoregressive dependency limits parallelism         |
 | **GANs**               | High-quality samples; flexible           | No likelihood; unstable training; mode collapse                     |
 
-These models attempt to approximate the true data distribution $$P_{\text{data}}$$ by selecting a model $$P_\theta$$ from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability.
+These models attempt to approximate the true data distribution $P_{\text{data}}$ by selecting a model $P_\theta$ from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability.
 
 ---
 
