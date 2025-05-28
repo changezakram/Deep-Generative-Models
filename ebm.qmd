@@ -9,7 +9,7 @@ format:
     math: mathjax
 ---
 
-## Energy-Based Models: A Flexible Approach to Generative Modeling
+## Introduction
 
 In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. **Energy-Based Models (EBMs)** offer a powerful alternative that’s **architecturally flexible**, **conceptually elegant**, and **growing in popularity** in modern deep learning research.
 
@@ -36,7 +36,7 @@ $$
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
 $$
 
-Here, $$Z_\theta = \int e^{-E_\theta(x)} dx$$ is the **partition function**, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use **any neural architecture** for $$E_\theta$$, without needing invertibility, autoregressive factorization, or adversarial setup.
+Here, $$Z_\theta = \int e^{-E_\theta(x)} dx$$ is the **partition function**, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use **any neural architecture** for $E_\theta$, without needing invertibility, autoregressive factorization, or adversarial setup.
 
 ---
 

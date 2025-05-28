@@ -140,7 +140,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#energy-based-models-a-flexible-approach-to-generative-modeling" id="toc-energy-based-models-a-flexible-approach-to-generative-modeling" class="nav-link active" data-scroll-target="#energy-based-models-a-flexible-approach-to-generative-modeling">Energy-Based Models: A Flexible Approach to Generative Modeling</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#limitations-of-mainstream-generative-models" id="toc-limitations-of-mainstream-generative-models" class="nav-link" data-scroll-target="#limitations-of-mainstream-generative-models">Limitations of Mainstream Generative Models</a></li>
   <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
   <li><a href="#math-review-from-scores-to-probabilities-in-energy-based-models" id="toc-math-review-from-scores-to-probabilities-in-energy-based-models" class="nav-link" data-scroll-target="#math-review-from-scores-to-probabilities-in-energy-based-models">Math Review: From Scores to Probabilities in Energy-Based Models</a></li>
@@ -184,8 +184,8 @@ window.Quarto = {
 </header>
 
 
-<section id="energy-based-models-a-flexible-approach-to-generative-modeling" class="level2">
-<h2 class="anchored" data-anchor-id="energy-based-models-a-flexible-approach-to-generative-modeling">Energy-Based Models: A Flexible Approach to Generative Modeling</h2>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. <strong>Energy-Based Models (EBMs)</strong> offer a powerful alternative that’s <strong>architecturally flexible</strong>, <strong>conceptually elegant</strong>, and <strong>growing in popularity</strong> in modern deep learning research.</p>
 <hr>
 </section>
@@ -236,7 +236,7 @@ window.Quarto = {
 <p><span class="math display">\[
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
 \]</span></p>
-<p>Here, <span class="math display">\[Z_\theta = \int e^{-E_\theta(x)} dx\]</span> is the <strong>partition function</strong>, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use <strong>any neural architecture</strong> for <span class="math display">\[E_\theta\]</span>, without needing invertibility, autoregressive factorization, or adversarial setup.</p>
+<p>Here, <span class="math display">\[Z_\theta = \int e^{-E_\theta(x)} dx\]</span> is the <strong>partition function</strong>, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use <strong>any neural architecture</strong> for <span class="math inline">\(E_\theta\)</span>, without needing invertibility, autoregressive factorization, or adversarial setup.</p>
 <hr>
 </section>
 <section id="math-review-from-scores-to-probabilities-in-energy-based-models" class="level2">
