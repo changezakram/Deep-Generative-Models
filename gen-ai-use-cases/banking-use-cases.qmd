@@ -66,3 +66,15 @@ Generative AI enables banks to move beyond mass marketing and deliver personaliz
 
 **Examples:**  
 - JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials. 
+
+## 📈 Generative Business Intelligence (Gen BI)
+
+::: {.callout appearance="simple" title=""}
+**Why it matters:**  
+Generative BI transforms data consumption by allowing non-technical users to explore reports, uncover insights, and ask ad hoc questions using natural language — all without waiting on analysts. This boosts data literacy and speeds up decision-making across business units.
+:::
+
+**Examples:**  
+- Microsoft Copilot in Power BI: Enables users to ask natural-language questions and instantly generate charts or summaries.  
+- ThoughtSpot Sage: Combines search with GenAI to explain patterns and alert users to anomalies.  
+- Internal Gen BI tools: Many banks are building custom assistants on top of Snowflake, BigQuery, or Lakehouse environments to support executive dashboards and ops reviews.
