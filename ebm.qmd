@@ -9,13 +9,13 @@ format:
     math: mathjax
 ---
 
-## 🧠 Energy-Based Models: A Flexible Approach to Generative Modeling
+## Energy-Based Models: A Flexible Approach to Generative Modeling
 
 In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. **Energy-Based Models (EBMs)** offer a powerful alternative that’s **architecturally flexible**, **conceptually elegant**, and **growing in popularity** in modern deep learning research.
 
 ---
 
-## 🔍 Limitations of Mainstream Generative Models
+## Limitations of Mainstream Generative Models
 
 | Model                   | Pros                                    | Cons                                                                 |
 |------------------------|-----------------------------------------|----------------------------------------------------------------------|
@@ -28,7 +28,7 @@ These models attempt to approximate the true data distribution $P_{\text{data}}$
 
 ---
 
-## ⚡ Enter Energy-Based Models (EBMs)
+## Enter Energy-Based Models (EBMs)
 
 Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution $$P(x)$$, EBMs define an **energy function** $$E_\theta(x)$$ that assigns lower energy to more likely data points:
 
@@ -40,9 +40,9 @@ Here, $$Z_\theta = \int e^{-E_\theta(x)} dx$$ is the **partition function**, whi
 
 ---
 
-## 📐 Math Review: From Scores to Probabilities in Energy-Based Models
+## Math Review: From Scores to Probabilities in Energy-Based Models
 
-In generative modeling, a valid probability distribution $$p(x)$$ must satisfy:
+In generative modeling, a valid probability distribution $p(x)$ must satisfy:
 
 1. **Non-negativity**:  
    $$
@@ -53,7 +53,7 @@ In generative modeling, a valid probability distribution $$p(x)$$ must satisfy:
    \int p(x)dx = 1
    $$
 
-Creating functions $$g_\theta(x) \geq 0$$ is easy, but they often fail to normalize. Instead, we define:
+Creating functions $g_\theta(x) \geq 0$ is easy, but they often fail to normalize. Instead, we define:
 
 $$
 p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad Z(\theta) = \int g_\theta(x) dx

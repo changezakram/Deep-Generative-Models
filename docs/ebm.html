@@ -140,10 +140,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#energy-based-models-a-flexible-approach-to-generative-modeling" id="toc-energy-based-models-a-flexible-approach-to-generative-modeling" class="nav-link active" data-scroll-target="#energy-based-models-a-flexible-approach-to-generative-modeling">🧠 Energy-Based Models: A Flexible Approach to Generative Modeling</a></li>
-  <li><a href="#limitations-of-mainstream-generative-models" id="toc-limitations-of-mainstream-generative-models" class="nav-link" data-scroll-target="#limitations-of-mainstream-generative-models">🔍 Limitations of Mainstream Generative Models</a></li>
-  <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">⚡ Enter Energy-Based Models (EBMs)</a></li>
-  <li><a href="#math-review-from-scores-to-probabilities-in-energy-based-models" id="toc-math-review-from-scores-to-probabilities-in-energy-based-models" class="nav-link" data-scroll-target="#math-review-from-scores-to-probabilities-in-energy-based-models">📐 Math Review: From Scores to Probabilities in Energy-Based Models</a></li>
+  <li><a href="#energy-based-models-a-flexible-approach-to-generative-modeling" id="toc-energy-based-models-a-flexible-approach-to-generative-modeling" class="nav-link active" data-scroll-target="#energy-based-models-a-flexible-approach-to-generative-modeling">Energy-Based Models: A Flexible Approach to Generative Modeling</a></li>
+  <li><a href="#limitations-of-mainstream-generative-models" id="toc-limitations-of-mainstream-generative-models" class="nav-link" data-scroll-target="#limitations-of-mainstream-generative-models">Limitations of Mainstream Generative Models</a></li>
+  <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
+  <li><a href="#math-review-from-scores-to-probabilities-in-energy-based-models" id="toc-math-review-from-scores-to-probabilities-in-energy-based-models" class="nav-link" data-scroll-target="#math-review-from-scores-to-probabilities-in-energy-based-models">Math Review: From Scores to Probabilities in Energy-Based Models</a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">✅ Key Benefits of EBMs</a></li>
   <li><a href="#limitations-of-energy-based-models" id="toc-limitations-of-energy-based-models" class="nav-link" data-scroll-target="#limitations-of-energy-based-models">⚠️ Limitations of Energy-Based Models</a>
   <ul class="collapse">
@@ -185,12 +185,12 @@ window.Quarto = {
 
 
 <section id="energy-based-models-a-flexible-approach-to-generative-modeling" class="level2">
-<h2 class="anchored" data-anchor-id="energy-based-models-a-flexible-approach-to-generative-modeling">🧠 Energy-Based Models: A Flexible Approach to Generative Modeling</h2>
+<h2 class="anchored" data-anchor-id="energy-based-models-a-flexible-approach-to-generative-modeling">Energy-Based Models: A Flexible Approach to Generative Modeling</h2>
 <p>In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. <strong>Energy-Based Models (EBMs)</strong> offer a powerful alternative that’s <strong>architecturally flexible</strong>, <strong>conceptually elegant</strong>, and <strong>growing in popularity</strong> in modern deep learning research.</p>
 <hr>
 </section>
 <section id="limitations-of-mainstream-generative-models" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-of-mainstream-generative-models">🔍 Limitations of Mainstream Generative Models</h2>
+<h2 class="anchored" data-anchor-id="limitations-of-mainstream-generative-models">Limitations of Mainstream Generative Models</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 17%">
@@ -231,7 +231,7 @@ window.Quarto = {
 <hr>
 </section>
 <section id="enter-energy-based-models-ebms" class="level2">
-<h2 class="anchored" data-anchor-id="enter-energy-based-models-ebms">⚡ Enter Energy-Based Models (EBMs)</h2>
+<h2 class="anchored" data-anchor-id="enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</h2>
 <p>Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution <span class="math display">\[P(x)\]</span>, EBMs define an <strong>energy function</strong> <span class="math display">\[E_\theta(x)\]</span> that assigns lower energy to more likely data points:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
@@ -240,8 +240,8 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
 <hr>
 </section>
 <section id="math-review-from-scores-to-probabilities-in-energy-based-models" class="level2">
-<h2 class="anchored" data-anchor-id="math-review-from-scores-to-probabilities-in-energy-based-models">📐 Math Review: From Scores to Probabilities in Energy-Based Models</h2>
-<p>In generative modeling, a valid probability distribution <span class="math display">\[p(x)\]</span> must satisfy:</p>
+<h2 class="anchored" data-anchor-id="math-review-from-scores-to-probabilities-in-energy-based-models">Math Review: From Scores to Probabilities in Energy-Based Models</h2>
+<p>In generative modeling, a valid probability distribution <span class="math inline">\(p(x)\)</span> must satisfy:</p>
 <ol type="1">
 <li><strong>Non-negativity</strong>:<br>
 <span class="math display">\[
@@ -252,7 +252,7 @@ p(x) \geq 0
 \int p(x)dx = 1
 \]</span></li>
 </ol>
-<p>Creating functions <span class="math display">\[g_\theta(x) \geq 0\]</span> is easy, but they often fail to normalize. Instead, we define:</p>
+<p>Creating functions <span class="math inline">\(g_\theta(x) \geq 0\)</span> is easy, but they often fail to normalize. Instead, we define:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad Z(\theta) = \int g_\theta(x) dx
 \]</span></p>
