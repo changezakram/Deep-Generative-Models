@@ -8,7 +8,7 @@ format:
 
 Generative AI is redefining how banks operate — from automating customer service to streamlining underwriting. Below are practical examples showing how leading financial institutions are applying GenAI for real business value.
 
-## 🧭 Summary of Use Cases
+## 📋 Summary of Use Cases
 
 | 💡 Use Case Area           | 🏦 Examples                          | 📈 Benefits                            |
 |---------------------------|--------------------------------------|----------------------------------------|
