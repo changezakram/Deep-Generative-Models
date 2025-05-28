@@ -29,9 +29,8 @@ It’s designed to document concepts clearly, walk through implementations step 
 - Uses invertible transformations for exact likelihood  
 - Flexible for density estimation in high dimensions  
 
-### 5. Energy-Based Models (EBMs) 
-- Learns unnormalized energy landscapes  
-- Suitable for both discrete and continuous data  
+- [Energy-Based Models: A Flexible Approach to Generative Modeling](ebm.qmd)  
+  A comprehensive introduction to EBMs, covering math, learning, sampling, and their pros & cons.
 
 ### 6. Diffusion Models  
 - Iterative denoising process  
