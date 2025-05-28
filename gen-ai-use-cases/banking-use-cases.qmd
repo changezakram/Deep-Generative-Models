@@ -10,16 +10,16 @@ Generative AI is redefining how banks operate — from automating customer servi
 
 ## 📋 Summary of Use Cases
 
-| Use Case Area             | Examples                             | Benefits                                 |
-|---------------------------|--------------------------------------|------------------------------------------|
-| Customer Engagement       | Erica, Cora+, Fargo, Eliza           | 24/7 support, lower call volume          |
-| Operational Efficiency    | LLM Suite, AskResearchGPT, PwC       | Process streamlining, reduced manual work|
-| Risk Management           | Mastercard DI, Wells Fargo Fraud     | Early fraud detection, loss prevention   |
-| Credit Underwriting       | CreditLens, COiN Platform            | Quicker approvals, lower compliance risk |
-| Personalized Marketing    | JPMorgan Campaigns                   | Better targeting, higher engagement      |
-| Generative BI             | Copilot, ThoughtSpot, Custom Assistants| Self-service insights, exec summaries  |
+| Use Case Area             | Examples                            | Benefits                              |
+|---------------------------|--------------------------------------|----------------------------------------|
+| Customer Engagement       | Erica, Cora+, Fargo, Eliza           | 24/7 support, lower call volume         |
+| Operational Efficiency    | LLM Suite, AskResearchGPT, PwC       | Process streamlining, reduced manual work  |
+| Risk Management           | Mastercard DI, Wells Fargo Fraud     | Early fraud detection, loss prevention |
+| Credit Underwriting       | CreditLens, COiN Platform            | Quicker approvals, lower compliance risk|
+| Personalized Marketing    | JPMorgan Campaigns                   | Better targeting, higher engagement    |
+| Generative BI             | Copilot, ThoughtSpot, Custom Assistants| Self-service insights, exec summaries |
 
-## 🏦 Customer Engagement
+## 1. 🏦 Customer Engagement
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -32,7 +32,7 @@ Generative AI enables banks to deliver faster, more intelligent, and more person
 - Wells Fargo – Fargo: Supports English and Spanish to help customers manage cards and access banking services via natural language.  
 - BNY Mellon – Eliza: Internal chatbot and tooling platform used by 52,000 employees to build GenAI-powered apps like lead generation tools.
 
-## 📊 Operational Efficiency
+## 2. 📊 Operational Efficiency
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -46,7 +46,7 @@ Banks deal with vast volumes of reports, compliance documentation, and internal 
 - Citi – Reporting Automation: Streamlines compliance reporting and data extraction.  
 - Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance.
 
-## 🔐 Risk Management
+## 3. 🔐 Risk Management
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -57,7 +57,7 @@ Fraud detection and risk modeling are core to banking safety. GenAI enhances tra
 - Mastercard – Decision Intelligence: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually.  
 - Wells Fargo – AI for Fraud: Uses GenAI for enhanced anomaly detection in transactional data.
 
-## 📝 Credit Approval and Loan Underwriting
+## 4. 📝 Credit Approval and Loan Underwriting
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -68,7 +68,7 @@ Credit underwriting involves reviewing complex financial documents and assessing
 - Moody’s Analytics – CreditLens: Automates credit memo creation and industry analysis with generative tools.  
 - JPMorgan Chase – COiN Platform: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time.
 
-## 📣 Personalized Marketing
+## 5. 📣 Personalized Marketing
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -78,7 +78,7 @@ Generative AI enables banks to move beyond mass marketing and deliver personaliz
 **Examples:**  
 - JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials.
 
-## 📈 Generative Business Intelligence (Gen BI)
+## 6. 📈 Generative Business Intelligence (Gen BI)
 
 ::: {.callout appearance="simple" title=""}
 **Why it matters:**  
@@ -95,6 +95,7 @@ Generative BI transforms data consumption by allowing non-technical users to exp
 - GenAI is no longer experimental in banking — it's powering real customer-facing and internal systems.
 - Use cases like customer engagement, underwriting, and Gen BI deliver measurable productivity and experience gains.
 - As the industry matures, GenAI will likely integrate deeper into core banking platforms and regulatory processes.
+
 
 ## 📚 References
 
