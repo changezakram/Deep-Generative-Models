@@ -127,8 +127,6 @@ $$
 \frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
 $$
 
-This does **not** involve $Z(\theta)$.
-
 This lets us determine which input is more likely — without ever computing $Z(\theta)$ — a powerful advantage of EBMs.
 
 **Practical Applications**:
@@ -275,7 +273,7 @@ This encourages the model to increase the score of the training sample and decre
 - The model improves by sharpening its belief in real data and correcting mistaken high-scoring areas of the space.
 
 ![Visualizing EBM training](images/ebm_training_flow.png)
-*During training, EBMs increase the score (i.e., lower energy) of correct samples and decrease the score of incorrect ones.*
+*During training, EBMs increase the score of correct samples and decrease the score of incorrect ones.*
 
 <p class="caption" style="font-size: 0.85em; color: #666; margin-top: -0.5em;">
   <em>Source: course material from <a href="https://deepgenerativemodels.github.io/assets/slides/cs236_lecture11.pdf" target="_blank">CS236: Deep Generative Models</a></em>
