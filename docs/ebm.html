@@ -151,9 +151,11 @@ window.Quarto = {
   <li><a href="#applications-of-ebms-without-computing-ztheta" id="toc-applications-of-ebms-without-computing-ztheta" class="nav-link" data-scroll-target="#applications-of-ebms-without-computing-ztheta">Applications of EBMs Without Computing <span class="math inline">\(Z(\theta)\)</span></a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
   <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">Limitations of EBMs</a></li>
+  <li><a href="#training-and-inference-in-ebms" id="toc-training-and-inference-in-ebms" class="nav-link" data-scroll-target="#training-and-inference-in-ebms">Training and Inference in EBMs</a></li>
+  <li><a href="#intuition-1" id="toc-intuition-1" class="nav-link" data-scroll-target="#intuition-1">Intuition</a></li>
+  <li><a href="#contrastive-divergence-simplified" id="toc-contrastive-divergence-simplified" class="nav-link" data-scroll-target="#contrastive-divergence-simplified">Contrastive Divergence (Simplified)</a></li>
+  <li><a href="#gradient-derivation-simplified" id="toc-gradient-derivation-simplified" class="nav-link" data-scroll-target="#gradient-derivation-simplified">Gradient Derivation (Simplified)</a></li>
   </ul></li>
-  <li><a href="#learning-and-inference-in-energy-based-models" id="toc-learning-and-inference-in-energy-based-models" class="nav-link" data-scroll-target="#learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</a></li>
-  <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence">Contrastive Divergence</a></li>
   <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models">Sampling from Energy-Based Models</a>
   <ul class="collapse">
   <li><a href="#metropolis-hastings" id="toc-metropolis-hastings" class="nav-link" data-scroll-target="#metropolis-hastings">Metropolis-Hastings</a></li>
@@ -379,28 +381,59 @@ Energies can be combined to support multi-task objectives or structured learning
 </ul>
 <hr>
 </section>
+<section id="training-and-inference-in-ebms" class="level3">
+<h3 class="anchored" data-anchor-id="training-and-inference-in-ebms">Training and Inference in EBMs</h3>
+<p>The training objective for Energy-Based Models (EBMs) is to assign <strong>higher scores</strong> (i.e., lower energy) to correct examples and <strong>lower scores</strong> (higher energy) to incorrect or unlikely ones.</p>
+<p>Our goal is to <strong>maximize the (unnormalized) likelihood</strong> of training data:</p>
+<p><span class="math display">\[
+\text{maximize} \quad \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
+\]</span></p>
+<p>This means we want to <strong>increase the numerator</strong> (make the correct sample more likely) and <strong>decrease the denominator</strong> (reduce the overall mass by pushing down other samples).</p>
+<hr>
 </section>
-<section id="learning-and-inference-in-energy-based-models" class="level2">
-<h2 class="anchored" data-anchor-id="learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</h2>
-<p>We optimize the likelihood:</p>
+<section id="intuition-1" class="level3">
+<h3 class="anchored" data-anchor-id="intuition-1">Intuition</h3>
+<p>Because the model is not normalized, simply increasing <span class="math inline">\(f_\theta(x_{\text{train}})\)</span> does <strong>not</strong> guarantee that <span class="math inline">\(x_{\text{train}}\)</span> becomes more likely <strong>relative to the rest</strong>. We must also consider the effect on <span class="math inline">\(Z(\theta)\)</span>, which sums over all possible <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[
+Z(\theta) = \int \exp(f_\theta(x)) \, dx
+\]</span></p>
+<p>To make training data truly more likely, we must <strong>pull up <span class="math inline">\(f_\theta(x_{\text{train}})\)</span></strong> while also <strong>pushing down <span class="math inline">\(f_\theta(x)\)</span></strong> for other (incorrect) samples.</p>
+<hr>
+</section>
+<section id="contrastive-divergence-simplified" class="level3">
+<h3 class="anchored" data-anchor-id="contrastive-divergence-simplified">Contrastive Divergence (Simplified)</h3>
+<p>Instead of evaluating <span class="math inline">\(Z(\theta)\)</span> exactly, which is intractable, we use a Monte Carlo estimate:</p>
+<p><strong>Contrastive Divergence Algorithm:</strong></p>
+<ol type="1">
+<li>Sample <span class="math inline">\(x_{\text{sample}} \sim p_\theta\)</span></li>
+<li>Take a gradient step on:</li>
+</ol>
+<p><span class="math display">\[
+\nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
+\]</span></p>
+<p>This encourages the model to increase the score of training samples while decreasing the score of negative samples.</p>
+<hr>
+</section>
+<section id="gradient-derivation-simplified" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-derivation-simplified">Gradient Derivation (Simplified)</h3>
+<p>We want to maximize the log-likelihood:</p>
 <p><span class="math display">\[
 \log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
 \]</span></p>
-<p>Gradient:</p>
+<p>Taking the gradient:</p>
 <p><span class="math display">\[
-\nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
 \]</span></p>
-<p>Since <span class="math display">\[Z(\theta)\]</span> is intractable, this expectation is approximated using <strong>sampling</strong>.</p>
+<p>Recall:</p>
+<p><span class="math display">\[
+\nabla_\theta \log Z(\theta) = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+\]</span></p>
+<p>So we get:</p>
+<p><span class="math display">\[
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+\]</span></p>
 <hr>
 </section>
-<section id="contrastive-divergence" class="level2">
-<h2 class="anchored" data-anchor-id="contrastive-divergence">Contrastive Divergence</h2>
-<p>Contrastive Divergence approximates the gradient using:</p>
-<p><span class="math display">\[
-\nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta f_\theta(x_{\text{sample}})
-\]</span></p>
-<p>Where <span class="math display">\[x_{\text{sample}} \sim p_\theta\]</span> (via MCMC). The goal is to increase <span class="math inline">\(f\)</span> on training data and decrease it elsewhere.</p>
-<hr>
 </section>
 <section id="sampling-from-energy-based-models" class="level2">
 <h2 class="anchored" data-anchor-id="sampling-from-energy-based-models">Sampling from Energy-Based Models</h2>

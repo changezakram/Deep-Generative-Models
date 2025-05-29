@@ -182,33 +182,74 @@ Despite their strengths, EBMs come with notable challenges:
 
 ---
 
-## Learning and Inference in Energy-Based Models
+### Training and Inference in EBMs
 
-We optimize the likelihood:
+The training objective for Energy-Based Models (EBMs) is to assign **higher scores** (i.e., lower energy) to correct examples and **lower scores** (higher energy) to incorrect or unlikely ones.
+
+Our goal is to **maximize the (unnormalized) likelihood** of training data:
+
+$$
+\text{maximize} \quad \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
+$$
+
+This means we want to **increase the numerator** (make the correct sample more likely) and **decrease the denominator** (reduce the overall mass by pushing down other samples).
+
+---
+
+### Intuition
+
+Because the model is not normalized, simply increasing $f_\theta(x_{\text{train}})$ does **not** guarantee that $x_{\text{train}}$ becomes more likely **relative to the rest**. We must also consider the effect on $Z(\theta)$, which sums over all possible $x$:
+
+$$
+Z(\theta) = \int \exp(f_\theta(x)) \, dx
+$$
+
+To make training data truly more likely, we must **pull up $f_\theta(x_{\text{train}})$** while also **pushing down $f_\theta(x)$** for other (incorrect) samples.
+
+---
+
+### Contrastive Divergence (Simplified)
+
+Instead of evaluating $Z(\theta)$ exactly, which is intractable, we use a Monte Carlo estimate:
+
+**Contrastive Divergence Algorithm:**
+
+1. Sample $x_{\text{sample}} \sim p_\theta$
+2. Take a gradient step on:
+
+$$
+\nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
+$$
+
+This encourages the model to increase the score of training samples while decreasing the score of negative samples.
+
+---
+
+### Gradient Derivation (Simplified)
+
+We want to maximize the log-likelihood:
 
 $$
 \log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
 $$
 
-Gradient:
+Taking the gradient:
 
 $$
-\nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
 $$
 
-Since $$Z(\theta)$$ is intractable, this expectation is approximated using **sampling**.
-
----
-
-## Contrastive Divergence
-
-Contrastive Divergence approximates the gradient using:
+Recall:
 
 $$
-\nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta f_\theta(x_{\text{sample}})
+\nabla_\theta \log Z(\theta) = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 $$
 
-Where $$x_{\text{sample}} \sim p_\theta$$ (via MCMC). The goal is to increase $f$ on training data and decrease it elsewhere.
+So we get:
+
+$$
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+$$
 
 ---
 
