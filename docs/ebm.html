@@ -145,7 +145,6 @@ window.Quarto = {
   <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
   <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">Limitations of EBMs</a></li>
-  <li><a href="#math-review-from-scores-to-probabilities-in-energy-based-models" id="toc-math-review-from-scores-to-probabilities-in-energy-based-models" class="nav-link" data-scroll-target="#math-review-from-scores-to-probabilities-in-energy-based-models">Math Review: From Scores to Probabilities in Energy-Based Models</a></li>
   <li><a href="#learning-and-inference-in-energy-based-models" id="toc-learning-and-inference-in-energy-based-models" class="nav-link" data-scroll-target="#learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</a></li>
   <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence">Contrastive Divergence</a></li>
   <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models">Sampling from Energy-Based Models</a>
@@ -225,6 +224,16 @@ window.Quarto = {
 </table>
 <p>These models attempt to approximate the true data distribution <span class="math inline">\(P_{\text{data}}\)</span> by selecting a model <span class="math inline">\(P_\theta\)</span> from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability.</p>
 <hr>
+<p>In generative modeling, a valid probability distribution ( p(x) ) must satisfy two conditions:</p>
+<p>Directly defining a function that satisfies both is often difficult, especially when using flexible models like neural networks.</p>
+<p>Instead of modeling ( p(x) ) directly, we break the problem into two steps:</p>
+<p>This trick ensures we get a valid probability distribution while keeping the modeling process flexible and expressive.</p>
+<p>In Energy-Based Models:</p>
+<p>[ g_(x) = (f_(x)) p_(x) = ]</p>
+<p>We define energy as ( E_(x) = -f_(x) ), so the probability becomes:</p>
+<p>[ p_(x) = ]</p>
+<p>This approach is flexible, expressive, and closely tied to the exponential family of distributions.</p>
+<hr>
 </section>
 <section id="enter-energy-based-models-ebms" class="level2">
 <h2 class="anchored" data-anchor-id="enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</h2>
@@ -264,37 +273,6 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
 <ul>
 <li>EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)</li>
 </ul>
-<hr>
-</section>
-<section id="math-review-from-scores-to-probabilities-in-energy-based-models" class="level2">
-<h2 class="anchored" data-anchor-id="math-review-from-scores-to-probabilities-in-energy-based-models">Math Review: From Scores to Probabilities in Energy-Based Models</h2>
-<p>In generative modeling, a valid probability distribution <span class="math inline">\(p(x)\)</span> must satisfy:</p>
-<ol type="1">
-<li><strong>Non-negativity</strong>:<br>
-<span class="math display">\[
-p(x) \geq 0
-\]</span></li>
-<li><strong>Normalization</strong> (sum-to-one):<br>
-<span class="math display">\[
-\int p(x)dx = 1
-\]</span></li>
-</ol>
-<p>Creating functions <span class="math inline">\(g_\theta(x) \geq 0\)</span> is easy, but they often fail to normalize. Instead, we define:</p>
-<p><span class="math display">\[
-p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad Z(\theta) = \int g_\theta(x) dx
-\]</span></p>
-<p>In EBMs, we use an exponential form:</p>
-<p><span class="math display">\[
-g_\theta(x) = \exp(f_\theta(x)) \Rightarrow p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
-\]</span></p>
-<p>and define energy as:</p>
-<p><span class="math display">\[
-E_\theta(x) := -f_\theta(x)
-\]</span></p>
-<p>So the model becomes:</p>
-<p><span class="math display">\[
-p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
-\]</span></p>
 <hr>
 </section>
 <section id="learning-and-inference-in-energy-based-models" class="level2">

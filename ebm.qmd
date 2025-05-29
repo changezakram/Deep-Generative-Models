@@ -28,6 +28,57 @@ These models attempt to approximate the true data distribution $P_{\text{data}}$
 
 ---
 
+\section*{Understanding the Probability Foundation Behind EBMs}
+
+In generative modeling, a valid probability distribution \( p(x) \) must satisfy two conditions:
+
+\begin{itemize}
+  \item \textbf{Non-negativity:} \( p(x) \geq 0 \)
+  \item \textbf{Normalization:} \( \int p(x)\,dx = 1 \)
+\end{itemize}
+
+Directly defining a function that satisfies both is often difficult, especially when using flexible models like neural networks.
+
+\subsection*{Why Introduce \( g(x) \)?}
+
+Instead of modeling \( p(x) \) directly, we break the problem into two steps:
+
+\begin{enumerate}
+  \item Define an unnormalized, non-negative function \( g(x) \geq 0 \)
+  \item Normalize it by computing \( Z = \int g(x)\,dx \), and define:
+  \[
+  p(x) = \frac{g(x)}{Z}
+  \]
+\end{enumerate}
+
+This trick ensures we get a valid probability distribution while keeping the modeling process flexible and expressive.
+
+\subsection*{Why This Works}
+
+\begin{itemize}
+  \item \( g(x) \) can be any non-negative function — for example, \( g(x) = \exp(f(x)) \)
+  \item This makes it easy to parameterize \( f(x) \) using neural networks
+  \item The normalization constant \( Z \) handles the requirement that \( p(x) \) sums to 1
+\end{itemize}
+
+\subsection*{Connecting to EBMs}
+
+In Energy-Based Models:
+
+\[
+g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
+\]
+
+We define energy as \( E_\theta(x) = -f_\theta(x) \), so the probability becomes:
+
+\[
+p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
+\]
+
+This approach is flexible, expressive, and closely tied to the exponential family of distributions.
+
+---
+
 ## Enter Energy-Based Models (EBMs)
 
 Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution $P(x)$, EBMs define an **energy function** $E_\theta(x)$ that assigns lower energy to more likely data points:
@@ -69,45 +120,6 @@ Despite their elegance, EBMs pose serious challenges:
 **No Feature Learning (by default)**
 
 - EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)
-
----
-
-## Math Review: From Scores to Probabilities in Energy-Based Models
-
-In generative modeling, a valid probability distribution $p(x)$ must satisfy:
-
-1. **Non-negativity**:  
-   $$
-   p(x) \geq 0
-   $$
-2. **Normalization** (sum-to-one):  
-   $$
-   \int p(x)dx = 1
-   $$
-
-Creating functions $g_\theta(x) \geq 0$ is easy, but they often fail to normalize. Instead, we define:
-
-$$
-p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad Z(\theta) = \int g_\theta(x) dx
-$$
-
-In EBMs, we use an exponential form:
-
-$$
-g_\theta(x) = \exp(f_\theta(x)) \Rightarrow p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
-$$
-
-and define energy as:
-
-$$
-E_\theta(x) := -f_\theta(x)
-$$
-
-So the model becomes:
-
-$$
-p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
-$$
 
 ---
 
