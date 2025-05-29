@@ -30,67 +30,61 @@ These models attempt to approximate the true data distribution $P_{\text{data}}$
 
 ## 📐 Understanding the Probability Foundation Behind EBMs
 
-In generative modeling, a valid probability distribution \( p(x) \) must satisfy:
+In generative modeling, a valid probability distribution $p(x)$ must satisfy:
 
-- Non-negativity:  
-  \[
+- **Non-negativity**:  
+  $$
   p(x) \geq 0
-  \]
+  $$
 
-- Normalization:  
-  \[
+- **Normalization**:  
+  $$
   \int p(x)\, dx = 1
-  \]
+  $$
 
 Directly defining a function that satisfies both is difficult, especially when using flexible models like neural networks.
 
 ---
 
-### 💡 Why do we introduce \( g(x) \)?
+### 💡 Why do we introduce $g(x)$?
 
-Instead of modeling \( p(x) \) directly, we define a non-negative function \( g(x) \geq 0 \) and turn it into a probability distribution by normalizing:
+Instead of modeling $p(x)$ directly, we define a non-negative function $g(x) \geq 0$ and turn it into a probability distribution by normalizing:
 
-\[
+$$
 p(x) = \frac{g(x)}{Z}, \quad \text{where} \quad Z = \int g(x)\, dx
-\]
+$$
 
 This trick simplifies the problem by separating the two requirements:
 
-- \( g(x) \) ensures non-negativity  
-- \( Z \) enforces normalization
+- $g(x)$ ensures non-negativity  
+- $Z$ enforces normalization
 
 ---
 
 ### 🧠 Intuition
 
-Think of \( g(x) \) as a scoring function:
+Think of $g(x)$ as a scoring function:
 
-- Higher \( g(x) \) means more likely
-- Dividing by \( Z \) rescales these scores to form a valid probability distribution
-
-This gives us flexibility to use expressive models for \( g(x) \) — for example:
-
-\[
-g(x) = \exp(f(x)) \quad \Rightarrow \quad p(x) = \frac{e^{f(x)}}{Z}
-\]
+- Higher $g(x)$ means more likely  
+- Dividing by $Z$ rescales these scores to form a valid probability distribution
 
 ---
 
-### 🔗 Connecting to Energy-Based Models
+### 🔗 Connecting to EBMs
 
 In EBMs, we define:
 
-\[
+$$
 g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
-\]
+$$
 
-Letting \( E_\theta(x) = -f_\theta(x) \), we get:
+Letting $E_\theta(x) = -f_\theta(x)$, we get:
 
-\[
+$$
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
-\]
+$$
 
-This formulation is powerful because it allows maximum flexibility in defining \( f_\theta(x) \), and only requires that we can compute or approximate the gradients of the energy function.
+This formulation is powerful because it allows maximum flexibility in defining $f_\theta(x)$, and only requires that we can compute or approximate the gradients of the energy function.
 ---
 
 ## Enter Energy-Based Models (EBMs)
