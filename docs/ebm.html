@@ -362,12 +362,12 @@ Energies can be combined to support multi-task objectives or structured learning
 <hr>
 <section id="why-its-not-that-simple" class="level3">
 <h3 class="anchored" data-anchor-id="why-its-not-that-simple">Why It’s Not That Simple</h3>
-<p>Because the model is not normalized, simply increasing ( f_(x_) ) does <strong>not</strong> guarantee that ( x_ ) becomes more likely <strong>relative to the rest</strong>.</p>
+<p>Because the model is not normalized, simply increasing <span class="math inline">\(\( f_\theta(x_\text{train}) \)\)</span> does <strong>not</strong> guarantee that <span class="math inline">\(\( x_\text{train} \)\)</span> becomes more likely <strong>relative to the rest</strong>.</p>
 <p>We must also consider the effect on the partition function:</p>
 <p><span class="math display">\[
 Z(\theta) = \int \exp(f_\theta(x))\, dx
 \]</span></p>
-<p>To make ( x_ ) truly more likely, we must <strong>pull up</strong> ( f_(x_) ) while also <strong>pushing down</strong> ( f_(x) ) for other (incorrect) samples.</p>
+<p>To make <span class="math inline">\(\( x_\text{train} \)\)</span> truly more likely, we must <strong>pull up</strong> <span class="math inline">\(\( f_\theta(x_\text{train}) \)\)</span> while also <strong>pushing down</strong> <span class="math inline">\(\( f_\theta(x) \)\)</span> for other (incorrect) samples.</p>
 <hr>
 </section>
 <section id="gradient-of-the-log-likelihood" class="level3">
