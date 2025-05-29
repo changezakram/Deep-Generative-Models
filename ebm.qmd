@@ -132,6 +132,7 @@ does **not** involve $Z(\theta)$.
 This means we can easily compare which input is more likely — a powerful property of EBMs.
 
 **Practical Applications**:
+
 - **Anomaly detection**: Identify inputs with unusually low likelihood.
 - **Denoising**: Prefer cleaner versions of corrupted data by comparing likelihoods.
 
