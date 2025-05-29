@@ -148,6 +148,7 @@ window.Quarto = {
   <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
   <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
   <li><a href="#from-scores-to-probabilities-in-ebms" id="toc-from-scores-to-probabilities-in-ebms" class="nav-link" data-scroll-target="#from-scores-to-probabilities-in-ebms">From Scores to Probabilities in EBMs</a></li>
+  <li><a href="#applications-of-ebms-without-computing-ztheta" id="toc-applications-of-ebms-without-computing-ztheta" class="nav-link" data-scroll-target="#applications-of-ebms-without-computing-ztheta">Applications of EBMs Without Computing <span class="math inline">\(Z(\theta)\)</span></a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
   <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">Limitations of EBMs</a></li>
   </ul></li>
@@ -308,6 +309,21 @@ E_\theta(x) = -f_\theta(x)
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 \]</span></p>
 <p>This formulation gives EBMs the freedom to use any differentiable function for <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate its gradients.</p>
+<hr>
+</section>
+<section id="applications-of-ebms-without-computing-ztheta" class="level3">
+<h3 class="anchored" data-anchor-id="applications-of-ebms-without-computing-ztheta">Applications of EBMs Without Computing <span class="math inline">\(Z(\theta)\)</span></h3>
+<p>In general, evaluating the full probability <span class="math inline">\(p_\theta(x)\)</span> requires computing the partition function <span class="math inline">\(Z(\theta)\)</span>:</p>
+<p><span class="math display">\[
+p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
+\]</span></p>
+<p>However, when comparing two samples <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span>, the ratio:</p>
+<p><span class="math display">\[
+\frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
+\]</span></p>
+<p>does <strong>not</strong> involve <span class="math inline">\(Z(\theta)\)</span>.</p>
+<p>This means we can easily compare which input is more likely — a powerful property of EBMs.</p>
+<p><strong>Practical Applications</strong>: - <strong>Anomaly detection</strong>: Identify inputs with unusually low likelihood. - <strong>Denoising</strong>: Prefer cleaner versions of corrupted data by comparing likelihoods.</p>
 <hr>
 </section>
 <section id="key-benefits-of-ebms" class="level3">

@@ -111,6 +111,30 @@ $$
 
 This formulation gives EBMs the freedom to use any differentiable function for $f_\theta(x)$, and only requires that we can compute or approximate its gradients.
 
+--- 
+
+### Applications of EBMs Without Computing $Z(\theta)$
+
+In general, evaluating the full probability $p_\theta(x)$ requires computing the partition function $Z(\theta)$:
+
+$$
+p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
+$$
+
+However, when comparing two samples $x$ and $x'$, the ratio:
+
+$$
+\frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
+$$
+
+does **not** involve $Z(\theta)$.
+
+This means we can easily compare which input is more likely — a powerful property of EBMs.
+
+**Practical Applications**:
+- **Anomaly detection**: Identify inputs with unusually low likelihood.
+- **Denoising**: Prefer cleaner versions of corrupted data by comparing likelihoods.
+
 ---
 
 ### Key Benefits of EBMs
