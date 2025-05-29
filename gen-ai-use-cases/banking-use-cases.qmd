@@ -46,7 +46,7 @@ Banks deal with vast volumes of reports, compliance documentation, and internal 
 - Morgan Stanley – AskResearchGPT: Provides natural language access to 70,000+ research reports.  
 - PwC – Compliance Automation: Uses GenAI to summarize regulatory documents and extract clauses.  
 - Citi – Reporting Automation: Streamlines compliance reporting and data extraction.  
-- Standard Chartered – SC GPT: A bank-wide GenAI platform deployed across 16 markets to enhance internal productivity. 
+- Standard Chartered – SC GPT: SC GPT helps employees retrieve information faster, and summarize internal documents.
 - Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance.
 
 ### 🔐 Risk Management
