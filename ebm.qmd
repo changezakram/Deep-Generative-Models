@@ -48,7 +48,7 @@ While it’s easy to define a function that satisfies $p(x) \geq 0$ (e.g., using
 
 ---
 
-#### Why do we introduce $g(x)$?
+### Why do we introduce $g(x)$?
 
 Instead of modeling $p(x)$ directly, we define a non-negative function $g(x) \geq 0$ and turn it into a probability distribution by normalizing:
 
@@ -65,7 +65,7 @@ This normalization constant $Z(\theta)$ is also known as the **partition functio
 
 ---
 
-#### Intuition
+### Intuition
 
 Think of $g(x)$ as a scoring function:
 
@@ -74,7 +74,7 @@ Think of $g(x)$ as a scoring function:
 
 ---
 
-#### Connecting to EBMs
+### Connecting to EBMs
 
 In EBMs, we define:
 

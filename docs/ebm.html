@@ -145,6 +145,9 @@ window.Quarto = {
   <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review">Math Review</a>
   <ul class="collapse">
   <li><a href="#understanding-the-probability-foundation-behind-ebms" id="toc-understanding-the-probability-foundation-behind-ebms" class="nav-link" data-scroll-target="#understanding-the-probability-foundation-behind-ebms">Understanding the Probability Foundation Behind EBMs</a></li>
+  <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
+  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
+  <li><a href="#connecting-to-ebms" id="toc-connecting-to-ebms" class="nav-link" data-scroll-target="#connecting-to-ebms">Connecting to EBMs</a></li>
   </ul></li>
   <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
@@ -246,8 +249,9 @@ p(x) \geq 0
 </ul>
 <p>While it’s easy to define a function that satisfies <span class="math inline">\(p(x) \geq 0\)</span> (e.g., using exponentials), ensuring that it also sums to 1 — i.e., <span class="math inline">\(\int p(x)\, dx = 1\)</span> — is much more difficult, especially for flexible functions like neural networks.</p>
 <hr>
-<section id="why-do-we-introduce-gx" class="level4">
-<h4 class="anchored" data-anchor-id="why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</h4>
+</section>
+<section id="why-do-we-introduce-gx" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</h3>
 <p>Instead of modeling <span class="math inline">\(p(x)\)</span> directly, we define a non-negative function <span class="math inline">\(g(x) \geq 0\)</span> and turn it into a probability distribution by normalizing:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) = \int g_\theta(x)\, dx
@@ -261,8 +265,8 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 <p>This normalization constant <span class="math inline">\(Z(\theta)\)</span> is also known as the <strong>partition function</strong>.</p>
 <hr>
 </section>
-<section id="intuition" class="level4">
-<h4 class="anchored" data-anchor-id="intuition">Intuition</h4>
+<section id="intuition" class="level3">
+<h3 class="anchored" data-anchor-id="intuition">Intuition</h3>
 <p>Think of <span class="math inline">\(g(x)\)</span> as a scoring function:</p>
 <ul>
 <li>Higher <span class="math inline">\(g(x)\)</span> means more likely<br>
@@ -271,8 +275,8 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 </ul>
 <hr>
 </section>
-<section id="connecting-to-ebms" class="level4">
-<h4 class="anchored" data-anchor-id="connecting-to-ebms">Connecting to EBMs</h4>
+<section id="connecting-to-ebms" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-to-ebms">Connecting to EBMs</h3>
 <p>In EBMs, we define:</p>
 <p><span class="math display">\[
 g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
@@ -283,7 +287,6 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 \]</span></p>
 <p>This formulation is powerful because it allows maximum flexibility in defining <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate the gradients of the energy function.</p>
 <hr>
-</section>
 </section>
 </section>
 <section id="enter-energy-based-models-ebms" class="level2">
