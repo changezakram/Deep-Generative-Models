@@ -178,142 +178,96 @@ Despite their strengths, EBMs come with notable challenges:
 
 ## Training and Inference in EBMs
 
-The training objective for Energy-Based Models (EBMs) is to assign **higher scores** (i.e., lower energy) to correct examples and **lower scores** (higher energy) to incorrect or unlikely ones.
-
-Our goal is to **maximize the (unnormalized) likelihood** of training data:
+The goal in training Energy-Based Models (EBMs) is to assign higher scores (i.e., lower energy) to correct examples, and lower scores (higher energy) to incorrect ones. This corresponds to **maximizing the (unnormalized) likelihood** of the training data:
 
 $$
-\text{maximize} \quad \frac{\exp(f_\theta(x_\text{train}))}{Z(\theta)}
+p_\theta(x_{\text{train}}) = \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
 $$
 
-This means we want to **increase the numerator** (make the correct sample more likely) and **decrease the denominator** (reduce the overall mass by pushing down other samples).
+This expression tells us that increasing the score for $x_{\text{train}}$ is not enough — we must also decrease scores for other $x$ to reduce $Z(\theta)$ and make the probability higher **relatively**.
 
 ---
 
-### Why It's Not That Simple
+### Log-Likelihood and Its Gradient
 
-Because the model is not normalized, simply increasing $f_\theta(x_\text{train})$ does **not** guarantee that $x_\text{train}$ becomes more likely **relative to the rest**.
+We start by writing the log-likelihood:
 
-We must also consider the effect on the partition function:
+$$
+\log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
+$$
+
+Taking the gradient with respect to $\theta$:
+
+$$
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
+$$
+
+To compute this, we need the gradient of the log partition function:
 
 $$
 Z(\theta) = \int \exp(f_\theta(x))\, dx
 $$
 
-To make $x_\text{train}$ truly more likely, we must **pull up** $f_\theta(x_\text{train})$ while also **pushing down** $f_\theta(x)$ for other (incorrect) samples.
-
----
-
-### Gradient of the Log-Likelihood
-
-We aim to **maximize** the log-likelihood of training data:
+Applying the chain rule:
 
 $$
-\log p_\theta(x_\text{train}) = f_\theta(x_\text{train}) - \log Z(\theta)
-$$
-
-Taking the gradient with respect to \( \theta \):
-
-$$
-\nabla_\theta \log p_\theta(x_\text{train}) = \nabla_\theta f_\theta(x_\text{train}) - \nabla_\theta \log Z(\theta)
-$$
-
-So to compute this, we need to understand the gradient of the log partition function.
-
----
-
-### Gradient of the Partition Function
-
-We start with:
-
-$$
-Z(\theta) = \int \exp(f_\theta(x))\, dx
-$$
-
-Then use the chain rule:
-
-$$
-\nabla_\theta \log Z(\theta) 
-= \frac{1}{Z(\theta)} \nabla_\theta Z(\theta) 
+\nabla_\theta \log Z(\theta)
 = \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
+= \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 $$
 
-This is a **weighted average** of gradients \( \nabla_\theta f_\theta(x) \), where each weight is proportional to how likely \( x \) is under the model — specifically weighted by \( \exp(f_\theta(x)) \).
-
-Since:
+Substitute this back:
 
 $$
-p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
-$$
-
-we get the simplified form:
-
-$$
-\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
-$$
-
-Substituting this into the earlier log-likelihood gradient:
-
-$$
-\nabla_\theta \log p_\theta(x_\text{train}) = \nabla_\theta f_\theta(x_\text{train}) - \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
+\nabla_\theta \log p_\theta(x_{\text{train}})
+= \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 $$
 
 ---
 
-### Intuition
+### The Sampling Challenge
 
-- **Pull up the training example**: The first term increases the score of the correct data point.
-- **Push down other samples**: The second term is an average over everything the model currently thinks is likely.
-- **Net effect**: The model learns by increasing the score of the correct data and decreasing the score of points it mistakenly believes are likely.
+The first term is straightforward — it's the gradient of the model's score on the training point.
+
+But the second term, the **expectation over model samples**, is difficult. It requires drawing samples from $p_\theta(x)$, which in turn depends on the intractable normalization constant $Z(\theta)$.
+
+To deal with this, we use **sampling-based approximations** like Contrastive Divergence.
 
 ---
 
 ### Contrastive Divergence
 
-In the previous section, we saw that the gradient of the log-likelihood is:
-
-$$
-\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
-$$
-
-The first term pulls up the score of the training example.  
-The second term pushes down the average score of the points that the model believes are likely.
-
----
-
-### Challenge: The Expectation is Intractable
-
-The expectation $\mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]$ involves **sampling from the model distribution** $p_\theta(x)$, which requires computing or approximating the partition function $Z(\theta)$. This is computationally expensive and often infeasible in practice.
-
----
-
-### Solution: Use a Monte Carlo Approximation
-
-We approximate the expectation using a **Monte Carlo sample** drawn from the model:
+We approximate the expectation:
 
 $$
 \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right] \approx \nabla_\theta f_\theta(x_{\text{sample}})
 $$
 
-Substituting this into the log-likelihood gradient:
+This gives:
 
 $$
 \nabla_\theta \log p_\theta(x_{\text{train}}) \approx \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta f_\theta(x_{\text{sample}})
 = \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 $$
 
----
+**Contrastive Divergence Algorithm:**
 
-### Contrastive Divergence Algorithm
-
-**1.** Sample $x_\text{sample} \sim p_\theta$ (typically via MCMC)
-**2.** Take a gradient step on:
+1. Sample $x_{\text{sample}} \sim p_\theta$ (typically via MCMC)
+2. Take a gradient step on:
 
 $$
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 $$
 
-This update encourages the model to **increase** the score of the training data while **decreasing** the score of the samples it currently believes are likely.
+This encourages the model to increase the score of the training sample and decrease the score of samples it currently believes are likely.
+
+---
+
+### Intuition Recap
+
+- **Pull up** the training sample: $\nabla_\theta f_\theta(x_{\text{train}})$
+- **Push down** samples from the model: $\nabla_\theta f_\theta(x_{\text{sample}})$
+- The model improves by sharpening its belief in real data and correcting mistaken high-scoring areas of the space.
 
 ---
 

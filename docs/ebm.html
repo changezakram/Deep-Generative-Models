@@ -353,107 +353,75 @@ Energies can be combined to support multi-task objectives or structured learning
 </section>
 <section id="training-and-inference-in-ebms" class="level2">
 <h2 class="anchored" data-anchor-id="training-and-inference-in-ebms">Training and Inference in EBMs</h2>
-<p>The training objective for Energy-Based Models (EBMs) is to assign <strong>higher scores</strong> (i.e., lower energy) to correct examples and <strong>lower scores</strong> (higher energy) to incorrect or unlikely ones.</p>
-<p>Our goal is to <strong>maximize the (unnormalized) likelihood</strong> of training data:</p>
+<p>The goal in training Energy-Based Models (EBMs) is to assign higher scores (i.e., lower energy) to correct examples, and lower scores (higher energy) to incorrect ones. This corresponds to <strong>maximizing the (unnormalized) likelihood</strong> of the training data:</p>
 <p><span class="math display">\[
-\text{maximize} \quad \frac{\exp(f_\theta(x_\text{train}))}{Z(\theta)}
+p_\theta(x_{\text{train}}) = \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
 \]</span></p>
-<p>This means we want to <strong>increase the numerator</strong> (make the correct sample more likely) and <strong>decrease the denominator</strong> (reduce the overall mass by pushing down other samples).</p>
+<p>This expression tells us that increasing the score for <span class="math inline">\(x_{\text{train}}\)</span> is not enough — we must also decrease scores for other <span class="math inline">\(x\)</span> to reduce <span class="math inline">\(Z(\theta)\)</span> and make the probability higher <strong>relatively</strong>.</p>
 <hr>
-<section id="why-its-not-that-simple" class="level3">
-<h3 class="anchored" data-anchor-id="why-its-not-that-simple">Why It’s Not That Simple</h3>
-<p>Because the model is not normalized, simply increasing <span class="math inline">\(f_\theta(x_\text{train})\)</span> does <strong>not</strong> guarantee that <span class="math inline">\(x_\text{train}\)</span> becomes more likely <strong>relative to the rest</strong>.</p>
-<p>We must also consider the effect on the partition function:</p>
+<section id="log-likelihood-and-its-gradient" class="level3">
+<h3 class="anchored" data-anchor-id="log-likelihood-and-its-gradient">Log-Likelihood and Its Gradient</h3>
+<p>We start by writing the log-likelihood:</p>
+<p><span class="math display">\[
+\log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
+\]</span></p>
+<p>Taking the gradient with respect to <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math display">\[
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
+\]</span></p>
+<p>To compute this, we need the gradient of the log partition function:</p>
 <p><span class="math display">\[
 Z(\theta) = \int \exp(f_\theta(x))\, dx
 \]</span></p>
-<p>To make <span class="math inline">\(x_\text{train}\)</span> truly more likely, we must <strong>pull up</strong> <span class="math inline">\(f_\theta(x_\text{train})\)</span> while also <strong>pushing down</strong> <span class="math inline">\(f_\theta(x)\)</span> for other (incorrect) samples.</p>
-<hr>
-</section>
-<section id="gradient-of-the-log-likelihood" class="level3">
-<h3 class="anchored" data-anchor-id="gradient-of-the-log-likelihood">Gradient of the Log-Likelihood</h3>
-<p>We aim to <strong>maximize</strong> the log-likelihood of training data:</p>
-<p><span class="math display">\[
-\log p_\theta(x_\text{train}) = f_\theta(x_\text{train}) - \log Z(\theta)
-\]</span></p>
-<p>Taking the gradient with respect to ( ):</p>
-<p><span class="math display">\[
-\nabla_\theta \log p_\theta(x_\text{train}) = \nabla_\theta f_\theta(x_\text{train}) - \nabla_\theta \log Z(\theta)
-\]</span></p>
-<p>So to compute this, we need to understand the gradient of the log partition function.</p>
-<hr>
-</section>
-<section id="gradient-of-the-partition-function" class="level3">
-<h3 class="anchored" data-anchor-id="gradient-of-the-partition-function">Gradient of the Partition Function</h3>
-<p>We start with:</p>
-<p><span class="math display">\[
-Z(\theta) = \int \exp(f_\theta(x))\, dx
-\]</span></p>
-<p>Then use the chain rule:</p>
+<p>Applying the chain rule:</p>
 <p><span class="math display">\[
 \nabla_\theta \log Z(\theta)
-= \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
 = \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
+= \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 \]</span></p>
-<p>This is a <strong>weighted average</strong> of gradients ( <em>f</em>(x) ), where each weight is proportional to how likely ( x ) is under the model — specifically weighted by ( (f_(x)) ).</p>
-<p>Since:</p>
+<p>Substitute this back:</p>
 <p><span class="math display">\[
-p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
-\]</span></p>
-<p>we get the simplified form:</p>
-<p><span class="math display">\[
-\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
-\]</span></p>
-<p>Substituting this into the earlier log-likelihood gradient:</p>
-<p><span class="math display">\[
-\nabla_\theta \log p_\theta(x_\text{train}) = \nabla_\theta f_\theta(x_\text{train}) - \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
+\nabla_\theta \log p_\theta(x_{\text{train}})
+= \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 \]</span></p>
 <hr>
 </section>
-<section id="intuition-1" class="level3">
-<h3 class="anchored" data-anchor-id="intuition-1">Intuition</h3>
-<ul>
-<li><strong>Pull up the training example</strong>: The first term increases the score of the correct data point.</li>
-<li><strong>Push down other samples</strong>: The second term is an average over everything the model currently thinks is likely.</li>
-<li><strong>Net effect</strong>: The model learns by increasing the score of the correct data and decreasing the score of points it mistakenly believes are likely.</li>
-</ul>
+<section id="the-sampling-challenge" class="level3">
+<h3 class="anchored" data-anchor-id="the-sampling-challenge">The Sampling Challenge</h3>
+<p>The first term is straightforward — it’s the gradient of the model’s score on the training point.</p>
+<p>But the second term, the <strong>expectation over model samples</strong>, is difficult. It requires drawing samples from <span class="math inline">\(p_\theta(x)\)</span>, which in turn depends on the intractable normalization constant <span class="math inline">\(Z(\theta)\)</span>.</p>
+<p>To deal with this, we use <strong>sampling-based approximations</strong> like Contrastive Divergence.</p>
 <hr>
 </section>
 <section id="contrastive-divergence" class="level3">
 <h3 class="anchored" data-anchor-id="contrastive-divergence">Contrastive Divergence</h3>
-<p>In the previous section, we saw that the gradient of the log-likelihood is:</p>
-<p><span class="math display">\[
-\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
-\]</span></p>
-<p>The first term pulls up the score of the training example.<br>
-The second term pushes down the average score of the points that the model believes are likely.</p>
-<hr>
-</section>
-<section id="challenge-the-expectation-is-intractable" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-the-expectation-is-intractable">Challenge: The Expectation is Intractable</h3>
-<p>The expectation <span class="math inline">\(\mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]\)</span> involves <strong>sampling from the model distribution</strong> <span class="math inline">\(p_\theta(x)\)</span>, which requires computing or approximating the partition function <span class="math inline">\(Z(\theta)\)</span>. This is computationally expensive and often infeasible in practice.</p>
-<hr>
-</section>
-<section id="solution-use-a-monte-carlo-approximation" class="level3">
-<h3 class="anchored" data-anchor-id="solution-use-a-monte-carlo-approximation">Solution: Use a Monte Carlo Approximation</h3>
-<p>We approximate the expectation using a <strong>Monte Carlo sample</strong> drawn from the model:</p>
+<p>We approximate the expectation:</p>
 <p><span class="math display">\[
 \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right] \approx \nabla_\theta f_\theta(x_{\text{sample}})
 \]</span></p>
-<p>Substituting this into the log-likelihood gradient:</p>
+<p>This gives:</p>
 <p><span class="math display">\[
 \nabla_\theta \log p_\theta(x_{\text{train}}) \approx \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta f_\theta(x_{\text{sample}})
 = \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
-<hr>
-</section>
-<section id="contrastive-divergence-algorithm" class="level3">
-<h3 class="anchored" data-anchor-id="contrastive-divergence-algorithm">Contrastive Divergence Algorithm</h3>
-<p><strong>1.</strong> Sample <span class="math inline">\(x_\text{sample} \sim p_\theta\)</span> (typically via MCMC) <strong>2.</strong> Take a gradient step on:</p>
+<p><strong>Contrastive Divergence Algorithm:</strong></p>
+<ol type="1">
+<li>Sample <span class="math inline">\(x_{\text{sample}} \sim p_\theta\)</span> (typically via MCMC)</li>
+<li>Take a gradient step on:</li>
+</ol>
 <p><span class="math display">\[
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
-<p>This update encourages the model to <strong>increase</strong> the score of the training data while <strong>decreasing</strong> the score of the samples it currently believes are likely.</p>
+<p>This encourages the model to increase the score of the training sample and decrease the score of samples it currently believes are likely.</p>
+<hr>
+</section>
+<section id="intuition-recap" class="level3">
+<h3 class="anchored" data-anchor-id="intuition-recap">Intuition Recap</h3>
+<ul>
+<li><strong>Pull up</strong> the training sample: <span class="math inline">\(\nabla_\theta f_\theta(x_{\text{train}})\)</span></li>
+<li><strong>Push down</strong> samples from the model: <span class="math inline">\(\nabla_\theta f_\theta(x_{\text{sample}})\)</span></li>
+<li>The model improves by sharpening its belief in real data and correcting mistaken high-scoring areas of the space.</li>
+</ul>
 <hr>
 </section>
 </section>
