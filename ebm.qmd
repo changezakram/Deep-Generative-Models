@@ -324,10 +324,16 @@ This approach works in theory but can take a **very long time to converge**, esp
 
 ---
 
+
+
+
+
+
+
 ## 🔁 Markov Chain Monte Carlo (MCMC)
 
 The key idea of MCMC is to construct a Markov chain whose stationary distribution is  
-$begin:math:text$ p_\\theta(x) $end:math:text$. This lets us obtain samples by running the chain long enough.
+$p_\theta(x)$. This lets us obtain samples by running the chain long enough.
 
 ---
 
@@ -335,13 +341,13 @@ $begin:math:text$ p_\\theta(x) $end:math:text$. This lets us obtain samples by r
 
 A classic MCMC algorithm. At each step:
 
-1. Propose $begin:math:text$ x' = x^t + \\text{noise} $end:math:text$  
-2. Accept $begin:math:text$ x' $end:math:text$ with probability  
-   $begin:math:text$ \\min\\left(1, \\exp(f_\\theta(x') - f_\\theta(x^t)) \\right) $end:math:text$
+1. Propose $x' = x^t + \text{noise}$
+2. Accept $x'$ with probability  
+   $\min\left(1, \exp(f_\theta(x') - f_\theta(x^t)) \right)$
 
 **Pros**:  
 - General-purpose  
-- Guaranteed to converge to $begin:math:text$ p_\\theta(x) $end:math:text$ under mild conditions
+- Guaranteed to converge to $p_\theta(x)$ under mild conditions
 
 **Cons**:  
 - Can be slow to mix (i.e., slow convergence)  
@@ -354,10 +360,10 @@ A classic MCMC algorithm. At each step:
 
 Langevin MCMC uses gradient information to guide proposals:
 
-1. Initialize $begin:math:text$ x^0 \\sim \\pi(x) $end:math:text$  
+1. Initialize $x^0 \sim \pi(x)$  
 2. Iterate:  
-   $begin:math:text$ x^{t+1} = x^t + \\epsilon \\nabla_x \\log p_\\theta(x^t) + \\sqrt{2\\epsilon} z^t $end:math:text$,  
-   where $begin:math:text$ z^t \\sim \\mathcal{N}(0, I) $end:math:text$
+   $x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t$  
+   where $z^t \sim \mathcal{N}(0, I)$
 
 For EBMs, this becomes:
 
@@ -374,6 +380,7 @@ $$
 - Sensitive to step size  
 - Still slow in high dimensions
 
+---
 
 ## 📚 References
 

@@ -495,20 +495,19 @@ This approach works in theory but can take a <strong>very long time to converge<
 <section id="markov-chain-monte-carlo-mcmc-1" class="level2">
 <h2 class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc-1">🔁 Markov Chain Monte Carlo (MCMC)</h2>
 <p>The key idea of MCMC is to construct a Markov chain whose stationary distribution is<br>
-<span class="math inline">\(begin:math:text\)</span> p_\theta(x) <span class="math inline">\(end:math:text\)</span>. This lets us obtain samples by running the chain long enough.</p>
+<span class="math inline">\(p_\theta(x)\)</span>. This lets us obtain samples by running the chain long enough.</p>
 <hr>
 <section id="metropolis-hastings" class="level3">
 <h3 class="anchored" data-anchor-id="metropolis-hastings">1. Metropolis-Hastings</h3>
 <p>A classic MCMC algorithm. At each step:</p>
 <ol type="1">
-<li>Propose <span class="math inline">\(begin:math:text\)</span> x’ = x^t + \text{noise} <span class="math inline">\(end:math:text\)</span><br>
-</li>
-<li>Accept <span class="math inline">\(begin:math:text\)</span> x’ <span class="math inline">\(end:math:text\)</span> with probability<br>
-<span class="math inline">\(begin:math:text\)</span> \min\left(1, \exp(f_\theta(x’) - f_\theta(x^t)) \right) <span class="math inline">\(end:math:text\)</span></li>
+<li>Propose <span class="math inline">\(x' = x^t + \text{noise}\)</span></li>
+<li>Accept <span class="math inline">\(x'\)</span> with probability<br>
+<span class="math inline">\(\min\left(1, \exp(f_\theta(x') - f_\theta(x^t)) \right)\)</span></li>
 </ol>
 <p><strong>Pros</strong>:<br>
 - General-purpose<br>
-- Guaranteed to converge to <span class="math inline">\(begin:math:text\)</span> p_\theta(x) <span class="math inline">\(end:math:text\)</span> under mild conditions</p>
+- Guaranteed to converge to <span class="math inline">\(p_\theta(x)\)</span> under mild conditions</p>
 <p><strong>Cons</strong>:<br>
 - Can be slow to mix (i.e., slow convergence)<br>
 - Sensitive to proposal distribution<br>
@@ -519,11 +518,11 @@ This approach works in theory but can take a <strong>very long time to converge<
 <h3 class="anchored" data-anchor-id="unadjusted-langevin-mcmc">2. Unadjusted Langevin MCMC</h3>
 <p>Langevin MCMC uses gradient information to guide proposals:</p>
 <ol type="1">
-<li>Initialize <span class="math inline">\(begin:math:text\)</span> x^0 \sim \pi(x) <span class="math inline">\(end:math:text\)</span><br>
+<li>Initialize <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
 </li>
 <li>Iterate:<br>
-<span class="math inline">\(begin:math:text\)</span> x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t <span class="math inline">\(end:math:text\)</span>,<br>
-where <span class="math inline">\(begin:math:text\)</span> z^t \sim \mathcal{N}(0, I) <span class="math inline">\(end:math:text\)</span></li>
+<span class="math inline">\(x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span><br>
+where <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span></li>
 </ol>
 <p>For EBMs, this becomes:</p>
 <p><span class="math display">\[
@@ -536,6 +535,7 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 - No MH correction → approximate only<br>
 - Sensitive to step size<br>
 - Still slow in high dimensions</p>
+<hr>
 </section>
 </section>
 <section id="references" class="level2">
