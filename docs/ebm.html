@@ -145,12 +145,7 @@ window.Quarto = {
   <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
   <li><a href="#math-review-from-scores-to-probabilities-in-energy-based-models" id="toc-math-review-from-scores-to-probabilities-in-energy-based-models" class="nav-link" data-scroll-target="#math-review-from-scores-to-probabilities-in-energy-based-models">Math Review: From Scores to Probabilities in Energy-Based Models</a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
-  <li><a href="#limitations-of-energy-based-models" id="toc-limitations-of-energy-based-models" class="nav-link" data-scroll-target="#limitations-of-energy-based-models">Limitations of Energy-Based Models</a>
-  <ul class="collapse">
-  <li><a href="#hard-sampling" id="toc-hard-sampling" class="nav-link" data-scroll-target="#hard-sampling">Hard Sampling</a></li>
-  <li><a href="#hard-likelihood-evaluation-and-learning" id="toc-hard-likelihood-evaluation-and-learning" class="nav-link" data-scroll-target="#hard-likelihood-evaluation-and-learning">Hard Likelihood Evaluation and Learning</a></li>
-  <li><a href="#no-feature-learning-by-default" id="toc-no-feature-learning-by-default" class="nav-link" data-scroll-target="#no-feature-learning-by-default">No Feature Learning (by default)</a></li>
-  </ul></li>
+  <li><a href="#limitations-of-energy-based-models" id="toc-limitations-of-energy-based-models" class="nav-link" data-scroll-target="#limitations-of-energy-based-models">Limitations of Energy-Based Models</a></li>
   <li><a href="#learning-and-inference-in-energy-based-models" id="toc-learning-and-inference-in-energy-based-models" class="nav-link" data-scroll-target="#learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</a></li>
   <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence">Contrastive Divergence</a></li>
   <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models">Sampling from Energy-Based Models</a>
@@ -284,29 +279,23 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <section id="limitations-of-energy-based-models" class="level2">
 <h2 class="anchored" data-anchor-id="limitations-of-energy-based-models">Limitations of Energy-Based Models</h2>
 <p>Despite their elegance, EBMs pose serious challenges:</p>
-<section id="hard-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="hard-sampling">Hard Sampling</h3>
+<p>** Hard Sampling</p>
 <ul>
-<li>No direct way to draw samples from <span class="math display">\[p_\theta(x)\]</span></li>
+<li>No direct way to draw samples from <span class="math inline">\(p_\theta(x)\)</span></li>
 <li>Requires iterative MCMC methods</li>
 <li>Sampling cost is high and scales poorly in high dimensions</li>
 </ul>
-</section>
-<section id="hard-likelihood-evaluation-and-learning" class="level3">
-<h3 class="anchored" data-anchor-id="hard-likelihood-evaluation-and-learning">Hard Likelihood Evaluation and Learning</h3>
+<p>** Hard Likelihood Evaluation and Learning</p>
 <ul>
-<li>Partition function <span class="math display">\[Z(\theta)\]</span> is intractable</li>
-<li>Evaluating <span class="math display">\[\log p_\theta(x)\]</span> is not feasible</li>
+<li>Partition function <span class="math inline">\(Z(\theta)\)</span> is intractable</li>
+<li>Evaluating <span class="math inline">\(\log p_\theta(x)\)</span> is not feasible</li>
 <li>Need to push down energy of incorrect configurations to make learning effective</li>
 </ul>
-</section>
-<section id="no-feature-learning-by-default" class="level3">
-<h3 class="anchored" data-anchor-id="no-feature-learning-by-default">No Feature Learning (by default)</h3>
+<p>** No Feature Learning (by default)</p>
 <ul>
 <li>EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)</li>
 </ul>
 <hr>
-</section>
 </section>
 <section id="learning-and-inference-in-energy-based-models" class="level2">
 <h2 class="anchored" data-anchor-id="learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</h2>
