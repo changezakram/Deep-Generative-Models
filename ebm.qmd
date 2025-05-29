@@ -283,7 +283,7 @@ The second term pushes down the average score of the points that the model belie
 
 ### Challenge: The Expectation is Intractable
 
-The expectation \( \mathbb{E}_{x \sim p_\theta} [ \nabla_\theta f_\theta(x) ] \) involves **sampling from the model distribution** \( p_\theta(x) \), which requires computing or approximating the partition function \( Z(\theta) \). This is computationally expensive and often infeasible in practice.
+The expectation $ \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right] $ involves **sampling from the model distribution** $ p_\theta(x) $, which requires computing or approximating the partition function $ Z(\theta) $. This is computationally expensive and often infeasible in practice.
 
 ---
 
