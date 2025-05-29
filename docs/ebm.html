@@ -312,29 +312,20 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 </section>
 <section id="key-benefits-of-ebms" class="level3">
 <h3 class="anchored" data-anchor-id="key-benefits-of-ebms">Key Benefits of EBMs</h3>
-<section id="very-flexible-model-architectures" class="level4">
-<h4 class="anchored" data-anchor-id="very-flexible-model-architectures">Very flexible model architectures</h4>
-<p>No need for invertibility, autoregressive factorization, or adversarial design.</p>
-</section>
-<section id="stable-training" class="level4">
-<h4 class="anchored" data-anchor-id="stable-training">Stable training</h4>
-<p>Compared to GANs, EBMs can be more robust and easier to optimize.</p>
-</section>
-<section id="high-sample-quality" class="level4">
-<h4 class="anchored" data-anchor-id="high-sample-quality">High sample quality</h4>
-<p>Capable of modeling complex, multi-modal data distributions.</p>
-</section>
-<section id="flexible-composition" class="level4">
-<h4 class="anchored" data-anchor-id="flexible-composition">Flexible composition</h4>
-<p>Energies can be combined to support multi-task objectives or structured learning.</p>
+<p><strong>Very flexible model architectures</strong><br>
+No need for invertibility, autoregressive factorization, or adversarial design.</p>
+<p><strong>Stable training</strong><br>
+Compared to GANs, EBMs can be more robust and easier to optimize.</p>
+<p><strong>High sample quality</strong><br>
+Capable of modeling complex, multi-modal data distributions.</p>
+<p><strong>Flexible composition</strong><br>
+Energies can be combined to support multi-task objectives or structured learning.</p>
 <hr>
-</section>
 </section>
 <section id="limitations-of-ebms" class="level3">
 <h3 class="anchored" data-anchor-id="limitations-of-ebms">Limitations of EBMs</h3>
 <p>Despite their strengths, EBMs come with notable challenges:</p>
-<section id="hard-sampling" class="level4">
-<h4 class="anchored" data-anchor-id="hard-sampling">Hard Sampling</h4>
+<p><strong>Hard Sampling</strong></p>
 <ul>
 <li>No direct way to draw samples from <span class="math inline">\(p_\theta(x)\)</span><br>
 </li>
@@ -342,9 +333,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 </li>
 <li>Sampling cost is high and scales poorly in high dimensions</li>
 </ul>
-</section>
-<section id="hard-likelihood-evaluation-and-learning" class="level4">
-<h4 class="anchored" data-anchor-id="hard-likelihood-evaluation-and-learning">Hard Likelihood Evaluation and Learning</h4>
+<p><strong>Hard Likelihood Evaluation and Learning</strong></p>
 <ul>
 <li>Partition function <span class="math inline">\(Z(\theta)\)</span> is intractable to compute<br>
 </li>
@@ -352,14 +341,11 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 </li>
 <li>Learning requires <strong>pushing down energy of incorrect samples</strong>, not just increasing energy of training data</li>
 </ul>
-</section>
-<section id="no-feature-learning-by-default" class="level4">
-<h4 class="anchored" data-anchor-id="no-feature-learning-by-default">No Feature Learning (by default)</h4>
+<p><strong>No Feature Learning (by default)</strong></p>
 <ul>
 <li>EBMs do not learn latent representations unless explicitly modeled (e.g., using RBMs or structured latent energy functions)</li>
 </ul>
 <hr>
-</section>
 </section>
 </section>
 <section id="learning-and-inference-in-energy-based-models" class="level2">

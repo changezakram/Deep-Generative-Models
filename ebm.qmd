@@ -115,16 +115,16 @@ This formulation gives EBMs the freedom to use any differentiable function for $
 
 ### Key Benefits of EBMs
 
-#### Very flexible model architectures  
+**Very flexible model architectures**  
 No need for invertibility, autoregressive factorization, or adversarial design.
 
-#### Stable training  
+**Stable training**  
 Compared to GANs, EBMs can be more robust and easier to optimize.
 
-#### High sample quality  
+**High sample quality**  
 Capable of modeling complex, multi-modal data distributions.
 
-#### Flexible composition  
+**Flexible composition**  
 Energies can be combined to support multi-task objectives or structured learning.
 
 ---
@@ -133,19 +133,19 @@ Energies can be combined to support multi-task objectives or structured learning
 
 Despite their strengths, EBMs come with notable challenges:
 
-#### Hard Sampling
+**Hard Sampling**
 
 - No direct way to draw samples from $p_\theta(x)$  
 - Requires iterative MCMC methods (e.g., Langevin dynamics, Metropolis-Hastings)  
 - Sampling cost is high and scales poorly in high dimensions
 
-#### Hard Likelihood Evaluation and Learning
+**Hard Likelihood Evaluation and Learning**
 
 - Partition function $Z(\theta)$ is intractable to compute  
 - Cannot evaluate $\log p_\theta(x)$ directly  
 - Learning requires **pushing down energy of incorrect samples**, not just increasing energy of training data
 
-#### No Feature Learning (by default)
+**No Feature Learning (by default)**
 
 - EBMs do not learn latent representations unless explicitly modeled (e.g., using RBMs or structured latent energy functions)
 
