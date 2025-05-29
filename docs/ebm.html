@@ -431,7 +431,7 @@ The second term pushes down the average score of the points that the model belie
 </section>
 <section id="challenge-the-expectation-is-intractable" class="level3">
 <h3 class="anchored" data-anchor-id="challenge-the-expectation-is-intractable">Challenge: The Expectation is Intractable</h3>
-<p>The expectation $ <em>{x p</em>} $ involves <strong>sampling from the model distribution</strong> $ p_(x) $, which requires computing or approximating the partition function $ Z() $. This is computationally expensive and often infeasible in practice.</p>
+<p>The expectation <span class="math inline">\(\mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]\)</span> involves <strong>sampling from the model distribution</strong> <span class="math inline">\(p_\theta(x)\)</span>, which requires computing or approximating the partition function <span class="math inline">\(Z(\theta)\)</span>. This is computationally expensive and often infeasible in practice.</p>
 <hr>
 </section>
 <section id="solution-use-a-monte-carlo-approximation" class="level3">
@@ -449,8 +449,7 @@ The second term pushes down the average score of the points that the model belie
 </section>
 <section id="contrastive-divergence-algorithm" class="level3">
 <h3 class="anchored" data-anchor-id="contrastive-divergence-algorithm">Contrastive Divergence Algorithm</h3>
-<p><strong>1.</strong> Sample ( x_{} p_) (typically via MCMC)<br>
-<strong>2.</strong> Take a gradient step on:</p>
+<p><strong>1.</strong> Sample <span class="math inline">\(x_\text{sample} \sim p_\theta\)</span> (typically via MCMC) <strong>2.</strong> Take a gradient step on:</p>
 <p><span class="math display">\[
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
