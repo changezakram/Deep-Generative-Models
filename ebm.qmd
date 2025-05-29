@@ -148,6 +148,7 @@ Despite their strengths, EBMs come with notable challenges:
 ### 🚫 No Feature Learning (by default)
 
 - EBMs do not learn latent representations unless explicitly modeled (e.g., using RBMs or structured latent energy functions)
+
 ---
 
 ## Learning and Inference in Energy-Based Models
