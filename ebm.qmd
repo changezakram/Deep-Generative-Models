@@ -42,7 +42,7 @@ In generative modeling, a valid probability distribution $p(x)$ must satisfy:
   \int p(x)\, dx = 1
   $$
 
-Directly defining a function that satisfies both is difficult, especially when using flexible models like neural networks.
+While it’s easy to define a function that satisfies $p(x) \geq 0$ (e.g., using exponentials), ensuring that it also sums to 1 — i.e., $\int p(x)\, dx = 1$ — is much more difficult, especially for flexible functions like neural networks.
 
 ---
 
