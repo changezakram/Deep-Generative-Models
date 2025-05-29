@@ -301,6 +301,8 @@ $$
 This property is useful for tasks like ranking, anomaly detection, and denoising.
 :::
 
+While we can't sample from $p_\theta(x)$ directly due to the intractable $Z(\theta)$, we can still generate approximate samples using **Markov Chain Monte Carlo (MCMC)** methods.
+
 ---
 
 ### Markov Chain Monte Carlo (MCMC)
