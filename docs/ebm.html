@@ -381,6 +381,50 @@ Z(\theta) = \int \exp(f_\theta(x)) \, dx
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
 <p>This encourages the model to increase the score of training samples while decreasing the score of negative samples.</p>
+<hr>
+</section>
+<section id="understanding-the-gradient-of-the-partition-function" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-the-gradient-of-the-partition-function">Understanding the Gradient of the Partition Function</h3>
+<p>To train EBMs, we often need to compute the gradient of the log partition function:</p>
+<p><span class="math display">\[
+\nabla_\theta \log Z(\theta)
+\]</span></p>
+<p>Let’s unpack what this means.</p>
+<p>We know the partition function is:</p>
+<p><span class="math display">\[
+Z(\theta) = \int \exp(f_\theta(x))\, dx
+\]</span></p>
+<p>Taking the gradient of a log function follows this identity:</p>
+<p><span class="math display">\[
+\nabla_\theta \log f(\theta) = \frac{1}{f(\theta)} \nabla_\theta f(\theta)
+\]</span></p>
+<p>Using this, we get:</p>
+<p><span class="math display">\[
+\nabla_\theta \log Z(\theta)
+= \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
+\]</span></p>
+<p>This is a <strong>weighted sum</strong> of the gradients ( <em>f</em>(x) ), where the weight of each ( x ) is proportional to how likely it is under the model.</p>
+<p>Since the model defines:</p>
+<p><span class="math display">\[
+p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
+\]</span></p>
+<p>we can rewrite the gradient of the log partition function as an <strong>expectation</strong>:</p>
+<p><span class="math display">\[
+\nabla_\theta \log Z(\theta)
+= \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+\]</span></p>
+<hr>
+</section>
+<section id="intuition-2" class="level3">
+<h3 class="anchored" data-anchor-id="intuition-2">Intuition</h3>
+<p>This expectation means we’re averaging the gradient ( <em>f</em>(x) ), but not over arbitrary data — only over the inputs that the model currently believes are likely (i.e., sampled from ( p_(x) )).</p>
+<p>So we can interpret this gradient as:</p>
+<blockquote class="blockquote">
+<p>The average direction in which the model wants to increase the scores of samples it already thinks are likely.</p>
+</blockquote>
+<p>This explains why we must “push down” the scores for these high-probability samples during training to reduce ( Z() ) and improve contrast.</p>
+<hr>
 </section>
 </section>
 <section id="references" class="level2">

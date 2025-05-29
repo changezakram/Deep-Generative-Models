@@ -217,7 +217,67 @@ $$
 
 This encourages the model to increase the score of training samples while decreasing the score of negative samples.
 
+---
 
+
+### Understanding the Gradient of the Partition Function
+
+To train EBMs, we often need to compute the gradient of the log partition function:
+
+$$
+\nabla_\theta \log Z(\theta)
+$$
+
+Let’s unpack what this means.
+
+We know the partition function is:
+
+$$
+Z(\theta) = \int \exp(f_\theta(x))\, dx
+$$
+
+Taking the gradient of a log function follows this identity:
+
+$$
+\nabla_\theta \log f(\theta) = \frac{1}{f(\theta)} \nabla_\theta f(\theta)
+$$
+
+Using this, we get:
+
+$$
+\nabla_\theta \log Z(\theta)
+= \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
+$$
+
+This is a **weighted sum** of the gradients \( \nabla_\theta f_\theta(x) \), where the weight of each \( x \) is proportional to how likely it is under the model.
+
+Since the model defines:
+
+$$
+p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
+$$
+
+we can rewrite the gradient of the log partition function as an **expectation**:
+
+$$
+\nabla_\theta \log Z(\theta)
+= \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+$$
+
+---
+
+### Intuition
+
+This expectation means we’re averaging the gradient \( \nabla_\theta f_\theta(x) \), but not over arbitrary data — only over the inputs that the model currently believes are likely (i.e., sampled from \( p_\theta(x) \)).
+
+So we can interpret this gradient as:
+
+> The average direction in which the model wants to increase the scores of samples it already thinks are likely.
+
+This explains why we must “push down” the scores for these high-probability samples during training to reduce \( Z(\theta) \) and improve contrast.
+
+---
 
 ## 📚 References
 
