@@ -76,7 +76,8 @@ Think of $g_\theta(x)$ as a scoring function:
 
 ### From Scores to Probabilities in EBMs
 
-Energy-Based Models use the same framework we've built above — defining a flexible score function $f_\theta(x)$ and converting it into a probability via exponentiation and normalization.
+Energy-Based Models follow the same idea we've established earlier: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, and then convert these scores into probabilities using an exponential transformation and normalization.  
+This allows us to build flexible probabilistic models without needing tractable likelihoods or invertible mappings.
 
 We use an **exponential function** because:
 
@@ -90,13 +91,19 @@ $$
 g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
 $$
 
-Letting $E_\theta(x) = -f_\theta(x)$, we get:
+To align with the physical intuition that lower energy = higher probability, we define the **energy function** as:
+
+$$
+E_\theta(x) = -f_\theta(x)
+$$
+
+This gives us the classic EBM form:
 
 $$
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 $$
 
-This formulation gives EBMs the freedom to use any differentiable function for $f_\theta(x)$ without requiring invertibility or autoregressive factorization.
+This formulation gives EBMs the freedom to use any differentiable function for $f_\theta(x)$, and only requires that we can compute or approximate its gradients.
 
 ---
 
