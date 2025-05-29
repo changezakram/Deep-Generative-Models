@@ -385,43 +385,43 @@ Z(\theta) = \int \exp(f_\theta(x)) \, dx
 </section>
 <section id="understanding-the-gradient-of-the-partition-function" class="level3">
 <h3 class="anchored" data-anchor-id="understanding-the-gradient-of-the-partition-function">Understanding the Gradient of the Partition Function</h3>
-<p>To train EBMs, we often need to compute the gradient of the log partition function:</p>
+<p>Training EBMs involves computing the gradient of the log partition function:</p>
 <p><span class="math display">\[
 \nabla_\theta \log Z(\theta)
 \]</span></p>
-<p>We know the partition function is:</p>
+<p>This might look abstract, so let’s break it down.</p>
+<p>We start with the definition of the partition function:</p>
 <p><span class="math display">\[
 Z(\theta) = \int \exp(f_\theta(x))\, dx
 \]</span></p>
-<p>Let’s compute its gradient. Using the chain rule for logs:</p>
+<p>Taking the gradient of the log of this quantity using the chain rule:</p>
 <p><span class="math display">\[
 \nabla_\theta \log Z(\theta)
 = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
 = \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
 \]</span></p>
-<p>This expression tells us that we are taking a <strong>weighted average</strong> of the gradients ( <em>f</em>(x) ), where each gradient is weighted by how likely ( x ) is under the model — proportional to ( (f_(x)) ).</p>
-<p>But we know that:</p>
+<p>This is a <strong>weighted average</strong> of gradients ( <em>f</em>(x) ), where each weight is proportional to how likely ( x ) is under the model.</p>
+<p>Using the definition of the model distribution:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 \]</span></p>
-<p>So we can rewrite the gradient more cleanly as:</p>
+<p>we can simplify the gradient to:</p>
 <p><span class="math display">\[
 \nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 \]</span></p>
 <hr>
 </section>
-<section id="connecting-to-likelihood-gradient" class="level3">
-<h3 class="anchored" data-anchor-id="connecting-to-likelihood-gradient">Connecting to Likelihood Gradient</h3>
-<p>Recall that the log-likelihood of training data is:</p>
+<section id="connecting-to-the-log-likelihood-gradient" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-to-the-log-likelihood-gradient">Connecting to the Log-Likelihood Gradient</h3>
+<p>In training, our objective is to <strong>maximize the log-likelihood</strong> of training data:</p>
 <p><span class="math display">\[
 \log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
 \]</span></p>
-<p>Taking the gradient with respect to ( ):</p>
+<p>Taking its gradient:</p>
 <p><span class="math display">\[
-\nabla_\theta \log p_\theta(x_{\text{train}})
-= \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
 \]</span></p>
-<p>Substituting the result we just derived:</p>
+<p>Substitute the earlier result:</p>
 <p><span class="math display">\[
 \nabla_\theta \log p_\theta(x_{\text{train}})
 = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
@@ -431,11 +431,11 @@ p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 <section id="intuition-2" class="level3">
 <h3 class="anchored" data-anchor-id="intuition-2">Intuition</h3>
 <ul>
-<li>The first term increases the score of the actual training point — we want it to be more likely.</li>
-<li>The second term <strong>averages the score gradients</strong> over everything the model currently thinks is likely.</li>
-<li>The model learns by <strong>increasing the score of the correct data</strong> and <strong>decreasing the score of samples it mistakenly believes are likely</strong>.</li>
+<li><strong>Pull up the training example</strong>: The first term increases the score of the training data.</li>
+<li><strong>Push down other samples</strong>: The second term is an average over model samples — it reduces the scores of other points the model currently believes are likely.</li>
+<li><strong>Net effect</strong>: Make the training data stand out as more likely than the rest.</li>
 </ul>
-<p>This is the core principle behind training Energy-Based Models: pull up the data you want, push down the rest.</p>
+<p>This balance is what makes EBM learning effective: boost the good, suppress the rest.</p>
 <hr>
 </section>
 </section>
