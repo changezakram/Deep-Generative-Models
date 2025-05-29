@@ -91,7 +91,7 @@ $$
 g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
 $$
 
-To align with the physical intuition that lower energy = higher probability, we define the **energy function** as:
+To align with the physics intuition that lower energy = higher probability, we define the **energy function** as:
 
 $$
 E_\theta(x) = -f_\theta(x)
