@@ -40,6 +40,38 @@ Here, $$Z_\theta = \int e^{-E_\theta(x)} dx$$ is the **partition function**, whi
 
 ---
 
+
+## Key Benefits of EBMs
+
+- **Very flexible model architectures**: No need for invertibility, factorization, or adversarial design.
+- **Stable training**: Compared to GANs, EBMs can be more robust.
+- **Relatively high sample quality**: Can model multi-modal data well.
+- **Flexible composition**: Combine energies for multi-task objectives.
+
+---
+
+## Limitations of EBMs
+
+Despite their elegance, EBMs pose serious challenges:
+
+**Hard Sampling**
+
+- No direct way to draw samples from $p_\theta(x)$
+- Requires iterative MCMC methods
+- Sampling cost is high and scales poorly in high dimensions
+
+**Hard Likelihood Evaluation and Learning**
+
+- Partition function $Z(\theta)$ is intractable
+- Evaluating $\log p_\theta(x)$ is not feasible
+- Need to push down energy of incorrect configurations to make learning effective
+
+**No Feature Learning (by default)**
+
+- EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)
+
+---
+
 ## Math Review: From Scores to Probabilities in Energy-Based Models
 
 In generative modeling, a valid probability distribution $p(x)$ must satisfy:
@@ -76,35 +108,6 @@ So the model becomes:
 $$
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 $$
-
----
-
-## Key Benefits of EBMs
-
-- **Very flexible model architectures**: No need for invertibility, factorization, or adversarial design.
-- **Stable training**: Compared to GANs, EBMs can be more robust.
-- **Relatively high sample quality**: Can model multi-modal data well.
-- **Flexible composition**: Combine energies for multi-task objectives.
-
----
-
-## Limitations of EBMs
-
-Despite their elegance, EBMs pose serious challenges:
-
-**Hard Sampling**
-- No direct way to draw samples from $p_\theta(x)$
-- Requires iterative MCMC methods
-- Sampling cost is high and scales poorly in high dimensions
-
-**Hard Likelihood Evaluation and Learning**
-- Partition function $Z(\theta)$ is intractable
-- Evaluating $\log p_\theta(x)$ is not feasible
-- Need to push down energy of incorrect configurations to make learning effective
-
-**No Feature Learning (by default)**
-
-- EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)
 
 ---
 
