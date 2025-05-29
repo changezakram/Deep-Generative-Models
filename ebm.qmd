@@ -324,6 +324,104 @@ This approach works in theory but can take a **very long time to converge**, esp
 
 ---
 
+## Sampling from Energy-Based Models
+
+Sampling from an energy-based model is challenging because we cannot directly sample from the distribution $begin:math:text$ p_\\theta(x) = \\frac{1}{Z(\\theta)} \\exp(f_\\theta(x)) $end:math:text$ — the partition function $begin:math:text$ Z(\\theta) $end:math:text$ is typically intractable.
+
+Yet many applications of EBMs (e.g., generation, likelihood estimation, training) require drawing samples from this model. So we turn to **Markov Chain Monte Carlo (MCMC)** methods to do this approximately.
+
+---
+
+### 🔁 Markov Chain Monte Carlo (MCMC)
+
+The key idea of MCMC is to construct a Markov chain whose stationary distribution is $begin:math:text$ p_\\theta(x) $end:math:text$. This lets us obtain samples by running the chain long enough.
+
+---
+
+### 1. Metropolis-Hastings
+
+A classic MCMC algorithm. At each step:
+
+1. Propose $begin:math:text$ x' = x^t + \\text{noise} $end:math:text$
+2. Accept $begin:math:text$ x' $end:math:text$ with probability $begin:math:text$ \\min\\left(1, \\exp(f_\\theta(x') - f_\\theta(x^t)) \\right) $end:math:text$
+
+**Pros**:
+- General-purpose
+- Guaranteed to converge to $begin:math:text$ p_\\theta(x) $end:math:text$ under mild conditions
+
+**Cons**:
+- Can be slow to mix (i.e., slow convergence)
+- Sensitive to proposal distribution
+- Computationally expensive in high dimensions
+
+---
+
+### 2. Unadjusted Langevin MCMC
+
+Langevin MCMC uses gradient information to guide proposals:
+
+1. Initialize $begin:math:text$ x^0 \\sim \\pi(x) $end:math:text$
+2. Iterate:  
+   $begin:math:text$ x^{t+1} = x^t + \\epsilon \\nabla_x \\log p_\\theta(x^t) + \\sqrt{2\\epsilon} z^t $end:math:text$,  
+   where $begin:math:text$ z^t \\sim \\mathcal{N}(0, I) $end:math:text$
+
+For EBMs, this becomes:
+$$
+x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
+$$
+
+**Pros**:
+- Exploits gradients to move toward high-probability regions
+- More efficient than purely random proposals
+
+**Cons**:
+- Only approximate (no accept/reject step)
+- Needs small step size $begin:math:text$ \\epsilon $end:math:text$
+- Still slow in high dimensions
+
+---
+
+### 3. Metropolis-Adjusted Langevin Algorithm (MALA)
+
+Same proposal as Langevin MCMC, but adds a **Metropolis-Hastings correction** to guarantee correctness:
+
+1. Propose with Langevin update  
+2. Accept/reject using MH step to correct for bias
+
+**Pros**:
+- Improved accuracy vs. unadjusted Langevin
+- Faster mixing than standard MH
+
+**Cons**:
+- Higher compute cost (MH step)
+- Still sensitive to hyperparameters
+
+---
+
+### 4. Hamiltonian Monte Carlo (HMC)
+
+Inspired by physics. Introduces a momentum variable and simulates Hamiltonian dynamics to propose distant, high-probability samples.
+
+**Pros**:
+- Efficient exploration
+- Lower correlation between samples
+
+**Cons**:
+- Complex to implement
+- Requires gradient and tuning of multiple parameters (e.g., step size, number of leapfrog steps)
+
+---
+
+### ⏳ Practical Considerations
+
+- All these methods **converge in theory**, but can be slow in high-dimensional spaces
+- In practice, **sampling can dominate EBM training cost**, especially for **Contrastive Divergence**, where sampling is needed at every gradient step
+
+::: {.callout-note}
+**Key Tradeoff**: Efficient sampling is essential for fast and stable EBM training. Each method offers a balance between speed, accuracy, and implementation complexity.
+:::
+
+
 ## 📚 References
 
 [1] Atcold, Y. (2020). *NYU Deep Learning Spring 2020 – Week 07: Energy-Based Models*. Retrieved from [https://atcold.github.io/NYU-DLSP20/en/week07/07-1/](https://atcold.github.io/NYU-DLSP20/en/week07/07-1/)
