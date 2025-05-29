@@ -255,12 +255,11 @@ $$
 
 This encourages the model to increase the score of the training sample and decrease the score of samples it currently believes are likely.
 
-::: {.callout-tip}
-**EBM Training Recap:**
-
-- Want: High scores (low energy) for real data
-- Avoid: High scores for incorrect data
-- Can't compute exact gradient due to $Z(\theta)$
+::: {.callout-note appearance="simple"}
+**EBM Training Recap**  
+- Want: High scores (low energy) for real data  
+- Avoid: High scores for incorrect data  
+- Can’t compute exact gradient due to $Z(\theta)$  
 - So: Approximate using Monte Carlo sample $\sim p_\theta(x)$
 :::
 

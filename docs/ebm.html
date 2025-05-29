@@ -408,23 +408,18 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
 <p>This encourages the model to increase the score of the training sample and decrease the score of samples it currently believes are likely.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Tip
+<div class="callout-body-container">
+<p><strong>EBM Training Recap</strong><br>
+- Want: High scores (low energy) for real data<br>
+- Avoid: High scores for incorrect data<br>
+- Can’t compute exact gradient due to <span class="math inline">\(Z(\theta)\)</span><br>
+- So: Approximate using Monte Carlo sample <span class="math inline">\(\sim p_\theta(x)\)</span></p>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>EBM Training Recap:</strong></p>
-<ul>
-<li>Want: High scores (low energy) for real data</li>
-<li>Avoid: High scores for incorrect data</li>
-<li>Can’t compute exact gradient due to <span class="math inline">\(Z(\theta)\)</span></li>
-<li>So: Approximate using Monte Carlo sample <span class="math inline">\(\sim p_\theta(x)\)</span></li>
-</ul>
 </div>
 </div>
 <hr>
