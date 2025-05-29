@@ -437,6 +437,99 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 </p>
 <hr>
 </section>
+<section id="sampling-from-energy-based-models" class="level3">
+<h3 class="anchored" data-anchor-id="sampling-from-energy-based-models">Sampling from Energy-Based Models</h3>
+<p>Recall that EBMs define probability using an unnormalized score function:</p>
+<p><span class="math display">\[
+p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
+\]</span></p>
+<p>The challenge is that <strong>sampling directly from</strong> <span class="math inline">\(p_\theta(x)\)</span> is not straightforward, because:</p>
+<ul>
+<li>There’s <strong>no closed-form inverse</strong> (unlike normalizing flows)<br>
+</li>
+<li>We <strong>can’t easily compute likelihoods</strong><br>
+</li>
+<li>We must use iterative techniques like MCMC</li>
+</ul>
+<p>However, there’s good news:</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Key Insight</strong><br>
+We <strong>can compare two samples</strong> <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span> without needing the partition function:</p>
+<p><span class="math display">\[
+\frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
+\]</span></p>
+<p>This ratio is useful for ranking, denoising, and anomaly detection.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="metropolis-hastings-sampling-mh-mcmc" class="level3">
+<h3 class="anchored" data-anchor-id="metropolis-hastings-sampling-mh-mcmc">Metropolis-Hastings Sampling (MH-MCMC)</h3>
+<p>We can use a Markov Chain Monte Carlo method to sample from <span class="math inline">\(p_\theta(x)\)</span>:</p>
+<ol type="1">
+<li>Initialize <span class="math inline">\(x^0 \sim \pi(x)\)</span> from a simple prior (e.g., uniform or Gaussian)<br>
+</li>
+<li>At each step <span class="math inline">\(t\)</span>, propose <span class="math inline">\(x' = x^t + \text{noise}\)</span><br>
+</li>
+<li>Accept <span class="math inline">\(x'\)</span> as <span class="math inline">\(x^{t+1}\)</span> with probability:</li>
+</ol>
+<p><span class="math display">\[
+\min\left(1, \exp(f_\theta(x') - f_\theta(x^t))\right)
+\]</span></p>
+<ol start="4" type="1">
+<li>Repeat until convergence</li>
+</ol>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why it works</strong><br>
+This procedure satisfies the <strong>detailed balance condition</strong>, meaning the Markov chain will eventually converge to the target distribution <span class="math inline">\(p_\theta(x)\)</span>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="langevin-dynamics" class="level3">
+<h3 class="anchored" data-anchor-id="langevin-dynamics">Langevin Dynamics</h3>
+<p>We can make sampling more efficient by using gradients:</p>
+<ol type="1">
+<li>Start from <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
+</li>
+<li>Repeat for <span class="math inline">\(t = 0, 1, 2, \dots, T - 1\)</span>:</li>
+</ol>
+<p><span class="math display">\[
+x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t, \quad z^t \sim \mathcal{N}(0, I)
+\]</span></p>
+<p>For EBMs, this simplifies to:</p>
+<p><span class="math display">\[
+\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
+\]</span></p>
+<p>Because the partition function <span class="math inline">\(Z(\theta)\)</span> is constant with respect to <span class="math inline">\(x\)</span>, its gradient vanishes:</p>
+<p><span class="math display">\[
+\nabla_x \log Z(\theta) = 0
+\]</span></p>
+<hr>
+</section>
+<section id="practical-challenges" class="level3">
+<h3 class="anchored" data-anchor-id="practical-challenges">Practical Challenges</h3>
+<ul>
+<li>These methods <strong>require many steps</strong> to converge<br>
+</li>
+<li>Sampling in <strong>high dimensions</strong> is slow<br>
+</li>
+<li>Yet, we need to do this <strong>during every training step</strong> (e.g., in contrastive divergence)</li>
+</ul>
+<hr>
+</section>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">📚 References</h2>

@@ -280,6 +280,89 @@ This encourages the model to increase the score of the training sample and decre
 
 ---
 
+### Sampling from Energy-Based Models
+
+Recall that EBMs define probability using an unnormalized score function:
+
+$$
+p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
+$$
+
+The challenge is that **sampling directly from** $p_\theta(x)$ is not straightforward, because:
+
+- There's **no closed-form inverse** (unlike normalizing flows)  
+- We **can't easily compute likelihoods**  
+- We must use iterative techniques like MCMC  
+
+However, there's good news:
+
+::: {.callout-tip appearance="simple"}
+**Key Insight**  
+We **can compare two samples** $x$ and $x'$ without needing the partition function:
+
+$$
+\frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
+$$
+
+This ratio is useful for ranking, denoising, and anomaly detection.
+:::
+
+---
+
+### Metropolis-Hastings Sampling (MH-MCMC)
+
+We can use a Markov Chain Monte Carlo method to sample from $p_\theta(x)$:
+
+1. Initialize $x^0 \sim \pi(x)$ from a simple prior (e.g., uniform or Gaussian)  
+2. At each step $t$, propose $x' = x^t + \text{noise}$  
+3. Accept $x'$ as $x^{t+1}$ with probability:
+
+$$
+\min\left(1, \exp(f_\theta(x') - f_\theta(x^t))\right)
+$$
+
+4. Repeat until convergence
+
+::: {.callout-note appearance="simple"}
+**Why it works**  
+This procedure satisfies the **detailed balance condition**, meaning the Markov chain will eventually converge to the target distribution $p_\theta(x)$.
+:::
+
+---
+
+### Langevin Dynamics
+
+We can make sampling more efficient by using gradients:
+
+1. Start from $x^0 \sim \pi(x)$  
+2. Repeat for $t = 0, 1, 2, \dots, T - 1$:
+
+$$
+x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t, \quad z^t \sim \mathcal{N}(0, I)
+$$
+
+For EBMs, this simplifies to:
+
+$$
+\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
+$$
+
+Because the partition function $Z(\theta)$ is constant with respect to $x$, its gradient vanishes:
+
+$$
+\nabla_x \log Z(\theta) = 0
+$$
+
+---
+
+### Practical Challenges
+
+- These methods **require many steps** to converge  
+- Sampling in **high dimensions** is slow  
+- Yet, we need to do this **during every training step** (e.g., in contrastive divergence)
+
+---
+
 ## 📚 References
 
 [1] Atcold, Y. (2020). *NYU Deep Learning Spring 2020 – Week 07: Energy-Based Models*. Retrieved from [https://atcold.github.io/NYU-DLSP20/en/week07/07-1/](https://atcold.github.io/NYU-DLSP20/en/week07/07-1/)
