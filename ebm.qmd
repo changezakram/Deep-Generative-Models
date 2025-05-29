@@ -324,63 +324,91 @@ This approach works in theory but can take a **very long time to converge**, esp
 
 ---
 
+**TESTING**
 
+---
 
+## Sampling from EBMs
 
+The challenge with sampling from an energy-based model is that we define:
 
+$$
+p_\\theta(x) = \\frac{1}{Z(\\theta)} \\exp(f_\\theta(x))
+$$
 
+Unlike autoregressive or flow-based models, there’s **no direct way to sample** from this distribution, because computing the normalizing constant $Z(\\theta)$ is intractable. However, we **can still compare scores** of different $x$ — which allows us to build samples iteratively.
 
-## 🔁 Markov Chain Monte Carlo (MCMC)
+---
 
-The key idea of MCMC is to construct a Markov chain whose stationary distribution is  
-$p_\theta(x)$. This lets us obtain samples by running the chain long enough.
+### Markov Chain Monte Carlo (MCMC)
+
+The core idea behind MCMC is to construct a Markov chain whose stationary distribution is $p_\\theta(x)$. If we run the chain long enough, we can sample approximately from the target distribution.
 
 ---
 
 ### 1. Metropolis-Hastings
 
-A classic MCMC algorithm. At each step:
+A classic MCMC method. At each step:
 
-1. Propose $x' = x^t + \text{noise}$
-2. Accept $x'$ with probability  
-   $\min\left(1, \exp(f_\theta(x') - f_\theta(x^t)) \right)$
+1. Propose a new sample:  
+   $$
+   x' = x^t + \\text{noise}
+   $$
 
-**Pros**:  
-- General-purpose  
-- Guaranteed to converge to $p_\theta(x)$ under mild conditions
+2. Accept the new sample with probability:  
+   $$
+   \\min\\left(1, \\exp(f_\\theta(x') - f_\\theta(x^t)) \\right)
+   $$
 
-**Cons**:  
-- Can be slow to mix (i.e., slow convergence)  
-- Sensitive to proposal distribution  
+**Pros**:
+- General-purpose
+- Guaranteed to converge to $p_\\theta(x)$ under mild conditions
+
+**Cons**:
+- Can be slow to mix (i.e., slow convergence)
+- Sensitive to proposal distribution
 - Computationally expensive in high dimensions
 
 ---
 
 ### 2. Unadjusted Langevin MCMC
 
-Langevin MCMC uses gradient information to guide proposals:
+Langevin MCMC improves sampling by incorporating gradient information.
 
-1. Initialize $x^0 \sim \pi(x)$  
+1. Initialize $x^0 \\sim \\pi(x)$  
 2. Iterate:  
-   $x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t$  
-   where $z^t \sim \mathcal{N}(0, I)$
+   $$
+   x^{t+1} = x^t + \\epsilon \\nabla_x \\log p_\\theta(x^t) + \\sqrt{2\\epsilon} z^t
+   $$  
+   where $z^t \\sim \\mathcal{N}(0, I)$
 
-For EBMs, this becomes:
+For EBMs, since $\\nabla_x \\log p_\\theta(x) = \\nabla_x f_\\theta(x)$:
 
 $$
-x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
+x^{t+1} = x^t + \\epsilon \\nabla_x f_\\theta(x^t) + \\sqrt{2\\epsilon} z^t
 $$
 
-**Pros**:  
-- Leverages gradients to move toward likely regions  
-- More efficient than random proposals
+**Pros**:
+- Uses gradient to guide sampling
+- Faster mixing than vanilla MCMC
 
-**Cons**:  
-- No MH correction → approximate only  
-- Sensitive to step size  
-- Still slow in high dimensions
+**Cons**:
+- Still computationally expensive
+- Convergence slows in high dimensions
 
 ---
+
+### 3. Summary of Trade-offs
+
+| Method               | Gradient Use | Pros                                    | Cons                                            |
+|----------------------|--------------|-----------------------------------------|-------------------------------------------------|
+| Metropolis-Hastings  | ❌ No         | General, proven convergence              | Slow mixing, inefficient in high dimensions     |
+| Unadjusted Langevin  | ✅ Yes        | Gradient-guided, faster mixing           | Still costly, can suffer from discretization    |
+
+::: {.callout-tip appearance="simple"}
+**Key Insight**  
+MCMC allows us to sample from EBMs even when we can’t normalize $p_\\theta(x)$. But these methods are **slow** and **scale poorly** in high dimensions — especially when needed for every training step.
+:::
 
 ## 📚 References
 
