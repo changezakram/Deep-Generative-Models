@@ -304,7 +304,7 @@ This allows EBMs to be useful even when the partition function is intractable.</
 <p><span class="math display">\[
 \frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
 \]</span></p>
-<p>does <strong>not</strong> involve <span class="math inline">\(Z(\theta)\)</span>.</p>
+<p>This does <strong>not</strong> involve <span class="math inline">\(Z(\theta)\)</span>.</p>
 <p>This lets us determine which input is more likely — without ever computing <span class="math inline">\(Z(\theta)\)</span> — a powerful advantage of EBMs.</p>
 <p><strong>Practical Applications</strong>:</p>
 <ul>
@@ -438,6 +438,9 @@ Tip
 <li>The model improves by sharpening its belief in real data and correcting mistaken high-scoring areas of the space.</li>
 </ul>
 <p><img src="images/ebm_training_flow.png" class="img-fluid" alt="Visualizing EBM training"> <em>During training, EBMs increase the score (i.e., lower energy) of correct samples and decrease the score of incorrect ones.</em></p>
+<p class="caption" style="font-size: 0.85em; color: #666; margin-top: -0.5em;">
+<em>Source: course material from <a href="https://deepgenerativemodels.github.io/assets/slides/cs236_lecture11.pdf" target="_blank">CS236: Deep Generative Models</a></em>
+</p>
 <hr>
 </section>
 </section>
