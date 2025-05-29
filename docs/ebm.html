@@ -435,18 +435,7 @@ p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 <li>The second term <strong>averages the score gradients</strong> over everything the model currently thinks is likely.</li>
 <li>The model learns by <strong>increasing the score of the correct data</strong> and <strong>decreasing the score of samples it mistakenly believes are likely</strong>.</li>
 </ul>
-</section>
-</section>
-<section id="this-is-the-core-principle-behind-training-energy-based-models-pull-up-the-data-you-want-push-down-the-rest." class="level2">
-<h2 class="anchored" data-anchor-id="this-is-the-core-principle-behind-training-energy-based-models-pull-up-the-data-you-want-push-down-the-rest.">This is the core principle behind training Energy-Based Models: pull up the data you want, push down the rest.</h2>
-<section id="intuition-3" class="level3">
-<h3 class="anchored" data-anchor-id="intuition-3">Intuition</h3>
-<p>This expectation means we’re averaging the gradient ( <em>f</em>(x) ), but not over arbitrary data — only over the inputs that the model currently believes are likely (i.e., sampled from ( p_(x) )).</p>
-<p>So we can interpret this gradient as:</p>
-<blockquote class="blockquote">
-<p>The average direction in which the model wants to increase the scores of samples it already thinks are likely.</p>
-</blockquote>
-<p>This explains why we must “push down” the scores for these high-probability samples during training to reduce ( Z() ) and improve contrast.</p>
+<p>This is the core principle behind training Energy-Based Models: pull up the data you want, push down the rest.</p>
 <hr>
 </section>
 </section>

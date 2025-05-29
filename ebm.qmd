@@ -289,17 +289,6 @@ $$
 - The model learns by **increasing the score of the correct data** and **decreasing the score of samples it mistakenly believes are likely**.
 
 This is the core principle behind training Energy-Based Models: pull up the data you want, push down the rest.
----
-
-### Intuition
-
-This expectation means we’re averaging the gradient \( \nabla_\theta f_\theta(x) \), but not over arbitrary data — only over the inputs that the model currently believes are likely (i.e., sampled from \( p_\theta(x) \)).
-
-So we can interpret this gradient as:
-
-> The average direction in which the model wants to increase the scores of samples it already thinks are likely.
-
-This explains why we must “push down” the scores for these high-probability samples during training to reduce \( Z(\theta) \) and improve contrast.
 
 ---
 
