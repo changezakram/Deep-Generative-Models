@@ -142,13 +142,12 @@ window.Quarto = {
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#limitations-of-mainstream-generative-models" id="toc-limitations-of-mainstream-generative-models" class="nav-link" data-scroll-target="#limitations-of-mainstream-generative-models">Limitations of Mainstream Generative Models</a></li>
-  <li><a href="#understanding-the-probability-foundation-behind-ebms" id="toc-understanding-the-probability-foundation-behind-ebms" class="nav-link" data-scroll-target="#understanding-the-probability-foundation-behind-ebms">📐 Understanding the Probability Foundation Behind EBMs</a>
+  <li><a href="#understanding-the-probability-foundation-behind-ebms" id="toc-understanding-the-probability-foundation-behind-ebms" class="nav-link" data-scroll-target="#understanding-the-probability-foundation-behind-ebms">Understanding the Probability Foundation Behind EBMs</a>
   <ul class="collapse">
-  <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx">💡 Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
-  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">🧠 Intuition</a></li>
-  <li><a href="#connecting-to-ebms" id="toc-connecting-to-ebms" class="nav-link" data-scroll-target="#connecting-to-ebms">🔗 Connecting to EBMs</a></li>
+  <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
+  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
+  <li><a href="#connecting-to-ebms" id="toc-connecting-to-ebms" class="nav-link" data-scroll-target="#connecting-to-ebms">Connecting to EBMs</a></li>
   </ul></li>
-  <li><a href="#this-formulation-is-powerful-because-it-allows-maximum-flexibility-in-defining-f_thetax-and-only-requires-that-we-can-compute-or-approximate-the-gradients-of-the-energy-function." id="toc-this-formulation-is-powerful-because-it-allows-maximum-flexibility-in-defining-f_thetax-and-only-requires-that-we-can-compute-or-approximate-the-gradients-of-the-energy-function." class="nav-link" data-scroll-target="#this-formulation-is-powerful-because-it-allows-maximum-flexibility-in-defining-f_thetax-and-only-requires-that-we-can-compute-or-approximate-the-gradients-of-the-energy-function.">This formulation is powerful because it allows maximum flexibility in defining <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate the gradients of the energy function.</a></li>
   <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
   <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">Limitations of EBMs</a></li>
@@ -233,7 +232,7 @@ window.Quarto = {
 <hr>
 </section>
 <section id="understanding-the-probability-foundation-behind-ebms" class="level2">
-<h2 class="anchored" data-anchor-id="understanding-the-probability-foundation-behind-ebms">📐 Understanding the Probability Foundation Behind EBMs</h2>
+<h2 class="anchored" data-anchor-id="understanding-the-probability-foundation-behind-ebms">Understanding the Probability Foundation Behind EBMs</h2>
 <p>In generative modeling, a valid probability distribution <span class="math inline">\(p(x)\)</span> must satisfy:</p>
 <ul>
 <li><p><strong>Non-negativity</strong>:<br>
@@ -248,7 +247,7 @@ p(x) \geq 0
 <p>Directly defining a function that satisfies both is difficult, especially when using flexible models like neural networks.</p>
 <hr>
 <section id="why-do-we-introduce-gx" class="level3">
-<h3 class="anchored" data-anchor-id="why-do-we-introduce-gx">💡 Why do we introduce <span class="math inline">\(g(x)\)</span>?</h3>
+<h3 class="anchored" data-anchor-id="why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</h3>
 <p>Instead of modeling <span class="math inline">\(p(x)\)</span> directly, we define a non-negative function <span class="math inline">\(g(x) \geq 0\)</span> and turn it into a probability distribution by normalizing:</p>
 <p><span class="math display">\[
 p(x) = \frac{g(x)}{Z}, \quad \text{where} \quad Z = \int g(x)\, dx
@@ -262,7 +261,7 @@ p(x) = \frac{g(x)}{Z}, \quad \text{where} \quad Z = \int g(x)\, dx
 <hr>
 </section>
 <section id="intuition" class="level3">
-<h3 class="anchored" data-anchor-id="intuition">🧠 Intuition</h3>
+<h3 class="anchored" data-anchor-id="intuition">Intuition</h3>
 <p>Think of <span class="math inline">\(g(x)\)</span> as a scoring function:</p>
 <ul>
 <li>Higher <span class="math inline">\(g(x)\)</span> means more likely<br>
@@ -272,7 +271,7 @@ p(x) = \frac{g(x)}{Z}, \quad \text{where} \quad Z = \int g(x)\, dx
 <hr>
 </section>
 <section id="connecting-to-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="connecting-to-ebms">🔗 Connecting to EBMs</h3>
+<h3 class="anchored" data-anchor-id="connecting-to-ebms">Connecting to EBMs</h3>
 <p>In EBMs, we define:</p>
 <p><span class="math display">\[
 g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
@@ -281,10 +280,9 @@ g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f
 <p><span class="math display">\[
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 \]</span></p>
+<p>This formulation is powerful because it allows maximum flexibility in defining <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate the gradients of the energy function.</p>
+<hr>
 </section>
-</section>
-<section id="this-formulation-is-powerful-because-it-allows-maximum-flexibility-in-defining-f_thetax-and-only-requires-that-we-can-compute-or-approximate-the-gradients-of-the-energy-function." class="level2">
-<h2 class="anchored" data-anchor-id="this-formulation-is-powerful-because-it-allows-maximum-flexibility-in-defining-f_thetax-and-only-requires-that-we-can-compute-or-approximate-the-gradients-of-the-energy-function.">This formulation is powerful because it allows maximum flexibility in defining <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate the gradients of the energy function.</h2>
 </section>
 <section id="enter-energy-based-models-ebms" class="level2">
 <h2 class="anchored" data-anchor-id="enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</h2>

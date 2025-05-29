@@ -28,7 +28,7 @@ These models attempt to approximate the true data distribution $P_{\text{data}}$
 
 ---
 
-## 📐 Understanding the Probability Foundation Behind EBMs
+## Understanding the Probability Foundation Behind EBMs
 
 In generative modeling, a valid probability distribution $p(x)$ must satisfy:
 
@@ -46,7 +46,7 @@ Directly defining a function that satisfies both is difficult, especially when u
 
 ---
 
-### 💡 Why do we introduce $g(x)$?
+### Why do we introduce $g(x)$?
 
 Instead of modeling $p(x)$ directly, we define a non-negative function $g(x) \geq 0$ and turn it into a probability distribution by normalizing:
 
@@ -61,7 +61,7 @@ This trick simplifies the problem by separating the two requirements:
 
 ---
 
-### 🧠 Intuition
+### Intuition
 
 Think of $g(x)$ as a scoring function:
 
@@ -70,7 +70,7 @@ Think of $g(x)$ as a scoring function:
 
 ---
 
-### 🔗 Connecting to EBMs
+### Connecting to EBMs
 
 In EBMs, we define:
 
@@ -85,6 +85,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 $$
 
 This formulation is powerful because it allows maximum flexibility in defining $f_\theta(x)$, and only requires that we can compute or approximate the gradients of the energy function.
+
 ---
 
 ## Enter Energy-Based Models (EBMs)
