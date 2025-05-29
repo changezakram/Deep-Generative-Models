@@ -228,43 +228,67 @@ $$
 \nabla_\theta \log Z(\theta)
 $$
 
-Let’s unpack what this means.
-
 We know the partition function is:
 
 $$
 Z(\theta) = \int \exp(f_\theta(x))\, dx
 $$
 
-Taking the gradient of a log function follows this identity:
+Let’s compute its gradient. Using the chain rule for logs:
 
 $$
-\nabla_\theta \log f(\theta) = \frac{1}{f(\theta)} \nabla_\theta f(\theta)
-$$
-
-Using this, we get:
-
-$$
-\nabla_\theta \log Z(\theta)
+\nabla_\theta \log Z(\theta) 
 = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
 = \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
 $$
 
-This is a **weighted sum** of the gradients \( \nabla_\theta f_\theta(x) \), where the weight of each \( x \) is proportional to how likely it is under the model.
+This expression tells us that we are taking a **weighted average** of the gradients \( \nabla_\theta f_\theta(x) \), where each gradient is weighted by how likely \( x \) is under the model — proportional to \( \exp(f_\theta(x)) \).
 
-Since the model defines:
+But we know that:
 
 $$
 p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 $$
 
-we can rewrite the gradient of the log partition function as an **expectation**:
+So we can rewrite the gradient more cleanly as:
 
 $$
-\nabla_\theta \log Z(\theta)
-= \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 $$
 
+---
+
+### Connecting to Likelihood Gradient
+
+Recall that the log-likelihood of training data is:
+
+$$
+\log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
+$$
+
+Taking the gradient with respect to \( \theta \):
+
+$$
+\nabla_\theta \log p_\theta(x_{\text{train}})
+= \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
+$$
+
+Substituting the result we just derived:
+
+$$
+\nabla_\theta \log p_\theta(x_{\text{train}}) 
+= \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+$$
+
+---
+
+### Intuition
+
+- The first term increases the score of the actual training point — we want it to be more likely.
+- The second term **averages the score gradients** over everything the model currently thinks is likely.
+- The model learns by **increasing the score of the correct data** and **decreasing the score of samples it mistakenly believes are likely**.
+
+This is the core principle behind training Energy-Based Models: pull up the data you want, push down the rest.
 ---
 
 ### Intuition
