@@ -223,10 +223,6 @@ $$
 = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 $$
 
----
-
-### The Sampling Challenge
-
 The first term is straightforward — it's the gradient of the model's score on the training point.
 
 But the second term, the **expectation over model samples**, is difficult. It requires drawing samples from $p_\theta(x)$, which in turn depends on the intractable normalization constant $Z(\theta)$.
