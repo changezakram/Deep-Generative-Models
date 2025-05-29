@@ -28,55 +28,69 @@ These models attempt to approximate the true data distribution $P_{\text{data}}$
 
 ---
 
-\section*{Understanding the Probability Foundation Behind EBMs}
+## 📐 Understanding the Probability Foundation Behind EBMs
 
-In generative modeling, a valid probability distribution \( p(x) \) must satisfy two conditions:
+In generative modeling, a valid probability distribution \( p(x) \) must satisfy:
 
-\begin{itemize}
-  \item \textbf{Non-negativity:} \( p(x) \geq 0 \)
-  \item \textbf{Normalization:} \( \int p(x)\,dx = 1 \)
-\end{itemize}
-
-Directly defining a function that satisfies both is often difficult, especially when using flexible models like neural networks.
-
-\subsection*{Why Introduce \( g(x) \)?}
-
-Instead of modeling \( p(x) \) directly, we break the problem into two steps:
-
-\begin{enumerate}
-  \item Define an unnormalized, non-negative function \( g(x) \geq 0 \)
-  \item Normalize it by computing \( Z = \int g(x)\,dx \), and define:
+- Non-negativity:  
   \[
-  p(x) = \frac{g(x)}{Z}
+  p(x) \geq 0
   \]
-\end{enumerate}
 
-This trick ensures we get a valid probability distribution while keeping the modeling process flexible and expressive.
+- Normalization:  
+  \[
+  \int p(x)\, dx = 1
+  \]
 
-\subsection*{Why This Works}
+Directly defining a function that satisfies both is difficult, especially when using flexible models like neural networks.
 
-\begin{itemize}
-  \item \( g(x) \) can be any non-negative function — for example, \( g(x) = \exp(f(x)) \)
-  \item This makes it easy to parameterize \( f(x) \) using neural networks
-  \item The normalization constant \( Z \) handles the requirement that \( p(x) \) sums to 1
-\end{itemize}
+---
 
-\subsection*{Connecting to EBMs}
+### 💡 Why do we introduce \( g(x) \)?
 
-In Energy-Based Models:
+Instead of modeling \( p(x) \) directly, we define a non-negative function \( g(x) \geq 0 \) and turn it into a probability distribution by normalizing:
+
+\[
+p(x) = \frac{g(x)}{Z}, \quad \text{where} \quad Z = \int g(x)\, dx
+\]
+
+This trick simplifies the problem by separating the two requirements:
+
+- \( g(x) \) ensures non-negativity  
+- \( Z \) enforces normalization
+
+---
+
+### 🧠 Intuition
+
+Think of \( g(x) \) as a scoring function:
+
+- Higher \( g(x) \) means more likely
+- Dividing by \( Z \) rescales these scores to form a valid probability distribution
+
+This gives us flexibility to use expressive models for \( g(x) \) — for example:
+
+\[
+g(x) = \exp(f(x)) \quad \Rightarrow \quad p(x) = \frac{e^{f(x)}}{Z}
+\]
+
+---
+
+### 🔗 Connecting to Energy-Based Models
+
+In EBMs, we define:
 
 \[
 g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
 \]
 
-We define energy as \( E_\theta(x) = -f_\theta(x) \), so the probability becomes:
+Letting \( E_\theta(x) = -f_\theta(x) \), we get:
 
 \[
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 \]
 
-This approach is flexible, expressive, and closely tied to the exponential family of distributions.
-
+This formulation is powerful because it allows maximum flexibility in defining \( f_\theta(x) \), and only requires that we can compute or approximate the gradients of the energy function.
 ---
 
 ## Enter Energy-Based Models (EBMs)
