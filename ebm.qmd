@@ -1,12 +1,6 @@
 ---
-title: "Energy-Based Models: A Flexible Approach to Generative Modeling"
-format:
-  html:
-    toc: true
-    code-fold: true
-    smooth-scroll: true
-    theme: cosmo
-    math: mathjax
+title: "Energy-Based Models"
+format: html
 ---
 
 ## Introduction
@@ -223,73 +217,63 @@ $$
 
 This encourages the model to increase the score of training samples while decreasing the score of negative samples.
 
----
 
-### Gradient Derivation (Step-by-Step)
+### Understanding the Gradient of the Partition Function
 
-To train an EBM, we want to increase the probability of training examples. So our objective is to **maximize the log-likelihood** of a training point $x_{\text{train}}$:
-
-$$
-\log p_\theta(x_{\text{train}}) = \log \left( \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)} \right)
-$$
-
-This simplifies to:
+To train EBMs, we often need the gradient of the log partition function:
 
 $$
-\log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
+\nabla_\theta \log Z(\theta)
 $$
 
----
+Let’s unpack this in simple terms.
 
-Now, we compute the gradient of this expression with respect to the model parameters $\theta$:
-
-$$
-\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
-$$
-
----
-
-### Understanding $\nabla_\theta \log Z(\theta)$
-
-Recall that:
+We know:
 
 $$
-Z(\theta) = \int \exp(f_\theta(x)) \, dx
+Z(\theta) = \int \exp(f_\theta(x))\, dx
 $$
 
-Taking the gradient of the **log partition function**:
+Now recall the derivative rule for logs:
 
 $$
-\nabla_\theta \log Z(\theta) = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+\nabla_\theta \log f(\theta) = \frac{1}{f(\theta)} \nabla_\theta f(\theta)
 $$
 
-Then using the chain rule:
+Using that, we get:
 
 $$
-= \frac{1}{Z(\theta)} \nabla_\theta \left( \int \exp(f_\theta(x)) \, dx \right)
+\nabla_\theta \log Z(\theta) 
+= \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
 $$
 
-$$
-= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x) \, dx
-$$
+This is a **weighted sum** over all possible values of \( x \), where each \( \nabla_\theta f_\theta(x) \) is weighted by how likely \( x \) is according to the model — specifically by \( \exp(f_\theta(x)) \).
 
-Now observe that this is the **expected value** of $\nabla_\theta f_\theta(x)$ under the model distribution $p_\theta(x)$:
+And since:
 
 $$
-= \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
+$$
+
+we can rewrite the expression as:
+
+$$
+\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 $$
 
 ---
 
-### Final Gradient Expression
+**Intuition**
 
-So putting everything together:
+That weighted sum turns out to be the **average of the gradients** — but not over just any inputs. We're averaging over inputs that the **model believes are likely**, because they're sampled from \( p_\theta(x) \).
 
-$$
-\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
-$$
+This lets us interpret the gradient of the log partition function as:
 
----
+> “How much, *on average*, the model wants to increase the score of the samples it already believes in.”
+
+
+
 
 ### Interpretation
 

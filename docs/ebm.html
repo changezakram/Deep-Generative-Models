@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Energy-Based Models: A Flexible Approach to Generative Modeling – Deep Generative Models</title>
+<title>Energy-Based Models – Deep Generative Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a14e3238c51140e99ccc48519b6ed9ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,7 +67,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="styles.css">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -103,7 +102,7 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -135,41 +134,13 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#limitations-of-mainstream-generative-models" id="toc-limitations-of-mainstream-generative-models" class="nav-link" data-scroll-target="#limitations-of-mainstream-generative-models">Limitations of Mainstream Generative Models</a></li>
-  <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review">Math Review</a>
-  <ul class="collapse">
-  <li><a href="#understanding-the-probability-foundation-behind-ebms" id="toc-understanding-the-probability-foundation-behind-ebms" class="nav-link" data-scroll-target="#understanding-the-probability-foundation-behind-ebms">Understanding the Probability Foundation Behind EBMs</a></li>
-  <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
-  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
-  <li><a href="#from-scores-to-probabilities-in-ebms" id="toc-from-scores-to-probabilities-in-ebms" class="nav-link" data-scroll-target="#from-scores-to-probabilities-in-ebms">From Scores to Probabilities in EBMs</a></li>
-  <li><a href="#applications-of-ebms-without-computing-ztheta" id="toc-applications-of-ebms-without-computing-ztheta" class="nav-link" data-scroll-target="#applications-of-ebms-without-computing-ztheta">Applications of EBMs Without Computing <span class="math inline">\(Z(\theta)\)</span></a></li>
-  <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
-  <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">Limitations of EBMs</a></li>
-  <li><a href="#training-and-inference-in-ebms" id="toc-training-and-inference-in-ebms" class="nav-link" data-scroll-target="#training-and-inference-in-ebms">Training and Inference in EBMs</a></li>
-  <li><a href="#intuition-1" id="toc-intuition-1" class="nav-link" data-scroll-target="#intuition-1">Intuition</a></li>
-  <li><a href="#contrastive-divergence-simplified" id="toc-contrastive-divergence-simplified" class="nav-link" data-scroll-target="#contrastive-divergence-simplified">Contrastive Divergence (Simplified)</a></li>
-  <li><a href="#gradient-derivation-step-by-step" id="toc-gradient-derivation-step-by-step" class="nav-link" data-scroll-target="#gradient-derivation-step-by-step">Gradient Derivation (Step-by-Step)</a></li>
-  <li><a href="#understanding-nabla_theta-log-ztheta" id="toc-understanding-nabla_theta-log-ztheta" class="nav-link" data-scroll-target="#understanding-nabla_theta-log-ztheta">Understanding <span class="math inline">\(\nabla_\theta \log Z(\theta)\)</span></a></li>
-  <li><a href="#final-gradient-expression" id="toc-final-gradient-expression" class="nav-link" data-scroll-target="#final-gradient-expression">Final Gradient Expression</a></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
-  <li><a href="#challenges-of-mcmc-sampling" id="toc-challenges-of-mcmc-sampling" class="nav-link" data-scroll-target="#challenges-of-mcmc-sampling">Challenges of MCMC Sampling</a></li>
-  </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">📚 References</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Energy-Based Models: A Flexible Approach to Generative Modeling</h1>
+<h1 class="title">Energy-Based Models</h1>
 </div>
 
 
@@ -410,55 +381,44 @@ Z(\theta) = \int \exp(f_\theta(x)) \, dx
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
 <p>This encourages the model to increase the score of training samples while decreasing the score of negative samples.</p>
-<hr>
 </section>
-<section id="gradient-derivation-step-by-step" class="level3">
-<h3 class="anchored" data-anchor-id="gradient-derivation-step-by-step">Gradient Derivation (Step-by-Step)</h3>
-<p>To train an EBM, we want to increase the probability of training examples. So our objective is to <strong>maximize the log-likelihood</strong> of a training point <span class="math inline">\(x_{\text{train}}\)</span>:</p>
+<section id="understanding-the-gradient-of-the-partition-function" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-the-gradient-of-the-partition-function">Understanding the Gradient of the Partition Function</h3>
+<p>To train EBMs, we often need the gradient of the log partition function:</p>
 <p><span class="math display">\[
-\log p_\theta(x_{\text{train}}) = \log \left( \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)} \right)
+\nabla_\theta \log Z(\theta)
 \]</span></p>
-<p>This simplifies to:</p>
+<p>Let’s unpack this in simple terms.</p>
+<p>We know:</p>
 <p><span class="math display">\[
-\log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
+Z(\theta) = \int \exp(f_\theta(x))\, dx
 \]</span></p>
-<hr>
-<p>Now, we compute the gradient of this expression with respect to the model parameters <span class="math inline">\(\theta\)</span>:</p>
+<p>Now recall the derivative rule for logs:</p>
 <p><span class="math display">\[
-\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
+\nabla_\theta \log f(\theta) = \frac{1}{f(\theta)} \nabla_\theta f(\theta)
 \]</span></p>
-<hr>
-</section>
-<section id="understanding-nabla_theta-log-ztheta" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-nabla_theta-log-ztheta">Understanding <span class="math inline">\(\nabla_\theta \log Z(\theta)\)</span></h3>
-<p>Recall that:</p>
+<p>Using that, we get:</p>
 <p><span class="math display">\[
-Z(\theta) = \int \exp(f_\theta(x)) \, dx
+\nabla_\theta \log Z(\theta)
+= \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
 \]</span></p>
-<p>Taking the gradient of the <strong>log partition function</strong>:</p>
+<p>This is a <strong>weighted sum</strong> over all possible values of ( x ), where each ( <em>f</em>(x) ) is weighted by how likely ( x ) is according to the model — specifically by ( (f_(x)) ).</p>
+<p>And since:</p>
 <p><span class="math display">\[
-\nabla_\theta \log Z(\theta) = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 \]</span></p>
-<p>Then using the chain rule:</p>
+<p>we can rewrite the expression as:</p>
 <p><span class="math display">\[
-= \frac{1}{Z(\theta)} \nabla_\theta \left( \int \exp(f_\theta(x)) \, dx \right)
-\]</span></p>
-<p><span class="math display">\[
-= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x) \, dx
-\]</span></p>
-<p>Now observe that this is the <strong>expected value</strong> of <span class="math inline">\(\nabla_\theta f_\theta(x)\)</span> under the model distribution <span class="math inline">\(p_\theta(x)\)</span>:</p>
-<p><span class="math display">\[
-= \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 \]</span></p>
 <hr>
-</section>
-<section id="final-gradient-expression" class="level3">
-<h3 class="anchored" data-anchor-id="final-gradient-expression">Final Gradient Expression</h3>
-<p>So putting everything together:</p>
-<p><span class="math display">\[
-\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
-\]</span></p>
-<hr>
+<p><strong>Intuition</strong></p>
+<p>That weighted sum turns out to be the <strong>average of the gradients</strong> — but not over just any inputs. We’re averaging over inputs that the <strong>model believes are likely</strong>, because they’re sampled from ( p_(x) ).</p>
+<p>This lets us interpret the gradient of the log partition function as:</p>
+<blockquote class="blockquote">
+<p>“How much, <em>on average</em>, the model wants to increase the score of the samples it already believes in.”</p>
+</blockquote>
 </section>
 <section id="interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation">Interpretation</h3>
@@ -899,5 +859,4 @@ Z(\theta) = \int \exp(f_\theta(x)) \, dx
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
