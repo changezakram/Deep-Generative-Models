@@ -60,6 +60,7 @@ This trick simplifies the problem by separating the two requirements:
 - $Z(\theta)$ enforces normalization
 
 This normalization constant $Z(\theta)$ is also known as the **partition function**.
+
 ---
 
 ### Intuition
