@@ -225,27 +225,65 @@ This encourages the model to increase the score of training samples while decrea
 
 ---
 
-### Gradient Derivation (Simplified)
+### Gradient Derivation (Step-by-Step)
 
-We want to maximize the log-likelihood:
+To train an EBM, we want to increase the probability of training examples. So our objective is to **maximize the log-likelihood** of a training point $x_{\text{train}}$:
+
+$$
+\log p_\theta(x_{\text{train}}) = \log \left( \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)} \right)
+$$
+
+This simplifies to:
 
 $$
 \log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
 $$
 
-Taking the gradient:
+---
+
+Now, we compute the gradient of this expression with respect to the model parameters $\theta$:
 
 $$
 \nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
 $$
 
-Recall:
+---
+
+### Understanding $\nabla_\theta \log Z(\theta)$
+
+Recall that:
 
 $$
-\nabla_\theta \log Z(\theta) = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+Z(\theta) = \int \exp(f_\theta(x)) \, dx
 $$
 
-So we get:
+Taking the gradient of the **log partition function**:
+
+$$
+\nabla_\theta \log Z(\theta) = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+$$
+
+Then using the chain rule:
+
+$$
+= \frac{1}{Z(\theta)} \nabla_\theta \left( \int \exp(f_\theta(x)) \, dx \right)
+$$
+
+$$
+= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x) \, dx
+$$
+
+Now observe that this is the **expected value** of $\nabla_\theta f_\theta(x)$ under the model distribution $p_\theta(x)$:
+
+$$
+= \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+$$
+
+---
+
+### Final Gradient Expression
+
+So putting everything together:
 
 $$
 \nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
@@ -253,30 +291,16 @@ $$
 
 ---
 
-## Sampling from Energy-Based Models
+### Interpretation
 
-We can't sample directly from EBMs, but we can use **MCMC** methods.
+- The **first term** increases the score of the training point.
+- The **second term** reduces the score of typical samples under the model.
+- This contrast between **training data vs. generated data** is the key idea behind contrastive divergence.
 
-### Metropolis-Hastings
+In practice, the expectation $\mathbb{E}_{x \sim p_\theta}[\cdot]$ is approximated using samples drawn from the model (e.g., via MCMC).
 
-1. Propose $$x' = x + \text{noise}$$  
-2. Accept:
-   - Always if $$f(x') \geq f(x)$$  
-   - Otherwise with probability $$\exp(f(x') - f(x))$$  
 
-Converges to $$p_\theta(x)$$ as $$T \to \infty$$, but is slow in high dimensions.
 
----
-
-### Langevin Dynamics
-
-Uses gradients:
-
-$$
-x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t, \quad z^t \sim \mathcal{N}(0, I)
-$$
-
-Works well when $$\nabla_x f_\theta(x)$$ is tractable (which it is in EBMs).
 
 ---
 
