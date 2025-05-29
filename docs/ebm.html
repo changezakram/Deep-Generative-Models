@@ -279,18 +279,8 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <section id="limitations-of-ebms" class="level2">
 <h2 class="anchored" data-anchor-id="limitations-of-ebms">Limitations of EBMs</h2>
 <p>Despite their elegance, EBMs pose serious challenges:</p>
-<p><strong>Hard Sampling</strong></p>
-<ul>
-<li>No direct way to draw samples from <span class="math inline">\(p_\theta(x)\)</span></li>
-<li>Requires iterative MCMC methods</li>
-<li>Sampling cost is high and scales poorly in high dimensions</li>
-</ul>
-<p><strong>Hard Likelihood Evaluation and Learning</strong></p>
-<ul>
-<li>Partition function <span class="math inline">\(Z(\theta)\)</span> is intractable</li>
-<li>Evaluating <span class="math inline">\(\log p_\theta(x)\)</span> is not feasible</li>
-<li>Need to push down energy of incorrect configurations to make learning effective</li>
-</ul>
+<p><strong>Hard Sampling</strong> - No direct way to draw samples from <span class="math inline">\(p_\theta(x)\)</span> - Requires iterative MCMC methods - Sampling cost is high and scales poorly in high dimensions</p>
+<p><strong>Hard Likelihood Evaluation and Learning</strong> - Partition function <span class="math inline">\(Z(\theta)\)</span> is intractable - Evaluating <span class="math inline">\(\log p_\theta(x)\)</span> is not feasible - Need to push down energy of incorrect configurations to make learning effective</p>
 <p><strong>No Feature Learning (by default)</strong></p>
 <ul>
 <li>EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)</li>
