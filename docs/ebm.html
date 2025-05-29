@@ -149,8 +149,13 @@ window.Quarto = {
   <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
   <li><a href="#from-scores-to-probabilities-in-ebms" id="toc-from-scores-to-probabilities-in-ebms" class="nav-link" data-scroll-target="#from-scores-to-probabilities-in-ebms">From Scores to Probabilities in EBMs</a></li>
   </ul></li>
-  <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
-  <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">Limitations of EBMs</a></li>
+  <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">✅ Key Benefits of EBMs</a></li>
+  <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">⚠️ Limitations of EBMs</a>
+  <ul class="collapse">
+  <li><a href="#hard-sampling" id="toc-hard-sampling" class="nav-link" data-scroll-target="#hard-sampling">🔄 Hard Sampling</a></li>
+  <li><a href="#hard-likelihood-evaluation-and-learning" id="toc-hard-likelihood-evaluation-and-learning" class="nav-link" data-scroll-target="#hard-likelihood-evaluation-and-learning">📉 Hard Likelihood Evaluation and Learning</a></li>
+  <li><a href="#no-feature-learning-by-default" id="toc-no-feature-learning-by-default" class="nav-link" data-scroll-target="#no-feature-learning-by-default">🚫 No Feature Learning (by default)</a></li>
+  </ul></li>
   <li><a href="#learning-and-inference-in-energy-based-models" id="toc-learning-and-inference-in-energy-based-models" class="nav-link" data-scroll-target="#learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</a></li>
   <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence">Contrastive Divergence</a></li>
   <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models">Sampling from Energy-Based Models</a>
@@ -312,35 +317,43 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 </section>
 </section>
 <section id="key-benefits-of-ebms" class="level2">
-<h2 class="anchored" data-anchor-id="key-benefits-of-ebms">Key Benefits of EBMs</h2>
+<h2 class="anchored" data-anchor-id="key-benefits-of-ebms">✅ Key Benefits of EBMs</h2>
 <ul>
-<li><strong>Very flexible model architectures</strong>: No need for invertibility, factorization, or adversarial design.</li>
-<li><strong>Stable training</strong>: Compared to GANs, EBMs can be more robust.</li>
-<li><strong>Relatively high sample quality</strong>: Can model multi-modal data well.</li>
-<li><strong>Flexible composition</strong>: Combine energies for multi-task objectives.</li>
+<li><p><strong>Very flexible model architectures</strong><br>
+No need for invertibility, autoregressive factorization, or adversarial design.</p></li>
+<li><p><strong>Stable training</strong><br>
+Compared to GANs, EBMs can be more robust and easier to optimize.</p></li>
+<li><p><strong>High sample quality</strong><br>
+Capable of modeling complex, multi-modal data distributions.</p></li>
+<li><p><strong>Flexible composition</strong><br>
+Energies can be combined to support multi-task objectives or structured learning.</p></li>
 </ul>
-<hr>
 </section>
 <section id="limitations-of-ebms" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-of-ebms">Limitations of EBMs</h2>
-<p>Despite their elegance, EBMs pose serious challenges:</p>
-<p><strong>Hard Sampling</strong></p>
+<h2 class="anchored" data-anchor-id="limitations-of-ebms">⚠️ Limitations of EBMs</h2>
+<p>Despite their strengths, EBMs come with notable challenges:</p>
+<section id="hard-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="hard-sampling">🔄 Hard Sampling</h3>
 <ul>
-<li>No direct way to draw samples from <span class="math inline">\(p_\theta(x)\)</span></li>
-<li>Requires iterative MCMC methods</li>
+<li>No direct way to draw samples from ( p_(x) )</li>
+<li>Requires iterative MCMC methods (e.g., Langevin dynamics, Metropolis-Hastings)</li>
 <li>Sampling cost is high and scales poorly in high dimensions</li>
 </ul>
-<p><strong>Hard Likelihood Evaluation and Learning</strong></p>
+</section>
+<section id="hard-likelihood-evaluation-and-learning" class="level3">
+<h3 class="anchored" data-anchor-id="hard-likelihood-evaluation-and-learning">📉 Hard Likelihood Evaluation and Learning</h3>
 <ul>
-<li>Partition function <span class="math inline">\(Z(\theta)\)</span> is intractable</li>
-<li>Evaluating <span class="math inline">\(\log p_\theta(x)\)</span> is not feasible</li>
-<li>Need to push down energy of incorrect configurations to make learning effective</li>
+<li>Partition function ( Z() ) is intractable to compute</li>
+<li>Cannot evaluate ( p_(x) ) directly</li>
+<li>Learning requires <strong>pushing down energy of incorrect samples</strong>, not just increasing energy of training data</li>
 </ul>
-<p><strong>No Feature Learning (by default)</strong></p>
+</section>
+<section id="no-feature-learning-by-default" class="level3">
+<h3 class="anchored">🚫 No Feature Learning (by default)</h3>
 <ul>
-<li>EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)</li>
+<li><h2 id="ebms-do-not-learn-latent-representations-unless-explicitly-modeled-e.g.-using-rbms-or-structured-latent-energy-functions" class="anchored" data-anchor-id="no-feature-learning-by-default">EBMs do not learn latent representations unless explicitly modeled (e.g., using RBMs or structured latent energy functions)</h2></li>
 </ul>
-<hr>
+</section>
 </section>
 <section id="learning-and-inference-in-energy-based-models" class="level2">
 <h2 class="anchored" data-anchor-id="learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</h2>

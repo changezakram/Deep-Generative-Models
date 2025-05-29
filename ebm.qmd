@@ -114,35 +114,40 @@ This formulation gives EBMs the freedom to use any differentiable function for $
 ---
 
 
-## Key Benefits of EBMs
+## ✅ Key Benefits of EBMs
 
-- **Very flexible model architectures**: No need for invertibility, factorization, or adversarial design.
-- **Stable training**: Compared to GANs, EBMs can be more robust.
-- **Relatively high sample quality**: Can model multi-modal data well.
-- **Flexible composition**: Combine energies for multi-task objectives.
+- **Very flexible model architectures**  
+  No need for invertibility, autoregressive factorization, or adversarial design.
 
----
+- **Stable training**  
+  Compared to GANs, EBMs can be more robust and easier to optimize.
 
-## Limitations of EBMs
+- **High sample quality**  
+  Capable of modeling complex, multi-modal data distributions.
 
-Despite their elegance, EBMs pose serious challenges:
+- **Flexible composition**  
+  Energies can be combined to support multi-task objectives or structured learning.
 
-**Hard Sampling**
 
-- No direct way to draw samples from $p_\theta(x)$
-- Requires iterative MCMC methods
+## ⚠️ Limitations of EBMs
+
+Despite their strengths, EBMs come with notable challenges:
+
+### 🔄 Hard Sampling
+
+- No direct way to draw samples from \( p_\theta(x) \)
+- Requires iterative MCMC methods (e.g., Langevin dynamics, Metropolis-Hastings)
 - Sampling cost is high and scales poorly in high dimensions
 
-**Hard Likelihood Evaluation and Learning**
+### 📉 Hard Likelihood Evaluation and Learning
 
-- Partition function $Z(\theta)$ is intractable
-- Evaluating $\log p_\theta(x)$ is not feasible
-- Need to push down energy of incorrect configurations to make learning effective
+- Partition function \( Z(\theta) \) is intractable to compute
+- Cannot evaluate \( \log p_\theta(x) \) directly
+- Learning requires **pushing down energy of incorrect samples**, not just increasing energy of training data
 
-**No Feature Learning (by default)**
+### 🚫 No Feature Learning (by default)
 
-- EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)
-
+- EBMs do not learn latent representations unless explicitly modeled (e.g., using RBMs or structured latent energy functions)
 ---
 
 ## Learning and Inference in Energy-Based Models
