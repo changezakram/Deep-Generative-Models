@@ -268,17 +268,17 @@ $$
 
 ---
 
-### Contrastive Divergence (Simplified)
+### Contrastive Divergence
 
-In practice, computing \( \mathbb{E}_{x \sim p_\theta}[\cdot] \) is intractable, so we use a Monte Carlo estimate.
+In practice, computing $\mathbb{E}_{x \sim p_\theta}[\cdot]$ is intractable, so we use a Monte Carlo estimate.
 
 **Contrastive Divergence Algorithm:**
 
-1. Sample \( x_\text{sample} \sim p_\theta \) (typically via MCMC)
+1. Sample $x_{\text{sample}} \sim p_\theta$ (typically via MCMC)  
 2. Take a gradient step on:
 
 $$
-\nabla_\theta \left( f_\theta(x_\text{train}) - f_\theta(x_\text{sample}) \right)
+\nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 $$
 
 This encourages the model to increase the score of training samples while decreasing the score of negative samples.

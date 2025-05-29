@@ -419,16 +419,17 @@ p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 </ul>
 <hr>
 </section>
-<section id="contrastive-divergence-simplified" class="level3">
-<h3 class="anchored" data-anchor-id="contrastive-divergence-simplified">Contrastive Divergence (Simplified)</h3>
-<p>In practice, computing ( <em>{x p</em>}[] ) is intractable, so we use a Monte Carlo estimate.</p>
+<section id="contrastive-divergence" class="level3">
+<h3 class="anchored" data-anchor-id="contrastive-divergence">Contrastive Divergence</h3>
+<p>In practice, computing <span class="math inline">\(\mathbb{E}_{x \sim p_\theta}[\cdot]\)</span> is intractable, so we use a Monte Carlo estimate.</p>
 <p><strong>Contrastive Divergence Algorithm:</strong></p>
 <ol type="1">
-<li>Sample ( x_ p_) (typically via MCMC)</li>
+<li>Sample <span class="math inline">\(x_{\text{sample}} \sim p_\theta\)</span> (typically via MCMC)<br>
+</li>
 <li>Take a gradient step on:</li>
 </ol>
 <p><span class="math display">\[
-\nabla_\theta \left( f_\theta(x_\text{train}) - f_\theta(x_\text{sample}) \right)
+\nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
 <p>This encourages the model to increase the score of training samples while decreasing the score of negative samples.</p>
 <hr>
