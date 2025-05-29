@@ -137,7 +137,7 @@ $$
 \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta f_\theta(x_{\text{sample}})
 $$
 
-Where $$x_{\text{sample}} \sim p_\theta$$ (via MCMC). The goal is to increase $$f$$ on training data and decrease it elsewhere.
+Where $$x_{\text{sample}} \sim p_\theta$$ (via MCMC). The goal is to increase $f$ on training data and decrease it elsewhere.
 
 ---
 
