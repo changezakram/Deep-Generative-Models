@@ -67,10 +67,10 @@ This normalization constant $Z(\theta)$ is also known as the **partition functio
 
 ### Intuition
 
-Think of $g(x)$ as a scoring function:
+Think of $g_\theta(x)$ as a scoring function:
 
-- Higher $g(x)$ means more likely  
-- Dividing by $Z$ rescales these scores to form a valid probability distribution
+- Higher $g_\theta(x)$ means more likely  
+- Dividing by $Z(\theta)$ rescales these scores to form a valid probability distribution
 
 ---
 
