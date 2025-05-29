@@ -270,7 +270,18 @@ $$
 
 ### Contrastive Divergence
 
-In practice, computing $\mathbb{E}_{x \sim p_\theta}[\cdot]$ is intractable, so we use a Monte Carlo estimate.
+We saw earlier that training EBMs requires computing the log-likelihood gradient:
+
+$$
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+$$
+
+The first term is easy to compute — it comes from the training data.  
+But the second term involves an expectation under the model distribution $p_\theta(x)$, which is generally **intractable**.
+
+To handle this, we approximate the expectation using a **Monte Carlo sample**:
+
+---
 
 **Contrastive Divergence Algorithm:**
 
@@ -281,7 +292,8 @@ $$
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 $$
 
-This encourages the model to increase the score of training samples while decreasing the score of negative samples.
+This approximation replaces the full expectation with a single (or a few) samples drawn from the model.  
+The model learns by **increasing the score of the correct example** and **decreasing the score of model-generated samples** that it currently believes are likely.
 
 ---
 

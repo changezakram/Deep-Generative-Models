@@ -421,7 +421,14 @@ p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 </section>
 <section id="contrastive-divergence" class="level3">
 <h3 class="anchored" data-anchor-id="contrastive-divergence">Contrastive Divergence</h3>
-<p>In practice, computing <span class="math inline">\(\mathbb{E}_{x \sim p_\theta}[\cdot]\)</span> is intractable, so we use a Monte Carlo estimate.</p>
+<p>We saw earlier that training EBMs requires computing the log-likelihood gradient:</p>
+<p><span class="math display">\[
+\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+\]</span></p>
+<p>The first term is easy to compute — it comes from the training data.<br>
+But the second term involves an expectation under the model distribution <span class="math inline">\(p_\theta(x)\)</span>, which is generally <strong>intractable</strong>.</p>
+<p>To handle this, we approximate the expectation using a <strong>Monte Carlo sample</strong>:</p>
+<hr>
 <p><strong>Contrastive Divergence Algorithm:</strong></p>
 <ol type="1">
 <li>Sample <span class="math inline">\(x_{\text{sample}} \sim p_\theta\)</span> (typically via MCMC)<br>
@@ -431,7 +438,8 @@ p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 <p><span class="math display">\[
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
-<p>This encourages the model to increase the score of training samples while decreasing the score of negative samples.</p>
+<p>This approximation replaces the full expectation with a single (or a few) samples drawn from the model.<br>
+The model learns by <strong>increasing the score of the correct example</strong> and <strong>decreasing the score of model-generated samples</strong> that it currently believes are likely.</p>
 <hr>
 </section>
 </section>
