@@ -27,6 +27,8 @@ In the world of generative models, techniques like VAEs, GANs, and normalizing f
 These models attempt to approximate the true data distribution $P_{\text{data}}$ by selecting a model $P_\theta$ from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability.
 
 ::: {.callout-note appearance="simple"}
+### 🧭 Why This Math Matters
+
 To understand how Energy-Based Models overcome many of these limitations, we first need to revisit a fundamental question in generative modeling: **what makes a valid probability distribution?**
 
 The next section walks through the mathematical foundation that underpins EBMs — and introduces a clever trick that allows them to sidestep many of the constraints faced by traditional generative models.
