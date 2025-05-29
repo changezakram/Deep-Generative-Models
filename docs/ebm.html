@@ -145,6 +145,9 @@ window.Quarto = {
   <li><a href="#understanding-the-probability-foundation-behind-ebms" id="toc-understanding-the-probability-foundation-behind-ebms" class="nav-link" data-scroll-target="#understanding-the-probability-foundation-behind-ebms">Understanding the Probability Foundation Behind EBMs</a>
   <ul class="collapse">
   <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
+  </ul></li>
+  <li><a href="#this-normalization-constant-ztheta-is-also-known-as-the-partition-function." id="toc-this-normalization-constant-ztheta-is-also-known-as-the-partition-function." class="nav-link" data-scroll-target="#this-normalization-constant-ztheta-is-also-known-as-the-partition-function.">This normalization constant <span class="math inline">\(Z(\theta)\)</span> is also known as the <strong>partition function</strong>.</a>
+  <ul class="collapse">
   <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
   <li><a href="#connecting-to-ebms" id="toc-connecting-to-ebms" class="nav-link" data-scroll-target="#connecting-to-ebms">Connecting to EBMs</a></li>
   </ul></li>
@@ -250,16 +253,18 @@ p(x) \geq 0
 <h3 class="anchored" data-anchor-id="why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</h3>
 <p>Instead of modeling <span class="math inline">\(p(x)\)</span> directly, we define a non-negative function <span class="math inline">\(g(x) \geq 0\)</span> and turn it into a probability distribution by normalizing:</p>
 <p><span class="math display">\[
-p(x) = \frac{g(x)}{Z}, \quad \text{where} \quad Z = \int g(x)\, dx
+p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) = \int g_\theta(x)\, dx
 \]</span></p>
 <p>This trick simplifies the problem by separating the two requirements:</p>
 <ul>
-<li><span class="math inline">\(g(x)\)</span> ensures non-negativity<br>
+<li><span class="math inline">\(g_\theta(x)\)</span> ensures non-negativity<br>
 </li>
-<li><span class="math inline">\(Z\)</span> enforces normalization</li>
+<li><span class="math inline">\(Z(\theta)\)</span> enforces normalization</li>
 </ul>
-<hr>
 </section>
+</section>
+<section id="this-normalization-constant-ztheta-is-also-known-as-the-partition-function." class="level2">
+<h2 class="anchored" data-anchor-id="this-normalization-constant-ztheta-is-also-known-as-the-partition-function.">This normalization constant <span class="math inline">\(Z(\theta)\)</span> is also known as the <strong>partition function</strong>.</h2>
 <section id="intuition" class="level3">
 <h3 class="anchored" data-anchor-id="intuition">Intuition</h3>
 <p>Think of <span class="math inline">\(g(x)\)</span> as a scoring function:</p>

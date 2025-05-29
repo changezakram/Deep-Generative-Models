@@ -51,14 +51,15 @@ While it’s easy to define a function that satisfies $p(x) \geq 0$ (e.g., using
 Instead of modeling $p(x)$ directly, we define a non-negative function $g(x) \geq 0$ and turn it into a probability distribution by normalizing:
 
 $$
-p(x) = \frac{g(x)}{Z}, \quad \text{where} \quad Z = \int g(x)\, dx
+p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) = \int g_\theta(x)\, dx
 $$
 
 This trick simplifies the problem by separating the two requirements:
 
-- $g(x)$ ensures non-negativity  
-- $Z$ enforces normalization
+- $g_\theta(x)$ ensures non-negativity  
+- $Z(\theta)$ enforces normalization
 
+This normalization constant $Z(\theta)$ is also known as the **partition function**.
 ---
 
 ### Intuition
