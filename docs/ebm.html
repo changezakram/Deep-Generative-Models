@@ -494,14 +494,6 @@ This approach works in theory but can take a <strong>very long time to converge<
 <hr>
 </section>
 </section>
-<section id="sampling-from-ebms" class="level2">
-<h2 class="anchored" data-anchor-id="sampling-from-ebms">Sampling from EBMs</h2>
-<p>The challenge with sampling from an energy-based model is that we define:</p>
-<p><span class="math display">\[
-p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
-\]</span></p>
-<p>Unlike autoregressive or flow-based models, there’s <strong>no direct way to sample</strong> from this distribution, because computing the normalizing constant <span class="math inline">\(Z(\theta)\)</span> is intractable. However, we can <strong>still compare scores</strong> of different <span class="math inline">\(x\)</span> — which allows us to build samples iteratively.</p>
-</section>
 <section id="markov-chain-monte-carlo-mcmc-1" class="level2">
 <h2 class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc-1">Markov Chain Monte Carlo (MCMC)</h2>
 <p>The core idea behind MCMC is to construct a Markov chain whose stationary distribution is <span class="math inline">\(p_\theta(x)\)</span>. If we run the chain long enough, we can sample approximately from the target distribution.</p>
