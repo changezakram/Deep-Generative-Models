@@ -107,7 +107,7 @@ This formulation gives EBMs the freedom to use any differentiable function for $
 
 --- 
 
-### Applications of EBMs Without Computing $Z(\theta)$
+### Practical Applications: When You Don’t Need $Z(\theta)$
 
 In general, evaluating the full probability $p_\theta(x)$ requires computing the partition function $Z(\theta)$:
 
@@ -121,7 +121,7 @@ In some applications, we don’t need the exact probability — we only need to 
 This allows EBMs to be useful even when the partition function is intractable.
 :::
 
-When comparing two samples $x$ and $x'$, the ratio:
+When comparing two samples $x$ and $x'$, we can compute the ratio of their probabilities:
 
 $$
 \frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
@@ -129,7 +129,7 @@ $$
 
 does **not** involve $Z(\theta)$.
 
-This means we can easily compare which input is more likely — a powerful property of EBMs.
+This lets us determine which input is more likely — without ever computing $Z(\theta)$ — a powerful advantage of EBMs.
 
 **Practical Applications**:
 
@@ -256,6 +256,15 @@ $$
 $$
 
 This encourages the model to increase the score of the training sample and decrease the score of samples it currently believes are likely.
+
+::: {.callout-tip}
+**EBM Training Recap:**
+
+- Want: High scores (low energy) for real data
+- Avoid: High scores for incorrect data
+- Can't compute exact gradient due to $Z(\theta)$
+- So: Approximate using Monte Carlo sample $\sim p_\theta(x)$
+:::
 
 ---
 

@@ -282,8 +282,8 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <p>This formulation gives EBMs the freedom to use any differentiable function for <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate its gradients.</p>
 <hr>
 </section>
-<section id="applications-of-ebms-without-computing-ztheta" class="level3">
-<h3 class="anchored" data-anchor-id="applications-of-ebms-without-computing-ztheta">Applications of EBMs Without Computing <span class="math inline">\(Z(\theta)\)</span></h3>
+<section id="practical-applications-when-you-dont-need-ztheta" class="level3">
+<h3 class="anchored" data-anchor-id="practical-applications-when-you-dont-need-ztheta">Practical Applications: When You Don’t Need <span class="math inline">\(Z(\theta)\)</span></h3>
 <p>In general, evaluating the full probability <span class="math inline">\(p_\theta(x)\)</span> requires computing the partition function <span class="math inline">\(Z(\theta)\)</span>:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
@@ -300,12 +300,12 @@ This allows EBMs to be useful even when the partition function is intractable.</
 </div>
 </div>
 </div>
-<p>When comparing two samples <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span>, the ratio:</p>
+<p>When comparing two samples <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span>, we can compute the ratio of their probabilities:</p>
 <p><span class="math display">\[
 \frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
 \]</span></p>
 <p>does <strong>not</strong> involve <span class="math inline">\(Z(\theta)\)</span>.</p>
-<p>This means we can easily compare which input is more likely — a powerful property of EBMs.</p>
+<p>This lets us determine which input is more likely — without ever computing <span class="math inline">\(Z(\theta)\)</span> — a powerful advantage of EBMs.</p>
 <p><strong>Practical Applications</strong>:</p>
 <ul>
 <li><strong>Anomaly detection</strong>: Identify inputs with unusually low likelihood.</li>
@@ -409,6 +409,25 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 \]</span></p>
 <p>This encourages the model to increase the score of the training sample and decrease the score of samples it currently believes are likely.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>EBM Training Recap:</strong></p>
+<ul>
+<li>Want: High scores (low energy) for real data</li>
+<li>Avoid: High scores for incorrect data</li>
+<li>Can’t compute exact gradient due to <span class="math inline">\(Z(\theta)\)</span></li>
+<li>So: Approximate using Monte Carlo sample <span class="math inline">\(\sim p_\theta(x)\)</span></li>
+</ul>
+</div>
+</div>
 <hr>
 </section>
 <section id="intuition-recap" class="level3">
