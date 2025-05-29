@@ -420,6 +420,44 @@ p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 <p>“How much, <em>on average</em>, the model wants to increase the score of the samples it already believes in.”</p>
 </blockquote>
 </section>
+<section id="understanding-the-gradient-of-the-partition-function-1" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-the-gradient-of-the-partition-function-1">Understanding the Gradient of the Partition Function</h3>
+<p>To train EBMs, we often need the gradient of the log partition function:</p>
+<p><span class="math display">\[
+\nabla_\theta \log Z(\theta)
+\]</span></p>
+<p>Let’s unpack this in simple terms.</p>
+<p>We know:</p>
+<p><span class="math display">\[
+Z(\theta) = \int \exp(f_\theta(x))\, dx
+\]</span></p>
+<p>Now recall the derivative rule for logs:</p>
+<p><span class="math display">\[
+\nabla_\theta \log f(\theta) = \frac{1}{f(\theta)} \nabla_\theta f(\theta)
+\]</span></p>
+<p>Using that, we get:</p>
+<p><span class="math display">\[
+\nabla_\theta \log Z(\theta)
+= \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
+\]</span></p>
+<p>This is a <strong>weighted sum</strong> over all possible values of ( x ), where each ( <em>f</em>(x) ) is weighted by how likely ( x ) is according to the model — specifically by ( (f_(x)) ).</p>
+<p>And since:</p>
+<p><span class="math display">\[
+p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
+\]</span></p>
+<p>we can rewrite the expression as:</p>
+<p><span class="math display">\[
+\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+\]</span></p>
+<hr>
+<p><strong>Intuition</strong></p>
+<p>That weighted sum turns out to be the <strong>average of the gradients</strong> — but not over just any inputs. We’re averaging over inputs that the <strong>model believes are likely</strong>, because they’re sampled from ( p_(x) ).</p>
+<p>This lets us interpret the gradient of the log partition function as:</p>
+<blockquote class="blockquote">
+<p>“How much, <em>on average</em>, the model wants to increase the score of the samples it already believes in.”</p>
+</blockquote>
+</section>
 <section id="interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation">Interpretation</h3>
 <ul>

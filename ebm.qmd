@@ -218,6 +218,66 @@ $$
 This encourages the model to increase the score of training samples while decreasing the score of negative samples.
 
 
+
+
+### Understanding the Gradient of the Partition Function
+
+To train EBMs, we often need the gradient of the log partition function:
+
+$$
+\nabla_\theta \log Z(\theta)
+$$
+
+Let’s unpack this in simple terms.
+
+We know:
+
+$$
+Z(\theta) = \int \exp(f_\theta(x))\, dx
+$$
+
+Now recall the derivative rule for logs:
+
+$$
+\nabla_\theta \log f(\theta) = \frac{1}{f(\theta)} \nabla_\theta f(\theta)
+$$
+
+Using that, we get:
+
+$$
+\nabla_\theta \log Z(\theta) 
+= \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
+= \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
+$$
+
+This is a **weighted sum** over all possible values of \( x \), where each \( \nabla_\theta f_\theta(x) \) is weighted by how likely \( x \) is according to the model — specifically by \( \exp(f_\theta(x)) \).
+
+And since:
+
+$$
+p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
+$$
+
+we can rewrite the expression as:
+
+$$
+\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+$$
+
+---
+
+**Intuition**
+
+That weighted sum turns out to be the **average of the gradients** — but not over just any inputs. We're averaging over inputs that the **model believes are likely**, because they're sampled from \( p_\theta(x) \).
+
+This lets us interpret the gradient of the log partition function as:
+
+> “How much, *on average*, the model wants to increase the score of the samples it already believes in.”
+
+
+
+
+
 ### Understanding the Gradient of the Partition Function
 
 To train EBMs, we often need the gradient of the log partition function:
