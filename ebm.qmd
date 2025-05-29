@@ -121,7 +121,13 @@ $$
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
 $$
 
-However, when comparing two samples $x$ and $x'$, the ratio:
+::: {.callout-tip appearance="simple"}
+**Key Insight**  
+In some applications, we don’t need the exact probability — we only need to compare scores.  
+This allows EBMs to be useful even when the partition function is intractable.
+:::
+
+When comparing two samples $x$ and $x'$, the ratio:
 
 $$
 \frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
