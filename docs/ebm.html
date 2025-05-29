@@ -147,9 +147,8 @@ window.Quarto = {
   <li><a href="#understanding-the-probability-foundation-behind-ebms" id="toc-understanding-the-probability-foundation-behind-ebms" class="nav-link" data-scroll-target="#understanding-the-probability-foundation-behind-ebms">Understanding the Probability Foundation Behind EBMs</a></li>
   <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
   <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
-  <li><a href="#connecting-to-ebms" id="toc-connecting-to-ebms" class="nav-link" data-scroll-target="#connecting-to-ebms">Connecting to EBMs</a></li>
+  <li><a href="#from-scores-to-probabilities-in-ebms" id="toc-from-scores-to-probabilities-in-ebms" class="nav-link" data-scroll-target="#from-scores-to-probabilities-in-ebms">From Scores to Probabilities in EBMs</a></li>
   </ul></li>
-  <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
   <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">Limitations of EBMs</a></li>
   <li><a href="#learning-and-inference-in-energy-based-models" id="toc-learning-and-inference-in-energy-based-models" class="nav-link" data-scroll-target="#learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</a></li>
@@ -275,9 +274,16 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 </ul>
 <hr>
 </section>
-<section id="connecting-to-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="connecting-to-ebms">Connecting to EBMs</h3>
-<p>In EBMs, we define:</p>
+<section id="from-scores-to-probabilities-in-ebms" class="level3">
+<h3 class="anchored" data-anchor-id="from-scores-to-probabilities-in-ebms">From Scores to Probabilities in EBMs</h3>
+<p>Energy-Based Models use the same framework we’ve built above — defining a flexible score function <span class="math inline">\(f_\theta(x)\)</span> and converting it into a probability via exponentiation and normalization.</p>
+<p>We use an <strong>exponential function</strong> because:</p>
+<ul>
+<li>It guarantees non-negativity: <span class="math inline">\(\exp(f_\theta(x)) \geq 0\)</span></li>
+<li>It allows us to interpret <span class="math inline">\(f_\theta(x)\)</span> as an unnormalized log-probability</li>
+<li>It connects naturally to many well-known distributions (e.g., exponential family, Boltzmann distribution)</li>
+</ul>
+<p>We define:</p>
 <p><span class="math display">\[
 g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
 \]</span></p>
@@ -285,18 +291,9 @@ g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f
 <p><span class="math display">\[
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 \]</span></p>
-<p>This formulation is powerful because it allows maximum flexibility in defining <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate the gradients of the energy function.</p>
+<p>This formulation gives EBMs the freedom to use any differentiable function for <span class="math inline">\(f_\theta(x)\)</span> without requiring invertibility or autoregressive factorization.</p>
 <hr>
 </section>
-</section>
-<section id="enter-energy-based-models-ebms" class="level2">
-<h2 class="anchored" data-anchor-id="enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</h2>
-<p>Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution <span class="math inline">\(P(x)\)</span>, EBMs define an <strong>energy function</strong> <span class="math inline">\(E_\theta(x)\)</span> that assigns lower energy to more likely data points:</p>
-<p><span class="math display">\[
-p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
-\]</span></p>
-<p>Here, <span class="math display">\[Z_\theta = \int e^{-E_\theta(x)} dx\]</span> is the <strong>partition function</strong>, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use <strong>any neural architecture</strong> for <span class="math inline">\(E_\theta\)</span>, without needing invertibility, autoregressive factorization, or adversarial setup.</p>
-<hr>
 </section>
 <section id="key-benefits-of-ebms" class="level2">
 <h2 class="anchored" data-anchor-id="key-benefits-of-ebms">Key Benefits of EBMs</h2>

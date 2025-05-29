@@ -74,9 +74,17 @@ Think of $g_\theta(x)$ as a scoring function:
 
 ---
 
-### Connecting to EBMs
+### From Scores to Probabilities in EBMs
 
-In EBMs, we define:
+Energy-Based Models use the same framework we've built above — defining a flexible score function $f_\theta(x)$ and converting it into a probability via exponentiation and normalization.
+
+We use an **exponential function** because:
+
+- It guarantees non-negativity: $\exp(f_\theta(x)) \geq 0$
+- It allows us to interpret $f_\theta(x)$ as an unnormalized log-probability
+- It connects naturally to many well-known distributions (e.g., exponential family, Boltzmann distribution)
+
+We define:
 
 $$
 g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
@@ -88,19 +96,7 @@ $$
 p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 $$
 
-This formulation is powerful because it allows maximum flexibility in defining $f_\theta(x)$, and only requires that we can compute or approximate the gradients of the energy function.
-
----
-
-## Enter Energy-Based Models (EBMs)
-
-Energy-Based Models drop the assumption of tractable density. Instead of directly modeling the probability distribution $P(x)$, EBMs define an **energy function** $E_\theta(x)$ that assigns lower energy to more likely data points:
-
-$$
-p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z_\theta}
-$$
-
-Here, $$Z_\theta = \int e^{-E_\theta(x)} dx$$ is the **partition function**, which normalizes the probability distribution. This implicit formulation gives EBMs the flexibility to use **any neural architecture** for $E_\theta$, without needing invertibility, autoregressive factorization, or adversarial setup.
+This formulation gives EBMs the freedom to use any differentiable function for $f_\theta(x)$ without requiring invertibility or autoregressive factorization.
 
 ---
 
