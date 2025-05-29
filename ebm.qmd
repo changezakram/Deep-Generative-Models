@@ -274,6 +274,9 @@ This encourages the model to increase the score of the training sample and decre
 - **Push down** samples from the model: $\nabla_\theta f_\theta(x_{\text{sample}})$
 - The model improves by sharpening its belief in real data and correcting mistaken high-scoring areas of the space.
 
+![Visualizing EBM training](images/ebm_training_flow.png)
+*During training, EBMs increase the score (i.e., lower energy) of correct samples and decrease the score of incorrect ones.*
+
 ---
 
 ## 📚 References
