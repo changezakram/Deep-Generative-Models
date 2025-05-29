@@ -192,7 +192,7 @@ This means we want to **increase the numerator** (make the correct sample more l
 
 ### Why It's Not That Simple
 
-Because the model is not normalized, simply increasing $\( f_\theta(x_\text{train}) \)$ does **not** guarantee that $\( x_\text{train} \)$ becomes more likely **relative to the rest**.
+Because the model is not normalized, simply increasing $f_\theta(x_\text{train})$ does **not** guarantee that $x_\text{train}$ becomes more likely **relative to the rest**.
 
 We must also consider the effect on the partition function:
 
@@ -200,7 +200,7 @@ $$
 Z(\theta) = \int \exp(f_\theta(x))\, dx
 $$
 
-To make $\( x_\text{train} \)$ truly more likely, we must **pull up** $\( f_\theta(x_\text{train}) \)$ while also **pushing down** $\( f_\theta(x) \)$ for other (incorrect) samples.
+To make $x_\text{train}$ truly more likely, we must **pull up** $f_\theta(x_\text{train})$ while also **pushing down** $f_\theta(x)$ for other (incorrect) samples.
 
 ---
 
