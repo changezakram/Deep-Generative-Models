@@ -88,23 +88,23 @@ $$
 
 ---
 
-## Limitations of Energy-Based Models
+## Limitations of EBMs
 
 Despite their elegance, EBMs pose serious challenges:
 
-** Hard Sampling
+**Hard Sampling**
 
 - No direct way to draw samples from $p_\theta(x)$
 - Requires iterative MCMC methods
 - Sampling cost is high and scales poorly in high dimensions
 
-** Hard Likelihood Evaluation and Learning
+**Hard Likelihood Evaluation and Learning**
 
 - Partition function $Z(\theta)$ is intractable
 - Evaluating $\log p_\theta(x)$ is not feasible
 - Need to push down energy of incorrect configurations to make learning effective
 
-** No Feature Learning (by default)
+**No Feature Learning (by default)**
 
 - EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)
 

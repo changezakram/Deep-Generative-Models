@@ -145,7 +145,7 @@ window.Quarto = {
   <li><a href="#enter-energy-based-models-ebms" id="toc-enter-energy-based-models-ebms" class="nav-link" data-scroll-target="#enter-energy-based-models-ebms">Enter Energy-Based Models (EBMs)</a></li>
   <li><a href="#math-review-from-scores-to-probabilities-in-energy-based-models" id="toc-math-review-from-scores-to-probabilities-in-energy-based-models" class="nav-link" data-scroll-target="#math-review-from-scores-to-probabilities-in-energy-based-models">Math Review: From Scores to Probabilities in Energy-Based Models</a></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms">Key Benefits of EBMs</a></li>
-  <li><a href="#limitations-of-energy-based-models" id="toc-limitations-of-energy-based-models" class="nav-link" data-scroll-target="#limitations-of-energy-based-models">Limitations of Energy-Based Models</a></li>
+  <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms">Limitations of EBMs</a></li>
   <li><a href="#learning-and-inference-in-energy-based-models" id="toc-learning-and-inference-in-energy-based-models" class="nav-link" data-scroll-target="#learning-and-inference-in-energy-based-models">Learning and Inference in Energy-Based Models</a></li>
   <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence">Contrastive Divergence</a></li>
   <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models">Sampling from Energy-Based Models</a>
@@ -276,22 +276,22 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 </ul>
 <hr>
 </section>
-<section id="limitations-of-energy-based-models" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-of-energy-based-models">Limitations of Energy-Based Models</h2>
+<section id="limitations-of-ebms" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-of-ebms">Limitations of EBMs</h2>
 <p>Despite their elegance, EBMs pose serious challenges:</p>
-<p>** Hard Sampling</p>
+<p><strong>Hard Sampling</strong></p>
 <ul>
 <li>No direct way to draw samples from <span class="math inline">\(p_\theta(x)\)</span></li>
 <li>Requires iterative MCMC methods</li>
 <li>Sampling cost is high and scales poorly in high dimensions</li>
 </ul>
-<p>** Hard Likelihood Evaluation and Learning</p>
+<p><strong>Hard Likelihood Evaluation and Learning</strong></p>
 <ul>
 <li>Partition function <span class="math inline">\(Z(\theta)\)</span> is intractable</li>
 <li>Evaluating <span class="math inline">\(\log p_\theta(x)\)</span> is not feasible</li>
 <li>Need to push down energy of incorrect configurations to make learning effective</li>
 </ul>
-<p>** No Feature Learning (by default)</p>
+<p><strong>No Feature Learning (by default)</strong></p>
 <ul>
 <li>EBMs do not learn latent features unless explicitly modeled (e.g., RBMs)</li>
 </ul>
