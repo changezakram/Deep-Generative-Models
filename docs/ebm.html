@@ -350,92 +350,87 @@ Energies can be combined to support multi-task objectives or structured learning
 </ul>
 <hr>
 </section>
-<section id="training-and-inference-in-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="training-and-inference-in-ebms">Training and Inference in EBMs</h3>
+</section>
+<section id="training-and-inference-in-ebms" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-inference-in-ebms">Training and Inference in EBMs</h2>
 <p>The training objective for Energy-Based Models (EBMs) is to assign <strong>higher scores</strong> (i.e., lower energy) to correct examples and <strong>lower scores</strong> (higher energy) to incorrect or unlikely ones.</p>
 <p>Our goal is to <strong>maximize the (unnormalized) likelihood</strong> of training data:</p>
 <p><span class="math display">\[
-\text{maximize} \quad \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
+\text{maximize} \quad \frac{\exp(f_\theta(x_\text{train}))}{Z(\theta)}
 \]</span></p>
 <p>This means we want to <strong>increase the numerator</strong> (make the correct sample more likely) and <strong>decrease the denominator</strong> (reduce the overall mass by pushing down other samples).</p>
 <hr>
-</section>
-<section id="intuition-1" class="level3">
-<h3 class="anchored" data-anchor-id="intuition-1">Intuition</h3>
-<p>Because the model is not normalized, simply increasing <span class="math inline">\(f_\theta(x_{\text{train}})\)</span> does <strong>not</strong> guarantee that <span class="math inline">\(x_{\text{train}}\)</span> becomes more likely <strong>relative to the rest</strong>. We must also consider the effect on <span class="math inline">\(Z(\theta)\)</span>, which sums over all possible <span class="math inline">\(x\)</span>:</p>
-<p><span class="math display">\[
-Z(\theta) = \int \exp(f_\theta(x)) \, dx
-\]</span></p>
-<p>To make training data truly more likely, we must <strong>pull up <span class="math inline">\(f_\theta(x_{\text{train}})\)</span></strong> while also <strong>pushing down <span class="math inline">\(f_\theta(x)\)</span></strong> for other (incorrect) samples.</p>
-<hr>
-</section>
-<section id="contrastive-divergence-simplified" class="level3">
-<h3 class="anchored" data-anchor-id="contrastive-divergence-simplified">Contrastive Divergence (Simplified)</h3>
-<p>Instead of evaluating <span class="math inline">\(Z(\theta)\)</span> exactly, which is intractable, we use a Monte Carlo estimate:</p>
-<p><strong>Contrastive Divergence Algorithm:</strong></p>
-<ol type="1">
-<li>Sample <span class="math inline">\(x_{\text{sample}} \sim p_\theta\)</span></li>
-<li>Take a gradient step on:</li>
-</ol>
-<p><span class="math display">\[
-\nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
-\]</span></p>
-<p>This encourages the model to increase the score of training samples while decreasing the score of negative samples.</p>
-<hr>
-</section>
-<section id="understanding-the-gradient-of-the-partition-function" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-the-gradient-of-the-partition-function">Understanding the Gradient of the Partition Function</h3>
-<p>Training EBMs involves computing the gradient of the log partition function:</p>
-<p><span class="math display">\[
-\nabla_\theta \log Z(\theta)
-\]</span></p>
-<p>This might look abstract, so let’s break it down.</p>
-<p>We start with the definition of the partition function:</p>
+<section id="why-its-not-that-simple" class="level3">
+<h3 class="anchored" data-anchor-id="why-its-not-that-simple">Why It’s Not That Simple</h3>
+<p>Because the model is not normalized, simply increasing ( f_(x_) ) does <strong>not</strong> guarantee that ( x_ ) becomes more likely <strong>relative to the rest</strong>.</p>
+<p>We must also consider the effect on the partition function:</p>
 <p><span class="math display">\[
 Z(\theta) = \int \exp(f_\theta(x))\, dx
 \]</span></p>
-<p>Taking the gradient of the log of this quantity using the chain rule:</p>
+<p>To make ( x_ ) truly more likely, we must <strong>pull up</strong> ( f_(x_) ) while also <strong>pushing down</strong> ( f_(x) ) for other (incorrect) samples.</p>
+<hr>
+</section>
+<section id="gradient-of-the-log-likelihood" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-of-the-log-likelihood">Gradient of the Log-Likelihood</h3>
+<p>We aim to <strong>maximize</strong> the log-likelihood of training data:</p>
+<p><span class="math display">\[
+\log p_\theta(x_\text{train}) = f_\theta(x_\text{train}) - \log Z(\theta)
+\]</span></p>
+<p>Taking the gradient with respect to ( ):</p>
+<p><span class="math display">\[
+\nabla_\theta \log p_\theta(x_\text{train}) = \nabla_\theta f_\theta(x_\text{train}) - \nabla_\theta \log Z(\theta)
+\]</span></p>
+<p>So to compute this, we need to understand the gradient of the log partition function.</p>
+<hr>
+</section>
+<section id="gradient-of-the-partition-function" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-of-the-partition-function">Gradient of the Partition Function</h3>
+<p>We start with:</p>
+<p><span class="math display">\[
+Z(\theta) = \int \exp(f_\theta(x))\, dx
+\]</span></p>
+<p>Then use the chain rule:</p>
 <p><span class="math display">\[
 \nabla_\theta \log Z(\theta)
 = \frac{1}{Z(\theta)} \nabla_\theta Z(\theta)
 = \frac{1}{Z(\theta)} \int \exp(f_\theta(x)) \nabla_\theta f_\theta(x)\, dx
 \]</span></p>
-<p>This is a <strong>weighted average</strong> of gradients ( <em>f</em>(x) ), where each weight is proportional to how likely ( x ) is under the model.</p>
-<p>Using the definition of the model distribution:</p>
+<p>This is a <strong>weighted average</strong> of gradients ( <em>f</em>(x) ), where each weight is proportional to how likely ( x ) is under the model — specifically weighted by ( (f_(x)) ).</p>
+<p>Since:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
 \]</span></p>
-<p>we can simplify the gradient to:</p>
+<p>we get the simplified form:</p>
 <p><span class="math display">\[
-\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
+\nabla_\theta \log Z(\theta) = \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
+\]</span></p>
+<p>Substituting this into the earlier log-likelihood gradient:</p>
+<p><span class="math display">\[
+\nabla_\theta \log p_\theta(x_\text{train}) = \nabla_\theta f_\theta(x_\text{train}) - \mathbb{E}_{x \sim p_\theta}[\nabla_\theta f_\theta(x)]
 \]</span></p>
 <hr>
 </section>
-<section id="connecting-to-the-log-likelihood-gradient" class="level3">
-<h3 class="anchored" data-anchor-id="connecting-to-the-log-likelihood-gradient">Connecting to the Log-Likelihood Gradient</h3>
-<p>In training, our objective is to <strong>maximize the log-likelihood</strong> of training data:</p>
-<p><span class="math display">\[
-\log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
-\]</span></p>
-<p>Taking its gradient:</p>
-<p><span class="math display">\[
-\nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta \log Z(\theta)
-\]</span></p>
-<p>Substitute the earlier result:</p>
-<p><span class="math display">\[
-\nabla_\theta \log p_\theta(x_{\text{train}})
-= \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
-\]</span></p>
-<hr>
-</section>
-<section id="intuition-2" class="level3">
-<h3 class="anchored" data-anchor-id="intuition-2">Intuition</h3>
+<section id="intuition-1" class="level3">
+<h3 class="anchored" data-anchor-id="intuition-1">Intuition</h3>
 <ul>
-<li><strong>Pull up the training example</strong>: The first term increases the score of the training data.</li>
-<li><strong>Push down other samples</strong>: The second term is an average over model samples — it reduces the scores of other points the model currently believes are likely.</li>
-<li><strong>Net effect</strong>: Make the training data stand out as more likely than the rest.</li>
+<li><strong>Pull up the training example</strong>: The first term increases the score of the correct data point.</li>
+<li><strong>Push down other samples</strong>: The second term is an average over everything the model currently thinks is likely.</li>
+<li><strong>Net effect</strong>: The model learns by increasing the score of the correct data and decreasing the score of points it mistakenly believes are likely.</li>
 </ul>
-<p>This balance is what makes EBM learning effective: boost the good, suppress the rest.</p>
+<hr>
+</section>
+<section id="contrastive-divergence-simplified" class="level3">
+<h3 class="anchored" data-anchor-id="contrastive-divergence-simplified">Contrastive Divergence (Simplified)</h3>
+<p>In practice, computing ( <em>{x p</em>}[] ) is intractable, so we use a Monte Carlo estimate.</p>
+<p><strong>Contrastive Divergence Algorithm:</strong></p>
+<ol type="1">
+<li>Sample ( x_ p_) (typically via MCMC)</li>
+<li>Take a gradient step on:</li>
+</ol>
+<p><span class="math display">\[
+\nabla_\theta \left( f_\theta(x_\text{train}) - f_\theta(x_\text{sample}) \right)
+\]</span></p>
+<p>This encourages the model to increase the score of training samples while decreasing the score of negative samples.</p>
 <hr>
 </section>
 </section>
