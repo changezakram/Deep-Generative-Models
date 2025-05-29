@@ -498,95 +498,92 @@ This approach works in theory but can take a <strong>very long time to converge<
 <h2 class="anchored" data-anchor-id="sampling-from-ebms">Sampling from EBMs</h2>
 <p>The challenge with sampling from an energy-based model is that we define:</p>
 <p><span class="math display">\[
-p_\\theta(x) = \\frac{1}{Z(\\theta)} \\exp(f_\\theta(x))
+p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
 \]</span></p>
-<p>Unlike autoregressive or flow-based models, there’s <strong>no direct way to sample</strong> from this distribution, because computing the normalizing constant <span class="math inline">\(Z(\\theta)\)</span> is intractable. However, we <strong>can still compare scores</strong> of different <span class="math inline">\(x\)</span> — which allows us to build samples iteratively.</p>
-<hr>
-<section id="markov-chain-monte-carlo-mcmc-1" class="level3">
-<h3 class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc-1">Markov Chain Monte Carlo (MCMC)</h3>
-<p>The core idea behind MCMC is to construct a Markov chain whose stationary distribution is <span class="math inline">\(p_\\theta(x)\)</span>. If we run the chain long enough, we can sample approximately from the target distribution.</p>
-<hr>
+<p>Unlike autoregressive or flow-based models, there’s <strong>no direct way to sample</strong> from this distribution, because computing the normalizing constant <span class="math inline">\(Z(\theta)\)</span> is intractable. However, we can <strong>still compare scores</strong> of different <span class="math inline">\(x\)</span> — which allows us to build samples iteratively.</p>
 </section>
-<section id="metropolis-hastings" class="level3">
-<h3 class="anchored" data-anchor-id="metropolis-hastings">1. Metropolis-Hastings</h3>
+<section id="markov-chain-monte-carlo-mcmc-1" class="level2">
+<h2 class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc-1">Markov Chain Monte Carlo (MCMC)</h2>
+<p>The core idea behind MCMC is to construct a Markov chain whose stationary distribution is <span class="math inline">\(p_\theta(x)\)</span>. If we run the chain long enough, we can sample approximately from the target distribution.</p>
+<section id="metropolis-hastings-mh" class="level3">
+<h3 class="anchored" data-anchor-id="metropolis-hastings-mh">1. Metropolis-Hastings (MH)</h3>
 <p>A classic MCMC method. At each step:</p>
 <ol type="1">
-<li><p>Propose a new sample:<br>
-<span class="math display">\[
-x' = x^t + \\text{noise}
-\]</span></p></li>
-<li><p>Accept the new sample with probability:<br>
-<span class="math display">\[
-\\min\\left(1, \\exp(f_\\theta(x') - f_\\theta(x^t)) \\right)
-\]</span></p></li>
-</ol>
-<p><strong>Pros</strong>: - General-purpose - Guaranteed to converge to <span class="math inline">\(p_\\theta(x)\)</span> under mild conditions</p>
-<p><strong>Cons</strong>: - Can be slow to mix (i.e., slow convergence) - Sensitive to proposal distribution - Computationally expensive in high dimensions</p>
-<hr>
-</section>
-<section id="unadjusted-langevin-mcmc" class="level3">
-<h3 class="anchored" data-anchor-id="unadjusted-langevin-mcmc">2. Unadjusted Langevin MCMC</h3>
-<p>Langevin MCMC improves sampling by incorporating gradient information.</p>
-<ol type="1">
-<li>Initialize <span class="math inline">\(x^0 \\sim \\pi(x)\)</span><br>
-</li>
-<li>Iterate:<br>
-<span class="math display">\[
-x^{t+1} = x^t + \\epsilon \\nabla_x \\log p_\\theta(x^t) + \\sqrt{2\\epsilon} z^t
-\]</span><br>
-where <span class="math inline">\(z^t \\sim \\mathcal{N}(0, I)\)</span></li>
-</ol>
-<p>For EBMs, since <span class="math inline">\(\\nabla_x \\log p_\\theta(x) = \\nabla_x f_\\theta(x)\)</span>:</p>
+<li><p>Propose a new sample:</p>
 <p><span class="math display">\[
-x^{t+1} = x^t + \\epsilon \\nabla_x f_\\theta(x^t) + \\sqrt{2\\epsilon} z^t
+x' = x^t + \text{noise}
+\]</span></p></li>
+<li><p>Accept the new sample with probability:</p>
+<p><span class="math display">\[
+\min\left(1, \exp(f_\theta(x') - f_\theta(x^t)) \right)
+\]</span></p></li>
+</ol>
+<p><strong>Pros:</strong><br>
+- General-purpose<br>
+- Guaranteed to converge to <span class="math inline">\(p_\theta(x)\)</span> under mild conditions</p>
+<p><strong>Cons:</strong><br>
+- Can be slow to mix (i.e., slow convergence)<br>
+- Sensitive to proposal distribution<br>
+- Computationally expensive in high dimensions</p>
+</section>
+<section id="unadjusted-langevin-mcmc-ula" class="level3">
+<h3 class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula">2. Unadjusted Langevin MCMC (ULA)</h3>
+<p>Langevin MCMC uses gradient information to guide proposals:</p>
+<ol type="1">
+<li><p>Initialize <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
+</p></li>
+<li><p>Iterate:</p>
+<p><span class="math display">\[
+x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></p>
-<p><strong>Pros</strong>: - Uses gradient to guide sampling - Faster mixing than vanilla MCMC</p>
-<p><strong>Cons</strong>: - Still computationally expensive - Convergence slows in high dimensions</p>
+<p>where <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span></p></li>
+</ol>
+<p>For EBMs, since:</p>
+<p><span class="math display">\[
+\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
+\]</span></p>
+<p>we get:</p>
+<p><span class="math display">\[
+x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
+\]</span></p>
+<p><strong>Pros:</strong><br>
+- Uses gradient to improve proposal<br>
+- Often faster mixing than random-walk methods</p>
+<p><strong>Cons:</strong><br>
+- Still requires many steps for good convergence<br>
+- Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
+</section>
+<section id="adjusted-langevin-mcmc" class="level3">
+<h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc">3. Adjusted Langevin MCMC</h3>
+<p>Like ULA, but applies a Metropolis-Hastings correction step after the Langevin update to ensure correct stationary distribution.</p>
+<p><strong>Pros:</strong><br>
+- Theoretically sound (has correct limiting distribution)<br>
+- Can be more robust than ULA</p>
+<p><strong>Cons:</strong><br>
+- More expensive per iteration due to rejection sampling<br>
+- Slower in high-dimensional spaces</p>
+</section>
+<section id="hamiltonian-monte-carlo-hmc" class="level3">
+<h3 class="anchored" data-anchor-id="hamiltonian-monte-carlo-hmc">4. Hamiltonian Monte Carlo (HMC)</h3>
+<p>HMC treats sampling as a physics simulation. It introduces a momentum variable and simulates Hamiltonian dynamics to explore space more efficiently.</p>
+<p><strong>Pros:</strong><br>
+- Much better mixing in high-dimensional settings<br>
+- Can take large steps while maintaining accuracy</p>
+<p><strong>Cons:</strong><br>
+- Requires tuning step size and number of leapfrog steps<br>
+- Gradient computation is expensive</p>
 <hr>
 </section>
-<section id="summary-of-trade-offs" class="level3">
-<h3 class="anchored" data-anchor-id="summary-of-trade-offs">3. Summary of Trade-offs</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 11%">
-<col style="width: 32%">
-<col style="width: 38%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Method</th>
-<th>Gradient Use</th>
-<th>Pros</th>
-<th>Cons</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Metropolis-Hastings</td>
-<td>❌ No</td>
-<td>General, proven convergence</td>
-<td>Slow mixing, inefficient in high dimensions</td>
-</tr>
-<tr class="even">
-<td>Unadjusted Langevin</td>
-<td>✅ Yes</td>
-<td>Gradient-guided, faster mixing</td>
-<td>Still costly, can suffer from discretization</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-simple callout-tip">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Key Insight</strong><br>
-MCMC allows us to sample from EBMs even when we can’t normalize <span class="math inline">\(p_\\theta(x)\)</span>. But these methods are <strong>slow</strong> and <strong>scale poorly</strong> in high dimensions — especially when needed for every training step.</p>
-</div>
-</div>
-</div>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>All these methods aim to sample from <span class="math inline">\(p_\theta(x)\)</span>, but differ in how they explore the space:</p>
+<ul>
+<li><strong>MH</strong> is simple but inefficient.</li>
+<li><strong>ULA</strong> is gradient-guided but approximate.</li>
+<li><strong>Adjusted Langevin</strong> corrects ULA with MH.</li>
+<li><strong>HMC</strong> is powerful but computationally heavy.</li>
+</ul>
+<p>Sampling is a core challenge in EBMs — especially because we need to sample during <strong>every training step</strong> when using contrastive divergence.</p>
 </section>
 </section>
 <section id="references" class="level2">
