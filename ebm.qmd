@@ -270,30 +270,50 @@ $$
 
 ### Contrastive Divergence
 
-We saw earlier that training EBMs requires computing the log-likelihood gradient:
+In the previous section, we saw that the gradient of the log-likelihood is:
 
 $$
 \nabla_\theta \log p_\theta(x_{\text{train}}) = \nabla_\theta f_\theta(x_{\text{train}}) - \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right]
 $$
 
-The first term is easy to compute — it comes from the training data.  
-But the second term involves an expectation under the model distribution $p_\theta(x)$, which is generally **intractable**.
-
-To handle this, we approximate the expectation using a **Monte Carlo sample**:
+The first term pulls up the score of the training example.  
+The second term pushes down the average score of the points that the model believes are likely.
 
 ---
 
-**Contrastive Divergence Algorithm:**
+### Challenge: The Expectation is Intractable
 
-1. Sample $x_{\text{sample}} \sim p_\theta$ (typically via MCMC)  
-2. Take a gradient step on:
+The expectation \( \mathbb{E}_{x \sim p_\theta} [ \nabla_\theta f_\theta(x) ] \) involves **sampling from the model distribution** \( p_\theta(x) \), which requires computing or approximating the partition function \( Z(\theta) \). This is computationally expensive and often infeasible in practice.
+
+---
+
+### Solution: Use a Monte Carlo Approximation
+
+We approximate the expectation using a **Monte Carlo sample** drawn from the model:
+
+$$
+\mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right] \approx \nabla_\theta f_\theta(x_{\text{sample}})
+$$
+
+Substituting this into the log-likelihood gradient:
+
+$$
+\nabla_\theta \log p_\theta(x_{\text{train}}) \approx \nabla_\theta f_\theta(x_{\text{train}}) - \nabla_\theta f_\theta(x_{\text{sample}})
+= \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
+$$
+
+---
+
+### Contrastive Divergence Algorithm
+
+**1.** Sample \( x_{\text{sample}} \sim p_\theta \) (typically via MCMC)  
+**2.** Take a gradient step on:
 
 $$
 \nabla_\theta \left( f_\theta(x_{\text{train}}) - f_\theta(x_{\text{sample}}) \right)
 $$
 
-This approximation replaces the full expectation with a single (or a few) samples drawn from the model.  
-The model learns by **increasing the score of the correct example** and **decreasing the score of model-generated samples** that it currently believes are likely.
+This update encourages the model to **increase** the score of the training data while **decreasing** the score of the samples it currently believes are likely.
 
 ---
 
