@@ -1,3 +1,17 @@
+---
+title: "Energy-Based Models"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    html-math-method: mathjax
+    theme: cosmo
+    smooth-scroll: true
+    standalone: true
+lang: en
+math: mathjax
+---
 
 ## Introduction
 
@@ -389,7 +403,6 @@ All these methods aim to sample from $p_\theta(x)$, but differ in how they explo
 - **MH** is simple but inefficient.
 - **ULA** is gradient-guided but approximate.
 - **Adjusted Langevin** corrects ULA with MH.
-- **HMC** is powerful but computationally heavy.
 
 Sampling is a core challenge in EBMs — especially because we need to sample during **every training step** when using contrastive divergence.
 
