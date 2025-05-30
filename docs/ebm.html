@@ -518,9 +518,11 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 </li>
 <li><strong>Repeat</strong> for <span class="math inline">\(t = 0, 1, 2, \dots, T - 1\)</span>:
 <ul>
-<li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
-</li>
-<li>Update:<br>
+<li>Sample noise:<br>
+<span class="math display">\[
+z^t \sim \mathcal{N}(0, I)
+\]</span></li>
+<li>Update proposal:<br>
 <span class="math display">\[
 x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></li>
@@ -528,11 +530,13 @@ x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
 <li><strong>For EBMs</strong>, since<br>
 <span class="math display">\[
 \nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
-\]</span><br>
-the update becomes:<br>
+\]</span>
+<ul>
+<li>Proposal becomes:<br>
 <span class="math display">\[
 x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></li>
+</ul></li>
 </ol>
 <p><strong>Pros:</strong><br>
 - Uses gradient to improve proposal<br>
