@@ -354,19 +354,20 @@ To sample from $p_\theta(x)$, Adjusted Langevin MCMC applies a **Metropolis-Hast
 This makes it a **theoretically sound** version of ULA.
 
 1. **Update proposal** (same as ULA):
-    - Sample noise:
+    - Sample:
       $$
       z^t \sim \mathcal{N}(0, I)
       $$
-    - Compute proposal:
+    - Update:
       $$
       x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
       $$
 
-2. **Accept or reject** the proposal using:
-    $$
-    \text{Accept } x^{t+1} \text{ with probability } \min\left(1, \frac{p_\theta(x^{t+1})}{p_\theta(x^t)}\right)
-    $$
+2. **Accept or reject**:
+    - Accept $x^{t+1}$ with probability:
+      $$
+      \min\left(1, \frac{p_\theta(x^{t+1})}{p_\theta(x^t)}\right)
+      $$
 
 **Pros**  
 - Theoretically sound (has correct limiting distribution)  

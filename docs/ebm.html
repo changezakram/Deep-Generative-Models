@@ -517,16 +517,19 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <ol type="1">
 <li><strong>Update proposal</strong> (same as ULA):
 <ul>
-<li>Sample noise: <span class="math display">\[
+<li>Sample: <span class="math display">\[
 z^t \sim \mathcal{N}(0, I)
 \]</span></li>
-<li>Compute proposal: <span class="math display">\[
+<li>Update: <span class="math display">\[
 x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></li>
 </ul></li>
-<li><strong>Accept or reject</strong> the proposal using: <span class="math display">\[
-\text{Accept } x^{t+1} \text{ with probability } \min\left(1, \frac{p_\theta(x^{t+1})}{p_\theta(x^t)}\right)
+<li><strong>Accept or reject</strong>:
+<ul>
+<li>Accept <span class="math inline">\(x^{t+1}\)</span> with probability: <span class="math display">\[
+\min\left(1, \frac{p_\theta(x^{t+1})}{p_\theta(x^t)}\right)
 \]</span></li>
+</ul></li>
 </ol>
 <p><strong>Pros</strong><br>
 - Theoretically sound (has correct limiting distribution)<br>
