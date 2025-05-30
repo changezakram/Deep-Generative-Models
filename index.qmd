@@ -4,12 +4,11 @@ title: "Deep Generative Models"
 
 ## Overview
 
-This site explores the foundations and frontiers of deep generative models — from core mathematical principles to the architectures powering today’s most advanced AI systems.
+This site explores the foundations and frontiers of deep generative models — from core mathematical principles to the architectures behind today’s most advanced AI systems.
 
-It’s designed to document concepts clearly, walk through implementations step by step, and connect theory with real-world relevance. Topics range from early probabilistic frameworks to cutting-edge diffusion models driving breakthroughs in image, text, and multimodal generation.
+It combines clear explanations, step-by-step implementations, and real-world relevance — from early probabilistic models to cutting-edge diffusion frameworks.
 
 > Learn by building · Backed by math · Inspired by real-world use cases
-
 
 
 
