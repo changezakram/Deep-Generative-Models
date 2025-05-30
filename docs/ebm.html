@@ -487,30 +487,23 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 </section>
 <section id="unadjusted-langevin-mcmc-ula" class="level3">
 <h3 class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula">2. Unadjusted Langevin MCMC (ULA)</h3>
-<p>Langevin MCMC uses gradient information to guide proposals:</p>
+<p>Unadjusted Langevin MCMC uses gradient information to guide proposals:</p>
 <ol type="1">
-<li><p>Initialize <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
-</p></li>
-<li><p>Iterate:</p>
-<p><span class="math display">\[
-x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
-\]</span></p>
-<p>where <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span></p></li>
-</ol>
-<p>For EBMs, since:</p>
-<p><span class="math display">\[
-\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
-\]</span></p>
-<p>we get:</p>
-<p><span class="math display">\[
+<li>Initialize <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
+</li>
+<li>Repeat for <span class="math inline">\(t = 0, 1, 2, \dots, T-1\)</span>:
+<ul>
+<li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
+</li>
+<li>Update: <span class="math display">\[
+x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x)\big|_{x = x^t} + \sqrt{2\epsilon} z^t
+\]</span> For EBMs, since <span class="math inline">\(\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)\)</span>, this becomes: <span class="math display">\[
 x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
-\]</span></p>
-<p><strong>Pros:</strong><br>
-- Uses gradient to improve proposal<br>
-- Often faster mixing than random-walk methods</p>
-<p><strong>Cons:</strong><br>
-- Still requires many steps for good convergence<br>
-- Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
+\]</span></li>
+</ul></li>
+</ol>
+<p><strong>Pros:</strong> - Uses gradient to improve proposal - Often faster mixing than random-walk methods</p>
+<p><strong>Cons:</strong> - Still requires many steps for good convergence - Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
 </section>
 <section id="adjusted-langevin-mcmc" class="level3">
 <h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc">3. Adjusted Langevin MCMC</h3>

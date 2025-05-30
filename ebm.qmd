@@ -329,36 +329,28 @@ To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
 
 ### 2. Unadjusted Langevin MCMC (ULA)
 
-Langevin MCMC uses gradient information to guide proposals:
+Unadjusted Langevin MCMC uses gradient information to guide proposals:
 
 1. Initialize $x^0 \sim \pi(x)$  
-2. Iterate:
+2. Repeat for $t = 0, 1, 2, \dots, T-1$:
+   - Sample $z^t \sim \mathcal{N}(0, I)$  
+   - Update:
+     $$
+     x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x)\big|_{x = x^t} + \sqrt{2\epsilon} z^t
+     $$
+     For EBMs, since $\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)$, this becomes:
+     $$
+     x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
+     $$
 
-   $$
-   x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
-   $$
-
-   where $z^t \sim \mathcal{N}(0, I)$
-
-For EBMs, since:
-
-$$
-\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
-$$
-
-we get:
-
-$$
-x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
-$$
-
-**Pros:**  
-- Uses gradient to improve proposal  
+**Pros:**
+- Uses gradient to improve proposal
 - Often faster mixing than random-walk methods
 
-**Cons:**  
-- Still requires many steps for good convergence  
+**Cons:**
+- Still requires many steps for good convergence
 - Sensitive to step size $\epsilon$
+
 
 ### 3. Adjusted Langevin MCMC
 
