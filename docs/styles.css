@@ -1,0 +1,56 @@
+/* styles.css */
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  padding: 0 1rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Style collapsible sections with + icon */
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+  position: relative;
+  padding-left: 1.2em;
+}
+
+details summary::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+}
+
+details[open] summary::before {
+  content: "−";
+}
+
+/* Optional: smooth section transitions */
+details {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Remove default arrow icon from <summary> */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Remove default marker in Firefox and others */
+summary {
+  list-style: none;
+}
