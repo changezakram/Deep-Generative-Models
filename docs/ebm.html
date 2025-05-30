@@ -522,9 +522,9 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 </li>
 <li>Propose: <span class="math inline">\(x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span><br>
 </li>
-<li>Accept or reject:
+<li>Accept with probability:
 <ul>
-<li>With probability <span class="math inline">\(\alpha = \min\left(1, \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)\)</span>, set <span class="math inline">\(x^{t+1} = x'\)</span><br>
+<li><span class="math inline">\(\alpha = \min\left(1, \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)\)</span>, set <span class="math inline">\(x^{t+1} = x'\)</span><br>
 </li>
 <li>Otherwise, set <span class="math inline">\(x^{t+1} = x^t\)</span></li>
 </ul></li>
