@@ -167,6 +167,78 @@ window.Quarto = {
 </section>
 <section id="key-model-families" class="level2">
 <h2 class="anchored" data-anchor-id="key-model-families">Key Model Families</h2>
+<details>
+<summary>
+<strong>📦 Variational Autoencoders (VAEs)</strong>
+</summary>
+<ul>
+<li><strong>Core Idea</strong>: Encode input to a latent space and reconstruct it while optimizing a lower bound on likelihood (ELBO).</li>
+<li><strong>Likelihood</strong>: Approximate (variational lower bound).</li>
+<li><strong>Sampling</strong>: Fast — sample latent vector ( z p(z) ) and decode.</li>
+<li><strong>Use Cases</strong>: Representation learning, image generation.</li>
+<li><a href="./vae.html">Go to VAE write-up →</a></li>
+</ul>
+</details>
+<details>
+<summary>
+<strong>🌀 Generative Adversarial Networks (GANs)</strong>
+</summary>
+<ul>
+<li><strong>Core Idea</strong>: A generator and discriminator compete in a minimax game to produce realistic samples.</li>
+<li><strong>Likelihood</strong>: None (implicit model).</li>
+<li><strong>Sampling</strong>: Fast — sample latent vector and pass through generator.</li>
+<li><strong>Use Cases</strong>: High-quality image generation, style transfer.</li>
+<li><a href="gan.qmd">Go to GAN write-up →</a></li>
+</ul>
+</details>
+<details>
+<summary>
+<strong>📈 Autoregressive Models</strong>
+</summary>
+<ul>
+<li><strong>Core Idea</strong>: Factor the joint distribution as a product of conditional probabilities.</li>
+<li><strong>Likelihood</strong>: Exact.</li>
+<li><strong>Sampling</strong>: Slow — token-by-token generation.</li>
+<li><strong>Use Cases</strong>: Language modeling, code generation, time series.</li>
+<li><a href="autoregressive.qmd">Go to Autoregressive Models →</a></li>
+</ul>
+</details>
+<details>
+<summary>
+<strong>🔁 Normalizing Flows</strong>
+</summary>
+<ul>
+<li><strong>Core Idea</strong>: Learn invertible transformations of latent variables using the change-of-variable formula.</li>
+<li><strong>Likelihood</strong>: Exact and tractable.</li>
+<li><strong>Sampling</strong>: Fast — sample from base distribution and invert.</li>
+<li><strong>Use Cases</strong>: Density estimation, latent space modeling.</li>
+<li><a href="./flows.html">Go to Flow Models →</a></li>
+</ul>
+</details>
+<details>
+<summary>
+<strong>🌫️ Diffusion Models</strong>
+</summary>
+<ul>
+<li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
+<li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
+<li><strong>Sampling</strong>: Slow — requires hundreds of reverse steps.</li>
+<li><strong>Use Cases</strong>: High-resolution image and audio generation.</li>
+<li><a href="diffusion.qmd">Go to Diffusion Models →</a></li>
+</ul>
+</details>
+<details>
+<summary>
+<strong>🔥 Energy-Based Models (EBMs)</strong>
+</summary>
+<ul>
+<li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = higher probability.</li>
+<li><strong>Likelihood</strong>: Unnormalized (intractable partition function).</li>
+<li><strong>Sampling</strong>: Very slow — requires MCMC or Langevin dynamics.</li>
+<li><strong>Use Cases</strong>: Uncertainty modeling, compositional generation.</li>
+<li><a href="./ebm.html">Go to EBMs →</a></li>
+</ul>
+</details>
 <section id="variational-autoencoders-vaes" class="level3">
 <h3 class="anchored" data-anchor-id="variational-autoencoders-vaes">1. <a href="./vae.html">Variational Autoencoders (VAEs)</a></h3>
 <ul>
