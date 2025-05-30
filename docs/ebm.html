@@ -495,23 +495,12 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <ul>
 <li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
 </li>
-<li>Update:<br>
-<span class="math display">\[
-x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x)\Big|_{x = x^t} + \sqrt{2\epsilon} z^t
-\]</span><br>
+<li>Update: <span class="math inline">\(x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x)\big|_{x = x^t} + \sqrt{2\epsilon} z^t\)</span><br>
 </li>
 </ul></li>
-<li><strong>For EBMs</strong>, we use:
+<li><strong>For EBMs</strong>, since <span class="math inline">\(\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)\)</span>:
 <ul>
-<li>Score identity:<br>
-<span class="math display">\[
-\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
-\]</span><br>
-</li>
-<li>So the update becomes:<br>
-<span class="math display">\[
-x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
-\]</span></li>
+<li>Update becomes: <span class="math inline">\(x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span></li>
 </ul></li>
 </ol>
 <p><strong>Pros:</strong><br>
