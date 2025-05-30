@@ -2,8 +2,6 @@
 title: "Deep Generative Models"
 ---
 
-## Overview
-
 Deep generative models learn complex data distributions and generate realistic new content using probabilistic and neural techniques.
 
 Explore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.
