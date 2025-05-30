@@ -347,29 +347,50 @@ To sample from $p_\theta(x)$, Unadjusted Langevin MCMC uses gradient information
 - Sensitive to step size $\epsilon$
 
 
-### 3. Adjusted Langevin MCMC
+### 3. Adjusted Langevin MCMC (ALA)
 
-Like ULA, but applies a Metropolis-Hastings correction step after the Langevin update to ensure correct stationary distribution.
+Adjusted Langevin MCMC applies a **Metropolis-Hastings correction** step after each Langevin update to ensure samples follow the correct stationary distribution.
 
-**Pros:**  
-- Theoretically sound (has correct limiting distribution)  
-- Can be more robust than ULA
+This makes it a **theoretically sound** version of ULA.
 
-**Cons:**  
-- More expensive per iteration due to rejection sampling  
-- Slower in high-dimensional spaces
+- **Update proposal**: Same as ULA  
+  $$
+  x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t,\quad z^t \sim \mathcal{N}(0, I)
+  $$
+
+- **Accept or reject** the proposal using:
+  $$
+  \text{Accept } x^{t+1} \text{ with probability } \min\left(1, \frac{p_\theta(x^{t+1})}{p_\theta(x^t)}\right)
+  $$
+
+**Pros**  
+- Theoretically correct: guarantees convergence to $p_\theta(x)$  
+- More robust than ULA in many settings  
+
+**Cons**  
+- Requires rejection sampling, which slows down sampling  
+- More expensive per iteration than ULA  
+- Can be slow in high-dimensional spaces  
+
+---
 
 ### 4. Hamiltonian Monte Carlo (HMC)
 
-HMC treats sampling as a physics simulation. It introduces a momentum variable and simulates Hamiltonian dynamics to explore space more efficiently.
+Hamiltonian Monte Carlo treats sampling as a **physics simulation** using Hamiltonian dynamics. It introduces a **momentum variable** to simulate trajectories and explore the space more efficiently.
 
-**Pros:**  
-- Much better mixing in high-dimensional settings  
-- Can take large steps while maintaining accuracy
+At each step:
+- Simulate dynamics using gradients of the log density $f_\theta(x)$  
+- Use **leapfrog integration** to update position and momentum  
+- Apply Metropolis-Hastings accept/reject step
 
-**Cons:**  
-- Requires tuning step size and number of leapfrog steps  
-- Gradient computation is expensive
+**Pros**  
+- Excellent mixing in high dimensions  
+- Can take large, informed steps without losing accuracy  
+
+**Cons**  
+- Requires tuning (step size, number of leapfrog steps)  
+- Each step is expensive (multiple gradients per sample)  
+- Less common in EBMs due to high per-step cost  
 
 ---
 

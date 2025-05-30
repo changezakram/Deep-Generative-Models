@@ -510,25 +510,41 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 - Still requires many steps for good convergence<br>
 - Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
 </section>
-<section id="adjusted-langevin-mcmc" class="level3">
-<h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc">3. Adjusted Langevin MCMC</h3>
-<p>Like ULA, but applies a Metropolis-Hastings correction step after the Langevin update to ensure correct stationary distribution.</p>
-<p><strong>Pros:</strong><br>
-- Theoretically sound (has correct limiting distribution)<br>
-- Can be more robust than ULA</p>
-<p><strong>Cons:</strong><br>
-- More expensive per iteration due to rejection sampling<br>
-- Slower in high-dimensional spaces</p>
+<section id="adjusted-langevin-mcmc-ala" class="level3">
+<h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala">3. Adjusted Langevin MCMC (ALA)</h3>
+<p>Adjusted Langevin MCMC applies a <strong>Metropolis-Hastings correction</strong> step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
+<p>This makes it a <strong>theoretically sound</strong> version of ULA.</p>
+<ul>
+<li><p><strong>Update proposal</strong>: Same as ULA<br>
+<span class="math display">\[
+x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t,\quad z^t \sim \mathcal{N}(0, I)
+\]</span></p></li>
+<li><p><strong>Accept or reject</strong> the proposal using: <span class="math display">\[
+\text{Accept } x^{t+1} \text{ with probability } \min\left(1, \frac{p_\theta(x^{t+1})}{p_\theta(x^t)}\right)
+\]</span></p></li>
+</ul>
+<p><strong>Pros</strong><br>
+- Theoretically correct: guarantees convergence to <span class="math inline">\(p_\theta(x)\)</span><br>
+- More robust than ULA in many settings</p>
+<p><strong>Cons</strong><br>
+- Requires rejection sampling, which slows down sampling<br>
+- More expensive per iteration than ULA<br>
+- Can be slow in high-dimensional spaces</p>
+<hr>
 </section>
 <section id="hamiltonian-monte-carlo-hmc" class="level3">
 <h3 class="anchored" data-anchor-id="hamiltonian-monte-carlo-hmc">4. Hamiltonian Monte Carlo (HMC)</h3>
-<p>HMC treats sampling as a physics simulation. It introduces a momentum variable and simulates Hamiltonian dynamics to explore space more efficiently.</p>
-<p><strong>Pros:</strong><br>
-- Much better mixing in high-dimensional settings<br>
-- Can take large steps while maintaining accuracy</p>
-<p><strong>Cons:</strong><br>
-- Requires tuning step size and number of leapfrog steps<br>
-- Gradient computation is expensive</p>
+<p>Hamiltonian Monte Carlo treats sampling as a <strong>physics simulation</strong> using Hamiltonian dynamics. It introduces a <strong>momentum variable</strong> to simulate trajectories and explore the space more efficiently.</p>
+<p>At each step: - Simulate dynamics using gradients of the log density <span class="math inline">\(f_\theta(x)\)</span><br>
+- Use <strong>leapfrog integration</strong> to update position and momentum<br>
+- Apply Metropolis-Hastings accept/reject step</p>
+<p><strong>Pros</strong><br>
+- Excellent mixing in high dimensions<br>
+- Can take large, informed steps without losing accuracy</p>
+<p><strong>Cons</strong><br>
+- Requires tuning (step size, number of leapfrog steps)<br>
+- Each step is expensive (multiple gradients per sample)<br>
+- Less common in EBMs due to high per-step cost</p>
 <hr>
 </section>
 <section id="summary" class="level3">
