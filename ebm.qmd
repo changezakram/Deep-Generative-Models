@@ -369,13 +369,12 @@ This makes it a **theoretically sound** version of ULA.
     $$
 
 **Pros**  
-- Theoretically sound (correct limiting distribution)  
+- Theoretically sound (has correct limiting distribution)  
 - Can be more robust than ULA  
 
 **Cons**  
-- More expensive per iteration due to rejection step  
+- More expensive per iteration due to rejection sampling  
 - Slower in high-dimensional spaces  
-
 ---
 
 ### Summary
