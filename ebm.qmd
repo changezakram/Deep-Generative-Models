@@ -388,6 +388,7 @@ $$
 **Cons:**  
 - More expensive per iteration due to rejection sampling  
 - Slower in high-dimensional spaces  
+
 ---
 
 ### Summary
