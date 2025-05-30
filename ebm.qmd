@@ -368,7 +368,10 @@ This makes it a **theoretically sound** version of ULA.
 For EBMs, since 
 
 $$
-\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x) and  
+\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
+$$
+
+$$  
 q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t),\ 2\epsilon I\right)
 $$
 
