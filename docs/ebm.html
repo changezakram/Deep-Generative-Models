@@ -521,27 +521,20 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <ul>
 <li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
 </li>
-<li>Propose:<br>
-<span class="math display">\[
-x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon}\, z^t
-\]</span></li>
+<li>Propose: <span class="math inline">\(x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span><br>
+</li>
 <li>Accept or reject:
 <ul>
-<li>With probability<br>
-<span class="math display">\[
-\min\left(1,\; \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)
-\]</span><br>
-set <span class="math inline">\(x^{t+1} = x'\)</span></li>
-<li>Otherwise, set <span class="math inline">\(x^{t+1} = x^t\)</span></li>
+<li>With probability <span class="math inline">\(\alpha = \min\left(1, \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)\)</span>, set <span class="math inline">\(x^{t+1} = x'\)</span><br>
+</li>
+<li>Otherwise, set <span class="math inline">\(x^{t+1} = x^t\)</span><br>
+</li>
 </ul></li>
 </ul></li>
 <li><strong>For EBMs</strong>, since <span class="math inline">\(\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)\)</span> and<br>
-<span class="math inline">\(q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t),\; 2\epsilon I\right)\)</span>:
+<span class="math inline">\(q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t),\ 2\epsilon I\right)\)</span>:
 <ul>
-<li>Proposal becomes:<br>
-<span class="math display">\[
-x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon}\, z^t
-\]</span></li>
+<li>Proposal becomes: <span class="math inline">\(x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span></li>
 </ul></li>
 </ol>
 <p><strong>Pros:</strong><br>
@@ -549,8 +542,8 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon}\, z^t
 - Can be more robust than ULA</p>
 <p><strong>Cons:</strong><br>
 - More expensive per iteration due to rejection sampling<br>
-- Slower in high-dimensional spaces</p>
-<hr>
+- Slower in high-dimensional spaces<br>
+—</p>
 </section>
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary</h3>
@@ -562,6 +555,7 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon}\, z^t
 <li><strong>HMC</strong> is powerful but computationally heavy.</li>
 </ul>
 <p>Sampling is a core challenge in EBMs — especially because we need to sample during <strong>every training step</strong> when using contrastive divergence.</p>
+<hr>
 </section>
 </section>
 <section id="references" class="level2">
