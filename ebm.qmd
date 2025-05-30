@@ -365,7 +365,14 @@ This makes it a **theoretically sound** version of ULA.
      - With probability $\alpha = \min\left(1, \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)$, set $x^{t+1} = x'$  
      - Otherwise, set $x^{t+1} = x^t$  
 
-For EBMs**, since $\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)$ and  $q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t),\ 2\epsilon I\right)$ the proposal becomes:
+For EBMs, since 
+
+$$
+\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x) and  
+q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t),\ 2\epsilon I\right)
+$$
+
+the proposal becomes:
  
 $$
 x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t

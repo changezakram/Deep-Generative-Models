@@ -530,7 +530,12 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 </ul></li>
 </ul></li>
 </ol>
-<p>For EBMs**, since <span class="math inline">\(\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)\)</span> and <span class="math inline">\(q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t),\ 2\epsilon I\right)\)</span> the proposal becomes:</p>
+<p>For EBMs, since</p>
+<p><span class="math display">\[
+\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x) and  
+q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t),\ 2\epsilon I\right)
+\]</span></p>
+<p>the proposal becomes:</p>
 <p><span class="math display">\[
 x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></p>
