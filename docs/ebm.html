@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
 
 <title>Energy-Based Models – Deep Generative Models</title>
 <style>
@@ -37,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-4a990d8dcb58f517c7c86712b8f2ac7c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-45a984b55c978f8c4117b5b9aec951d9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -140,30 +139,11 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#limitations-of-mainstream-generative-models" id="toc-limitations-of-mainstream-generative-models" class="nav-link" data-scroll-target="#limitations-of-mainstream-generative-models"><span class="header-section-number">2</span> Limitations of Mainstream Generative Models</a></li>
-  <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review"><span class="header-section-number">3</span> Math Review</a>
-  <ul class="collapse">
-  <li><a href="#understanding-the-probability-foundation-behind-ebms" id="toc-understanding-the-probability-foundation-behind-ebms" class="nav-link" data-scroll-target="#understanding-the-probability-foundation-behind-ebms"><span class="header-section-number">3.1</span> Understanding the Probability Foundation Behind EBMs</a></li>
-  <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx"><span class="header-section-number">3.2</span> Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
-  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition"><span class="header-section-number">3.3</span> Intuition</a></li>
-  <li><a href="#from-scores-to-probabilities-in-ebms" id="toc-from-scores-to-probabilities-in-ebms" class="nav-link" data-scroll-target="#from-scores-to-probabilities-in-ebms"><span class="header-section-number">3.4</span> From Scores to Probabilities in EBMs</a></li>
-  <li><a href="#practical-applications-when-you-dont-need-ztheta" id="toc-practical-applications-when-you-dont-need-ztheta" class="nav-link" data-scroll-target="#practical-applications-when-you-dont-need-ztheta"><span class="header-section-number">3.5</span> Practical Applications: When You Don’t Need <span class="math inline">\(Z(\theta)\)</span></a></li>
-  <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms"><span class="header-section-number">3.6</span> Key Benefits of EBMs</a></li>
-  <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms"><span class="header-section-number">3.7</span> Limitations of EBMs</a></li>
-  </ul></li>
-  <li><a href="#training-and-inference-in-ebms" id="toc-training-and-inference-in-ebms" class="nav-link" data-scroll-target="#training-and-inference-in-ebms"><span class="header-section-number">4</span> Training and Inference in EBMs</a>
-  <ul class="collapse">
-  <li><a href="#log-likelihood-and-its-gradient" id="toc-log-likelihood-and-its-gradient" class="nav-link" data-scroll-target="#log-likelihood-and-its-gradient"><span class="header-section-number">4.1</span> Log-Likelihood and Its Gradient</a></li>
-  <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence"><span class="header-section-number">4.2</span> Contrastive Divergence</a></li>
-  <li><a href="#intuition-recap" id="toc-intuition-recap" class="nav-link" data-scroll-target="#intuition-recap"><span class="header-section-number">4.3</span> Intuition Recap</a></li>
-  <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models"><span class="header-section-number">4.4</span> Sampling from Energy-Based Models</a></li>
-  <li><a href="#metropolis-hastings-mh-mcmc" id="toc-metropolis-hastings-mh-mcmc" class="nav-link" data-scroll-target="#metropolis-hastings-mh-mcmc"><span class="header-section-number">4.5</span> 1. Metropolis-Hastings (MH) MCMC</a></li>
-  <li><a href="#unadjusted-langevin-mcmc-ula" id="toc-unadjusted-langevin-mcmc-ula" class="nav-link" data-scroll-target="#unadjusted-langevin-mcmc-ula"><span class="header-section-number">4.6</span> 2. Unadjusted Langevin MCMC (ULA)</a></li>
-  <li><a href="#adjusted-langevin-mcmc-ala" id="toc-adjusted-langevin-mcmc-ala" class="nav-link" data-scroll-target="#adjusted-langevin-mcmc-ala"><span class="header-section-number">4.7</span> 3. Adjusted Langevin MCMC (ALA)</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.8</span> Summary</a></li>
-  </ul></li>
+  <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review"><span class="header-section-number">3</span> Math Review</a></li>
+  <li><a href="#training-and-inference-in-ebms" id="toc-training-and-inference-in-ebms" class="nav-link" data-scroll-target="#training-and-inference-in-ebms"><span class="header-section-number">4</span> Training and Inference in EBMs</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5</span> 📚 References</a></li>
   </ul>
 </nav>
@@ -180,12 +160,6 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
-          </div>
-  </div>
     
   
     
