@@ -305,7 +305,7 @@ While we can't sample from $p_\theta(x)$ directly due to the intractable $Z(\the
 
 ---
 
-### Markov Chain Monte Carlo (MCMC)
+### 1. Metropolis-Hastings (MH) MCMC
 
 To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
 
@@ -317,45 +317,15 @@ To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
    - Otherwise, set $x^{t+1} = x^t$
 4. **Repeat** this process until the chain converges
 
-::: {.callout-warning appearance="simple"}
-**Limitation**  
-This approach works in theory but can take a **very long time to converge**, especially in high-dimensional spaces.
-:::
-
----
-
-**TESTING**
-
----
-
-## Markov Chain Monte Carlo (MCMC)
-
-The core idea behind MCMC is to construct a Markov chain whose stationary distribution is $p_\theta(x)$. If we run the chain long enough, we can sample approximately from the target distribution.
-
-### 1. Metropolis-Hastings (MH)
-
-A classic MCMC method. At each step:
-
-1. Propose a new sample:
-
-   $$
-   x' = x^t + \text{noise}
-   $$
-
-2. Accept the new sample with probability:
-
-   $$
-   \min\left(1, \exp(f_\theta(x') - f_\theta(x^t)) \right)
-   $$
-
 **Pros:**  
 - General-purpose  
 - Guaranteed to converge to $p_\theta(x)$ under mild conditions
 
 **Cons:**  
-- Can be slow to mix (i.e., slow convergence)  
+- Can take a very long time to convergence 
 - Sensitive to proposal distribution  
 - Computationally expensive in high dimensions
+
 
 ### 2. Unadjusted Langevin MCMC (ULA)
 

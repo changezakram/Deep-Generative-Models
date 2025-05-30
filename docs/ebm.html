@@ -462,8 +462,8 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <p>While we can’t sample from <span class="math inline">\(p_\theta(x)\)</span> directly due to the intractable <span class="math inline">\(Z(\theta)\)</span>, we can still generate approximate samples using <strong>Markov Chain Monte Carlo (MCMC)</strong> methods.</p>
 <hr>
 </section>
-<section id="markov-chain-monte-carlo-mcmc" class="level3">
-<h3 class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc">Markov Chain Monte Carlo (MCMC)</h3>
+<section id="metropolis-hastings-mh-mcmc" class="level3">
+<h3 class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc">1. Metropolis-Hastings (MH) MCMC</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, we use an iterative approach like MCMC:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0\)</span> randomly<br>
@@ -478,44 +478,11 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 </ul></li>
 <li><strong>Repeat</strong> this process until the chain converges</li>
 </ol>
-<div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Limitation</strong><br>
-This approach works in theory but can take a <strong>very long time to converge</strong>, especially in high-dimensional spaces.</p>
-</div>
-</div>
-</div>
-<hr>
-<p><strong>TESTING</strong></p>
-<hr>
-</section>
-</section>
-<section id="markov-chain-monte-carlo-mcmc-1" class="level2">
-<h2 class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc-1">Markov Chain Monte Carlo (MCMC)</h2>
-<p>The core idea behind MCMC is to construct a Markov chain whose stationary distribution is <span class="math inline">\(p_\theta(x)\)</span>. If we run the chain long enough, we can sample approximately from the target distribution.</p>
-<section id="metropolis-hastings-mh" class="level3">
-<h3 class="anchored" data-anchor-id="metropolis-hastings-mh">1. Metropolis-Hastings (MH)</h3>
-<p>A classic MCMC method. At each step:</p>
-<ol type="1">
-<li><p>Propose a new sample:</p>
-<p><span class="math display">\[
-x' = x^t + \text{noise}
-\]</span></p></li>
-<li><p>Accept the new sample with probability:</p>
-<p><span class="math display">\[
-\min\left(1, \exp(f_\theta(x') - f_\theta(x^t)) \right)
-\]</span></p></li>
-</ol>
 <p><strong>Pros:</strong><br>
 - General-purpose<br>
 - Guaranteed to converge to <span class="math inline">\(p_\theta(x)\)</span> under mild conditions</p>
 <p><strong>Cons:</strong><br>
-- Can be slow to mix (i.e., slow convergence)<br>
-- Sensitive to proposal distribution<br>
+- Can take a very long time to convergence - Sensitive to proposal distribution<br>
 - Computationally expensive in high dimensions</p>
 </section>
 <section id="unadjusted-langevin-mcmc-ula" class="level3">
