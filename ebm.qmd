@@ -356,13 +356,24 @@ This makes it a **theoretically sound** version of ULA.
 1. **Initialize** $x^0 \sim \pi(x)$  
 2. **Repeat** for $t = 0, 1, 2, \dots, T - 1$:  
    - Sample $z^t \sim \mathcal{N}(0, I)$  
-   - Propose: $x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t$  
+   - Propose:  
+     $$
+     x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon}\, z^t
+     $$
    - Accept or reject:  
-     - With probability $\min\left(1, \frac{p_\theta(x')}{p_\theta(x^t)}\right)$, set $x^{t+1} = x'$  
+     - With probability  
+       $$
+       \min\left(1,\; \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)
+       $$  
+       set $x^{t+1} = x'$
      - Otherwise, set $x^{t+1} = x^t$
 
-3. **For EBMs**, since $\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)$:  
-   - Proposal becomes: $x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t$
+3. **For EBMs**, since $\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)$ and  
+   $q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t),\; 2\epsilon I\right)$:  
+   - Proposal becomes:  
+     $$
+     x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon}\, z^t
+     $$
 
 **Pros:**  
 - Theoretically sound (has correct limiting distribution)  
@@ -370,7 +381,7 @@ This makes it a **theoretically sound** version of ULA.
 
 **Cons:**  
 - More expensive per iteration due to rejection sampling  
-- Slower in high-dimensional spaces  
+- Slower in high-dimensional spaces   
 
 ---
 
