@@ -35,7 +35,7 @@ It’s designed to document concepts clearly, walk through implementations step 
 - **Sampling**: Fast — sample latent vector and pass through generator.
 - **Use Cases**: High-quality image generation, style transfer.
 - **Example Models**: StyleGAN, CycleGAN
-- [Go to GAN write-up →](gan.qmd)
+- [Go to GAN write-up →]
 
 </details>
 
@@ -47,26 +47,47 @@ It’s designed to document concepts clearly, walk through implementations step 
 - **Sampling**: Slow — token-by-token generation.
 - **Use Cases**: Language modeling, code generation, time series.
 - **Example Models**: GPT, PixelRNN
-- [Go to Autoregressive Models →](autoregressive.qmd)
+- [Go to Autoregressive Models →]
 
 </details>
 
 <details>
 <summary><strong> Normalizing Flows</strong></summary>
 
-- **Core Idea**: Learn to reverse a gradual noise process via denoising.
-- **Likelihood**: Approximate (via variational bound).
-- **Sampling**: Slow — requires hundreds of reverse steps.
-- **Use Cases**: High-resolution image and audio generation.
-- **Example Models**: Stable Diffusion
-- [Go to Diffusion Models →](diffusion.qmd)
+- **Core Idea**: Learn invertible transformations of latent variables using the change-of-variable formula.
+- **Likelihood**: Exact and tractable.
+- **Sampling**: Fast — sample from base distribution and invert.
+- **Use Cases**: Density estimation, latent space modeling.
+- **Example Models**: RealNVP, Glow
+- [Go to Flow Models →](flows.qmd)
 
 </details>
 
 <details>
 <summary><strong> Energy-Based Models (EBMs)</strong></summary>
 
-- **Core Idea**: Define an energy function over inputs; lower energy =
+- **Core Idea**: Define an energy function over inputs; lower energy = higher probability.
+- **Likelihood**: Unnormalized (intractable partition function).
+- **Sampling**: Very slow — requires MCMC or Langevin dynamics.
+- **Use Cases**: Uncertainty modeling, compositional generation.
+- **Example Models**: Score-based EBMs
+- [Go to EBMs →](ebm.qmd)
+
+</details>
+
+<details>
+<summary><strong> Diffusion Models</strong></summary>
+
+- **Core Idea**: Learn to reverse a gradual noise process via denoising.
+- **Likelihood**: Approximate (via variational bound).
+- **Sampling**: Slow — requires hundreds of reverse steps.
+- **Use Cases**: High-resolution image and audio generation.
+- **Example Models**: Stable Diffusion
+- [Go to Diffusion Models →]
+
+</details>
+
+
 ## Industry Use Cases
 
 ### 1. [Banking](gen-ai-use-cases/banking-use-cases.html)  
@@ -80,18 +101,6 @@ Covers 6 real-world use cases across:
 - **Strategy Modeling** (Normalizing Flows for scenario generation)
 
 Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
-
-- **Core Idea**: Learn invertible transformations of latent variables using the change-of-variable formula.
-- **Likelihood**: Exact and tractable.
-- **Sampling**: Fast — sample from base distribution and invert.
-- **Use Cases**: Density estimation, latent space modeling.
-- **Example Models**: RealNVP, Glow
-- [Go to Flow Models →](flows.qmd)
-
-</details>
-
-<details>
-<summary><strong> Diffusion Models</strong></summary>
 
 ---
 
