@@ -19,7 +19,7 @@ Explore VAEs, GANs, flows, and diffusion — with theory, code, and real-world i
 
 - **Core Idea**: Encode input to a latent space and reconstruct it while optimizing a lower bound on likelihood (ELBO).
 - **Likelihood**: Approximate (variational lower bound).
-- **Sampling**: Fast — sample latent vector \( z \sim p(z) \) and decode.
+- **Sampling**: Fast — sample latent vector and decode.
 - **Use Cases**: Representation learning, image generation.
 - **Example Models**: β-VAE, Conditional VAE
 - [Go to VAE write-up →](vae.qmd)
