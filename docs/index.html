@@ -176,6 +176,7 @@ window.Quarto = {
 <li><strong>Likelihood</strong>: Approximate (variational lower bound).</li>
 <li><strong>Sampling</strong>: Fast — sample latent vector ( z p(z) ) and decode.</li>
 <li><strong>Use Cases</strong>: Representation learning, image generation.</li>
+<li><strong>Example Models</strong>: β-VAE, Conditional VAE</li>
 <li><a href="./vae.html">Go to VAE write-up →</a></li>
 </ul>
 </details>
@@ -188,7 +189,8 @@ window.Quarto = {
 <li><strong>Likelihood</strong>: None (implicit model).</li>
 <li><strong>Sampling</strong>: Fast — sample latent vector and pass through generator.</li>
 <li><strong>Use Cases</strong>: High-quality image generation, style transfer.</li>
-<li>[Go to GAN write-up →]</li>
+<li><strong>Example Models</strong>: StyleGAN, CycleGAN</li>
+<li><a href="gan.qmd">Go to GAN write-up →</a></li>
 </ul>
 </details>
 <details>
@@ -200,7 +202,8 @@ window.Quarto = {
 <li><strong>Likelihood</strong>: Exact.</li>
 <li><strong>Sampling</strong>: Slow — token-by-token generation.</li>
 <li><strong>Use Cases</strong>: Language modeling, code generation, time series.</li>
-<li>[Go to Autoregressive Models →]</li>
+<li><strong>Example Models</strong>: GPT, PixelRNN</li>
+<li><a href="autoregressive.qmd">Go to Autoregressive Models →</a></li>
 </ul>
 </details>
 <details>
@@ -208,11 +211,12 @@ window.Quarto = {
 <strong> Normalizing Flows</strong>
 </summary>
 <ul>
-<li><strong>Core Idea</strong>: Learn invertible transformations of latent variables using the change-of-variable formula.</li>
-<li><strong>Likelihood</strong>: Exact and tractable.</li>
-<li><strong>Sampling</strong>: Fast — sample from base distribution and invert.</li>
-<li><strong>Use Cases</strong>: Density estimation, latent space modeling.</li>
-<li><a href="./flows.html">Go to Flow Models →</a></li>
+<li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
+<li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
+<li><strong>Sampling</strong>: Slow — requires hundreds of reverse steps.</li>
+<li><strong>Use Cases</strong>: High-resolution image and audio generation.</li>
+<li><strong>Example Models</strong>: Stable Diffusion</li>
+<li><a href="diffusion.qmd">Go to Diffusion Models →</a></li>
 </ul>
 </details>
 <details>
@@ -220,41 +224,51 @@ window.Quarto = {
 <strong> Energy-Based Models (EBMs)</strong>
 </summary>
 <ul>
-<li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = higher probability.</li>
-<li><strong>Likelihood</strong>: Unnormalized (intractable partition function).</li>
-<li><strong>Sampling</strong>: Very slow — requires MCMC or Langevin dynamics.</li>
-<li><strong>Use Cases</strong>: Uncertainty modeling, compositional generation.</li>
-<li><a href="./ebm.html">Go to EBMs →</a></li>
+<li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = ## Industry Use Cases</li>
 </ul>
-</details>
+<section id="banking" class="level3">
+<h3 class="anchored" data-anchor-id="banking">1. <a href="gen-ai-use-cases/banking-use-cases.html">Banking</a></h3>
+<p>Covers 6 real-world use cases across:</p>
+<ul>
+<li><strong>Customer Service</strong> (Autoregressive Models like GPT)</li>
+<li><strong>Fraud Detection</strong> (Energy-Based Models, Autoregressive)</li>
+<li><strong>Operational Efficiency</strong> (Diffusion for synthetic data, RAG for automation)</li>
+<li><strong>Business Intelligence</strong> (VAE and GAN for anomaly detection, data augmentation)</li>
+<li><strong>Marketing</strong> (Conditional VAEs, GANs for personalization)</li>
+<li><strong>Strategy Modeling</strong> (Normalizing Flows for scenario generation)</li>
+</ul>
+<p>Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.</p>
+<ul>
+<li><strong>Core Idea</strong>: Learn invertible transformations of latent variables using the change-of-variable formula.</li>
+<li><strong>Likelihood</strong>: Exact and tractable.</li>
+<li><strong>Sampling</strong>: Fast — sample from base distribution and invert.</li>
+<li><strong>Use Cases</strong>: Density estimation, latent space modeling.</li>
+<li><strong>Example Models</strong>: RealNVP, Glow</li>
+<li><a href="./flows.html">Go to Flow Models →</a></li>
+</ul>
+</section></details>
 <details>
 <summary>
 <strong> Diffusion Models</strong>
 </summary>
-<ul>
-<li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
-<li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
-<li><strong>Sampling</strong>: Slow — requires hundreds of reverse steps.</li>
-<li><strong>Use Cases</strong>: High-resolution image and audio generation.</li>
-<li>[Go to Diffusion Models →]</li>
-</ul>
+<hr>
 </details></section>
-<section id="industry-use-cases" class="level2">
-<h2 class="anchored" data-anchor-id="industry-use-cases">Industry Use Cases</h2>
-<section id="banking" class="level3">
-<h3 class="anchored" data-anchor-id="banking">1. <a href="gen-ai-use-cases/banking-use-cases.html">Banking</a></h3>
-<p>6 use cases spanning customer service, operational efficiency, fraud detection, business intelligence, and marketing.<br>
-Includes JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.</p>
-</section>
 <section id="healthcare" class="level3">
 <h3 class="anchored" data-anchor-id="healthcare">2. <a href="gen-ai-use-cases/healthcare-use-cases.html">Healthcare</a></h3>
-<p>5 use cases spanning clinical scribing, imaging, triage, education, and drug discovery.<br>
-Based on real-world deployments by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico.</p>
+<p>Covers 5 real-world use cases across:</p>
+<ul>
+<li><strong>Clinical Documentation</strong> (Autoregressive Models, RAG)</li>
+<li><strong>Medical Imaging</strong> (Diffusion Models, GANs)</li>
+<li><strong>Diagnostics &amp; Triage</strong> (VAEs and EBMs for uncertainty modeling)</li>
+<li><strong>Patient Education</strong> (Language Models and Conversational AI)</li>
+<li><strong>Drug Discovery</strong> (VAEs and Normalizing Flows for molecular design)</li>
+</ul>
+<p>Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.</p>
 
 
 
 </section>
-</section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

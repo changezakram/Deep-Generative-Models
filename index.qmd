@@ -12,6 +12,7 @@ It’s designed to document concepts clearly, walk through implementations step 
 
 
 
+
 ## Key Model Families
 
 <details>
@@ -21,6 +22,7 @@ It’s designed to document concepts clearly, walk through implementations step 
 - **Likelihood**: Approximate (variational lower bound).
 - **Sampling**: Fast — sample latent vector \( z \sim p(z) \) and decode.
 - **Use Cases**: Representation learning, image generation.
+- **Example Models**: β-VAE, Conditional VAE
 - [Go to VAE write-up →](vae.qmd)
 
 </details>
@@ -32,7 +34,8 @@ It’s designed to document concepts clearly, walk through implementations step 
 - **Likelihood**: None (implicit model).
 - **Sampling**: Fast — sample latent vector and pass through generator.
 - **Use Cases**: High-quality image generation, style transfer.
-- [Go to GAN write-up →]
+- **Example Models**: StyleGAN, CycleGAN
+- [Go to GAN write-up →](gan.qmd)
 
 </details>
 
@@ -43,47 +46,62 @@ It’s designed to document concepts clearly, walk through implementations step 
 - **Likelihood**: Exact.
 - **Sampling**: Slow — token-by-token generation.
 - **Use Cases**: Language modeling, code generation, time series.
-- [Go to Autoregressive Models →]
+- **Example Models**: GPT, PixelRNN
+- [Go to Autoregressive Models →](autoregressive.qmd)
 
 </details>
 
 <details>
 <summary><strong> Normalizing Flows</strong></summary>
 
-- **Core Idea**: Learn invertible transformations of latent variables using the change-of-variable formula.
-- **Likelihood**: Exact and tractable.
-- **Sampling**: Fast — sample from base distribution and invert.
-- **Use Cases**: Density estimation, latent space modeling.
-- [Go to Flow Models →](flows.qmd)
+- **Core Idea**: Learn to reverse a gradual noise process via denoising.
+- **Likelihood**: Approximate (via variational bound).
+- **Sampling**: Slow — requires hundreds of reverse steps.
+- **Use Cases**: High-resolution image and audio generation.
+- **Example Models**: Stable Diffusion
+- [Go to Diffusion Models →](diffusion.qmd)
 
 </details>
 
 <details>
 <summary><strong> Energy-Based Models (EBMs)</strong></summary>
 
-- **Core Idea**: Define an energy function over inputs; lower energy = higher probability.
-- **Likelihood**: Unnormalized (intractable partition function).
-- **Sampling**: Very slow — requires MCMC or Langevin dynamics.
-- **Use Cases**: Uncertainty modeling, compositional generation.
-- [Go to EBMs →](ebm.qmd)
+- **Core Idea**: Define an energy function over inputs; lower energy =
+## Industry Use Cases
+
+### 1. [Banking](gen-ai-use-cases/banking-use-cases.html)  
+Covers 6 real-world use cases across:
+
+- **Customer Service** (Autoregressive Models like GPT)
+- **Fraud Detection** (Energy-Based Models, Autoregressive)
+- **Operational Efficiency** (Diffusion for synthetic data, RAG for automation)
+- **Business Intelligence** (VAE and GAN for anomaly detection, data augmentation)
+- **Marketing** (Conditional VAEs, GANs for personalization)
+- **Strategy Modeling** (Normalizing Flows for scenario generation)
+
+Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
+
+- **Core Idea**: Learn invertible transformations of latent variables using the change-of-variable formula.
+- **Likelihood**: Exact and tractable.
+- **Sampling**: Fast — sample from base distribution and invert.
+- **Use Cases**: Density estimation, latent space modeling.
+- **Example Models**: RealNVP, Glow
+- [Go to Flow Models →](flows.qmd)
 
 </details>
 
 <details>
 <summary><strong> Diffusion Models</strong></summary>
 
-- **Core Idea**: Learn to reverse a gradual noise process via denoising.
-- **Likelihood**: Approximate (via variational bound).
-- **Sampling**: Slow — requires hundreds of reverse steps.
-- **Use Cases**: High-resolution image and audio generation.
-- [Go to Diffusion Models →]
-
-## Industry Use Cases
-
-### 1. [Banking](gen-ai-use-cases/banking-use-cases.html)  
-6 use cases spanning customer service, operational efficiency, fraud detection, business intelligence, and marketing.  
-Includes JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
+---
 
 ### 2. [Healthcare](gen-ai-use-cases/healthcare-use-cases.html)  
-5 use cases spanning clinical scribing, imaging, triage, education, and drug discovery.  
-Based on real-world deployments by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico.
+Covers 5 real-world use cases across:
+
+- **Clinical Documentation** (Autoregressive Models, RAG)
+- **Medical Imaging** (Diffusion Models, GANs)
+- **Diagnostics & Triage** (VAEs and EBMs for uncertainty modeling)
+- **Patient Education** (Language Models and Conversational AI)
+- **Drug Discovery** (VAEs and Normalizing Flows for molecular design)
+
+Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.
