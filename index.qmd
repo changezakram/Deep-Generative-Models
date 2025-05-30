@@ -59,17 +59,6 @@ It’s designed to document concepts clearly, walk through implementations step 
 </details>
 
 <details>
-<summary><strong> Diffusion Models</strong></summary>
-
-- **Core Idea**: Learn to reverse a gradual noise process via denoising.
-- **Likelihood**: Approximate (via variational bound).
-- **Sampling**: Slow — requires hundreds of reverse steps.
-- **Use Cases**: High-resolution image and audio generation.
-- [Go to Diffusion Models →]
-
-</details>
-
-<details>
 <summary><strong> Energy-Based Models (EBMs)</strong></summary>
 
 - **Core Idea**: Define an energy function over inputs; lower energy = higher probability.
@@ -77,6 +66,17 @@ It’s designed to document concepts clearly, walk through implementations step 
 - **Sampling**: Very slow — requires MCMC or Langevin dynamics.
 - **Use Cases**: Uncertainty modeling, compositional generation.
 - [Go to EBMs →](ebm.qmd)
+
+</details>
+
+<details>
+<summary><strong> Diffusion Models</strong></summary>
+
+- **Core Idea**: Learn to reverse a gradual noise process via denoising.
+- **Likelihood**: Approximate (via variational bound).
+- **Sampling**: Slow — requires hundreds of reverse steps.
+- **Use Cases**: High-resolution image and audio generation.
+- [Go to Diffusion Models →]
 
 ## Industry Use Cases
 
