@@ -347,6 +347,35 @@ To sample from $p_\theta(x)$, Unadjusted Langevin MCMC uses gradient information
 - Sensitive to step size $\epsilon$
 
 
+### 2. Unadjusted Langevin MCMC (ULA)
+
+To sample from $p_\theta(x)$, Unadjusted Langevin MCMC uses gradient information to guide proposals:
+
+1. **Initialize** $x^0 \sim \pi(x)$  
+2. **Repeat** for $t = 0, 1, 2, \dots, T - 1$:  
+   - Sample $z^t \sim \mathcal{N}(0, I)$  
+   - Update:  
+     $$
+     x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
+     $$
+3. **For EBMs**, since  
+   $$
+   \nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
+   $$  
+   the update becomes:  
+   $$
+   x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
+   $$
+
+**Pros:**  
+- Uses gradient to improve proposal  
+- Often faster mixing than random-walk methods  
+
+**Cons:**  
+- Still requires many steps for good convergence  
+- Sensitive to step size $\epsilon$
+
+
 ### 3. Adjusted Langevin MCMC (ALA)
 
 To sample from $p_\theta(x)$, Adjusted Langevin MCMC applies a **Metropolis-Hastings correction** step after each Langevin update to ensure samples follow the correct stationary distribution.

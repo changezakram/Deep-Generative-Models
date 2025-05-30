@@ -510,6 +510,37 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 - Still requires many steps for good convergence<br>
 - Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
 </section>
+<section id="unadjusted-langevin-mcmc-ula-1" class="level3">
+<h3 class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula-1">2. Unadjusted Langevin MCMC (ULA)</h3>
+<p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Unadjusted Langevin MCMC uses gradient information to guide proposals:</p>
+<ol type="1">
+<li><strong>Initialize</strong> <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
+</li>
+<li><strong>Repeat</strong> for <span class="math inline">\(t = 0, 1, 2, \dots, T - 1\)</span>:
+<ul>
+<li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
+</li>
+<li>Update:<br>
+<span class="math display">\[
+x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
+\]</span></li>
+</ul></li>
+<li><strong>For EBMs</strong>, since<br>
+<span class="math display">\[
+\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
+\]</span><br>
+the update becomes:<br>
+<span class="math display">\[
+x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
+\]</span></li>
+</ol>
+<p><strong>Pros:</strong><br>
+- Uses gradient to improve proposal<br>
+- Often faster mixing than random-walk methods</p>
+<p><strong>Cons:</strong><br>
+- Still requires many steps for good convergence<br>
+- Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
+</section>
 <section id="adjusted-langevin-mcmc-ala" class="level3">
 <h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala">3. Adjusted Langevin MCMC (ALA)</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Adjusted Langevin MCMC applies a <strong>Metropolis-Hastings correction</strong> step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
