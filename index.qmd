@@ -90,27 +90,29 @@ It’s designed to document concepts clearly, walk through implementations step 
 
 ## Industry Use Cases
 
-### 1. [Banking](gen-ai-use-cases/banking-use-cases.html)  
-Covers 6 real-world use cases across:
+<details>
+<summary><strong>1. <a href="gen-ai-use-cases/banking-use-cases.html">Banking</a></strong></summary>
 
-- **Customer Service** (Autoregressive Models like GPT)
-- **Fraud Detection** (Energy-Based Models, Autoregressive)
-- **Operational Efficiency** (Diffusion for synthetic data, RAG for automation)
-- **Business Intelligence** (VAE and GAN for anomaly detection, data augmentation)
-- **Marketing** (Conditional VAEs, GANs for personalization)
-- **Strategy Modeling** (Normalizing Flows for scenario generation)
+- **Customer Service** — Autoregressive Models like GPT  
+- **Fraud Detection** — Energy-Based Models, Autoregressive  
+- **Operational Efficiency** — Diffusion for synthetic data, RAG for automation  
+- **Business Intelligence** — VAE and GAN for anomaly detection, data augmentation  
+- **Marketing** — Conditional VAEs, GANs for personalization  
+- **Strategy Modeling** — Normalizing Flows for scenario generation  
 
 Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
 
----
+</details>
 
-### 2. [Healthcare](gen-ai-use-cases/healthcare-use-cases.html)  
-Covers 5 real-world use cases across:
+<details>
+<summary><strong>2. <a href="gen-ai-use-cases/healthcare-use-cases.html">Healthcare</a></strong></summary>
 
-- **Clinical Documentation** (Autoregressive Models, RAG)
-- **Medical Imaging** (Diffusion Models, GANs)
-- **Diagnostics & Triage** (VAEs and EBMs for uncertainty modeling)
-- **Patient Education** (Language Models and Conversational AI)
-- **Drug Discovery** (VAEs and Normalizing Flows for molecular design)
+- **Clinical Documentation** — Autoregressive Models, RAG  
+- **Medical Imaging** — Diffusion Models, GANs  
+- **Diagnostics & Triage** — VAEs and EBMs for uncertainty modeling  
+- **Patient Education** — Language Models and Conversational AI  
+- **Drug Discovery** — VAEs and Normalizing Flows for molecular design  
 
 Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.
+
+</details>
