@@ -498,16 +498,21 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <li>Update:<br>
 <span class="math display">\[
 x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x)\Big|_{x = x^t} + \sqrt{2\epsilon} z^t
-\]</span></li>
+\]</span><br>
+</li>
 </ul></li>
-<li><strong>For EBMs</strong>, we use:<br>
+<li><strong>For EBMs</strong>, we use:
+<ul>
+<li>Score identity:<br>
 <span class="math display">\[
 \nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
 \]</span><br>
-So the update becomes:<br>
+</li>
+<li>So the update becomes:<br>
 <span class="math display">\[
 x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></li>
+</ul></li>
 </ol>
 <p><strong>Pros:</strong><br>
 - Uses gradient to improve proposal<br>
