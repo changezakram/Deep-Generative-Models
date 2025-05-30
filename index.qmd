@@ -91,7 +91,7 @@ It’s designed to document concepts clearly, walk through implementations step 
 ## Industry Use Cases
 
 <details>
-<summary><strong>1. <a href="gen-ai-use-cases/banking-use-cases.html">Banking</a></strong></summary>
+<summary><strong>Banking</strong></summary>
 
 - **Customer Service** — Autoregressive Models like GPT  
 - **Fraud Detection** — Energy-Based Models, Autoregressive  
@@ -100,12 +100,13 @@ It’s designed to document concepts clearly, walk through implementations step 
 - **Marketing** — Conditional VAEs, GANs for personalization  
 - **Strategy Modeling** — Normalizing Flows for scenario generation  
 
-Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
+Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.  
+[View full Banking use cases →](gen-ai-use-cases/banking-use-cases.html)
 
 </details>
 
 <details>
-<summary><strong>2. <a href="gen-ai-use-cases/healthcare-use-cases.html">Healthcare</a></strong></summary>
+<summary><strong>Healthcare</strong></summary>
 
 - **Clinical Documentation** — Autoregressive Models, RAG  
 - **Medical Imaging** — Diffusion Models, GANs  
@@ -113,6 +114,7 @@ Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
 - **Patient Education** — Language Models and Conversational AI  
 - **Drug Discovery** — VAEs and Normalizing Flows for molecular design  
 
-Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.
+Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.  
+[View full Healthcare use cases →](gen-ai-use-cases/healthcare-use-cases.html)
 
 </details>
