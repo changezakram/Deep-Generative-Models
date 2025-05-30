@@ -319,14 +319,14 @@
     "href": "index.html",
     "title": "Deep Generative Models",
     "section": "",
-    "text": "This site explores the foundations and frontiers of deep generative models — from core mathematical principles to the architectures behind today’s most advanced AI systems.\nIt combines clear explanations, step-by-step implementations, and real-world relevance — from early probabilistic models to cutting-edge diffusion frameworks.\n\nLearn by building · Backed by math · Inspired by real-world use cases"
+    "text": "Deep generative models learn complex data distributions and generate realistic new examples using probabilistic and neural techniques.\nExplore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.\n\nLearn by building · Backed by math · Inspired by real-world problems"
   },
   {
     "objectID": "index.html#overview",
     "href": "index.html#overview",
     "title": "Deep Generative Models",
     "section": "",
-    "text": "This site explores the foundations and frontiers of deep generative models — from core mathematical principles to the architectures behind today’s most advanced AI systems.\nIt combines clear explanations, step-by-step implementations, and real-world relevance — from early probabilistic models to cutting-edge diffusion frameworks.\n\nLearn by building · Backed by math · Inspired by real-world use cases"
+    "text": "Deep generative models learn complex data distributions and generate realistic new examples using probabilistic and neural techniques.\nExplore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.\n\nLearn by building · Backed by math · Inspired by real-world problems"
   },
   {
     "objectID": "index.html#key-model-families",

@@ -4,11 +4,11 @@ title: "Deep Generative Models"
 
 ## Overview
 
-This site explores the foundations and frontiers of deep generative models — from core mathematical principles to the architectures behind today’s most advanced AI systems.
+Deep generative models learn complex data distributions and generate realistic new examples using probabilistic and neural techniques.
 
-It combines clear explanations, step-by-step implementations, and real-world relevance — from early probabilistic models to cutting-edge diffusion frameworks.
+Explore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.
 
-> Learn by building · Backed by math · Inspired by real-world use cases
+> Learn by building · Backed by math · Inspired by real-world problems
 
 
 
