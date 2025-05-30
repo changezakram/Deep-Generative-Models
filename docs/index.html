@@ -169,7 +169,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="key-model-families">Key Model Families</h2>
 <details>
 <summary>
-<strong>📦 Variational Autoencoders (VAEs)</strong>
+<strong> Variational Autoencoders (VAEs)</strong>
 </summary>
 <ul>
 <li><strong>Core Idea</strong>: Encode input to a latent space and reconstruct it while optimizing a lower bound on likelihood (ELBO).</li>
@@ -181,31 +181,31 @@ window.Quarto = {
 </details>
 <details>
 <summary>
-<strong>🌀 Generative Adversarial Networks (GANs)</strong>
+<strong> Generative Adversarial Networks (GANs)</strong>
 </summary>
 <ul>
 <li><strong>Core Idea</strong>: A generator and discriminator compete in a minimax game to produce realistic samples.</li>
 <li><strong>Likelihood</strong>: None (implicit model).</li>
 <li><strong>Sampling</strong>: Fast — sample latent vector and pass through generator.</li>
 <li><strong>Use Cases</strong>: High-quality image generation, style transfer.</li>
-<li><a href="gan.qmd">Go to GAN write-up →</a></li>
+<li>[Go to GAN write-up →]</li>
 </ul>
 </details>
 <details>
 <summary>
-<strong>📈 Autoregressive Models</strong>
+<strong> Autoregressive Models</strong>
 </summary>
 <ul>
 <li><strong>Core Idea</strong>: Factor the joint distribution as a product of conditional probabilities.</li>
 <li><strong>Likelihood</strong>: Exact.</li>
 <li><strong>Sampling</strong>: Slow — token-by-token generation.</li>
 <li><strong>Use Cases</strong>: Language modeling, code generation, time series.</li>
-<li><a href="autoregressive.qmd">Go to Autoregressive Models →</a></li>
+<li>[Go to Autoregressive Models →]</li>
 </ul>
 </details>
 <details>
 <summary>
-<strong>🔁 Normalizing Flows</strong>
+<strong> Normalizing Flows</strong>
 </summary>
 <ul>
 <li><strong>Core Idea</strong>: Learn invertible transformations of latent variables using the change-of-variable formula.</li>
@@ -217,19 +217,19 @@ window.Quarto = {
 </details>
 <details>
 <summary>
-<strong>🌫️ Diffusion Models</strong>
+<strong> Diffusion Models</strong>
 </summary>
 <ul>
 <li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
 <li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
 <li><strong>Sampling</strong>: Slow — requires hundreds of reverse steps.</li>
 <li><strong>Use Cases</strong>: High-resolution image and audio generation.</li>
-<li><a href="diffusion.qmd">Go to Diffusion Models →</a></li>
+<li>[Go to Diffusion Models →]</li>
 </ul>
 </details>
 <details>
 <summary>
-<strong>🔥 Energy-Based Models (EBMs)</strong>
+<strong> Energy-Based Models (EBMs)</strong>
 </summary>
 <ul>
 <li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = higher probability.</li>

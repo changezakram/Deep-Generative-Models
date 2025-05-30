@@ -15,7 +15,7 @@ It’s designed to document concepts clearly, walk through implementations step 
 ## Key Model Families
 
 <details>
-<summary><strong>📦 Variational Autoencoders (VAEs)</strong></summary>
+<summary><strong> Variational Autoencoders (VAEs)</strong></summary>
 
 - **Core Idea**: Encode input to a latent space and reconstruct it while optimizing a lower bound on likelihood (ELBO).
 - **Likelihood**: Approximate (variational lower bound).
@@ -26,29 +26,29 @@ It’s designed to document concepts clearly, walk through implementations step 
 </details>
 
 <details>
-<summary><strong>🌀 Generative Adversarial Networks (GANs)</strong></summary>
+<summary><strong> Generative Adversarial Networks (GANs)</strong></summary>
 
 - **Core Idea**: A generator and discriminator compete in a minimax game to produce realistic samples.
 - **Likelihood**: None (implicit model).
 - **Sampling**: Fast — sample latent vector and pass through generator.
 - **Use Cases**: High-quality image generation, style transfer.
-- [Go to GAN write-up →](gan.qmd)
+- [Go to GAN write-up →]
 
 </details>
 
 <details>
-<summary><strong>📈 Autoregressive Models</strong></summary>
+<summary><strong> Autoregressive Models</strong></summary>
 
 - **Core Idea**: Factor the joint distribution as a product of conditional probabilities.
 - **Likelihood**: Exact.
 - **Sampling**: Slow — token-by-token generation.
 - **Use Cases**: Language modeling, code generation, time series.
-- [Go to Autoregressive Models →](autoregressive.qmd)
+- [Go to Autoregressive Models →]
 
 </details>
 
 <details>
-<summary><strong>🔁 Normalizing Flows</strong></summary>
+<summary><strong> Normalizing Flows</strong></summary>
 
 - **Core Idea**: Learn invertible transformations of latent variables using the change-of-variable formula.
 - **Likelihood**: Exact and tractable.
@@ -59,18 +59,18 @@ It’s designed to document concepts clearly, walk through implementations step 
 </details>
 
 <details>
-<summary><strong>🌫️ Diffusion Models</strong></summary>
+<summary><strong> Diffusion Models</strong></summary>
 
 - **Core Idea**: Learn to reverse a gradual noise process via denoising.
 - **Likelihood**: Approximate (via variational bound).
 - **Sampling**: Slow — requires hundreds of reverse steps.
 - **Use Cases**: High-resolution image and audio generation.
-- [Go to Diffusion Models →](diffusion.qmd)
+- [Go to Diffusion Models →]
 
 </details>
 
 <details>
-<summary><strong>🔥 Energy-Based Models (EBMs)</strong></summary>
+<summary><strong> Energy-Based Models (EBMs)</strong></summary>
 
 - **Core Idea**: Define an energy function over inputs; lower energy = higher probability.
 - **Likelihood**: Unnormalized (intractable partition function).
