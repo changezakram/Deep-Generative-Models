@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Your Name">
 
 <title>Energy-Based Models – Deep Generative Models</title>
 <style>
@@ -36,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-4a990d8dcb58f517c7c86712b8f2ac7c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a14e3238c51140e99ccc48519b6ed9ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-45a984b55c978f8c4117b5b9aec951d9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,10 +68,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="styles.css">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  </head><body class="nav-fixed quarto-light">mathjax
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -100,9 +102,9 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-</head>
 
-<body class="nav-fixed fullcontent quarto-light">
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -134,7 +136,38 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#limitations-of-mainstream-generative-models" id="toc-limitations-of-mainstream-generative-models" class="nav-link" data-scroll-target="#limitations-of-mainstream-generative-models"><span class="header-section-number">2</span> Limitations of Mainstream Generative Models</a></li>
+  <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review"><span class="header-section-number">3</span> Math Review</a>
+  <ul class="collapse">
+  <li><a href="#understanding-the-probability-foundation-behind-ebms" id="toc-understanding-the-probability-foundation-behind-ebms" class="nav-link" data-scroll-target="#understanding-the-probability-foundation-behind-ebms"><span class="header-section-number">3.1</span> Understanding the Probability Foundation Behind EBMs</a></li>
+  <li><a href="#why-do-we-introduce-gx" id="toc-why-do-we-introduce-gx" class="nav-link" data-scroll-target="#why-do-we-introduce-gx"><span class="header-section-number">3.2</span> Why do we introduce <span class="math inline">\(g(x)\)</span>?</a></li>
+  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition"><span class="header-section-number">3.3</span> Intuition</a></li>
+  <li><a href="#from-scores-to-probabilities-in-ebms" id="toc-from-scores-to-probabilities-in-ebms" class="nav-link" data-scroll-target="#from-scores-to-probabilities-in-ebms"><span class="header-section-number">3.4</span> From Scores to Probabilities in EBMs</a></li>
+  <li><a href="#practical-applications-when-you-dont-need-ztheta" id="toc-practical-applications-when-you-dont-need-ztheta" class="nav-link" data-scroll-target="#practical-applications-when-you-dont-need-ztheta"><span class="header-section-number">3.5</span> Practical Applications: When You Don’t Need <span class="math inline">\(Z(\theta)\)</span></a></li>
+  <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms"><span class="header-section-number">3.6</span> Key Benefits of EBMs</a></li>
+  <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms"><span class="header-section-number">3.7</span> Limitations of EBMs</a></li>
+  </ul></li>
+  <li><a href="#training-and-inference-in-ebms" id="toc-training-and-inference-in-ebms" class="nav-link" data-scroll-target="#training-and-inference-in-ebms"><span class="header-section-number">4</span> Training and Inference in EBMs</a>
+  <ul class="collapse">
+  <li><a href="#log-likelihood-and-its-gradient" id="toc-log-likelihood-and-its-gradient" class="nav-link" data-scroll-target="#log-likelihood-and-its-gradient"><span class="header-section-number">4.1</span> Log-Likelihood and Its Gradient</a></li>
+  <li><a href="#contrastive-divergence" id="toc-contrastive-divergence" class="nav-link" data-scroll-target="#contrastive-divergence"><span class="header-section-number">4.2</span> Contrastive Divergence</a></li>
+  <li><a href="#intuition-recap" id="toc-intuition-recap" class="nav-link" data-scroll-target="#intuition-recap"><span class="header-section-number">4.3</span> Intuition Recap</a></li>
+  <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models"><span class="header-section-number">4.4</span> Sampling from Energy-Based Models</a></li>
+  <li><a href="#metropolis-hastings-mh-mcmc" id="toc-metropolis-hastings-mh-mcmc" class="nav-link" data-scroll-target="#metropolis-hastings-mh-mcmc"><span class="header-section-number">4.5</span> 1. Metropolis-Hastings (MH) MCMC</a></li>
+  <li><a href="#unadjusted-langevin-mcmc-ula" id="toc-unadjusted-langevin-mcmc-ula" class="nav-link" data-scroll-target="#unadjusted-langevin-mcmc-ula"><span class="header-section-number">4.6</span> 2. Unadjusted Langevin MCMC (ULA)</a></li>
+  <li><a href="#adjusted-langevin-mcmc-ala" id="toc-adjusted-langevin-mcmc-ala" class="nav-link" data-scroll-target="#adjusted-langevin-mcmc-ala"><span class="header-section-number">4.7</span> 3. Adjusted Langevin MCMC (ALA)</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.8</span> Summary</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5</span> 📚 References</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -147,6 +180,12 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your Name </p>
+          </div>
+  </div>
     
   
     
@@ -157,13 +196,13 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. <strong>Energy-Based Models (EBMs)</strong> offer a powerful alternative that’s <strong>architecturally flexible</strong>, <strong>conceptually elegant</strong>, and <strong>growing in popularity</strong> in modern deep learning research.</p>
 <hr>
 </section>
-<section id="limitations-of-mainstream-generative-models" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-of-mainstream-generative-models">Limitations of Mainstream Generative Models</h2>
+<section id="limitations-of-mainstream-generative-models" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="limitations-of-mainstream-generative-models"><span class="header-section-number">2</span> Limitations of Mainstream Generative Models</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 17%">
@@ -214,10 +253,10 @@ window.Quarto = {
 </div>
 <hr>
 </section>
-<section id="math-review" class="level2">
-<h2 class="anchored" data-anchor-id="math-review">Math Review</h2>
-<section id="understanding-the-probability-foundation-behind-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-the-probability-foundation-behind-ebms">Understanding the Probability Foundation Behind EBMs</h3>
+<section id="math-review" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="math-review"><span class="header-section-number">3</span> Math Review</h2>
+<section id="understanding-the-probability-foundation-behind-ebms" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="understanding-the-probability-foundation-behind-ebms"><span class="header-section-number">3.1</span> Understanding the Probability Foundation Behind EBMs</h3>
 <p>In generative modeling, a valid probability distribution <span class="math inline">\(p(x)\)</span> must satisfy:</p>
 <ul>
 <li><p><strong>Non-negativity</strong>:<br>
@@ -232,8 +271,8 @@ p(x) \geq 0
 <p>While it’s easy to define a function that satisfies <span class="math inline">\(p(x) \geq 0\)</span> (e.g., using exponentials), ensuring that it also sums to 1 — i.e., <span class="math inline">\(\int p(x)\, dx = 1\)</span> — is much more difficult, especially for flexible functions like neural networks.</p>
 <hr>
 </section>
-<section id="why-do-we-introduce-gx" class="level3">
-<h3 class="anchored" data-anchor-id="why-do-we-introduce-gx">Why do we introduce <span class="math inline">\(g(x)\)</span>?</h3>
+<section id="why-do-we-introduce-gx" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="why-do-we-introduce-gx"><span class="header-section-number">3.2</span> Why do we introduce <span class="math inline">\(g(x)\)</span>?</h3>
 <p>Instead of modeling <span class="math inline">\(p(x)\)</span> directly, we define a non-negative function <span class="math inline">\(g(x) \geq 0\)</span> and turn it into a probability distribution by normalizing:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) = \int g_\theta(x)\, dx
@@ -247,8 +286,8 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 <p>This normalization constant <span class="math inline">\(Z(\theta)\)</span> is also known as the <strong>partition function</strong>.</p>
 <hr>
 </section>
-<section id="intuition" class="level3">
-<h3 class="anchored" data-anchor-id="intuition">Intuition</h3>
+<section id="intuition" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="intuition"><span class="header-section-number">3.3</span> Intuition</h3>
 <p>Think of <span class="math inline">\(g_\theta(x)\)</span> as a scoring function:</p>
 <ul>
 <li>Higher <span class="math inline">\(g_\theta(x)\)</span> means more likely<br>
@@ -257,8 +296,8 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 </ul>
 <hr>
 </section>
-<section id="from-scores-to-probabilities-in-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="from-scores-to-probabilities-in-ebms">From Scores to Probabilities in EBMs</h3>
+<section id="from-scores-to-probabilities-in-ebms" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="from-scores-to-probabilities-in-ebms"><span class="header-section-number">3.4</span> From Scores to Probabilities in EBMs</h3>
 <p>Energy-Based Models follow the same idea we’ve established earlier: define a <strong>scoring function</strong> <span class="math inline">\(f_\theta(x)\)</span> that assigns high values to likely data points, and then convert these scores into probabilities using an exponential transformation and normalization.<br>
 This allows us to build flexible probabilistic models without needing tractable likelihoods or invertible mappings.</p>
 <p>We use an <strong>exponential function</strong> because:</p>
@@ -282,8 +321,8 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <p>This formulation gives EBMs the freedom to use any differentiable function for <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate its gradients.</p>
 <hr>
 </section>
-<section id="practical-applications-when-you-dont-need-ztheta" class="level3">
-<h3 class="anchored" data-anchor-id="practical-applications-when-you-dont-need-ztheta">Practical Applications: When You Don’t Need <span class="math inline">\(Z(\theta)\)</span></h3>
+<section id="practical-applications-when-you-dont-need-ztheta" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="practical-applications-when-you-dont-need-ztheta"><span class="header-section-number">3.5</span> Practical Applications: When You Don’t Need <span class="math inline">\(Z(\theta)\)</span></h3>
 <p>In general, evaluating the full probability <span class="math inline">\(p_\theta(x)\)</span> requires computing the partition function <span class="math inline">\(Z(\theta)\)</span>:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
@@ -312,8 +351,8 @@ This allows EBMs to be useful even when the partition function is intractable.</
 </ul>
 <hr>
 </section>
-<section id="key-benefits-of-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="key-benefits-of-ebms">Key Benefits of EBMs</h3>
+<section id="key-benefits-of-ebms" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="key-benefits-of-ebms"><span class="header-section-number">3.6</span> Key Benefits of EBMs</h3>
 <p><strong>Very flexible model architectures</strong><br>
 No need for invertibility, autoregressive factorization, or adversarial design.</p>
 <p><strong>Stable training</strong><br>
@@ -324,8 +363,8 @@ Capable of modeling complex, multi-modal data distributions.</p>
 Energies can be combined to support multi-task objectives or structured learning.</p>
 <hr>
 </section>
-<section id="limitations-of-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-of-ebms">Limitations of EBMs</h3>
+<section id="limitations-of-ebms" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="limitations-of-ebms"><span class="header-section-number">3.7</span> Limitations of EBMs</h3>
 <p>Despite their strengths, EBMs come with notable challenges:</p>
 <p><strong>Hard Sampling</strong></p>
 <ul>
@@ -350,16 +389,16 @@ Energies can be combined to support multi-task objectives or structured learning
 <hr>
 </section>
 </section>
-<section id="training-and-inference-in-ebms" class="level2">
-<h2 class="anchored" data-anchor-id="training-and-inference-in-ebms">Training and Inference in EBMs</h2>
+<section id="training-and-inference-in-ebms" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="training-and-inference-in-ebms"><span class="header-section-number">4</span> Training and Inference in EBMs</h2>
 <p>The goal in training Energy-Based Models (EBMs) is to assign higher scores (i.e., lower energy) to correct examples, and lower scores (higher energy) to incorrect ones. This corresponds to <strong>maximizing the (unnormalized) likelihood</strong> of the training data:</p>
 <p><span class="math display">\[
 p_\theta(x_{\text{train}}) = \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
 \]</span></p>
 <p>This expression tells us that increasing the score for <span class="math inline">\(x_{\text{train}}\)</span> is not enough — we must also decrease scores for other <span class="math inline">\(x\)</span> to reduce <span class="math inline">\(Z(\theta)\)</span> and make the probability higher <strong>relatively</strong>.</p>
 <hr>
-<section id="log-likelihood-and-its-gradient" class="level3">
-<h3 class="anchored" data-anchor-id="log-likelihood-and-its-gradient">Log-Likelihood and Its Gradient</h3>
+<section id="log-likelihood-and-its-gradient" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="log-likelihood-and-its-gradient"><span class="header-section-number">4.1</span> Log-Likelihood and Its Gradient</h3>
 <p>We start by writing the log-likelihood:</p>
 <p><span class="math display">\[
 \log p_\theta(x_{\text{train}}) = f_\theta(x_{\text{train}}) - \log Z(\theta)
@@ -388,8 +427,8 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 <p>To deal with this, we use <strong>sampling-based approximations</strong> like Contrastive Divergence.</p>
 <hr>
 </section>
-<section id="contrastive-divergence" class="level3">
-<h3 class="anchored" data-anchor-id="contrastive-divergence">Contrastive Divergence</h3>
+<section id="contrastive-divergence" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="contrastive-divergence"><span class="header-section-number">4.2</span> Contrastive Divergence</h3>
 <p>We approximate the expectation:</p>
 <p><span class="math display">\[
 \mathbb{E}_{x \sim p_\theta} \left[ \nabla_\theta f_\theta(x) \right] \approx \nabla_\theta f_\theta(x_{\text{sample}})
@@ -424,8 +463,8 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 </div>
 <hr>
 </section>
-<section id="intuition-recap" class="level3">
-<h3 class="anchored" data-anchor-id="intuition-recap">Intuition Recap</h3>
+<section id="intuition-recap" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="intuition-recap"><span class="header-section-number">4.3</span> Intuition Recap</h3>
 <ul>
 <li><strong>Pull up</strong> the training sample: <span class="math inline">\(\nabla_\theta f_\theta(x_{\text{train}})\)</span></li>
 <li><strong>Push down</strong> samples from the model: <span class="math inline">\(\nabla_\theta f_\theta(x_{\text{sample}})\)</span></li>
@@ -437,8 +476,8 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 </p>
 <hr>
 </section>
-<section id="sampling-from-energy-based-models" class="level3">
-<h3 class="anchored" data-anchor-id="sampling-from-energy-based-models">Sampling from Energy-Based Models</h3>
+<section id="sampling-from-energy-based-models" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="sampling-from-energy-based-models"><span class="header-section-number">4.4</span> Sampling from Energy-Based Models</h3>
 <p>Recall that EBMs define a probability distribution as:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
@@ -462,8 +501,8 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <p>While we can’t sample from <span class="math inline">\(p_\theta(x)\)</span> directly due to the intractable <span class="math inline">\(Z(\theta)\)</span>, we can still generate approximate samples using <strong>Markov Chain Monte Carlo (MCMC)</strong> methods.</p>
 <hr>
 </section>
-<section id="metropolis-hastings-mh-mcmc" class="level3">
-<h3 class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc">1. Metropolis-Hastings (MH) MCMC</h3>
+<section id="metropolis-hastings-mh-mcmc" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc"><span class="header-section-number">4.5</span> 1. Metropolis-Hastings (MH) MCMC</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, we use an iterative approach like MCMC:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0\)</span> randomly<br>
@@ -485,8 +524,8 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 - Can take a very long time to convergence - Sensitive to proposal distribution<br>
 - Computationally expensive in high dimensions</p>
 </section>
-<section id="unadjusted-langevin-mcmc-ula" class="level3">
-<h3 class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula">2. Unadjusted Langevin MCMC (ULA)</h3>
+<section id="unadjusted-langevin-mcmc-ula" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula"><span class="header-section-number">4.6</span> 2. Unadjusted Langevin MCMC (ULA)</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Unadjusted Langevin MCMC uses gradient information to guide proposals:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
@@ -509,8 +548,8 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 - Still requires many steps for good convergence<br>
 - Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
 </section>
-<section id="adjusted-langevin-mcmc-ala" class="level3">
-<h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala">3. Adjusted Langevin MCMC (ALA)</h3>
+<section id="adjusted-langevin-mcmc-ala" class="level3" data-number="4.7">
+<h3 data-number="4.7" class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala"><span class="header-section-number">4.7</span> 3. Adjusted Langevin MCMC (ALA)</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Adjusted Langevin MCMC applies a step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
 <p>This makes it a corrected version of ULA with proper stationary distribution.</p>
 <ol type="1">
@@ -543,8 +582,8 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></p>
 <hr>
 </section>
-<section id="summary" class="level3">
-<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<section id="summary" class="level3" data-number="4.8">
+<h3 data-number="4.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.8</span> Summary</h3>
 <p>All these methods aim to sample from <span class="math inline">\(p_\theta(x)\)</span>, but differ in how they explore the space:</p>
 <ul>
 <li><strong>MH</strong> is simple but inefficient.</li>
@@ -556,8 +595,8 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <hr>
 </section>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">📚 References</h2>
+<section id="references" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="references"><span class="header-section-number">5</span> 📚 References</h2>
 <p>[1] Atcold, Y. (2020). <em>NYU Deep Learning Spring 2020 – Week 07: Energy-Based Models</em>. Retrieved from <a href="https://atcold.github.io/NYU-DLSP20/en/week07/07-1/">https://atcold.github.io/NYU-DLSP20/en/week07/07-1/</a></p>
 <p>[2] LeCun, Y., Hinton, G., &amp; Bengio, Y. (2021). <em>A Path Towards Autonomous Machine Intelligence</em>. arXiv. Retrieved from <a href="https://arxiv.org/pdf/2101.03288">https://arxiv.org/pdf/2101.03288</a></p>
 <p>[3] MIT. (2022). <em>Energy-Based Models – MIT Class Project</em>. Retrieved from <a href="https://energy-based-model.github.io/Energy-based-Model-MIT/">https://energy-based-model.github.io/Energy-based-Model-MIT/</a></p>
@@ -973,4 +1012,5 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

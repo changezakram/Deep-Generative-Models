@@ -1,6 +1,21 @@
 ---
 title: "Energy-Based Models"
-format: html
+author: "Your Name"  # optional
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    html-math-method: mathjax
+    theme: cosmo
+    smooth-scroll: true
+    code-fold: false
+    code-tools: false
+    css: styles.css  # optional, if you have a custom CSS file
+lang: en
+math: mathjax
+link-citations: true
+highlight-style: github
 ---
 
 ## Introduction
