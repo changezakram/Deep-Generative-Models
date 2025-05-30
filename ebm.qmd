@@ -353,27 +353,22 @@ To sample from $p_\theta(x)$, Adjusted Langevin MCMC applies a **Metropolis-Hast
 
 This makes it a **theoretically sound** version of ULA.
 
-1. **Update proposal** (same as ULA):
-    - Sample:
-      $$
-      z^t \sim \mathcal{N}(0, I)
-      $$
-    - Update:
-      $$
-      x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
-      $$
+1. **Initialize** $x^0 \sim \pi(x)$  
+2. **Repeat** for $t = 0, 1, 2, \dots, T - 1$:  
+   - Sample $z^t \sim \mathcal{N}(0, I)$  
+   - Propose: $x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t$  
+   - Accept or reject:  
+     - With probability $\min\left(1, \frac{p_\theta(x')}{p_\theta(x^t)}\right)$, set $x^{t+1} = x'$  
+     - Otherwise, set $x^{t+1} = x^t$
 
-2. **Accept or reject**:
-    - Accept $x^{t+1}$ with probability:
-      $$
-      \min\left(1, \frac{p_\theta(x^{t+1})}{p_\theta(x^t)}\right)
-      $$
+3. **For EBMs**, since $\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)$:  
+   - Proposal becomes: $x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t$
 
-**Pros**  
+**Pros:**  
 - Theoretically sound (has correct limiting distribution)  
 - Can be more robust than ULA  
 
-**Cons**  
+**Cons:**  
 - More expensive per iteration due to rejection sampling  
 - Slower in high-dimensional spaces  
 

@@ -515,26 +515,30 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Adjusted Langevin MCMC applies a <strong>Metropolis-Hastings correction</strong> step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
 <p>This makes it a <strong>theoretically sound</strong> version of ULA.</p>
 <ol type="1">
-<li><strong>Update proposal</strong> (same as ULA):
+<li><strong>Initialize</strong> <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
+</li>
+<li><strong>Repeat</strong> for <span class="math inline">\(t = 0, 1, 2, \dots, T - 1\)</span>:
 <ul>
-<li>Sample: <span class="math display">\[
-z^t \sim \mathcal{N}(0, I)
-\]</span></li>
-<li>Update: <span class="math display">\[
-x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t
-\]</span></li>
+<li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
+</li>
+<li>Propose: <span class="math inline">\(x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span><br>
+</li>
+<li>Accept or reject:
+<ul>
+<li>With probability <span class="math inline">\(\min\left(1, \frac{p_\theta(x')}{p_\theta(x^t)}\right)\)</span>, set <span class="math inline">\(x^{t+1} = x'\)</span><br>
+</li>
+<li>Otherwise, set <span class="math inline">\(x^{t+1} = x^t\)</span></li>
 </ul></li>
-<li><strong>Accept or reject</strong>:
+</ul></li>
+<li><strong>For EBMs</strong>, since <span class="math inline">\(\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)\)</span>:
 <ul>
-<li>Accept <span class="math inline">\(x^{t+1}\)</span> with probability: <span class="math display">\[
-\min\left(1, \frac{p_\theta(x^{t+1})}{p_\theta(x^t)}\right)
-\]</span></li>
+<li>Proposal becomes: <span class="math inline">\(x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span></li>
 </ul></li>
 </ol>
-<p><strong>Pros</strong><br>
+<p><strong>Pros:</strong><br>
 - Theoretically sound (has correct limiting distribution)<br>
 - Can be more robust than ULA</p>
-<p><strong>Cons</strong><br>
+<p><strong>Cons:</strong><br>
 - More expensive per iteration due to rejection sampling<br>
 - Slower in high-dimensional spaces</p>
 <hr>
