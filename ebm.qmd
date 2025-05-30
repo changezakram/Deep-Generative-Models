@@ -5,7 +5,6 @@ format:
     toc: true
     toc-depth: 2
     number-sections: true
-    html-math-method: mathjax
     theme: cosmo
     smooth-scroll: true
 lang: en
