@@ -375,6 +375,7 @@ This makes it a **theoretically sound** version of ULA.
 **Cons**  
 - More expensive per iteration due to rejection sampling  
 - Slower in high-dimensional spaces  
+
 ---
 
 ### Summary
