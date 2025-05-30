@@ -334,7 +334,7 @@ To sample from $p_\theta(x)$, Unadjusted Langevin MCMC uses gradient information
 1. **Initialize** $x^0 \sim \pi(x)$  
 2. **Repeat** for $t = 0, 1, 2, \dots, T - 1$:  
    - Sample $z^t \sim \mathcal{N}(0, I)$  
-   - Update: x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t$  
+   - Update: $x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t$  
 3. **For EBMs**, since $\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)$:  
    - Update becomes: $x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t$
 

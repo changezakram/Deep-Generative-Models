@@ -495,7 +495,7 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <ul>
 <li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
 </li>
-<li>Update: x^{t+1} = x^t + <em>x p</em>(x^t) + z^t$<br>
+<li>Update: <span class="math inline">\(x^{t+1} = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span><br>
 </li>
 </ul></li>
 <li><strong>For EBMs</strong>, since <span class="math inline">\(\nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)\)</span>:
