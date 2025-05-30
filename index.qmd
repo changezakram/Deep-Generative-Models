@@ -78,32 +78,6 @@ It’s designed to document concepts clearly, walk through implementations step 
 - **Use Cases**: Uncertainty modeling, compositional generation.
 - [Go to EBMs →](ebm.qmd)
 
-</details>
-### 1. [Variational Autoencoders (VAEs)](vae.qmd) 
-- Probabilistic encoder–decoder architecture  
-- Learns latent representations using Gaussian priors  
-
-### 2. Autoregressive Models 
-- Models sequences element-by-element (e.g., PixelCNN, WaveNet)  
-- Strong in text, audio, and image generation with local dependencies  
-
-### 3. Generative Adversarial Networks (GANs)
-- Generator vs. discriminator adversarial training  
-- Capable of generating highly realistic images  
-
-### 4. [Normalizing Flows](flows.qmd) 
-- Uses invertible transformations for exact likelihood  
-- Flexible for density estimation in high dimensions  
-
-### 5. [Energy-Based Models (EBMs)](ebm.qmd)
-- Defines probability using unnormalized energy functions
-- Allows flexible model architectures and stable training
-
-### 6. Diffusion Models  
-- Iterative denoising process  
-- State-of-the-art in high-quality image generation
-
-
 ## Industry Use Cases
 
 ### 1. [Banking](gen-ai-use-cases/banking-use-cases.html)  
