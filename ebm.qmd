@@ -1,4 +1,16 @@
-
+---
+title: "Energy-Based Models"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    theme: cosmo
+    smooth-scroll: true
+    standalone: true
+lang: en
+math: mathjax
+---
 
 ## Introduction
 
