@@ -512,7 +512,7 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <section id="adjusted-langevin-mcmc-ala" class="level3">
 <h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala">3. Adjusted Langevin MCMC (ALA)</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Adjusted Langevin MCMC applies a step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
-<p>This makes it a version of ULA.</p>
+<p>This makes it a corrected version of ULA with proper stationary distribution.</p>
 <ol type="1">
 <li> <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
 </li>
@@ -520,10 +520,10 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <ul>
 <li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
 </li>
-<li>Proposal sample: <span class="math inline">\(x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span></li>
+<li>Propose: <span class="math inline">\(x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span></li>
 <li>Forward proposal: <span class="math inline">\(q(x^{t+1} \mid x^t) = \mathcal{N}\left(x^{t+1} \mid x^t + \epsilon \nabla_x \log p_\theta(x^t),\ 2\epsilon I\right)\)</span></li>
 <li>Reverse proposal: <span class="math inline">\(q(x^t \mid x^{t+1}) = \mathcal{N}\left(x^t \mid x^{t+1} + \epsilon \nabla_x \log p_\theta(x^{t+1}),\ 2\epsilon I\right)\)</span></li>
-<li>Accept with probability <span class="math inline">\(\alpha = \min\left(1, \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)\)</span>
+<li>Accept <span class="math inline">\(x\)</span> with probability <span class="math inline">\(\alpha = \min\left(1, \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)\)</span>
 <ul>
 <li>If accepted: <span class="math inline">\(x^{t+1} = x'\)</span><br>
 </li>
@@ -534,8 +534,7 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <p>For EBMs, since</p>
 <p><span class="math display">\[
 \nabla_x \log p_\theta(x) = \nabla_x f_\theta(x)
-\]</span></p>
-<p><span class="math display">\[  
+\]</span> and <span class="math display">\[  
 q(x' \mid x^t) = \mathcal{N}\left(x' \mid x^t + \epsilon \nabla_x f_\theta(x^t), 2\epsilon I\right)
 \]</span></p>
 <p>the proposal becomes:</p>
