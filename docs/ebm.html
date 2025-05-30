@@ -521,7 +521,7 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <li>Sample <span class="math inline">\(z^t \sim \mathcal{N}(0, I)\)</span><br>
 </li>
 <li>Proposal: <span class="math inline">\(x' = x^t + \epsilon \nabla_x \log p_\theta(x^t) + \sqrt{2\epsilon} z^t\)</span></li>
-<li>Reverse proposal: <span class="math inline">\(q(x^t \mid x') = \mathcal{N}\left(x' + \epsilon \nabla_x \log p_\theta(x'),\ 2\epsilon I \right)\)</span></li>
+<li>Reverse proposal: <span class="math inline">\(q(x^t \mid x') = \mathcal{N}\left(x^t \mid x' + \epsilon \nabla_x \log p_\theta(x'), 2\epsilon I\right)\)</span></li>
 <li>Accept with probability <span class="math inline">\(\alpha = \min\left(1, \frac{p_\theta(x') \cdot q(x^t \mid x')}{p_\theta(x^t) \cdot q(x' \mid x^t)}\right)\)</span>, set <span class="math inline">\(x^{t+1} = x'\)</span>
 <ul>
 <li>Otherwise, set <span class="math inline">\(x^{t+1} = x^t\)</span></li>
