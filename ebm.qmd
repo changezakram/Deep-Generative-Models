@@ -1,11 +1,5 @@
 ---
-title: "Energy-Based Models"
-format:
-  html:
-    toc: true
-    number-sections: true
-    html-math-method: mathjax
-    theme: flatly
+title: "Energy Based Models (EBM)"  
 ---
 
 ## Introduction
