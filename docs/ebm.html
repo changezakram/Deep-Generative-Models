@@ -288,6 +288,11 @@ This allows EBMs to be useful even when the partition function is intractable.</
 \frac{p_\theta(x)}{p_\theta(x')} = \exp(f_\theta(x) - f_\theta(x'))
 \]</span></p>
 <p>This lets us determine which input is more likely — without ever computing <span class="math inline">\(Z(\theta)\)</span> — a powerful advantage of EBMs.</p>
+<p><strong>Practical Applications</strong>:</p>
+<ul>
+<li><strong>Anomaly detection</strong>: Identify inputs with unusually low likelihood.</li>
+<li><strong>Denoising</strong>: Prefer cleaner versions of corrupted data by comparing likelihoods.</li>
+</ul>
 </section>
 <section id="product-of-experts-compositional-generation" class="level3">
 <h3 class="anchored" data-anchor-id="product-of-experts-compositional-generation">Product of Experts (Compositional Generation)</h3>
@@ -313,11 +318,6 @@ p_{\theta_1, \theta_2, \theta_3}(x) = \frac{1}{Z(\theta_1, \theta_2, \theta_3)} 
 <blockquote class="blockquote">
 <p><strong>Source:</strong> Du et al., 2020. <a href="https://arxiv.org/pdf/2004.06030"><em>Compositional Visual Generation with Energy Based Models</em></a></p>
 </blockquote>
-<p><strong>Practical Applications</strong>:</p>
-<ul>
-<li><strong>Anomaly detection</strong>: Identify inputs with unusually low likelihood.</li>
-<li><strong>Denoising</strong>: Prefer cleaner versions of corrupted data by comparing likelihoods.</li>
-</ul>
 <hr>
 </section>
 </section>

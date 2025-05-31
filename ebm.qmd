@@ -124,6 +124,10 @@ $$
 
 This lets us determine which input is more likely — without ever computing $Z(\theta)$ — a powerful advantage of EBMs.
 
+**Practical Applications**:
+
+- **Anomaly detection**: Identify inputs with unusually low likelihood.
+- **Denoising**: Prefer cleaner versions of corrupted data by comparing likelihoods.
 
 ### Product of Experts (Compositional Generation)
 
@@ -150,11 +154,6 @@ In the figure below (Du et al., 2020), EBMs were used to model attributes such a
 ![Product of Experts Face Generation](images/product_of_experts_faces.png)
 
 > **Source:** Du et al., 2020. [*Compositional Visual Generation with Energy Based Models*](https://arxiv.org/pdf/2004.06030)
-
-**Practical Applications**:
-
-- **Anomaly detection**: Identify inputs with unusually low likelihood.
-- **Denoising**: Prefer cleaner versions of corrupted data by comparing likelihoods.
 
 ---
 
