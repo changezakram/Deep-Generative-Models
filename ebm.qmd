@@ -129,6 +129,10 @@ This lets us determine which input is more likely — without ever computing $Z(
 - **Anomaly detection**: Identify inputs with unusually low likelihood.
 - **Denoising**: Prefer cleaner versions of corrupted data by comparing likelihoods.
 
+This ability to compare inputs without computing the partition function opens up a variety of use cases — from anomaly detection to denoising. But EBMs can do more than assess single samples. They can also **combine multiple expert models** to make joint decisions, enabling powerful forms of compositional reasoning.
+
+This brings us to one of the most impactful capabilities of EBMs — compositional generation through the **Product of Experts (PoE)** framework.
+
 ### Product of Experts (Compositional Generation)
 
 Sometimes we want to combine multiple expert models, each scoring an input $\mathbf{x}$ for different properties — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through **Product of Experts (PoE)**.
