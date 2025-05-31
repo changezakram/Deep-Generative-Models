@@ -1,3 +1,15 @@
+---
+title: "Energy-Based Models"
+format:
+  html:
+    toc: true
+    number-sections: true
+    html-math-method: mathjax
+    theme: cosmo
+    css: styles.css
+    smooth-scroll: true
+---
+
 ## Introduction
 
 In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. **Energy-Based Models (EBMs)** offer a powerful alternative that’s **architecturally flexible**, **conceptually elegant**, and **growing in popularity** in modern deep learning research.
