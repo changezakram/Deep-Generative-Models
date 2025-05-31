@@ -102,7 +102,11 @@ This formulation gives EBMs the freedom to use any differentiable function for $
 
 --- 
 
-### Practical Applications: When You Don’t Need $Z(\theta)$
+### Practical Applications
+
+Energy-Based Models (EBMs) offer unique benefits in scenarios where traditional models struggle. Below are two practical applications that demonstrate how EBMs shine in real-world settings.
+
+#### 1. When You Don’t Need the Partition Function
 
 In general, evaluating the full probability $p_\theta(x)$ requires computing the partition function $Z(\theta)$:
 
@@ -129,11 +133,7 @@ This lets us determine which input is more likely — without ever computing $Z(
 - **Anomaly detection**: Identify inputs with unusually low likelihood.
 - **Denoising**: Prefer cleaner versions of corrupted data by comparing likelihoods.
 
-This ability to compare inputs without computing the partition function opens up a variety of use cases — from anomaly detection to denoising. But EBMs can do more than assess single samples. They can also **combine multiple expert models** to make joint decisions, enabling powerful forms of compositional reasoning.
-
-This brings us to one of the most impactful capabilities of EBMs — compositional generation through the **Product of Experts (PoE)** framework.
-
-### Product of Experts (Compositional Generation)
+#### 2. Product of Experts (Compositional Generation)
 
 Sometimes we want to combine multiple expert models, each scoring an input $\mathbf{x}$ for different properties — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through **Product of Experts (PoE)**.
 
