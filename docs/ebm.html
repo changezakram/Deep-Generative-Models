@@ -229,9 +229,8 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 </ul>
 <p>This normalization constant <span class="math inline">\(Z(\theta)\)</span> is also known as the <strong>partition function</strong>.</p>
 <hr>
-</section>
-<section id="intuition" class="level3">
-<h3 class="anchored" data-anchor-id="intuition">Intuition</h3>
+<section id="intuition" class="level4">
+<h4 class="anchored" data-anchor-id="intuition">Intuition</h4>
 <p>Think of <span class="math inline">\(g_\theta(x)\)</span> as a scoring function:</p>
 <ul>
 <li>Higher <span class="math inline">\(g_\theta(x)\)</span> means more likely<br>
@@ -239,6 +238,7 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 <li>Dividing by <span class="math inline">\(Z(\theta)\)</span> rescales these scores to form a valid probability distribution</li>
 </ul>
 <hr>
+</section>
 </section>
 <section id="from-scores-to-probabilities-in-ebms" class="level3">
 <h3 class="anchored" data-anchor-id="from-scores-to-probabilities-in-ebms">From Scores to Probabilities in EBMs</h3>
@@ -265,11 +265,12 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <p>This formulation gives EBMs the freedom to use any differentiable function for <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate its gradients.</p>
 <hr>
 </section>
-<section id="practical-applications" class="level3">
-<h3 class="anchored" data-anchor-id="practical-applications">Practical Applications</h3>
+</section>
+<section id="practical-applications" class="level2">
+<h2 class="anchored" data-anchor-id="practical-applications">Practical Applications</h2>
 <p>Energy-Based Models (EBMs) offer unique benefits in scenarios where traditional models struggle. Below are two practical applications that demonstrate how EBMs shine in real-world settings.</p>
-<section id="when-you-dont-need-the-partition-function" class="level4">
-<h4 class="anchored" data-anchor-id="when-you-dont-need-the-partition-function">1. When You Don’t Need the Partition Function</h4>
+<section id="when-you-dont-need-the-partition-function" class="level3">
+<h3 class="anchored" data-anchor-id="when-you-dont-need-the-partition-function">1. When You Don’t Need the Partition Function</h3>
 <p>In general, evaluating the full probability <span class="math inline">\(p_\theta(x)\)</span> requires computing the partition function <span class="math inline">\(Z(\theta)\)</span>:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
@@ -299,8 +300,8 @@ In some applications, we don’t need the exact probability — we only need to 
 <li><strong>Image restoration</strong>: Recover clean images from noisy inputs.</li>
 </ul>
 </section>
-<section id="product-of-experts-compositional-generation" class="level4">
-<h4 class="anchored" data-anchor-id="product-of-experts-compositional-generation">2. Product of Experts (Compositional Generation)</h4>
+<section id="product-of-experts-compositional-generation" class="level3">
+<h3 class="anchored" data-anchor-id="product-of-experts-compositional-generation">2. Product of Experts (Compositional Generation)</h3>
 <p>In some cases, we want to combine multiple expert models that each score different attributes of an input <span class="math inline">\(\mathbf{x}\)</span> — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through <strong>Product of Experts (PoE)</strong>.</p>
 <p>Suppose you have three trained expert models <span class="math inline">\(f_{\theta_1}(x)\)</span>, <span class="math inline">\(f_{\theta_2}(x)\)</span>, and <span class="math inline">\(f_{\theta_3}(x)\)</span>. A tempting idea is to combine their scores additively and exponentiate:</p>
 <p><span class="math display">\[
@@ -311,7 +312,6 @@ In some applications, we don’t need the exact probability — we only need to 
 p_{\theta_1, \theta_2, \theta_3}(x) = \frac{1}{Z(\theta_1, \theta_2, \theta_3)} \exp\left(f_{\theta_1}(x) + f_{\theta_2}(x) + f_{\theta_3}(x)\right)
 \]</span></p>
 <p>This behaves like a logical <strong>AND</strong>: if any expert assigns low score, the overall likelihood drops. This contrasts with mixture models (like Mixture of Gaussians), which behave more like <strong>OR</strong>.</p>
-</section>
 <section id="example" class="level4">
 <h4 class="anchored" data-anchor-id="example">Example</h4>
 <p>In the figure below (Du et al., 2020), EBMs were used to model attributes such as “young”, “female”, “smiling”, and “wavy hair”. Combining them via Product of Experts allowed for flexible generation of images with <strong>multiple attributes</strong>:</p>
@@ -324,8 +324,9 @@ p_{\theta_1, \theta_2, \theta_3}(x) = \frac{1}{Z(\theta_1, \theta_2, \theta_3)} 
 <hr>
 </section>
 </section>
-<section id="key-benefits-of-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="key-benefits-of-ebms">Key Benefits of EBMs</h3>
+</section>
+<section id="key-benefits-of-ebms" class="level2">
+<h2 class="anchored" data-anchor-id="key-benefits-of-ebms">Key Benefits of EBMs</h2>
 <p><strong>Very flexible model architectures</strong><br>
 No need for invertibility, autoregressive factorization, or adversarial design.</p>
 <p><strong>Stable training</strong><br>
@@ -336,8 +337,8 @@ Capable of modeling complex, multi-modal data distributions.</p>
 Energies can be combined to support multi-task objectives or structured learning.</p>
 <hr>
 </section>
-<section id="limitations-of-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-of-ebms">Limitations of EBMs</h3>
+<section id="limitations-of-ebms" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-of-ebms">Limitations of EBMs</h2>
 <p>Despite their strengths, EBMs come with notable challenges:</p>
 <p><strong>Hard Sampling</strong></p>
 <ul>
@@ -360,7 +361,6 @@ Energies can be combined to support multi-task objectives or structured learning
 <li>EBMs don’t learn latent features by default unless explicitly structured (e.g., RBMs)</li>
 </ul>
 <hr>
-</section>
 </section>
 <section id="training-and-inference-in-ebms" class="level2">
 <h2 class="anchored" data-anchor-id="training-and-inference-in-ebms">Training and Inference in EBMs</h2>
@@ -435,9 +435,8 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 </div>
 </div>
 <hr>
-</section>
-<section id="intuition-recap" class="level3">
-<h3 class="anchored" data-anchor-id="intuition-recap">Intuition Recap</h3>
+<section id="intuition-recap" class="level4">
+<h4 class="anchored" data-anchor-id="intuition-recap">Intuition Recap</h4>
 <ul>
 <li><strong>Pull up</strong> the training sample: <span class="math inline">\(\nabla_\theta f_\theta(x_{\text{train}})\)</span></li>
 <li><strong>Push down</strong> samples from the model: <span class="math inline">\(\nabla_\theta f_\theta(x_{\text{sample}})\)</span></li>
@@ -449,8 +448,10 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 </p>
 <hr>
 </section>
-<section id="sampling-from-energy-based-models" class="level3">
-<h3 class="anchored" data-anchor-id="sampling-from-energy-based-models">Sampling from Energy-Based Models</h3>
+</section>
+</section>
+<section id="sampling-from-energy-based-models" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-from-energy-based-models">Sampling from Energy-Based Models</h2>
 <p>Recall that EBMs define a probability distribution as:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
@@ -473,8 +474,8 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 </div>
 <p>While we can’t sample from <span class="math inline">\(p_\theta(x)\)</span> directly due to the intractable <span class="math inline">\(Z(\theta)\)</span>, we can still generate approximate samples using <strong>Markov Chain Monte Carlo (MCMC)</strong> methods.</p>
 <hr>
-<section id="metropolis-hastings-mh-mcmc" class="level4">
-<h4 class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc">1. Metropolis-Hastings (MH) MCMC</h4>
+<section id="metropolis-hastings-mh-mcmc" class="level3">
+<h3 class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc">1. Metropolis-Hastings (MH) MCMC</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, we use an iterative approach like MCMC:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0\)</span> randomly<br>
@@ -496,8 +497,8 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 - Can take a very long time to convergence - Sensitive to proposal distribution<br>
 - Computationally expensive in high dimensions</p>
 </section>
-<section id="unadjusted-langevin-mcmc-ula" class="level4">
-<h4 class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula">2. Unadjusted Langevin MCMC (ULA)</h4>
+<section id="unadjusted-langevin-mcmc-ula" class="level3">
+<h3 class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula">2. Unadjusted Langevin MCMC (ULA)</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Unadjusted Langevin MCMC uses gradient information to guide proposals:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
@@ -520,8 +521,8 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 - Still requires many steps for good convergence<br>
 - Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
 </section>
-<section id="adjusted-langevin-mcmc-ala" class="level4">
-<h4 class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala">3. Adjusted Langevin MCMC (ALA)</h4>
+<section id="adjusted-langevin-mcmc-ala" class="level3">
+<h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala">3. Adjusted Langevin MCMC (ALA)</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Adjusted Langevin MCMC applies a step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
 <p>This makes it a corrected version of ULA with proper stationary distribution.</p>
 <ol type="1">
@@ -554,8 +555,8 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></p>
 <hr>
 </section>
-<section id="summary" class="level4">
-<h4 class="anchored" data-anchor-id="summary">Summary</h4>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
 <p>All these methods aim to sample from <span class="math inline">\(p_\theta(x)\)</span>, but differ in how they explore the space:</p>
 <ul>
 <li><strong>MH</strong> is simple but inefficient.</li>
@@ -564,7 +565,6 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 </ul>
 <p>Sampling is a core challenge in EBMs — especially because we need to sample during <strong>every training step</strong> when using contrastive divergence.</p>
 <hr>
-</section>
 </section>
 </section>
 <section id="references" class="level2">

@@ -60,7 +60,7 @@ This normalization constant $Z(\theta)$ is also known as the **partition functio
 
 ---
 
-### Intuition
+#### Intuition
 
 Think of $g_\theta(x)$ as a scoring function:
 
@@ -102,11 +102,11 @@ This formulation gives EBMs the freedom to use any differentiable function for $
 
 --- 
 
-### Practical Applications
+## Practical Applications
 
 Energy-Based Models (EBMs) offer unique benefits in scenarios where traditional models struggle. Below are two practical applications that demonstrate how EBMs shine in real-world settings.
 
-#### 1. When You Don’t Need the Partition Function
+### 1. When You Don’t Need the Partition Function
 
 In general, evaluating the full probability $p_\theta(x)$ requires computing the partition function $Z(\theta)$:
 
@@ -135,7 +135,7 @@ This lets us determine which input is more likely — without ever computing $Z(
 - **Sequence labeling**: Predict tags (e.g., part-of-speech) for input tokens.
 - **Image restoration**: Recover clean images from noisy inputs.
 
-#### 2. Product of Experts (Compositional Generation)
+### 2. Product of Experts (Compositional Generation)
 
 In some cases, we want to combine multiple expert models that each score different attributes of an input $\mathbf{x}$ — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through **Product of Experts (PoE)**.
 
@@ -162,7 +162,7 @@ In the figure below (Du et al., 2020), EBMs were used to model attributes such a
 
 ---
 
-### Key Benefits of EBMs
+## Key Benefits of EBMs
 
 **Very flexible model architectures**  
 No need for invertibility, autoregressive factorization, or adversarial design.
@@ -178,7 +178,7 @@ Energies can be combined to support multi-task objectives or structured learning
 
 ---
 
-### Limitations of EBMs
+## Limitations of EBMs
 
 Despite their strengths, EBMs come with notable challenges:
 
@@ -291,7 +291,7 @@ This encourages the model to increase the score of the training sample and decre
 
 ---
 
-### Intuition Recap
+#### Intuition Recap
 
 - **Pull up** the training sample: $\nabla_\theta f_\theta(x_{\text{train}})$
 - **Push down** samples from the model: $\nabla_\theta f_\theta(x_{\text{sample}})$
@@ -306,7 +306,7 @@ This encourages the model to increase the score of the training sample and decre
 
 ---
 
-### Sampling from Energy-Based Models
+## Sampling from Energy-Based Models
 
 Recall that EBMs define a probability distribution as:
 
@@ -331,7 +331,7 @@ While we can't sample from $p_\theta(x)$ directly due to the intractable $Z(\the
 
 ---
 
-#### 1. Metropolis-Hastings (MH) MCMC
+### 1. Metropolis-Hastings (MH) MCMC
 
 To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
 
@@ -353,7 +353,7 @@ To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
 - Computationally expensive in high dimensions
 
 
-#### 2. Unadjusted Langevin MCMC (ULA)
+### 2. Unadjusted Langevin MCMC (ULA)
 
 To sample from $p_\theta(x)$, Unadjusted Langevin MCMC uses gradient information to guide proposals:
 
@@ -377,7 +377,7 @@ $$
 - Sensitive to step size $\epsilon$
 
 
-#### 3. Adjusted Langevin MCMC (ALA)
+### 3. Adjusted Langevin MCMC (ALA)
 
 To sample from $p_\theta(x)$, Adjusted Langevin MCMC applies a \textbf{Metropolis-Hastings correction} step after each Langevin update to ensure samples follow the correct stationary distribution.
 
@@ -411,7 +411,7 @@ $$
 
 ---
 
-#### Summary
+### Summary
 
 All these methods aim to sample from $p_\theta(x)$, but differ in how they explore the space:
 
