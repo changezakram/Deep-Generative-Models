@@ -137,16 +137,16 @@ This lets us determine which input is more likely — without ever computing $Z(
 
 In some cases, we want to combine multiple expert models that each score different attributes of an input $\mathbf{x}$ — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through **Product of Experts (PoE)**.
 
-Suppose you have three trained models $q_{\theta_1}(x)$, $r_{\theta_2}(x)$, and $t_{\theta_3}(x)$. A tempting idea is to combine their scores multiplicatively:
+Suppose you have three trained expert models $f_{\theta_1}(x)$, $f_{\theta_2}(x)$, and $f_{\theta_3}(x)$. A tempting idea is to combine their scores additively and exponentiate:
 
 $$
-p_{\theta_1}(x) \, q_{\theta_2}(x) \, r_{\theta_3}(x)
+\exp\left(f_{\theta_1}(x) + f_{\theta_2}(x) + f_{\theta_3}(x)\right)
 $$
 
 To make this a valid probability distribution, we normalize:
 
 $$
-p_{\theta_1, \theta_2, \theta_3}(x) = \frac{1}{Z(\theta_1, \theta_2, \theta_3)} \, q_{\theta_1}(x) \, r_{\theta_2}(x) \, t_{\theta_3}(x)
+p_{\theta_1, \theta_2, \theta_3}(x) = \frac{1}{Z(\theta_1, \theta_2, \theta_3)} \exp\left(f_{\theta_1}(x) + f_{\theta_2}(x) + f_{\theta_3}(x)\right)
 $$
 
 This behaves like a logical **AND**: if any expert assigns low score, the overall likelihood drops. This contrasts with mixture models (like Mixture of Gaussians), which behave more like **OR**.
@@ -155,9 +155,10 @@ This behaves like a logical **AND**: if any expert assigns low score, the overal
 
 In the figure below (Du et al., 2020), EBMs were used to model attributes such as "young", "female", "smiling", and "wavy hair". Combining them via Product of Experts allowed for flexible generation of images with **conjunctive constraints**:
 
-![Face generation using compositional attributes via Product of Experts (Du et al., 2020)](images/product_of_experts_faces.png)
+![Face generation using compositional attributes via Product of Experts.  
+Source: Du et al., 2020. *Compositional Visual Generation with Energy Based Models*](images/product_of_experts_faces.png)
 
-> **Source:** Du et al., 2020. [*Compositional Visual Generation with Energy Based Models*](https://arxiv.org/pdf/2004.06030)
+
 
 ---
 
