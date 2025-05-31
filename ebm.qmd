@@ -5,9 +5,7 @@ format:
     toc: true
     number-sections: true
     html-math-method: mathjax
-    theme: cosmo
-    css: styles.css
-    smooth-scroll: true
+    theme: flatly
 ---
 
 ## Introduction
