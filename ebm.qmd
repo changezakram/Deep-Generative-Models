@@ -153,7 +153,7 @@ This behaves like a logical **AND**: if any expert assigns low score, the overal
 
 #### Example
 
-In the figure below (Du et al., 2020), EBMs were used to model attributes such as "young", "female", "smiling", and "wavy hair". Combining them via Product of Experts allowed for flexible generation of images with **conjunctive constraints**:
+In the figure below (Du et al., 2020), EBMs were used to model attributes such as "young", "female", "smiling", and "wavy hair". Combining them via Product of Experts allowed for flexible generation of images with **multiple attributes**:
 
 ![Source: Du et al., 2020. *Compositional Visual Generation with Energy Based Models*](images/product_of_experts_faces.png)
 
