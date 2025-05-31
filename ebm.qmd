@@ -331,7 +331,7 @@ While we can't sample from $p_\theta(x)$ directly due to the intractable $Z(\the
 
 ---
 
-### 1. Metropolis-Hastings (MH) MCMC
+#### 1. Metropolis-Hastings (MH) MCMC
 
 To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
 
@@ -353,7 +353,7 @@ To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
 - Computationally expensive in high dimensions
 
 
-### 2. Unadjusted Langevin MCMC (ULA)
+#### 2. Unadjusted Langevin MCMC (ULA)
 
 To sample from $p_\theta(x)$, Unadjusted Langevin MCMC uses gradient information to guide proposals:
 
@@ -377,7 +377,7 @@ $$
 - Sensitive to step size $\epsilon$
 
 
-### 3. Adjusted Langevin MCMC (ALA)
+#### 3. Adjusted Langevin MCMC (ALA)
 
 To sample from $p_\theta(x)$, Adjusted Langevin MCMC applies a \textbf{Metropolis-Hastings correction} step after each Langevin update to ensure samples follow the correct stationary distribution.
 
@@ -411,8 +411,7 @@ $$
 
 ---
 
-
-### Summary
+#### Summary
 
 All these methods aim to sample from $p_\theta(x)$, but differ in how they explore the space:
 

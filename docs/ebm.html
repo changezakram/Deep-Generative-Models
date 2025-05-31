@@ -473,9 +473,8 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 </div>
 <p>While we can’t sample from <span class="math inline">\(p_\theta(x)\)</span> directly due to the intractable <span class="math inline">\(Z(\theta)\)</span>, we can still generate approximate samples using <strong>Markov Chain Monte Carlo (MCMC)</strong> methods.</p>
 <hr>
-</section>
-<section id="metropolis-hastings-mh-mcmc" class="level3">
-<h3 class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc">1. Metropolis-Hastings (MH) MCMC</h3>
+<section id="metropolis-hastings-mh-mcmc" class="level4">
+<h4 class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc">1. Metropolis-Hastings (MH) MCMC</h4>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, we use an iterative approach like MCMC:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0\)</span> randomly<br>
@@ -497,8 +496,8 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 - Can take a very long time to convergence - Sensitive to proposal distribution<br>
 - Computationally expensive in high dimensions</p>
 </section>
-<section id="unadjusted-langevin-mcmc-ula" class="level3">
-<h3 class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula">2. Unadjusted Langevin MCMC (ULA)</h3>
+<section id="unadjusted-langevin-mcmc-ula" class="level4">
+<h4 class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula">2. Unadjusted Langevin MCMC (ULA)</h4>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Unadjusted Langevin MCMC uses gradient information to guide proposals:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
@@ -521,8 +520,8 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 - Still requires many steps for good convergence<br>
 - Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
 </section>
-<section id="adjusted-langevin-mcmc-ala" class="level3">
-<h3 class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala">3. Adjusted Langevin MCMC (ALA)</h3>
+<section id="adjusted-langevin-mcmc-ala" class="level4">
+<h4 class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala">3. Adjusted Langevin MCMC (ALA)</h4>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Adjusted Langevin MCMC applies a step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
 <p>This makes it a corrected version of ULA with proper stationary distribution.</p>
 <ol type="1">
@@ -555,8 +554,8 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 \]</span></p>
 <hr>
 </section>
-<section id="summary" class="level3">
-<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<section id="summary" class="level4">
+<h4 class="anchored" data-anchor-id="summary">Summary</h4>
 <p>All these methods aim to sample from <span class="math inline">\(p_\theta(x)\)</span>, but differ in how they explore the space:</p>
 <ul>
 <li><strong>MH</strong> is simple but inefficient.</li>
@@ -565,6 +564,7 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 </ul>
 <p>Sampling is a core challenge in EBMs — especially because we need to sample during <strong>every training step</strong> when using contrastive divergence.</p>
 <hr>
+</section>
 </section>
 </section>
 <section id="references" class="level2">
