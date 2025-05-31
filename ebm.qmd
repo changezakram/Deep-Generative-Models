@@ -135,7 +135,7 @@ This lets us determine which input is more likely — without ever computing $Z(
 
 #### 2. Product of Experts (Compositional Generation)
 
-Sometimes we want to combine multiple expert models, each scoring an input $\mathbf{x}$ for different properties — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through **Product of Experts (PoE)**.
+In some cases, we want to combine multiple expert models that each score different attributes of an input $\mathbf{x}$ — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through **Product of Experts (PoE)**.
 
 Suppose you have three trained models $q_{\theta_1}(x)$, $r_{\theta_2}(x)$, and $t_{\theta_3}(x)$. A tempting idea is to combine their scores multiplicatively:
 
@@ -155,7 +155,7 @@ This behaves like a logical **AND**: if any expert assigns low score, the overal
 
 In the figure below (Du et al., 2020), EBMs were used to model attributes such as "young", "female", "smiling", and "wavy hair". Combining them via Product of Experts allowed for flexible generation of images with **conjunctive constraints**:
 
-![Product of Experts Face Generation](images/product_of_experts_faces.png)
+![Face generation using compositional attributes via Product of Experts (Du et al., 2020)](images/product_of_experts_faces.png)
 
 > **Source:** Du et al., 2020. [*Compositional Visual Generation with Energy Based Models*](https://arxiv.org/pdf/2004.06030)
 

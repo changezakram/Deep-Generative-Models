@@ -299,7 +299,7 @@ This allows EBMs to be useful even when the partition function is intractable.</
 </section>
 <section id="product-of-experts-compositional-generation" class="level4">
 <h4 class="anchored" data-anchor-id="product-of-experts-compositional-generation">2. Product of Experts (Compositional Generation)</h4>
-<p>Sometimes we want to combine multiple expert models, each scoring an input <span class="math inline">\(\mathbf{x}\)</span> for different properties — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through <strong>Product of Experts (PoE)</strong>.</p>
+<p>In some cases, we want to combine multiple expert models that each score different attributes of an input <span class="math inline">\(\mathbf{x}\)</span> — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through <strong>Product of Experts (PoE)</strong>.</p>
 <p>Suppose you have three trained models <span class="math inline">\(q_{\theta_1}(x)\)</span>, <span class="math inline">\(r_{\theta_2}(x)\)</span>, and <span class="math inline">\(t_{\theta_3}(x)\)</span>. A tempting idea is to combine their scores multiplicatively:</p>
 <p><span class="math display">\[
 p_{\theta_1}(x) \, q_{\theta_2}(x) \, r_{\theta_3}(x)
@@ -316,7 +316,7 @@ p_{\theta_1, \theta_2, \theta_3}(x) = \frac{1}{Z(\theta_1, \theta_2, \theta_3)} 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/product_of_experts_faces.png" class="img-fluid figure-img"></p>
-<figcaption>Product of Experts Face Generation</figcaption>
+<figcaption>Face generation using compositional attributes via Product of Experts (Du et al., 2020)</figcaption>
 </figure>
 </div>
 <blockquote class="blockquote">
