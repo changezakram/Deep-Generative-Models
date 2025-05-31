@@ -132,6 +132,9 @@ This lets us determine which input is more likely — without ever computing $Z(
 
 - **Anomaly detection**: Identify inputs with unusually low likelihood.
 - **Denoising**: Prefer cleaner versions of corrupted data by comparing likelihoods.
+- **Object Recognition**: Given an input image $x$, assign the most likely label $y$ by minimizing energy $E(y, x)$.
+- **Sequence Labeling**: For each input token $x$, select the tag $y$ (e.g., part-of-speech) that minimizes $E(y, x)$.
+- **Image Restoration**: Given a noisy image $x$, predict a clean version $y$ by selecting the output with lowest energy $E(y, x)$
 
 #### 2. Product of Experts (Compositional Generation)
 
@@ -194,7 +197,7 @@ Despite their strengths, EBMs come with notable challenges:
 
 **No Feature Learning (by default)**
 
-- EBMs don’t learn rich latent features by default unless explicitly structured (e.g., RBMs)
+- EBMs don’t learn latent features by default unless explicitly structured (e.g., RBMs)
 
 ---
 

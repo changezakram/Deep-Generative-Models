@@ -295,6 +295,9 @@ This allows EBMs to be useful even when the partition function is intractable.</
 <ul>
 <li><strong>Anomaly detection</strong>: Identify inputs with unusually low likelihood.</li>
 <li><strong>Denoising</strong>: Prefer cleaner versions of corrupted data by comparing likelihoods.</li>
+<li><strong>Object Recognition</strong>: Given an input image <span class="math inline">\(x\)</span>, assign the most likely label <span class="math inline">\(y\)</span> by minimizing energy <span class="math inline">\(E(y, x)\)</span>.</li>
+<li><strong>Sequence Labeling</strong>: For each input token <span class="math inline">\(x\)</span>, select the tag <span class="math inline">\(y\)</span> (e.g., part-of-speech) that minimizes <span class="math inline">\(E(y, x)\)</span>.</li>
+<li><strong>Image Restoration</strong>: Given a noisy image <span class="math inline">\(x\)</span>, predict a clean version <span class="math inline">\(y\)</span> by selecting the output with lowest energy <span class="math inline">\(E(y, x)\)</span></li>
 </ul>
 </section>
 <section id="product-of-experts-compositional-generation" class="level4">
@@ -355,7 +358,7 @@ Energies can be combined to support multi-task objectives or structured learning
 </ul>
 <p><strong>No Feature Learning (by default)</strong></p>
 <ul>
-<li>EBMs don’t learn rich latent features by default unless explicitly structured (e.g., RBMs)</li>
+<li>EBMs don’t learn latent features by default unless explicitly structured (e.g., RBMs)</li>
 </ul>
 <hr>
 </section>
