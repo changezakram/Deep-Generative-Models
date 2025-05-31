@@ -116,8 +116,7 @@ $$
 
 ::: {.callout-tip appearance="simple"}
 **Key Insight**  
-In some applications, we don’t need the exact probability — we only need to compare scores.  
-This allows EBMs to be useful even when the partition function is intractable.
+In some applications, we don’t need the exact probability — we only need to compare scores. This allows EBMs to be useful even when the partition function is intractable.
 :::
 
 When comparing two samples $x$ and $x'$, we can compute the ratio of their probabilities:
@@ -132,9 +131,9 @@ This lets us determine which input is more likely — without ever computing $Z(
 
 - **Anomaly detection**: Identify inputs with unusually low likelihood.
 - **Denoising**: Prefer cleaner versions of corrupted data by comparing likelihoods.
-- **Object Recognition**: Given an input image $x$, assign the most likely label $y$ by minimizing energy $E(y, x)$.
-- **Sequence Labeling**: For each input token $x$, select the tag $y$ (e.g., part-of-speech) that minimizes $E(y, x)$.
-- **Image Restoration**: Given a noisy image $x$, predict a clean version $y$ by selecting the output with lowest energy $E(y, x)$
+- **Object recognition**: Assign the most likely label to an input image.
+- **Sequence labeling**: Predict tags (e.g., part-of-speech) for input tokens.
+- **Image restoration**: Recover clean images from noisy inputs.
 
 #### 2. Product of Experts (Compositional Generation)
 

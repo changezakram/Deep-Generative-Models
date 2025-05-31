@@ -281,8 +281,7 @@ p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
 </div>
 <div class="callout-body-container">
 <p><strong>Key Insight</strong><br>
-In some applications, we don’t need the exact probability — we only need to compare scores.<br>
-This allows EBMs to be useful even when the partition function is intractable.</p>
+In some applications, we don’t need the exact probability — we only need to compare scores. This allows EBMs to be useful even when the partition function is intractable.</p>
 </div>
 </div>
 </div>
@@ -295,9 +294,9 @@ This allows EBMs to be useful even when the partition function is intractable.</
 <ul>
 <li><strong>Anomaly detection</strong>: Identify inputs with unusually low likelihood.</li>
 <li><strong>Denoising</strong>: Prefer cleaner versions of corrupted data by comparing likelihoods.</li>
-<li><strong>Object Recognition</strong>: Given an input image <span class="math inline">\(x\)</span>, assign the most likely label <span class="math inline">\(y\)</span> by minimizing energy <span class="math inline">\(E(y, x)\)</span>.</li>
-<li><strong>Sequence Labeling</strong>: For each input token <span class="math inline">\(x\)</span>, select the tag <span class="math inline">\(y\)</span> (e.g., part-of-speech) that minimizes <span class="math inline">\(E(y, x)\)</span>.</li>
-<li><strong>Image Restoration</strong>: Given a noisy image <span class="math inline">\(x\)</span>, predict a clean version <span class="math inline">\(y\)</span> by selecting the output with lowest energy <span class="math inline">\(E(y, x)\)</span></li>
+<li><strong>Object recognition</strong>: Assign the most likely label to an input image.</li>
+<li><strong>Sequence labeling</strong>: Predict tags (e.g., part-of-speech) for input tokens.</li>
+<li><strong>Image restoration</strong>: Recover clean images from noisy inputs.</li>
 </ul>
 </section>
 <section id="product-of-experts-compositional-generation" class="level4">
