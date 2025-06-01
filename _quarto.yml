@@ -1,4 +1,3 @@
-
 project:
   type: website
   output-dir: docs
@@ -6,51 +5,38 @@ project:
 website:
   title: "Changez Akram"
   page-navigation: true
-  reader-mode: true
-  back-to-top-navigation: true
-
-  navbar:
-    background: light
-    pinned: true
-    left:
-      - text: "Deep Generative Models"
-        menu:
-          - text: Variational Autoencoders (VAEs)
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
+      - section: "Deep Generative Models"
+        contents:
+          - text: "Variational Autoencoders (VAEs)"
             href: vae.qmd
-          - text: Generative Adversarial Networks (GANs) [Coming Soon]
+          - text: "Generative Adversarial Networks (GANs) [Coming Soon]"
             href: coming-soon.qmd
-          - text: Autoregressive Models [Coming Soon]
+          - text: "Autoregressive Models [Coming Soon]"
             href: coming-soon.qmd
-          - text: Normalizing Flows
+          - text: "Normalizing Flows"
             href: flows.qmd
-          - text: Energy-Based Models (EBMs)
+          - text: "Energy-Based Models (EBMs)"
             href: ebm.qmd
-          - text: Diffusion Models [Coming Soon]
+          - text: "Diffusion Models [Coming Soon]"
             href: coming-soon.qmd
-          - text: Model Evaluation [Coming Soon]
+          - text: "Model Evaluation [Coming Soon]"
             href: coming-soon.qmd
-
-      - text: "Large Language Models"
-        menu:
-          - text: Word Embedding [Coming Soon]
-            href: coming-soon.qmd
-          - text: Recurrent Neural Networks [Coming Soon]
-            href: coming-soon.qmd
-          - text: Sequence to Sequence Models [Coming Soon]
-            href: coming-soon.qmd
-          - text: Transformers [Coming Soon]
-            href: coming-soon.qmd
-          - text: Benchmarking and Evaluation [Coming Soon]
-            href: coming-soon.qmd
+      - section: "Large Language Models"
+        contents:
+          - href: coming-soon.qmd
 
 format:
   html:
     theme: cosmo
-    css: styles.css
     toc: true
+    toc-depth: 2
     number-sections: true
     html-math-method: mathjax
-
-resources:
-  - images
-  - styles.css
+    title-block: true
+    title-block-style: default  # or remove this line entirely
+    page-layout: article
+    smooth-scroll: true
