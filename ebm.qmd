@@ -4,12 +4,6 @@ title: "Energy Based Models (EBM)"
 
 ## Introduction
 
-In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all of them come with specific constraints. **Energy-Based Models (EBMs)** offer a powerful alternative that’s **architecturally flexible**, **conceptually elegant**, and **growing in popularity** in modern deep learning research.
-
----
-
-## Energy-Based Models: A Minimalist Approach to Generative AI
-
 Most generative models come with built-in constraints:
 
 - **VAEs** need encoder-decoder architectures  
@@ -29,16 +23,6 @@ This simplicity makes EBMs:
 ✓ **Theoretically elegant** (directly approximate probability distributions)  
 ✓ **Free from GANs' mode collapse** or VAEs' blurry outputs  
 
-In this post, we'll explore:  
-- Why EBMs are gaining renewed attention  
-- How they train without standard architectures  
-- Their key challenges (like sampling efficiency)  
-
----
-
-## Energy-Based Models: Beyond Architectural Constraints
-
-Most generative models come with built-in limitations:
 
 ::: {.callout-note}
 ### Why EBMs Differ
@@ -60,18 +44,6 @@ While other models enforce strict architectural rules, **Energy-Based Models (EB
 2. **Flexibility**: Same framework can be used for generation, classification, and anomaly detection
 3. **Modern Relevance**: New techniques (e.g., contrastive divergence, SGLD) are solving traditional EBM limitations
 
----
-
-## Limitations of Mainstream Generative Models
-
-| Model                   | Pros                                    | Cons                                                                 |
-|------------------------|-----------------------------------------|----------------------------------------------------------------------|
-| **VAEs**               | Probabilistic framework, tractable ELBO | Model architecture restrictions; blurry samples                     |
-| **Normalizing Flows**  | Exact likelihood, invertibility          | Restricted to invertible architectures; expensive Jacobian computation |
-| **Autoregressive Models** | Exact likelihood                    | Slow sampling; autoregressive dependency limits parallelism         |
-| **GANs**               | High-quality samples; flexible           | No likelihood; unstable training; mode collapse                     |
-
-These models attempt to approximate the true data distribution $P_{\text{data}}$ by selecting a model $P_\theta$ from a constrained family, often limited by the need for tractable likelihoods, invertible mappings, or adversarial training stability.
 
 ::: {.callout appearance="simple"}
 To understand how Energy-Based Models overcome many of these limitations, we first need to revisit a fundamental question in generative modeling: **what makes a valid probability distribution?**
