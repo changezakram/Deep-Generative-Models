@@ -17,6 +17,12 @@ In the world of generative models, techniques like VAEs, GANs, and normalizing f
 \item \textbf{Increasingly popular} in modern deep learning research
 \end{itemize}
 
+\begin{itemize}
+\item \textbf{Architecturally flexible} (no encoder/decoder or invertibility requirements)
+\item \textbf{Conceptually elegant} (direct probability modeling)
+\item \textbf{Increasingly popular} in modern deep learning research
+\end{itemize}
+
 ---
 
 ## Limitations of Mainstream Generative Models
