@@ -206,8 +206,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#practical-applications" id="toc-practical-applications" class="nav-link" data-scroll-target="#practical-applications"><span class="header-section-number">4</span> Practical Applications</a>
   <ul class="collapse">
-  <li><a href="#when-you-dont-need-the-partition-function" id="toc-when-you-dont-need-the-partition-function" class="nav-link" data-scroll-target="#when-you-dont-need-the-partition-function"><span class="header-section-number">4.1</span> 1. When You Don’t Need the Partition Function</a></li>
-  <li><a href="#product-of-experts-compositional-generation" id="toc-product-of-experts-compositional-generation" class="nav-link" data-scroll-target="#product-of-experts-compositional-generation"><span class="header-section-number">4.2</span> 2. Product of Experts (Compositional Generation)</a></li>
+  <li><a href="#when-you-dont-need-the-partition-function" id="toc-when-you-dont-need-the-partition-function" class="nav-link" data-scroll-target="#when-you-dont-need-the-partition-function"><span class="header-section-number">4.1</span> When You Don’t Need the Partition Function</a></li>
+  <li><a href="#product-of-experts-compositional-generation" id="toc-product-of-experts-compositional-generation" class="nav-link" data-scroll-target="#product-of-experts-compositional-generation"><span class="header-section-number">4.2</span> Product of Experts (Compositional Generation)</a></li>
   </ul></li>
   <li><a href="#key-benefits-of-ebms" id="toc-key-benefits-of-ebms" class="nav-link" data-scroll-target="#key-benefits-of-ebms"><span class="header-section-number">5</span> Key Benefits of EBMs</a></li>
   <li><a href="#limitations-of-ebms" id="toc-limitations-of-ebms" class="nav-link" data-scroll-target="#limitations-of-ebms"><span class="header-section-number">6</span> Limitations of EBMs</a></li>
@@ -218,9 +218,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models"><span class="header-section-number">8</span> Sampling from Energy-Based Models</a>
   <ul class="collapse">
-  <li><a href="#metropolis-hastings-mh-mcmc" id="toc-metropolis-hastings-mh-mcmc" class="nav-link" data-scroll-target="#metropolis-hastings-mh-mcmc"><span class="header-section-number">8.1</span> 1. Metropolis-Hastings (MH) MCMC</a></li>
-  <li><a href="#unadjusted-langevin-mcmc-ula" id="toc-unadjusted-langevin-mcmc-ula" class="nav-link" data-scroll-target="#unadjusted-langevin-mcmc-ula"><span class="header-section-number">8.2</span> 2. Unadjusted Langevin MCMC (ULA)</a></li>
-  <li><a href="#adjusted-langevin-mcmc-ala" id="toc-adjusted-langevin-mcmc-ala" class="nav-link" data-scroll-target="#adjusted-langevin-mcmc-ala"><span class="header-section-number">8.3</span> 3. Adjusted Langevin MCMC (ALA)</a></li>
+  <li><a href="#metropolis-hastings-mh-mcmc" id="toc-metropolis-hastings-mh-mcmc" class="nav-link" data-scroll-target="#metropolis-hastings-mh-mcmc"><span class="header-section-number">8.1</span> Metropolis-Hastings (MH) MCMC</a></li>
+  <li><a href="#unadjusted-langevin-mcmc-ula" id="toc-unadjusted-langevin-mcmc-ula" class="nav-link" data-scroll-target="#unadjusted-langevin-mcmc-ula"><span class="header-section-number">8.2</span> Unadjusted Langevin MCMC (ULA)</a></li>
+  <li><a href="#adjusted-langevin-mcmc-ala" id="toc-adjusted-langevin-mcmc-ala" class="nav-link" data-scroll-target="#adjusted-langevin-mcmc-ala"><span class="header-section-number">8.3</span> Adjusted Langevin MCMC (ALA)</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.4</span> Summary</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9</span> 📚 References</a></li>
@@ -379,7 +379,7 @@ p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
 <h2 data-number="4" class="anchored" data-anchor-id="practical-applications"><span class="header-section-number">4</span> Practical Applications</h2>
 <p>Energy-Based Models (EBMs) offer unique benefits in scenarios where traditional models struggle. Below are two practical applications that demonstrate how EBMs shine in real-world settings.</p>
 <section id="when-you-dont-need-the-partition-function" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="when-you-dont-need-the-partition-function"><span class="header-section-number">4.1</span> 1. When You Don’t Need the Partition Function</h3>
+<h3 data-number="4.1" class="anchored" data-anchor-id="when-you-dont-need-the-partition-function"><span class="header-section-number">4.1</span> When You Don’t Need the Partition Function</h3>
 <p>In general, evaluating the full probability <span class="math inline">\(p_\theta(x)\)</span> requires computing the partition function <span class="math inline">\(Z(\theta)\)</span>:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
@@ -410,7 +410,7 @@ In some applications, we don’t need the exact probability — we only need to 
 </ul>
 </section>
 <section id="product-of-experts-compositional-generation" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="product-of-experts-compositional-generation"><span class="header-section-number">4.2</span> 2. Product of Experts (Compositional Generation)</h3>
+<h3 data-number="4.2" class="anchored" data-anchor-id="product-of-experts-compositional-generation"><span class="header-section-number">4.2</span> Product of Experts (Compositional Generation)</h3>
 <p>In some cases, we want to combine multiple expert models that each score different attributes of an input <span class="math inline">\(\mathbf{x}\)</span> — for example, age, gender, or hairstyle. This is where Energy-Based Models (EBMs) shine through <strong>Product of Experts (PoE)</strong>.</p>
 <p>Suppose you have three trained expert models <span class="math inline">\(f_{\theta_1}(x)\)</span>, <span class="math inline">\(f_{\theta_2}(x)\)</span>, and <span class="math inline">\(f_{\theta_3}(x)\)</span>. A tempting idea is to combine their scores additively and exponentiate:</p>
 <p><span class="math display">\[
@@ -584,7 +584,7 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <p>While we can’t sample from <span class="math inline">\(p_\theta(x)\)</span> directly due to the intractable <span class="math inline">\(Z(\theta)\)</span>, we can still generate approximate samples using <strong>Markov Chain Monte Carlo (MCMC)</strong> methods.</p>
 <hr>
 <section id="metropolis-hastings-mh-mcmc" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc"><span class="header-section-number">8.1</span> 1. Metropolis-Hastings (MH) MCMC</h3>
+<h3 data-number="8.1" class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc"><span class="header-section-number">8.1</span> Metropolis-Hastings (MH) MCMC</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, we use an iterative approach like MCMC:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0\)</span> randomly<br>
@@ -607,7 +607,7 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 - Computationally expensive in high dimensions</p>
 </section>
 <section id="unadjusted-langevin-mcmc-ula" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula"><span class="header-section-number">8.2</span> 2. Unadjusted Langevin MCMC (ULA)</h3>
+<h3 data-number="8.2" class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula"><span class="header-section-number">8.2</span> Unadjusted Langevin MCMC (ULA)</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Unadjusted Langevin MCMC uses gradient information to guide proposals:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
@@ -631,7 +631,7 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 - Sensitive to step size <span class="math inline">\(\epsilon\)</span></p>
 </section>
 <section id="adjusted-langevin-mcmc-ala" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala"><span class="header-section-number">8.3</span> 3. Adjusted Langevin MCMC (ALA)</h3>
+<h3 data-number="8.3" class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala"><span class="header-section-number">8.3</span> Adjusted Langevin MCMC (ALA)</h3>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Adjusted Langevin MCMC applies a step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
 <p>This makes it a corrected version of ULA with proper stationary distribution.</p>
 <ol type="1">
