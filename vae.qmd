@@ -41,7 +41,7 @@ To compute the likelihood of a data point $\mathbf{x}$, we must marginalize over
 This integral requires integrating over all possible values of the latent variable $\mathbf{z}$, which is often high-dimensional and affects the likelihood in a non-linear way through neural networks. Because of this, computing the marginal likelihood exactly is computationally intractable. This motivates the use of techniques like variational inference and ELBO.
 
 
-#### Computational Challenge
+### Computational Challenge
 
 This integral requires integrating over:
 
@@ -123,18 +123,18 @@ This turns inference into an optimization problem. A key result is the Evidence 
 
 Now that we've introduced the challenge of approximating the intractable posterior using variational inference, we turn our attention to deriving the Evidence Lower Bound (ELBO). This derivation reveals how optimizing a surrogate objective allows us to approximate the true log-likelihood of the data while keeping the approximate posterior close to the prior. The steps below walk through this formulation.
 
-##### Step 1: KL Divergence Objective
+#### KL Divergence Objective
 \begin{equation}
 D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 \end{equation}
 
-##### Step 2: Apply Bayes' Rule
+#### Apply Bayes' Rule
 Substitute $p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}$:
 \begin{equation}
 = \sum_z q(z) \log \left( \frac{q(z) \cdot p(x; \theta)}{p(z, x; \theta)} \right)
 \end{equation}
 
-##### Step 3: Decompose Terms
+#### Decompose Terms
 \begin{align}
 &= \sum_z q(z) \log q(z) + \sum_z q(z) \log p(x; \theta) \nonumber \\
 &\quad - \sum_z q(z) \log p(z, x; \theta) \\
@@ -149,7 +149,7 @@ Substitute $p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}$:
 >
 > Entropy measures the amount of uncertainty or "spread" in a distribution. A high-entropy $q(z)$ places probability mass across a wide region of the latent space, while a low-entropy $q(z)$ is more concentrated. This decomposition is key to understanding the KL divergence term in the ELBO.
 
-##### Step 4: Rearrange for ELBO
+#### Rearrange for ELBO
 
 $$
 \log p(x; \theta) =
@@ -165,7 +165,7 @@ This equation shows that the log-likelihood $\log p(x)$ can be decomposed into t
 *Visualizing how $\log p(x)$ decomposes into the ELBO and KL divergence.*  
 Source: [deepgenerativemodels.github.io](https://deepgenerativemodels.github.io/notes/vae/)
 
-##### Key Results
+#### Key Results
 
 1. **Evidence Lower Bound (ELBO)**:
    \begin{equation}

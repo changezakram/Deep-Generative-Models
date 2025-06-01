@@ -197,7 +197,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#autoencoders-vs-variational-autoencoders" id="toc-autoencoders-vs-variational-autoencoders" class="nav-link active" data-scroll-target="#autoencoders-vs-variational-autoencoders"><span class="header-section-number">1</span> Autoencoders vs Variational Autoencoders</a></li>
-  <li><a href="#probabilistic-framework" id="toc-probabilistic-framework" class="nav-link" data-scroll-target="#probabilistic-framework"><span class="header-section-number">2</span> Probabilistic Framework</a></li>
+  <li><a href="#probabilistic-framework" id="toc-probabilistic-framework" class="nav-link" data-scroll-target="#probabilistic-framework"><span class="header-section-number">2</span> Probabilistic Framework</a>
+  <ul class="collapse">
+  <li><a href="#computational-challenge" id="toc-computational-challenge" class="nav-link" data-scroll-target="#computational-challenge"><span class="header-section-number">2.1</span> Computational Challenge</a></li>
+  </ul></li>
   <li><a href="#estimating-the-marginal-likelihood" id="toc-estimating-the-marginal-likelihood" class="nav-link" data-scroll-target="#estimating-the-marginal-likelihood"><span class="header-section-number">3</span> Estimating the Marginal Likelihood</a>
   <ul class="collapse">
   <li><a href="#naive-monte-carlo-estimation" id="toc-naive-monte-carlo-estimation" class="nav-link" data-scroll-target="#naive-monte-carlo-estimation"><span class="header-section-number">3.1</span> Naive Monte Carlo Estimation</a></li>
@@ -277,8 +280,8 @@ p(\mathbf{x}|\mathbf{z}) = \mathcal{N}(\mu_\theta(\mathbf{z}), \Sigma_\theta(\ma
   p(\mathbf{x}) = \int p(\mathbf{x}, \mathbf{z}) \, d\mathbf{z}
   \]</span></p>
 <p>This integral requires integrating over all possible values of the latent variable <span class="math inline">\(\mathbf{z}\)</span>, which is often high-dimensional and affects the likelihood in a non-linear way through neural networks. Because of this, computing the marginal likelihood exactly is computationally intractable. This motivates the use of techniques like variational inference and ELBO.</p>
-<section id="computational-challenge" class="level4" data-number="2.0.1">
-<h4 data-number="2.0.1" class="anchored" data-anchor-id="computational-challenge"><span class="header-section-number">2.0.1</span> Computational Challenge</h4>
+<section id="computational-challenge" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="computational-challenge"><span class="header-section-number">2.1</span> Computational Challenge</h3>
 <p>This integral requires integrating over:</p>
 <ul>
 <li>All possible values of <span class="math inline">\(\mathbf{z}\)</span> (often high-dimensional)</li>
@@ -340,20 +343,20 @@ D_{\text{KL}}(q(z) \| p(z|x))
 <section id="elbo-objective" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="elbo-objective"><span class="header-section-number">5.1</span> ELBO Objective</h3>
 <p>Now that we’ve introduced the challenge of approximating the intractable posterior using variational inference, we turn our attention to deriving the Evidence Lower Bound (ELBO). This derivation reveals how optimizing a surrogate objective allows us to approximate the true log-likelihood of the data while keeping the approximate posterior close to the prior. The steps below walk through this formulation.</p>
-<section id="step-1-kl-divergence-objective" class="level5" data-number="5.1.0.1">
-<h5 data-number="5.1.0.1" class="anchored" data-anchor-id="step-1-kl-divergence-objective"><span class="header-section-number">5.1.0.1</span> Step 1: KL Divergence Objective</h5>
+<section id="kl-divergence-objective" class="level4" data-number="5.1.1">
+<h4 data-number="5.1.1" class="anchored" data-anchor-id="kl-divergence-objective"><span class="header-section-number">5.1.1</span> KL Divergence Objective</h4>
 <p><span class="math display">\[\begin{equation}
 D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 \end{equation}\]</span></p>
 </section>
-<section id="step-2-apply-bayes-rule" class="level5" data-number="5.1.0.2">
-<h5 data-number="5.1.0.2" class="anchored" data-anchor-id="step-2-apply-bayes-rule"><span class="header-section-number">5.1.0.2</span> Step 2: Apply Bayes’ Rule</h5>
+<section id="apply-bayes-rule" class="level4" data-number="5.1.2">
+<h4 data-number="5.1.2" class="anchored" data-anchor-id="apply-bayes-rule"><span class="header-section-number">5.1.2</span> Apply Bayes’ Rule</h4>
 <p>Substitute <span class="math inline">\(p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}\)</span>: <span class="math display">\[\begin{equation}
 = \sum_z q(z) \log \left( \frac{q(z) \cdot p(x; \theta)}{p(z, x; \theta)} \right)
 \end{equation}\]</span></p>
 </section>
-<section id="step-3-decompose-terms" class="level5" data-number="5.1.0.3">
-<h5 data-number="5.1.0.3" class="anchored" data-anchor-id="step-3-decompose-terms"><span class="header-section-number">5.1.0.3</span> Step 3: Decompose Terms</h5>
+<section id="decompose-terms" class="level4" data-number="5.1.3">
+<h4 data-number="5.1.3" class="anchored" data-anchor-id="decompose-terms"><span class="header-section-number">5.1.3</span> Decompose Terms</h4>
 <p><span class="math display">\[\begin{align}
 &amp;= \sum_z q(z) \log q(z) + \sum_z q(z) \log p(x; \theta) \nonumber \\
 &amp;\quad - \sum_z q(z) \log p(z, x; \theta) \\
@@ -367,8 +370,8 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <p>Entropy measures the amount of uncertainty or “spread” in a distribution. A high-entropy <span class="math inline">\(q(z)\)</span> places probability mass across a wide region of the latent space, while a low-entropy <span class="math inline">\(q(z)\)</span> is more concentrated. This decomposition is key to understanding the KL divergence term in the ELBO.</p>
 </blockquote>
 </section>
-<section id="step-4-rearrange-for-elbo" class="level5" data-number="5.1.0.4">
-<h5 data-number="5.1.0.4" class="anchored" data-anchor-id="step-4-rearrange-for-elbo"><span class="header-section-number">5.1.0.4</span> Step 4: Rearrange for ELBO</h5>
+<section id="rearrange-for-elbo" class="level4" data-number="5.1.4">
+<h4 data-number="5.1.4" class="anchored" data-anchor-id="rearrange-for-elbo"><span class="header-section-number">5.1.4</span> Rearrange for ELBO</h4>
 <p><span class="math display">\[
 \log p(x; \theta) =
 \underbrace{
@@ -380,8 +383,8 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <p><img src="https://deepgenerativemodels.github.io/notes/vae/klgap.png" class="img-fluid"> <em>Visualizing how <span class="math inline">\(\log p(x)\)</span> decomposes into the ELBO and KL divergence.</em><br>
 Source: <a href="https://deepgenerativemodels.github.io/notes/vae/">deepgenerativemodels.github.io</a></p>
 </section>
-<section id="key-results" class="level5" data-number="5.1.0.5">
-<h5 data-number="5.1.0.5" class="anchored" data-anchor-id="key-results"><span class="header-section-number">5.1.0.5</span> Key Results</h5>
+<section id="key-results" class="level4" data-number="5.1.5">
+<h4 data-number="5.1.5" class="anchored" data-anchor-id="key-results"><span class="header-section-number">5.1.5</span> Key Results</h4>
 <ol type="1">
 <li><p><strong>Evidence Lower Bound (ELBO)</strong>: <span class="math display">\[\begin{equation}
 \mathcal{L}(\theta,\phi) = \mathbb{E}_{q(z;\phi)}[\log p(x,z;\theta)] + H(q(z;\phi))
