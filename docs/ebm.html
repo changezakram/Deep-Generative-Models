@@ -245,72 +245,11 @@ Why EBMs Differ
 <p>While other models enforce strict architectural rules, <strong>Energy-Based Models (EBMs)</strong> only require learning an energy function—freeing them from these constraints.</p>
 </div>
 </div>
-<section id="how-mainstream-models-compare" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="how-mainstream-models-compare"><span class="header-section-number">1.1</span> How Mainstream Models Compare</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 26%">
-<col style="width: 26%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Model</th>
-<th>Key Constraints</th>
-<th>Advantages</th>
-<th>Key Challenges</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>VAEs</strong></td>
-<td>Encoder-decoder required</td>
-<td>Stable training</td>
-<td>Blurry generations</td>
-</tr>
-<tr class="even">
-<td><strong>GANs</strong></td>
-<td>Adversarial framework</td>
-<td>High-quality samples</td>
-<td>Mode collapse</td>
-</tr>
-<tr class="odd">
-<td><strong>Normalizing Flows</strong></td>
-<td>Must be invertible</td>
-<td>Exact likelihood</td>
-<td>Architecturally restrictive</td>
-</tr>
-<tr class="even">
-<td><strong>EBMs</strong></td>
-<td><em>None</em></td>
-<td>• Flexible architecture<br>• No mode collapse</td>
-<td>• Intractable <span class="math inline">\(Z(θ)\)</span><br>• Slow sampling</td>
-</tr>
-</tbody>
-</table>
+<p><strong>How Mainstream Models Compare</strong> | Model | Key Constraints | Advantages | Key Challenges | |———————|—————————-|—————————-|——————————| | <strong>VAEs</strong> | Encoder-decoder required | Stable training | Blurry generations | | <strong>GANs</strong> | Adversarial framework | High-quality samples | Mode collapse | | <strong>Normalizing Flows</strong> | Must be invertible | Exact likelihood | Architecturally restrictive | | <strong>EBMs</strong> | <em>None</em> | • Flexible architecture<br>• No mode collapse | • Intractable <span class="math inline">\(Z(θ)\)</span><br>• Slow sampling |</p>
 <p><strong>Key Insight</strong>: EBMs replace architectural constraints with a single, unified objective: learn an energy function <span class="math inline">\(E_θ(x)\)</span> that assigns low energy to real data and high energy to noise.</p>
-</section>
-<section id="why-this-matters" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="why-this-matters"><span class="header-section-number">1.2</span> Why This Matters</h3>
-<ol type="1">
-<li><strong>Elegance</strong>: Directly models probability without intermediate structures</li>
-<li><strong>Flexibility</strong>: Same framework can be used for generation, classification, and anomaly detection</li>
-<li><strong>Modern Relevance</strong>: New techniques (e.g., contrastive divergence, SGLD) are solving traditional EBM limitations</li>
-</ol>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>To understand how Energy-Based Models overcome many of these limitations, we first need to revisit a fundamental question in generative modeling: <strong>what makes a valid probability distribution?</strong></p>
-<p>The next section walks through the mathematical foundation that underpins EBMs — and introduces a clever trick that allows them to sidestep many of the constraints faced by traditional generative models.</p>
-</div>
-</div>
-</div>
+<p><strong>Why This Matters</strong> 1. <strong>Elegance</strong>: Directly models probability without intermediate structures 2. <strong>Flexibility</strong>: Same framework can be used for generation, classification, and anomaly detection 3. <strong>Modern Relevance</strong>: New techniques (e.g., contrastive divergence, SGLD) are solving traditional EBM limitations</p>
+<p>To understand how Energy-Based Models overcome many of these limitations, we first need to revisit a fundamental question in generative modeling: <strong>what makes a valid probability distribution?</strong> The next section walks through the mathematical foundation that underpins EBMs — and introduces a clever trick that allows them to sidestep many of the constraints faced by traditional generative models.</p>
 <hr>
-</section>
 </section>
 <section id="math-review" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="math-review"><span class="header-section-number">2</span> Math Review</h2>
