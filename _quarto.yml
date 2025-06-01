@@ -3,10 +3,10 @@ project:
   output-dir: docs
 
 website:
-  title: "Deep Generative Models"
+  title: "Changez Akram"
   navbar:
     left:
-      - text: Generative AI
+      - text: Deep Generative Models
         menu:
           - text: Variational Autoencoders (VAEs)
             href: vae.qmd
