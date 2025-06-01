@@ -13,18 +13,10 @@ website:
         menu:
           - text: Variational Autoencoders (VAEs)
             href: vae.qmd
-          - text: Generative Adversarial Networks (GANs) [Coming Soon]
-            href: coming-soon.qmd
-          - text: Autoregressive Models [Coming Soon]
-            href: coming-soon.qmd
           - text: Normalizing Flows
             href: flows.qmd
           - text: Energy-Based Models (EBMs)
             href: ebm.qmd
-          - text: Diffusion Models [Coming Soon]
-            href: coming-soon.qmd
-          - text: Model Evaluation [Coming Soon]
-            href: coming-soon.qmd
 
       - text: Large Language Models
         menu:
