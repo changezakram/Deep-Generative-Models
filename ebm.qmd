@@ -30,7 +30,9 @@ While other models enforce strict architectural rules, **Energy-Based Models (EB
 :::
 
 
-To understand how Energy-Based Models overcome many of these limitations, we first need to revisit a fundamental question in generative modeling: **what makes a valid probability distribution?** The next section walks through the mathematical foundation that underpins EBMs — and introduces a clever trick that allows them to sidestep many of the constraints faced by traditional generative models.
+To understand how Energy-Based Models overcome many of these limitations, we first need to revisit a fundamental question in generative modeling: **what makes a valid probability distribution?** 
+
+The next section walks through the mathematical foundation that underpins EBMs — and introduces a clever trick that allows them to sidestep many of the constraints faced by traditional generative models.
 
 
 ---
