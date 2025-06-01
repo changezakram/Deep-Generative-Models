@@ -37,6 +37,5 @@ format:
     number-sections: true
     html-math-method: mathjax
     title-block: true
-    title-block-style: default  # or remove this line entirely
     page-layout: article
     smooth-scroll: true
