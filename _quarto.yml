@@ -6,15 +6,47 @@ website:
   title: "Deep Generative Models"
   navbar:
     left:
-      - href: https://changezakram.github.io/
-        text: Home
+      - text: "Generative AI"
+        menu:
+          - text: "Variational Autoencoders (VAEs)"
+            href: vae.qmd
+          - text: "Generative Adversarial Networks (GANs)"
+            href: coming-soon.qmd
+          - text: "Autoregressive Models"
+            href: coming-soon.qmd
+          - text: "Normalizing Flows"
+            href: flows.qmd
+          - text: "Energy-Based Models (EBMs)"
+            href: ebm.qmd
+          - text: "Diffusion Models"
+            href: coming-soon.qmd
+          - text: "Model Evaluation"
+            href: coming-soon.qmd
+      - text: "Large Language Models"
+        menu:
+          - text: "Word Embedding"
+            href: coming-soon.qmd
+          - text: "Recurrent Neural Networks"
+            href: coming-soon.qmd
+          - text: "Sequence to Sequence Models"
+            href: coming-soon.qmd
+          - text: "Transformers"
+            href: coming-soon.qmd
+          - text: "Benchmarking and Evaluation"
+            href: coming-soon.qmd
 
 format:
   html:
-    math: mathjax
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    html-math-method: mathjax
+    smooth-scroll: true
     css: styles.css
-    toc: false
-    copy-resources: true
+    include-in-header:
+      text: |
+        <link rel="stylesheet" href="styles.css">
 
 resources:
   - images

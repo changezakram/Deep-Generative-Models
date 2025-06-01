@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a14e3238c51140e99ccc48519b6ed9ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,41 +67,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="styles.css">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -118,10 +91,68 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="https://changezakram.github.io/"> 
-<span class="menu-text">Home</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Generative Adversarial Networks (GANs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Autoregressive Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Model Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Word Embedding</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Recurrent Neural Networks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Sequence to Sequence Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Benchmarking and Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -133,7 +164,16 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#key-model-families" id="toc-key-model-families" class="nav-link active" data-scroll-target="#key-model-families"><span class="header-section-number">1</span> Key Model Families</a></li>
+  <li><a href="#industry-use-cases" id="toc-industry-use-cases" class="nav-link" data-scroll-target="#industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -161,8 +201,8 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p>Learn by building · Backed by math · Inspired by real-world problems</p>
 </blockquote>
-<section id="key-model-families" class="level2">
-<h2 class="anchored" data-anchor-id="key-model-families">Key Model Families</h2>
+<section id="key-model-families" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="key-model-families"><span class="header-section-number">1</span> Key Model Families</h2>
 <details>
 <summary>
 <strong> Variational Autoencoders (VAEs)</strong>
@@ -242,8 +282,8 @@ window.Quarto = {
 </ul>
 </details>
 </section>
-<section id="industry-use-cases" class="level2">
-<h2 class="anchored" data-anchor-id="industry-use-cases">Industry Use Cases</h2>
+<section id="industry-use-cases" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</h2>
 <details>
 <summary>
 <strong>Banking</strong>
@@ -279,7 +319,6 @@ window.Quarto = {
 <p>Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.<br>
 <a href="gen-ai-use-cases/healthcare-use-cases.html">View full Healthcare use cases →</a></p>
 </details>
-
 
 
 </section>
@@ -689,4 +728,5 @@ window.Quarto = {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

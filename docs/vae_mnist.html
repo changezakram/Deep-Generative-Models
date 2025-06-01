@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a14e3238c51140e99ccc48519b6ed9ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,41 +102,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="styles.css">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -153,10 +126,68 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="https://changezakram.github.io/"> 
-<span class="menu-text">Home</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Generative Adversarial Networks (GANs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Autoregressive Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Model Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Word Embedding</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Recurrent Neural Networks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Sequence to Sequence Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Benchmarking and Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -168,7 +199,21 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#import-required-libraries" id="toc-import-required-libraries" class="nav-link active" data-scroll-target="#import-required-libraries"><span class="header-section-number">1</span> 1. Import Required Libraries</a></li>
+  <li><a href="#load-and-prepare-the-mnist-dataset" id="toc-load-and-prepare-the-mnist-dataset" class="nav-link" data-scroll-target="#load-and-prepare-the-mnist-dataset"><span class="header-section-number">2</span> 2. Load and Prepare the MNIST Dataset</a></li>
+  <li><a href="#define-the-vae-model" id="toc-define-the-vae-model" class="nav-link" data-scroll-target="#define-the-vae-model"><span class="header-section-number">3</span> 3. Define the VAE Model</a></li>
+  <li><a href="#define-the-elbo-loss" id="toc-define-the-elbo-loss" class="nav-link" data-scroll-target="#define-the-elbo-loss"><span class="header-section-number">4</span> 4. Define the ELBO Loss</a></li>
+  <li><a href="#train-the-vae" id="toc-train-the-vae" class="nav-link" data-scroll-target="#train-the-vae"><span class="header-section-number">5</span> 5. Train the VAE</a></li>
+  <li><a href="#visualize-original-and-reconstructed-digits" id="toc-visualize-original-and-reconstructed-digits" class="nav-link" data-scroll-target="#visualize-original-and-reconstructed-digits"><span class="header-section-number">6</span> 6. Visualize Original and Reconstructed Digits</a></li>
+  <li><a href="#visualize-latent-space" id="toc-visualize-latent-space" class="nav-link" data-scroll-target="#visualize-latent-space"><span class="header-section-number">7</span> 7. Visualize Latent Space</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -196,8 +241,8 @@ window.Quarto = {
 <div id="6e1e08dc" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install torch torchvision</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="import-required-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="import-required-libraries">1. Import Required Libraries</h2>
+<section id="import-required-libraries" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="import-required-libraries"><span class="header-section-number">1</span> 1. Import Required Libraries</h2>
 <div id="77fe051a" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
@@ -209,8 +254,8 @@ window.Quarto = {
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="load-and-prepare-the-mnist-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="load-and-prepare-the-mnist-dataset">2. Load and Prepare the MNIST Dataset</h2>
+<section id="load-and-prepare-the-mnist-dataset" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="load-and-prepare-the-mnist-dataset"><span class="header-section-number">2</span> 2. Load and Prepare the MNIST Dataset</h2>
 <div id="bf93190e" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We transform MNIST images into tensors.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>transform <span class="op">=</span> transforms.ToTensor()</span>
@@ -222,8 +267,8 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(train_data, batch_size<span class="op">=</span><span class="dv">128</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="define-the-vae-model" class="level2">
-<h2 class="anchored" data-anchor-id="define-the-vae-model">3. Define the VAE Model</h2>
+<section id="define-the-vae-model" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="define-the-vae-model"><span class="header-section-number">3</span> 3. Define the VAE Model</h2>
 <div id="9f6765fd" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VAE(nn.Module):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_dim<span class="op">=</span><span class="dv">784</span>, hidden_dim<span class="op">=</span><span class="dv">400</span>, latent_dim<span class="op">=</span><span class="dv">2</span>):</span>
@@ -263,8 +308,8 @@ window.Quarto = {
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> recon_x, mu, logvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="define-the-elbo-loss" class="level2">
-<h2 class="anchored" data-anchor-id="define-the-elbo-loss">4. Define the ELBO Loss</h2>
+<section id="define-the-elbo-loss" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="define-the-elbo-loss"><span class="header-section-number">4</span> 4. Define the ELBO Loss</h2>
 <div id="0f57fbe7" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> elbo_loss(recon_x, x, mu, logvar):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Binary cross-entropy for reconstruction</span></span>
@@ -277,8 +322,8 @@ window.Quarto = {
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> BCE <span class="op">+</span> KLD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="train-the-vae" class="level2">
-<h2 class="anchored" data-anchor-id="train-the-vae">5. Train the VAE</h2>
+<section id="train-the-vae" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="train-the-vae"><span class="header-section-number">5</span> 5. Train the VAE</h2>
 <div id="25f8490c" class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> VAE().to(device)</span>
@@ -299,8 +344,8 @@ window.Quarto = {
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">, Loss: </span><span class="sc">{</span>total_loss <span class="op">/</span> <span class="bu">len</span>(train_loader.dataset)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualize-original-and-reconstructed-digits" class="level2">
-<h2 class="anchored" data-anchor-id="visualize-original-and-reconstructed-digits">6. Visualize Original and Reconstructed Digits</h2>
+<section id="visualize-original-and-reconstructed-digits" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="visualize-original-and-reconstructed-digits"><span class="header-section-number">6</span> 6. Visualize Original and Reconstructed Digits</h2>
 <div id="4833558e" class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
@@ -324,8 +369,8 @@ window.Quarto = {
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualize-latent-space" class="level2">
-<h2 class="anchored" data-anchor-id="visualize-latent-space">7. Visualize Latent Space</h2>
+<section id="visualize-latent-space" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="visualize-latent-space"><span class="header-section-number">7</span> 7. Visualize Latent Space</h2>
 <div id="fdb2c6c0" class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -355,7 +400,6 @@ window.Quarto = {
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-
 
 
 </section>
@@ -765,4 +809,5 @@ window.Quarto = {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

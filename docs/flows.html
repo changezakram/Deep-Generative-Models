@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a14e3238c51140e99ccc48519b6ed9ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,6 +67,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="styles.css">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -101,7 +103,7 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -118,10 +120,68 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="https://changezakram.github.io/"> 
-<span class="menu-text">Home</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Generative Adversarial Networks (GANs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Autoregressive Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Model Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Word Embedding</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Recurrent Neural Networks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Sequence to Sequence Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.qmd">
+ <span class="dropdown-text">Benchmarking and Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -133,7 +193,22 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review"><span class="header-section-number">2</span> Math Review</a></li>
+  <li><a href="#flow-model" id="toc-flow-model" class="nav-link" data-scroll-target="#flow-model"><span class="header-section-number">3</span> Flow Model</a></li>
+  <li><a href="#learning-and-inference" id="toc-learning-and-inference" class="nav-link" data-scroll-target="#learning-and-inference"><span class="header-section-number">4</span> Learning and Inference</a></li>
+  <li><a href="#types-of-flow-architectures" id="toc-types-of-flow-architectures" class="nav-link" data-scroll-target="#types-of-flow-architectures"><span class="header-section-number">5</span> Types of Flow Architectures</a></li>
+  <li><a href="#try-it-yourself-flow-model-in-pytorch" id="toc-try-it-yourself-flow-model-in-pytorch" class="nav-link" data-scroll-target="#try-it-yourself-flow-model-in-pytorch"><span class="header-section-number">6</span> 🧪 Try It Yourself: Flow Model in Pytorch</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">8</span> Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -156,8 +231,8 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>In generative modeling, the objective is to learn a probability distribution over data that allows us to both <strong>generate new examples</strong> and <strong>evaluate the likelihood</strong> of observed ones. For a model to be practically useful, it must support <strong>efficient sampling</strong> and enable <strong>exact or tractable likelihood computation</strong> during training.</p>
 <p><strong>A Variational Autoencoder (VAE)</strong> is a type of generative model that introduces latent variables <span class="math inline">\(z\)</span>, allowing the model to learn compact, structured representations of the data. VAEs are designed to support both sampling and likelihood estimation. However, computing the true marginal likelihood <span class="math inline">\(p(x)\)</span> is often intractable. To address this, VAEs use <strong>variational inference</strong> to approximate the posterior <span class="math inline">\(p(z \mid x)\)</span> and optimize a surrogate objective known as the <strong>Evidence Lower Bound (ELBO)</strong>. This is made possible by the <strong>reparameterization trick</strong>, which enables gradients to flow through stochastic latent variables during training.</p>
 <p><strong>Normalizing flows</strong> address the limitations of VAEs by providing a way to perform exact inference and likelihood computation. They model complex data distributions using a sequence of invertible transformations applied to a simple base distribution. In this setup, a data point <span class="math inline">\(x\)</span> is generated by applying a function <span class="math inline">\(x = f(z)\)</span> to a latent variable <span class="math inline">\(z\)</span> sampled from a simple prior (e.g., a standard Gaussian). The transformation is invertible, so <span class="math inline">\(z\)</span> can be exactly recovered as <span class="math inline">\(z = f^{-1}(x)\)</span>. This structure enables direct access to both the data likelihood and latent variables using the change-of-variables formula.</p>
@@ -172,11 +247,11 @@ window.Quarto = {
 <p><em>VAEs compress data into a lower-dimensional latent space using an encoder, then reconstruct it with a decoder. Flow-based models use a single invertible transformation that keeps the same dimensionality between input and latent space. This enables exact inference and likelihood computation.</em></p>
 <p>To understand how normalizing flows enable exact likelihood computation, we first need to explore a fundamental mathematical concept: the change-of-variable formula. This principle lies at the heart of flow models, allowing us to transform probability densities through invertible functions. We’ll begin with the 1D case and build up to the multivariate formulation.</p>
 </section>
-<section id="math-review" class="level2">
-<h2 class="anchored" data-anchor-id="math-review">Math Review</h2>
+<section id="math-review" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="math-review"><span class="header-section-number">2</span> Math Review</h2>
 <p>This section builds the mathematical foundation for understanding flow models, starting with change-of-variable and extending to multivariate transformations and Jacobians.</p>
-<section id="change-of-variables-in-1d" class="level3">
-<h3 class="anchored" data-anchor-id="change-of-variables-in-1d">Change of Variables in 1D</h3>
+<section id="change-of-variables-in-1d" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="change-of-variables-in-1d"><span class="header-section-number">2.1</span> Change of Variables in 1D</h3>
 <p>Suppose we have a <strong>random variable</strong> <span class="math inline">\(z\)</span> with a known distribution <span class="math inline">\(p_Z(z)\)</span>, and we define a new variable:</p>
 <p><span class="math display">\[
 x = f(z)
@@ -186,8 +261,8 @@ x = f(z)
 z = f^{-1}(x) = h(x)
 \]</span></p>
 <p>Our goal is to compute the probability density function (PDF) of <span class="math inline">\(x\)</span>, denoted <span class="math inline">\(p_X(x)\)</span>, in terms of the known PDF <span class="math inline">\(p_Z(z)\)</span>.</p>
-<section id="step-1-cumulative-distribution-function-cdf" class="level4">
-<h4 class="anchored" data-anchor-id="step-1-cumulative-distribution-function-cdf">Step 1: Cumulative Distribution Function (CDF)</h4>
+<section id="step-1-cumulative-distribution-function-cdf" class="level4" data-number="2.1.1">
+<h4 data-number="2.1.1" class="anchored" data-anchor-id="step-1-cumulative-distribution-function-cdf"><span class="header-section-number">2.1.1</span> Step 1: Cumulative Distribution Function (CDF)</h4>
 <p>We begin with the cumulative distribution function of <span class="math inline">\(x\)</span>:</p>
 <p><span class="math display">\[
 F_X(x) = P(X \leq x) = P(f(Z) \leq x)
@@ -197,8 +272,8 @@ F_X(x) = P(X \leq x) = P(f(Z) \leq x)
 P(f(Z) \leq x) = P(Z \leq f^{-1}(x)) = F_Z(h(x))
 \]</span></p>
 </section>
-<section id="step-2-deriving-the-pdf-via-chain-rule" class="level4">
-<h4 class="anchored" data-anchor-id="step-2-deriving-the-pdf-via-chain-rule">Step 2: Deriving the PDF via Chain Rule</h4>
+<section id="step-2-deriving-the-pdf-via-chain-rule" class="level4" data-number="2.1.2">
+<h4 data-number="2.1.2" class="anchored" data-anchor-id="step-2-deriving-the-pdf-via-chain-rule"><span class="header-section-number">2.1.2</span> Step 2: Deriving the PDF via Chain Rule</h4>
 <p>To obtain the PDF, we differentiate the CDF:</p>
 <p><span class="math display">\[
 p_X(x) = \frac{d}{dx} F_X(x) = \frac{d}{dx} F_Z(h(x))
@@ -208,8 +283,8 @@ p_X(x) = \frac{d}{dx} F_X(x) = \frac{d}{dx} F_Z(h(x))
 p_X(x) = F_Z'(h(x)) \cdot h'(x) = p_Z(h(x)) \cdot h'(x)
 \]</span></p>
 </section>
-<section id="step-3-rewrite-in-terms-of-z" class="level4">
-<h4 class="anchored" data-anchor-id="step-3-rewrite-in-terms-of-z">Step 3: Rewrite in Terms of <span class="math inline">\(z\)</span></h4>
+<section id="step-3-rewrite-in-terms-of-z" class="level4" data-number="2.1.3">
+<h4 data-number="2.1.3" class="anchored" data-anchor-id="step-3-rewrite-in-terms-of-z"><span class="header-section-number">2.1.3</span> Step 3: Rewrite in Terms of <span class="math inline">\(z\)</span></h4>
 <p>From the previous step:</p>
 <p><span class="math display">\[
 p_X(x) = p_Z(h(x)) \cdot h'(x)
@@ -230,8 +305,8 @@ p_X(x) = p_Z(z) \cdot \left| \frac{1}{f'(z)} \right|
 <p>This is the fundamental concept normalizing flows use to model complex distributions by transforming simple ones.</p>
 </section>
 </section>
-<section id="geometry-determinants-and-volume-changes" class="level3">
-<h3 class="anchored" data-anchor-id="geometry-determinants-and-volume-changes">Geometry: Determinants and Volume Changes</h3>
+<section id="geometry-determinants-and-volume-changes" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="geometry-determinants-and-volume-changes"><span class="header-section-number">2.2</span> Geometry: Determinants and Volume Changes</h3>
 <p>To further understand the multivariate change-of-variable formula, it’s helpful to first explore how linear transformations affect <strong>volume</strong> in high-dimensional spaces.</p>
 <p>Let <span class="math inline">\(\mathbf{Z}\)</span> be a random vector uniformly distributed in the unit cube <span class="math inline">\([0,1]^n\)</span>, and let <span class="math inline">\(\mathbf{X} = A\mathbf{Z}\)</span>, where <span class="math inline">\(A\)</span> is a square, invertible matrix. Geometrically, the matrix <span class="math inline">\(A\)</span> maps the unit hypercube to a <strong>parallelogram</strong> in 2D or a <strong>parallelotope</strong> in higher dimensions.</p>
 <p>The <strong>determinant</strong> of a square matrix tells us how the transformation <strong>scales volume</strong>. For instance, if the determinant of a <span class="math inline">\(2 \times 2\)</span> matrix is 3, applying that matrix will stretch the area of a region by a factor of 3. A negative determinant indicates a <strong>reflection</strong>, meaning the transformation also flips the orientation. When measuring volume, we care about the <strong>absolute value</strong> of the determinant.</p>
@@ -249,8 +324,8 @@ p_X(x) = p_Z(z) \cdot \left| \frac{1}{f'(z)} \right|
 </div>
 <p>This geometric intuition becomes essential when we apply the same logic to probability densities. The area of the parallelogram equals the absolute value of the determinant, |det(A)|, indicating how the transformation scales area.</p>
 </section>
-<section id="determinants-and-probability-density" class="level3">
-<h3 class="anchored" data-anchor-id="determinants-and-probability-density">Determinants and Probability Density</h3>
+<section id="determinants-and-probability-density" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="determinants-and-probability-density"><span class="header-section-number">2.3</span> Determinants and Probability Density</h3>
 <p>Previously, we saw how a linear transformation scales volume. Now we apply the same idea to probability densities — since density is defined per unit volume, scaling the volume also affects the density.</p>
 <p>To transform the density from <span class="math inline">\(\mathbf{Z}\)</span> to <span class="math inline">\(\mathbf{X}\)</span>, we use the <strong>change-of-variable formula</strong>. Since <span class="math inline">\(\mathbf{X} = A\mathbf{Z}\)</span>, the inverse transformation is <span class="math inline">\(\mathbf{Z} = A^{-1} \mathbf{X}\)</span>. This tells us how to evaluate the density at <span class="math inline">\(\mathbf{x}\)</span> by “pulling it back” through the inverse mapping. Applying the multivariate change-of-variable rule:</p>
 <p><span class="math display">\[
@@ -285,16 +360,16 @@ p_X(\mathbf{x}) = p_Z(W\mathbf{x}) \cdot |\det(W)| = 1 \cdot \frac{1}{2} = \frac
 \]</span></p>
 <p>So, the transformed density is halved — the same total probability (which must remain 1) is now spread over an area that is twice as large.</p>
 </section>
-<section id="generalizing-to-nonlinear-transformations" class="level3">
-<h3 class="anchored" data-anchor-id="generalizing-to-nonlinear-transformations">Generalizing to Nonlinear Transformations</h3>
+<section id="generalizing-to-nonlinear-transformations" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="generalizing-to-nonlinear-transformations"><span class="header-section-number">2.4</span> Generalizing to Nonlinear Transformations</h3>
 <p>For <strong>nonlinear</strong> transformations <span class="math inline">\(\mathbf{x} = f(\mathbf{z})\)</span>, the idea is similar. But instead of a constant matrix <span class="math inline">\(A\)</span>, we now consider the <strong>Jacobian matrix</strong> of the function <span class="math inline">\(f\)</span>:</p>
 <p><span class="math display">\[
 J_f(\mathbf{z}) = \frac{\partial f}{\partial \mathbf{z}}
 \]</span></p>
 <p>The Jacobian matrix generalizes derivatives to multivariable functions, capturing how a transformation scales and rotates space locally through all partial derivatives. Its determinant tells us how much the transformation stretches or compresses space — acting as a local volume scaling factor.</p>
 </section>
-<section id="multivariate-change-of-variable" class="level3">
-<h3 class="anchored" data-anchor-id="multivariate-change-of-variable">Multivariate Change-of-Variable</h3>
+<section id="multivariate-change-of-variable" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="multivariate-change-of-variable"><span class="header-section-number">2.5</span> Multivariate Change-of-Variable</h3>
 <p>Given an invertible transformation <span class="math inline">\(\mathbf{x} = f(\mathbf{z})\)</span>, the probability density transforms as:</p>
 <p><span class="math display">\[
 p_X(\mathbf{x}) = p_Z(f^{-1}(\mathbf{x})) \cdot \left| \det \left( \frac{\partial f^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right) \right|
@@ -306,8 +381,8 @@ p_X(\mathbf{x}) = p_Z(\mathbf{z}) \cdot \left| \det \left( \frac{\partial f(\mat
 <p>This generalizes the 1D rule and enables us to compute <strong>exact likelihoods</strong> for complex distributions as long as the transformation is invertible and differentiable. This formula is pivotal in machine learning, where transformations of probability distributions are common — such as in the implementation of normalizing flows for generative modeling.</p>
 </section>
 </section>
-<section id="flow-model" class="level2">
-<h2 class="anchored" data-anchor-id="flow-model">Flow Model</h2>
+<section id="flow-model" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="flow-model"><span class="header-section-number">3</span> Flow Model</h2>
 <p>A normalizing flow model defines a <strong>one-to-one and reversible transformation</strong> between observed variables <span class="math inline">\(\mathbf{x}\)</span> and latent variables <span class="math inline">\(\mathbf{z}\)</span>. This transformation is given by an invertible, differentiable function <span class="math inline">\(f_\theta\)</span>, parameterized by <span class="math inline">\(\theta\)</span>:</p>
 <p><span class="math display">\[
 \mathbf{x} = f_\theta(\mathbf{z}) \quad \text{and} \quad \mathbf{z} = f_\theta^{-1}(\mathbf{x})
@@ -327,8 +402,8 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \left| \det \left
 <blockquote class="blockquote">
 <p><strong>Note:</strong> Both <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{z}\)</span> must be continuous and have the same dimensionality since the transformation must be invertible.</p>
 </blockquote>
-<section id="model-architecture-a-sequence-of-invertible-transformations" class="level3">
-<h3 class="anchored" data-anchor-id="model-architecture-a-sequence-of-invertible-transformations">Model Architecture: A Sequence of Invertible Transformations</h3>
+<section id="model-architecture-a-sequence-of-invertible-transformations" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="model-architecture-a-sequence-of-invertible-transformations"><span class="header-section-number">3.1</span> Model Architecture: A Sequence of Invertible Transformations</h3>
 <p>The term <em>flow</em> refers to the fact that we can compose multiple invertible functions to form a more expressive transformation:</p>
 <p><span class="math display">\[
 \mathbf{z}_m = f_\theta^{(m)} \circ f_\theta^{(m-1)} \circ \cdots \circ f_\theta^{(1)}(\mathbf{z}_0)
@@ -359,8 +434,8 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \prod_{m=1}^M \le
 <p>This approach allows the model to approximate highly complex distributions using simple building blocks.</p>
 </section>
 </section>
-<section id="learning-and-inference" class="level2">
-<h2 class="anchored" data-anchor-id="learning-and-inference">Learning and Inference</h2>
+<section id="learning-and-inference" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="learning-and-inference"><span class="header-section-number">4</span> Learning and Inference</h2>
 <p>Training a flow-based model is done by maximizing the log-likelihood over the dataset <span class="math inline">\(\mathcal{D}\)</span>:</p>
 <p><span class="math display">\[
 \max_\theta \log p_X(\mathcal{D}; \theta) = \sum_{\mathbf{x} \in \mathcal{D}} \log p_Z(f_\theta^{-1}(\mathbf{x})) + \log \left| \det \left( \frac{\partial f_\theta^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right) \right|
@@ -371,15 +446,15 @@ p_X(\mathbf{x}; \theta) = p_Z(f_\theta^{-1}(\mathbf{x})) \cdot \prod_{m=1}^M \le
 <li><strong>Efficient sampling</strong>: Generate new data by drawing <span class="math inline">\(\mathbf{z} \sim p_Z\)</span> and computing <span class="math inline">\(\mathbf{x} = f_\theta(\mathbf{z})\)</span></li>
 <li><strong>Latent inference</strong>: Invert <span class="math inline">\(f_\theta\)</span> to compute latent codes <span class="math inline">\(\mathbf{z} = f_\theta^{-1}(\mathbf{x})\)</span>, without needing a separate encoder</li>
 </ul>
-<section id="computational-considerations" class="level3">
-<h3 class="anchored" data-anchor-id="computational-considerations">Computational Considerations</h3>
+<section id="computational-considerations" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="computational-considerations"><span class="header-section-number">4.1</span> Computational Considerations</h3>
 <p>One challenge in training normalizing flow models is that computing the <strong>exact likelihood</strong> requires evaluating the <strong>determinant of the Jacobian matrix</strong> of the transformation:</p>
 <ul>
 <li>For a transformation <span class="math inline">\(f : \mathbb{R}^n \to \mathbb{R}^n\)</span>, the Jacobian is an <span class="math inline">\(n \times n\)</span> matrix.</li>
 <li>Computing its determinant has a cost of <span class="math inline">\(\mathcal{O}(n^3)\)</span>, which is <strong>computationally expensive</strong> during training — especially in high dimensions.</li>
 </ul>
-<section id="key-insight" class="level4">
-<h4 class="anchored" data-anchor-id="key-insight">Key Insight</h4>
+<section id="key-insight" class="level4" data-number="4.1.1">
+<h4 data-number="4.1.1" class="anchored" data-anchor-id="key-insight"><span class="header-section-number">4.1.1</span> Key Insight</h4>
 <p>To make normalizing flows scalable, we design transformations where the <strong>Jacobian has a special structure</strong> that makes the determinant <strong>easy to compute</strong>.</p>
 <p>For example: - If the Jacobian is a <strong>triangular matrix</strong>, the determinant is just the <strong>product of the diagonal entries</strong>, which can be computed in <span class="math inline">\(\mathcal{O}(n)\)</span> time. - This works because in a triangular matrix, all the off-diagonal elements are zero — so the determinant simplifies significantly.</p>
 <p>In practice, flow models like <strong>RealNVP</strong> and <strong>MAF</strong> are designed so that each output dimension <span class="math inline">\(x_i\)</span> depends only on some subset of the input dimensions <span class="math inline">\(z_{\leq i}\)</span> (for lower triangular structure) or <span class="math inline">\(z_{\geq i}\)</span> (for upper triangular structure). This results in a Jacobian of the form:</p>
@@ -400,11 +475,11 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </section>
 </section>
 </section>
-<section id="types-of-flow-architectures" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-flow-architectures">Types of Flow Architectures</h2>
+<section id="types-of-flow-architectures" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="types-of-flow-architectures"><span class="header-section-number">5</span> Types of Flow Architectures</h2>
 <p>This section introduces common architectural families used in normalizing flows, highlighting their core ideas, strengths, and limitations.</p>
-<section id="elementwise-flows" class="level3">
-<h3 class="anchored" data-anchor-id="elementwise-flows">1. Elementwise Flows</h3>
+<section id="elementwise-flows" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="elementwise-flows"><span class="header-section-number">5.1</span> 1. Elementwise Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Apply a simple invertible function to each variable independently.</li>
 <li><strong>Examples</strong>: Leaky ReLU, Softplus, ELU.</li>
@@ -412,8 +487,8 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <li><strong>Limitations</strong>: Cannot model interactions or dependencies between variables.</li>
 </ul>
 </section>
-<section id="linear-flows" class="level3">
-<h3 class="anchored" data-anchor-id="linear-flows">2. Linear Flows</h3>
+<section id="linear-flows" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="linear-flows"><span class="header-section-number">5.2</span> 2. Linear Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Apply a linear transformation using an invertible matrix (e.g., permutation, rotation, LU decomposition).</li>
 <li><strong>Examples</strong>: Glow’s 1x1 Convolution, LU flows.</li>
@@ -421,8 +496,8 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <li><strong>Limitations</strong>: Limited expressiveness when used alone.</li>
 </ul>
 </section>
-<section id="coupling-flows" class="level3">
-<h3 class="anchored" data-anchor-id="coupling-flows">3. Coupling Flows</h3>
+<section id="coupling-flows" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="coupling-flows"><span class="header-section-number">5.3</span> 3. Coupling Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Split the input into two parts. One half remains unchanged while the other is transformed based on it.</li>
 <li><strong>Examples</strong>: NICE (additive), RealNVP (affine).</li>
@@ -430,8 +505,8 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <li><strong>Limitations</strong>: Requires stacking multiple layers to mix information across all dimensions.</li>
 </ul>
 </section>
-<section id="autoregressive-flows" class="level3">
-<h3 class="anchored" data-anchor-id="autoregressive-flows">4. Autoregressive Flows</h3>
+<section id="autoregressive-flows" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="autoregressive-flows"><span class="header-section-number">5.4</span> 4. Autoregressive Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Model the transformation of each variable conditioned on the previous ones in a fixed order.</li>
 <li><strong>Examples</strong>: Masked Autoregressive Flow (MAF), Inverse Autoregressive Flow (IAF).</li>
@@ -439,8 +514,8 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <li><strong>Limitations</strong>: Slower sampling or density evaluation depending on flow direction.</li>
 </ul>
 </section>
-<section id="residual-flows" class="level3">
-<h3 class="anchored" data-anchor-id="residual-flows">5. Residual Flows</h3>
+<section id="residual-flows" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="residual-flows"><span class="header-section-number">5.5</span> 5. Residual Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Add residual connections while enforcing invertibility (e.g., using constraints on Jacobian eigenvalues).</li>
 <li><strong>Examples</strong>: Planar flows, Radial flows, Residual Flows (Behrmann et al.).</li>
@@ -448,8 +523,8 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <li><strong>Limitations</strong>: May require care to ensure invertibility; harder to train.</li>
 </ul>
 </section>
-<section id="continuous-flows" class="level3">
-<h3 class="anchored" data-anchor-id="continuous-flows">6. Continuous Flows</h3>
+<section id="continuous-flows" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="continuous-flows"><span class="header-section-number">5.6</span> 6. Continuous Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Model the transformation as the solution to a differential equation parameterized by a neural network.</li>
 <li><strong>Examples</strong>: Neural ODEs, FFJORD.</li>
@@ -460,12 +535,12 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <p>These architectures can be mixed and matched in real-world models to balance expressiveness, efficiency, and tractability. Each comes with trade-offs, and their selection often depends on the task and data at hand.</p>
 <p>In the rest of this article, we focus on <strong>Coupling Flows</strong>, briefly introducing NICE and then diving deeper into the structure, intuition, and implementation details of <strong>RealNVP</strong>.</p>
 </section>
-<section id="nice-nonlinear-independent-components-estimation" class="level3">
-<h3 class="anchored" data-anchor-id="nice-nonlinear-independent-components-estimation">NICE: Nonlinear Independent Components Estimation</h3>
+<section id="nice-nonlinear-independent-components-estimation" class="level3" data-number="5.7">
+<h3 data-number="5.7" class="anchored" data-anchor-id="nice-nonlinear-independent-components-estimation"><span class="header-section-number">5.7</span> NICE: Nonlinear Independent Components Estimation</h3>
 <p>The NICE (Nonlinear Independent Components Estimation) model, introduced by Laurent Dinh, David Krueger, and Yoshua Bengio in 2014, is a foundational work in the development of normalizing flows.</p>
 <p>It provides a framework for transforming complex high-dimensional data into a simpler latent space (often a standard Gaussian), enabling both <strong>exact likelihood estimation</strong> and <strong>sampling</strong> — two fundamental goals in generative modeling.</p>
-<section id="core-concepts" class="level4">
-<h4 class="anchored" data-anchor-id="core-concepts">Core Concepts</h4>
+<section id="core-concepts" class="level4" data-number="5.7.1">
+<h4 data-number="5.7.1" class="anchored" data-anchor-id="core-concepts"><span class="header-section-number">5.7.1</span> Core Concepts</h4>
 <ul>
 <li><p><strong>Invertible Transformations</strong>:<br>
 NICE constructs a chain of invertible functions to map inputs to latent variables. This ensures that both the forward and inverse transformations are tractable.</p></li>
@@ -479,8 +554,8 @@ The original NICE paper includes an optional scaling layer at the end to allow s
 Unlike VAEs or GANs, which rely on approximations, NICE enables <strong>exact</strong> evaluation of the log-likelihood, making it a fully probabilistic, likelihood-based model.</p></li>
 </ul>
 </section>
-<section id="additive-coupling-layer" class="level4">
-<h4 class="anchored" data-anchor-id="additive-coupling-layer">Additive Coupling Layer</h4>
+<section id="additive-coupling-layer" class="level4" data-number="5.7.2">
+<h4 data-number="5.7.2" class="anchored" data-anchor-id="additive-coupling-layer"><span class="header-section-number">5.7.2</span> Additive Coupling Layer</h4>
 <p>To make the transformation invertible and computationally efficient, NICE splits the input vector into two parts. One part is kept unchanged, while the other part is modified using a function of the unchanged part. This way, we can easily reverse the process because we always know what was kept intact.</p>
 <p>Let’s partition the input <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> into two subsets: <span class="math inline">\(\mathbf{z}_{1:d}\)</span> and <span class="math inline">\(\mathbf{z}_{d+1:n}\)</span> for some <span class="math inline">\(1 \leq d &lt; n\)</span>.</p>
 <ul>
@@ -518,8 +593,8 @@ I_d &amp; 0 \\
 \]</span></p>
 <p>Hence, additive coupling is a <strong>volume-preserving transformation</strong>.</p>
 </section>
-<section id="rescaling-layer" class="level4">
-<h4 class="anchored" data-anchor-id="rescaling-layer">Rescaling Layer</h4>
+<section id="rescaling-layer" class="level4" data-number="5.7.3">
+<h4 data-number="5.7.3" class="anchored" data-anchor-id="rescaling-layer"><span class="header-section-number">5.7.3</span> Rescaling Layer</h4>
 <p>To overcome the limitation of fixed volume, NICE adds a diagonal scaling transformation at the end, allowing the model to contract or expand space. This is not part of the coupling layers, but is crucial to increase flexibility.</p>
 <ul>
 <li><strong>Forward Mapping</strong>:</li>
@@ -544,8 +619,8 @@ J = \text{diag}(\mathbf{s})
 <p>However, the volume-preserving property of NICE limits its expressiveness. RealNVP extends this idea by introducing affine coupling layers that enable volume changes during transformation.</p>
 </section>
 </section>
-<section id="real-nvp-non-volume-preserving-extension-of-nice" class="level3">
-<h3 class="anchored" data-anchor-id="real-nvp-non-volume-preserving-extension-of-nice">Real-NVP: Non-Volume Preserving Extension of NICE</h3>
+<section id="real-nvp-non-volume-preserving-extension-of-nice" class="level3" data-number="5.8">
+<h3 data-number="5.8" class="anchored" data-anchor-id="real-nvp-non-volume-preserving-extension-of-nice"><span class="header-section-number">5.8</span> Real-NVP: Non-Volume Preserving Extension of NICE</h3>
 <p>Real-NVP (Dinh et al., 2017) extends NICE by introducing a <strong>scaling function</strong> that allows the model to change volume, enabling more expressive transformations. This is achieved using <strong>affine coupling layers</strong> that apply learned scaling and translation functions to part of the input while keeping the rest unchanged.</p>
 <div style="text-align: center;">
 <img src="images/coupling-layer.png" alt="Affine Coupling Layer in RealNVP" width="700">
@@ -601,8 +676,8 @@ This part can contain non-zero values because <span class="math inline">\(\mathb
 <em> Jacobian of the RealNVP forward transformation. Upper triangular structure arises because the first subset is unchanged, while the second is scaled and shifted based on the first. </em>
 </p>
 </div>
-<section id="why-this-structure-matters" class="level4">
-<h4 class="anchored" data-anchor-id="why-this-structure-matters">Why This Structure Matters</h4>
+<section id="why-this-structure-matters" class="level4" data-number="5.8.1">
+<h4 data-number="5.8.1" class="anchored" data-anchor-id="why-this-structure-matters"><span class="header-section-number">5.8.1</span> Why This Structure Matters</h4>
 <p>Because the Jacobian is <strong>triangular</strong>, its determinant is simply the product of the diagonal entries.</p>
 <p><span class="math display">\[
 \det(J) = \prod_{i=d+1}^{n} \exp\left( \alpha_\theta(\mathbf{z}_{1:d})_i \right)
@@ -615,8 +690,8 @@ This part can contain non-zero values because <span class="math inline">\(\mathb
 <p>This makes the computation of log-likelihoods fast and tractable.</p>
 <p>Taking the product of the diagonal entries gives us a measure of <strong>how much the transformation expands or contracts local volume</strong>. If the determinant is greater than 1, the transformation expands space; if it’s less than 1, it contracts space. Since the determinant is not fixed, RealNVP performs a <strong>non-volume preserving transformation</strong> — allowing it to model more complex distributions than NICE, which preserves volume by design.</p>
 </section>
-<section id="stacking-coupling-layers" class="level4">
-<h4 class="anchored" data-anchor-id="stacking-coupling-layers">Stacking Coupling Layers</h4>
+<section id="stacking-coupling-layers" class="level4" data-number="5.8.2">
+<h4 data-number="5.8.2" class="anchored" data-anchor-id="stacking-coupling-layers"><span class="header-section-number">5.8.2</span> Stacking Coupling Layers</h4>
 <p>Each coupling layer only transforms part of the input. To ensure that <strong>every dimension is eventually updated</strong>, RealNVP stacks multiple coupling layers and <strong>alternates the masking pattern</strong> between them.</p>
 <ul>
 <li>In one layer, the first half is fixed, and the second half is transformed.</li>
@@ -624,8 +699,8 @@ This part can contain non-zero values because <span class="math inline">\(\mathb
 </ul>
 <p>This alternating structure ensures: - All input dimensions are updated across layers - The full transformation remains invertible - The total log-determinant is the <strong>sum of the log-determinants</strong> of each layer</p>
 </section>
-<section id="realnvp-in-action-two-moons" class="level4">
-<h4 class="anchored" data-anchor-id="realnvp-in-action-two-moons">RealNVP in Action (Two Moons)</h4>
+<section id="realnvp-in-action-two-moons" class="level4" data-number="5.8.3">
+<h4 data-number="5.8.3" class="anchored" data-anchor-id="realnvp-in-action-two-moons"><span class="header-section-number">5.8.3</span> RealNVP in Action (Two Moons)</h4>
 <p>The following plots illustrate how RealNVP transforms data in practice:</p>
 <div style="text-align: center;">
 <img src="images/realnvp_result.png" alt="RealNVP Two Moons Visualization" width="800">
@@ -637,8 +712,8 @@ Bottom-right: Generated samples mapped back to (X) space<br>
 </p>
 </div>
 </section>
-<section id="summary" class="level4">
-<h4 class="anchored" data-anchor-id="summary">Summary</h4>
+<section id="summary" class="level4" data-number="5.8.4">
+<h4 data-number="5.8.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.8.4</span> Summary</h4>
 <p>To recap the key distinctions between NICE and RealNVP, here’s a side-by-side comparison:</p>
 <table class="caption-top table">
 <colgroup>
@@ -685,29 +760,28 @@ Bottom-right: Generated samples mapped back to (X) space<br>
 </section>
 </section>
 </section>
-<section id="try-it-yourself-flow-model-in-pytorch" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself-flow-model-in-pytorch">🧪 Try It Yourself: Flow Model in Pytorch</h2>
+<section id="try-it-yourself-flow-model-in-pytorch" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="try-it-yourself-flow-model-in-pytorch"><span class="header-section-number">6</span> 🧪 Try It Yourself: Flow Model in Pytorch</h2>
 <p>You can explore a minimal PyTorch implementation of a normalizing flow model:</p>
 <ul>
 <li>📘 <a href="https://github.com/changezakram/Deep-Generative-Models/blob/main/normalizing_flow_pytorch.ipynb"><strong>View Notebook on GitHub</strong></a></li>
 <li>🚀 <a href="https://colab.research.google.com/github/changezakram/Deep-Generative-Models/blob/main/normalizing_flow_pytorch.ipynb"><strong>Run in Google Colab</strong></a></li>
 </ul>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="references" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="references"><span class="header-section-number">7</span> References</h2>
 <p>[1] Stanford CS236 Notes. “<a href="https://deepgenerativemodels.github.io/">Normalizing Flows</a>”</p>
 <p>[2] UT Austin Calculus Notes. “<a href="https://services.math.duke.edu/~jtwong/calculus/change-of-variables.html">Jacobian and Change of Variables</a>”</p>
 <p>[3] Danilo Jimenez Rezende, and Shakir Mohamed. “<a href="https://arxiv.org/abs/1505.05770">Variational Inference with Normalizing Flows</a>”</p>
 <p>[4] Kobyzev, Prince, and Brubaker. “<a href="https://arxiv.org/abs/1908.09257">Normalizing Flows: An Introduction and Review of Current Methods</a>”</p>
 <p>[5] Wikipedia. “<a href="https://en.wikipedia.org/wiki/Normalizing_flow">Normalizing Flow</a>”</p>
 </section>
-<section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<section id="further-reading" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">8</span> Further Reading</h2>
 <p>[1] George Papamakarios et al.&nbsp;“<a href="https://arxiv.org/abs/1912.02762">Normalizing Flows for Probabilistic Modeling and Inference</a>”</p>
 <p>[2] Lilian Weng. “<a href="https://lilianweng.github.io/posts/2018-08-12-vae.html#normalizing-flows">Flow-based Models</a>”</p>
 <p>[3] Eric Jang. “<a href="https://blog.evjang.com/2018/01/nf1.html">Normalizing Flows Tutorial – Part 1</a>”</p>
 <p>[4] Eric Jang. “<a href="https://blog.evjang.com/2018/01/nf2.html">Normalizing Flows Tutorial – Part 2</a>”</p>
-
 
 
 </section>
@@ -1117,4 +1191,5 @@ Bottom-right: Generated samples mapped back to (X) space<br>
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
