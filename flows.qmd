@@ -41,7 +41,7 @@ $$
 
 Our goal is to compute the probability density function (PDF) of $x$, denoted $p_X(x)$, in terms of the known PDF $p_Z(z)$.
 
-#### Step 1: Cumulative Distribution Function (CDF)
+#### Cumulative Distribution Function (CDF)
 
 We begin with the cumulative distribution function of $x$:
 
@@ -55,7 +55,7 @@ $$
 P(f(Z) \leq x) = P(Z \leq f^{-1}(x)) = F_Z(h(x))
 $$
 
-#### Step 2: Deriving the PDF via Chain Rule
+#### Deriving the PDF via Chain Rule
 
 To obtain the PDF, we differentiate the CDF:
 
@@ -69,7 +69,7 @@ $$
 p_X(x) = F_Z'(h(x)) \cdot h'(x) = p_Z(h(x)) \cdot h'(x)
 $$
 
-#### Step 3: Rewrite in Terms of $z$
+#### Rewrite in Terms of $z$
 
 From the previous step:
 
@@ -322,37 +322,37 @@ This is why many modern flow models rely on **coupling layers** or **autoregress
 
 This section introduces common architectural families used in normalizing flows, highlighting their core ideas, strengths, and limitations.
 
-### 1. Elementwise Flows
+### Elementwise Flows
 - **Idea**: Apply a simple invertible function to each variable independently.
 - **Examples**: Leaky ReLU, Softplus, ELU.
 - **Strengths**: Extremely fast; easy to implement; analytically tractable.
 - **Limitations**: Cannot model interactions or dependencies between variables.
 
-### 2. Linear Flows
+### Linear Flows
 - **Idea**: Apply a linear transformation using an invertible matrix (e.g., permutation, rotation, LU decomposition).
 - **Examples**: Glow's 1x1 Convolution, LU flows.
 - **Strengths**: Efficiently models global dependencies; can be used to permute variables.
 - **Limitations**: Limited expressiveness when used alone.
 
-### 3. Coupling Flows
+### Coupling Flows
 - **Idea**: Split the input into two parts. One half remains unchanged while the other is transformed based on it.
 - **Examples**: NICE (additive), RealNVP (affine).
 - **Strengths**: Easy to invert and compute Jacobians; scalable to high dimensions.
 - **Limitations**: Requires stacking multiple layers to mix information across all dimensions.
 
-### 4. Autoregressive Flows
+### Autoregressive Flows
 - **Idea**: Model the transformation of each variable conditioned on the previous ones in a fixed order.
 - **Examples**: Masked Autoregressive Flow (MAF), Inverse Autoregressive Flow (IAF).
 - **Strengths**: Highly expressive; models arbitrary dependencies.
 - **Limitations**: Slower sampling or density evaluation depending on flow direction.
 
-### 5. Residual Flows
+### Residual Flows
 - **Idea**: Add residual connections while enforcing invertibility (e.g., using constraints on Jacobian eigenvalues).
 - **Examples**: Planar flows, Radial flows, Residual Flows (Behrmann et al.).
 - **Strengths**: Flexible and capable of complex transformations.
 - **Limitations**: May require care to ensure invertibility; harder to train.
 
-### 6. Continuous Flows
+### Continuous Flows
 - **Idea**: Model the transformation as the solution to a differential equation parameterized by a neural network.
 - **Examples**: Neural ODEs, FFJORD.
 - **Strengths**: Highly flexible; enables continuous-time modeling.

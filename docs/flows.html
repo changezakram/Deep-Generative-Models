@@ -215,12 +215,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#types-of-flow-architectures" id="toc-types-of-flow-architectures" class="nav-link" data-scroll-target="#types-of-flow-architectures"><span class="header-section-number">5</span> Types of Flow Architectures</a>
   <ul class="collapse">
-  <li><a href="#elementwise-flows" id="toc-elementwise-flows" class="nav-link" data-scroll-target="#elementwise-flows"><span class="header-section-number">5.1</span> 1. Elementwise Flows</a></li>
-  <li><a href="#linear-flows" id="toc-linear-flows" class="nav-link" data-scroll-target="#linear-flows"><span class="header-section-number">5.2</span> 2. Linear Flows</a></li>
-  <li><a href="#coupling-flows" id="toc-coupling-flows" class="nav-link" data-scroll-target="#coupling-flows"><span class="header-section-number">5.3</span> 3. Coupling Flows</a></li>
-  <li><a href="#autoregressive-flows" id="toc-autoregressive-flows" class="nav-link" data-scroll-target="#autoregressive-flows"><span class="header-section-number">5.4</span> 4. Autoregressive Flows</a></li>
-  <li><a href="#residual-flows" id="toc-residual-flows" class="nav-link" data-scroll-target="#residual-flows"><span class="header-section-number">5.5</span> 5. Residual Flows</a></li>
-  <li><a href="#continuous-flows" id="toc-continuous-flows" class="nav-link" data-scroll-target="#continuous-flows"><span class="header-section-number">5.6</span> 6. Continuous Flows</a></li>
+  <li><a href="#elementwise-flows" id="toc-elementwise-flows" class="nav-link" data-scroll-target="#elementwise-flows"><span class="header-section-number">5.1</span> Elementwise Flows</a></li>
+  <li><a href="#linear-flows" id="toc-linear-flows" class="nav-link" data-scroll-target="#linear-flows"><span class="header-section-number">5.2</span> Linear Flows</a></li>
+  <li><a href="#coupling-flows" id="toc-coupling-flows" class="nav-link" data-scroll-target="#coupling-flows"><span class="header-section-number">5.3</span> Coupling Flows</a></li>
+  <li><a href="#autoregressive-flows" id="toc-autoregressive-flows" class="nav-link" data-scroll-target="#autoregressive-flows"><span class="header-section-number">5.4</span> Autoregressive Flows</a></li>
+  <li><a href="#residual-flows" id="toc-residual-flows" class="nav-link" data-scroll-target="#residual-flows"><span class="header-section-number">5.5</span> Residual Flows</a></li>
+  <li><a href="#continuous-flows" id="toc-continuous-flows" class="nav-link" data-scroll-target="#continuous-flows"><span class="header-section-number">5.6</span> Continuous Flows</a></li>
   <li><a href="#nice-nonlinear-independent-components-estimation" id="toc-nice-nonlinear-independent-components-estimation" class="nav-link" data-scroll-target="#nice-nonlinear-independent-components-estimation"><span class="header-section-number">5.7</span> NICE: Nonlinear Independent Components Estimation</a></li>
   <li><a href="#real-nvp-non-volume-preserving-extension-of-nice" id="toc-real-nvp-non-volume-preserving-extension-of-nice" class="nav-link" data-scroll-target="#real-nvp-non-volume-preserving-extension-of-nice"><span class="header-section-number">5.8</span> Real-NVP: Non-Volume Preserving Extension of NICE</a></li>
   </ul></li>
@@ -282,8 +282,8 @@ x = f(z)
 z = f^{-1}(x) = h(x)
 \]</span></p>
 <p>Our goal is to compute the probability density function (PDF) of <span class="math inline">\(x\)</span>, denoted <span class="math inline">\(p_X(x)\)</span>, in terms of the known PDF <span class="math inline">\(p_Z(z)\)</span>.</p>
-<section id="step-1-cumulative-distribution-function-cdf" class="level4" data-number="2.1.1">
-<h4 data-number="2.1.1" class="anchored" data-anchor-id="step-1-cumulative-distribution-function-cdf"><span class="header-section-number">2.1.1</span> Step 1: Cumulative Distribution Function (CDF)</h4>
+<section id="cumulative-distribution-function-cdf" class="level4" data-number="2.1.1">
+<h4 data-number="2.1.1" class="anchored" data-anchor-id="cumulative-distribution-function-cdf"><span class="header-section-number">2.1.1</span> Cumulative Distribution Function (CDF)</h4>
 <p>We begin with the cumulative distribution function of <span class="math inline">\(x\)</span>:</p>
 <p><span class="math display">\[
 F_X(x) = P(X \leq x) = P(f(Z) \leq x)
@@ -293,8 +293,8 @@ F_X(x) = P(X \leq x) = P(f(Z) \leq x)
 P(f(Z) \leq x) = P(Z \leq f^{-1}(x)) = F_Z(h(x))
 \]</span></p>
 </section>
-<section id="step-2-deriving-the-pdf-via-chain-rule" class="level4" data-number="2.1.2">
-<h4 data-number="2.1.2" class="anchored" data-anchor-id="step-2-deriving-the-pdf-via-chain-rule"><span class="header-section-number">2.1.2</span> Step 2: Deriving the PDF via Chain Rule</h4>
+<section id="deriving-the-pdf-via-chain-rule" class="level4" data-number="2.1.2">
+<h4 data-number="2.1.2" class="anchored" data-anchor-id="deriving-the-pdf-via-chain-rule"><span class="header-section-number">2.1.2</span> Deriving the PDF via Chain Rule</h4>
 <p>To obtain the PDF, we differentiate the CDF:</p>
 <p><span class="math display">\[
 p_X(x) = \frac{d}{dx} F_X(x) = \frac{d}{dx} F_Z(h(x))
@@ -304,8 +304,8 @@ p_X(x) = \frac{d}{dx} F_X(x) = \frac{d}{dx} F_Z(h(x))
 p_X(x) = F_Z'(h(x)) \cdot h'(x) = p_Z(h(x)) \cdot h'(x)
 \]</span></p>
 </section>
-<section id="step-3-rewrite-in-terms-of-z" class="level4" data-number="2.1.3">
-<h4 data-number="2.1.3" class="anchored" data-anchor-id="step-3-rewrite-in-terms-of-z"><span class="header-section-number">2.1.3</span> Step 3: Rewrite in Terms of <span class="math inline">\(z\)</span></h4>
+<section id="rewrite-in-terms-of-z" class="level4" data-number="2.1.3">
+<h4 data-number="2.1.3" class="anchored" data-anchor-id="rewrite-in-terms-of-z"><span class="header-section-number">2.1.3</span> Rewrite in Terms of <span class="math inline">\(z\)</span></h4>
 <p>From the previous step:</p>
 <p><span class="math display">\[
 p_X(x) = p_Z(h(x)) \cdot h'(x)
@@ -500,7 +500,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 <h2 data-number="5" class="anchored" data-anchor-id="types-of-flow-architectures"><span class="header-section-number">5</span> Types of Flow Architectures</h2>
 <p>This section introduces common architectural families used in normalizing flows, highlighting their core ideas, strengths, and limitations.</p>
 <section id="elementwise-flows" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="elementwise-flows"><span class="header-section-number">5.1</span> 1. Elementwise Flows</h3>
+<h3 data-number="5.1" class="anchored" data-anchor-id="elementwise-flows"><span class="header-section-number">5.1</span> Elementwise Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Apply a simple invertible function to each variable independently.</li>
 <li><strong>Examples</strong>: Leaky ReLU, Softplus, ELU.</li>
@@ -509,7 +509,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </ul>
 </section>
 <section id="linear-flows" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="linear-flows"><span class="header-section-number">5.2</span> 2. Linear Flows</h3>
+<h3 data-number="5.2" class="anchored" data-anchor-id="linear-flows"><span class="header-section-number">5.2</span> Linear Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Apply a linear transformation using an invertible matrix (e.g., permutation, rotation, LU decomposition).</li>
 <li><strong>Examples</strong>: Glow’s 1x1 Convolution, LU flows.</li>
@@ -518,7 +518,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </ul>
 </section>
 <section id="coupling-flows" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="coupling-flows"><span class="header-section-number">5.3</span> 3. Coupling Flows</h3>
+<h3 data-number="5.3" class="anchored" data-anchor-id="coupling-flows"><span class="header-section-number">5.3</span> Coupling Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Split the input into two parts. One half remains unchanged while the other is transformed based on it.</li>
 <li><strong>Examples</strong>: NICE (additive), RealNVP (affine).</li>
@@ -527,7 +527,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </ul>
 </section>
 <section id="autoregressive-flows" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="autoregressive-flows"><span class="header-section-number">5.4</span> 4. Autoregressive Flows</h3>
+<h3 data-number="5.4" class="anchored" data-anchor-id="autoregressive-flows"><span class="header-section-number">5.4</span> Autoregressive Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Model the transformation of each variable conditioned on the previous ones in a fixed order.</li>
 <li><strong>Examples</strong>: Masked Autoregressive Flow (MAF), Inverse Autoregressive Flow (IAF).</li>
@@ -536,7 +536,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </ul>
 </section>
 <section id="residual-flows" class="level3" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="residual-flows"><span class="header-section-number">5.5</span> 5. Residual Flows</h3>
+<h3 data-number="5.5" class="anchored" data-anchor-id="residual-flows"><span class="header-section-number">5.5</span> Residual Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Add residual connections while enforcing invertibility (e.g., using constraints on Jacobian eigenvalues).</li>
 <li><strong>Examples</strong>: Planar flows, Radial flows, Residual Flows (Behrmann et al.).</li>
@@ -545,7 +545,7 @@ J = \frac{\partial \mathbf{f}}{\partial \mathbf{z}} =
 </ul>
 </section>
 <section id="continuous-flows" class="level3" data-number="5.6">
-<h3 data-number="5.6" class="anchored" data-anchor-id="continuous-flows"><span class="header-section-number">5.6</span> 6. Continuous Flows</h3>
+<h3 data-number="5.6" class="anchored" data-anchor-id="continuous-flows"><span class="header-section-number">5.6</span> Continuous Flows</h3>
 <ul>
 <li><strong>Idea</strong>: Model the transformation as the solution to a differential equation parameterized by a neural network.</li>
 <li><strong>Examples</strong>: Neural ODEs, FFJORD.</li>
