@@ -20,8 +20,6 @@ website:
 
       - text: Large Language Models
         menu:
-          - text: Word Embedding [Coming Soon]
-            href: coming-soon.qmd
           - text: Recurrent Neural Networks [Coming Soon]
             href: coming-soon.qmd
           - text: Sequence to Sequence Models [Coming Soon]
