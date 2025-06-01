@@ -6,6 +6,9 @@ website:
   title: "Changez Akram"
   navbar:
     left:
+      - icon: house
+        text: "Changez Akram"
+        href: index.qmd
       - text: Deep Generative Models
         menu:
           - text: Variational Autoencoders (VAEs)
