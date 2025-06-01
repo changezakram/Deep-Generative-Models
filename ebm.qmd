@@ -29,21 +29,6 @@ This simplicity makes EBMs:
 While other models enforce strict architectural rules, **Energy-Based Models (EBMs)** only require learning an energy function—freeing them from these constraints.
 :::
 
-**How Mainstream Models Compare**
-| Model               | Key Constraints             | Advantages                  | Key Challenges               |
-|---------------------|----------------------------|----------------------------|------------------------------|
-| **VAEs**           | Encoder-decoder required    | Stable training            | Blurry generations          |
-| **GANs**           | Adversarial framework       | High-quality samples       | Mode collapse               |
-| **Normalizing Flows** | Must be invertible        | Exact likelihood           | Architecturally restrictive |
-| **EBMs**           | *None*                     | • Flexible architecture<br>• No mode collapse | • Intractable $Z(θ)$<br>• Slow sampling |
-
-**Key Insight**: EBMs replace architectural constraints with a single, unified objective: learn an energy function $E_θ(x)$ that assigns low energy to real data and high energy to noise.
-
-**Why This Matters**
-1. **Elegance**: Directly models probability without intermediate structures
-2. **Flexibility**: Same framework can be used for generation, classification, and anomaly detection
-3. **Modern Relevance**: New techniques (e.g., contrastive divergence, SGLD) are solving traditional EBM limitations
-
 
 To understand how Energy-Based Models overcome many of these limitations, we first need to revisit a fundamental question in generative modeling: **what makes a valid probability distribution?** The next section walks through the mathematical foundation that underpins EBMs — and introduces a clever trick that allows them to sidestep many of the constraints faced by traditional generative models.
 
