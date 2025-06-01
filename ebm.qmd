@@ -8,13 +8,57 @@ In the world of generative models, techniques like VAEs, GANs, and normalizing f
 
 ---
 
-## Introduction
+## Energy-Based Models: A Minimalist Approach to Generative AI
 
-In the world of generative models, techniques like VAEs, GANs, and normalizing flows have each carved out their niche—but all come with specific constraints. **Energy-Based Models (EBMs)** offer a powerful alternative that's:
+Most generative models come with built-in constraints:
 
-- **Architecturally flexible** (no encoder/decoder or invertibility requirements)
-- **Conceptually elegant** (direct probability modeling) 
-- **Increasingly popular** in modern deep learning research
+- **VAEs** need encoder-decoder architectures  
+- **GANs** require adversarial training  
+- **Normalizing flows** must use invertible transforms  
+
+**Energy-Based Models (EBMs)** take a different path. They ditch these complex setups and instead:  
+
+1. **Learn a scoring function** (energy) where:  
+   - Real data = Low energy  
+   - Noise/Fake data = High energy  
+
+2. **Require no special architecture** — just a neural network that learns to "grade" data quality  
+
+This simplicity makes EBMs:  
+✓ **Flexible** (can model any data type)  
+✓ **Theoretically elegant** (directly approximate probability distributions)  
+✓ **Free from GANs' mode collapse** or VAEs' blurry outputs  
+
+In this post, we'll explore:  
+- Why EBMs are gaining renewed attention  
+- How they train without standard architectures  
+- Their key challenges (like sampling efficiency)  
+
+---
+
+## Energy-Based Models: Beyond Architectural Constraints
+
+Most generative models come with built-in limitations:
+
+::: {.callout-note}
+### Why EBMs Differ
+While other models enforce strict architectural rules, **Energy-Based Models (EBMs)** only require learning an energy function—freeing them from these constraints.
+:::
+
+### How Mainstream Models Compare
+| Model               | Key Constraints             | Advantages                  | Key Challenges               |
+|---------------------|----------------------------|----------------------------|------------------------------|
+| **VAEs**           | Encoder-decoder required    | Stable training            | Blurry generations          |
+| **GANs**           | Adversarial framework       | High-quality samples       | Mode collapse               |
+| **Normalizing Flows** | Must be invertible        | Exact likelihood           | Architecturally restrictive |
+| **EBMs**           | *None*                     | • Flexible architecture<br>• No mode collapse | • Intractable $Z(θ)$<br>• Slow sampling |
+
+**Key Insight**: EBMs replace architectural constraints with a single, unified objective: learn an energy function $E_θ(x)$ that assigns low energy to real data and high energy to noise.
+
+### Why This Matters
+1. **Elegance**: Directly models probability without intermediate structures
+2. **Flexibility**: Same framework can be used for generation, classification, and anomaly detection
+3. **Modern Relevance**: New techniques (e.g., contrastive divergence, SGLD) are solving traditional EBM limitations
 
 ---
 
