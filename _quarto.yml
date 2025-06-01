@@ -4,7 +4,6 @@ project:
 
 website:
   title: "Changez Akram"
-  page-navigation: true
   sidebar:
     style: "floating"
     search: true
@@ -38,4 +37,3 @@ format:
     html-math-method: mathjax
     title-block: true
     page-layout: article
-    smooth-scroll: true
