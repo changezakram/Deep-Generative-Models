@@ -6,49 +6,40 @@ website:
   title: "Deep Generative Models"
   navbar:
     left:
-      - text: "Generative AI"
+      - text: Generative AI
         menu:
-          - text: "Variational Autoencoders (VAEs)"
+          - text: Variational Autoencoders (VAEs)
             href: vae.qmd
-          - text: "Generative Adversarial Networks (GANs)"
+          - text: Generative Adversarial Networks (GANs) [Coming Soon]
             href: coming-soon.qmd
-          - text: "Autoregressive Models"
+          - text: Autoregressive Models [Coming Soon]
             href: coming-soon.qmd
-          - text: "Normalizing Flows"
+          - text: Normalizing Flows
             href: flows.qmd
-          - text: "Energy-Based Models (EBMs)"
+          - text: Energy-Based Models (EBMs)
             href: ebm.qmd
-          - text: "Diffusion Models"
+          - text: Diffusion Models [Coming Soon]
             href: coming-soon.qmd
-          - text: "Model Evaluation"
+          - text: Model Evaluation [Coming Soon]
             href: coming-soon.qmd
-      - text: "Large Language Models"
+
+      - text: Large Language Models
         menu:
-          - text: "Word Embedding"
+          - text: Word Embedding [Coming Soon]
             href: coming-soon.qmd
-          - text: "Recurrent Neural Networks"
+          - text: Recurrent Neural Networks [Coming Soon]
             href: coming-soon.qmd
-          - text: "Sequence to Sequence Models"
+          - text: Sequence to Sequence Models [Coming Soon]
             href: coming-soon.qmd
-          - text: "Transformers"
+          - text: Transformers [Coming Soon]
             href: coming-soon.qmd
-          - text: "Benchmarking and Evaluation"
+          - text: Benchmarking and Evaluation [Coming Soon]
             href: coming-soon.qmd
 
 format:
   html:
-    theme: cosmo
     toc: true
-    toc-depth: 2
     number-sections: true
-    html-math-method: mathjax
     smooth-scroll: true
-    css: styles.css
-    include-in-header:
-      text: |
-        <link rel="stylesheet" href="styles.css">
-
-resources:
-  - images
-  - styles.css
-  - docs/.nojekyll
+    theme: cosmo
+    highlight-style: github
