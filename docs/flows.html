@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-4a990d8dcb58f517c7c86712b8f2ac7c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-45a984b55c978f8c4117b5b9aec951d9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +68,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
-<link rel="stylesheet" href="styles.css">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -100,7 +99,6 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -130,12 +128,12 @@ window.Quarto = {
  <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Generative Adversarial Networks (GANs)</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Generative Adversarial Networks (GANs) [Coming Soon]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Autoregressive Models</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Autoregressive Models [Coming Soon]</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./flows.html">
@@ -146,12 +144,12 @@ window.Quarto = {
  <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Diffusion Models</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Diffusion Models [Coming Soon]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Model Evaluation</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Model Evaluation [Coming Soon]</span></a>
   </li>  
     </ul>
   </li>
@@ -161,24 +159,24 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Word Embedding</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Word Embedding [Coming Soon]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Recurrent Neural Networks</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Recurrent Neural Networks [Coming Soon]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Sequence to Sequence Models</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Sequence to Sequence Models [Coming Soon]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Transformers</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Transformers [Coming Soon]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.qmd">
- <span class="dropdown-text">Benchmarking and Evaluation</span></a>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Benchmarking and Evaluation [Coming Soon]</span></a>
   </li>  
     </ul>
   </li>
@@ -197,12 +195,35 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review"><span class="header-section-number">2</span> Math Review</a></li>
-  <li><a href="#flow-model" id="toc-flow-model" class="nav-link" data-scroll-target="#flow-model"><span class="header-section-number">3</span> Flow Model</a></li>
-  <li><a href="#learning-and-inference" id="toc-learning-and-inference" class="nav-link" data-scroll-target="#learning-and-inference"><span class="header-section-number">4</span> Learning and Inference</a></li>
-  <li><a href="#types-of-flow-architectures" id="toc-types-of-flow-architectures" class="nav-link" data-scroll-target="#types-of-flow-architectures"><span class="header-section-number">5</span> Types of Flow Architectures</a></li>
+  <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review"><span class="header-section-number">2</span> Math Review</a>
+  <ul class="collapse">
+  <li><a href="#change-of-variables-in-1d" id="toc-change-of-variables-in-1d" class="nav-link" data-scroll-target="#change-of-variables-in-1d"><span class="header-section-number">2.1</span> Change of Variables in 1D</a></li>
+  <li><a href="#geometry-determinants-and-volume-changes" id="toc-geometry-determinants-and-volume-changes" class="nav-link" data-scroll-target="#geometry-determinants-and-volume-changes"><span class="header-section-number">2.2</span> Geometry: Determinants and Volume Changes</a></li>
+  <li><a href="#determinants-and-probability-density" id="toc-determinants-and-probability-density" class="nav-link" data-scroll-target="#determinants-and-probability-density"><span class="header-section-number">2.3</span> Determinants and Probability Density</a></li>
+  <li><a href="#generalizing-to-nonlinear-transformations" id="toc-generalizing-to-nonlinear-transformations" class="nav-link" data-scroll-target="#generalizing-to-nonlinear-transformations"><span class="header-section-number">2.4</span> Generalizing to Nonlinear Transformations</a></li>
+  <li><a href="#multivariate-change-of-variable" id="toc-multivariate-change-of-variable" class="nav-link" data-scroll-target="#multivariate-change-of-variable"><span class="header-section-number">2.5</span> Multivariate Change-of-Variable</a></li>
+  </ul></li>
+  <li><a href="#flow-model" id="toc-flow-model" class="nav-link" data-scroll-target="#flow-model"><span class="header-section-number">3</span> Flow Model</a>
+  <ul class="collapse">
+  <li><a href="#model-architecture-a-sequence-of-invertible-transformations" id="toc-model-architecture-a-sequence-of-invertible-transformations" class="nav-link" data-scroll-target="#model-architecture-a-sequence-of-invertible-transformations"><span class="header-section-number">3.1</span> Model Architecture: A Sequence of Invertible Transformations</a></li>
+  </ul></li>
+  <li><a href="#learning-and-inference" id="toc-learning-and-inference" class="nav-link" data-scroll-target="#learning-and-inference"><span class="header-section-number">4</span> Learning and Inference</a>
+  <ul class="collapse">
+  <li><a href="#computational-considerations" id="toc-computational-considerations" class="nav-link" data-scroll-target="#computational-considerations"><span class="header-section-number">4.1</span> Computational Considerations</a></li>
+  </ul></li>
+  <li><a href="#types-of-flow-architectures" id="toc-types-of-flow-architectures" class="nav-link" data-scroll-target="#types-of-flow-architectures"><span class="header-section-number">5</span> Types of Flow Architectures</a>
+  <ul class="collapse">
+  <li><a href="#elementwise-flows" id="toc-elementwise-flows" class="nav-link" data-scroll-target="#elementwise-flows"><span class="header-section-number">5.1</span> 1. Elementwise Flows</a></li>
+  <li><a href="#linear-flows" id="toc-linear-flows" class="nav-link" data-scroll-target="#linear-flows"><span class="header-section-number">5.2</span> 2. Linear Flows</a></li>
+  <li><a href="#coupling-flows" id="toc-coupling-flows" class="nav-link" data-scroll-target="#coupling-flows"><span class="header-section-number">5.3</span> 3. Coupling Flows</a></li>
+  <li><a href="#autoregressive-flows" id="toc-autoregressive-flows" class="nav-link" data-scroll-target="#autoregressive-flows"><span class="header-section-number">5.4</span> 4. Autoregressive Flows</a></li>
+  <li><a href="#residual-flows" id="toc-residual-flows" class="nav-link" data-scroll-target="#residual-flows"><span class="header-section-number">5.5</span> 5. Residual Flows</a></li>
+  <li><a href="#continuous-flows" id="toc-continuous-flows" class="nav-link" data-scroll-target="#continuous-flows"><span class="header-section-number">5.6</span> 6. Continuous Flows</a></li>
+  <li><a href="#nice-nonlinear-independent-components-estimation" id="toc-nice-nonlinear-independent-components-estimation" class="nav-link" data-scroll-target="#nice-nonlinear-independent-components-estimation"><span class="header-section-number">5.7</span> NICE: Nonlinear Independent Components Estimation</a></li>
+  <li><a href="#real-nvp-non-volume-preserving-extension-of-nice" id="toc-real-nvp-non-volume-preserving-extension-of-nice" class="nav-link" data-scroll-target="#real-nvp-non-volume-preserving-extension-of-nice"><span class="header-section-number">5.8</span> Real-NVP: Non-Volume Preserving Extension of NICE</a></li>
+  </ul></li>
   <li><a href="#try-it-yourself-flow-model-in-pytorch" id="toc-try-it-yourself-flow-model-in-pytorch" class="nav-link" data-scroll-target="#try-it-yourself-flow-model-in-pytorch"><span class="header-section-number">6</span> 🧪 Try It Yourself: Flow Model in Pytorch</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">8</span> Further Reading</a></li>
