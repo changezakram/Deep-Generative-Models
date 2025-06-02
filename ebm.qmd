@@ -120,23 +120,14 @@ $$
 
 **Energy-Based Models (EBMs)** follow this foundational idea: define a **scoring function** \( f_\theta(x) \) that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.
 
-This perspective offers two key advantages:
+This perspective offers four key advantages:
 
-- It allows us to use **flexible models** (like deep neural networks) to assign unnormalized scores.
-- It **separates concerns**: one function ensures non-negativity (via exponentiation), and the partition function enforces normalization.
+- It allows us to use **flexible models** (like deep neural networks) to assign unnormalized scores.  
+- It **separates concerns**: one function ensures non-negativity (via exponentiation), and the partition function enforces normalization.  
+- It lets us interpret $f_\theta(x)$ as an **unnormalized log-probability**, improving interpretability.  
+- It connects naturally to **well-known distributions** (e.g., exponential family, Boltzmann distribution), making the formulation more general.
 
 This formulation gives us the freedom to model complex distributions with any differentiable scoring function \( f_\theta(x) \), while only requiring that we can compute or approximate its gradients.
-
-
----
-
-#### Why Use the Exponential?
-
-We use the exponential function for three key reasons:
-
-- **Non-negativity**: ensures $\exp(f_\theta(x)) \geq 0$
-- **Interpretability**: allows $f_\theta(x)$ to act like a log-probability
-- **Generality**: connects naturally to known distributions (e.g., Boltzmann, exponential family)
 
 ---
 

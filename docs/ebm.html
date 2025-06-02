@@ -321,25 +321,20 @@ E_\theta(x) = -f_\theta(x)
 p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 \]</span></p>
 <p><strong>Energy-Based Models (EBMs)</strong> follow this foundational idea: define a <strong>scoring function</strong> ( f_(x) ) that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.</p>
-<p>This perspective offers two key advantages:</p>
+<p>This perspective offers four key advantages:</p>
 <ul>
-<li>It allows us to use <strong>flexible models</strong> (like deep neural networks) to assign unnormalized scores.</li>
-<li>It <strong>separates concerns</strong>: one function ensures non-negativity (via exponentiation), and the partition function enforces normalization.</li>
+<li>It allows us to use <strong>flexible models</strong> (like deep neural networks) to assign unnormalized scores.<br>
+</li>
+<li>It <strong>separates concerns</strong>: one function ensures non-negativity (via exponentiation), and the partition function enforces normalization.<br>
+</li>
+<li>It lets us interpret <span class="math inline">\(f_\theta(x)\)</span> as an <strong>unnormalized log-probability</strong>, improving interpretability.<br>
+</li>
+<li>It connects naturally to <strong>well-known distributions</strong> (e.g., exponential family, Boltzmann distribution), making the formulation more general.</li>
 </ul>
 <p>This formulation gives us the freedom to model complex distributions with any differentiable scoring function ( f_(x) ), while only requiring that we can compute or approximate its gradients.</p>
 <hr>
-<section id="why-use-the-exponential" class="level4" data-number="3.0.1">
-<h4 data-number="3.0.1" class="anchored" data-anchor-id="why-use-the-exponential"><span class="header-section-number">3.0.1</span> Why Use the Exponential?</h4>
-<p>We use the exponential function for three key reasons:</p>
-<ul>
-<li><strong>Non-negativity</strong>: ensures <span class="math inline">\(\exp(f_\theta(x)) \geq 0\)</span></li>
-<li><strong>Interpretability</strong>: allows <span class="math inline">\(f_\theta(x)\)</span> to act like a log-probability</li>
-<li><strong>Generality</strong>: connects naturally to known distributions (e.g., Boltzmann, exponential family)</li>
-</ul>
-<hr>
-</section>
-<section id="summary" class="level4" data-number="3.0.2">
-<h4 data-number="3.0.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.0.2</span> Summary</h4>
+<section id="summary" class="level4" data-number="3.0.1">
+<h4 data-number="3.0.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.0.1</span> Summary</h4>
 <p>Whether we express scores directly via <span class="math inline">\(f_\theta(x)\)</span> or indirectly through energy <span class="math inline">\(E_\theta(x)\)</span>, the core idea remains the same:</p>
 <ul>
 <li>Use a <strong>flexible model</strong> to assign <strong>unnormalized scores</strong></li>
@@ -348,8 +343,8 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 <p>This gives EBMs the freedom to model complex data distributions using any differentiable function for <span class="math inline">\(f_\theta(x)\)</span> — without the constraints of invertibility or exact likelihoods.</p>
 <hr>
 </section>
-<section id="visualizing-energy-functions" class="level4" data-number="3.0.3">
-<h4 data-number="3.0.3" class="anchored" data-anchor-id="visualizing-energy-functions"><span class="header-section-number">3.0.3</span> Visualizing Energy Functions</h4>
+<section id="visualizing-energy-functions" class="level4" data-number="3.0.2">
+<h4 data-number="3.0.2" class="anchored" data-anchor-id="visualizing-energy-functions"><span class="header-section-number">3.0.2</span> Visualizing Energy Functions</h4>
 <p>To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where ( x ) and ( y ) are more likely to occur together, and higher energy elsewhere.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
