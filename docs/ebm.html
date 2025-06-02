@@ -220,22 +220,32 @@ window.Quarto = {
 </ul>
 <p><strong>Energy-Based Models (EBMs)</strong> break this pattern by:</p>
 <ol type="1">
-<li><p><strong>Learning a scoring function</strong> (energy) where it assigns low energy to likely data (<span class="math inline">\(x \sim p_{data}\)</span>), and high energy to noise.</p></li>
+<li><p><strong>Learning a scoring function</strong> (energy) where it assigns low energy to likely data (<span class="math inline">\(x \sim p_{data}\)</span>), and high energy to unlikely or noisy inputs.</p></li>
 <li><p><strong>Linking to probability</strong> via: <span class="math inline">\(p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}, \quad Z(\theta) = \int e^{-E_\theta(x)}\,dx\)</span></p>
 <p>where low energy = high probability</p></li>
 <li><p><strong>Using generic neural nets</strong>—no specialized architectures needed</p></li>
 </ol>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Energy functions create <strong>landscapes</strong> over input space — where real data sits in valleys and noise sits on peaks.</p>
+</div>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/energy_field.png" class="img-fluid figure-img"></p>
-<figcaption>Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span> — lower energy corresponds to higher probability.</figcaption>
+<figcaption>Energy landscape <span class="math inline">\(E(x_1, x_2)\)</span>: valleys correspond to likely data, peaks to unlikely inputs.</figcaption>
 </figure>
 </div>
 <p>This approach provides unique advantages:<br>
 ✓ <strong>Simpler setup</strong> - works with any neural net<br>
 ✓ <strong>Explicit scoring</strong> - <span class="math inline">\(p(x) \propto e^{-E(x)}\)</span> (energy)<br>
 ✓ <strong>Stable training</strong> - No adversarial balancing act like GANs</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>

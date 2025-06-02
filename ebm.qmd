@@ -12,7 +12,7 @@ Modern generative models impose strict architectural requirements:
 
 **Energy-Based Models (EBMs)** break this pattern by:  
 
-1. **Learning a scoring function** (energy) where it assigns low energy to likely data ($x \sim p_{data}$), and high energy to noise.
+1. **Learning a scoring function** (energy) where it assigns low energy to likely data ($x \sim p_{data}$), and high energy to unlikely or noisy inputs.
 
 2. **Linking to probability** via: $p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}, \quad Z(\theta) = \int e^{-E_\theta(x)}\,dx$ 
    
@@ -20,7 +20,11 @@ Modern generative models impose strict architectural requirements:
 
 3. **Using generic neural nets**—no specialized architectures needed   
 
-![Visualizing the energy landscape $E(x_1, x_2)$ — lower energy corresponds to higher probability.](images/energy_field.png)
+::: {.callout-note appearance="simple"}
+Energy functions create **landscapes** over input space — where real data sits in valleys and noise sits on peaks.
+:::
+
+![Energy landscape $E(x_1, x_2)$: valleys correspond to likely data, peaks to unlikely inputs.](images/energy_field.png)
 
 
 This approach provides unique advantages:  
@@ -28,7 +32,7 @@ This approach provides unique advantages:
 ✓ **Explicit scoring** - $p(x) \propto e^{-E(x)}$ (energy)        
 ✓ **Stable training** - No adversarial balancing act like GANs      
 
-::: {.callout-tip}
+::: {.callout-tip appearance="simple"}
 #### Core Principle
 EBMs replace architectural constraints with a single principle:  
 *"Learn to distinguish real data from noise through energy scoring."*  
