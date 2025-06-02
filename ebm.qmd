@@ -4,36 +4,33 @@ title: "Energy Based Models (EBM)"
 
 ## Introduction
 
-Most generative models come with built-in constraints:
+Modern generative models impose strict architectural requirements:
 
-- **VAEs** need encoder-decoder architectures  
-- **GANs** require adversarial training  
+- **VAEs** need encoder-decoder pairs  
+- **GANs** require adversarial networks  
 - **Normalizing flows** must use invertible transforms  
 
-**Energy-Based Models (EBMs)** take a different path. They ditch these complex setups and instead:  
+**Energy-Based Models (EBMs)** break this pattern by:  
 
 1. **Learn a scoring function** (energy) where:  
-   - Real data = Low energy  
-   - Noise/Fake data = High energy  
+   - Assigns low energy to real data (`x ∼ p_data`) 
+   - Assigns high energy to noise
 
-2. **Require no special architecture** — just a neural network that learns to "grade" data quality  
+2. **Using generic neural nets**—no specialized architectures needed   
 
-This simplicity makes EBMs:  
-✓ **Flexible** (can model any data type)  
-✓ **Theoretically elegant** (directly approximate probability distributions)  
-✓ **Free from GANs' mode collapse** or VAEs' blurry outputs  
-
-
-::: {.callout-note}
-### Why EBMs Differ
-While other models enforce strict architectural rules, **Energy-Based Models (EBMs)** only require learning an energy function—freeing them from these constraints.
-:::
+This approach provides unique advantages:  
+✓ **Simpler setup** - works with any neural net
+✓ **Explicit scoring** - $p(x) \propto e^{-E(x)}$ (but $Z$ is tricky)  
+✓ **Stable training** - No adversarial balancing act like GANs 
 
 
-To understand how Energy-Based Models overcome many of these limitations, we first need to revisit a fundamental question in generative modeling: **what makes a valid probability distribution?** 
+EBMs replace architectural constraints with a single principle:  
+*"Learn to distinguish real data from noise through energy scoring."*  
 
-The next section walks through the mathematical foundation that underpins EBMs — and introduces a clever trick that allows them to sidestep many of the constraints faced by traditional generative models.
+To understand how this works mathematically, we must first answer:  
+**What defines a valid probability distribution?**  
 
+The next section derives EBMs' theoretical foundation—revealing how they bypass traditional limitations while introducing new challenges (like partition function estimation).  
 
 ---
 
