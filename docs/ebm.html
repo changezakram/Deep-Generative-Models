@@ -302,7 +302,21 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 </section>
 <section id="energy-based-parameterization" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="energy-based-parameterization"><span class="header-section-number">2.3</span> Energy-Based Parameterization</h3>
-<p>Energy-Based Models (EBMs) follow the same foundational idea we’ve seen before: define a <strong>scoring function</strong> <span class="math inline">\(f_\theta(x)\)</span> that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.</p>
+<p>We’ve just seen how <span class="math inline">\(g_\theta(x)\)</span> can be any non-negative function. A common and powerful choice is to define it using an exponential transformation:</p>
+<p><span class="math display">\[
+g_\theta(x) = \exp(f_\theta(x))
+\]</span></p>
+<p>This gives us the form:</p>
+<p><span class="math display">\[
+p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
+\]</span></p>
+<p>This leads to the <strong>energy-based formulation</strong>, where <span class="math inline">\(f_\theta(x)\)</span> is often called the <strong>negative energy</strong>. We can also write:</p>
+<p><span class="math display">\[
+E_\theta(x) = -f_\theta(x)
+\quad \Rightarrow \quad
+p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
+\]</span></p>
+<p>Energy-Based Models (EBMs) follow this foundational idea: define a <strong>scoring function</strong> <span class="math inline">\(f_\theta(x)\)</span> that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.</p>
 <p>This approach allows us to build <strong>flexible probabilistic models</strong> without requiring invertibility or tractable likelihoods.</p>
 <section id="from-scores-to-unnormalized-probabilities" class="level4" data-number="2.3.1">
 <h4 data-number="2.3.1" class="anchored" data-anchor-id="from-scores-to-unnormalized-probabilities"><span class="header-section-number">2.3.1</span> From Scores to Unnormalized Probabilities</h4>
