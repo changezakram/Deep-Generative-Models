@@ -93,7 +93,7 @@ Think of $g_\theta(x)$ as a scoring function:
 
 ---
 
-## 2.4 From Scores to Probabilities in EBMs
+## From Scores to Probabilities in EBMs
 
 Energy-Based Models (EBMs) follow the same foundational idea we've seen before: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.
 
@@ -153,6 +153,7 @@ Whether we express scores directly via $f_\theta(x)$ or indirectly through energ
 - Normalize with the **partition function** $Z(\theta)$
 
 This gives EBMs the freedom to model complex data distributions using any differentiable function for $f_\theta(x)$ — without the constraints of invertibility or exact likelihoods.
+
 --- 
 
 ### Visualizing Energy Functions
