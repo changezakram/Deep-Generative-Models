@@ -127,21 +127,6 @@ This perspective offers two key advantages:
 
 This formulation gives us the freedom to model complex distributions with any differentiable scoring function \( f_\theta(x) \), while only requiring that we can compute or approximate its gradients.
 
-#### Introducing Energy
-
-Many EBMs reframe this using an **energy function** $E_\theta(x)$, where:
-
-$$
-E_\theta(x) = -f_\theta(x)
-$$
-
-Substituting this into our equation gives the classic EBM form:
-
-$$
-p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
-$$
-
-In this view, **lower energy means higher probability**.
 
 ---
 

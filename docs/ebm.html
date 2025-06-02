@@ -327,21 +327,9 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 <li>It <strong>separates concerns</strong>: one function ensures non-negativity (via exponentiation), and the partition function enforces normalization.</li>
 </ul>
 <p>This formulation gives us the freedom to model complex distributions with any differentiable scoring function ( f_(x) ), while only requiring that we can compute or approximate its gradients.</p>
-<section id="introducing-energy" class="level4" data-number="3.0.1">
-<h4 data-number="3.0.1" class="anchored" data-anchor-id="introducing-energy"><span class="header-section-number">3.0.1</span> Introducing Energy</h4>
-<p>Many EBMs reframe this using an <strong>energy function</strong> <span class="math inline">\(E_\theta(x)\)</span>, where:</p>
-<p><span class="math display">\[
-E_\theta(x) = -f_\theta(x)
-\]</span></p>
-<p>Substituting this into our equation gives the classic EBM form:</p>
-<p><span class="math display">\[
-p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
-\]</span></p>
-<p>In this view, <strong>lower energy means higher probability</strong>.</p>
 <hr>
-</section>
-<section id="why-use-the-exponential" class="level4" data-number="3.0.2">
-<h4 data-number="3.0.2" class="anchored" data-anchor-id="why-use-the-exponential"><span class="header-section-number">3.0.2</span> Why Use the Exponential?</h4>
+<section id="why-use-the-exponential" class="level4" data-number="3.0.1">
+<h4 data-number="3.0.1" class="anchored" data-anchor-id="why-use-the-exponential"><span class="header-section-number">3.0.1</span> Why Use the Exponential?</h4>
 <p>We use the exponential function for three key reasons:</p>
 <ul>
 <li><strong>Non-negativity</strong>: ensures <span class="math inline">\(\exp(f_\theta(x)) \geq 0\)</span></li>
@@ -350,8 +338,8 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 </ul>
 <hr>
 </section>
-<section id="summary" class="level4" data-number="3.0.3">
-<h4 data-number="3.0.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.0.3</span> Summary</h4>
+<section id="summary" class="level4" data-number="3.0.2">
+<h4 data-number="3.0.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.0.2</span> Summary</h4>
 <p>Whether we express scores directly via <span class="math inline">\(f_\theta(x)\)</span> or indirectly through energy <span class="math inline">\(E_\theta(x)\)</span>, the core idea remains the same:</p>
 <ul>
 <li>Use a <strong>flexible model</strong> to assign <strong>unnormalized scores</strong></li>
@@ -360,8 +348,8 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 <p>This gives EBMs the freedom to model complex data distributions using any differentiable function for <span class="math inline">\(f_\theta(x)\)</span> — without the constraints of invertibility or exact likelihoods.</p>
 <hr>
 </section>
-<section id="visualizing-energy-functions" class="level4" data-number="3.0.4">
-<h4 data-number="3.0.4" class="anchored" data-anchor-id="visualizing-energy-functions"><span class="header-section-number">3.0.4</span> Visualizing Energy Functions</h4>
+<section id="visualizing-energy-functions" class="level4" data-number="3.0.3">
+<h4 data-number="3.0.3" class="anchored" data-anchor-id="visualizing-energy-functions"><span class="header-section-number">3.0.3</span> Visualizing Energy Functions</h4>
 <p>To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where ( x ) and ( y ) are more likely to occur together, and higher energy elsewhere.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
