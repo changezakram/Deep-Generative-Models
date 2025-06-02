@@ -23,9 +23,11 @@ This approach provides unique advantages:
 ✓ **Explicit scoring** - $p(x) \propto e^{-E(x)}$ (but $Z$ is tricky)        
 ✓ **Stable training** - No adversarial balancing act like GANs      
 
-
+::: {.callout-tip}
+#### Core Principle
 EBMs replace architectural constraints with a single principle:  
 *"Learn to distinguish real data from noise through energy scoring."*  
+:::
 
 To understand how this works mathematically, we must first answer: **What defines a valid probability distribution?**  
 
