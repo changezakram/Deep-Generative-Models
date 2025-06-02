@@ -220,7 +220,10 @@ window.Quarto = {
 </ul>
 <p><strong>Energy-Based Models (EBMs)</strong> break this pattern by:</p>
 <ol type="1">
-<li><strong>Learning a scoring function</strong> (energy) where it assigns low energy to likely data (<span class="math inline">\(x \sim p_{data}\)</span>), and high energy to noise.</li>
+<li><p><strong>Learning a scoring function</strong> (energy) where it assigns low energy to likely data (<span class="math inline">\(x \sim p_{data}\)</span>), and high energy to noise.</p></li>
+<li><p><strong>Linking to probability</strong> via: <span class="math inline">\(p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}, \quad Z(\theta) = \int e^{-E_\theta(x)}\,dx\)</span></p>
+<p>where low energy = high probability</p></li>
+<li><p><strong>Using generic neural nets</strong>—no specialized architectures needed</p></li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -228,11 +231,6 @@ window.Quarto = {
 <figcaption>Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span> — lower energy corresponds to higher probability.</figcaption>
 </figure>
 </div>
-<ol start="2" type="1">
-<li><p><strong>Linking to probability</strong> via: <span class="math inline">\(p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}, \quad Z(\theta) = \int e^{-E_\theta(x)}\,dx\)</span></p>
-<p>where low energy = high probability</p></li>
-<li><p><strong>Using generic neural nets</strong>—no specialized architectures needed</p></li>
-</ol>
 <p>This approach provides unique advantages:<br>
 ✓ <strong>Simpler setup</strong> - works with any neural net<br>
 ✓ <strong>Explicit scoring</strong> - <span class="math inline">\(p(x) \propto e^{-E(x)}\)</span> (energy)<br>
