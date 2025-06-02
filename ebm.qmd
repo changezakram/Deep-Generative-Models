@@ -24,8 +24,6 @@ Modern generative models impose strict architectural requirements:
 Energy functions create **landscapes** over input space — where real data sits in valleys and noise sits on peaks.
 :::
 
-![Energy landscape $E(x_1, x_2)$: valleys correspond to likely data, peaks to unlikely inputs.](images/energy_field.png)
-
 
 This approach provides unique advantages:  
 ✓ **Simpler setup** - works with any neural net      
@@ -87,6 +85,17 @@ Think of $g_\theta(x)$ as a scoring function:
 
 - Higher $g_\theta(x)$ means more likely  
 - Dividing by $Z(\theta)$ rescales these scores to form a valid probability distribution
+
+
+### Visualizing Energy Functions
+
+To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where \( x \) and \( y \) are more likely to occur together, and higher energy elsewhere.
+
+![Visualization of the energy function capturing dependency between \( x \) and \( y \)](https://atcold.github.io/NYU-DLSP20/assets/images/energy-function.png)
+
+<p class="caption" style="font-size: 0.85em; color: #666;">
+  Source: <a href="https://atcold.github.io/NYU-DLSP20/en/week07/07-1/" target="_blank">Atcold, NYU Deep Learning SP20</a>. The energy function is low (dark blue) where \( x \) and \( y \) are compatible, high (yellow) where they are not.
+</p>
 
 ---
 

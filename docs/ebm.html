@@ -235,12 +235,6 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/energy_field.png" class="img-fluid figure-img"></p>
-<figcaption>Energy landscape <span class="math inline">\(E(x_1, x_2)\)</span>: valleys correspond to likely data, peaks to unlikely inputs.</figcaption>
-</figure>
-</div>
 <p>This approach provides unique advantages:<br>
 ✓ <strong>Simpler setup</strong> - works with any neural net<br>
 ✓ <strong>Explicit scoring</strong> - <span class="math inline">\(p(x) \propto e^{-E(x)}\)</span> (energy)<br>
@@ -303,11 +297,24 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 </li>
 <li>Dividing by <span class="math inline">\(Z(\theta)\)</span> rescales these scores to form a valid probability distribution</li>
 </ul>
+</section>
+</section>
+<section id="visualizing-energy-functions" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="visualizing-energy-functions"><span class="header-section-number">2.3</span> Visualizing Energy Functions</h3>
+<p>To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where ( x ) and ( y ) are more likely to occur together, and higher energy elsewhere.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://atcold.github.io/NYU-DLSP20/assets/images/energy-function.png" class="img-fluid figure-img"></p>
+<figcaption>Visualization of the energy function capturing dependency between ( x ) and ( y )</figcaption>
+</figure>
+</div>
+<p class="caption" style="font-size: 0.85em; color: #666;">
+Source: <a href="https://atcold.github.io/NYU-DLSP20/en/week07/07-1/" target="_blank">Atcold, NYU Deep Learning SP20</a>. The energy function is low (dark blue) where ( x ) and ( y ) are compatible, high (yellow) where they are not.
+</p>
 <hr>
 </section>
-</section>
-<section id="from-scores-to-probabilities-in-ebms" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="from-scores-to-probabilities-in-ebms"><span class="header-section-number">2.3</span> From Scores to Probabilities in EBMs</h3>
+<section id="from-scores-to-probabilities-in-ebms" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="from-scores-to-probabilities-in-ebms"><span class="header-section-number">2.4</span> From Scores to Probabilities in EBMs</h3>
 <p>Energy-Based Models follow the same idea we’ve established earlier: define a <strong>scoring function</strong> <span class="math inline">\(f_\theta(x)\)</span> that assigns high values to likely data points, and then convert these scores into probabilities using an exponential transformation and normalization.<br>
 This allows us to build flexible probabilistic models without needing tractable likelihoods or invertible mappings.</p>
 <p>We use an <strong>exponential function</strong> because:</p>
