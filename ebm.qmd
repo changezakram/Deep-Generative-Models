@@ -11,9 +11,10 @@ Modern generative models impose strict architectural requirements:
 - **Normalizing flows** must use invertible transforms  
 
 While each model family has strengths, they also carry trade-offs:
-- VAEs often produce blurry samples due to reliance on Gaussian assumptions.
-- GANs can generate high-quality images but are notoriously unstable and suffer from mode collapse.
-- Normalizing Flows guarantee exact likelihoods but restrict architecture design due to invertibility constraints.
+
+- VAEs often produce blurry samples due to reliance on Gaussian assumptions.   
+- GANs can generate high-quality images but are notoriously unstable and suffer from mode collapse.   
+- Normalizing Flows guarantee exact likelihoods but restrict architecture design due to invertibility constraints.   
 
 ---
 
