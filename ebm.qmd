@@ -93,21 +93,24 @@ Think of $g_\theta(x)$ as a scoring function:
 
 ---
 
-### Energy-Based Parameterization
+## 2.3 Energy-Based Parameterization
 
-We’ve just seen how $g_\theta(x)$ can be any non-negative function. A common and powerful choice is to define it using an exponential transformation:
+We’ve just seen how \( g_\theta(x) \) can be any non-negative function. A common and powerful choice is to define it using an exponential transformation:
 
 $$
 g_\theta(x) = \exp(f_\theta(x))
 $$
 
-This gives us the form:
+This ensures that \( g_\theta(x) \geq 0 \) and allows us to interpret \( f_\theta(x) \) as an **unnormalized log-probability score**.
+
+We then normalize using the **partition function** \( Z(\theta) \) to obtain a valid probability distribution:
 
 $$
-p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
+p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)} = \frac{\exp(f_\theta(x))}{Z(\theta)},
+\quad \text{where} \quad Z(\theta) = \int \exp(f_\theta(x)) \, dx
 $$
 
-This leads to the **energy-based formulation**, where $f_\theta(x)$ is often called the **negative energy**. We can also write:
+This leads to the **energy-based formulation**, where \( f_\theta(x) \) is interpreted as the **negative energy**. We can equivalently write:
 
 $$
 E_\theta(x) = -f_\theta(x)
@@ -115,27 +118,14 @@ E_\theta(x) = -f_\theta(x)
 p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 $$
 
-Energy-Based Models (EBMs) follow this foundational idea: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.
+**Energy-Based Models (EBMs)** follow this foundational idea: define a **scoring function** \( f_\theta(x) \) that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.
 
-This approach allows us to build **flexible probabilistic models** without requiring invertibility or tractable likelihoods.
+This perspective offers two key advantages:
 
-#### From Scores to Unnormalized Probabilities
+- It allows us to use **flexible models** (like deep neural networks) to assign unnormalized scores.
+- It **separates concerns**: one function ensures non-negativity (via exponentiation), and the partition function enforces normalization.
 
-We begin by using the scoring function $f_\theta(x)$ to define an unnormalized probability score:
-
-$$
-g_\theta(x) = \exp(f_\theta(x))
-$$
-
-This ensures $g_\theta(x) \geq 0$ and allows us to interpret $f_\theta(x)$ as an unnormalized log-probability.
-
-To turn this into a valid probability distribution, we normalize using the **partition function** $Z(\theta)$:
-
-$$
-p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)} = \frac{\exp(f_\theta(x))}{Z(\theta)} \quad \text{where} \quad Z(\theta) = \int \exp(f_\theta(x)) \, dx
-$$
-
-This gives us a valid probability distribution $p_\theta(x)$ even if $f_\theta(x)$ is defined by a neural network or other flexible function.
+This formulation gives us the freedom to model complex distributions with any differentiable scoring function \( f_\theta(x) \), while only requiring that we can compute or approximate its gradients.
 
 #### Introducing Energy
 
