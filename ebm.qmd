@@ -93,7 +93,7 @@ Think of $g_\theta(x)$ as a scoring function:
 
 ---
 
-## 2.3 Energy-Based Parameterization
+### Energy-Based Parameterization
 
 We’ve just seen how $g_\theta(x)$ can be any non-negative function. A common and powerful choice is to define it using an exponential transformation:
 
