@@ -14,6 +14,8 @@ Modern generative models impose strict architectural requirements:
 
 1. **Learning a scoring function** (energy) where it assigns low energy to likely data ($x \sim p_{data}$), and high energy to noise.
 
+![Energy field visualization](images/energy_field.png)
+
 2. **Linking to probability** via: $p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}, \quad Z(\theta) = \int e^{-E_\theta(x)}\,dx$ 
    
    where low energy = high probability
