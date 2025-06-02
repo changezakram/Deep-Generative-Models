@@ -93,13 +93,13 @@ Think of $g_\theta(x)$ as a scoring function:
 
 ---
 
-## From Scores to Probabilities in EBMs
+### Energy-Based Parameterization
 
 Energy-Based Models (EBMs) follow the same foundational idea we've seen before: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.
 
 This approach allows us to build **flexible probabilistic models** without requiring invertibility or tractable likelihoods.
 
-### From Scores to Unnormalized Probabilities
+#### From Scores to Unnormalized Probabilities
 
 We begin by using the scoring function $f_\theta(x)$ to define an unnormalized probability score:
 
@@ -117,7 +117,7 @@ $$
 
 This gives us a valid probability distribution $p_\theta(x)$ even if $f_\theta(x)$ is defined by a neural network or other flexible function.
 
-### Introducing Energy
+#### Introducing Energy
 
 Many EBMs reframe this using an **energy function** $E_\theta(x)$, where:
 
@@ -135,7 +135,7 @@ In this view, **lower energy means higher probability**.
 
 ---
 
-### Why Use the Exponential?
+#### Why Use the Exponential?
 
 We use the exponential function for three key reasons:
 
@@ -145,7 +145,7 @@ We use the exponential function for three key reasons:
 
 ---
 
-### Summary
+#### Summary
 
 Whether we express scores directly via $f_\theta(x)$ or indirectly through energy $E_\theta(x)$, the core idea remains the same:
 
@@ -156,7 +156,7 @@ This gives EBMs the freedom to model complex data distributions using any differ
 
 --- 
 
-### Visualizing Energy Functions
+#### Visualizing Energy Functions
 
 To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where \( x \) and \( y \) are more likely to occur together, and higher energy elsewhere.
 
