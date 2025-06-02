@@ -12,16 +12,16 @@ Modern generative models impose strict architectural requirements:
 
 **Energy-Based Models (EBMs)** break this pattern by:  
 
-1. **Learn a scoring function** (energy) where:  
+1. **Learning a scoring function** (energy) where it:  
    - Assigns low energy to real data ($x \sim p_{data}$)
    - Assigns high energy to noise
 
 2. **Using generic neural nets**—no specialized architectures needed   
 
 This approach provides unique advantages:  
-✓ **Simpler setup** - works with any neural net.   
-✓ **Explicit scoring** - $p(x) \propto e^{-E(x)}$ (but $Z$ is tricky).     
-✓ **Stable training** - No adversarial balancing act like GANs.    
+✓ **Simpler setup** - works with any neural net      
+✓ **Explicit scoring** - $p(x) \propto e^{-E(x)}$ (but $Z$ is tricky)        
+✓ **Stable training** - No adversarial balancing act like GANs      
 
 
 EBMs replace architectural constraints with a single principle:  

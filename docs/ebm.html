@@ -220,7 +220,7 @@ window.Quarto = {
 </ul>
 <p><strong>Energy-Based Models (EBMs)</strong> break this pattern by:</p>
 <ol type="1">
-<li><strong>Learn a scoring function</strong> (energy) where:
+<li><strong>Learning a scoring function</strong> (energy) where it:
 <ul>
 <li>Assigns low energy to real data (<span class="math inline">\(x \sim p_{data}\)</span>)</li>
 <li>Assigns high energy to noise</li>
@@ -228,9 +228,9 @@ window.Quarto = {
 <li><strong>Using generic neural nets</strong>—no specialized architectures needed</li>
 </ol>
 <p>This approach provides unique advantages:<br>
-✓ <strong>Simpler setup</strong> - works with any neural net.<br>
-✓ <strong>Explicit scoring</strong> - <span class="math inline">\(p(x) \propto e^{-E(x)}\)</span> (but <span class="math inline">\(Z\)</span> is tricky).<br>
-✓ <strong>Stable training</strong> - No adversarial balancing act like GANs.</p>
+✓ <strong>Simpler setup</strong> - works with any neural net<br>
+✓ <strong>Explicit scoring</strong> - <span class="math inline">\(p(x) \propto e^{-E(x)}\)</span> (but <span class="math inline">\(Z\)</span> is tricky)<br>
+✓ <strong>Stable training</strong> - No adversarial balancing act like GANs</p>
 <p>EBMs replace architectural constraints with a single principle:<br>
 <em>“Learn to distinguish real data from noise through energy scoring.”</em></p>
 <p>To understand how this works mathematically, we must first answer: <strong>What defines a valid probability distribution?</strong></p>
