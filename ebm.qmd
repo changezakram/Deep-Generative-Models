@@ -86,8 +86,6 @@ Think of $g_\theta(x)$ as a scoring function:
 
 To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where \( x \) and \( y \) are more likely to occur together, and higher energy elsewhere.
 
-![Energy Field visualization. Source: Atcold, NYU DLSP20](images/energy_field.png)
-
 ![Energy Field](images/energy_field.png)
 
 <p class="caption" style="text-align: center; font-size: 0.85em; color: #666;">
