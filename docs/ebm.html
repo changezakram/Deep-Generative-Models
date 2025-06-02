@@ -299,31 +299,8 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 </li>
 <li>Dividing by <span class="math inline">\(Z(\theta)\)</span> rescales these scores to form a valid probability distribution</li>
 </ul>
-</section>
-</section>
-<section id="visualizing-energy-functions" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="visualizing-energy-functions"><span class="header-section-number">2.3</span> Visualizing Energy Functions</h3>
-<p>To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where ( x ) and ( y ) are more likely to occur together, and higher energy elsewhere.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/energy_field.png" class="img-fluid figure-img"></p>
-<figcaption>Energy Field</figcaption>
-</figure>
-</div>
-<p class="caption" style="text-align: center; font-size: 0.85em; color: #666;">
-Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span> — lower energy corresponds to higher probability.
-</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Energy functions create <strong>landscapes</strong> over input space — where real data sits in valleys and noise sits on peaks.</p>
-</div>
-</div>
-</div>
 <hr>
+</section>
 </section>
 </section>
 <section id="from-scores-to-probabilities-in-ebms" class="level2" data-number="3">
@@ -377,6 +354,30 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 </section>
 <section id="this-gives-ebms-the-freedom-to-model-complex-data-distributions-using-any-differentiable-function-for-f_thetax-without-the-constraints-of-invertibility-or-exact-likelihoods." class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="this-gives-ebms-the-freedom-to-model-complex-data-distributions-using-any-differentiable-function-for-f_thetax-without-the-constraints-of-invertibility-or-exact-likelihoods."><span class="header-section-number">4</span> This gives EBMs the freedom to model complex data distributions using any differentiable function for <span class="math inline">\(f_\theta(x)\)</span> — without the constraints of invertibility or exact likelihoods.</h2>
+<section id="visualizing-energy-functions" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="visualizing-energy-functions"><span class="header-section-number">4.1</span> Visualizing Energy Functions</h3>
+<p>To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where ( x ) and ( y ) are more likely to occur together, and higher energy elsewhere.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/energy_field.png" class="img-fluid figure-img"></p>
+<figcaption>Energy Field</figcaption>
+</figure>
+</div>
+<p class="caption" style="text-align: center; font-size: 0.85em; color: #666;">
+Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span> — lower energy corresponds to higher probability.
+</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Energy functions create <strong>landscapes</strong> over input space — where real data sits in valleys and noise sits on peaks.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
 </section>
 <section id="practical-applications" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="practical-applications"><span class="header-section-number">5</span> Practical Applications</h2>
