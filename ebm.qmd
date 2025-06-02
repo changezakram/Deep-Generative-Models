@@ -16,11 +16,17 @@ Modern generative models impose strict architectural requirements:
    - Assigns low energy to real data ($x \sim p_{data}$)
    - Assigns high energy to noise
 
-2. **Using generic neural nets**—no specialized architectures needed   
+2. **Linking to probability** via:
+$$
+p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}, \quad Z(\theta)=\int e^{-E_\theta(x)}dx
+$$
+   where low energy = high probability
+
+3. **Using generic neural nets**—no specialized architectures needed   
 
 This approach provides unique advantages:  
 ✓ **Simpler setup** - works with any neural net      
-✓ **Explicit scoring** - $p(x) \propto e^{-E(x)}$ (but $Z$ is tricky)        
+✓ **Explicit scoring** - $p(x) \propto e^{-E(x)}$ (energy)        
 ✓ **Stable training** - No adversarial balancing act like GANs      
 
 ::: {.callout-tip}

@@ -220,16 +220,19 @@ window.Quarto = {
 </ul>
 <p><strong>Energy-Based Models (EBMs)</strong> break this pattern by:</p>
 <ol type="1">
-<li><strong>Learning a scoring function</strong> (energy) where it:
+<li><p><strong>Learning a scoring function</strong> (energy) where it:</p>
 <ul>
 <li>Assigns low energy to real data (<span class="math inline">\(x \sim p_{data}\)</span>)</li>
 <li>Assigns high energy to noise</li>
 </ul></li>
-<li><strong>Using generic neural nets</strong>—no specialized architectures needed</li>
+<li><p><strong>Linking to probability</strong> via: <span class="math display">\[
+p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}, \quad Z(\theta)=\int e^{-E_\theta(x)}dx
+\]</span> where low energy = high probability</p></li>
+<li><p><strong>Using generic neural nets</strong>—no specialized architectures needed</p></li>
 </ol>
 <p>This approach provides unique advantages:<br>
 ✓ <strong>Simpler setup</strong> - works with any neural net<br>
-✓ <strong>Explicit scoring</strong> - <span class="math inline">\(p(x) \propto e^{-E(x)}\)</span> (but <span class="math inline">\(Z\)</span> is tricky)<br>
+✓ <strong>Explicit scoring</strong> - <span class="math inline">\(p(x) \propto e^{-E(x)}\)</span> (energy)<br>
 ✓ <strong>Stable training</strong> - No adversarial balancing act like GANs</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
