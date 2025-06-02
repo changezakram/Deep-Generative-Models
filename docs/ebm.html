@@ -306,7 +306,7 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 <p><span class="math display">\[
 g_\theta(x) = \exp(f_\theta(x))
 \]</span></p>
-<p>This ensures that ( g_(x) ) and allows us to interpret <span class="math inline">\(f_\theta(x)\)</span> as an <strong>unnormalized log-probability score</strong>.</p>
+<p>This ensures that <span class="math inline">\(g_\theta(x) \geq 0\)</span> and allows us to interpret <span class="math inline">\(f_\theta(x)\)</span> as an <strong>unnormalized log-probability score</strong>.</p>
 <p>We then normalize using the <strong>partition function</strong> ( Z() ) to obtain a valid probability distribution:</p>
 <p><span class="math display">\[
 p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)} = \frac{\exp(f_\theta(x))}{Z(\theta)},
@@ -335,10 +335,11 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 <h4 data-number="2.3.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">2.3.1</span> Summary</h4>
 <p>Whether we express scores directly via <span class="math inline">\(f_\theta(x)\)</span> or indirectly through energy <span class="math inline">\(E_\theta(x)\)</span>, the core idea remains the same:</p>
 <ul>
-<li>Use a <strong>flexible model</strong> to assign <strong>unnormalized scores</strong></li>
-<li>Normalize with the <strong>partition function</strong> <span class="math inline">\(Z(\theta)\)</span></li>
+<li>Use a <strong>flexible model</strong> to assign <strong>unnormalized scores</strong><br>
+</li>
+<li>Normalize those scores using the <strong>partition function</strong> <span class="math inline">\(Z(\theta)\)</span></li>
 </ul>
-<p>This gives EBMs the freedom to model complex data distributions using any differentiable function for <span class="math inline">\(f_\theta(x)\)</span> — without the constraints of invertibility or exact likelihoods.</p>
+<p>This gives EBMs the freedom to model complex data distributions using any differentiable function for <span class="math inline">\(f_\theta(x)\)</span> — without requiring invertibility or exact likelihoods.</p>
 <hr>
 </section>
 <section id="visualizing-energy-functions" class="level4" data-number="2.3.2">

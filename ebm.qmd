@@ -101,7 +101,7 @@ $$
 g_\theta(x) = \exp(f_\theta(x))
 $$
 
-This ensures that \( g_\theta(x) \geq 0 \) and allows us to interpret $f_\theta(x)$ as an **unnormalized log-probability score**.
+This ensures that $g_\theta(x) \geq 0$ and allows us to interpret $f_\theta(x)$ as an **unnormalized log-probability score**.
 
 We then normalize using the **partition function** \( Z(\theta) \) to obtain a valid probability distribution:
 
@@ -135,10 +135,10 @@ This formulation gives us the freedom to model complex distributions with any di
 
 Whether we express scores directly via $f_\theta(x)$ or indirectly through energy $E_\theta(x)$, the core idea remains the same:
 
-- Use a **flexible model** to assign **unnormalized scores**
-- Normalize with the **partition function** $Z(\theta)$
+- Use a **flexible model** to assign **unnormalized scores**  
+- Normalize those scores using the **partition function** $Z(\theta)$
 
-This gives EBMs the freedom to model complex data distributions using any differentiable function for $f_\theta(x)$ — without the constraints of invertibility or exact likelihoods.
+This gives EBMs the freedom to model complex data distributions using any differentiable function for $f_\theta(x)$ — without requiring invertibility or exact likelihoods.
 
 --- 
 
