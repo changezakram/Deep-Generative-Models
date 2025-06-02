@@ -109,7 +109,8 @@ Energy functions create **landscapes** over input space — where real data sits
 
 ### From Scores to Probabilities in EBMs
 
-### Connecting to EBMs
+Energy-Based Models follow the same idea we've established earlier: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, and then convert these scores into probabilities using an exponential transformation and normalization.  
+This allows us to build flexible probabilistic models without needing tractable likelihoods or invertible mappings.
 
 In Energy-Based Models, we define the unnormalized score using an energy function:
 
@@ -125,6 +126,13 @@ $$
 
 Here, $E_\theta(x)$ is the **energy**: lower energy = higher probability.
 
+We use an **exponential function** because:
+
+- It guarantees non-negativity: $\exp(f_\theta(x)) \geq 0$
+- It allows us to interpret $f_\theta(x)$ as an unnormalized log-probability
+- It connects naturally to many well-known distributions (e.g., exponential family, Boltzmann distribution)
+
+
 To provide a more intuitive interpretation, many implementations define a scoring function $f_\theta(x)$ and relate it to energy:
 
 $$
@@ -135,34 +143,6 @@ In both cases, the core idea is the same:
 
 - Use flexible models to assign **unnormalized scores**
 - Normalize those scores using the **partition function** $Z(\theta)$
-
-
-Energy-Based Models follow the same idea we've established earlier: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, and then convert these scores into probabilities using an exponential transformation and normalization.  
-This allows us to build flexible probabilistic models without needing tractable likelihoods or invertible mappings.
-
-We use an **exponential function** because:
-
-- It guarantees non-negativity: $\exp(f_\theta(x)) \geq 0$
-- It allows us to interpret $f_\theta(x)$ as an unnormalized log-probability
-- It connects naturally to many well-known distributions (e.g., exponential family, Boltzmann distribution)
-
-We define:
-
-$$
-g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
-$$
-
-To align with the physics intuition that lower energy = higher probability, we define the **energy function** as:
-
-$$
-E_\theta(x) = -f_\theta(x)
-$$
-
-This gives us the classic EBM form:
-
-$$
-p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
-$$
 
 This formulation gives EBMs the freedom to use any differentiable function for $f_\theta(x)$, and only requires that we can compute or approximate its gradients.
 

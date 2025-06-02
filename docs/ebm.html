@@ -325,9 +325,8 @@ Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span
 </section>
 <section id="from-scores-to-probabilities-in-ebms" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="from-scores-to-probabilities-in-ebms"><span class="header-section-number">2.4</span> From Scores to Probabilities in EBMs</h3>
-</section>
-<section id="connecting-to-ebms" class="level3" data-number="2.5">
-<h3 data-number="2.5" class="anchored" data-anchor-id="connecting-to-ebms"><span class="header-section-number">2.5</span> Connecting to EBMs</h3>
+<p>Energy-Based Models follow the same idea we’ve established earlier: define a <strong>scoring function</strong> <span class="math inline">\(f_\theta(x)\)</span> that assigns high values to likely data points, and then convert these scores into probabilities using an exponential transformation and normalization.<br>
+This allows us to build flexible probabilistic models without needing tractable likelihoods or invertible mappings.</p>
 <p>In Energy-Based Models, we define the unnormalized score using an energy function:</p>
 <p><span class="math display">\[
 g_\theta(x) = \exp(-E_\theta(x))
@@ -337,6 +336,12 @@ g_\theta(x) = \exp(-E_\theta(x))
 p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 \]</span></p>
 <p>Here, <span class="math inline">\(E_\theta(x)\)</span> is the <strong>energy</strong>: lower energy = higher probability.</p>
+<p>We use an <strong>exponential function</strong> because:</p>
+<ul>
+<li>It guarantees non-negativity: <span class="math inline">\(\exp(f_\theta(x)) \geq 0\)</span></li>
+<li>It allows us to interpret <span class="math inline">\(f_\theta(x)\)</span> as an unnormalized log-probability</li>
+<li>It connects naturally to many well-known distributions (e.g., exponential family, Boltzmann distribution)</li>
+</ul>
 <p>To provide a more intuitive interpretation, many implementations define a scoring function <span class="math inline">\(f_\theta(x)\)</span> and relate it to energy:</p>
 <p><span class="math display">\[
 E_\theta(x) = -f_\theta(x) \quad \Rightarrow \quad p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
@@ -346,26 +351,6 @@ E_\theta(x) = -f_\theta(x) \quad \Rightarrow \quad p_\theta(x) = \frac{\exp(f_\t
 <li>Use flexible models to assign <strong>unnormalized scores</strong></li>
 <li>Normalize those scores using the <strong>partition function</strong> <span class="math inline">\(Z(\theta)\)</span></li>
 </ul>
-<p>Energy-Based Models follow the same idea we’ve established earlier: define a <strong>scoring function</strong> <span class="math inline">\(f_\theta(x)\)</span> that assigns high values to likely data points, and then convert these scores into probabilities using an exponential transformation and normalization.<br>
-This allows us to build flexible probabilistic models without needing tractable likelihoods or invertible mappings.</p>
-<p>We use an <strong>exponential function</strong> because:</p>
-<ul>
-<li>It guarantees non-negativity: <span class="math inline">\(\exp(f_\theta(x)) \geq 0\)</span></li>
-<li>It allows us to interpret <span class="math inline">\(f_\theta(x)\)</span> as an unnormalized log-probability</li>
-<li>It connects naturally to many well-known distributions (e.g., exponential family, Boltzmann distribution)</li>
-</ul>
-<p>We define:</p>
-<p><span class="math display">\[
-g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
-\]</span></p>
-<p>To align with the physics intuition that lower energy = higher probability, we define the <strong>energy function</strong> as:</p>
-<p><span class="math display">\[
-E_\theta(x) = -f_\theta(x)
-\]</span></p>
-<p>This gives us the classic EBM form:</p>
-<p><span class="math display">\[
-p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
-\]</span></p>
 <p>This formulation gives EBMs the freedom to use any differentiable function for <span class="math inline">\(f_\theta(x)\)</span>, and only requires that we can compute or approximate its gradients.</p>
 <hr>
 </section>
