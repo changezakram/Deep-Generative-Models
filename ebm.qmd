@@ -107,45 +107,66 @@ Energy functions create **landscapes** over input space — where real data sits
 :::
 ---
 
-### From Scores to Probabilities in EBMs
+## 2.4 From Scores to Probabilities in EBMs
 
-Energy-Based Models follow the same idea we've established earlier: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, and then convert these scores into probabilities using an exponential transformation and normalization.  
-This allows us to build flexible probabilistic models without needing tractable likelihoods or invertible mappings.
+Energy-Based Models (EBMs) follow the same foundational idea we've seen before: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.
 
-In Energy-Based Models, we define the unnormalized score using an energy function:
+This approach allows us to build **flexible probabilistic models** without requiring invertibility or tractable likelihoods.
+
+### From Scores to Unnormalized Probabilities
+
+We begin by using the scoring function $f_\theta(x)$ to define an unnormalized probability score:
 
 $$
-g_\theta(x) = \exp(-E_\theta(x))
+g_\theta(x) = \exp(f_\theta(x))
 $$
 
-This gives us the EBM form:
+This ensures $g_\theta(x) \geq 0$ and allows us to interpret $f_\theta(x)$ as an unnormalized log-probability.
+
+To turn this into a valid probability distribution, we normalize using the **partition function** $Z(\theta)$:
+
+$$
+p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)} = \frac{\exp(f_\theta(x))}{Z(\theta)} \quad \text{where} \quad Z(\theta) = \int \exp(f_\theta(x)) \, dx
+$$
+
+This gives us a valid probability distribution $p_\theta(x)$ even if $f_\theta(x)$ is defined by a neural network or other flexible function.
+
+### Introducing Energy
+
+Many EBMs reframe this using an **energy function** $E_\theta(x)$, where:
+
+$$
+E_\theta(x) = -f_\theta(x)
+$$
+
+Substituting this into our equation gives the classic EBM form:
 
 $$
 p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 $$
 
-Here, $E_\theta(x)$ is the **energy**: lower energy = higher probability.
+In this view, **lower energy means higher probability**.
 
-We use an **exponential function** because:
+---
 
-- It guarantees non-negativity: $\exp(f_\theta(x)) \geq 0$
-- It allows us to interpret $f_\theta(x)$ as an unnormalized log-probability
-- It connects naturally to many well-known distributions (e.g., exponential family, Boltzmann distribution)
+### Why Use the Exponential?
 
+We use the exponential function for three key reasons:
 
-To provide a more intuitive interpretation, many implementations define a scoring function $f_\theta(x)$ and relate it to energy:
+- **Non-negativity**: ensures $\exp(f_\theta(x)) \geq 0$
+- **Interpretability**: allows $f_\theta(x)$ to act like a log-probability
+- **Generality**: connects naturally to known distributions (e.g., Boltzmann, exponential family)
 
-$$
-E_\theta(x) = -f_\theta(x) \quad \Rightarrow \quad p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
-$$
+---
 
-In both cases, the core idea is the same:
+### Summary
 
-- Use flexible models to assign **unnormalized scores**
-- Normalize those scores using the **partition function** $Z(\theta)$
+Whether we express scores directly via $f_\theta(x)$ or indirectly through energy $E_\theta(x)$, the core idea remains the same:
 
-This formulation gives EBMs the freedom to use any differentiable function for $f_\theta(x)$, and only requires that we can compute or approximate its gradients.
+- Use a **flexible model** to assign **unnormalized scores**
+- Normalize with the **partition function** $Z(\theta)$
 
+This gives EBMs the freedom to model complex data distributions using any differentiable function for $f_\theta(x)$ — without the constraints of invertibility or exact likelihoods.
 --- 
 
 ## Practical Applications
