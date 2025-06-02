@@ -95,13 +95,13 @@ Think of $g_\theta(x)$ as a scoring function:
 
 ## 2.3 Energy-Based Parameterization
 
-We’ve just seen how \( g_\theta(x) \) can be any non-negative function. A common and powerful choice is to define it using an exponential transformation:
+We’ve just seen how $g_\theta(x)$ can be any non-negative function. A common and powerful choice is to define it using an exponential transformation:
 
 $$
 g_\theta(x) = \exp(f_\theta(x))
 $$
 
-This ensures that \( g_\theta(x) \geq 0 \) and allows us to interpret \( f_\theta(x) \) as an **unnormalized log-probability score**.
+This ensures that \( g_\theta(x) \geq 0 \) and allows us to interpret $f_\theta(x)$ as an **unnormalized log-probability score**.
 
 We then normalize using the **partition function** \( Z(\theta) \) to obtain a valid probability distribution:
 
@@ -110,7 +110,7 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)} = \frac{\exp(f_\theta(x))}{Z(\theta)
 \quad \text{where} \quad Z(\theta) = \int \exp(f_\theta(x)) \, dx
 $$
 
-This leads to the **energy-based formulation**, where \( f_\theta(x) \) is interpreted as the **negative energy**. We can equivalently write:
+This leads to the **energy-based formulation**, where $f_\theta(x)$ is interpreted as the **negative energy**. We can equivalently write:
 
 $$
 E_\theta(x) = -f_\theta(x)
@@ -118,7 +118,7 @@ E_\theta(x) = -f_\theta(x)
 p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 $$
 
-**Energy-Based Models (EBMs)** follow this foundational idea: define a **scoring function** \( f_\theta(x) \) that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.
+**Energy-Based Models (EBMs)** follow this foundational idea: define a **scoring function** $f_\theta(x)$ that assigns high values to likely data points, then convert those scores into probabilities using exponentiation and normalization.
 
 This perspective offers four key advantages:
 
@@ -127,7 +127,7 @@ This perspective offers four key advantages:
 - It lets us interpret $f_\theta(x)$ as an **unnormalized log-probability**, improving interpretability.  
 - It connects naturally to **well-known distributions** (e.g., exponential family, Boltzmann distribution), making the formulation more general.
 
-This formulation gives us the freedom to model complex distributions with any differentiable scoring function \( f_\theta(x) \), while only requiring that we can compute or approximate its gradients.
+This formulation gives us the freedom to model complex distributions with any differentiable scoring function $f_\theta(x)$, while only requiring that we can compute or approximate its gradients.
 
 ---
 
