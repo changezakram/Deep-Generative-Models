@@ -144,9 +144,14 @@ This gives EBMs the freedom to model complex data distributions using any differ
 
 #### Visualizing Energy Functions
 
-To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where \( x \) and \( y \) are more likely to occur together, and higher energy elsewhere.
+### 2.3.2 Visualizing Energy Functions
 
-![Energy Field](images/energy_field.png)
+Let’s now build visual intuition for what these energy landscapes look like.
+
+Energy-based models capture compatibility between variables using an energy function. 
+In this example (adapted from [Atcold, 2020](https://atcold.github.io/NYU-DLSP20/en/week07/07-1/)), the energy function assigns lower values to pairs of variables $(x, y)$ that are more likely to co-occur — and higher energy elsewhere.
+
+![Source: Atcold, 2020. *NYU Deep Learning Spring 2020 Lecture 7*](images/energy-function.png)
 
 <p class="caption" style="text-align: center; font-size: 0.85em; color: #666;">
   Visualizing the energy landscape $E(x_1, x_2)$ — lower energy corresponds to higher probability.
@@ -155,6 +160,8 @@ To build intuition, consider how EBMs model the compatibility between variables.
 ::: {.callout-note appearance="simple"}
 Energy functions create **landscapes** over input space — where real data sits in valleys and noise sits on peaks.
 :::
+
+This shows how EBMs encode knowledge: valleys indicate high-likelihood (real) data, while peaks represent unlikely (noise) regions.
 
 --- 
 

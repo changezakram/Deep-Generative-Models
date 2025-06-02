@@ -344,11 +344,16 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 </section>
 <section id="visualizing-energy-functions" class="level4" data-number="2.3.2">
 <h4 data-number="2.3.2" class="anchored" data-anchor-id="visualizing-energy-functions"><span class="header-section-number">2.3.2</span> Visualizing Energy Functions</h4>
-<p>To build intuition, consider how EBMs model the compatibility between variables. In the example below, the energy function assigns lower values where ( x ) and ( y ) are more likely to occur together, and higher energy elsewhere.</p>
+</section>
+</section>
+<section id="visualizing-energy-functions-1" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="visualizing-energy-functions-1"><span class="header-section-number">2.4</span> 2.3.2 Visualizing Energy Functions</h3>
+<p>Let’s now build visual intuition for what these energy landscapes look like.</p>
+<p>Energy-based models capture compatibility between variables using an energy function. In this example (adapted from <a href="https://atcold.github.io/NYU-DLSP20/en/week07/07-1/">Atcold, 2020</a>), the energy function assigns lower values to pairs of variables <span class="math inline">\((x, y)\)</span> that are more likely to co-occur — and higher energy elsewhere.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/energy_field.png" class="img-fluid figure-img"></p>
-<figcaption>Energy Field</figcaption>
+<p><img src="images/energy-function.png" class="img-fluid figure-img"></p>
+<figcaption>Source: Atcold, 2020. <em>NYU Deep Learning Spring 2020 Lecture 7</em></figcaption>
 </figure>
 </div>
 <p class="caption" style="text-align: center; font-size: 0.85em; color: #666;">
@@ -364,8 +369,8 @@ Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span
 </div>
 </div>
 </div>
+<p>This shows how EBMs encode knowledge: valleys indicate high-likelihood (real) data, while peaks represent unlikely (noise) regions.</p>
 <hr>
-</section>
 </section>
 </section>
 <section id="practical-applications" class="level2" data-number="3">
