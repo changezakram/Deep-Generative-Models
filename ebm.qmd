@@ -151,7 +151,7 @@ Let’s now build visual intuition for what these energy landscapes look like.
 Energy-based models capture compatibility between variables using an energy function. 
 In this example (adapted from [Atcold, 2020](https://atcold.github.io/NYU-DLSP20/en/week07/07-1/)), the energy function assigns lower values to pairs of variables $(x, y)$ that are more likely to co-occur — and higher energy elsewhere.
 
-![Source: Atcold, 2020. *NYU Deep Learning Spring 2020 Lecture 7*](images/energy_field.png)
+![Visualizing the energy landscape](images/energy_field.png)
 
 *Visualizing the energy landscape $E(x_1, x_2)$ — lower energy corresponds to higher probability.*
 {: .caption }
