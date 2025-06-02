@@ -45,77 +45,75 @@ The next section derives EBMs' theoretical foundation—revealing how they bypas
 
 ---
 
-\section{Math Review}
 
-\subsection{Understanding the Probability Foundation Behind EBMs}
 
-In generative modeling, a valid probability distribution \( p(x) \) must satisfy two basic properties:
+## Math Review
 
-\begin{itemize}
-  \item \textbf{Non-negativity:}
-  \[
+### Understanding the Probability Foundation Behind EBMs
+
+In generative modeling, a valid probability distribution $p(x)$ must satisfy:
+
+- **Non-negativity**:  
+  $$
   p(x) \geq 0
-  \]
-  \item \textbf{Normalization:}
-  \[
+  $$
+
+- **Normalization**:  
+  $$
   \int p(x)\, dx = 1
-  \]
-\end{itemize}
+  $$
 
-While the first condition is easy to satisfy (e.g., using exponentials), ensuring the second—especially with expressive functions like neural networks—is difficult in high-dimensional spaces.
+It’s easy to define functions that satisfy non-negativity (e.g., using exponentials), but ensuring that the function integrates to 1 — especially when using neural networks — is much harder.
 
-\subsection{Why Introduce \( g(x) \) Instead of Modeling \( p(x) \) Directly?}
+---
 
-To simplify modeling, we define a non-negative scoring function \( g_\theta(x) \) and convert it into a probability distribution via normalization:
+### Why Do We Introduce $g(x)$?
 
-\[
+Instead of modeling $p(x)$ directly, we define a flexible, non-negative scoring function $g(x) \geq 0$, and normalize it to obtain a valid probability distribution:
+
+$$
 p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) = \int g_\theta(x)\, dx
-\]
+$$
 
-This formulation separates the two constraints:
+Here:
 
-\begin{itemize}
-  \item \( g_\theta(x) \geq 0 \) ensures non-negativity
-  \item \( Z(\theta) \) enforces normalization
-\end{itemize}
+- $g_\theta(x)$ provides the unnormalized score  
+- $Z(\theta)$ ensures the output forms a proper probability distribution  
 
-\subsection{From Scores to Probabilities in EBMs}
+This trick allows us to use any expressive function for $g_\theta(x)$ — including deep neural networks.
 
-In Energy-Based Models, we define a scoring function \( f_\theta(x) \) and exponentiate it to ensure non-negativity:
+---
 
-\[
-g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
-\]
+### Connecting to EBMs
 
-To align with physical intuition that low energy corresponds to high probability, we define the \emph{energy function}:
+In Energy-Based Models, we define the unnormalized score using an energy function:
 
-\[
-E_\theta(x) = -f_\theta(x)
-\]
+$$
+g_\theta(x) = \exp(-E_\theta(x))
+$$
 
-This yields the classic form of EBMs:
+This gives us the EBM form:
 
-\[
-p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
-\]
+$$
+p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
+$$
 
-\subsection{Why ``Energy''?}
+Here, $E_\theta(x)$ is the **energy**: lower energy = higher probability.
 
-The term “energy” originates from the Boltzmann distribution in statistical mechanics:
+To provide a more intuitive interpretation, many implementations define a scoring function $f_\theta(x)$ and relate it to energy:
 
-\[
-p(x) \propto e^{-E(x)}
-\]
+$$
+E_\theta(x) = -f_\theta(x) \quad \Rightarrow \quad p_\theta(x) = \frac{\exp(f_\theta(x))}{Z(\theta)}
+$$
 
-Low-energy regions correspond to high-probability regions. This aligns with the idea that EBMs should assign low energy to real data and high energy to unlikely inputs.
+In both cases, the core idea is the same:
 
-EBMs are powerful because:
+- Use flexible models to assign **unnormalized scores**
+- Normalize those scores using the **partition function** $Z(\theta)$
 
-\begin{itemize}
-  \item They can use any differentiable \( f_\theta(x) \)
-  \item They do not require tractable likelihoods or invertibility
-  \item Learning can be done via gradients of the energy function
-\end{itemize}
+
+
+
 
 ---
 
