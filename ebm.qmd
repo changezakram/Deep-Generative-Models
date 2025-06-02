@@ -14,12 +14,7 @@ Modern generative models impose strict architectural requirements:
 
 1. **Learning a scoring function** (energy) where it assigns low energy to likely data ($x \sim p_{data}$), and high energy to noise.
 
-<p align="center">
-  <img src="images/energy_field.png" alt="Energy Field" width="500"/>
-</p>
-<p class="caption" style="text-align: center; font-size: 0.85em; color: #666;">
-  Visualizing the energy landscape \(E(x_1, x_2)\) — lower energy corresponds to higher probability.
-</p>
+![Visualizing the energy landscape $E(x_1, x_2)$ — lower energy corresponds to higher probability.](images/energy_field.png)
 
 2. **Linking to probability** via: $p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}, \quad Z(\theta) = \int e^{-E_\theta(x)}\,dx$ 
    

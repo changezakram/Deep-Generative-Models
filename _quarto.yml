@@ -36,3 +36,6 @@ format:
     toc-depth: 2
     number-sections: true
     html-math-method: mathjax
+
+resources:
+  - images
