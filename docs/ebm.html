@@ -255,6 +255,22 @@ Core Principle
 <p>To understand how this works mathematically, we must first answer: <strong>What defines a valid probability distribution?</strong></p>
 <p>The next section derives EBMs’ theoretical foundation—revealing how they bypass traditional limitations while introducing new challenges (like partition function estimation).</p>
 <hr>
+<p>In generative modeling, a valid probability distribution ( p(x) ) must satisfy two basic properties:</p>
+<p>While the first condition is easy to satisfy (e.g., using exponentials), ensuring the second—especially with expressive functions like neural networks—is difficult in high-dimensional spaces.</p>
+<p>To simplify modeling, we define a non-negative scoring function ( g_(x) ) and convert it into a probability distribution via normalization:</p>
+<p>[ p_(x) = , Z() = g_(x), dx ]</p>
+<p>This formulation separates the two constraints:</p>
+<p>In Energy-Based Models, we define a scoring function ( f_(x) ) and exponentiate it to ensure non-negativity:</p>
+<p>[ g_(x) = (f_(x)) p_(x) = ]</p>
+<p>To align with physical intuition that low energy corresponds to high probability, we define the :</p>
+<p>[ E_(x) = -f_(x) ]</p>
+<p>This yields the classic form of EBMs:</p>
+<p>[ p_(x) = ]</p>
+<p>The term “energy” originates from the Boltzmann distribution in statistical mechanics:</p>
+<p>[ p(x) e^{-E(x)} ]</p>
+<p>Low-energy regions correspond to high-probability regions. This aligns with the idea that EBMs should assign low energy to real data and high energy to unlikely inputs.</p>
+<p>EBMs are powerful because:</p>
+<hr>
 </section>
 <section id="math-review" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="math-review"><span class="header-section-number">2</span> Math Review</h2>

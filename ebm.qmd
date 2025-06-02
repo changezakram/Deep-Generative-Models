@@ -45,6 +45,80 @@ The next section derives EBMs' theoretical foundation—revealing how they bypas
 
 ---
 
+\section{Math Review}
+
+\subsection{Understanding the Probability Foundation Behind EBMs}
+
+In generative modeling, a valid probability distribution \( p(x) \) must satisfy two basic properties:
+
+\begin{itemize}
+  \item \textbf{Non-negativity:}
+  \[
+  p(x) \geq 0
+  \]
+  \item \textbf{Normalization:}
+  \[
+  \int p(x)\, dx = 1
+  \]
+\end{itemize}
+
+While the first condition is easy to satisfy (e.g., using exponentials), ensuring the second—especially with expressive functions like neural networks—is difficult in high-dimensional spaces.
+
+\subsection{Why Introduce \( g(x) \) Instead of Modeling \( p(x) \) Directly?}
+
+To simplify modeling, we define a non-negative scoring function \( g_\theta(x) \) and convert it into a probability distribution via normalization:
+
+\[
+p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) = \int g_\theta(x)\, dx
+\]
+
+This formulation separates the two constraints:
+
+\begin{itemize}
+  \item \( g_\theta(x) \geq 0 \) ensures non-negativity
+  \item \( Z(\theta) \) enforces normalization
+\end{itemize}
+
+\subsection{From Scores to Probabilities in EBMs}
+
+In Energy-Based Models, we define a scoring function \( f_\theta(x) \) and exponentiate it to ensure non-negativity:
+
+\[
+g_\theta(x) = \exp(f_\theta(x)) \quad \Rightarrow \quad p_\theta(x) = \frac{e^{f_\theta(x)}}{Z(\theta)}
+\]
+
+To align with physical intuition that low energy corresponds to high probability, we define the \emph{energy function}:
+
+\[
+E_\theta(x) = -f_\theta(x)
+\]
+
+This yields the classic form of EBMs:
+
+\[
+p_\theta(x) = \frac{e^{-E_\theta(x)}}{Z(\theta)}
+\]
+
+\subsection{Why ``Energy''?}
+
+The term “energy” originates from the Boltzmann distribution in statistical mechanics:
+
+\[
+p(x) \propto e^{-E(x)}
+\]
+
+Low-energy regions correspond to high-probability regions. This aligns with the idea that EBMs should assign low energy to real data and high energy to unlikely inputs.
+
+EBMs are powerful because:
+
+\begin{itemize}
+  \item They can use any differentiable \( f_\theta(x) \)
+  \item They do not require tractable likelihoods or invertibility
+  \item Learning can be done via gradients of the energy function
+\end{itemize}
+
+---
+
 ## Math Review
 
 ### Understanding the Probability Foundation Behind EBMs
