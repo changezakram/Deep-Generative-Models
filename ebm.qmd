@@ -10,6 +10,13 @@ Modern generative models impose strict architectural requirements:
 - **GANs** require adversarial networks  
 - **Normalizing flows** must use invertible transforms  
 
+While each model family has strengths, they also carry trade-offs:
+- VAEs often produce blurry samples due to reliance on Gaussian assumptions.
+- GANs can generate high-quality images but are notoriously unstable and suffer from mode collapse.
+- Normalizing Flows guarantee exact likelihoods but restrict architecture design due to invertibility constraints.
+
+---
+
 **Energy-Based Models (EBMs)** break this pattern by:  
 
 1. **Learning a scoring function** (energy) where it assigns low energy to likely or observed data ($x \sim p_{data}$), and high energy to unlikely or unobserved inputs.

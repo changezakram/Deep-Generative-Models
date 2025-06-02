@@ -218,6 +218,8 @@ window.Quarto = {
 </li>
 <li><strong>Normalizing flows</strong> must use invertible transforms</li>
 </ul>
+<p>While each model family has strengths, they also carry trade-offs: - VAEs often produce blurry samples due to reliance on Gaussian assumptions. - GANs can generate high-quality images but are notoriously unstable and suffer from mode collapse. - Normalizing Flows guarantee exact likelihoods but restrict architecture design due to invertibility constraints.</p>
+<hr>
 <p><strong>Energy-Based Models (EBMs)</strong> break this pattern by:</p>
 <ol type="1">
 <li><p><strong>Learning a scoring function</strong> (energy) where it assigns low energy to likely or observed data (<span class="math inline">\(x \sim p_{data}\)</span>), and high energy to unlikely or unobserved inputs.</p></li>
