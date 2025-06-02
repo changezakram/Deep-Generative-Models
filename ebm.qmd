@@ -20,11 +20,6 @@ Modern generative models impose strict architectural requirements:
 
 3. **Using generic neural nets**—no specialized architectures needed   
 
-::: {.callout-note appearance="simple"}
-Energy functions create **landscapes** over input space — where real data sits in valleys and noise sits on peaks.
-:::
-
-
 This approach provides unique advantages:  
 ✓ **Simpler setup** - works with any neural net      
 ✓ **Explicit scoring** - $p(x) \propto e^{-E(x)}$ (energy)        
@@ -93,6 +88,15 @@ To build intuition, consider how EBMs model the compatibility between variables.
 
 ![Energy Field visualization. Source: Atcold, NYU DLSP20](images/energy_field.png)
 
+![Energy Field](images/energy_field.png)
+
+<p class="caption" style="text-align: center; font-size: 0.85em; color: #666;">
+  Visualizing the energy landscape $E(x_1, x_2)$ — lower energy corresponds to higher probability.
+</p>
+
+::: {.callout-note appearance="simple"}
+Energy functions create **landscapes** over input space — where real data sits in valleys and noise sits on peaks.
+:::
 ---
 
 ### From Scores to Probabilities in EBMs

@@ -225,16 +225,6 @@ window.Quarto = {
 <p>where low energy = high probability</p></li>
 <li><p><strong>Using generic neural nets</strong>—no specialized architectures needed</p></li>
 </ol>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Energy functions create <strong>landscapes</strong> over input space — where real data sits in valleys and noise sits on peaks.</p>
-</div>
-</div>
-</div>
 <p>This approach provides unique advantages:<br>
 ✓ <strong>Simpler setup</strong> - works with any neural net<br>
 ✓ <strong>Explicit scoring</strong> - <span class="math inline">\(p(x) \propto e^{-E(x)}\)</span> (energy)<br>
@@ -307,6 +297,25 @@ p_\theta(x) = \frac{g_\theta(x)}{Z(\theta)}, \quad \text{where} \quad Z(\theta) 
 <p><img src="images/energy_field.png" class="img-fluid figure-img"></p>
 <figcaption>Energy Field visualization. Source: Atcold, NYU DLSP20</figcaption>
 </figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/energy_field.png" class="img-fluid figure-img"></p>
+<figcaption>Energy Field</figcaption>
+</figure>
+</div>
+<p class="caption" style="text-align: center; font-size: 0.85em; color: #666;">
+Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span> — lower energy corresponds to higher probability.
+</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Energy functions create <strong>landscapes</strong> over input space — where real data sits in valleys and noise sits on peaks.</p>
+</div>
+</div>
 </div>
 <hr>
 </section>
