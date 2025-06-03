@@ -152,8 +152,7 @@ Energy-based models capture compatibility between variables using an energy func
 In this example (adapted from [Atcold, 2020](https://atcold.github.io/NYU-DLSP20/en/week07/07-1/)), the energy function assigns lower values to pairs of variables $(x, y)$ that are more likely to co-occur — and higher energy elsewhere.
 
 
-![Energy Field](images/energy_field.png)
-*Visualizing the energy landscape $E(x_1, x_2)$ — lower energy corresponds to higher probability.*
+![Source: Du et al., 2020. *Compositional Visual Generation with Energy Based Models*](images/energy_field.png)
 
 
 ::: {.callout-note appearance="simple"}
