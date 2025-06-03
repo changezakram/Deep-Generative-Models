@@ -263,7 +263,7 @@ EBMs don't learn latent features unless explicitly structured (e.g., RBMs).
 
 ## Training Energy-Based Models
 
-EBMs are trained to assign higher scores (lower energy) to correct data points, and lower scores (higher energy) to incorrect ones. This corresponds to **maximizing the likelihood** of training data.
+EBMs are trained to assign higher scores (lower energy) to observed data points, and lower scores (higher energy) to unobserved ones. This corresponds to **maximizing the likelihood** of training data.
 
 $$
 p_\theta(x_{\text{train}}) = \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
