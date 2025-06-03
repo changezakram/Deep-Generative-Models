@@ -216,9 +216,6 @@ $$
 
 This behaves like a logical **AND**: if any expert assigns low score, the overall likelihood drops. This contrasts with mixture models (like Mixture of Gaussians), which behave more like **OR**.
 
-
-#### Example
-
 ::: {.callout-note}
 **Real-World Example**  
 In the figure below (Du et al., 2020), EBMs were used to model attributes like "young", "female", "smiling", and "wavy hair". By combining these via Product of Experts, the model generated faces that satisfied **multiple specific attributes** simultaneously.
