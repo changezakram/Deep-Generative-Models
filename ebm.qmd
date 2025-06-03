@@ -511,10 +511,10 @@ Key ideas:
   $$
   p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
   $$
-- The energy function $E_\theta(x) = -f_\theta(x)$ creates a landscape where **low energy = high probability**.
-- EBMs excel when exact likelihood is unnecessary (e.g., denoising, anomaly detection, structured generation).
-- They support **modular composition** through techniques like Product of Experts (PoE).
-- Training involves score-based contrastive learning, and sampling is powered by MCMC methods.
+- The energy function $E_\theta(x) = -f_\theta(x)$ creates a landscape where **low energy = high probability**.   
+- EBMs excel when exact likelihood is unnecessary (e.g., denoising, anomaly detection, structured generation).   
+- They support **modular composition** through techniques like Product of Experts (PoE).   
+- Training involves score-based contrastive learning, and sampling is powered by MCMC methods.   
 
 Despite challenges like intractable sampling and likelihood computation, EBMs continue to gain traction due to their conceptual clarity, compositional flexibility, and alignment with physics-inspired learning paradigms.
 
