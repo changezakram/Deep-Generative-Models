@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Variational Autoencoders – Deep Generative Models</title>
+<title>Variational Autoencoders</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a14e3238c51140e99ccc48519b6ed9ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,7 +67,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<link rel="stylesheet" href="styles.css">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -99,20 +98,14 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Deep Generative Models</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -120,9 +113,52 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-generative-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Generative Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-generative-models">    
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Recurrent Neural Networks [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Sequence to Sequence Models [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Transformers [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Benchmarking and Evaluation [Coming Soon]</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -134,7 +170,23 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#autoencoders-vs-variational-autoencoders" id="toc-autoencoders-vs-variational-autoencoders" class="nav-link active" data-scroll-target="#autoencoders-vs-variational-autoencoders"><span class="header-section-number">1</span> Autoencoders vs Variational Autoencoders</a></li>
+  <li><a href="#probabilistic-framework" id="toc-probabilistic-framework" class="nav-link" data-scroll-target="#probabilistic-framework"><span class="header-section-number">2</span> Probabilistic Framework</a></li>
+  <li><a href="#estimating-the-marginal-likelihood" id="toc-estimating-the-marginal-likelihood" class="nav-link" data-scroll-target="#estimating-the-marginal-likelihood"><span class="header-section-number">3</span> Estimating the Marginal Likelihood</a></li>
+  <li><a href="#why-variational-inference" id="toc-why-variational-inference" class="nav-link" data-scroll-target="#why-variational-inference"><span class="header-section-number">4</span> Why Variational Inference?</a></li>
+  <li><a href="#training-a-vae" id="toc-training-a-vae" class="nav-link" data-scroll-target="#training-a-vae"><span class="header-section-number">5</span> Training a VAE</a></li>
+  <li><a href="#understanding-the-kl-divergence-term-in-the-vae-loss" id="toc-understanding-the-kl-divergence-term-in-the-vae-loss" class="nav-link" data-scroll-target="#understanding-the-kl-divergence-term-in-the-vae-loss"><span class="header-section-number">6</span> Understanding the KL Divergence Term in the VAE Loss</a></li>
+  <li><a href="#applications-of-vaes" id="toc-applications-of-vaes" class="nav-link" data-scroll-target="#applications-of-vaes"><span class="header-section-number">7</span> Applications of VAEs</a></li>
+  <li><a href="#this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections." id="toc-this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections." class="nav-link" data-scroll-target="#this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections."><span class="header-section-number">8</span> This example is designed to reinforce the theoretical concepts from earlier sections.</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">9</span> Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -158,8 +210,8 @@ window.Quarto = {
 
 
 <p>Variational Autoencoders (VAEs) combine the power of neural networks with probabilistic inference to model complex data distributions. This blog unpacks the intuition, math, and implementation of VAEs — from KL divergence and the ELBO to PyTorch code that generates to generate new images.</p>
-<section id="autoencoders-vs-variational-autoencoders" class="level2">
-<h2 class="anchored" data-anchor-id="autoencoders-vs-variational-autoencoders">Autoencoders vs Variational Autoencoders</h2>
+<section id="autoencoders-vs-variational-autoencoders" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="autoencoders-vs-variational-autoencoders"><span class="header-section-number">1</span> Autoencoders vs Variational Autoencoders</h2>
 <p>Traditional autoencoders learn to compress data into a lower-dimensional representation (latent space) and reconstruct it. However, they fall short in several areas:</p>
 <ul>
 <li>They lack <strong>generative capabilities</strong> — they cannot sample new data effectively</li>
@@ -171,8 +223,8 @@ window.Quarto = {
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Reparameterized_Variational_Autoencoder.png/960px-Reparameterized_Variational_Autoencoder.png" class="img-fluid"></p>
 <p><em>Source: <a href="https://commons.wikimedia.org/wiki/File:Reparameterized_Variational_Autoencoder.png">Wikimedia Commons</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</em></p>
 </section>
-<section id="probabilistic-framework" class="level2">
-<h2 class="anchored" data-anchor-id="probabilistic-framework">Probabilistic Framework</h2>
+<section id="probabilistic-framework" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="probabilistic-framework"><span class="header-section-number">2</span> Probabilistic Framework</h2>
 <p>More formally, VAEs assume the data is generated by a two-step process:</p>
 <ol type="1">
 <li>Sample a latent variable <span class="math inline">\(\mathbf{z} \sim \mathcal{N}(0, I)\)</span></li>
@@ -185,8 +237,8 @@ p(\mathbf{x}|\mathbf{z}) = \mathcal{N}(\mu_\theta(\mathbf{z}), \Sigma_\theta(\ma
   p(\mathbf{x}) = \int p(\mathbf{x}, \mathbf{z}) \, d\mathbf{z}
   \]</span></p>
 <p>This integral requires integrating over all possible values of the latent variable <span class="math inline">\(\mathbf{z}\)</span>, which is often high-dimensional and affects the likelihood in a non-linear way through neural networks. Because of this, computing the marginal likelihood exactly is computationally intractable. This motivates the use of techniques like variational inference and ELBO.</p>
-<section id="computational-challenge" class="level4">
-<h4 class="anchored" data-anchor-id="computational-challenge">Computational Challenge</h4>
+<section id="computational-challenge" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="computational-challenge"><span class="header-section-number">2.1</span> Computational Challenge</h3>
 <p>This integral requires integrating over:</p>
 <ul>
 <li>All possible values of <span class="math inline">\(\mathbf{z}\)</span> (often high-dimensional)</li>
@@ -196,18 +248,18 @@ p(\mathbf{x}|\mathbf{z}) = \mathcal{N}(\mu_\theta(\mathbf{z}), \Sigma_\theta(\ma
 <hr>
 </section>
 </section>
-<section id="estimating-the-marginal-likelihood" class="level2">
-<h2 class="anchored" data-anchor-id="estimating-the-marginal-likelihood">Estimating the Marginal Likelihood</h2>
-<section id="naive-monte-carlo-estimation" class="level3">
-<h3 class="anchored" data-anchor-id="naive-monte-carlo-estimation">Naive Monte Carlo Estimation</h3>
+<section id="estimating-the-marginal-likelihood" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="estimating-the-marginal-likelihood"><span class="header-section-number">3</span> Estimating the Marginal Likelihood</h2>
+<section id="naive-monte-carlo-estimation" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="naive-monte-carlo-estimation"><span class="header-section-number">3.1</span> Naive Monte Carlo Estimation</h3>
 <p>One natural idea is to approximate the integral using samples from a simple distribution like the uniform distribution:</p>
 <p><span class="math display">\[
 p(x) \approx \frac{1}{K} \sum_{j=1}^K p_\theta(x, z_j), \quad z_j \sim \text{Uniform}
 \]</span></p>
 <p>However, this fails in practice. For most values of <span class="math inline">\(z\)</span>, the joint probability <span class="math inline">\(p_\theta(x, z)\)</span> is very low. Only a small region of the latent space contributes significantly to the integral. Since uniform sampling does not concentrate around these regions, the estimator has high variance and rarely “hits” likely values of <span class="math inline">\(z\)</span>.</p>
 </section>
-<section id="importance-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="importance-sampling">Importance Sampling</h3>
+<section id="importance-sampling" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="importance-sampling"><span class="header-section-number">3.2</span> Importance Sampling</h3>
 <p>To address this, we use <strong>importance sampling</strong>, introducing a proposal distribution <span class="math inline">\(q(z)\)</span>:</p>
 <p><span class="math display">\[
 p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
@@ -215,8 +267,8 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 <p>This gives an <strong>unbiased estimator</strong> of <span class="math inline">\(p(x)\)</span> if <span class="math inline">\(q(z)\)</span> is well-chosen (ideally close to <span class="math inline">\(p_\theta(z|x)\)</span>). Intuitively, we sample <span class="math inline">\(z\)</span> more frequently in regions where <span class="math inline">\(p_\theta(x, z)\)</span> is high.</p>
 <hr>
 </section>
-<section id="log-likelihood" class="level3">
-<h3 class="anchored" data-anchor-id="log-likelihood">Log likelihood</h3>
+<section id="log-likelihood" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="log-likelihood"><span class="header-section-number">3.3</span> Log likelihood</h3>
 <p>Our goal is to optimize the <strong>log-likelihood</strong>, and the log of an expectation is not the same as the expectation of the log. That is,</p>
 <p><span class="math display">\[
 \log p(x) = log \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right] \neq \mathbb{E}_{q(z)} \left[ \log \frac{p_\theta(x, z)}{q(z)} \right]
@@ -230,8 +282,8 @@ p(x) = \mathbb{E}_{q(z)} \left[ \frac{p_\theta(x, z)}{q(z)} \right]
 <hr>
 </section>
 </section>
-<section id="why-variational-inference" class="level2">
-<h2 class="anchored" data-anchor-id="why-variational-inference">Why Variational Inference?</h2>
+<section id="why-variational-inference" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="why-variational-inference"><span class="header-section-number">4</span> Why Variational Inference?</h2>
 <p>Computing the true posterior distribution <span class="math inline">\(p(z \mid x)\)</span> is intractable in most cases, because it requires evaluating the marginal likelihood <span class="math inline">\(p(x)\)</span>, which involves integrating over all possible values of <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[
 p(x) = \int p(x, z) \, dz
@@ -243,25 +295,25 @@ D_{\text{KL}}(q(z) \| p(z|x))
 <p>This turns inference into an optimization problem. A key result is the Evidence Lower Bound (ELBO). See next section.</p>
 <hr>
 </section>
-<section id="training-a-vae" class="level2">
-<h2 class="anchored" data-anchor-id="training-a-vae">Training a VAE</h2>
-<section id="elbo-objective" class="level3">
-<h3 class="anchored" data-anchor-id="elbo-objective">ELBO Objective</h3>
+<section id="training-a-vae" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="training-a-vae"><span class="header-section-number">5</span> Training a VAE</h2>
+<section id="elbo-objective" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="elbo-objective"><span class="header-section-number">5.1</span> ELBO Objective</h3>
 <p>Now that we’ve introduced the challenge of approximating the intractable posterior using variational inference, we turn our attention to deriving the Evidence Lower Bound (ELBO). This derivation reveals how optimizing a surrogate objective allows us to approximate the true log-likelihood of the data while keeping the approximate posterior close to the prior. The steps below walk through this formulation.</p>
-<section id="step-1-kl-divergence-objective" class="level5">
-<h5 class="anchored" data-anchor-id="step-1-kl-divergence-objective">Step 1: KL Divergence Objective</h5>
+<section id="kl-divergence-objective" class="level4" data-number="5.1.1">
+<h4 data-number="5.1.1" class="anchored" data-anchor-id="kl-divergence-objective"><span class="header-section-number">5.1.1</span> KL Divergence Objective</h4>
 <p><span class="math display">\[\begin{equation}
 D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 \end{equation}\]</span></p>
 </section>
-<section id="step-2-apply-bayes-rule" class="level5">
-<h5 class="anchored" data-anchor-id="step-2-apply-bayes-rule">Step 2: Apply Bayes’ Rule</h5>
+<section id="apply-bayes-rule" class="level4" data-number="5.1.2">
+<h4 data-number="5.1.2" class="anchored" data-anchor-id="apply-bayes-rule"><span class="header-section-number">5.1.2</span> Apply Bayes’ Rule</h4>
 <p>Substitute <span class="math inline">\(p(z|x; \theta) = \frac{p(z,x;\theta)}{p(x;\theta)}\)</span>: <span class="math display">\[\begin{equation}
 = \sum_z q(z) \log \left( \frac{q(z) \cdot p(x; \theta)}{p(z, x; \theta)} \right)
 \end{equation}\]</span></p>
 </section>
-<section id="step-3-decompose-terms" class="level5">
-<h5 class="anchored" data-anchor-id="step-3-decompose-terms">Step 3: Decompose Terms</h5>
+<section id="decompose-terms" class="level4" data-number="5.1.3">
+<h4 data-number="5.1.3" class="anchored" data-anchor-id="decompose-terms"><span class="header-section-number">5.1.3</span> Decompose Terms</h4>
 <p><span class="math display">\[\begin{align}
 &amp;= \sum_z q(z) \log q(z) + \sum_z q(z) \log p(x; \theta) \nonumber \\
 &amp;\quad - \sum_z q(z) \log p(z, x; \theta) \\
@@ -275,8 +327,8 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <p>Entropy measures the amount of uncertainty or “spread” in a distribution. A high-entropy <span class="math inline">\(q(z)\)</span> places probability mass across a wide region of the latent space, while a low-entropy <span class="math inline">\(q(z)\)</span> is more concentrated. This decomposition is key to understanding the KL divergence term in the ELBO.</p>
 </blockquote>
 </section>
-<section id="step-4-rearrange-for-elbo" class="level5">
-<h5 class="anchored" data-anchor-id="step-4-rearrange-for-elbo">Step 4: Rearrange for ELBO</h5>
+<section id="rearrange-for-elbo" class="level4" data-number="5.1.4">
+<h4 data-number="5.1.4" class="anchored" data-anchor-id="rearrange-for-elbo"><span class="header-section-number">5.1.4</span> Rearrange for ELBO</h4>
 <p><span class="math display">\[
 \log p(x; \theta) =
 \underbrace{
@@ -288,8 +340,8 @@ D_{KL}(q(z)\|p(z|x; \theta)) = \sum_z q(z) \log \frac{q(z)}{p(z|x; \theta)}
 <p><img src="https://deepgenerativemodels.github.io/notes/vae/klgap.png" class="img-fluid"> <em>Visualizing how <span class="math inline">\(\log p(x)\)</span> decomposes into the ELBO and KL divergence.</em><br>
 Source: <a href="https://deepgenerativemodels.github.io/notes/vae/">deepgenerativemodels.github.io</a></p>
 </section>
-<section id="key-results" class="level5">
-<h5 class="anchored" data-anchor-id="key-results">Key Results</h5>
+<section id="key-results" class="level4" data-number="5.1.5">
+<h4 data-number="5.1.5" class="anchored" data-anchor-id="key-results"><span class="header-section-number">5.1.5</span> Key Results</h4>
 <ol type="1">
 <li><p><strong>Evidence Lower Bound (ELBO)</strong>: <span class="math display">\[\begin{equation}
 \mathcal{L}(\theta,\phi) = \mathbb{E}_{q(z;\phi)}[\log p(x,z;\theta)] + H(q(z;\phi))
@@ -305,16 +357,16 @@ Source: <a href="https://deepgenerativemodels.github.io/notes/vae/">deepgenerati
 </section>
 </section>
 </section>
-<section id="understanding-the-kl-divergence-term-in-the-vae-loss" class="level2">
-<h2 class="anchored" data-anchor-id="understanding-the-kl-divergence-term-in-the-vae-loss">Understanding the KL Divergence Term in the VAE Loss</h2>
+<section id="understanding-the-kl-divergence-term-in-the-vae-loss" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="understanding-the-kl-divergence-term-in-the-vae-loss"><span class="header-section-number">6</span> Understanding the KL Divergence Term in the VAE Loss</h2>
 <p>In a VAE, the KL divergence term <strong>penalizes the encoder</strong> for producing latent distributions that deviate too far from the standard normal prior. This regularization has several important benefits:</p>
 <ul>
 <li>It ensures that the latent space has a <strong>consistent structure</strong>, enabling meaningful sampling and interpolation.</li>
 <li>It helps avoid <strong>large gaps between clusters</strong> in latent space by encouraging the encoder to distribute representations more uniformly.</li>
 <li>It pushes the model to use the space around the origin more symmetrically and efficiently.</li>
 </ul>
-<section id="balancing-kl-divergence-and-reconstruction" class="level3">
-<h3 class="anchored" data-anchor-id="balancing-kl-divergence-and-reconstruction">Balancing KL Divergence and Reconstruction</h3>
+<section id="balancing-kl-divergence-and-reconstruction" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="balancing-kl-divergence-and-reconstruction"><span class="header-section-number">6.1</span> Balancing KL Divergence and Reconstruction</h3>
 <p>In a Variational Autoencoder, the loss balances two goals:</p>
 <ol type="1">
 <li><strong>Reconstruction</strong> — making the output resemble the input</li>
@@ -325,16 +377,16 @@ Source: <a href="https://deepgenerativemodels.github.io/notes/vae/">deepgenerati
 \mathcal{L}_{\text{VAE}} = \text{Reconstruction Loss} + \beta \cdot D_{\text{KL}}(q(z|x) \,\|\, p(z))
 \]</span></p>
 <p>The parameter <span class="math inline">\(\beta\)</span> controls how strongly we enforce this regularization. Getting its value right is critical.</p>
-<section id="when-beta-is-too-low" class="level4">
-<h4 class="anchored" data-anchor-id="when-beta-is-too-low">When <span class="math inline">\(\beta\)</span> is too low:</h4>
+<section id="when-beta-is-too-low" class="level4" data-number="6.1.1">
+<h4 data-number="6.1.1" class="anchored" data-anchor-id="when-beta-is-too-low"><span class="header-section-number">6.1.1</span> When <span class="math inline">\(\beta\)</span> is too low:</h4>
 <ul>
 <li>The model mostly ignores the KL term, behaving like a plain autoencoder</li>
 <li>The latent space becomes disorganized or fragmented</li>
 <li>Sampling from the prior <span class="math inline">\(p(z) = \mathcal{N}(0, I)\)</span> results in <strong>unrealistic or broken outputs</strong></li>
 </ul>
 </section>
-<section id="when-beta-is-too-high" class="level4">
-<h4 class="anchored" data-anchor-id="when-beta-is-too-high">When <span class="math inline">\(\beta\)</span> is too high:</h4>
+<section id="when-beta-is-too-high" class="level4" data-number="6.1.2">
+<h4 data-number="6.1.2" class="anchored" data-anchor-id="when-beta-is-too-high"><span class="header-section-number">6.1.2</span> When <span class="math inline">\(\beta\)</span> is too high:</h4>
 <ul>
 <li>The encoder is forced to keep <span class="math inline">\(q(z|x)\)</span> too close to the prior</li>
 <li>It encodes less information about the input</li>
@@ -346,8 +398,8 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 </blockquote>
 </section>
 </section>
-<section id="gradient-challenge" class="level3">
-<h3 class="anchored" data-anchor-id="gradient-challenge">Gradient Challenge</h3>
+<section id="gradient-challenge" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="gradient-challenge"><span class="header-section-number">6.2</span> Gradient Challenge</h3>
 <p>In variational inference, we approximate the true posterior <span class="math inline">\(p(z|x)\)</span> with a tractable distribution <span class="math inline">\(q_\phi(z)\)</span>. This allows us to optimize the ELBO:</p>
 <p><span class="math display">\[
 \mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q(z; \phi)} \left[ \log p(z, x; \theta) - \log q(z; \phi) \right]
@@ -360,8 +412,8 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <p>This gradient is hard to compute directly because we’re sampling from a distribution that depends on the parameters we’re trying to update.</p>
 <hr>
 </section>
-<section id="the-reparameterization-trick" class="level3">
-<h3 class="anchored" data-anchor-id="the-reparameterization-trick">The Reparameterization Trick</h3>
+<section id="the-reparameterization-trick" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="the-reparameterization-trick"><span class="header-section-number">6.3</span> The Reparameterization Trick</h3>
 <p>To make this expression differentiable, we <strong>reparameterize</strong> the random variable <span class="math inline">\(z\)</span> as a deterministic transformation of a parameter-free noise variable <span class="math inline">\(\epsilon\)</span>:</p>
 <p><span class="math display">\[
 \epsilon \sim \mathcal{N}(0, I), \quad z = \mu_\phi(x) + \sigma_\phi(x) \cdot \epsilon
@@ -383,8 +435,8 @@ A well-tuned <span class="math inline">\(\beta\)</span> helps the VAE both recon
 <li>In the <strong>original formulation</strong>, <span class="math inline">\(z\)</span> is sampled directly from a learned distribution, breaking the gradient flow.</li>
 <li>In the <strong>reparameterized formulation</strong>, we sample noise <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span>, and compute <span class="math inline">\(z = \mu + \sigma \cdot \epsilon\)</span>, making the sampling path fully differentiable.</li>
 </ul>
-<section id="monte-carlo-approximation" class="level4">
-<h4 class="anchored" data-anchor-id="monte-carlo-approximation">Monte Carlo Approximation</h4>
+<section id="monte-carlo-approximation" class="level4" data-number="6.3.1">
+<h4 data-number="6.3.1" class="anchored" data-anchor-id="monte-carlo-approximation"><span class="header-section-number">6.3.1</span> Monte Carlo Approximation</h4>
 <p>We approximate the expectation using Monte Carlo sampling:</p>
 <p><span class="math display">\[
 \mathbb{E}_{\epsilon}[\log p_\theta(x, z) - \log q_\phi(z)] \approx \frac{1}{K} \sum_{k=1}^K \left[\log p_\theta(x, z^{(k)}) - \log q_\phi(z^{(k)})\right]
@@ -396,8 +448,8 @@ z^{(k)} = \mu_\phi(x) + \sigma_\phi(x) \cdot \epsilon^{(k)}, \quad \epsilon^{(k)
 <p>This enables us to compute gradients using backpropagation.</p>
 <hr>
 </section>
-<section id="summary" class="level4">
-<h4 class="anchored" data-anchor-id="summary">Summary</h4>
+<section id="summary" class="level4" data-number="6.3.2">
+<h4 data-number="6.3.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.3.2</span> Summary</h4>
 <ul>
 <li>Variational inference introduces a gradient challenge because <span class="math inline">\(q_\phi(z)\)</span> depends on <span class="math inline">\(\phi\)</span></li>
 <li>The reparameterization trick expresses <span class="math inline">\(z\)</span> as a differentiable function of noise and <span class="math inline">\(\phi\)</span></li>
@@ -406,15 +458,15 @@ z^{(k)} = \mu_\phi(x) + \sigma_\phi(x) \cdot \epsilon^{(k)}, \quad \epsilon^{(k)
 <hr>
 </section>
 </section>
-<section id="amortized-inference" class="level3">
-<h3 class="anchored" data-anchor-id="amortized-inference">Amortized Inference</h3>
+<section id="amortized-inference" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="amortized-inference"><span class="header-section-number">6.4</span> Amortized Inference</h3>
 <p>In classical variational inference, we introduce a separate set of variational parameters <span class="math inline">\(\phi^i\)</span> for each datapoint <span class="math inline">\(x^i\)</span> to approximate the true posterior <span class="math inline">\(p(z|x^i)\)</span>. However:</p>
 <blockquote class="blockquote">
 <p>Optimizing a separate <span class="math inline">\(\phi^i\)</span> for every datapoint is computationally expensive and does not scale to large datasets.</p>
 </blockquote>
 <hr>
-<section id="the-key-idea-amortization" class="level4">
-<h4 class="anchored" data-anchor-id="the-key-idea-amortization">The Key Idea: Amortization</h4>
+<section id="the-key-idea-amortization" class="level4" data-number="6.4.1">
+<h4 data-number="6.4.1" class="anchored" data-anchor-id="the-key-idea-amortization"><span class="header-section-number">6.4.1</span> The Key Idea: Amortization</h4>
 <p>Instead of learning and storing a separate <span class="math inline">\(\phi^i\)</span> for every datapoint, we learn a <strong>single parametric function</strong> <span class="math inline">\(f_\phi(x)\)</span> — typically a neural network — that maps each input <span class="math inline">\(x\)</span> to the parameters of the approximate posterior:</p>
 <p><span class="math display">\[
 q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
@@ -424,15 +476,15 @@ q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
 <hr>
 </section>
 </section>
-<section id="training-with-amortized-inference" class="level3">
-<h3 class="anchored" data-anchor-id="training-with-amortized-inference">Training with Amortized Inference</h3>
+<section id="training-with-amortized-inference" class="level3" data-number="6.5">
+<h3 data-number="6.5" class="anchored" data-anchor-id="training-with-amortized-inference"><span class="header-section-number">6.5</span> Training with Amortized Inference</h3>
 <p>Our training objective remains the ELBO:</p>
 <p><span class="math display">\[
 \mathcal{L}(x; \theta, \phi) = \mathbb{E}_{q_\phi(z|x)}\left[\log p_\theta(x, z) - \log q_\phi(z|x)\right]
 \]</span></p>
 <p>We optimize both <span class="math inline">\(\theta\)</span> (decoder parameters) and <span class="math inline">\(\phi\)</span> (encoder parameters) using stochastic gradient descent.</p>
-<section id="algorithm" class="level4">
-<h4 class="anchored" data-anchor-id="algorithm">Algorithm:</h4>
+<section id="algorithm" class="level4" data-number="6.5.1">
+<h4 data-number="6.5.1" class="anchored" data-anchor-id="algorithm"><span class="header-section-number">6.5.1</span> Algorithm:</h4>
 <ol type="1">
 <li><p><strong>Initialize</strong> <span class="math inline">\(\theta^{(0)}, \phi^{(0)}\)</span></p></li>
 <li><p>Sample a datapoint <span class="math inline">\(x^i\)</span></p></li>
@@ -452,8 +504,8 @@ q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
 <hr>
 </section>
 </section>
-<section id="summary-1" class="level3">
-<h3 class="anchored" data-anchor-id="summary-1">Summary</h3>
+<section id="summary-1" class="level3" data-number="6.6">
+<h3 data-number="6.6" class="anchored" data-anchor-id="summary-1"><span class="header-section-number">6.6</span> Summary</h3>
 <ul>
 <li>Amortized inference replaces per-datapoint optimization with a single learned mapping <span class="math inline">\(f_\phi(x)\)</span></li>
 <li>This makes variational inference scalable and efficient</li>
@@ -465,8 +517,8 @@ q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
 <hr>
 </section>
 </section>
-<section id="applications-of-vaes" class="level2">
-<h2 class="anchored" data-anchor-id="applications-of-vaes">Applications of VAEs</h2>
+<section id="applications-of-vaes" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="applications-of-vaes"><span class="header-section-number">7</span> Applications of VAEs</h2>
 <p>Variational Autoencoders are widely used in:</p>
 <ul>
 <li><strong>Image Generation</strong>: VAEs can generate new images similar to the training data (e.g., MNIST digits)<br>
@@ -475,8 +527,8 @@ q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
 </li>
 <li><strong>Representation Learning</strong>: Latent space captures features for downstream tasks</li>
 </ul>
-<section id="face-generation-with-convolutional-vae" class="level3">
-<h3 class="anchored" data-anchor-id="face-generation-with-convolutional-vae">😎 Face Generation with Convolutional VAE</h3>
+<section id="face-generation-with-convolutional-vae" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="face-generation-with-convolutional-vae"><span class="header-section-number">7.1</span> 😎 Face Generation with Convolutional VAE</h3>
 <p>To complement the theory, I’ve built a full PyTorch implementation of a Variational Autoencoder trained on the CelebA dataset.</p>
 <p>📘 The notebook walks through:</p>
 <ul>
@@ -492,11 +544,11 @@ q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
 📓 <a href="https://github.com/changezakram/Deep-Generative-Models/blob/main/vae_faces.ipynb">View on GitHub</a></p>
 </section>
 </section>
-<section id="this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections." class="level2">
-<h2 class="anchored" data-anchor-id="this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections.">This example is designed to reinforce the theoretical concepts from earlier sections.</h2>
+<section id="this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections." class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="this-example-is-designed-to-reinforce-the-theoretical-concepts-from-earlier-sections."><span class="header-section-number">8</span> This example is designed to reinforce the theoretical concepts from earlier sections.</h2>
 </section>
-<section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<section id="further-reading" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">9</span> Further Reading</h2>
 <p>For readers interested in diving deeper into the theory and applications of variational autoencoders, the following resources are recommended:</p>
 <ul>
 <li><p><strong>Tutorial on Variational Autoencoders</strong><br>
@@ -588,7 +640,7 @@ q_\phi(z|x) = \mathcal{N}\left(\mu_\phi(x), \sigma^2_\phi(x)\right)
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/changezakram\.github\.io\/Deep-Generative-Models\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

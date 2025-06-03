@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a14e3238c51140e99ccc48519b6ed9ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,23 +67,16 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<link rel="stylesheet" href="styles.css">
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Deep Generative Models</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -91,9 +84,52 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-generative-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Generative Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-generative-models">    
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Recurrent Neural Networks [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Sequence to Sequence Models [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Transformers [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Benchmarking and Evaluation [Coming Soon]</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -105,7 +141,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#key-model-families" id="toc-key-model-families" class="nav-link active" data-scroll-target="#key-model-families"><span class="header-section-number">1</span> Key Model Families</a></li>
+  <li><a href="#industry-use-cases" id="toc-industry-use-cases" class="nav-link" data-scroll-target="#industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -128,57 +173,131 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Welcome to my deep generative models resource. This site covers:</p>
-</section>
-<section id="key-model-families" class="level2">
-<h2 class="anchored" data-anchor-id="key-model-families">Key Model Families</h2>
-<section id="variational-autoencoders-vaes" class="level3">
-<h3 class="anchored" data-anchor-id="variational-autoencoders-vaes">1. Variational Autoencoders (VAEs)</h3>
+<p>Deep generative models learn complex data distributions and generate realistic new content using probabilistic and neural techniques.</p>
+<p>Explore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.</p>
+<blockquote class="blockquote">
+<p>Learn by building · Backed by math · Inspired by real-world problems</p>
+</blockquote>
+<section id="key-model-families" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="key-model-families"><span class="header-section-number">1</span> Key Model Families</h2>
+<details>
+<summary>
+<strong> Variational Autoencoders (VAEs)</strong>
+</summary>
 <ul>
-<li>Probabilistic encoder-decoder architecture</li>
-<li>Learn latent spaces with Gaussian distributions</li>
-<li><a href="vae.html">Learn more about VAEs</a></li>
+<li><strong>Core Idea</strong>: Encode input to a latent space and reconstruct it while optimizing a lower bound on likelihood (ELBO).</li>
+<li><strong>Likelihood</strong>: Approximate (variational lower bound).</li>
+<li><strong>Sampling</strong>: Fast — sample latent vector and decode.</li>
+<li><strong>Use Cases</strong>: Representation learning, image generation.</li>
+<li><strong>Example Models</strong>: β-VAE, Conditional VAE</li>
+<li><a href="./vae.html">Go to VAE write-up →</a></li>
 </ul>
-</section>
-<section id="autoregressive-models" class="level3">
-<h3 class="anchored" data-anchor-id="autoregressive-models">2. Autoregressive Models</h3>
+</details>
+<details>
+<summary>
+<strong> Generative Adversarial Networks (GANs)</strong>
+</summary>
 <ul>
-<li>Generate sequences element-by-element</li>
-<li>Examples: PixelCNN, WaveNet</li>
+<li><strong>Core Idea</strong>: A generator and discriminator compete in a minimax game to produce realistic samples.</li>
+<li><strong>Likelihood</strong>: None (implicit model).</li>
+<li><strong>Sampling</strong>: Fast — sample latent vector and pass through generator.</li>
+<li><strong>Use Cases</strong>: High-quality image generation, style transfer.</li>
+<li><strong>Example Models</strong>: StyleGAN, CycleGAN</li>
+<li>[Go to GAN write-up →]</li>
 </ul>
-</section>
-<section id="generative-adversarial-networks-gans" class="level3">
-<h3 class="anchored" data-anchor-id="generative-adversarial-networks-gans">3. Generative Adversarial Networks (GANs)</h3>
+</details>
+<details>
+<summary>
+<strong> Autoregressive Models</strong>
+</summary>
 <ul>
-<li>Adversarial training with generator/discriminator</li>
-<li>High-quality image generation</li>
+<li><strong>Core Idea</strong>: Factor the joint distribution as a product of conditional probabilities.</li>
+<li><strong>Likelihood</strong>: Exact.</li>
+<li><strong>Sampling</strong>: Slow — token-by-token generation.</li>
+<li><strong>Use Cases</strong>: Language modeling, code generation, time series.</li>
+<li><strong>Example Models</strong>: GPT, PixelRNN</li>
+<li>[Go to Autoregressive Models →]</li>
 </ul>
-</section>
-<section id="normalizing-flows" class="level3">
-<h3 class="anchored" data-anchor-id="normalizing-flows">4. Normalizing Flows</h3>
+</details>
+<details>
+<summary>
+<strong> Normalizing Flows</strong>
+</summary>
 <ul>
-<li>Invertible transformations for exact likelihood</li>
-<li>Flexible density estimation</li>
+<li><strong>Core Idea</strong>: Learn invertible transformations of latent variables using the change-of-variable formula.</li>
+<li><strong>Likelihood</strong>: Exact and tractable.</li>
+<li><strong>Sampling</strong>: Fast — sample from base distribution and invert.</li>
+<li><strong>Use Cases</strong>: Density estimation, latent space modeling.</li>
+<li><strong>Example Models</strong>: RealNVP, Glow</li>
+<li><a href="./flows.html">Go to Flow Models →</a></li>
 </ul>
-</section>
-<section id="energy-based-models-ebms" class="level3">
-<h3 class="anchored" data-anchor-id="energy-based-models-ebms">5. Energy-Based Models (EBMs)</h3>
+</details>
+<details>
+<summary>
+<strong> Energy-Based Models (EBMs)</strong>
+</summary>
 <ul>
-<li>Learn energy functions for data distribution</li>
-<li>Flexible for discrete/continuous data</li>
+<li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = higher probability.</li>
+<li><strong>Likelihood</strong>: Unnormalized (intractable partition function).</li>
+<li><strong>Sampling</strong>: Very slow — requires MCMC or Langevin dynamics.</li>
+<li><strong>Use Cases</strong>: Uncertainty modeling, compositional generation.</li>
+<li><strong>Example Models</strong>: Score-based EBMs</li>
+<li><a href="./ebm.html">Go to EBMs →</a></li>
 </ul>
-</section>
-<section id="diffusion-models" class="level3">
-<h3 class="anchored" data-anchor-id="diffusion-models">6. Diffusion Models</h3>
+</details>
+<details>
+<summary>
+<strong> Diffusion Models</strong>
+</summary>
 <ul>
-<li>Iterative denoising process</li>
-<li>State-of-the-art image generation</li>
+<li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
+<li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
+<li><strong>Sampling</strong>: Slow — requires hundreds of reverse steps.</li>
+<li><strong>Use Cases</strong>: High-resolution image and audio generation.</li>
+<li><strong>Example Models</strong>: Stable Diffusion</li>
+<li>[Go to Diffusion Models →]</li>
 </ul>
+</details>
+</section>
+<section id="industry-use-cases" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</h2>
+<details>
+<summary>
+<strong>Banking</strong>
+</summary>
+<ul>
+<li><strong>Customer Service</strong> — Autoregressive Models (e.g., GPT)<br>
+</li>
+<li><strong>Fraud Detection</strong> — Energy-Based Models<br>
+</li>
+<li><strong>Operational Efficiency</strong> — RAG for document automation and summarization<br>
+</li>
+<li><strong>Business Intelligence</strong> — VAE for anomaly detection in transaction patterns</li>
+<li><strong>Marketing</strong> — GANs for personalized message generation and segmentation</li>
+</ul>
+<p>Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.<br>
+<a href="gen-ai-use-cases/banking-use-cases.html">View full Banking use cases →</a></p>
+</details>
+<details>
+<summary>
+<strong>Healthcare</strong>
+</summary>
+<ul>
+<li><strong>Clinical Documentation</strong> — Autoregressive Models (e.g., GPT-4), RAG (Nuance DAX)<br>
+</li>
+<li><strong>Medical Imaging</strong> — Diffusion Models for image enhancement<br>
+</li>
+<li><strong>Diagnostics &amp; Triage</strong> — VAEs for uncertainty-aware diagnosis<br>
+</li>
+<li><strong>Patient Education</strong> — Conversational AI built on large language models<br>
+</li>
+<li><strong>Drug Discovery</strong> — Normalizing Flows for molecular sampling and VAEs for molecule generation</li>
+</ul>
+<p>Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.<br>
+<a href="gen-ai-use-cases/healthcare-use-cases.html">View full Healthcare use cases →</a></p>
+</details>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -254,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/changezakram\.github\.io\/Deep-Generative-Models\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

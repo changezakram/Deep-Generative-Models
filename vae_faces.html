@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Face Generation with Convolutional VAE – Deep Generative Models</title>
+<title>Face Generation with Convolutional VAE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a14e3238c51140e99ccc48519b6ed9ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,23 +102,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link rel="stylesheet" href="styles.css">
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Deep Generative Models</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -126,9 +119,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-generative-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Generative Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-generative-models">    
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Recurrent Neural Networks [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Sequence to Sequence Models [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Transformers [Coming Soon]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coming-soon.html">
+ <span class="dropdown-text">Benchmarking and Evaluation [Coming Soon]</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -140,7 +176,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#loading-and-preprocessing-the-celeba-dataset" id="toc-loading-and-preprocessing-the-celeba-dataset" class="nav-link active" data-scroll-target="#loading-and-preprocessing-the-celeba-dataset"><span class="header-section-number">0.1</span> Loading and Preprocessing the CelebA Dataset</a></li>
+  <li><a href="#visualizing-training-data" id="toc-visualizing-training-data" class="nav-link" data-scroll-target="#visualizing-training-data"><span class="header-section-number">0.2</span> Visualizing Training Data</a></li>
+  <li><a href="#reparameterization-trick" id="toc-reparameterization-trick" class="nav-link" data-scroll-target="#reparameterization-trick"><span class="header-section-number">0.3</span> Reparameterization Trick</a></li>
+  <li><a href="#encoder" id="toc-encoder" class="nav-link" data-scroll-target="#encoder"><span class="header-section-number">0.4</span> Encoder</a></li>
+  <li><a href="#decoder" id="toc-decoder" class="nav-link" data-scroll-target="#decoder"><span class="header-section-number">1</span> Decoder</a>
+  <ul class="collapse">
+  <li><a href="#vae-model-wrapper-encoder-reparameterization-and-decoder" id="toc-vae-model-wrapper-encoder-reparameterization-and-decoder" class="nav-link" data-scroll-target="#vae-model-wrapper-encoder-reparameterization-and-decoder"><span class="header-section-number">1.1</span> VAE Model Wrapper: Encoder, Reparameterization, and Decoder</a></li>
+  <li><a href="#vae-loss" id="toc-vae-loss" class="nav-link" data-scroll-target="#vae-loss"><span class="header-section-number">1.2</span> VAE Loss</a></li>
+  <li><a href="#generating-and-saving-sample-images-from-the-latent-space" id="toc-generating-and-saving-sample-images-from-the-latent-space" class="nav-link" data-scroll-target="#generating-and-saving-sample-images-from-the-latent-space"><span class="header-section-number">1.3</span> Generating and Saving Sample Images from the Latent Space</a></li>
+  <li><a href="#save-checkpoint" id="toc-save-checkpoint" class="nav-link" data-scroll-target="#save-checkpoint"><span class="header-section-number">1.4</span> Save Checkpoint</a></li>
+  <li><a href="#training-step" id="toc-training-step" class="nav-link" data-scroll-target="#training-step"><span class="header-section-number">1.5</span> Training Step</a></li>
+  <li><a href="#validation-step" id="toc-validation-step" class="nav-link" data-scroll-target="#validation-step"><span class="header-section-number">1.6</span> Validation Step</a></li>
+  <li><a href="#instantiate-model-optimizer-writer-device" id="toc-instantiate-model-optimizer-writer-device" class="nav-link" data-scroll-target="#instantiate-model-optimizer-writer-device"><span class="header-section-number">1.7</span> Instantiate model, optimizer, writer, device</a></li>
+  <li><a href="#training-the-vae-model" id="toc-training-the-vae-model" class="nav-link" data-scroll-target="#training-the-vae-model"><span class="header-section-number">1.8</span> Training the VAE Model</a></li>
+  <li><a href="#reconstruct-using-the-variational-autoencoder" id="toc-reconstruct-using-the-variational-autoencoder" class="nav-link" data-scroll-target="#reconstruct-using-the-variational-autoencoder"><span class="header-section-number">1.9</span> Reconstruct using the variational autoencoder</a></li>
+  <li><a href="#generate-new-faces" id="toc-generate-new-faces" class="nav-link" data-scroll-target="#generate-new-faces"><span class="header-section-number">1.10</span> Generate New Faces</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -201,8 +261,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>EPOCHS <span class="op">=</span> <span class="dv">1</span>             <span class="co"># Number of training epochs</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>BETA <span class="op">=</span> <span class="dv">2000</span>            <span class="co"># Weight for KL divergence term in loss (used in beta-VAE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="loading-and-preprocessing-the-celeba-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="loading-and-preprocessing-the-celeba-dataset">Loading and Preprocessing the CelebA Dataset</h2>
+<section id="loading-and-preprocessing-the-celeba-dataset" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="loading-and-preprocessing-the-celeba-dataset"><span class="header-section-number">0.1</span> Loading and Preprocessing the CelebA Dataset</h2>
 <div id="UMh4HcTJ0sUD" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.datasets <span class="im">import</span> CelebA</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> transforms</span>
@@ -248,8 +308,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualizing-training-data" class="level2">
-<h2 class="anchored" data-anchor-id="visualizing-training-data">Visualizing Training Data</h2>
+<section id="visualizing-training-data" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="visualizing-training-data"><span class="header-section-number">0.2</span> Visualizing Training Data</h2>
 <div id="5i8uzC-K1wqP" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_batch(dataloader, num_samples<span class="op">=</span><span class="dv">16</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -286,8 +346,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="reparameterization-trick" class="level2">
-<h2 class="anchored" data-anchor-id="reparameterization-trick">Reparameterization Trick</h2>
+<section id="reparameterization-trick" class="level2" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="reparameterization-trick"><span class="header-section-number">0.3</span> Reparameterization Trick</h2>
 <div id="uoITR8r74_Wr" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reparameterize(z_mean, z_log_var):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -299,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z_mean <span class="op">+</span> eps <span class="op">*</span> std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="encoder" class="level2">
-<h2 class="anchored" data-anchor-id="encoder">Encoder</h2>
+<section id="encoder" class="level2" data-number="0.4">
+<h2 data-number="0.4" class="anchored" data-anchor-id="encoder"><span class="header-section-number">0.4</span> Encoder</h2>
 <div id="-qGLVIcL5Gpa" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Encoder(nn.Module):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, z_dim):</span>
@@ -338,8 +398,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> mu, logvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="decoder" class="level1">
-<h1>Decoder</h1>
+<section id="decoder" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Decoder</h1>
 <div id="gPly0u8U5NB4" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Decoder(nn.Module):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, z_dim):</span>
@@ -379,8 +439,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.deconv(x)</span>
 <span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="vae-model-wrapper-encoder-reparameterization-and-decoder" class="level2">
-<h2 class="anchored" data-anchor-id="vae-model-wrapper-encoder-reparameterization-and-decoder">VAE Model Wrapper: Encoder, Reparameterization, and Decoder</h2>
+<section id="vae-model-wrapper-encoder-reparameterization-and-decoder" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="vae-model-wrapper-encoder-reparameterization-and-decoder"><span class="header-section-number">1.1</span> VAE Model Wrapper: Encoder, Reparameterization, and Decoder</h2>
 <div id="5FqrCD9m7Q3G" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VAE(nn.Module):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, encoder, decoder):</span>
@@ -410,8 +470,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x_recon, mu, logvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="vae-loss" class="level2">
-<h2 class="anchored" data-anchor-id="vae-loss">VAE Loss</h2>
+<section id="vae-loss" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="vae-loss"><span class="header-section-number">1.2</span> VAE Loss</h2>
 <div id="8ugUltz_8SOl" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vae_loss(x, x_recon, mu, logvar, beta<span class="op">=</span>BETA):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -427,8 +487,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> recon_loss <span class="op">+</span> kl_loss, recon_loss, kl_loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="generating-and-saving-sample-images-from-the-latent-space" class="level2">
-<h2 class="anchored" data-anchor-id="generating-and-saving-sample-images-from-the-latent-space">Generating and Saving Sample Images from the Latent Space</h2>
+<section id="generating-and-saving-sample-images-from-the-latent-space" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="generating-and-saving-sample-images-from-the-latent-space"><span class="header-section-number">1.3</span> Generating and Saving Sample Images from the Latent Space</h2>
 <div id="00UKQ6uvCV1L" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.utils <span class="im">import</span> save_image</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -446,8 +506,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        save_image(generated[i], <span class="ss">f"</span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">/generated_img_</span><span class="sc">{</span>epoch<span class="sc">:03d}</span><span class="ss">_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="save-checkpoint" class="level2">
-<h2 class="anchored" data-anchor-id="save-checkpoint">Save Checkpoint</h2>
+<section id="save-checkpoint" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="save-checkpoint"><span class="header-section-number">1.4</span> Save Checkpoint</h2>
 <div id="-Ni68WcOKAy2" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> save_checkpoint(model, epoch, loss, best_loss, path<span class="op">=</span><span class="st">"./checkpoint.pt"</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> loss <span class="op">&lt;</span> best_loss:</span>
@@ -457,8 +517,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> best_loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="training-step" class="level2">
-<h2 class="anchored" data-anchor-id="training-step">Training Step</h2>
+<section id="training-step" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="training-step"><span class="header-section-number">1.5</span> Training Step</h2>
 <div id="DaT1k9Rs8UZI" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_step(model, dataloader, optimizer, device):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    model.train()</span>
@@ -489,8 +549,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="validation-step" class="level2">
-<h2 class="anchored" data-anchor-id="validation-step">Validation Step</h2>
+<section id="validation-step" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="validation-step"><span class="header-section-number">1.6</span> Validation Step</h2>
 <div id="AM7mZ9mIKINO" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="at">@torch.no_grad</span>()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validate_epoch(model, dataloader, device):</span>
@@ -516,8 +576,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="instantiate-model-optimizer-writer-device" class="level2">
-<h2 class="anchored" data-anchor-id="instantiate-model-optimizer-writer-device">Instantiate model, optimizer, writer, device</h2>
+<section id="instantiate-model-optimizer-writer-device" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="instantiate-model-optimizer-writer-device"><span class="header-section-number">1.7</span> Instantiate model, optimizer, writer, device</h2>
 <div id="MvLedMPeJkSc" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.tensorboard <span class="im">import</span> SummaryWriter</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -532,8 +592,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>writer <span class="op">=</span> SummaryWriter(log_dir<span class="op">=</span><span class="st">"./logs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="training-the-vae-model" class="level2">
-<h2 class="anchored" data-anchor-id="training-the-vae-model">Training the VAE Model</h2>
+<section id="training-the-vae-model" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="training-the-vae-model"><span class="header-section-number">1.8</span> Training the VAE Model</h2>
 <div id="aSChj8pLCHzN" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="f6fb29bc-5187-4c3e-a98c-2ad56c012331" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>best_loss <span class="op">=</span> <span class="bu">float</span>(<span class="st">"inf"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -562,8 +622,8 @@ Saving new best model at epoch 0 with loss 58.4050</code></pre>
 </div>
 </div>
 </section>
-<section id="reconstruct-using-the-variational-autoencoder" class="level2">
-<h2 class="anchored" data-anchor-id="reconstruct-using-the-variational-autoencoder">Reconstruct using the variational autoencoder</h2>
+<section id="reconstruct-using-the-variational-autoencoder" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="reconstruct-using-the-variational-autoencoder"><span class="header-section-number">1.9</span> Reconstruct using the variational autoencoder</h2>
 <div id="JoLKCOqQw2Tc" class="cell" data-outputid="c0326ece-04b2-4672-bc79-ffba925b0060" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:294}}" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a batch of images from the training set</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>example_images, _ <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(train_loader))  <span class="co"># Ignore labels</span></span>
@@ -609,8 +669,8 @@ Saving new best model at epoch 0 with loss 58.4050</code></pre>
 </div>
 </div>
 </section>
-<section id="generate-new-faces" class="level2">
-<h2 class="anchored" data-anchor-id="generate-new-faces">Generate New Faces</h2>
+<section id="generate-new-faces" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="generate-new-faces"><span class="header-section-number">1.10</span> Generate New Faces</h2>
 <div id="4iLmTpwzyBsx" class="cell" data-outputid="03a8f3a1-2c00-4827-8e50-8376a4f4fafd" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:425}}" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -723,7 +783,7 @@ Saving new best model at epoch 0 with loss 58.4050</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/changezakram\.github\.io\/Deep-Generative-Models\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
