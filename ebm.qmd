@@ -520,6 +520,16 @@ Despite challenges like intractable sampling and likelihood computation, EBMs co
 
 ---
 
+### ✏️ Try It Yourself: EBM on MNIST
+
+You can explore a minimal PyTorch implementation of an energy-based model trained on MNIST:
+
+- 📓 [View Notebook on GitHub](https://github.com/yourusername/Deep-Generative-Models/blob/main/ebm_mnist.ipynb)  
+- 🚀 [Run in Google Colab](https://colab.research.google.com/github/yourusername/Deep-Generative-Models/blob/main/ebm_mnist.ipynb)
+
+> _This notebook includes beginner-friendly comments and directly connects to the training and sampling methods discussed in this blog._
+
+
 ## 📚 References
 
 [1] Atcold, Y. (2020). *NYU Deep Learning Spring 2020 – Week 07: Energy-Based Models*. Retrieved from [https://atcold.github.io/NYU-DLSP20/en/week07/07-1/](https://atcold.github.io/NYU-DLSP20/en/week07/07-1/)
