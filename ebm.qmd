@@ -218,7 +218,9 @@ In the figure below (Du et al., 2020), EBMs were used to model attributes such a
 
 ---
 
-## Key Benefits of EBMs
+## Benefits and Limitations of EBMs
+
+### Key Benefits
 
 **Very flexible model architectures**  
 No need for invertibility, autoregressive factorization, or adversarial design.
@@ -234,7 +236,7 @@ Energies can be combined to support multi-task objectives or structured learning
 
 ---
 
-## Limitations of EBMs
+### Limitations
 
 Despite their strengths, EBMs come with notable challenges:
 
