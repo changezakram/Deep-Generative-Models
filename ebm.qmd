@@ -157,10 +157,6 @@ In this example (adapted from [Atcold, 2020](https://atcold.github.io/NYU-DLSP20
 *Visualizing the energy landscape $E(x_1, x_2)$ — lower energy corresponds to higher probability.*
 {: .caption }
 
-::: {.callout-note appearance="simple"}
-Energy functions create **landscapes** over input space — where real data sits in valleys and noise sits on peaks.
-:::
-
 This shows how EBMs encode knowledge: valleys indicate high-likelihood (real) data, while peaks represent unlikely (noise) regions.
 
 --- 
