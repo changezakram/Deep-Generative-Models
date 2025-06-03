@@ -353,6 +353,7 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 </div>
 <p><em>Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span> — lower energy corresponds to higher probability.</em></p>
 <p>This shows how EBMs encode knowledge: valleys indicate high-likelihood (real) data, while peaks represent unlikely (noise) regions.</p>
+<p>This kind of energy landscape is especially useful in practical tasks like image generation, where the model learns to assign low energy to realistic images and high energy to unrealistic ones. During inference, the model can generate new samples by exploring low-energy regions of this landscape.</p>
 <hr>
 </section>
 </section>
@@ -390,6 +391,20 @@ In some applications, we don’t need the exact probability — we only need to 
 <li><strong>Sequence labeling</strong>: Predict tags (e.g., part-of-speech) for input tokens.</li>
 <li><strong>Image restoration</strong>: Recover clean images from noisy inputs.</li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Real-World Example</strong><br>
+In anomaly detection, EBMs have been used to identify outliers in high-dimensional sensor data without computing exact probabilities — simply by scoring input configurations and flagging those with unusually high energy.</p>
+</div>
+</div>
 </section>
 <section id="product-of-experts-compositional-generation" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="product-of-experts-compositional-generation"><span class="header-section-number">3.2</span> Product of Experts (Compositional Generation)</h3>
@@ -406,6 +421,26 @@ p_{\theta_1, \theta_2, \theta_3}(x) = \frac{1}{Z(\theta_1, \theta_2, \theta_3)} 
 <section id="example" class="level4" data-number="3.2.1">
 <h4 data-number="3.2.1" class="anchored" data-anchor-id="example"><span class="header-section-number">3.2.1</span> Example</h4>
 <p>In the figure below (Du et al., 2020), EBMs were used to model attributes such as “young”, “female”, “smiling”, and “wavy hair”. Combining them via Product of Experts allowed for flexible generation of images with <strong>multiple attributes</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/product_of_experts_faces.png" class="img-fluid figure-img"></p>
+<figcaption>Source: Du et al., 2020. <em>Compositional Visual Generation with Energy Based Models</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Real-World Example</strong><br>
+In the figure below (Du et al., 2020), EBMs were used to model attributes like “young”, “female”, “smiling”, and “wavy hair”. By combining these via Product of Experts, the model generated faces that satisfied <strong>multiple specific attributes</strong> simultaneously.</p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/product_of_experts_faces.png" class="img-fluid figure-img"></p>
