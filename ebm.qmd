@@ -153,7 +153,6 @@ In this example (adapted from [Atcold, 2020](https://atcold.github.io/NYU-DLSP20
 ![Visualizing Energy Field](images/energy_field.png)
 
 *Visualizing the energy landscape $E(x_1, x_2)$ — lower energy corresponds to higher probability.*
-{: .caption }
 
 This shows how EBMs encode knowledge: valleys indicate high-likelihood (real) data, while peaks represent unlikely (noise) regions.
 
@@ -239,21 +238,17 @@ Energies can be combined to support multi-task objectives or structured learning
 
 Despite their strengths, EBMs come with notable challenges:
 
-**Hard Sampling**
+**Sampling is expensive**  
+No direct way to sample from $p_\theta(x)$; MCMC methods are slow and scale poorly.
 
-- No direct way to draw samples from $p_\theta(x)$  
-- Requires iterative MCMC methods (e.g., Langevin dynamics, Metropolis-Hastings)  
-- Sampling cost is high and scales poorly in high dimensions
+**Likelihood is intractable**  
+Partition function $Z(\theta)$ is hard to compute, and we can't directly evaluate log-likelihood.
 
-**Hard Likelihood Evaluation and Learning**
+**Training is indirect**  
+Learning requires reducing energy of incorrect samples, not just increasing for correct ones.
 
-- Partition function $Z(\theta)$ is intractable  
-- Cannot evaluate $\log p_\theta(x)$ directly  
-- Learning requires **pushing down energy of incorrect samples**, not just increasing energy of training data
-
-**No Feature Learning (by default)**
-
-- EBMs don’t learn latent features by default unless explicitly structured (e.g., RBMs)
+**No feature learning (by default)**  
+EBMs don't learn latent features unless explicitly structured (e.g., RBMs).
 
 ---
 

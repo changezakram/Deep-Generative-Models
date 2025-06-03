@@ -352,7 +352,7 @@ p_\theta(x) = \frac{\exp(-E_\theta(x))}{Z(\theta)}
 <figcaption>Visualizing Energy Field</figcaption>
 </figure>
 </div>
-<p><em>Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span> — lower energy corresponds to higher probability.</em> {: .caption }</p>
+<p><em>Visualizing the energy landscape <span class="math inline">\(E(x_1, x_2)\)</span> — lower energy corresponds to higher probability.</em></p>
 <p>This shows how EBMs encode knowledge: valleys indicate high-likelihood (real) data, while peaks represent unlikely (noise) regions.</p>
 <hr>
 </section>
@@ -432,26 +432,14 @@ Energies can be combined to support multi-task objectives or structured learning
 <section id="limitations-of-ebms" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="limitations-of-ebms"><span class="header-section-number">5</span> Limitations of EBMs</h2>
 <p>Despite their strengths, EBMs come with notable challenges:</p>
-<p><strong>Hard Sampling</strong></p>
-<ul>
-<li>No direct way to draw samples from <span class="math inline">\(p_\theta(x)\)</span><br>
-</li>
-<li>Requires iterative MCMC methods (e.g., Langevin dynamics, Metropolis-Hastings)<br>
-</li>
-<li>Sampling cost is high and scales poorly in high dimensions</li>
-</ul>
-<p><strong>Hard Likelihood Evaluation and Learning</strong></p>
-<ul>
-<li>Partition function <span class="math inline">\(Z(\theta)\)</span> is intractable<br>
-</li>
-<li>Cannot evaluate <span class="math inline">\(\log p_\theta(x)\)</span> directly<br>
-</li>
-<li>Learning requires <strong>pushing down energy of incorrect samples</strong>, not just increasing energy of training data</li>
-</ul>
-<p><strong>No Feature Learning (by default)</strong></p>
-<ul>
-<li>EBMs don’t learn latent features by default unless explicitly structured (e.g., RBMs)</li>
-</ul>
+<p><strong>Sampling is expensive</strong><br>
+No direct way to sample from <span class="math inline">\(p_\theta(x)\)</span>; MCMC methods are slow and scale poorly.</p>
+<p><strong>Likelihood is intractable</strong><br>
+Partition function <span class="math inline">\(Z(\theta)\)</span> is hard to compute, and we can’t directly evaluate log-likelihood.</p>
+<p><strong>Training is indirect</strong><br>
+Learning requires reducing energy of incorrect samples, not just increasing for correct ones.</p>
+<p><strong>No feature learning (by default)</strong><br>
+EBMs don’t learn latent features unless explicitly structured (e.g., RBMs).</p>
 <hr>
 </section>
 <section id="training-and-inference-in-ebms" class="level2" data-number="6">
