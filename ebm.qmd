@@ -502,6 +502,24 @@ Sampling is a core challenge in EBMs — especially because we need to sample du
 
 ---
 
+## 🧩 EBM Recap
+
+Energy-Based Models (EBMs) offer a flexible and elegant alternative to traditional generative models by focusing on **scoring functions** rather than prescribing fixed model architectures. By defining an **unnormalized score** over inputs and converting it into a probability via a partition function, EBMs avoid the structural constraints of VAEs, GANs, or flows.
+
+Key ideas:
+- EBMs define probabilities as:  
+  $$
+  p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
+  $$
+- The energy function $E_\theta(x) = -f_\theta(x)$ creates a landscape where **low energy = high probability**.
+- EBMs excel when exact likelihood is unnecessary (e.g., denoising, anomaly detection, structured generation).
+- They support **modular composition** through techniques like Product of Experts (PoE).
+- Training involves score-based contrastive learning, and sampling is powered by MCMC methods.
+
+Despite challenges like intractable sampling and likelihood computation, EBMs continue to gain traction due to their conceptual clarity, compositional flexibility, and alignment with physics-inspired learning paradigms.
+
+---
+
 ## 📚 References
 
 [1] Atcold, Y. (2020). *NYU Deep Learning Spring 2020 – Week 07: Energy-Based Models*. Retrieved from [https://atcold.github.io/NYU-DLSP20/en/week07/07-1/](https://atcold.github.io/NYU-DLSP20/en/week07/07-1/)
