@@ -471,7 +471,7 @@ EBMs don’t learn latent features unless explicitly structured (e.g., RBMs).</p
 </section>
 <section id="training-energy-based-models" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="training-energy-based-models"><span class="header-section-number">5</span> Training Energy-Based Models</h2>
-<p>EBMs are trained to assign higher scores (lower energy) to correct data points, and lower scores (higher energy) to incorrect ones. This corresponds to <strong>maximizing the likelihood</strong> of training data.</p>
+<p>EBMs are trained to assign higher scores (lower energy) to observed data points, and lower scores (higher energy) to unobserved ones. This corresponds to <strong>maximizing the likelihood</strong> of training data.</p>
 <p><span class="math display">\[
 p_\theta(x_{\text{train}}) = \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
 \]</span></p>
