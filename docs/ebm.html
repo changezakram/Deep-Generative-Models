@@ -672,10 +672,43 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <h3 data-number="6.4" class="anchored" data-anchor-id="summary-1"><span class="header-section-number">6.4</span> Summary</h3>
 <p>All these methods aim to sample from <span class="math inline">\(p_\theta(x)\)</span>, but differ in how they explore the space:</p>
 <ul>
-<li><strong>MH</strong> is simple but can be inefficient.</li>
-<li><strong>ULA</strong> is gradient-guided and faster but biased.</li>
+<li><strong>MH</strong> is simple but can be inefficient.<br>
+</li>
+<li><strong>ULA</strong> is gradient-guided and faster but biased.<br>
+</li>
 <li><strong>Adjusted Langevin</strong> corrects ULA using MH-style acceptance.</li>
 </ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 33%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Method</strong></th>
+<th><strong>Key Advantage</strong></th>
+<th><strong>Key Limitation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>MH (Metropolis-Hastings)</strong></td>
+<td>General-purpose; unbiased under mild conditions</td>
+<td>Can be inefficient and slow to converge</td>
+</tr>
+<tr class="even">
+<td><strong>ULA (Unadjusted Langevin)</strong></td>
+<td>Gradient-guided; faster mixing than MH</td>
+<td>Biased sampling; sensitive to step size</td>
+</tr>
+<tr class="odd">
+<td><strong>ALA (Adjusted Langevin)</strong></td>
+<td>Combines ULA with MH for correctness</td>
+<td>More complex and computationally expensive</td>
+</tr>
+</tbody>
+</table>
 <p>Sampling is a core challenge in EBMs — especially because we need to sample during <strong>every training step</strong> when using contrastive divergence.</p>
 <hr>
 </section>
