@@ -541,6 +541,7 @@ Z(\theta) = \int \exp(f_\theta(x))\, dx
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
 \]</span></p>
 <p>Unlike autoregressive or flow models, there is <strong>no direct way to sample</strong> from <span class="math inline">\(p_\theta(x)\)</span> because we cannot easily compute how likely each possible sample is. That’s because the normalization term <span class="math inline">\(Z(\theta)\)</span> is intractable.</p>
+<p>However, we can still compare two samples using a <strong>key insight</strong>:</p>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -560,6 +561,7 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 <hr>
 <section id="metropolis-hastings-mh-mcmc" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="metropolis-hastings-mh-mcmc"><span class="header-section-number">6.1</span> Metropolis-Hastings (MH) MCMC</h3>
+<p>Metropolis-Hastings proposes samples and accepts or rejects them based on how much they improve the energy score.</p>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, we use an iterative approach like MCMC:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0\)</span> randomly<br>
@@ -583,6 +585,7 @@ We can still compare two samples <span class="math inline">\(x\)</span> and <spa
 </section>
 <section id="unadjusted-langevin-mcmc-ula" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="unadjusted-langevin-mcmc-ula"><span class="header-section-number">6.2</span> Unadjusted Langevin MCMC (ULA)</h3>
+<p>ULA improves over random-walk MH by using gradient information to guide proposals.</p>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Unadjusted Langevin MCMC uses gradient information to guide proposals:</p>
 <ol type="1">
 <li><strong>Initialize</strong> <span class="math inline">\(x^0 \sim \pi(x)\)</span><br>
@@ -607,6 +610,7 @@ x^{t+1} = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 </section>
 <section id="adjusted-langevin-mcmc-ala" class="level3" data-number="6.3">
 <h3 data-number="6.3" class="anchored" data-anchor-id="adjusted-langevin-mcmc-ala"><span class="header-section-number">6.3</span> Adjusted Langevin MCMC (ALA)</h3>
+<p>ALA fixes the bias in ULA by using Metropolis-Hastings-style acceptance to ensure correct sampling.</p>
 <p>To sample from <span class="math inline">\(p_\theta(x)\)</span>, Adjusted Langevin MCMC applies a step after each Langevin update to ensure samples follow the correct stationary distribution.</p>
 <p>This makes it a corrected version of ULA with proper stationary distribution.</p>
 <ol type="1">
@@ -643,9 +647,9 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <h3 data-number="6.4" class="anchored" data-anchor-id="summary-1"><span class="header-section-number">6.4</span> Summary</h3>
 <p>All these methods aim to sample from <span class="math inline">\(p_\theta(x)\)</span>, but differ in how they explore the space:</p>
 <ul>
-<li><strong>MH</strong> is simple but inefficient.</li>
-<li><strong>ULA</strong> is gradient-guided but approximate.</li>
-<li><strong>Adjusted Langevin</strong> corrects ULA with MH.</li>
+<li><strong>MH</strong> is simple but can be inefficient.</li>
+<li><strong>ULA</strong> is gradient-guided and faster but biased.</li>
+<li><strong>Adjusted Langevin</strong> corrects ULA using MH-style acceptance.</li>
 </ul>
 <p>Sampling is a core challenge in EBMs — especially because we need to sample during <strong>every training step</strong> when using contrastive divergence.</p>
 <hr>
