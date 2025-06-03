@@ -488,9 +488,15 @@ $$
 
 All these methods aim to sample from $p_\theta(x)$, but differ in how they explore the space:
 
-- **MH** is simple but can be inefficient.
-- **ULA** is gradient-guided and faster but biased.
+- **MH** is simple but can be inefficient.  
+- **ULA** is gradient-guided and faster but biased.  
 - **Adjusted Langevin** corrects ULA using MH-style acceptance.
+
+| **Method**                | **Key Advantage**                        | **Key Limitation**                                   |
+|---------------------------|------------------------------------------|-------------------------------------------------------|
+| **MH (Metropolis-Hastings)** | General-purpose; unbiased under mild conditions | Can be inefficient and slow to converge              |
+| **ULA (Unadjusted Langevin)** | Gradient-guided; faster mixing than MH         | Biased sampling; sensitive to step size              |
+| **ALA (Adjusted Langevin)**   | Combines ULA with MH for correctness           | More complex and computationally expensive           |
 
 Sampling is a core challenge in EBMs — especially because we need to sample during **every training step** when using contrastive divergence.
 
