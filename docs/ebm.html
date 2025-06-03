@@ -720,7 +720,10 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <p>Key ideas: - EBMs define probabilities as:<br>
 <span class="math display">\[
   p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
-  \]</span> - The energy function <span class="math inline">\(E_\theta(x) = -f_\theta(x)\)</span> creates a landscape where <strong>low energy = high probability</strong>. - EBMs excel when exact likelihood is unnecessary (e.g., denoising, anomaly detection, structured generation). - They support <strong>modular composition</strong> through techniques like Product of Experts (PoE). - Training involves score-based contrastive learning, and sampling is powered by MCMC methods.</p>
+  \]</span> - The energy function <span class="math inline">\(E_\theta(x) = -f_\theta(x)\)</span> creates a landscape where <strong>low energy = high probability</strong>.<br>
+- EBMs excel when exact likelihood is unnecessary (e.g., denoising, anomaly detection, structured generation).<br>
+- They support <strong>modular composition</strong> through techniques like Product of Experts (PoE).<br>
+- Training involves score-based contrastive learning, and sampling is powered by MCMC methods.</p>
 <p>Despite challenges like intractable sampling and likelihood computation, EBMs continue to gain traction due to their conceptual clarity, compositional flexibility, and alignment with physics-inspired learning paradigms.</p>
 <hr>
 </section>
