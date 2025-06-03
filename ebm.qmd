@@ -144,8 +144,6 @@ This gives EBMs the freedom to model complex data distributions using any differ
 
 #### Visualizing Energy Functions
 
-### 2.3.2 Visualizing Energy Functions
-
 Let’s now build visual intuition for what these energy landscapes look like.
 
 Energy-based models capture compatibility between variables using an energy function. 
