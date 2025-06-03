@@ -518,17 +518,6 @@ Key ideas:
 
 Despite challenges like intractable sampling and likelihood computation, EBMs continue to gain traction due to their conceptual clarity, compositional flexibility, and alignment with physics-inspired learning paradigms.
 
----
-
-### ✏️ Try It Yourself: EBM on MNIST
-
-You can explore a minimal PyTorch implementation of an energy-based model trained on MNIST:
-
-- 📓 [View Notebook on GitHub](https://github.com/changezakram/Deep-Generative-Models/blob/main/ebm_mnist.ipynb)  
-- 🚀 [Run in Google Colab](https://colab.research.google.com/github/changezakram/Deep-Generative-Models/blob/main/ebm_mnist.ipynb)
-
-> _This notebook includes beginner-friendly comments and directly connects to the training and sampling methods discussed in this blog._
-
 
 ## 📚 References
 
