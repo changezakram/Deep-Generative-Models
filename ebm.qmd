@@ -372,7 +372,9 @@ $$
 p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
 $$
 
-Unlike autoregressive or flow models, there is **no direct way to sample** from $p_\theta(x)$ because we cannot easily compute how likely each possible sample is. That's because the normalization term $Z(\theta)$ is intractable.
+Unlike autoregressive or flow models, there is **no direct way to sample** from $p_\theta(x)$ because we cannot easily compute how likely each possible sample is. That’s because the normalization term $Z(\theta)$ is intractable.
+
+However, we can still compare two samples using a **key insight**:
 
 ::: {.callout-tip appearance="simple"}
 **Key Insight**  
@@ -390,6 +392,8 @@ While we can't sample from $p_\theta(x)$ directly due to the intractable $Z(\the
 ---
 
 ### Metropolis-Hastings (MH) MCMC
+
+Metropolis-Hastings proposes samples and accepts or rejects them based on how much they improve the energy score.
 
 To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
 
@@ -412,6 +416,8 @@ To sample from $p_\theta(x)$, we use an iterative approach like MCMC:
 
 
 ### Unadjusted Langevin MCMC (ULA)
+
+ULA improves over random-walk MH by using gradient information to guide proposals.
 
 To sample from $p_\theta(x)$, Unadjusted Langevin MCMC uses gradient information to guide proposals:
 
@@ -436,6 +442,8 @@ $$
 
 
 ### Adjusted Langevin MCMC (ALA)
+
+ALA fixes the bias in ULA by using Metropolis-Hastings-style acceptance to ensure correct sampling.
 
 To sample from $p_\theta(x)$, Adjusted Langevin MCMC applies a \textbf{Metropolis-Hastings correction} step after each Langevin update to ensure samples follow the correct stationary distribution.
 
@@ -473,9 +481,9 @@ $$
 
 All these methods aim to sample from $p_\theta(x)$, but differ in how they explore the space:
 
-- **MH** is simple but inefficient.
-- **ULA** is gradient-guided but approximate.
-- **Adjusted Langevin** corrects ULA with MH.
+- **MH** is simple but can be inefficient.
+- **ULA** is gradient-guided and faster but biased.
+- **Adjusted Langevin** corrects ULA using MH-style acceptance.
 
 Sampling is a core challenge in EBMs — especially because we need to sample during **every training step** when using contrastive divergence.
 
