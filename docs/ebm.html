@@ -181,7 +181,8 @@ window.Quarto = {
   <li><a href="#benefits-and-limitations-of-ebms" id="toc-benefits-and-limitations-of-ebms" class="nav-link" data-scroll-target="#benefits-and-limitations-of-ebms"><span class="header-section-number">4</span> Benefits and Limitations of EBMs</a></li>
   <li><a href="#training-energy-based-models" id="toc-training-energy-based-models" class="nav-link" data-scroll-target="#training-energy-based-models"><span class="header-section-number">5</span> Training Energy-Based Models</a></li>
   <li><a href="#sampling-from-energy-based-models" id="toc-sampling-from-energy-based-models" class="nav-link" data-scroll-target="#sampling-from-energy-based-models"><span class="header-section-number">6</span> Sampling from Energy-Based Models</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> 📚 References</a></li>
+  <li><a href="#ebm-recap" id="toc-ebm-recap" class="nav-link" data-scroll-target="#ebm-recap"><span class="header-section-number">7</span> 🧩 EBM Recap</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> 📚 References</a></li>
   </ul>
 </nav>
     </div>
@@ -713,8 +714,18 @@ x' = x^t + \epsilon \nabla_x f_\theta(x^t) + \sqrt{2\epsilon} z^t
 <hr>
 </section>
 </section>
-<section id="references" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="references"><span class="header-section-number">7</span> 📚 References</h2>
+<section id="ebm-recap" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="ebm-recap"><span class="header-section-number">7</span> 🧩 EBM Recap</h2>
+<p>Energy-Based Models (EBMs) offer a flexible and elegant alternative to traditional generative models by focusing on <strong>scoring functions</strong> rather than prescribing fixed model architectures. By defining an <strong>unnormalized score</strong> over inputs and converting it into a probability via a partition function, EBMs avoid the structural constraints of VAEs, GANs, or flows.</p>
+<p>Key ideas: - EBMs define probabilities as:<br>
+<span class="math display">\[
+  p_\theta(x) = \frac{1}{Z(\theta)} \exp(f_\theta(x))
+  \]</span> - The energy function <span class="math inline">\(E_\theta(x) = -f_\theta(x)\)</span> creates a landscape where <strong>low energy = high probability</strong>. - EBMs excel when exact likelihood is unnecessary (e.g., denoising, anomaly detection, structured generation). - They support <strong>modular composition</strong> through techniques like Product of Experts (PoE). - Training involves score-based contrastive learning, and sampling is powered by MCMC methods.</p>
+<p>Despite challenges like intractable sampling and likelihood computation, EBMs continue to gain traction due to their conceptual clarity, compositional flexibility, and alignment with physics-inspired learning paradigms.</p>
+<hr>
+</section>
+<section id="references" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="references"><span class="header-section-number">8</span> 📚 References</h2>
 <p>[1] Atcold, Y. (2020). <em>NYU Deep Learning Spring 2020 – Week 07: Energy-Based Models</em>. Retrieved from <a href="https://atcold.github.io/NYU-DLSP20/en/week07/07-1/">https://atcold.github.io/NYU-DLSP20/en/week07/07-1/</a></p>
 <p>[2] LeCun, Y., Hinton, G., &amp; Bengio, Y. (2021). <em>A Path Towards Autonomous Machine Intelligence</em>. arXiv. Retrieved from <a href="https://arxiv.org/pdf/2101.03288">https://arxiv.org/pdf/2101.03288</a></p>
 <p>[3] MIT. (2022). <em>Energy-Based Models – MIT Class Project</em>. Retrieved from <a href="https://energy-based-model.github.io/Energy-based-Model-MIT/">https://energy-based-model.github.io/Energy-based-Model-MIT/</a></p>
