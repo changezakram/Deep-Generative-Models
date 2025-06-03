@@ -254,9 +254,9 @@ EBMs don't learn latent features unless explicitly structured (e.g., RBMs).
 
 ---
 
-## Training and Inference in EBMs
+## Training Energy-Based Models
 
-The goal in training Energy-Based Models (EBMs) is to assign higher scores (i.e., lower energy) to correct examples, and lower scores (higher energy) to incorrect ones. This corresponds to **maximizing the (unnormalized) likelihood** of the training data:
+EBMs are trained to assign higher scores (lower energy) to correct data points, and lower scores (higher energy) to incorrect ones. This corresponds to **maximizing the likelihood** of training data.
 
 $$
 p_\theta(x_{\text{train}}) = \frac{\exp(f_\theta(x_{\text{train}}))}{Z(\theta)}
@@ -267,6 +267,8 @@ This expression tells us that increasing the score for $x_{\text{train}}$ is not
 ---
 
 ### Log-Likelihood and Its Gradient
+
+To train EBMs, we compute the gradient of the log-likelihood with respect to parameters $\theta$.
 
 We start by writing the log-likelihood:
 
@@ -311,6 +313,8 @@ To deal with this, we use **sampling-based approximations** like Contrastive Div
 
 ### Contrastive Divergence
 
+Since computing the true gradient requires sampling from $p_\theta(x)$, which is intractable due to the partition function $Z(\theta)$, we use Contrastive Divergence as an efficient approximation.
+
 We approximate the expectation:
 
 $$
@@ -347,9 +351,9 @@ This encourages the model to increase the score of the training sample and decre
 
 #### Intuition Recap
 
-- **Pull up** the training sample: $\nabla_\theta f_\theta(x_{\text{train}})$
-- **Push down** samples from the model: $\nabla_\theta f_\theta(x_{\text{sample}})$
-- The model improves by sharpening its belief in real data and correcting mistaken high-scoring areas of the space.
+- **Pull up**: Increase the score (lower the energy) of the real training sample $\nabla_\theta f_\theta(x_{\text{train}})$
+- **Push down**: Decrease the score of samples from the model $\nabla_\theta f_\theta(x_{\text{sample}})$
+- This sharpens the model’s belief in real data and corrects high-scoring regions where it is currently overconfident.
 
 ![Visualizing EBM training](images/ebm_training_flow.png)
 *During training, EBMs increase the score of correct samples and decrease the score of incorrect ones.*
