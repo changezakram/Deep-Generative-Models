@@ -48,14 +48,10 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
 $$
 
 ::: {.callout-note}
-**Diffusion Path Summary**
+**Shortcut Insight**
 
-$$
-x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
-$$
-
-The full diffusion process adds noise step-by-step from $x_0$ to $x_T$.  
-But using the marginal distribution, we can jump directly from $x_0$ to any $x_t$ without simulating every intermediate step.
+While the forward process defines a full Markov chain from $x_0$ to $x_T$,  
+we’ll soon see that it’s also possible to sample any $x_t$ directly from $x_0$ using a closed-form Gaussian — without simulating each intermediate step.
 :::
 
 

@@ -258,12 +258,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Diffusion Path Summary</strong></p>
-<p><span class="math display">\[
-x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
-\]</span></p>
-<p>The full diffusion process adds noise step-by-step from <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>.<br>
-But using the marginal distribution, we can jump directly from <span class="math inline">\(x_0\)</span> to any <span class="math inline">\(x_t\)</span> without simulating every intermediate step.</p>
+<p><strong>Shortcut Insight</strong></p>
+<p>While the forward process defines a full Markov chain from <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>,<br>
+we’ll soon see that it’s also possible to sample any <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using a closed-form Gaussian — without simulating each intermediate step.</p>
 </div>
 </div>
 <p>The joint probability of the sequence is: <span class="math display">\[
