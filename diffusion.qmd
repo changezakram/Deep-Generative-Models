@@ -35,7 +35,19 @@ Where:
 
 #### The Markov Chain
 
-::: {.callout-note appearance="simple"}
+The full sequence is:
+
+$$
+x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
+$$
+
+The joint probability of the sequence is:
+
+$$
+q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
+$$
+
+::: {.callout-note}
 **Diffusion Path Summary**
 
 $$
