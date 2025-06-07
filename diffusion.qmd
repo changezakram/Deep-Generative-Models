@@ -28,7 +28,7 @@ Where:
 - $\alpha_t = 1 - \beta_t$, with $\beta_t$ a small positive number controlling the noise level at step $t$  
 - $I$ is the identity matrix, so noise is added independently to each component.
 
-::: {.note}
+::: {.callout-note appearance="simple"}
 **Intuition:** Each step shrinks the previous value a bit and adds some fresh Gaussian noise. As you repeat this, the sample becomes more and more like random noise.
 :::
 

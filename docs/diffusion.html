@@ -226,8 +226,15 @@ q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha
 </li>
 <li><span class="math inline">\(I\)</span> is the identity matrix, so noise is added independently to each component.</li>
 </ul>
-<div class="note">
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
 <p><strong>Intuition:</strong> Each step shrinks the previous value a bit and adds some fresh Gaussian noise. As you repeat this, the sample becomes more and more like random noise.</p>
+</div>
+</div>
 </div>
 </section>
 <section id="the-markov-chain" class="level4" data-number="2.1.3">
