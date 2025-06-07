@@ -290,8 +290,8 @@ q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\al
 x_T \sim \mathcal{N}(0, I)
 \]</span></p>
 </section>
-<section id="summary-table" class="level4" data-number="2.1.7">
-<h4 data-number="2.1.7" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">2.1.7</span> Summary Table</h4>
+<section id="recap-forward-diffusion-steps" class="level4" data-number="2.1.7">
+<h4 data-number="2.1.7" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">2.1.7</span> Recap: Forward Diffusion Steps</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -318,8 +318,8 @@ x_T \sim \mathcal{N}(0, I)
 </tr>
 <tr class="odd">
 <td>3</td>
-<td><span class="math inline">\(x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon\)</span></td>
-<td>Direct sampling at step <span class="math inline">\(t\)</span></td>
+<td><span class="math inline">\(x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon\)</span></td>
+<td>Direct formula to sample <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span> using noise <span class="math inline">\(\epsilon\)</span></td>
 </tr>
 <tr class="even">
 <td>4</td>
