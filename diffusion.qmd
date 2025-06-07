@@ -35,7 +35,7 @@ Where:
 
 #### The Markov Chain
 
-::: {.callout-note}
+::: {.callout-note appearance="simple"}
 **Diffusion Path Summary**
 
 $$
