@@ -95,6 +95,9 @@ So, we can sample $x_t$ directly from $x_0$ using:
 $$
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)
 $$
+
+This lets us sample $x_t$ directly from $x_0$, without recursively computing all previous steps $x_1, x_2, \dots, x_{t-1}$.
+
 This means:
 $$
 q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right)

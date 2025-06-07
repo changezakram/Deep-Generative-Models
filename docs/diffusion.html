@@ -276,7 +276,9 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sum_{i=1}^t \left( \sqrt{ \left( \prod_{j=i+1
 <h4 data-number="2.1.5" class="anchored" data-anchor-id="the-final-marginal-distribution"><span class="header-section-number">2.1.5</span> The Final Marginal Distribution</h4>
 <p>So, we can sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using: <span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)
-\]</span> This means: <span class="math display">\[
+\]</span></p>
+<p>This lets us sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span>, without recursively computing all previous steps <span class="math inline">\(x_1, x_2, \dots, x_{t-1}\)</span>.</p>
+<p>This means: <span class="math display">\[
 q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right)
 \]</span></p>
 <p>After <span class="math inline">\(t\)</span> steps, sample is a faded version of the original plus one big chunk of noise.</p>
