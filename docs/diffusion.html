@@ -248,6 +248,7 @@ x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
 <p><span class="math display">\[
 q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
 \]</span></p>
+<p>This means we can sample the whole chain by repeatedly applying the noise step.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -258,7 +259,6 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
 </div>
 </div>
 </div>
-<p>This means we can sample the whole chain by repeatedly applying the noise step.</p>
 </section>
 <section id="deriving-the-marginal-distribution-qx_t-mid-x_0" class="level4" data-number="2.1.4">
 <h4 data-number="2.1.4" class="anchored" data-anchor-id="deriving-the-marginal-distribution-qx_t-mid-x_0"><span class="header-section-number">2.1.4</span> Deriving the Marginal Distribution <span class="math inline">\(q(x_t \mid x_0)\)</span></h4>

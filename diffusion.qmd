@@ -47,11 +47,11 @@ $$
 q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
 $$
 
+This means we can sample the whole chain by repeatedly applying the noise step.
+
 ::: {.callout-note appearance="simple"}
 **Insight:** While the forward process defines a full Markov chain from $x_0$ to $x_T$, we’ll soon see that it’s also possible to sample any $x_t$ directly from $x_0$ using a closed-form Gaussian — without simulating each intermediate step.
 :::
-
-This means we can sample the whole chain by repeatedly applying the noise step.
 
 #### Deriving the Marginal Distribution $q(x_t \mid x_0)$
 
