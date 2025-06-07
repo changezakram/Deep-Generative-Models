@@ -12,11 +12,11 @@ Diffusion models are a class of generative models that create data (like images)
 
 The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.
 
-#### Step 1: Start with a Data Sample
+#### Start with a Data Sample
 
 Begin with a data point $x_0$, sampled from your dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes pure noise.
 
-#### Step 2: Add Noise Recursively
+#### Add Noise Recursively
 
 At each time step $t$, the process is defined as:
 $$
@@ -30,7 +30,7 @@ where:
 
 \textbf{Intuition:} Each step shrinks the previous value a bit and adds some fresh Gaussian noise. As you repeat this, the sample becomes more and more like random noise.
 
-#### Step 3: The Markov Chain
+#### The Markov Chain
 
 The full sequence is:
 $$
@@ -42,7 +42,7 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 $$
 This means you can sample the whole chain by repeatedly applying the noise step.
 
-#### Step 4: Deriving the Marginal Distribution $q(x_t \mid x_0)$
+#### Deriving the Marginal Distribution $q(x_t \mid x_0)$
 
 \textbf{Key Question:} How do we get the formula that lets us sample $x_t$ directly from $x_0$ (without simulating all the intermediate steps)?
 
@@ -87,7 +87,7 @@ $$
 
 \textbf{Key Point:} All the little bits of noise added at each step combine into one big Gaussian noise term, with variance $1 - \bar{\alpha}_t$.
 
-\subsection*{Step 5: The Final Marginal Distribution}
+#### The Final Marginal Distribution
 
 So, you can sample $x_t$ directly from $x_0$ using:
 $$
@@ -100,7 +100,7 @@ $$
 
 \textbf{Intuition:} After $t$ steps, your sample is a faded version of the original plus one big chunk of noise.
 
-#### Step 6: What Happens as $t$ Gets Large?
+#### What Happens as $t$ Gets Large?
 
 As $t$ increases, $\bar{\alpha}_t$ shrinks toward zero. Eventually, $x_t$ becomes pure noise:
 $$
