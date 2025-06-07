@@ -1,14 +1,22 @@
-## Forward Diffusion (with Detailed Derivation)
+---
+title: "Diffusion Models"  
+---
 
-\subsection*{What is the Forward Diffusion Process?}
+## Introduction 
+
+Diffusion models are a class of generative models that create data (like images) by reversing a gradual noising process. First, they take real data and add random noise to it step by step, until it becomes pure noise. Then, they train a neural network to undo this process, transforming noise back into realistic data. This method has enabled state-of-the-art results in image generation, powering tools like DALL-E 2 and Stable Diffusion. Unlike older methods, diffusion models are stable to train and can produce highly detailed, diverse outputs.
+
+## Math Review
+
+### What is the Forward Diffusion Process
 
 The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.
 
-\subsection*{Step 1: Start with a Data Sample}
+#### Step 1: Start with a Data Sample
 
 Begin with a data point $x_0$, sampled from your dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes pure noise.
 
-\subsection*{Step 2: Add Noise Recursively}
+#### Step 2: Add Noise Recursively
 
 At each time step $t$, the process is defined as:
 $$
@@ -22,7 +30,7 @@ where:
 
 \textbf{Intuition:} Each step shrinks the previous value a bit and adds some fresh Gaussian noise. As you repeat this, the sample becomes more and more like random noise.
 
-\subsection*{Step 3: The Markov Chain}
+#### Step 3: The Markov Chain
 
 The full sequence is:
 $$
@@ -34,7 +42,7 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 $$
 This means you can sample the whole chain by repeatedly applying the noise step.
 
-\subsection*{Step 4: Deriving the Marginal Distribution $q(x_t \mid x_0)$}
+#### Step 4: Deriving the Marginal Distribution $q(x_t \mid x_0)$
 
 \textbf{Key Question:} How do we get the formula that lets us sample $x_t$ directly from $x_0$ (without simulating all the intermediate steps)?
 
@@ -92,14 +100,14 @@ $$
 
 \textbf{Intuition:} After $t$ steps, your sample is a faded version of the original plus one big chunk of noise.
 
-\subsection*{Step 6: What Happens as $t$ Gets Large?}
+#### Step 6: What Happens as $t$ Gets Large?
 
 As $t$ increases, $\bar{\alpha}_t$ shrinks toward zero. Eventually, $x_t$ becomes pure noise:
 $$
 x_T \sim \mathcal{N}(0, I)
 $$
 
-\subsection*{Summary Table}
+####  Summary Table
 
 \begin{center}
 \begin{tabular}{|c|l|l|}
@@ -115,7 +123,7 @@ $$
 \end{tabular}
 \end{center}
 
-\subsection*{Analogy: The Smoothie}
+#### Analogy: The Smoothie
 
 Imagine you start with a glass of pure juice (your original image). At each step, you add a splash of water (noise) and stir. After many steps, the juice gets more and more diluted. Eventually, you just have a glass of water (pure noise), and you can’t taste the juice anymore.
 
