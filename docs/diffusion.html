@@ -213,7 +213,7 @@ window.Quarto = {
 <p>The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.</p>
 <section id="start-with-a-data-sample" class="level4" data-number="2.1.1">
 <h4 data-number="2.1.1" class="anchored" data-anchor-id="start-with-a-data-sample"><span class="header-section-number">2.1.1</span> Start with a Data Sample</h4>
-<p>Begin with a data point <span class="math inline">\(x_0\)</span>, sampled from your dataset (such as a real image). The goal is to slowly corrupt <span class="math inline">\(x_0\)</span> by adding noise over many steps, until it becomes pure noise.</p>
+<p>Begin with a data point <span class="math inline">\(x_0\)</span>, sampled from dataset (such as a real image). The goal is to slowly corrupt <span class="math inline">\(x_0\)</span> by adding noise over many steps, until it becomes pure noise.</p>
 </section>
 <section id="add-noise-recursively" class="level4" data-number="2.1.2">
 <h4 data-number="2.1.2" class="anchored" data-anchor-id="add-noise-recursively"><span class="header-section-number">2.1.2</span> Add Noise Recursively</h4>
@@ -232,7 +232,7 @@ q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Intuition:</strong> Each step shrinks the previous value a bit and adds some Gaussian noise. As you repeat this, the sample becomes more and more like random noise.</p>
+<p><strong>Intuition:</strong> Each step shrinks the previous value a bit and adds some Gaussian noise. As the process repeats, the sample becomes more and more like random noise.</p>
 </div>
 </div>
 </div>
@@ -243,7 +243,8 @@ q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha
 x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
 \]</span> The joint probability of the sequence is: <span class="math display">\[
 q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
-\]</span> This means you can sample the whole chain by repeatedly applying the noise step.</p>
+\]</span></p>
+<p>This means we can sample the whole chain by repeatedly applying the noise step.</p>
 </section>
 <section id="deriving-the-marginal-distribution-qx_t-mid-x_0" class="level4" data-number="2.1.4">
 <h4 data-number="2.1.4" class="anchored" data-anchor-id="deriving-the-marginal-distribution-qx_t-mid-x_0"><span class="header-section-number">2.1.4</span> Deriving the Marginal Distribution <span class="math inline">\(q(x_t \mid x_0)\)</span></h4>
@@ -273,7 +274,7 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sum_{i=1}^t \left( \sqrt{ \left( \prod_{j=i+1
 </section>
 <section id="the-final-marginal-distribution" class="level4" data-number="2.1.5">
 <h4 data-number="2.1.5" class="anchored" data-anchor-id="the-final-marginal-distribution"><span class="header-section-number">2.1.5</span> The Final Marginal Distribution</h4>
-<p>So, you can sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using: <span class="math display">\[
+<p>So, we can sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using: <span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)
 \]</span> This means: <span class="math display">\[
 q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right)
@@ -330,13 +331,8 @@ x_T \sim \mathcal{N}(0, I)
 </tbody>
 </table>
 </section>
-<section id="analogy-the-smoothie" class="level4" data-number="2.1.8">
-<h4 data-number="2.1.8" class="anchored" data-anchor-id="analogy-the-smoothie"><span class="header-section-number">2.1.8</span> Analogy: The Smoothie</h4>
-<p>Imagine you start with a glass of pure juice (your original image). At each step, you add a splash of water (noise) and stir. After many steps, the juice gets more and more diluted. Eventually, you just have a glass of water (pure noise), and you can’t taste the juice anymore.</p>
-<p>The formula above tells you, at any point, exactly how much juice is left and how much water has been added.</p>
-</section>
-<section id="key-takeaways" class="level4" data-number="2.1.9">
-<h4 data-number="2.1.9" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.1.9</span> Key Takeaways</h4>
+<section id="key-takeaways" class="level4" data-number="2.1.8">
+<h4 data-number="2.1.8" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.1.8</span> Key Takeaways</h4>
 <ul>
 <li>The forward diffusion process is just repeatedly adding noise to your data.</li>
 <li>Thanks to properties of Gaussian noise, you can always describe the result as a faded original plus a single chunk of noise.</li>

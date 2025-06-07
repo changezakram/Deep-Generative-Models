@@ -14,7 +14,7 @@ The forward diffusion process gradually turns a data sample (such as an image) i
 
 #### Start with a Data Sample
 
-Begin with a data point $x_0$, sampled from your dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes pure noise.
+Begin with a data point $x_0$, sampled from dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes pure noise.
 
 #### Add Noise Recursively
 
@@ -29,7 +29,7 @@ Where:
 - $I$ is the identity matrix, so noise is added independently to each component.
 
 ::: {.callout-note appearance="simple"}
-**Intuition:** Each step shrinks the previous value a bit and adds some Gaussian noise. As you repeat this, the sample becomes more and more like random noise.
+**Intuition:** Each step shrinks the previous value a bit and adds some Gaussian noise. As the process repeats, the sample becomes more and more like random noise.
 :::
 
 #### The Markov Chain
@@ -42,7 +42,8 @@ The joint probability of the sequence is:
 $$
 q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 $$
-This means you can sample the whole chain by repeatedly applying the noise step.
+
+This means we can sample the whole chain by repeatedly applying the noise step.
 
 #### Deriving the Marginal Distribution $q(x_t \mid x_0)$
 
@@ -90,7 +91,7 @@ All the little bits of noise added at each step combine into one big Gaussian no
 
 #### The Final Marginal Distribution
 
-So, you can sample $x_t$ directly from $x_0$ using:
+So, we can sample $x_t$ directly from $x_0$ using:
 $$
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)
 $$
@@ -118,11 +119,6 @@ $$
 | 4 | $q(x_t \mid x_0) = \mathcal{N}(\sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)$ | Marginal distribution at step $t$ |
 | 5 | $x_T \sim \mathcal{N}(0, I)$ | After many steps, pure noise |
 
-#### Analogy: The Smoothie
-
-Imagine you start with a glass of pure juice (your original image). At each step, you add a splash of water (noise) and stir. After many steps, the juice gets more and more diluted. Eventually, you just have a glass of water (pure noise), and you can’t taste the juice anymore.
-
-The formula above tells you, at any point, exactly how much juice is left and how much water has been added.
 
 #### Key Takeaways
 
