@@ -248,17 +248,14 @@ x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
 <p><span class="math display">\[
 q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
 \]</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p><strong>Shortcut Insight:</strong> While the forward process defines a full Markov chain from <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>, we’ll soon see that it’s also possible to sample any <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using a closed-form Gaussian — without simulating each intermediate step.</p>
+</div>
 </div>
 </div>
 <p>The joint probability of the sequence is: <span class="math display">\[
