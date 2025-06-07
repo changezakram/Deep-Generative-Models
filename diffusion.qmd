@@ -137,7 +137,7 @@ $$
 - Thanks to properties of Gaussian noise, you can describe the result as the original data scaled down plus one cumulative chunk of Gaussian noise.   
 - After enough steps, the data becomes indistinguishable from random noise.
 
-
+---
 
 
 
@@ -150,7 +150,6 @@ Let’s break down the reverse diffusion process step by step. This is the **gen
 - **Forward process**: Gradually adds noise to data via $q(x_t \mid x_{t-1})$
 - **Reverse process**: Gradually removes noise via $p_\theta(x_{t-1} \mid x_t)$, learned by a neural network
 
----
 
 #### The Goal of the Reverse Process
 
@@ -161,7 +160,6 @@ $$
 p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
 $$
 
----
 
 #### Key Insight from the Forward Process
 
@@ -170,7 +168,6 @@ $$
 q(x_{t-1} \mid x_t) \approx \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t), \tilde{\beta}_t I)
 $$
 
----
 
 #### Deriving \( q(x_{t-1} \mid x_t, x_0) \) Using Bayes’ Rule
 
@@ -187,7 +184,6 @@ $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)
 $$
 
----
 
 #### Completing the Square for the Gaussian
 
@@ -202,7 +198,6 @@ $$
 \tilde{\beta}_t = \frac{(1 - \bar{\alpha}_{t-1}) \beta_t}{1 - \bar{\alpha}_t}
 $$
 
----
 
 #### Parameterizing the Reverse Process
 
@@ -215,7 +210,6 @@ $$
 
 Substituting this into $\tilde{\mu}_t$ gives us a version based only on $x_t$ and the noise $\epsilon$, which can be predicted by a neural network.
 
----
 
 #### Training the Neural Network
 
@@ -231,7 +225,6 @@ $$
 **Intuition:** The model learns to "denoise" each $x_t$ by predicting the noise that was added to create it.
 :::
 
----
 
 #### Sampling (Generating New Data)
 
@@ -248,7 +241,6 @@ Where:
 - $z \sim \mathcal{N}(0, I)$  
 - $\sigma_t^2 = \beta_t$
 
----
 
 #### Simplifications in DDPM
 
@@ -262,7 +254,6 @@ $$
 x_{t-1} = \mu_\theta(x_t, t)
 $$
 
----
 
 #### In Summary
 
@@ -270,7 +261,7 @@ $$
 - The reverse process is **learned** by a neural network that predicts noise $\epsilon$ at each step.
 - Sampling starts from pure noise and applies the learned denoising steps iteratively.
 
-
+---
 
 
 ### Learning

@@ -355,6 +355,7 @@ x_T \sim \mathcal{N}(0, I)
 </li>
 <li>After enough steps, the data becomes indistinguishable from random noise.</li>
 </ul>
+<hr>
 </section>
 </section>
 <section id="reverse-diffusion-process" class="level3" data-number="2.2">
@@ -364,21 +365,18 @@ x_T \sim \mathcal{N}(0, I)
 <li><strong>Forward process</strong>: Gradually adds noise to data via <span class="math inline">\(q(x_t \mid x_{t-1})\)</span></li>
 <li><strong>Reverse process</strong>: Gradually removes noise via <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span>, learned by a neural network</li>
 </ul>
-<hr>
 <section id="the-goal-of-the-reverse-process" class="level4" data-number="2.2.1">
 <h4 data-number="2.2.1" class="anchored" data-anchor-id="the-goal-of-the-reverse-process"><span class="header-section-number">2.2.1</span> The Goal of the Reverse Process</h4>
 <p><strong>Objective</strong>: Given a noisy sample <span class="math inline">\(x_t\)</span>, we want to estimate the conditional distribution <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span>. However, this is <strong>intractable</strong> because it would require knowing the true data distribution.</p>
 <p>Instead, we train a neural network to approximate it: <span class="math display">\[
 p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
 \]</span></p>
-<hr>
 </section>
 <section id="key-insight-from-the-forward-process" class="level4" data-number="2.2.2">
 <h4 data-number="2.2.2" class="anchored" data-anchor-id="key-insight-from-the-forward-process"><span class="header-section-number">2.2.2</span> Key Insight from the Forward Process</h4>
 <p>If the noise added in the forward process is small (i.e., <span class="math inline">\(\beta_t \ll 1\)</span>), then the reverse conditional <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span> is also Gaussian: <span class="math display">\[
 q(x_{t-1} \mid x_t) \approx \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t), \tilde{\beta}_t I)
 \]</span></p>
-<hr>
 </section>
 <section id="deriving-qx_t-1-x_t-x_0-using-bayes-rule" class="level4" data-number="2.2.3">
 <h4 data-number="2.2.3" class="anchored" data-anchor-id="deriving-qx_t-1-x_t-x_0-using-bayes-rule"><span class="header-section-number">2.2.3</span> Deriving ( q(x_{t-1} x_t, x_0) ) Using Bayes’ Rule</h4>
@@ -394,7 +392,6 @@ q(x_{t-1} \mid x_t) \approx \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t), \tilde{\bet
 <p>Substituting into Bayes’ rule: <span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)
 \]</span></p>
-<hr>
 </section>
 <section id="completing-the-square-for-the-gaussian" class="level4" data-number="2.2.4">
 <h4 data-number="2.2.4" class="anchored" data-anchor-id="completing-the-square-for-the-gaussian"><span class="header-section-number">2.2.4</span> Completing the Square for the Gaussian</h4>
@@ -406,7 +403,6 @@ q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{
 <p><span class="math display">\[
 \tilde{\beta}_t = \frac{(1 - \bar{\alpha}_{t-1}) \beta_t}{1 - \bar{\alpha}_t}
 \]</span></p>
-<hr>
 </section>
 <section id="parameterizing-the-reverse-process" class="level4" data-number="2.2.5">
 <h4 data-number="2.2.5" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">2.2.5</span> Parameterizing the Reverse Process</h4>
@@ -416,7 +412,6 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left(x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
 \]</span></p>
 <p>Substituting this into <span class="math inline">\(\tilde{\mu}_t\)</span> gives us a version based only on <span class="math inline">\(x_t\)</span> and the noise <span class="math inline">\(\epsilon\)</span>, which can be predicted by a neural network.</p>
-<hr>
 </section>
 <section id="training-the-neural-network" class="level4" data-number="2.2.6">
 <h4 data-number="2.2.6" class="anchored" data-anchor-id="training-the-neural-network"><span class="header-section-number">2.2.6</span> Training the Neural Network</h4>
@@ -435,7 +430,6 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left(x_t - \sqrt{1 - \bar{\alpha}_t} \, \
 </div>
 </div>
 </div>
-<hr>
 </section>
 <section id="sampling-generating-new-data" class="level4" data-number="2.2.7">
 <h4 data-number="2.2.7" class="anchored" data-anchor-id="sampling-generating-new-data"><span class="header-section-number">2.2.7</span> Sampling (Generating New Data)</h4>
@@ -456,7 +450,6 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1 - \bar{\a
 </li>
 <li><span class="math inline">\(\sigma_t^2 = \beta_t\)</span></li>
 </ul>
-<hr>
 </section>
 <section id="simplifications-in-ddpm" class="level4" data-number="2.2.8">
 <h4 data-number="2.2.8" class="anchored" data-anchor-id="simplifications-in-ddpm"><span class="header-section-number">2.2.8</span> Simplifications in DDPM</h4>
@@ -468,7 +461,6 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1 - \bar{\a
 <p>This simplifies the sampling equation to: <span class="math display">\[
 x_{t-1} = \mu_\theta(x_t, t)
 \]</span></p>
-<hr>
 </section>
 <section id="in-summary" class="level4" data-number="2.2.9">
 <h4 data-number="2.2.9" class="anchored" data-anchor-id="in-summary"><span class="header-section-number">2.2.9</span> In Summary</h4>
@@ -477,6 +469,7 @@ x_{t-1} = \mu_\theta(x_t, t)
 <li>The reverse process is <strong>learned</strong> by a neural network that predicts noise <span class="math inline">\(\epsilon\)</span> at each step.</li>
 <li>Sampling starts from pure noise and applies the learned denoising steps iteratively.</li>
 </ul>
+<hr>
 </section>
 </section>
 <section id="learning" class="level3" data-number="2.3">
