@@ -143,7 +143,7 @@ $$
 
 
 
-## Reverse Diffusion Process
+### Reverse Diffusion Process
 
 Let’s break down the reverse diffusion process step by step. This is the **generative phase** of diffusion models, where we learn to turn pure noise back into data. For clarity, we’ll use the same notation as in the forward process:
 
@@ -152,7 +152,7 @@ Let’s break down the reverse diffusion process step by step. This is the **gen
 
 ---
 
-### The Goal of the Reverse Process
+#### The Goal of the Reverse Process
 
 **Objective**: Given a noisy sample $x_t$, we want to estimate the conditional distribution $q(x_{t-1} \mid x_t)$. However, this is **intractable** because it would require knowing the true data distribution.
 
@@ -163,7 +163,7 @@ $$
 
 ---
 
-### Key Insight from the Forward Process
+#### Key Insight from the Forward Process
 
 If the noise added in the forward process is small (i.e., $\beta_t \ll 1$), then the reverse conditional $q(x_{t-1} \mid x_t)$ is also Gaussian:
 $$
@@ -172,7 +172,7 @@ $$
 
 ---
 
-### Deriving \( q(x_{t-1} \mid x_t, x_0) \) Using Bayes’ Rule
+#### Deriving \( q(x_{t-1} \mid x_t, x_0) \) Using Bayes’ Rule
 
 We can't directly evaluate $q(x_{t-1} \mid x_t)$, but we can derive the **posterior** $q(x_{t-1} \mid x_t, x_0)$:
 
@@ -189,7 +189,7 @@ $$
 
 ---
 
-### Completing the Square for the Gaussian
+#### Completing the Square for the Gaussian
 
 We simplify the exponent into a quadratic form and combine terms. This gives us:
 $$
@@ -204,7 +204,7 @@ $$
 
 ---
 
-### Parameterizing the Reverse Process
+#### Parameterizing the Reverse Process
 
 During sampling, we **don't know** $x_0$, so we use the forward reparameterization:
 $$
@@ -217,7 +217,7 @@ Substituting this into $\tilde{\mu}_t$ gives us a version based only on $x_t$ an
 
 ---
 
-### Training the Neural Network
+#### Training the Neural Network
 
 The reverse process is implemented as a neural network (often a U-Net), which is trained to **predict the noise** $\epsilon$ from $x_t$ at each step. The forward process is fixed and non-learned.
 
@@ -233,7 +233,7 @@ $$
 
 ---
 
-### Sampling (Generating New Data)
+#### Sampling (Generating New Data)
 
 To generate a sample:
 
@@ -250,7 +250,7 @@ Where:
 
 ---
 
-### Simplifications in DDPM
+#### Simplifications in DDPM
 
 In the **Denoising Diffusion Probabilistic Models (DDPM)** paper:
 
@@ -264,8 +264,16 @@ $$
 
 ---
 
-### In Summary
+#### In Summary
 
 - The forward process is a fixed schedule of adding Gaussian noise.
 - The reverse process is **learned** by a neural network that predicts noise $\epsilon$ at each step.
 - Sampling starts from pure noise and applies the learned denoising steps iteratively.
+
+
+
+
+### Learning
+**What is the Goal?**
+The ultimate goal in diffusion models is to train the neural network so that it can reverse the noising process. In other words, we want the network to learn how to turn random noise back into realistic data (like images).
+But how do we actually train the network? We need a loss function—a way to measure how good or bad the network’s predictions are, so we can improve it.
