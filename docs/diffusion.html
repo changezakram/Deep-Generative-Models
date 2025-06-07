@@ -213,7 +213,8 @@ window.Quarto = {
 <p>The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.</p>
 <section id="start-with-a-data-sample" class="level4" data-number="2.1.1">
 <h4 data-number="2.1.1" class="anchored" data-anchor-id="start-with-a-data-sample"><span class="header-section-number">2.1.1</span> Start with a Data Sample</h4>
-<p>Begin with a data point <span class="math inline">\(x_0\)</span>, sampled from dataset (such as a real image). The goal is to slowly corrupt <span class="math inline">\(x_0\)</span> by adding noise over many steps, until it becomes pure noise.</p>
+<p>Begin with a data point <span class="math inline">\(x_0\)</span>, sampled from dataset (such as a real image). The goal is to slowly corrupt <span class="math inline">\(x_0\)</span> by adding noise over many steps, until it becomes pure noise.<br>
+We’ll later see that it’s also possible to sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span>, without simulating every step.</p>
 </section>
 <section id="add-noise-recursively" class="level4" data-number="2.1.2">
 <h4 data-number="2.1.2" class="anchored" data-anchor-id="add-noise-recursively"><span class="header-section-number">2.1.2</span> Add Noise Recursively</h4>

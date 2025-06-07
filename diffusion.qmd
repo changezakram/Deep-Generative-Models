@@ -14,7 +14,8 @@ The forward diffusion process gradually turns a data sample (such as an image) i
 
 #### Start with a Data Sample
 
-Begin with a data point $x_0$, sampled from dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes pure noise.
+Begin with a data point $x_0$, sampled from dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes pure noise.  
+We’ll later see that it’s also possible to sample $x_t$ directly from $x_0$, without simulating every step.
 
 #### Add Noise Recursively
 
