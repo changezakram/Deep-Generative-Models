@@ -22,11 +22,11 @@ At each time step $t$, the process is defined as:
 $$
 q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I\right)
 $$
-where:
-\begin{itemize}
-    \item $\alpha_t = 1 - \beta_t$, with $\beta_t$ a small positive number controlling the noise level at step $t$,
-    \item $I$ is the identity matrix, so noise is added independently to each component.
-\end{itemize}
+
+Where:
+
+- $\alpha_t = 1 - \beta_t$, with $\beta_t$ a small positive number controlling the noise level at step $t$  
+- $I$ is the identity matrix, so noise is added independently to each component.
 
 \textbf{Intuition:} Each step shrinks the previous value a bit and adds some fresh Gaussian noise. As you repeat this, the sample becomes more and more like random noise.
 
