@@ -50,8 +50,7 @@ $$
 ::: {.callout-note}
 **Shortcut Insight**
 
-While the forward process defines a full Markov chain from $x_0$ to $x_T$,  
-we’ll soon see that it’s also possible to sample any $x_t$ directly from $x_0$ using a closed-form Gaussian — without simulating each intermediate step.
+While the forward process defines a full Markov chain from $x_0$ to $x_T$, we’ll soon see that it’s also possible to sample any $x_t$ directly from $x_0$ using a closed-form Gaussian — without simulating each intermediate step.
 :::
 
 
