@@ -1,0 +1,130 @@
+## Forward Diffusion (with Detailed Derivation)
+
+\subsection*{What is the Forward Diffusion Process?}
+
+The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.
+
+\subsection*{Step 1: Start with a Data Sample}
+
+Begin with a data point $x_0$, sampled from your dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes pure noise.
+
+\subsection*{Step 2: Add Noise Recursively}
+
+At each time step $t$, the process is defined as:
+$$
+q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I\right)
+$$
+where:
+\begin{itemize}
+    \item $\alpha_t = 1 - \beta_t$, with $\beta_t$ a small positive number controlling the noise level at step $t$,
+    \item $I$ is the identity matrix, so noise is added independently to each component.
+\end{itemize}
+
+\textbf{Intuition:} Each step shrinks the previous value a bit and adds some fresh Gaussian noise. As you repeat this, the sample becomes more and more like random noise.
+
+\subsection*{Step 3: The Markov Chain}
+
+The full sequence is:
+$$
+x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
+$$
+The joint probability of the sequence is:
+$$
+q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
+$$
+This means you can sample the whole chain by repeatedly applying the noise step.
+
+\subsection*{Step 4: Deriving the Marginal Distribution $q(x_t \mid x_0)$}
+
+\textbf{Key Question:} How do we get the formula that lets us sample $x_t$ directly from $x_0$ (without simulating all the intermediate steps)?
+
+\textbf{a. Unrolling the Recursion}
+
+Let’s see how $x_t$ is built up from $x_0$:
+
+For $t = 1$:
+$$
+x_1 = \sqrt{\alpha_1} x_0 + \sqrt{1 - \alpha_1} \epsilon_1, \qquad \epsilon_1 \sim \mathcal{N}(0, I)
+$$
+
+For $t = 2$:
+$$
+x_2 = \sqrt{\alpha_2} x_1 + \sqrt{1 - \alpha_2} \epsilon_2
+$$
+Substitute $x_1$:
+$$
+x_2 = \sqrt{\alpha_2} \left( \sqrt{\alpha_1} x_0 + \sqrt{1 - \alpha_1} \epsilon_1 \right) + \sqrt{1 - \alpha_2} \epsilon_2
+$$
+$$
+= \sqrt{\alpha_2 \alpha_1} x_0 + \sqrt{\alpha_2 (1 - \alpha_1)} \epsilon_1 + \sqrt{1 - \alpha_2} \epsilon_2
+$$
+
+For general $t$, recursively expanding gives:
+$$
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sum_{i=1}^t \left( \sqrt{ \left( \prod_{j=i+1}^t \alpha_j \right) (1 - \alpha_i) } \, \epsilon_i \right)
+$$
+where $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$.
+
+\textbf{b. Combining All the Noise Terms}
+
+Each $\epsilon_i$ is independent Gaussian noise. The sum of independent Gaussians (each scaled by a constant) is still a Gaussian, with variance equal to the sum of the variances:
+$$
+\text{Total variance} = \sum_{i=1}^t \left( \prod_{j=i+1}^t \alpha_j \right) (1 - \alpha_i)
+$$
+This sum simplifies to:
+$$
+1 - \bar{\alpha}_t
+$$
+(You can prove this by induction or by telescoping the sum.)
+
+\textbf{Key Point:} All the little bits of noise added at each step combine into one big Gaussian noise term, with variance $1 - \bar{\alpha}_t$.
+
+\subsection*{Step 5: The Final Marginal Distribution}
+
+So, you can sample $x_t$ directly from $x_0$ using:
+$$
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)
+$$
+This means:
+$$
+q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right)
+$$
+
+\textbf{Intuition:} After $t$ steps, your sample is a faded version of the original plus one big chunk of noise.
+
+\subsection*{Step 6: What Happens as $t$ Gets Large?}
+
+As $t$ increases, $\bar{\alpha}_t$ shrinks toward zero. Eventually, $x_t$ becomes pure noise:
+$$
+x_T \sim \mathcal{N}(0, I)
+$$
+
+\subsection*{Summary Table}
+
+\begin{center}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Step} & \textbf{Formula} & \textbf{Explanation} \\
+\hline
+1 & $x_0$ & Original data sample \\
+2 & $q(x_t \mid x_{t-1}) = \mathcal{N}(\sqrt{\alpha_t} x_{t-1}, (1-\alpha_t) I)$ & Add noise at each step \\
+3 & $x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon$ & Direct sampling at step $t$ \\
+4 & $q(x_t \mid x_0) = \mathcal{N}(\sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)$ & Marginal distribution at step $t$ \\
+5 & $x_T \sim \mathcal{N}(0, I)$ & After many steps, pure noise \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Analogy: The Smoothie}
+
+Imagine you start with a glass of pure juice (your original image). At each step, you add a splash of water (noise) and stir. After many steps, the juice gets more and more diluted. Eventually, you just have a glass of water (pure noise), and you can’t taste the juice anymore.
+
+The formula above tells you, at any point, exactly how much juice is left and how much water has been added.
+
+\subsection*{Key Takeaways}
+
+\begin{itemize}
+    \item The forward diffusion process is just repeatedly adding noise to your data.
+    \item Thanks to properties of Gaussian noise, you can always describe the result as a faded original plus a single chunk of noise.
+    \item After enough steps, the data becomes indistinguishable from random noise.
+\end{itemize}
