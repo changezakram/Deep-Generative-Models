@@ -29,7 +29,7 @@ Where:
 - $I$ is the identity matrix, so noise is added independently to each component.
 
 ::: {.callout-note appearance="simple"}
-**Intuition:** Each step shrinks the previous value a bit and adds some fresh Gaussian noise. As you repeat this, the sample becomes more and more like random noise.
+**Intuition:** Each step shrinks the previous value a bit and adds some Gaussian noise. As you repeat this, the sample becomes more and more like random noise.
 :::
 
 #### The Markov Chain
@@ -75,8 +75,6 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sum_{i=1}^t \left( \sqrt{ \left( \prod_{j=i+1
 $$
 where $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$.
 
-\textbf{b. Combining All the Noise Terms}
-
 Each $\epsilon_i$ is independent Gaussian noise. The sum of independent Gaussians (each scaled by a constant) is still a Gaussian, with variance equal to the sum of the variances:
 $$
 \text{Total variance} = \sum_{i=1}^t \left( \prod_{j=i+1}^t \alpha_j \right) (1 - \alpha_i)
@@ -85,9 +83,10 @@ This sum simplifies to:
 $$
 1 - \bar{\alpha}_t
 $$
-(You can prove this by induction or by telescoping the sum.)
 
-\textbf{Key Point:} All the little bits of noise added at each step combine into one big Gaussian noise term, with variance $1 - \bar{\alpha}_t$.
+This can be proved by induction or by telescoping the sum.
+
+All the little bits of noise added at each step combine into one big Gaussian noise term, with variance $1 - \bar{\alpha}_t$.
 
 #### The Final Marginal Distribution
 
@@ -100,7 +99,7 @@ $$
 q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right)
 $$
 
-\textbf{Intuition:} After $t$ steps, your sample is a faded version of the original plus one big chunk of noise.
+After $t$ steps, sample is a faded version of the original plus one big chunk of noise.
 
 #### What Happens as $t$ Gets Large?
 
@@ -111,19 +110,13 @@ $$
 
 ####  Summary Table
 
-\begin{center}
-\begin{tabular}{|c|l|l|}
-\hline
-\textbf{Step} & \textbf{Formula} & \textbf{Explanation} \\
-\hline
-1 & $x_0$ & Original data sample \\
-2 & $q(x_t \mid x_{t-1}) = \mathcal{N}(\sqrt{\alpha_t} x_{t-1}, (1-\alpha_t) I)$ & Add noise at each step \\
-3 & $x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon$ & Direct sampling at step $t$ \\
-4 & $q(x_t \mid x_0) = \mathcal{N}(\sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)$ & Marginal distribution at step $t$ \\
-5 & $x_T \sim \mathcal{N}(0, I)$ & After many steps, pure noise \\
-\hline
-\end{tabular}
-\end{center}
+| **Step** | **Formula** | **Explanation** |
+|---------|-------------|-----------------|
+| 1 | $x_0$ | Original data sample |
+| 2 | $q(x_t \mid x_{t-1}) = \mathcal{N}(\sqrt{\alpha_t} x_{t-1}, (1-\alpha_t) I)$ | Add noise at each step |
+| 3 | $x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon$ | Direct sampling at step $t$ |
+| 4 | $q(x_t \mid x_0) = \mathcal{N}(\sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)$ | Marginal distribution at step $t$ |
+| 5 | $x_T \sim \mathcal{N}(0, I)$ | After many steps, pure noise |
 
 #### Analogy: The Smoothie
 
@@ -131,10 +124,9 @@ Imagine you start with a glass of pure juice (your original image). At each step
 
 The formula above tells you, at any point, exactly how much juice is left and how much water has been added.
 
-\subsection*{Key Takeaways}
+#### Key Takeaways
 
-\begin{itemize}
-    \item The forward diffusion process is just repeatedly adding noise to your data.
-    \item Thanks to properties of Gaussian noise, you can always describe the result as a faded original plus a single chunk of noise.
-    \item After enough steps, the data becomes indistinguishable from random noise.
-\end{itemize}
+- The forward diffusion process is just repeatedly adding noise to your data.
+- Thanks to properties of Gaussian noise, you can always describe the result as a faded original plus a single chunk of noise.
+- After enough steps, the data becomes indistinguishable from random noise.
+
