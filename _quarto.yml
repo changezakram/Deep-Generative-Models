@@ -29,6 +29,13 @@ website:
           - text: Benchmarking and Evaluation [Coming Soon]
             href: coming-soon.qmd
 
+      - text: Math Review
+        menu:
+          - text: Linear Algebra
+            href: https://changezakram.github.io/math-review/linear-algebra.html
+          - text: Probability
+            href: https://changezakram.github.io/math-review/probability.html
+
 format:
   html:
     theme: cosmo

@@ -35,5 +35,11 @@
   },
   "coming-soon.qmd": {
     "coming-soon.html": "d3739619"
+  },
+  "ebm_mnist.ipynb": {
+    "ebm_mnist.html": "ac1b94e0"
+  },
+  "diffusion.qmd": {
+    "diffusion.html": "d2f2e07f"
   }
 }
