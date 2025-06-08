@@ -169,9 +169,13 @@ q(x_{t-1} \mid x_t) \approx \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t), \tilde{\bet
 $$
 
 
-#### Deriving \( q(x_{t-1} \mid x_t, x_0) \) Using Bayes’ Rule
+#### Deriving $q(x_{t-1} \mid x_t, x_0)$ Using Bayes’ Rule
 
 We can't directly evaluate $q(x_{t-1} \mid x_t)$, but we can derive the **posterior** $q(x_{t-1} \mid x_t, x_0)$:
+
+$$
+q(x_{t-1} \mid x_t, x_0) = \frac{q(x_t \mid x_{t-1}, x_0) \cdot q(x_{t-1} \mid x_0)}{q(x_t \mid x_0)}
+$$
 
 From the forward process, we know:
 

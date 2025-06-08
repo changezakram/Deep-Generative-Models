@@ -379,9 +379,12 @@ p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\th
 q(x_{t-1} \mid x_t) \approx \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t), \tilde{\beta}_t I)
 \]</span></p>
 </section>
-<section id="deriving-qx_t-1-x_t-x_0-using-bayes-rule" class="level4" data-number="2.2.3">
-<h4 data-number="2.2.3" class="anchored" data-anchor-id="deriving-qx_t-1-x_t-x_0-using-bayes-rule"><span class="header-section-number">2.2.3</span> Deriving ( q(x_{t-1} x_t, x_0) ) Using Bayes’ Rule</h4>
+<section id="deriving-qx_t-1-mid-x_t-x_0-using-bayes-rule" class="level4" data-number="2.2.3">
+<h4 data-number="2.2.3" class="anchored" data-anchor-id="deriving-qx_t-1-mid-x_t-x_0-using-bayes-rule"><span class="header-section-number">2.2.3</span> Deriving <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> Using Bayes’ Rule</h4>
 <p>We can’t directly evaluate <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span>, but we can derive the <strong>posterior</strong> <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span>:</p>
+<p><span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) = \frac{q(x_t \mid x_{t-1}, x_0) \cdot q(x_{t-1} \mid x_0)}{q(x_t \mid x_0)}
+\]</span></p>
 <p>From the forward process, we know:</p>
 <ul>
 <li><span class="math inline">\(q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I)\)</span><br>
