@@ -33,9 +33,10 @@ website:
         menu:
           - text: Linear Algebra
             href: https://changezakram.github.io/math-review/linear-algebra.html
+          - text: Calculus
+            href: https://changezakram.github.io/math-review/calculus.html
           - text: Probability
             href: https://changezakram.github.io/math-review/probability.html
-
 format:
   html:
     theme: cosmo
