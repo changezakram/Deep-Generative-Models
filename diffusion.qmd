@@ -197,14 +197,19 @@ $$
 #### Completing the Square for the Gaussian
 
 We simplify the exponent into a quadratic form and combine terms. This gives us:
+
 $$
-\tilde{\mu}_t(x_t, x_0) = 
-\frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1 - \bar{\alpha}_t} x_0 + 
-\frac{\sqrt{\alpha_t} (1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t
+\text{Exponent} = -\frac{1}{2} \left[ \frac{\left(x_t - \sqrt{\alpha_t} x_{t-1} \right)^2}{\beta_t} + \frac{\left(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \right)^2}{1 - \bar{\alpha}_{t-1}} \right]
+$$
+
+After expanding and combining terms (a tedious but straightforward algebraic process), we find that the mean $\tilde{\mu}_t$ and variance $\tilde{\beta}_t$ of $q(x_{t-1} \mid x_t, x_0)$ are:
+
+$$
+\tilde{\mu}_t = \frac{\sqrt{\alpha_t} (1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t + \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1 - \bar{\alpha}_t} x_0
 $$
 
 $$
-\tilde{\beta}_t = \frac{(1 - \bar{\alpha}_{t-1}) \beta_t}{1 - \bar{\alpha}_t}
+\tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \beta_t
 $$
 
 
