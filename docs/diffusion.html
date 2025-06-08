@@ -378,6 +378,28 @@ p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\th
 <p>If the noise added in the forward process is small (i.e., <span class="math inline">\(\beta_t \ll 1\)</span>), then the reverse conditional <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span> is also Gaussian: <span class="math display">\[
 q(x_{t-1} \mid x_t) \approx \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t), \tilde{\beta}_t I)
 \]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Glossary of Symbols">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Glossary of Symbols
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>**( _t )**: Variance-preserving noise coefficient at step (t)</li>
+<li>**( {}_t )**: Cumulative product of (_t), i.e., ( {}<em>t = </em>{s=1}^t _s )</li>
+<li>**( _t )**: Variance of the noise added at step (t), typically ( _t = 1 - _t )</li>
+<li><strong>( x_0 )</strong>: Original clean data sample (e.g., image)</li>
+<li><strong>( x_t )</strong>: Noisy version of (x_0) at timestep (t)</li>
+<li><strong>( )</strong>: Standard Gaussian noise sampled from ( (0, I) )</li>
+<li>**( _t )**: Mean of the reverse process distribution at time (t)</li>
+<li>**( _t )**: Variance of the reverse process distribution at time (t)</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="deriving-qx_t-1-mid-x_t-x_0-using-bayes-rule" class="level4" data-number="2.2.3">
 <h4 data-number="2.2.3" class="anchored" data-anchor-id="deriving-qx_t-1-mid-x_t-x_0-using-bayes-rule"><span class="header-section-number">2.2.3</span> Deriving <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> Using Bayes’ Rule</h4>

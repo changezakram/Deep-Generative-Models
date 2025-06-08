@@ -169,6 +169,17 @@ q(x_{t-1} \mid x_t) \approx \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t), \tilde{\bet
 $$
 
 
+::: {.callout-note title="Glossary of Symbols"}
+- **\( \alpha_t \)**: Variance-preserving noise coefficient at step \(t\)
+- **\( \bar{\alpha}_t \)**: Cumulative product of \(\alpha_t\), i.e., \( \bar{\alpha}_t = \prod_{s=1}^t \alpha_s \)
+- **\( \beta_t \)**: Variance of the noise added at step \(t\), typically \( \beta_t = 1 - \alpha_t \)
+- **\( x_0 \)**: Original clean data sample (e.g., image)
+- **\( x_t \)**: Noisy version of \(x_0\) at timestep \(t\)
+- **\( \epsilon \)**: Standard Gaussian noise sampled from \( \mathcal{N}(0, I) \)
+- **\( \tilde{\mu}_t \)**: Mean of the reverse process distribution at time \(t\)
+- **\( \tilde{\beta}_t \)**: Variance of the reverse process distribution at time \(t\)
+:::
+
 #### Deriving $q(x_{t-1} \mid x_t, x_0)$ Using Bayes’ Rule
 
 We can't directly evaluate $q(x_{t-1} \mid x_t)$, but we can derive the **posterior** $q(x_{t-1} \mid x_t, x_0)$:
