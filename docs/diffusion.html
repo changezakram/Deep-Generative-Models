@@ -417,12 +417,15 @@ q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{
 </section>
 <section id="parameterizing-the-reverse-process" class="level4" data-number="2.2.5">
 <h4 data-number="2.2.5" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">2.2.5</span> Parameterizing the Reverse Process</h4>
-<p>During sampling, we <strong>don’t know</strong> <span class="math inline">\(x_0\)</span>, so we use the forward reparameterization: <span class="math display">\[
-x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
-\quad \Rightarrow \quad
-x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left(x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
+<p>Since we don’t know <span class="math inline">\(x_0\)</span> during the reverse process, we express it in terms of <span class="math inline">\(x_t\)</span> using the reparameterization trick from the forward process:</p>
+<p><span class="math display">\[
+x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 \]</span></p>
-<p>Substituting this into <span class="math inline">\(\tilde{\mu}_t\)</span> gives us a version based only on <span class="math inline">\(x_t\)</span> and the noise <span class="math inline">\(\epsilon\)</span>, which can be predicted by a neural network.</p>
+<p>Substituting this into <span class="math inline">\(\tilde{\mu}_t\)</span>, we get:</p>
+<p><span class="math display">\[
+\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+\]</span></p>
+<p>where <span class="math inline">\(\epsilon\)</span> is the noise added to <span class="math inline">\(x_0\)</span> to get <span class="math inline">\(x_t\)</span>.</p>
 </section>
 <section id="training-the-neural-network" class="level4" data-number="2.2.6">
 <h4 data-number="2.2.6" class="anchored" data-anchor-id="training-the-neural-network"><span class="header-section-number">2.2.6</span> Training the Neural Network</h4>

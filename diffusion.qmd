@@ -215,14 +215,19 @@ $$
 
 #### Parameterizing the Reverse Process
 
-During sampling, we **don't know** $x_0$, so we use the forward reparameterization:
+Since we don’t know $x_0$ during the reverse process, we express it in terms of $x_t$ using the reparameterization trick from the forward process:
+
 $$
-x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
-\quad \Rightarrow \quad
-x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left(x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
+x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 $$
 
-Substituting this into $\tilde{\mu}_t$ gives us a version based only on $x_t$ and the noise $\epsilon$, which can be predicted by a neural network.
+Substituting this into $\tilde{\mu}_t$, we get:
+
+$$
+\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+$$
+
+where $\epsilon$ is the noise added to $x_0$ to get $x_t$.
 
 
 #### Training the Neural Network
