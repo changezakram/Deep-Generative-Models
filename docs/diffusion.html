@@ -177,6 +177,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#math-review" id="toc-math-review" class="nav-link" data-scroll-target="#math-review"><span class="header-section-number">2</span> Math Review</a></li>
+  <li><a href="#back-to-the-diffusion-detailed-explanation" id="toc-back-to-the-diffusion-detailed-explanation" class="nav-link" data-scroll-target="#back-to-the-diffusion-detailed-explanation"><span class="header-section-number">3</span> Back to the Diffusion (Detailed Explanation)</a></li>
   </ul>
 </nav>
     </div>
@@ -601,10 +602,133 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 <li>In practice, training reduces to minimizing the difference between predicted and true noise.</li>
 </ul>
 <hr>
-
-
 </section>
 </section>
+</section>
+</section>
+<section id="back-to-the-diffusion-detailed-explanation" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="back-to-the-diffusion-detailed-explanation"><span class="header-section-number">3</span> Back to the Diffusion (Detailed Explanation)</h2>
+<section id="recap-what-is-diffusion-in-this-context" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="recap-what-is-diffusion-in-this-context"><span class="header-section-number">3.1</span> Recap: What Is Diffusion in This Context?</h3>
+<p>Diffusion models work by gradually adding noise to data (like images) in small steps until the data becomes nearly pure noise. This is called the <strong>forward diffusion process</strong>. The challenge lies in reversing this process: starting from noise and recovering realistic data. This is known as the <strong>reverse diffusion process</strong>.</p>
+</section>
+<section id="the-reverse-diffusion-process-step-by-step" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="the-reverse-diffusion-process-step-by-step"><span class="header-section-number">3.2</span> The Reverse Diffusion Process: Step by Step</h3>
+<section id="the-goal" class="level4" data-number="3.2.1">
+<h4 data-number="3.2.1" class="anchored" data-anchor-id="the-goal"><span class="header-section-number">3.2.1</span> 1. The Goal</h4>
+<p>The reverse diffusion process aims to start from random noise and, through a sequence of learned steps, remove the noise and reconstruct a realistic data sample (e.g., an image).</p>
+</section>
+<section id="why-is-this-hard" class="level4" data-number="3.2.2">
+<h4 data-number="3.2.2" class="anchored" data-anchor-id="why-is-this-hard"><span class="header-section-number">3.2.2</span> 2. Why Is This Hard?</h4>
+<ul>
+<li>The forward process is simple and analytically defined.</li>
+<li>The reverse process requires “undoing” the added noise, which is complex and intractable for real data.</li>
+<li>To solve this, we use a neural network to learn how to denoise the sample step-by-step.</li>
+</ul>
+</section>
+<section id="how-is-the-reverse-process-modeled" class="level4" data-number="3.2.3">
+<h4 data-number="3.2.3" class="anchored" data-anchor-id="how-is-the-reverse-process-modeled"><span class="header-section-number">3.2.3</span> 3. How Is the Reverse Process Modeled?</h4>
+<ul>
+<li>The reverse process is represented as a Markov chain of conditional Gaussians:</li>
+</ul>
+<p><span class="math display">\[
+p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
+\]</span></p>
+<ul>
+<li>Here, <span class="math inline">\(p(x_T)\)</span> is a standard normal distribution.</li>
+<li>Each <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span> is a Gaussian with parameters predicted by a neural network.</li>
+</ul>
+</section>
+<section id="why-use-gaussians" class="level4" data-number="3.2.4">
+<h4 data-number="3.2.4" class="anchored" data-anchor-id="why-use-gaussians"><span class="header-section-number">3.2.4</span> 4. Why Use Gaussians?</h4>
+<ul>
+<li>If the forward noise schedule uses small variances <span class="math inline">\(\beta_t\)</span>, the reverse conditional distributions can be well-approximated by Gaussians.</li>
+<li>This makes training and sampling tractable using standard probabilistic tools.</li>
+</ul>
+</section>
+<section id="what-does-the-neural-network-actually-do" class="level4" data-number="3.2.5">
+<h4 data-number="3.2.5" class="anchored" data-anchor-id="what-does-the-neural-network-actually-do"><span class="header-section-number">3.2.5</span> 5. What Does the Neural Network Actually Do?</h4>
+<ul>
+<li>Given a noisy input <span class="math inline">\(x_t\)</span> and the time step <span class="math inline">\(t\)</span>, the neural network predicts:
+<ul>
+<li>The mean <span class="math inline">\(\mu_\theta(x_t, t)\)</span> of the reverse Gaussian</li>
+<li>The added noise <span class="math inline">\(\epsilon\)</span></li>
+<li>Or another related signal, depending on how the model is parameterized</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-sampling-generation-process" class="level4" data-number="3.2.6">
+<h4 data-number="3.2.6" class="anchored" data-anchor-id="the-sampling-generation-process"><span class="header-section-number">3.2.6</span> 6. The Sampling (Generation) Process</h4>
+<p>To generate a new sample:</p>
+<ol type="1">
+<li>Sample noise: <span class="math inline">\(x_T \sim \mathcal{N}(0, I)\)</span><br>
+</li>
+<li>For <span class="math inline">\(t = T, T-1, \dots, 1\)</span>:
+<ul>
+<li>Predict <span class="math inline">\(\mu_\theta(x_t, t)\)</span> and optionally <span class="math inline">\(\Sigma_\theta(x_t, t)\)</span></li>
+<li>Sample:</li>
+</ul></li>
+</ol>
+<p><span class="math display">\[
+x_{t-1} = \mu_\theta(x_t, t) + \Sigma_\theta^{1/2}(x_t, t) \cdot z, \quad z \sim \mathcal{N}(0, I)
+\]</span></p>
+<ol start="3" type="1">
+<li>The final output <span class="math inline">\(x_0\)</span> should resemble realistic data.</li>
+</ol>
+</section>
+<section id="discrete-data-and-the-final-step" class="level4" data-number="3.2.7">
+<h4 data-number="3.2.7" class="anchored" data-anchor-id="discrete-data-and-the-final-step"><span class="header-section-number">3.2.7</span> 7. Discrete Data and the Final Step</h4>
+<ul>
+<li>Real images have discrete pixel values (e.g., 0 to 255).</li>
+<li>The final step often uses a discrete decoder (like a softmax over 256 bins) to convert continuous predictions into discrete outputs.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="key-mathematical-details-with-explanations" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="key-mathematical-details-with-explanations"><span class="header-section-number">3.3</span> Key Mathematical Details (With Explanations)</h3>
+<ul>
+<li><strong>Forward process:</strong></li>
+</ul>
+<p><span class="math display">\[
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+\]</span></p>
+<p>where <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span>, and <span class="math inline">\(\bar{\alpha}_t\)</span> is the cumulative product of <span class="math inline">\(\alpha_t = 1 - \beta_t\)</span>.</p>
+<ul>
+<li><strong>Reverse process:</strong></li>
+</ul>
+<p><span class="math display">\[
+p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
+\]</span></p>
+<ul>
+<li><strong>Sampling equation:</strong></li>
+</ul>
+<p><span class="math display">\[
+x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
+\]</span></p>
+<ul>
+<li><strong>Final decoding:</strong> Produces discrete pixel values from continuous outputs.</li>
+</ul>
+</section>
+<section id="why-is-this-important" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="why-is-this-important"><span class="header-section-number">3.4</span> Why Is This Important?</h3>
+<ul>
+<li>Connects the forward and reverse processes to the actual generative algorithm.</li>
+<li>Explains how the neural network learns to remove noise step-by-step.</li>
+<li>Clarifies why Gaussian assumptions and probabilistic modeling matter.</li>
+</ul>
+<hr>
+</section>
+<section id="summary" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.5</span> Summary</h3>
+<ul>
+<li>The reverse diffusion process generates new data by progressively denoising a random noise sample.</li>
+<li>It’s guided by a neural network trained to predict the direction of denoising at each step.</li>
+<li>Each reverse step is modeled as a Gaussian, and the final output is discretized to match real data.</li>
+<li>This process allows diffusion models to create realistic images, audio, or other types of structured data.</li>
+</ul>
+
+
 </section>
 </section>
 
