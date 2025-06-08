@@ -389,14 +389,14 @@ Glossary of Symbols
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>**( _t )**: Variance-preserving noise coefficient at step (t)</li>
-<li>**( {}_t )**: Cumulative product of (_t), i.e., ( {}<em>t = </em>{s=1}^t _s )</li>
-<li>**( _t )**: Variance of the noise added at step (t), typically ( _t = 1 - _t )</li>
-<li><strong>( x_0 )</strong>: Original clean data sample (e.g., image)</li>
-<li><strong>( x_t )</strong>: Noisy version of (x_0) at timestep (t)</li>
-<li><strong>( )</strong>: Standard Gaussian noise sampled from ( (0, I) )</li>
-<li>**( _t )**: Mean of the reverse process distribution at time (t)</li>
-<li>**( _t )**: Variance of the reverse process distribution at time (t)</li>
+<li><strong><span class="math inline">\(\alpha_t\)</span></strong>: Variance-preserving noise coefficient at step <span class="math inline">\(t\)</span></li>
+<li><strong><span class="math inline">\(\bar{\alpha}_t\)</span></strong>: Cumulative product of <span class="math inline">\(\alpha_t\)</span>, i.e., <span class="math inline">\(\bar{\alpha}_t = \prod_{s=1}^t \alpha_s\)</span></li>
+<li><strong><span class="math inline">\(\beta_t\)</span></strong>: Variance of the noise added at step <span class="math inline">\(t\)</span>, typically <span class="math inline">\(\beta_t = 1 - \alpha_t\)</span></li>
+<li><strong><span class="math inline">\(x_0\)</span></strong>: Original clean data sample (e.g., image)</li>
+<li><strong><span class="math inline">\(x_t\)</span></strong>: Noisy version of <span class="math inline">\(x_0\)</span> at timestep <span class="math inline">\(t\)</span></li>
+<li><strong><span class="math inline">\(\epsilon\)</span></strong>: Standard Gaussian noise sampled from <span class="math inline">\(\mathcal{N}(0, I)\)</span></li>
+<li><strong><span class="math inline">\(\tilde{\mu}_t\)</span></strong>: Mean of the reverse process distribution at time <span class="math inline">\(t\)</span></li>
+<li><strong><span class="math inline">\(\tilde{\beta}_t\)</span></strong>: Variance of the reverse process distribution at time <span class="math inline">\(t\)</span></li>
 </ul>
 </div>
 </div>
@@ -422,6 +422,7 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left( -\frac{1}{2} \left[ \frac{\left(x_t 
 <p><span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)
 \]</span></p>
+<p>This derivation allows us to define the reverse process as a Gaussian with closed-form parameters — enabling training via noise prediction and sampling via denoising steps.</p>
 </section>
 <section id="completing-the-square-for-the-gaussian" class="level4" data-number="2.2.4">
 <h4 data-number="2.2.4" class="anchored" data-anchor-id="completing-the-square-for-the-gaussian"><span class="header-section-number">2.2.4</span> Completing the Square for the Gaussian</h4>
