@@ -393,7 +393,11 @@ q(x_{t-1} \mid x_t, x_0) = \frac{q(x_t \mid x_{t-1}, x_0) \cdot q(x_{t-1} \mid x
 </li>
 <li><span class="math inline">\(q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I)\)</span></li>
 </ul>
-<p>Substituting into Bayes’ rule: <span class="math display">\[
+<p>Substituting into Bayes’ rule:</p>
+<p><span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left( -\frac{1}{2} \left[ \frac{\left(x_t - \sqrt{\alpha_t} x_{t-1}\right)^2}{\beta_t} + \frac{\left(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0\right)^2}{1 - \bar{\alpha}_{t-1}} \right] \right)
+\]</span></p>
+<p><span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)
 \]</span></p>
 </section>
