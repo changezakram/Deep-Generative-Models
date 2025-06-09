@@ -141,8 +141,6 @@ $$
 
 
 
-
-
 ### Reverse Diffusion Process
 
 Let’s break down the reverse diffusion process step by step. This is the **generative phase** of diffusion models, where we learn to turn pure noise back into data. For clarity, we’ll use the same notation as in the forward process:
@@ -254,79 +252,110 @@ $$
 
 ---
 
-### Completing the Square for the Gaussian
+### Complete the square
 
-We previously reached the expression:
+To simplify the exponent into the standard form of a Gaussian, we apply the **general formula for completing the square**:
 
 $$
-q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+$$
+
+This identity rewrites a quadratic expression as a **perfect square**, which is essential for expressing a Gaussian in the form:
+
+$$
+\exp\left( -\frac{1}{2 \sigma^2} \| x - \mu \|^2 \right)
+$$
+
+---
+
+#### Expand the expression
+
+From earlier, we arrived at this expression for the exponent of the posterior:
+
+$$
 -\frac{1}{2} \left[
-\frac{\| x_t - \sqrt{\alpha_t} x_{t-1} \|^2}{\beta_t}
-+
-\frac{\| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2}{1 - \bar{\alpha}_{t-1}}
+\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t} +
+\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1 - \bar{\alpha}_{t-1}}
 \right]
-\right)
 $$
 
-We now simplify the exponent by **expanding and completing the square** to write it in the form of a Gaussian distribution.
-
-
-#### Expand each squared term
-
-We use the identity $\|a - b\|^2 = a^2 - 2ab + b^2$, applied elementwise.
+We expand both terms:
 
 **First term:**
 
 $$
-\frac{1}{\beta_t} \|x_t - \sqrt{\alpha_t} x_{t-1}\|^2
-= \frac{1}{\beta_t} \left[ x_t^2 - 2 \sqrt{\alpha_t} x_t x_{t-1} + \alpha_t x_{t-1}^2 \right]
+\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t}
+= \frac{x_t^2 - 2 \sqrt{\alpha_t} x_t x_{t-1} + \alpha_t x_{t-1}^2}{\beta_t}
 $$
 
 **Second term:**
 
 $$
-\frac{1}{1 - \bar{\alpha}_{t-1}} \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2
-= \frac{1}{1 - \bar{\alpha}_{t-1}} \left[ x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2 \right]
+\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1 - \bar{\alpha}_{t-1}}
+= \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
 $$
 
+---
 
-#### Group by powers of $x_{t-1}$
+#### Group like terms
 
-Let’s now combine terms to prepare for completing the square.
+Now we collect all the terms involving \( x_{t-1} \):
 
-- Coefficient of $x_{t-1}^2$:
-  $$
-  \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
-  $$
+- **Coefficient of \( x_{t-1}^2 \):**
 
-- Coefficient of $x_{t-1}$ (linear term):
-  $$
-  -2 \left[
-  \frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{ \bar{\alpha}_{t-1} } x_0 }{ 1 - \bar{\alpha}_{t-1} }
-  \right]
-  $$
+$$
+a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
+$$
 
-- Remaining constants do not depend on $x_{t-1}$ and can be absorbed into the proportionality constant.
+- **Coefficient of \( x_{t-1} \):**
 
+The full linear term is:
+
+$$
+-2 \left(
+\frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
+\right)
+$$
+
+So we define:
+
+$$
+b = \frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
+$$
+
+Remaining terms (like \( x_t^2 \) and \( x_0^2 \)) are independent of \( x_{t-1} \) and can be absorbed into a constant.
+
+---
 
 #### Complete the square
 
-We use the identity:
+Using the identity:
 
 $$
-a x^2 - 2 b x = a\left(x - \frac{b}{a}\right)^2 - \frac{b^2}{a}
+a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 $$
 
-Applying this to our expression, we rewrite the exponent as:
+We rewrite the exponent as:
 
 $$
-- \frac{1}{2 \tilde{\beta}_t} \left\| x_{t-1} - \tilde{\mu}_t \right\|^2 + \text{(constant)}
+-\frac{1}{2} \left[
+a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+\right]
 $$
 
-This means the posterior is Gaussian with the following parameters:
+The constant term \( \frac{b^2}{a} \) can be ignored under proportionality, giving:
 
+$$
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+- \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
+\right)
+$$
 
-#### Final result
+---
+
+#### Final expressions
+
+Now we can directly read off the mean and variance of the Gaussian:
 
 **Mean:**
 
@@ -346,7 +375,7 @@ $$
 \tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
 $$
 
-We can now write the final result:
+So the full form of the posterior is:
 
 $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)

@@ -500,62 +500,87 @@ q(x_{t-1} \mid x_t, x_0) = \mathcal{N}\left(x_{t-1};\, \tilde{\mu}_t(x_t, x_0),\
 \]</span></p>
 <hr>
 </section>
-<section id="completing-the-square-for-the-gaussian" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="completing-the-square-for-the-gaussian"><span class="header-section-number">2.4</span> Completing the Square for the Gaussian</h3>
-<p>We previously reached the expression:</p>
+<section id="complete-the-square" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">2.4</span> Complete the square</h3>
+<p>To simplify the exponent into the standard form of a Gaussian, we apply the <strong>general formula for completing the square</strong>:</p>
 <p><span class="math display">\[
-q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
--\frac{1}{2} \left[
-\frac{\| x_t - \sqrt{\alpha_t} x_{t-1} \|^2}{\beta_t}
-+
-\frac{\| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2}{1 - \bar{\alpha}_{t-1}}
-\right]
-\right)
+a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \]</span></p>
-<p>We now simplify the exponent by <strong>expanding and completing the square</strong> to write it in the form of a Gaussian distribution.</p>
-<section id="expand-each-squared-term" class="level4" data-number="2.4.1">
-<h4 data-number="2.4.1" class="anchored" data-anchor-id="expand-each-squared-term"><span class="header-section-number">2.4.1</span> Expand each squared term</h4>
-<p>We use the identity <span class="math inline">\(\|a - b\|^2 = a^2 - 2ab + b^2\)</span>, applied elementwise.</p>
+<p>This identity rewrites a quadratic expression as a <strong>perfect square</strong>, which is essential for expressing a Gaussian in the form:</p>
+<p><span class="math display">\[
+\exp\left( -\frac{1}{2 \sigma^2} \| x - \mu \|^2 \right)
+\]</span></p>
+<hr>
+<section id="expand-the-expression" class="level4" data-number="2.4.1">
+<h4 data-number="2.4.1" class="anchored" data-anchor-id="expand-the-expression"><span class="header-section-number">2.4.1</span> Expand the expression</h4>
+<p>From earlier, we arrived at this expression for the exponent of the posterior:</p>
+<p><span class="math display">\[
+-\frac{1}{2} \left[
+\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t} +
+\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1 - \bar{\alpha}_{t-1}}
+\right]
+\]</span></p>
+<p>We expand both terms:</p>
 <p><strong>First term:</strong></p>
 <p><span class="math display">\[
-\frac{1}{\beta_t} \|x_t - \sqrt{\alpha_t} x_{t-1}\|^2
-= \frac{1}{\beta_t} \left[ x_t^2 - 2 \sqrt{\alpha_t} x_t x_{t-1} + \alpha_t x_{t-1}^2 \right]
+\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t}
+= \frac{x_t^2 - 2 \sqrt{\alpha_t} x_t x_{t-1} + \alpha_t x_{t-1}^2}{\beta_t}
 \]</span></p>
 <p><strong>Second term:</strong></p>
 <p><span class="math display">\[
-\frac{1}{1 - \bar{\alpha}_{t-1}} \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2
-= \frac{1}{1 - \bar{\alpha}_{t-1}} \left[ x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2 \right]
+\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1 - \bar{\alpha}_{t-1}}
+= \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
 \]</span></p>
+<hr>
 </section>
-<section id="group-by-powers-of-x_t-1" class="level4" data-number="2.4.2">
-<h4 data-number="2.4.2" class="anchored" data-anchor-id="group-by-powers-of-x_t-1"><span class="header-section-number">2.4.2</span> Group by powers of <span class="math inline">\(x_{t-1}\)</span></h4>
-<p>Let’s now combine terms to prepare for completing the square.</p>
+<section id="group-like-terms" class="level4" data-number="2.4.2">
+<h4 data-number="2.4.2" class="anchored" data-anchor-id="group-like-terms"><span class="header-section-number">2.4.2</span> Group like terms</h4>
+<p>Now we collect all the terms involving ( x_{t-1} ):</p>
 <ul>
-<li><p>Coefficient of <span class="math inline">\(x_{t-1}^2\)</span>: <span class="math display">\[
-\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
-\]</span></p></li>
-<li><p>Coefficient of <span class="math inline">\(x_{t-1}\)</span> (linear term): <span class="math display">\[
--2 \left[
-\frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{ \bar{\alpha}_{t-1} } x_0 }{ 1 - \bar{\alpha}_{t-1} }
-\right]
-\]</span></p></li>
-<li><p>Remaining constants do not depend on <span class="math inline">\(x_{t-1}\)</span> and can be absorbed into the proportionality constant.</p></li>
+<li><strong>Coefficient of ( x_{t-1}^2 ):</strong></li>
 </ul>
-</section>
-<section id="complete-the-square" class="level4" data-number="2.4.3">
-<h4 data-number="2.4.3" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">2.4.3</span> Complete the square</h4>
-<p>We use the identity:</p>
 <p><span class="math display">\[
-a x^2 - 2 b x = a\left(x - \frac{b}{a}\right)^2 - \frac{b^2}{a}
+a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
 \]</span></p>
-<p>Applying this to our expression, we rewrite the exponent as:</p>
+<ul>
+<li><strong>Coefficient of ( x_{t-1} ):</strong></li>
+</ul>
+<p>The full linear term is:</p>
 <p><span class="math display">\[
-- \frac{1}{2 \tilde{\beta}_t} \left\| x_{t-1} - \tilde{\mu}_t \right\|^2 + \text{(constant)}
+-2 \left(
+\frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
+\right)
 \]</span></p>
-<p>This means the posterior is Gaussian with the following parameters:</p>
+<p>So we define:</p>
+<p><span class="math display">\[
+b = \frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
+\]</span></p>
+<p>Remaining terms (like ( x_t^2 ) and ( x_0^2 )) are independent of ( x_{t-1} ) and can be absorbed into a constant.</p>
+<hr>
 </section>
-<section id="final-result" class="level4" data-number="2.4.4">
-<h4 data-number="2.4.4" class="anchored" data-anchor-id="final-result"><span class="header-section-number">2.4.4</span> Final result</h4>
+<section id="complete-the-square-1" class="level4" data-number="2.4.3">
+<h4 data-number="2.4.3" class="anchored" data-anchor-id="complete-the-square-1"><span class="header-section-number">2.4.3</span> Complete the square</h4>
+<p>Using the identity:</p>
+<p><span class="math display">\[
+a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+\]</span></p>
+<p>We rewrite the exponent as:</p>
+<p><span class="math display">\[
+-\frac{1}{2} \left[
+a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+\right]
+\]</span></p>
+<p>The constant term ( ) can be ignored under proportionality, giving:</p>
+<p><span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+- \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
+\right)
+\]</span></p>
+<hr>
+</section>
+<section id="final-expressions" class="level4" data-number="2.4.4">
+<h4 data-number="2.4.4" class="anchored" data-anchor-id="final-expressions"><span class="header-section-number">2.4.4</span> Final expressions</h4>
+<p>Now we can directly read off the mean and variance of the Gaussian:</p>
 <p><strong>Mean:</strong></p>
 <p><span class="math display">\[
 \tilde{\mu}_t =
@@ -570,7 +595,7 @@ a x^2 - 2 b x = a\left(x - \frac{b}{a}\right)^2 - \frac{b^2}{a}
 <p><span class="math display">\[
 \tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
 \]</span></p>
-<p>We can now write the final result:</p>
+<p>So the full form of the posterior is:</p>
 <p><span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 \]</span></p>
