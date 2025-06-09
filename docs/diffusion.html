@@ -499,22 +499,85 @@ We’ll derive this explicitly by completing the square in the exponent.</p>
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}\left(x_{t-1};\, \tilde{\mu}_t(x_t, x_0),\, \tilde{\beta}_t I\right)
 \]</span></p>
 <hr>
-<section id="completing-the-square-for-the-gaussian" class="level4" data-number="2.3.1">
-<h4 data-number="2.3.1" class="anchored" data-anchor-id="completing-the-square-for-the-gaussian"><span class="header-section-number">2.3.1</span> Completing the Square for the Gaussian</h4>
-<p>We simplify the exponent into a quadratic form and combine terms. This gives us:</p>
+</section>
+<section id="completing-the-square-for-the-gaussian" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="completing-the-square-for-the-gaussian"><span class="header-section-number">2.4</span> Completing the Square for the Gaussian</h3>
+<p>We previously reached the expression:</p>
 <p><span class="math display">\[
-\text{Exponent} = -\frac{1}{2} \left[ \frac{\left(x_t - \sqrt{\alpha_t} x_{t-1} \right)^2}{\beta_t} + \frac{\left(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \right)^2}{1 - \bar{\alpha}_{t-1}} \right]
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+-\frac{1}{2} \left[
+\frac{\| x_t - \sqrt{\alpha_t} x_{t-1} \|^2}{\beta_t}
++
+\frac{\| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2}{1 - \bar{\alpha}_{t-1}}
+\right]
+\right)
 \]</span></p>
-<p>After expanding and combining terms (a tedious but straightforward algebraic process), we find that the mean <span class="math inline">\(\tilde{\mu}_t\)</span> and variance <span class="math inline">\(\tilde{\beta}_t\)</span> of <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> are:</p>
+<p>We now simplify the exponent by <strong>expanding and completing the square</strong> to write it in the form of a Gaussian distribution.</p>
+<section id="expand-each-squared-term" class="level4" data-number="2.4.1">
+<h4 data-number="2.4.1" class="anchored" data-anchor-id="expand-each-squared-term"><span class="header-section-number">2.4.1</span> Expand each squared term</h4>
+<p>We use the identity <span class="math inline">\(\|a - b\|^2 = a^2 - 2ab + b^2\)</span>, applied elementwise.</p>
+<p><strong>First term:</strong></p>
 <p><span class="math display">\[
-\tilde{\mu}_t = \frac{\sqrt{\alpha_t} (1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t + \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1 - \bar{\alpha}_t} x_0
+\frac{1}{\beta_t} \|x_t - \sqrt{\alpha_t} x_{t-1}\|^2
+= \frac{1}{\beta_t} \left[ x_t^2 - 2 \sqrt{\alpha_t} x_t x_{t-1} + \alpha_t x_{t-1}^2 \right]
 \]</span></p>
+<p><strong>Second term:</strong></p>
 <p><span class="math display">\[
-\tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \beta_t
+\frac{1}{1 - \bar{\alpha}_{t-1}} \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2
+= \frac{1}{1 - \bar{\alpha}_{t-1}} \left[ x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2 \right]
 \]</span></p>
 </section>
-<section id="parameterizing-the-reverse-process" class="level4" data-number="2.3.2">
-<h4 data-number="2.3.2" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">2.3.2</span> Parameterizing the Reverse Process</h4>
+<section id="group-by-powers-of-x_t-1" class="level4" data-number="2.4.2">
+<h4 data-number="2.4.2" class="anchored" data-anchor-id="group-by-powers-of-x_t-1"><span class="header-section-number">2.4.2</span> Group by powers of <span class="math inline">\(x_{t-1}\)</span></h4>
+<p>Let’s now combine terms to prepare for completing the square.</p>
+<ul>
+<li><p>Coefficient of <span class="math inline">\(x_{t-1}^2\)</span>: <span class="math display">\[
+\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
+\]</span></p></li>
+<li><p>Coefficient of <span class="math inline">\(x_{t-1}\)</span> (linear term): <span class="math display">\[
+-2 \left[
+\frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{ \bar{\alpha}_{t-1} } x_0 }{ 1 - \bar{\alpha}_{t-1} }
+\right]
+\]</span></p></li>
+<li><p>Remaining constants do not depend on <span class="math inline">\(x_{t-1}\)</span> and can be absorbed into the proportionality constant.</p></li>
+</ul>
+</section>
+<section id="complete-the-square" class="level4" data-number="2.4.3">
+<h4 data-number="2.4.3" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">2.4.3</span> Complete the square</h4>
+<p>We use the identity:</p>
+<p><span class="math display">\[
+a x^2 - 2 b x = a\left(x - \frac{b}{a}\right)^2 - \frac{b^2}{a}
+\]</span></p>
+<p>Applying this to our expression, we rewrite the exponent as:</p>
+<p><span class="math display">\[
+- \frac{1}{2 \tilde{\beta}_t} \left\| x_{t-1} - \tilde{\mu}_t \right\|^2 + \text{(constant)}
+\]</span></p>
+<p>This means the posterior is Gaussian with the following parameters:</p>
+</section>
+<section id="final-result" class="level4" data-number="2.4.4">
+<h4 data-number="2.4.4" class="anchored" data-anchor-id="final-result"><span class="header-section-number">2.4.4</span> Final result</h4>
+<p><strong>Mean:</strong></p>
+<p><span class="math display">\[
+\tilde{\mu}_t =
+\frac{
+\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1}) x_t +
+\sqrt{\bar{\alpha}_{t-1}} \beta_t x_0
+}{
+1 - \bar{\alpha}_t
+}
+\]</span></p>
+<p><strong>Variance:</strong></p>
+<p><span class="math display">\[
+\tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
+\]</span></p>
+<p>We can now write the final result:</p>
+<p><span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
+\]</span></p>
+<hr>
+</section>
+<section id="parameterizing-the-reverse-process" class="level4" data-number="2.4.5">
+<h4 data-number="2.4.5" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">2.4.5</span> Parameterizing the Reverse Process</h4>
 <p>Since we don’t know <span class="math inline">\(x_0\)</span> during the reverse process, we express it in terms of <span class="math inline">\(x_t\)</span> using the reparameterization trick from the forward process:</p>
 <p><span class="math display">\[
 x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
@@ -525,8 +588,8 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 \]</span></p>
 <p>where <span class="math inline">\(\epsilon\)</span> is the noise added to <span class="math inline">\(x_0\)</span> to get <span class="math inline">\(x_t\)</span>.</p>
 </section>
-<section id="training-the-neural-network" class="level4" data-number="2.3.3">
-<h4 data-number="2.3.3" class="anchored" data-anchor-id="training-the-neural-network"><span class="header-section-number">2.3.3</span> Training the Neural Network</h4>
+<section id="training-the-neural-network" class="level4" data-number="2.4.6">
+<h4 data-number="2.4.6" class="anchored" data-anchor-id="training-the-neural-network"><span class="header-section-number">2.4.6</span> Training the Neural Network</h4>
 <p>The reverse process is implemented as a neural network (often a U-Net), which is trained to <strong>predict the noise</strong> <span class="math inline">\(\epsilon\)</span> from <span class="math inline">\(x_t\)</span> at each step. The forward process is fixed and non-learned.</p>
 <p>Let <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> be the network’s prediction. Then the training objective is: <span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{t, x_0, \epsilon \sim \mathcal{N}(0, I)}
@@ -543,8 +606,8 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 </div>
 </div>
 </section>
-<section id="sampling-generating-new-data" class="level4" data-number="2.3.4">
-<h4 data-number="2.3.4" class="anchored" data-anchor-id="sampling-generating-new-data"><span class="header-section-number">2.3.4</span> Sampling (Generating New Data)</h4>
+<section id="sampling-generating-new-data" class="level4" data-number="2.4.7">
+<h4 data-number="2.4.7" class="anchored" data-anchor-id="sampling-generating-new-data"><span class="header-section-number">2.4.7</span> Sampling (Generating New Data)</h4>
 <p>To generate a sample:</p>
 <ol type="1">
 <li>Sample noise: <span class="math inline">\(x_T \sim \mathcal{N}(0, I)\)</span><br>
@@ -563,8 +626,8 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1 - \bar{\a
 <li><span class="math inline">\(\sigma_t^2 = \beta_t\)</span></li>
 </ul>
 </section>
-<section id="simplifications-in-ddpm" class="level4" data-number="2.3.5">
-<h4 data-number="2.3.5" class="anchored" data-anchor-id="simplifications-in-ddpm"><span class="header-section-number">2.3.5</span> Simplifications in DDPM</h4>
+<section id="simplifications-in-ddpm" class="level4" data-number="2.4.8">
+<h4 data-number="2.4.8" class="anchored" data-anchor-id="simplifications-in-ddpm"><span class="header-section-number">2.4.8</span> Simplifications in DDPM</h4>
 <p>In the <strong>Denoising Diffusion Probabilistic Models (DDPM)</strong> paper:</p>
 <ul>
 <li>The variance is fixed: <span class="math inline">\(\Sigma_\theta = \beta_t I\)</span></li>
@@ -574,8 +637,8 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1 - \bar{\a
 x_{t-1} = \mu_\theta(x_t, t)
 \]</span></p>
 </section>
-<section id="in-summary" class="level4" data-number="2.3.6">
-<h4 data-number="2.3.6" class="anchored" data-anchor-id="in-summary"><span class="header-section-number">2.3.6</span> In Summary</h4>
+<section id="in-summary" class="level4" data-number="2.4.9">
+<h4 data-number="2.4.9" class="anchored" data-anchor-id="in-summary"><span class="header-section-number">2.4.9</span> In Summary</h4>
 <ul>
 <li>The forward process is a fixed schedule of adding Gaussian noise.</li>
 <li>The reverse process is <strong>learned</strong> by a neural network that predicts noise <span class="math inline">\(\epsilon\)</span> at each step.</li>
@@ -584,19 +647,19 @@ x_{t-1} = \mu_\theta(x_t, t)
 <hr>
 </section>
 </section>
-<section id="learning" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="learning"><span class="header-section-number">2.4</span> Learning</h3>
+<section id="learning" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="learning"><span class="header-section-number">2.5</span> Learning</h3>
 <p><strong>What is the Goal?</strong> The ultimate goal in diffusion models is to train the neural network so that it can reverse the noising process. In other words, we want the network to learn how to turn random noise back into realistic data (like images). But how do we actually train the network? We need a loss function—a way to measure how good or bad the network’s predictions are, so we can improve it.</p>
-<section id="detailed-explanation-of-the-elbo-in-diffusion-models" class="level4" data-number="2.4.1">
-<h4 data-number="2.4.1" class="anchored" data-anchor-id="detailed-explanation-of-the-elbo-in-diffusion-models"><span class="header-section-number">2.4.1</span> Detailed Explanation of the ELBO in Diffusion Models</h4>
+<section id="detailed-explanation-of-the-elbo-in-diffusion-models" class="level4" data-number="2.5.1">
+<h4 data-number="2.5.1" class="anchored" data-anchor-id="detailed-explanation-of-the-elbo-in-diffusion-models"><span class="header-section-number">2.5.1</span> Detailed Explanation of the ELBO in Diffusion Models</h4>
 <p>Let’s break down the <strong>Evidence Lower Bound (ELBO)</strong> used in diffusion models, step by step. This is the core mathematical foundation for training diffusion models, and understanding it will clarify how the neural network learns to reverse the noising process.</p>
-<section id="what-is-the-elbo" class="level5" data-number="2.4.1.1">
-<h5 data-number="2.4.1.1" class="anchored" data-anchor-id="what-is-the-elbo"><span class="header-section-number">2.4.1.1</span> What is the ELBO?</h5>
+<section id="what-is-the-elbo" class="level5" data-number="2.5.1.1">
+<h5 data-number="2.5.1.1" class="anchored" data-anchor-id="what-is-the-elbo"><span class="header-section-number">2.5.1.1</span> What is the ELBO?</h5>
 <p>The ELBO is a <strong>lower bound</strong> on the log-likelihood of the data. Maximizing the ELBO is equivalent to maximizing the likelihood that the model can generate the training data. For diffusion models, the ELBO ensures that the reverse process (denoising) aligns with the forward process (noising).</p>
 </section>
 </section>
-<section id="deriving-the-elbo-for-diffusion-models" class="level4" data-number="2.4.2">
-<h4 data-number="2.4.2" class="anchored" data-anchor-id="deriving-the-elbo-for-diffusion-models"><span class="header-section-number">2.4.2</span> Deriving the ELBO for Diffusion Models</h4>
+<section id="deriving-the-elbo-for-diffusion-models" class="level4" data-number="2.5.2">
+<h4 data-number="2.5.2" class="anchored" data-anchor-id="deriving-the-elbo-for-diffusion-models"><span class="header-section-number">2.5.2</span> Deriving the ELBO for Diffusion Models</h4>
 <p><strong>Goal:</strong><br>
 We want to maximize the log-likelihood of the data:</p>
 <p><span class="math display">\[
@@ -607,8 +670,8 @@ We want to maximize the log-likelihood of the data:</p>
 Computing <span class="math inline">\(\log p_\theta(x_0)\)</span> directly is <strong>intractable</strong> because it involves integrating over all possible noisy intermediate states <span class="math inline">\(x_{1:T}\)</span>.</p>
 <p><strong>Solution:</strong><br>
 Use <strong>Jensen’s Inequality</strong> to derive a lower bound (the ELBO) that we can optimize instead.</p>
-<section id="full-derivation-step-by-step" class="level5" data-number="2.4.2.1">
-<h5 data-number="2.4.2.1" class="anchored" data-anchor-id="full-derivation-step-by-step"><span class="header-section-number">2.4.2.1</span> Full Derivation (Step-by-Step)</h5>
+<section id="full-derivation-step-by-step" class="level5" data-number="2.5.2.1">
+<h5 data-number="2.5.2.1" class="anchored" data-anchor-id="full-derivation-step-by-step"><span class="header-section-number">2.5.2.1</span> Full Derivation (Step-by-Step)</h5>
 <p><strong>Step 1: Start with the log-likelihood</strong></p>
 <p><span class="math display">\[
 \log p_\theta(x_0) = \log \int p_\theta(x_{0:T}) \, dx_{1:T}
@@ -642,8 +705,8 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 \text{ELBO} = \mathbb{E}_{q} \left[ \log p(x_T) \right] + \sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] + \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 \]</span></p>
 </section>
-<section id="interpreting-each-term" class="level5" data-number="2.4.2.2">
-<h5 data-number="2.4.2.2" class="anchored" data-anchor-id="interpreting-each-term"><span class="header-section-number">2.4.2.2</span> Interpreting Each Term</h5>
+<section id="interpreting-each-term" class="level5" data-number="2.5.2.2">
+<h5 data-number="2.5.2.2" class="anchored" data-anchor-id="interpreting-each-term"><span class="header-section-number">2.5.2.2</span> Interpreting Each Term</h5>
 <p><strong>Reconstruction Term:</strong><br>
 - <span class="math inline">\(\mathbb{E}_q[\log p_\theta(x_0 \mid x_1)]\)</span> measures how well the model can reconstruct <span class="math inline">\(x_0\)</span> from the first noisy sample <span class="math inline">\(x_1\)</span>.</p>
 <p><strong>Prior Matching Term:</strong><br>
@@ -651,8 +714,8 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 <p><strong>Consistency Terms:</strong><br>
 - <span class="math inline">\(\sum \mathbb{E}_q[\log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}]\)</span> ensures each denoising step approximates the forward noising step.</p>
 </section>
-<section id="practical-training-simplification-ddpm" class="level5" data-number="2.4.2.3">
-<h5 data-number="2.4.2.3" class="anchored" data-anchor-id="practical-training-simplification-ddpm"><span class="header-section-number">2.4.2.3</span> Practical Training Simplification (DDPM)</h5>
+<section id="practical-training-simplification-ddpm" class="level5" data-number="2.5.2.3">
+<h5 data-number="2.5.2.3" class="anchored" data-anchor-id="practical-training-simplification-ddpm"><span class="header-section-number">2.5.2.3</span> Practical Training Simplification (DDPM)</h5>
 <p>In DDPM:</p>
 <ul>
 <li><strong><span class="math inline">\(p(x_T) = \mathcal{N}(0, I)\)</span></strong> is fixed and known.<br>
@@ -668,8 +731,8 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 - <span class="math inline">\(\epsilon_\theta\)</span> is the predicted noise by the neural network</p>
 <p><strong>Why?</strong> If the network can predict the noise <span class="math inline">\(\epsilon\)</span>, it can denoise <span class="math inline">\(x_t\)</span> and reverse the diffusion.</p>
 </section>
-<section id="connection-to-vaes" class="level5" data-number="2.4.2.4">
-<h5 data-number="2.4.2.4" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">2.4.2.4</span> Connection to VAEs</h5>
+<section id="connection-to-vaes" class="level5" data-number="2.5.2.4">
+<h5 data-number="2.5.2.4" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">2.5.2.4</span> Connection to VAEs</h5>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -703,8 +766,8 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 </table>
 <hr>
 </section>
-<section id="takeaways" class="level5" data-number="2.4.2.5">
-<h5 data-number="2.4.2.5" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">2.4.2.5</span> Takeaways</h5>
+<section id="takeaways" class="level5" data-number="2.5.2.5">
+<h5 data-number="2.5.2.5" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">2.5.2.5</span> Takeaways</h5>
 <ul>
 <li>The ELBO is a tractable lower bound on <span class="math inline">\(\log p_\theta(x_0)\)</span>.<br>
 </li>

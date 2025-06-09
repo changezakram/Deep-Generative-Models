@@ -254,23 +254,107 @@ $$
 
 ---
 
-#### Completing the Square for the Gaussian
+### Completing the Square for the Gaussian
 
-We simplify the exponent into a quadratic form and combine terms. This gives us:
-
-$$
-\text{Exponent} = -\frac{1}{2} \left[ \frac{\left(x_t - \sqrt{\alpha_t} x_{t-1} \right)^2}{\beta_t} + \frac{\left(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \right)^2}{1 - \bar{\alpha}_{t-1}} \right]
-$$
-
-After expanding and combining terms (a tedious but straightforward algebraic process), we find that the mean $\tilde{\mu}_t$ and variance $\tilde{\beta}_t$ of $q(x_{t-1} \mid x_t, x_0)$ are:
+We previously reached the expression:
 
 $$
-\tilde{\mu}_t = \frac{\sqrt{\alpha_t} (1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t + \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1 - \bar{\alpha}_t} x_0
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+-\frac{1}{2} \left[
+\frac{\| x_t - \sqrt{\alpha_t} x_{t-1} \|^2}{\beta_t}
++
+\frac{\| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2}{1 - \bar{\alpha}_{t-1}}
+\right]
+\right)
 $$
 
+We now simplify the exponent by **expanding and completing the square** to write it in the form of a Gaussian distribution.
+
+
+#### Expand each squared term
+
+We use the identity $\|a - b\|^2 = a^2 - 2ab + b^2$, applied elementwise.
+
+**First term:**
+
 $$
-\tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \beta_t
+\frac{1}{\beta_t} \|x_t - \sqrt{\alpha_t} x_{t-1}\|^2
+= \frac{1}{\beta_t} \left[ x_t^2 - 2 \sqrt{\alpha_t} x_t x_{t-1} + \alpha_t x_{t-1}^2 \right]
 $$
+
+**Second term:**
+
+$$
+\frac{1}{1 - \bar{\alpha}_{t-1}} \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2
+= \frac{1}{1 - \bar{\alpha}_{t-1}} \left[ x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2 \right]
+$$
+
+
+#### Group by powers of $x_{t-1}$
+
+Let’s now combine terms to prepare for completing the square.
+
+- Coefficient of $x_{t-1}^2$:
+  $$
+  \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
+  $$
+
+- Coefficient of $x_{t-1}$ (linear term):
+  $$
+  -2 \left[
+  \frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{ \bar{\alpha}_{t-1} } x_0 }{ 1 - \bar{\alpha}_{t-1} }
+  \right]
+  $$
+
+- Remaining constants do not depend on $x_{t-1}$ and can be absorbed into the proportionality constant.
+
+
+#### Complete the square
+
+We use the identity:
+
+$$
+a x^2 - 2 b x = a\left(x - \frac{b}{a}\right)^2 - \frac{b^2}{a}
+$$
+
+Applying this to our expression, we rewrite the exponent as:
+
+$$
+- \frac{1}{2 \tilde{\beta}_t} \left\| x_{t-1} - \tilde{\mu}_t \right\|^2 + \text{(constant)}
+$$
+
+This means the posterior is Gaussian with the following parameters:
+
+
+#### Final result
+
+**Mean:**
+
+$$
+\tilde{\mu}_t =
+\frac{
+\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1}) x_t +
+\sqrt{\bar{\alpha}_{t-1}} \beta_t x_0
+}{
+1 - \bar{\alpha}_t
+}
+$$
+
+**Variance:**
+
+$$
+\tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
+$$
+
+We can now write the final result:
+
+$$
+q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
+$$
+
+---
+
+
 
 
 #### Parameterizing the Reverse Process
