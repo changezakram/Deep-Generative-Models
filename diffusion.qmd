@@ -194,33 +194,55 @@ From the forward process, we know:
 - $q(x_{t-1} \mid x_0) = \mathcal{N}(x_{t-1}; \sqrt{\bar{\alpha}_{t-1}} x_0,\, (1 - \bar{\alpha}_{t-1}) I)$  
 - $q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0,\, (1 - \bar{\alpha}_t) I)$
 
+To derive a usable form of the posterior, we substitute the **Gaussian densities** into Bayes’ rule. The multivariate normal density is:
 
-To derive a usable form of the posterior, we substitute the **Gaussian densities** for each term.
+$$
+\mathcal{N}(x \mid \mu, \Sigma) \propto \exp\left( -\frac{1}{2}(x - \mu)^T \Sigma^{-1} (x - \mu) \right)
+$$
 
-- $q(x_t \mid x_{t-1}) \propto \exp\left( -\frac{1}{2\beta_t} \|x_t - \sqrt{\alpha_t} x_{t-1} \|^2 \right)$  
-- $q(x_{t-1} \mid x_0) \propto \exp\left( -\frac{1}{2(1 - \bar{\alpha}_{t-1})} \|x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 \right)$  
-- $q(x_t \mid x_0)$ is independent of $x_{t-1}$, so it can be absorbed into the proportionality constant
+Since all covariances here are multiples of the identity matrix, $\Sigma = \sigma^2 I$, the formula simplifies to:
 
-Substituting into Bayes’ rule:
+$$
+\mathcal{N}(x \mid \mu, \sigma^2 I) \propto \exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
+$$
+
+Applying this to the forward process terms:
+
+- $q(x_t \mid x_{t-1}) \propto \exp\left( -\frac{1}{2\beta_t} \| x_t - \sqrt{\alpha_t} x_{t-1} \|^2 \right)$  
+- $q(x_{t-1} \mid x_0) \propto \exp\left( -\frac{1}{2(1 - \bar{\alpha}_{t-1})} \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 \right)$
+
+We can ignore $q(x_t \mid x_0)$ in the denominator, since it is independent of $x_{t-1}$ and will be absorbed into a proportionality constant.
+
+Putting these together:
 
 $$
 q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 -\frac{1}{2} \left[
-\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t} +
-\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1 - \bar{\alpha}_{t-1}}
+\frac{ \|x_t - \sqrt{\alpha_t} x_{t-1} \|^2 }{\beta_t} +
+\frac{ \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 }{1 - \bar{\alpha}_{t-1}}
 \right]
 \right)
 $$
 
-::: {.callout-tip title="Why does the product of Gaussians give another Gaussian?"}
+::: {.callout-note title="Understanding the squared norm"}
+The expression $\|x - \mu\|^2$ is the squared distance between two vectors. In 1D, it’s just $(x - \mu)^2$, but in higher dimensions, it becomes:
+
+$$
+\|x - \mu\|^2 = \sum_{i=1}^d (x_i - \mu_i)^2
+$$
+
+This term appears in the exponent of the Gaussian and represents how far the sample is from the center (mean), scaled by the variance.
+:::
+
+::: {.callout-note title="Why does the product of Gaussians give another Gaussian?"}
 When we multiply two Gaussian distributions over the same variable, the result is also a Gaussian.
 
 Here, we are multiplying two Gaussians in $x_{t-1}$:  
-- One centered around $\sqrt{\alpha_t} x_t$  
-- One centered around $\sqrt{\bar{\alpha}_{t-1}} x_0$
+- One centered at $\sqrt{\alpha_t} x_t$  
+- One centered at $\sqrt{\bar{\alpha}_{t-1}} x_0$
 
-Their product is another Gaussian in $x_{t-1}$, with a new mean that is a weighted average of both.  
-We'll derive this mean and variance by completing the square in the exponent.
+The product is another Gaussian in $x_{t-1}$, with a new mean that is a **weighted average** of both.  
+We’ll derive this explicitly by completing the square in the exponent.
 :::
 
 ---

@@ -435,24 +435,48 @@ q(x_{t-1} \mid x_t, x_0) = \frac{q(x_t \mid x_{t-1}, x_0) \cdot q(x_{t-1} \mid x
 </li>
 <li><span class="math inline">\(q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0,\, (1 - \bar{\alpha}_t) I)\)</span></li>
 </ul>
-<p>To derive a usable form of the posterior, we substitute the <strong>Gaussian densities</strong> for each term.</p>
+<p>To derive a usable form of the posterior, we substitute the <strong>Gaussian densities</strong> into Bayes’ rule. The multivariate normal density is:</p>
+<p><span class="math display">\[
+\mathcal{N}(x \mid \mu, \Sigma) \propto \exp\left( -\frac{1}{2}(x - \mu)^T \Sigma^{-1} (x - \mu) \right)
+\]</span></p>
+<p>Since all covariances here are multiples of the identity matrix, <span class="math inline">\(\Sigma = \sigma^2 I\)</span>, the formula simplifies to:</p>
+<p><span class="math display">\[
+\mathcal{N}(x \mid \mu, \sigma^2 I) \propto \exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
+\]</span></p>
+<p>Applying this to the forward process terms:</p>
 <ul>
-<li><span class="math inline">\(q(x_t \mid x_{t-1}) \propto \exp\left( -\frac{1}{2\beta_t} \|x_t - \sqrt{\alpha_t} x_{t-1} \|^2 \right)\)</span><br>
+<li><span class="math inline">\(q(x_t \mid x_{t-1}) \propto \exp\left( -\frac{1}{2\beta_t} \| x_t - \sqrt{\alpha_t} x_{t-1} \|^2 \right)\)</span><br>
 </li>
-<li><span class="math inline">\(q(x_{t-1} \mid x_0) \propto \exp\left( -\frac{1}{2(1 - \bar{\alpha}_{t-1})} \|x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 \right)\)</span><br>
-</li>
-<li><span class="math inline">\(q(x_t \mid x_0)\)</span> is independent of <span class="math inline">\(x_{t-1}\)</span>, so it can be absorbed into the proportionality constant</li>
+<li><span class="math inline">\(q(x_{t-1} \mid x_0) \propto \exp\left( -\frac{1}{2(1 - \bar{\alpha}_{t-1})} \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 \right)\)</span></li>
 </ul>
-<p>Substituting into Bayes’ rule:</p>
+<p>We can ignore <span class="math inline">\(q(x_t \mid x_0)\)</span> in the denominator, since it is independent of <span class="math inline">\(x_{t-1}\)</span> and will be absorbed into a proportionality constant.</p>
+<p>Putting these together:</p>
 <p><span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 -\frac{1}{2} \left[
-\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t} +
-\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1 - \bar{\alpha}_{t-1}}
+\frac{ \|x_t - \sqrt{\alpha_t} x_{t-1} \|^2 }{\beta_t} +
+\frac{ \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 }{1 - \bar{\alpha}_{t-1}}
 \right]
 \right)
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Why does the product of Gaussians give another Gaussian?">
+<div class="callout callout-style-default callout-note callout-titled" title="Understanding the squared norm">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Understanding the squared norm
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The expression <span class="math inline">\(\|x - \mu\|^2\)</span> is the squared distance between two vectors. In 1D, it’s just <span class="math inline">\((x - \mu)^2\)</span>, but in higher dimensions, it becomes:</p>
+<p><span class="math display">\[
+\|x - \mu\|^2 = \sum_{i=1}^d (x_i - \mu_i)^2
+\]</span></p>
+<p>This term appears in the exponent of the Gaussian and represents how far the sample is from the center (mean), scaled by the variance.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Why does the product of Gaussians give another Gaussian?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -464,10 +488,10 @@ Why does the product of Gaussians give another Gaussian?
 <div class="callout-body-container callout-body">
 <p>When we multiply two Gaussian distributions over the same variable, the result is also a Gaussian.</p>
 <p>Here, we are multiplying two Gaussians in <span class="math inline">\(x_{t-1}\)</span>:<br>
-- One centered around <span class="math inline">\(\sqrt{\alpha_t} x_t\)</span><br>
-- One centered around <span class="math inline">\(\sqrt{\bar{\alpha}_{t-1}} x_0\)</span></p>
-<p>Their product is another Gaussian in <span class="math inline">\(x_{t-1}\)</span>, with a new mean that is a weighted average of both.<br>
-We’ll derive this mean and variance by completing the square in the exponent.</p>
+- One centered at <span class="math inline">\(\sqrt{\alpha_t} x_t\)</span><br>
+- One centered at <span class="math inline">\(\sqrt{\bar{\alpha}_{t-1}} x_0\)</span></p>
+<p>The product is another Gaussian in <span class="math inline">\(x_{t-1}\)</span>, with a new mean that is a <strong>weighted average</strong> of both.<br>
+We’ll derive this explicitly by completing the square in the exponent.</p>
 </div>
 </div>
 <hr>
