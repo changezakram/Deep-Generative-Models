@@ -349,6 +349,31 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 $$
 
 
+::: {.callout-note title="How does this become a Gaussian?"}
+Once we complete the square, the exponent becomes:
+
+$$
+-\frac{1}{2} a \left( x_{t-1} - \frac{b}{a} \right)^2
+$$
+
+This matches the standard form of a Gaussian:
+
+$$
+\exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
+$$
+
+So we identify:
+
+- Mean: $\tilde{\mu}_t = \frac{b}{a}$
+- Variance: $\tilde{\beta}_t = \frac{1}{a}$
+
+This gives us the compact expression:
+
+$$
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left( -\frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2 \right)
+$$
+:::
+
 #### Final expressions
 
 Now we can directly read off the mean and variance of the Gaussian:

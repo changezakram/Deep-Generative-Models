@@ -573,6 +573,35 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 - \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
 \right)
 \]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="How does this become a Gaussian?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How does this become a Gaussian?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once we complete the square, the exponent becomes:</p>
+<p><span class="math display">\[
+-\frac{1}{2} a \left( x_{t-1} - \frac{b}{a} \right)^2
+\]</span></p>
+<p>This matches the standard form of a Gaussian:</p>
+<p><span class="math display">\[
+\exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
+\]</span></p>
+<p>So we identify:</p>
+<ul>
+<li>Mean: <span class="math inline">\(\tilde{\mu}_t = \frac{b}{a}\)</span></li>
+<li>Variance: <span class="math inline">\(\tilde{\beta}_t = \frac{1}{a}\)</span></li>
+</ul>
+<p>This gives us the compact expression:</p>
+<p><span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left( -\frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2 \right)
+\]</span></p>
+</div>
+</div>
 </section>
 <section id="final-expressions" class="level4" data-number="2.4.4">
 <h4 data-number="2.4.4" class="anchored" data-anchor-id="final-expressions"><span class="header-section-number">2.4.4</span> Final expressions</h4>
