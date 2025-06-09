@@ -266,7 +266,6 @@ $$
 \exp\left( -\frac{1}{2 \sigma^2} \| x - \mu \|^2 \right)
 $$
 
----
 
 #### Expand the expression
 
@@ -295,7 +294,6 @@ $$
 = \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
 $$
 
----
 
 #### Group like terms
 
@@ -325,7 +323,6 @@ $$
 
 Remaining terms (like \( x_t^2 \) and \( x_0^2 \)) are independent of \( x_{t-1} \) and can be absorbed into a constant.
 
----
 
 #### Complete the square
 
@@ -351,7 +348,6 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 \right)
 $$
 
----
 
 #### Final expressions
 
