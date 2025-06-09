@@ -299,13 +299,13 @@ $$
 
 Now we collect all the terms involving \( x_{t-1} \):
 
-- **Coefficient of \( x_{t-1}^2 \):**
+- **Coefficient of $x_{t-1}$:**
 
 $$
 a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
 $$
 
-- **Coefficient of \( x_{t-1} \):**
+- **Coefficient of $x_{t-1}$:**
 
 The full linear term is:
 
