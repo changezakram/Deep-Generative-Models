@@ -206,6 +206,16 @@ $$
 \mathcal{N}(x \mid \mu, \sigma^2 I) \propto \exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
 $$
 
+::: {.callout-note title="Understanding the squared norm"}
+The expression $\|x - \mu\|^2$ is the squared distance between two vectors. In 1D, it’s just $(x - \mu)^2$, but in higher dimensions, it becomes:
+
+$$
+\|x - \mu\|^2 = \sum_{i=1}^d (x_i - \mu_i)^2
+$$
+
+This term appears in the exponent of the Gaussian and represents how far the sample is from the center (mean), scaled by the variance.
+:::
+
 Applying this to the forward process terms:
 
 - $q(x_t \mid x_{t-1}) \propto \exp\left( -\frac{1}{2\beta_t} \| x_t - \sqrt{\alpha_t} x_{t-1} \|^2 \right)$  
@@ -224,15 +234,6 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 \right)
 $$
 
-::: {.callout-note title="Understanding the squared norm"}
-The expression $\|x - \mu\|^2$ is the squared distance between two vectors. In 1D, it’s just $(x - \mu)^2$, but in higher dimensions, it becomes:
-
-$$
-\|x - \mu\|^2 = \sum_{i=1}^d (x_i - \mu_i)^2
-$$
-
-This term appears in the exponent of the Gaussian and represents how far the sample is from the center (mean), scaled by the variance.
-:::
 
 ::: {.callout-note title="Why does the product of Gaussians give another Gaussian?"}
 When we multiply two Gaussian distributions over the same variable, the result is also a Gaussian.
@@ -245,20 +246,13 @@ The product is another Gaussian in $x_{t-1}$, with a new mean that is a **weight
 We’ll derive this explicitly by completing the square in the exponent.
 :::
 
----
-
-
-
-
-
-
-
-
 Completing the square in the exponent, we find that $q(x_{t-1} \mid x_t, x_0)$ is Gaussian with the following mean and variance:
 
 $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}\left(x_{t-1};\, \tilde{\mu}_t(x_t, x_0),\, \tilde{\beta}_t I\right)
 $$
+
+---
 
 #### Completing the Square for the Gaussian
 

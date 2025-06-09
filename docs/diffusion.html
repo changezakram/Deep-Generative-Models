@@ -443,22 +443,6 @@ q(x_{t-1} \mid x_t, x_0) = \frac{q(x_t \mid x_{t-1}, x_0) \cdot q(x_{t-1} \mid x
 <p><span class="math display">\[
 \mathcal{N}(x \mid \mu, \sigma^2 I) \propto \exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
 \]</span></p>
-<p>Applying this to the forward process terms:</p>
-<ul>
-<li><span class="math inline">\(q(x_t \mid x_{t-1}) \propto \exp\left( -\frac{1}{2\beta_t} \| x_t - \sqrt{\alpha_t} x_{t-1} \|^2 \right)\)</span><br>
-</li>
-<li><span class="math inline">\(q(x_{t-1} \mid x_0) \propto \exp\left( -\frac{1}{2(1 - \bar{\alpha}_{t-1})} \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 \right)\)</span></li>
-</ul>
-<p>We can ignore <span class="math inline">\(q(x_t \mid x_0)\)</span> in the denominator, since it is independent of <span class="math inline">\(x_{t-1}\)</span> and will be absorbed into a proportionality constant.</p>
-<p>Putting these together:</p>
-<p><span class="math display">\[
-q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
--\frac{1}{2} \left[
-\frac{ \|x_t - \sqrt{\alpha_t} x_{t-1} \|^2 }{\beta_t} +
-\frac{ \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 }{1 - \bar{\alpha}_{t-1}}
-\right]
-\right)
-\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Understanding the squared norm">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -476,6 +460,22 @@ Understanding the squared norm
 <p>This term appears in the exponent of the Gaussian and represents how far the sample is from the center (mean), scaled by the variance.</p>
 </div>
 </div>
+<p>Applying this to the forward process terms:</p>
+<ul>
+<li><span class="math inline">\(q(x_t \mid x_{t-1}) \propto \exp\left( -\frac{1}{2\beta_t} \| x_t - \sqrt{\alpha_t} x_{t-1} \|^2 \right)\)</span><br>
+</li>
+<li><span class="math inline">\(q(x_{t-1} \mid x_0) \propto \exp\left( -\frac{1}{2(1 - \bar{\alpha}_{t-1})} \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 \right)\)</span></li>
+</ul>
+<p>We can ignore <span class="math inline">\(q(x_t \mid x_0)\)</span> in the denominator, since it is independent of <span class="math inline">\(x_{t-1}\)</span> and will be absorbed into a proportionality constant.</p>
+<p>Putting these together:</p>
+<p><span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+-\frac{1}{2} \left[
+\frac{ \|x_t - \sqrt{\alpha_t} x_{t-1} \|^2 }{\beta_t} +
+\frac{ \| x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0 \|^2 }{1 - \bar{\alpha}_{t-1}}
+\right]
+\right)
+\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Why does the product of Gaussians give another Gaussian?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -494,11 +494,11 @@ Why does the product of Gaussians give another Gaussian?
 We’ll derive this explicitly by completing the square in the exponent.</p>
 </div>
 </div>
-<hr>
 <p>Completing the square in the exponent, we find that <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> is Gaussian with the following mean and variance:</p>
 <p><span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}\left(x_{t-1};\, \tilde{\mu}_t(x_t, x_0),\, \tilde{\beta}_t I\right)
 \]</span></p>
+<hr>
 <section id="completing-the-square-for-the-gaussian" class="level4" data-number="2.3.1">
 <h4 data-number="2.3.1" class="anchored" data-anchor-id="completing-the-square-for-the-gaussian"><span class="header-section-number">2.3.1</span> Completing the Square for the Gaussian</h4>
 <p>We simplify the exponent into a quadratic form and combine terms. This gives us:</p>
