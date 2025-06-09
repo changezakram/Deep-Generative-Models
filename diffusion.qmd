@@ -340,7 +340,7 @@ a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \right]
 $$
 
-The constant term \( \frac{b^2}{a} \) can be ignored under proportionality, giving:
+The constant term $ \frac{b^2}{a} $ can be ignored under proportionality, giving:
 
 $$
 q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
