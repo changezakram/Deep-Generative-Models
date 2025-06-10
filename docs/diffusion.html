@@ -229,6 +229,7 @@ window.Quarto = {
 <ul>
 <li><strong>GANs</strong> generate sharp images but rely on adversarial training, which can be unstable and prone to mode collapse.</li>
 <li><strong>VAEs</strong> are more stable but often produce blurry outputs due to their reliance on Gaussian assumptions and variational approximations.</li>
+<li><strong>Normalizing Flows</strong> provide exact log-likelihoods and stable training but require invertible architectures, which limit model expressiveness.</li>
 <li><strong>Diffusion models</strong> avoid adversarial dynamics and use a simple denoising objective. This makes them easier to train and capable of producing highly detailed and diverse samples.</li>
 </ul>
 <p>Thanks to this balance of <strong>theoretical simplicity</strong>, <strong>training robustness</strong>, and <strong>high-quality outputs</strong>, diffusion models have emerged as one of the most effective generative modeling techniques in use today.</p>

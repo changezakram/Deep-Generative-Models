@@ -10,6 +10,7 @@ This approach has enabled state-of-the-art results in image generation, powering
 
 - **GANs** generate sharp images but rely on adversarial training, which can be unstable and prone to mode collapse.
 - **VAEs** are more stable but often produce blurry outputs due to their reliance on Gaussian assumptions and variational approximations.
+- **Normalizing Flows** provide exact log-likelihoods and stable training but require invertible architectures, which limit model expressiveness.
 - **Diffusion models** avoid adversarial dynamics and use a simple denoising objective. This makes them easier to train and capable of producing highly detailed and diverse samples.
 
 Thanks to this balance of **theoretical simplicity**, **training robustness**, and **high-quality outputs**, diffusion models have emerged as one of the most effective generative modeling techniques in use today.
