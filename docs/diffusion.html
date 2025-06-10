@@ -224,8 +224,14 @@ window.Quarto = {
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<p>Diffusion models are a class of generative models that create data (such as images) by learning to reverse a gradual noising process. They begin by adding small amounts of random noise to real data over many steps until the data is fully degraded into pure noise. A neural network is then trained to reverse this process, step by step, transforming noise back into realistic samples. This framework has achieved state-of-the-art results in image generation, powering models like DALL·E 2 and Stable Diffusion.</p>
-<p>Compared to earlier generative approaches such as GANs and VAEs, diffusion models offer key advantages in training stability and output quality. GANs rely on an adversarial setup between a generator and a discriminator, which can lead to unstable training and mode collapse. VAEs, while more stable, often produce blurry samples due to their reliance on variational approximations. In contrast, diffusion models use a simple denoising objective and consistently generate highly detailed, diverse outputs. These qualities have made them a powerful and reliable alternative in the landscape of generative modeling.</p>
+<p>Diffusion models are a powerful class of generative models that learn to create data—such as images—by reversing a gradual noising process. During training, real data is progressively corrupted by adding small amounts of Gaussian noise over many steps until it becomes nearly indistinguishable from pure noise. A neural network is then trained to learn the reverse process: transforming noise back into realistic samples, one step at a time.</p>
+<p>This approach has enabled state-of-the-art results in image generation, powering tools like <strong>DALL·E 2</strong>, <strong>Imagen</strong>, and <strong>Stable Diffusion</strong>. One of the key advantages of diffusion models lies in their training stability and output quality, especially when compared to earlier generative approaches:</p>
+<ul>
+<li><strong>GANs</strong> generate sharp images but rely on adversarial training, which can be unstable and prone to mode collapse.</li>
+<li><strong>VAEs</strong> are more stable but often produce blurry outputs due to their reliance on Gaussian assumptions and variational approximations.</li>
+<li><strong>Diffusion models</strong> avoid adversarial dynamics and use a simple denoising objective. This makes them easier to train and capable of producing highly detailed and diverse samples.</li>
+</ul>
+<p>Thanks to this balance of <strong>theoretical simplicity</strong>, <strong>training robustness</strong>, and <strong>high-quality outputs</strong>, diffusion models have emerged as one of the most effective generative modeling techniques in use today.</p>
 </section>
 <section id="math-review" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="math-review"><span class="header-section-number">2</span> Math Review</h2>
