@@ -180,6 +180,8 @@ $$
 q(x_{t-1} \mid x_t) \approx \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t), \tilde{\beta}_t I)
 $$
 
+This approximation works because the forward process adds Gaussian noise in small increments at each step. The Markov chain formed by these small Gaussian transitions ensures that local conditionals (like $q(x_{t-1} \mid x_t)$) remain Gaussian under mild assumptions.
+
 
 ::: {.callout-note title="Glossary of Symbols"}
 - **$\alpha_t$**: Variance-preserving noise coefficient at step $t$
