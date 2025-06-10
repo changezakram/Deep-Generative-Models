@@ -399,6 +399,7 @@ x_T \sim \mathcal{N}(0, I)
 <p>Instead, we train a neural network to approximate it: <span class="math display">\[
 p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
 \]</span></p>
+<p>In practice, many diffusion models do not directly predict <span class="math inline">\(\mu_\theta\)</span> or <span class="math inline">\(x_0\)</span>, but instead predict the noise <span class="math inline">\(\epsilon\)</span> added in the forward process. This makes the objective simpler and more effective, as we’ll see in the next section.</p>
 </section>
 <section id="key-insight-from-the-forward-process" class="level4" data-number="2.2.2">
 <h4 data-number="2.2.2" class="anchored" data-anchor-id="key-insight-from-the-forward-process"><span class="header-section-number">2.2.2</span> Key Insight from the Forward Process</h4>

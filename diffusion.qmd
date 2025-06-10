@@ -170,6 +170,8 @@ $$
 p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
 $$
 
+In practice, many diffusion models do not directly predict $\mu_\theta$ or $x_0$, but instead predict the noise $\epsilon$ added in the forward process. This makes the objective simpler and more effective, as we'll see in the next section.
+
 
 #### Key Insight from the Forward Process
 
