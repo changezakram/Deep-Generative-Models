@@ -231,9 +231,28 @@ window.Quarto = {
 <section id="forward-diffusion-process" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="forward-diffusion-process"><span class="header-section-number">2.1</span> Forward Diffusion Process</h3>
 <p>The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Notation Clarification
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In much of the diffusion literature, the noise schedule is defined using <span class="math inline">\(\beta_t\)</span>, which controls the <strong>amount of noise added</strong> at each time step.</p>
+<p>In this blog, we use <span class="math inline">\(\alpha_t = 1 - \beta_t\)</span> instead, which emphasizes the <strong>amount of original signal retained</strong>. This perspective is often more intuitive when reasoning about how the data degrades over time.</p>
+<p>We also define the cumulative product:</p>
+<p><span class="math display">\[
+\bar{\alpha}_t = \prod_{s=1}^t \alpha_s
+\]</span></p>
+<p>which represents how much of the original signal remains after <span class="math inline">\(t\)</span> steps of noising.</p>
+</div>
+</div>
 <section id="start-with-a-data-sample" class="level4" data-number="2.1.1">
 <h4 data-number="2.1.1" class="anchored" data-anchor-id="start-with-a-data-sample"><span class="header-section-number">2.1.1</span> Start with a Data Sample</h4>
-<p>Begin with a data point <span class="math inline">\(x_0\)</span>, sampled from dataset (such as a real image). The goal is to slowly corrupt <span class="math inline">\(x_0\)</span> by adding noise over many steps, until it becomes pure noise.<br>
+<p>Begin with a data point <span class="math inline">\(x_0\)</span>, sampled from dataset (such as a real image). The goal is to slowly corrupt <span class="math inline">\(x_0\)</span> by adding noise over many steps, until it becomes indistinguishable from random Gaussian noise.<br>
 We’ll later see that it’s also possible to sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span>, without simulating every step.</p>
 </section>
 <section id="add-noise-recursively" class="level4" data-number="2.1.2">
@@ -253,7 +272,7 @@ q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Intuition:</strong> Each step shrinks the previous value a bit and adds some Gaussian noise. As the process repeats, the sample becomes more and more like random noise.</p>
+<p><strong>Intuition:</strong> At each step, we shrink the signal and add new Gaussian noise. Over many steps, the image becomes blurrier and more like random noise.</p>
 </div>
 </div>
 </div>
