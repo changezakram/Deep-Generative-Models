@@ -12,22 +12,6 @@ Diffusion models are a class of generative models that create data (like images)
 
 The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.
 
-::: {.callout-note}
-#### Notation Clarification
-
-In much of the diffusion literature, the noise schedule is defined using $\beta_t$, which controls the **amount of noise added** at each time step.
-
-In this blog, we use $\alpha_t = 1 - \beta_t$ instead, which emphasizes the **amount of original signal retained**. This perspective is often more intuitive when reasoning about how the data degrades over time.
-
-We also define the cumulative product:
-
-$$
-\bar{\alpha}_t = \prod_{s=1}^t \alpha_s
-$$
-
-which represents how much of the original signal remains after $t$ steps of noising.
-:::
-
 #### Start with a Data Sample
 
 Begin with a data point $x_0$, sampled from dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes indistinguishable from random Gaussian noise.  
@@ -42,7 +26,7 @@ $$
 
 Where:
 
-- $\alpha_t = 1 - \beta_t$, with $\beta_t$ a small positive number controlling the noise level at step $t$  
+- $\alpha_t = 1 - \beta_t$, with $\beta_t$ a small positive number controlling the noise level at step $t$. While $\alpha_t$ emphasizes the **amount of original signal retained**.
 - $I$ is the identity matrix, so noise is added independently to each component.
 
 ::: {.callout-note appearance="simple"}
