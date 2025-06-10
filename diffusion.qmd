@@ -113,11 +113,8 @@ $$
 q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right)
 $$
 
-After $t$ steps, sample is a faded version of the original plus one big chunk of noise.
-
-#### What Happens as $t$ Gets Large?
-
 As $t$ increases, $\bar{\alpha}_t$ shrinks toward zero. Eventually, $x_t$ becomes pure noise:
+
 $$
 x_T \sim \mathcal{N}(0, I)
 $$

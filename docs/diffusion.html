@@ -315,16 +315,13 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \qquad \ep
 <p>This means: <span class="math display">\[
 q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right)
 \]</span></p>
-<p>After <span class="math inline">\(t\)</span> steps, sample is a faded version of the original plus one big chunk of noise.</p>
-</section>
-<section id="what-happens-as-t-gets-large" class="level4" data-number="2.1.6">
-<h4 data-number="2.1.6" class="anchored" data-anchor-id="what-happens-as-t-gets-large"><span class="header-section-number">2.1.6</span> What Happens as <span class="math inline">\(t\)</span> Gets Large?</h4>
-<p>As <span class="math inline">\(t\)</span> increases, <span class="math inline">\(\bar{\alpha}_t\)</span> shrinks toward zero. Eventually, <span class="math inline">\(x_t\)</span> becomes pure noise: <span class="math display">\[
+<p>As <span class="math inline">\(t\)</span> increases, <span class="math inline">\(\bar{\alpha}_t\)</span> shrinks toward zero. Eventually, <span class="math inline">\(x_t\)</span> becomes pure noise:</p>
+<p><span class="math display">\[
 x_T \sim \mathcal{N}(0, I)
 \]</span></p>
 </section>
-<section id="recap-forward-diffusion-steps" class="level4" data-number="2.1.7">
-<h4 data-number="2.1.7" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">2.1.7</span> Recap: Forward Diffusion Steps</h4>
+<section id="recap-forward-diffusion-steps" class="level4" data-number="2.1.6">
+<h4 data-number="2.1.6" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">2.1.6</span> Recap: Forward Diffusion Steps</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -367,8 +364,8 @@ x_T \sim \mathcal{N}(0, I)
 </tbody>
 </table>
 </section>
-<section id="key-takeaways" class="level4" data-number="2.1.8">
-<h4 data-number="2.1.8" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.1.8</span> Key Takeaways</h4>
+<section id="key-takeaways" class="level4" data-number="2.1.7">
+<h4 data-number="2.1.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.1.7</span> Key Takeaways</h4>
 <ul>
 <li>The forward diffusion process is just repeatedly adding noise to your data.</li>
 <li>Thanks to properties of Gaussian noise, you can describe the result as the original data scaled down plus one cumulative chunk of Gaussian noise.<br>
