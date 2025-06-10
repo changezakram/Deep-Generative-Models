@@ -26,7 +26,7 @@ $$
 
 Where:
 
-- $\alpha_t = 1 - \beta_t$, where $\beta_t$ a small positive number controlling the noise level at step $t$, While $\alpha_t$ emphasizes the **amount of original signal retained**.
+- $\alpha_t = 1 - \beta_t$, where $\beta_t$ a small positive number controlling the noise level at step $t$, while $\alpha_t$ emphasizes the **amount of original signal retained**.
 - $I$ is the identity matrix, so noise is added independently to each component.
 
 ::: {.callout-note appearance="simple"}
