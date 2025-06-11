@@ -161,7 +161,7 @@ Let’s break down the reverse diffusion process step by step. This is the **gen
 - **Reverse process**: Gradually removes noise via $p_\theta(x_{t-1} \mid x_t)$, learned by a neural network
 
 
-#### The Goal of the Reverse Process
+**The Goal of the Reverse Process**
 
 **Objective**: Given a noisy sample $x_t$, we want to estimate the conditional distribution $q(x_{t-1} \mid x_t)$. However, this is **intractable** because it would require knowing the true data distribution.
 
@@ -175,7 +175,7 @@ Here, $\mu_\theta(x_t, t)$ is the predicted mean and $\Sigma_\theta(x_t, t)$ is 
 In practice, many diffusion models do not directly predict $\mu_\theta$ or $x_0$, but instead predict the noise $\epsilon$ added in the forward process. This makes the objective simpler and more effective, as we'll see in the next section.
 
 
-#### Key Insight from the Forward Process
+**Key Insight from the Forward Process**
 
 If the noise added in the forward process is small (i.e., $\beta_t \ll 1$), then the reverse conditional $q(x_{t-1} \mid x_t)$ is also Gaussian:
 $$
@@ -196,7 +196,7 @@ This approximation works because the forward process adds Gaussian noise in smal
 - **$\tilde{\beta}_t$**: Variance of the reverse process distribution at time $t$
 :::
 
-### Deriving $q(x_{t-1} \mid x_t, x_0)$ Using Bayes’ Rule
+#### Deriving $q(x_{t-1} \mid x_t, x_0)$ Using Bayes’ Rule
 
 We can’t directly evaluate $q(x_{t-1} \mid x_t)$, but we can derive the **posterior** $q(x_{t-1} \mid x_t, x_0)$ using Bayes’ rule:
 
@@ -268,7 +268,7 @@ We now complete the square to put the expression into standard Gaussian form.
 
 ---
 
-### Complete the square
+#### Complete the square
 
 To simplify the exponent into the standard form of a Gaussian, we apply the **general formula for completing the square**:
 
@@ -283,7 +283,7 @@ $$
 $$
 
 
-#### Expand the expression
+**Expand the expression**
 
 From earlier, we arrived at this expression for the exponent of the posterior:
 
@@ -311,7 +311,7 @@ $$
 $$
 
 
-#### Group like terms
+**Group like terms**
 
 Now we collect all the terms involving $x_{t-1}$:
 
