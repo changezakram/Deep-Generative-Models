@@ -505,10 +505,10 @@ Why does the product of Gaussians give another Gaussian?
 We’ll derive this explicitly by completing the square in the exponent.</p>
 </div>
 </div>
-<p>Completing the square in the exponent, we find that <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> is Gaussian with the following mean and variance:</p>
-<p><span class="math display">\[
-q(x_{t-1} \mid x_t, x_0) = \mathcal{N}\left(x_{t-1};\, \tilde{\mu}_t(x_t, x_0),\, \tilde{\beta}_t I\right)
-\]</span></p>
+<blockquote class="blockquote">
+<p>Although we won’t use this posterior directly during sampling, this closed-form expression is essential for defining the ELBO used in training. It gives us a precise target that the reverse model attempts to approximate.</p>
+</blockquote>
+<p>We now complete the square to put the expression into standard Gaussian form.</p>
 <hr>
 </section>
 <section id="complete-the-square" class="level3" data-number="2.4">

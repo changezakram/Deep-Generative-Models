@@ -262,11 +262,9 @@ The product is another Gaussian in $x_{t-1}$, with a new mean that is a **weight
 We’ll derive this explicitly by completing the square in the exponent.
 :::
 
-Completing the square in the exponent, we find that $q(x_{t-1} \mid x_t, x_0)$ is Gaussian with the following mean and variance:
+> Although we won’t use this posterior directly during sampling, this closed-form expression is essential for defining the ELBO used in training. It gives us a precise target that the reverse model attempts to approximate.
 
-$$
-q(x_{t-1} \mid x_t, x_0) = \mathcal{N}\left(x_{t-1};\, \tilde{\mu}_t(x_t, x_0),\, \tilde{\beta}_t I\right)
-$$
+We now complete the square to put the expression into standard Gaussian form.
 
 ---
 
