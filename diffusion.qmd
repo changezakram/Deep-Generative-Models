@@ -427,7 +427,7 @@ We’ve now expressed the posterior $q(x_{t-1} \mid x_t, x_0)$ in standard Gauss
 
 During training, we can compute this posterior exactly since $x_0$ is known. But at sampling time, we don’t know $x_0$, so we must express everything in terms of $x_t$ and predicted noise $\epsilon$.
 
-Since we don’t know $x_0$ during the reverse process, we express it in terms of $x_t$ using the reparameterization trick from the forward process:
+Since we don’t know $x_0$ during the reverse process, we algebraically express it in terms of $x_t$ and $\epsilon$ using the forward noising equation:
 
 $$
 x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}

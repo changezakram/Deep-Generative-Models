@@ -633,7 +633,7 @@ q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}
 <section id="parameterizing-the-reverse-process" class="level4" data-number="2.2.5">
 <h4 data-number="2.2.5" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">2.2.5</span> Parameterizing the Reverse Process</h4>
 <p>During training, we can compute this posterior exactly since <span class="math inline">\(x_0\)</span> is known. But at sampling time, we don’t know <span class="math inline">\(x_0\)</span>, so we must express everything in terms of <span class="math inline">\(x_t\)</span> and predicted noise <span class="math inline">\(\epsilon\)</span>.</p>
-<p>Since we don’t know <span class="math inline">\(x_0\)</span> during the reverse process, we express it in terms of <span class="math inline">\(x_t\)</span> using the reparameterization trick from the forward process:</p>
+<p>Since we don’t know <span class="math inline">\(x_0\)</span> during the reverse process, we algebraically express it in terms of <span class="math inline">\(x_t\)</span> and <span class="math inline">\(\epsilon\)</span> using the forward noising equation:</p>
 <p><span class="math display">\[
 x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 \]</span></p>
