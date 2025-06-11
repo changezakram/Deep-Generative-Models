@@ -508,15 +508,32 @@ We’ll derive this explicitly by completing the square in the exponent.</p>
 </section>
 <section id="complete-the-square" class="level4" data-number="2.2.2">
 <h4 data-number="2.2.2" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">2.2.2</span> Complete the square</h4>
-<p>To simplify the exponent into the standard form of a Gaussian, we apply the <strong>general formula for completing the square</strong>:</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="General Formula for Completing the Square">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+General Formula for Completing the Square
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To simplify a quadratic expression into a perfect square, we use the identity:</p>
 <p><span class="math display">\[
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \]</span></p>
-<p>This identity rewrites a quadratic expression as a <strong>perfect square</strong>, which is essential for expressing a Gaussian in the form:</p>
+<p>This is exactly the form we encounter when completing the square in the exponent of a Gaussian distribution:</p>
 <p><span class="math display">\[
-\exp\left( -\frac{1}{2 \sigma^2} \| x - \mu \|^2 \right)
+\exp\left( -\frac{1}{2\sigma^2} \| x - \mu \|^2 \right)
 \]</span></p>
-<p><strong>Expand the expression</strong></p>
+<p>By completing the square on a quadratic expression inside an exponential, we recover this Gaussian form, where:</p>
+<ul>
+<li>the mean is: <span class="math inline">\(\mu = \frac{b}{a}\)</span></li>
+<li>the variance is: <span class="math inline">\(\sigma^2 = \frac{1}{a}\)</span></li>
+</ul>
+</div>
+</div>
+<p>We’ll now expand the expression for the posterior’s exponent and apply this identity to express it in Gaussian form.</p>
 <p>From earlier, we arrived at this expression for the exponent of the posterior:</p>
 <p><span class="math display">\[
 -\frac{1}{2} \left[
