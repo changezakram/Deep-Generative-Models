@@ -557,9 +557,6 @@ a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
 b = \frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
 \]</span></p>
 <p>Remaining terms (like <span class="math inline">\(x_t^2\)</span> and <span class="math inline">\(x_0^2\)</span>) are independent of <span class="math inline">\(x_{t-1}\)</span> and can be absorbed into a constant.</p>
-</section>
-<section id="complete-the-square-1" class="level4" data-number="2.2.3">
-<h4 data-number="2.2.3" class="anchored" data-anchor-id="complete-the-square-1"><span class="header-section-number">2.2.3</span> Complete the square</h4>
 <p>Using the identity:</p>
 <p><span class="math display">\[
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
@@ -606,8 +603,8 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left( -\frac{1}{2 \tilde{\beta}_t} \| x_{t
 </div>
 </div>
 </section>
-<section id="final-expressions" class="level4" data-number="2.2.4">
-<h4 data-number="2.2.4" class="anchored" data-anchor-id="final-expressions"><span class="header-section-number">2.2.4</span> Final expressions</h4>
+<section id="final-expressions" class="level4" data-number="2.2.3">
+<h4 data-number="2.2.3" class="anchored" data-anchor-id="final-expressions"><span class="header-section-number">2.2.3</span> Final expressions</h4>
 <p>Now we can directly read off the mean and variance of the Gaussian:</p>
 <p><strong>Mean:</strong></p>
 <p><span class="math display">\[
@@ -630,8 +627,8 @@ q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}
 <p>We’ve now expressed the posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> in standard Gaussian form, setting up the core training objective.</p>
 <hr>
 </section>
-<section id="parameterizing-the-reverse-process" class="level4" data-number="2.2.5">
-<h4 data-number="2.2.5" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">2.2.5</span> Parameterizing the Reverse Process</h4>
+<section id="parameterizing-the-reverse-process" class="level4" data-number="2.2.4">
+<h4 data-number="2.2.4" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">2.2.4</span> Parameterizing the Reverse Process</h4>
 <p>During training, we can compute this posterior exactly since <span class="math inline">\(x_0\)</span> is known. But at sampling time, we don’t know <span class="math inline">\(x_0\)</span>, so we must express everything in terms of <span class="math inline">\(x_t\)</span> and predicted noise <span class="math inline">\(\epsilon\)</span>.</p>
 <p>Since we don’t know <span class="math inline">\(x_0\)</span> during the reverse process, we algebraically express it in terms of <span class="math inline">\(x_t\)</span> and <span class="math inline">\(\epsilon\)</span> using the forward noising equation:</p>
 <p><span class="math display">\[
@@ -643,8 +640,8 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 \]</span></p>
 <p>where <span class="math inline">\(\epsilon\)</span> is the noise added to <span class="math inline">\(x_0\)</span> to get <span class="math inline">\(x_t\)</span>.</p>
 </section>
-<section id="training-the-neural-network" class="level4" data-number="2.2.6">
-<h4 data-number="2.2.6" class="anchored" data-anchor-id="training-the-neural-network"><span class="header-section-number">2.2.6</span> Training the Neural Network</h4>
+<section id="training-the-neural-network" class="level4" data-number="2.2.5">
+<h4 data-number="2.2.5" class="anchored" data-anchor-id="training-the-neural-network"><span class="header-section-number">2.2.5</span> Training the Neural Network</h4>
 <p>The reverse process is implemented as a neural network (often a U-Net), which is trained to <strong>predict the noise</strong> <span class="math inline">\(\epsilon\)</span> from <span class="math inline">\(x_t\)</span> at each step. The forward process is fixed and non-learned.</p>
 <p>Let <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> be the network’s prediction. Then the training objective is: <span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{t, x_0, \epsilon \sim \mathcal{N}(0, I)}
@@ -661,8 +658,8 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 </div>
 </div>
 </section>
-<section id="sampling-generating-new-data" class="level4" data-number="2.2.7">
-<h4 data-number="2.2.7" class="anchored" data-anchor-id="sampling-generating-new-data"><span class="header-section-number">2.2.7</span> Sampling (Generating New Data)</h4>
+<section id="sampling-generating-new-data" class="level4" data-number="2.2.6">
+<h4 data-number="2.2.6" class="anchored" data-anchor-id="sampling-generating-new-data"><span class="header-section-number">2.2.6</span> Sampling (Generating New Data)</h4>
 <p>To generate a sample:</p>
 <ol type="1">
 <li>Sample noise: <span class="math inline">\(x_T \sim \mathcal{N}(0, I)\)</span><br>
@@ -681,8 +678,8 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1 - \bar{\a
 <li><span class="math inline">\(\sigma_t^2 = \beta_t\)</span></li>
 </ul>
 </section>
-<section id="simplifications-in-ddpm" class="level4" data-number="2.2.8">
-<h4 data-number="2.2.8" class="anchored" data-anchor-id="simplifications-in-ddpm"><span class="header-section-number">2.2.8</span> Simplifications in DDPM</h4>
+<section id="simplifications-in-ddpm" class="level4" data-number="2.2.7">
+<h4 data-number="2.2.7" class="anchored" data-anchor-id="simplifications-in-ddpm"><span class="header-section-number">2.2.7</span> Simplifications in DDPM</h4>
 <p>In the <strong>Denoising Diffusion Probabilistic Models (DDPM)</strong> paper:</p>
 <ul>
 <li>The variance is fixed: <span class="math inline">\(\Sigma_\theta = \beta_t I\)</span></li>
@@ -692,8 +689,8 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1 - \bar{\a
 x_{t-1} = \mu_\theta(x_t, t)
 \]</span></p>
 </section>
-<section id="in-summary" class="level4" data-number="2.2.9">
-<h4 data-number="2.2.9" class="anchored" data-anchor-id="in-summary"><span class="header-section-number">2.2.9</span> In Summary</h4>
+<section id="in-summary" class="level4" data-number="2.2.8">
+<h4 data-number="2.2.8" class="anchored" data-anchor-id="in-summary"><span class="header-section-number">2.2.8</span> In Summary</h4>
 <ul>
 <li>The forward process is a fixed schedule of adding Gaussian noise.</li>
 <li>The reverse process is <strong>learned</strong> by a neural network that predicts noise <span class="math inline">\(\epsilon\)</span> at each step.</li>

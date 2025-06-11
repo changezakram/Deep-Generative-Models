@@ -340,8 +340,6 @@ $$
 Remaining terms (like $x_t^2$ and $x_0^2$) are independent of $x_{t-1}$ and can be absorbed into a constant.
 
 
-#### Complete the square
-
 Using the identity:
 
 $$
