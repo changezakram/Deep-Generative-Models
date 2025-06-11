@@ -418,12 +418,14 @@ $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 $$
 
+We’ve now expressed the posterior $q(x_{t-1} \mid x_t, x_0)$ in standard Gaussian form, setting up the core training objective.
+
 ---
 
 
-
-
 #### Parameterizing the Reverse Process
+
+During training, we can compute this posterior exactly since $x_0$ is known. But at sampling time, we don’t know $x_0$, so we must express everything in terms of $x_t$ and predicted noise $\epsilon$.
 
 Since we don’t know $x_0$ during the reverse process, we express it in terms of $x_t$ using the reparameterization trick from the forward process:
 
