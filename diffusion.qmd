@@ -298,7 +298,7 @@ $$
 = \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} \, x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
 $$
 
-### Group like terms
+**Group like terms**
 
 Now we collect all the terms involving $x_{t-1}$:
 
@@ -328,7 +328,7 @@ $$
 -\frac{1}{2} \left( a x_{t-1}^2 - 2 b x_{t-1} \right) + \text{(constants)}
 $$
 
-### 2.4 Apply the identity
+**Apply the identity**
 
 Using the identity:
 $$
@@ -366,9 +366,8 @@ We keep the notation $\tilde{\beta}_t$ instead of $\sigma^2$ because it connects
 
 :::
 
----
 
-### 2.5 Final expressions
+**Final expressions**
 
 Now we can directly read off the expressions for the mean and variance from the completed square.
 

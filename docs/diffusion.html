@@ -525,10 +525,7 @@ a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} \, x_0)^2}{1 - \bar{\alpha}_{t-1}}
 = \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} \, x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
 \]</span></p>
-</section>
-</section>
-<section id="group-like-terms" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="group-like-terms"><span class="header-section-number">2.3</span> Group like terms</h3>
+<p><strong>Group like terms</strong></p>
 <p>Now we collect all the terms involving <span class="math inline">\(x_{t-1}\)</span>:</p>
 <p><strong>Coefficient of <span class="math inline">\(x_{t-1}^2\)</span>:</strong><br>
 <span class="math display">\[
@@ -550,9 +547,7 @@ b = \frac{ \sqrt{\alpha_t} \, x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}
 <span class="math display">\[
 -\frac{1}{2} \left( a x_{t-1}^2 - 2 b x_{t-1} \right) + \text{(constants)}
 \]</span></p>
-</section>
-<section id="apply-the-identity" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="apply-the-identity"><span class="header-section-number">2.4</span> 2.4 Apply the identity</h3>
+<p><strong>Apply the identity</strong></p>
 <p>Using the identity: <span class="math display">\[
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \]</span></p>
@@ -588,10 +583,7 @@ Note: This matches the standard Gaussian
 <p>We keep the notation <span class="math inline">\(\tilde{\beta}_t\)</span> instead of <span class="math inline">\(\sigma^2\)</span> because it connects directly to the <strong>noise schedule</strong> (<span class="math inline">\(\beta_t\)</span>, <span class="math inline">\(\bar{\alpha}_t\)</span>) used in the diffusion model. This helps tie everything back to how the forward and reverse processes relate.</p>
 </div>
 </div>
-<hr>
-</section>
-<section id="final-expressions" class="level3" data-number="2.5">
-<h3 data-number="2.5" class="anchored" data-anchor-id="final-expressions"><span class="header-section-number">2.5</span> 2.5 Final expressions</h3>
+<p><strong>Final expressions</strong></p>
 <p>Now we can directly read off the expressions for the mean and variance from the completed square.</p>
 <p>We had: <span class="math display">\[
 a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}, \quad
@@ -622,6 +614,7 @@ q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}
 \]</span></p>
 
 
+</section>
 </section>
 </section>
 
