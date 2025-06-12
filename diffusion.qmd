@@ -17,18 +17,16 @@ This approach has enabled state-of-the-art results in image generation, powering
 This combination of **theoretical simplicity**, **training robustness**, and **high-quality outputs** has made diffusion models one of the most effective generative modeling techniques in use today.
 
 
-## Math Review
-
-### Forward Diffusion Process
+## Forward Diffusion Process
 
 The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.
 
-#### Start with a Data Sample
+### Start with a Data Sample
 
 Begin with a data point $x_0$, sampled from dataset (such as a real image). The goal is to slowly corrupt $x_0$ by adding noise over many steps, until it becomes indistinguishable from random Gaussian noise.  
 We’ll later see that it’s also possible to sample $x_t$ directly from $x_0$, without simulating every step.
 
-#### Add Noise Recursively
+### Add Noise Recursively
 
 At each time step $t$, the process is defined as:
 $$
@@ -49,7 +47,7 @@ Where:
 > Keeping $\beta_t$ small ensures that noise is added gradually. This allows the model to retain structure across steps and converge slowly to pure noise. Large values of $\beta_t$ would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via $\sqrt{\alpha_t}$) and noise growth (via $\sqrt{1 - \alpha_t}$) to ensure a smooth, learnable transition.
 
 
-#### The Markov Chain
+### The Markov Chain
 
 The full sequence is:
 
@@ -69,7 +67,7 @@ This means we can sample the whole chain by repeatedly applying the noise step.
 **Insight:** While the forward process defines a full Markov chain from $x_0$ to $x_T$, we’ll soon see that it’s also possible to sample any $x_t$ directly from $x_0$ using a closed-form Gaussian — without simulating each intermediate step.
 :::
 
-#### Deriving the Marginal Distribution $q(x_t \mid x_0)$
+### Deriving the Marginal Distribution $q(x_t \mid x_0)$
 
 \textbf{Key Question:} How do we get the formula that lets us sample $x_t$ directly from $x_0$ (without simulating all the intermediate steps)?
 
@@ -113,7 +111,7 @@ This can be proved by induction or by telescoping the sum.
 
 All the little bits of noise added at each step combine into one big Gaussian noise term, with variance $1 - \bar{\alpha}_t$.
 
-#### The Final Marginal Distribution
+### The Final Marginal Distribution
 
 So, we can sample $x_t$ directly from $x_0$ using:
 $$
@@ -133,7 +131,7 @@ $$
 x_T \sim \mathcal{N}(0, I)
 $$
 
-#### Recap: Forward Diffusion Steps
+### Recap: Forward Diffusion Steps
 
 | **Step** | **Formula** | **Explanation** |
 |---------|-------------|-----------------|
@@ -144,7 +142,7 @@ $$
 | 5 | $x_T \sim \mathcal{N}(0, I)$ | After many steps, pure noise |
 
 
-#### Key Takeaways
+### Key Takeaways
 
 - The forward diffusion process is just repeatedly adding noise to your data.
 - Thanks to properties of Gaussian noise, you can describe the result as the original data scaled down plus one cumulative chunk of Gaussian noise.   
@@ -154,7 +152,7 @@ $$
 
 
 
-### Reverse Diffusion Process
+## Reverse Diffusion Process
 
 Let’s break down the reverse diffusion process step by step. This is the **generative phase** of diffusion models, where we learn to turn pure noise back into data. For clarity, we’ll use the same notation as in the forward process:
 
@@ -197,7 +195,7 @@ This approximation works because the forward process adds Gaussian noise in smal
 - **$\tilde{\beta}_t$**: Variance of the reverse process distribution at time $t$
 :::
 
-#### Deriving $q(x_{t-1} \mid x_t, x_0)$ Using Bayes’ Rule
+### Deriving $q(x_{t-1} \mid x_t, x_0)$ Using Bayes’ Rule
 
 We can’t directly evaluate $q(x_{t-1} \mid x_t)$, but we can derive the **posterior** $q(x_{t-1} \mid x_t, x_0)$ using Bayes’ rule:
 
@@ -269,7 +267,7 @@ We now complete the square to put the expression into standard Gaussian form.
 
 ---
 
-#### Complete the square
+### Complete the square
 
 To express the exponent in Gaussian form, we’ll complete the square using the identity:  
 $$
@@ -412,7 +410,7 @@ $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 $$
 
-#### Parameterizing the Reverse Process
+### Parameterizing the Reverse Process
 
 During training, we can compute the posterior exactly because $x_0$ is known. But at sampling time, we don’t have access to $x_0$, so we must express everything in terms of the current noisy sample $x_t$ and the model’s prediction of noise $\epsilon$.
 
