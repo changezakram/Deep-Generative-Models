@@ -328,47 +328,72 @@ $$
 -\frac{1}{2} \left( a x_{t-1}^2 - 2 b x_{t-1} \right) + \text{(constants)}
 $$
 
-### Apply the identity
+### 2.4 Apply the identity
 
-We now apply the identity to complete the square:
-
+Using the identity:
 $$
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 $$
 
-Applying this to our exponent:
-
+we rewrite the exponent:
 $$
 -\frac{1}{2} \left( a x_{t-1}^2 - 2 b x_{t-1} \right)
 = -\frac{1}{2} \left[ a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a} \right]
 $$
 
-We drop the constant term \(\frac{b^2}{a}\) under proportionality. This transforms the exponent into the Gaussian form:
-
+We drop the constant term $\frac{b^2}{a}$ under proportionality. This transforms the exponent into the Gaussian form:
 $$
-q(x_{t-1} \mid x_t, x_0) \propto \exp \left( -\frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2 \right)
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+- \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
+\right)
 $$
 
-> **Note:** This matches the standard Gaussian:
->
-> $$
-> \mathcal{N}(x \mid \mu, \sigma^2 I) \propto \exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
-> $$
->
-> So in our case:
-> - \(\tilde{\mu}_t = \frac{b}{a}\) is the **mean**
-> - \(\tilde{\beta}_t = \frac{1}{a}\) is the **variance**
->
-> We keep the notation \(\tilde{\beta}_t\) instead of using \(\sigma^2\) because it connects directly to the **noise schedule** (\(\alpha_t\), \(\beta_t\), \(\bar{\alpha}_t\)) used in the diffusion model. This helps tie everything back to how the forward and reverse processes relate.
+::: {.callout-note title="Note: This matches the standard Gaussian"}
 
+The standard Gaussian is written as:
+$$
+\mathcal{N}(x \mid \mu, \sigma^2 I) \propto \exp\left(
+- \frac{1}{2\sigma^2} \| x - \mu \|^2
+\right)
+$$
 
-### Final expressions
+So in our case:
 
-Now we can directly read off the expressions for the mean and variance of the Gaussian:
+- $\tilde{\mu}_t = \frac{b}{a}$ is the **mean**
+- $\tilde{\beta}_t = \frac{1}{a}$ is the **variance**
+
+We keep the notation $\tilde{\beta}_t$ instead of $\sigma^2$ because it connects directly to the **noise schedule** ($\beta_t$, $\bar{\alpha}_t$) used in the diffusion model. This helps tie everything back to how the forward and reverse processes relate.
+
+:::
+
+---
+
+### 2.5 Final expressions
+
+Now we can directly read off the expressions for the mean and variance from the completed square.
+
+We had:
+$$
+a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}, \quad
+b = \frac{\sqrt{\alpha_t} \, x_t}{\beta_t} + \frac{\sqrt{\bar{\alpha}_{t-1}} \, x_0}{1 - \bar{\alpha}_{t-1}}
+$$
+
+From the identity:
+$$
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+- \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
+\right)
+$$
+
+we identify:
+- $\tilde{\mu}_t = \frac{b}{a}$,
+- $\tilde{\beta}_t = \frac{1}{a}$
+
+Let’s compute these explicitly:
 
 **Mean:**
 $$
-\tilde{\mu}_t =
+\tilde{\mu}_t = \frac{b}{a} =
 \frac{
 \sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1}) x_t +
 \sqrt{\bar{\alpha}_{t-1}} \beta_t x_0
@@ -379,11 +404,11 @@ $$
 
 **Variance:**
 $$
-\tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
+\tilde{\beta}_t = \frac{1}{a}
+= \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
 $$
 
 So the final expression for the posterior becomes:
-
 $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 $$
