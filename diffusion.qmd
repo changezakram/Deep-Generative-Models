@@ -411,3 +411,23 @@ So the final expression for the posterior becomes:
 $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 $$
+
+#### Parameterizing the Reverse Process
+
+During training, we can compute the true posterior exactly, since $x_0$ is known.  
+But at sampling time, we don’t have access to $x_0$, so we need to re-express everything using only $x_t$ and the model’s predicted noise $\epsilon$.
+
+Using the forward noising equation, we solve for $x_0$ in terms of $x_t$ and $\epsilon$:
+
+$$
+x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
+$$
+
+Now we substitute this into the expression for $\tilde{\mu}_t$ from the true posterior:
+
+$$
+\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+$$
+
+Here, $\epsilon$ is the noise that was added to $x_0$ to produce $x_t$.  
+At test time, we use the model to predict this noise, so we can reconstruct $\tilde{\mu}_t$ without needing $x_0$.
