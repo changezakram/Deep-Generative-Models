@@ -533,8 +533,7 @@ a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 </ul>
 </div>
 </div>
-<p>We’ll now expand the expression for the posterior’s exponent and apply this identity to express it in Gaussian form.</p>
-<p>From earlier, we arrived at this expression for the exponent of the posterior:</p>
+<p>We now apply this identity to the posterior exponent to express ( q(x_{t-1} x_t, x_0) ) in standard Gaussian form. This will allow us to identify its mean and variance. Recall that we had the exponent of the posterior:</p>
 <p><span class="math display">\[
 -\frac{1}{2} \left[
 \frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t} +
@@ -572,7 +571,7 @@ a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
 <p><span class="math display">\[
 b = \frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
 \]</span></p>
-<p>Remaining terms (like <span class="math inline">\(x_t^2\)</span> and <span class="math inline">\(x_0^2\)</span>) are independent of <span class="math inline">\(x_{t-1}\)</span> and can be absorbed into a constant.</p>
+<p>Remaining terms (like <span class="math inline">\(x_t^2\)</span> and <span class="math inline">\(x_0^2\)</span>) are independent of <span class="math inline">\(x_{t-1}\)</span> and can be absorbed into a constant. These terms do not affect the shape of the Gaussian distribution over <span class="math inline">\(x_{t-1}\)</span>, so they can be omitted when writing the posterior up to a proportionality constant.</p>
 <p>Using the identity:</p>
 <p><span class="math display">\[
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
@@ -583,7 +582,7 @@ a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \right]
 \]</span></p>
-<p>The constant term <span class="math inline">\(\frac{b^2}{a}\)</span> can be ignored under proportionality, giving:</p>
+<p>The constant term <span class="math inline">\(\frac{b^2}{a}\)</span> can be ignored under proportionality. This shows that the posterior is a Gaussian with the following parameters:</p>
 <p><span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 - \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2

@@ -291,9 +291,7 @@ By completing the square on a quadratic expression inside an exponential, we rec
 
 :::
 
-We’ll now expand the expression for the posterior’s exponent and apply this identity to express it in Gaussian form.
-
-From earlier, we arrived at this expression for the exponent of the posterior:
+We now apply this identity to the posterior exponent to express \( q(x_{t-1} \mid x_t, x_0) \) in standard Gaussian form. This will allow us to identify its mean and variance. Recall that we had the exponent of the posterior:
 
 $$
 -\frac{1}{2} \left[
@@ -343,7 +341,7 @@ $$
 b = \frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
 $$
 
-Remaining terms (like $x_t^2$ and $x_0^2$) are independent of $x_{t-1}$ and can be absorbed into a constant.
+Remaining terms (like $x_t^2$ and $x_0^2$) are independent of $x_{t-1}$ and can be absorbed into a constant. These terms do not affect the shape of the Gaussian distribution over $x_{t-1}$, so they can be omitted when writing the posterior up to a proportionality constant.
 
 
 Using the identity:
@@ -360,7 +358,7 @@ a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \right]
 $$
 
-The constant term $\frac{b^2}{a}$ can be ignored under proportionality, giving:
+The constant term $\frac{b^2}{a}$ can be ignored under proportionality. This shows that the posterior is a Gaussian with the following parameters:
 
 $$
 q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
