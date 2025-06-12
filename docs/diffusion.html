@@ -641,8 +641,10 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
 \]</span></p>
 <p>This allows us to compute the mean of the reverse process using only <span class="math inline">\(x_t\)</span>, <span class="math inline">\(\epsilon\)</span>, and known scalars from the noise schedule.</p>
-<p>Here, <span class="math inline">\(\epsilon\)</span> is the noise that was added to <span class="math inline">\(x_0\)</span> to get <span class="math inline">\(x_t\)</span>.<br>
-At test time, we use the model’s prediction <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> in its place.</p>
+<ul>
+<li><span class="math inline">\(\epsilon\)</span> is the noise that was added to <span class="math inline">\(x_0\)</span> to get <span class="math inline">\(x_t\)</span></li>
+<li>At test time, we use the model’s prediction <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> in its place</li>
+</ul>
 
 
 </section>

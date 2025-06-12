@@ -451,5 +451,5 @@ $$
 
 This allows us to compute the mean of the reverse process using only $x_t$, $\epsilon$, and known scalars from the noise schedule.
 
-Here, $\epsilon$ is the noise that was added to $x_0$ to get $x_t$.  
-At test time, we use the model’s prediction $\epsilon_\theta(x_t, t)$ in its place.
+- $\epsilon$ is the noise that was added to $x_0$ to get $x_t$
+- At test time, we use the model’s prediction $\epsilon_\theta(x_t, t)$ in its place
