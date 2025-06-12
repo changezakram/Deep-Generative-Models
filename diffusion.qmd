@@ -267,99 +267,82 @@ We’ll derive this explicitly by completing the square in the exponent.
 We now complete the square to put the expression into standard Gaussian form.
 
 ---
-
 #### Complete the square
 
-::: {.callout-tip title="General Formula for Completing the Square"}
-
-To simplify a quadratic expression into a perfect square, we use the identity:
-
+To express the exponent in Gaussian form, we’ll complete the square using the identity:
 $$
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 $$
 
-This is exactly the form we encounter when completing the square in the exponent of a Gaussian distribution:
-
-$$
-\exp\left( -\frac{1}{2\sigma^2} \| x - \mu \|^2 \right)
-$$
-
-By completing the square on a quadratic expression inside an exponential, we recover this Gaussian form, where:
-
-- the mean is: $\mu = \frac{b}{a}$
-- the variance is: $\sigma^2 = \frac{1}{a}$
-
-:::
-
-We now apply this identity to the posterior exponent to express \( q(x_{t-1} \mid x_t, x_0) \) in standard Gaussian form. This will allow us to identify its mean and variance. Recall that we had the exponent of the posterior:
-
+From earlier, we arrived at this expression for the exponent of the posterior:
 $$
 -\frac{1}{2} \left[
-\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t} +
-\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1 - \bar{\alpha}_{t-1}}
+\frac{(x_t - \sqrt{\alpha_t} \, x_{t-1})^2}{\beta_t} +
+\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} \, x_0)^2}{1 - \bar{\alpha}_{t-1}}
 \right]
 $$
 
 We expand both terms:
 
 **First term:**
-
 $$
-\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t}
-= \frac{x_t^2 - 2 \sqrt{\alpha_t} x_t x_{t-1} + \alpha_t x_{t-1}^2}{\beta_t}
+\frac{(x_t - \sqrt{\alpha_t} \, x_{t-1})^2}{\beta_t}
+= \frac{x_t^2 - 2 \sqrt{\alpha_t} \, x_t x_{t-1} + \alpha_t x_{t-1}^2}{\beta_t}
 $$
 
 **Second term:**
-
 $$
-\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1 - \bar{\alpha}_{t-1}}
-= \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
+\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} \, x_0)^2}{1 - \bar{\alpha}_{t-1}}
+= \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} \, x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
 $$
 
 
-**Group like terms**
+### Group like terms
 
 Now we collect all the terms involving $x_{t-1}$:
 
 - **Coefficient of $x_{t-1}^2$:**
-
 $$
 a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
 $$
 
-- **Coefficient of $x_{t-1}$ (The full linear term):**
-
+- **Coefficient of $x_{t-1}$ (the full linear term):**
 $$
 -2 \left(
-\frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
+\frac{ \sqrt{\alpha_t} \, x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} \, x_0 }{ 1 - \bar{\alpha}_{t-1} }
 \right)
 $$
 
 So we define:
-
 $$
-b = \frac{ \sqrt{\alpha_t} x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} x_0 }{ 1 - \bar{\alpha}_{t-1} }
+b = \frac{ \sqrt{\alpha_t} \, x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} \, x_0 }{ 1 - \bar{\alpha}_{t-1} }
 $$
 
-Remaining terms (like $x_t^2$ and $x_0^2$) are independent of $x_{t-1}$ and can be absorbed into a constant. These terms do not affect the shape of the Gaussian distribution over $x_{t-1}$, so they can be omitted when writing the posterior up to a proportionality constant.
+Remaining terms (like $x_t^2$ and $x_0^2$) are independent of $x_{t-1}$ and can be absorbed into a constant.  
+We are modeling the conditional distribution $q(x_{t-1} \mid x_t, x_0)$, which means both $x_t$ and $x_0$ are known and fixed. So any expression involving only $x_t$ or $x_0$ behaves like a constant and does not influence the shape of the Gaussian over $x_{t-1}$.
 
+
+The exponent now has the form:
+$$
+-\frac{1}{2} \left( a x_{t-1}^2 - 2 b x_{t-1} \right) + \text{(constants)}
+$$
+
+
+### Apply the identity
 
 Using the identity:
-
 $$
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 $$
 
-We rewrite the exponent as:
-
+we rewrite the exponent as:
 $$
 -\frac{1}{2} \left[
 a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \right]
 $$
 
-The constant term $\frac{b^2}{a}$ can be ignored under proportionality. This shows that the posterior is a Gaussian with the following parameters:
-
+The constant term $\frac{b^2}{a}$ can be ignored under proportionality, giving:
 $$
 q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 - \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
@@ -367,37 +350,11 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 $$
 
 
-::: {.callout-note title="How does this become a Gaussian?"}
-Once we complete the square, the exponent becomes:
-
-$$
--\frac{1}{2} a \left( x_{t-1} - \frac{b}{a} \right)^2
-$$
-
-This matches the standard form of a Gaussian:
-
-$$
-\exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
-$$
-
-So we identify:
-
-- Mean: $\tilde{\mu}_t = \frac{b}{a}$
-- Variance: $\tilde{\beta}_t = \frac{1}{a}$
-
-This gives us the compact expression:
-
-$$
-q(x_{t-1} \mid x_t, x_0) \propto \exp\left( -\frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2 \right)
-$$
-:::
-
-#### Final expressions
+### Final expressions
 
 Now we can directly read off the mean and variance of the Gaussian:
 
 **Mean:**
-
 $$
 \tilde{\mu}_t =
 \frac{
@@ -409,18 +366,14 @@ $$
 $$
 
 **Variance:**
-
 $$
 \tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
 $$
 
 So the full form of the posterior is:
-
 $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 $$
-
-We’ve now expressed the posterior $q(x_{t-1} \mid x_t, x_0)$ in standard Gaussian form, setting up the core training objective.
 
 ---
 
