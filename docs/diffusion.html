@@ -645,9 +645,48 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 <li><span class="math inline">\(\epsilon\)</span> is the noise that was added to <span class="math inline">\(x_0\)</span> to get <span class="math inline">\(x_t\)</span></li>
 <li>At test time, we use the model’s prediction <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> in its place</li>
 </ul>
-
-
 </section>
+</section>
+<section id="recap-reverse-diffusion-steps" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="recap-reverse-diffusion-steps"><span class="header-section-number">2.3</span> Recap: Reverse Diffusion Steps</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 32%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Formula</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span></td>
+<td>True posterior used during training (when <span class="math inline">\(x_0\)</span> is known)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(\tilde{\mu}_t = \dfrac{1}{\sqrt{\alpha_t}} \left( x_t - \dfrac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)\)</span></td>
+<td>Posterior mean rewritten using <span class="math inline">\(x_t\)</span> and noise</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><span class="math inline">\(\epsilon \approx \epsilon_\theta(x_t, t)\)</span></td>
+<td>At test time, model predicts the noise</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><span class="math inline">\(p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(\tilde{\mu}_t, \tilde{\beta}_t I)\)</span></td>
+<td>Reverse step sampled from model’s predicted mean and fixed variance</td>
+</tr>
+</tbody>
+</table>
+
+
 </section>
 </section>
 

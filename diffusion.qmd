@@ -453,3 +453,12 @@ This allows us to compute the mean of the reverse process using only $x_t$, $\ep
 
 - $\epsilon$ is the noise that was added to $x_0$ to get $x_t$
 - At test time, we use the model’s prediction $\epsilon_\theta(x_t, t)$ in its place
+
+### Recap: Reverse Diffusion Steps
+
+| Step | Formula | Explanation |
+|------|---------|-------------|
+| 1 | $q(x_{t-1} \mid x_t, x_0)$ | True posterior used during training (when $x_0$ is known) |
+| 2 | $\tilde{\mu}_t = \dfrac{1}{\sqrt{\alpha_t}} \left( x_t - \dfrac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)$ | Posterior mean rewritten using $x_t$ and noise |
+| 3 | $\epsilon \approx \epsilon_\theta(x_t, t)$ | At test time, model predicts the noise |
+| 4 | $p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(\tilde{\mu}_t, \tilde{\beta}_t I)$ | Reverse step sampled from model's predicted mean and fixed variance |
