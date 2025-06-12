@@ -553,28 +553,32 @@ b = \frac{ \sqrt{\alpha_t} \, x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}
 </section>
 <section id="apply-the-identity" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="apply-the-identity"><span class="header-section-number">2.4</span> Apply the identity</h3>
-<p>Using the identity:<br>
-<span class="math display">\[
+<p>We now apply the identity to complete the square:</p>
+<p><span class="math display">\[
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \]</span></p>
-<p>we rewrite the exponent as:<br>
-<span class="math display">\[
--\frac{1}{2} \left[
-a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
-\right]
+<p>Applying this to our exponent:</p>
+<p><span class="math display">\[
+-\frac{1}{2} \left( a x_{t-1}^2 - 2 b x_{t-1} \right)
+= -\frac{1}{2} \left[ a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a} \right]
 \]</span></p>
-<p>The constant term <span class="math inline">\(\frac{b^2}{a}\)</span> can be ignored under proportionality, giving:<br>
-<span class="math display">\[
-q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
-- \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
-\right)
+<p>We drop the constant term () under proportionality. This transforms the exponent into the Gaussian form:</p>
+<p><span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) \propto \exp \left( -\frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2 \right)
 \]</span></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> This matches the standard Gaussian:</p>
+<p><span class="math display">\[
+\mathcal{N}(x \mid \mu, \sigma^2 I) \propto \exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
+\]</span></p>
+<p>So in our case: - (_t = ) is the <strong>mean</strong> - (_t = ) is the <strong>variance</strong></p>
+<p>We keep the notation (_t) instead of using (^2) because it connects directly to the <strong>noise schedule</strong> ((_t), (_t), ({}_t)) used in the diffusion model. This helps tie everything back to how the forward and reverse processes relate.</p>
+</blockquote>
 </section>
 <section id="final-expressions" class="level3" data-number="2.5">
 <h3 data-number="2.5" class="anchored" data-anchor-id="final-expressions"><span class="header-section-number">2.5</span> Final expressions</h3>
-<p>Now we can directly read off the mean and variance of the Gaussian:</p>
-<p><strong>Mean:</strong><br>
-<span class="math display">\[
+<p>Now we can directly read off the expressions for the mean and variance of the Gaussian:</p>
+<p><strong>Mean:</strong> <span class="math display">\[
 \tilde{\mu}_t =
 \frac{
 \sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1}) x_t +
@@ -583,12 +587,11 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 1 - \bar{\alpha}_t
 }
 \]</span></p>
-<p><strong>Variance:</strong><br>
-<span class="math display">\[
+<p><strong>Variance:</strong> <span class="math display">\[
 \tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
 \]</span></p>
-<p>So the full form of the posterior is:<br>
-<span class="math display">\[
+<p>So the final expression for the posterior becomes:</p>
+<p><span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 \]</span></p>
 
