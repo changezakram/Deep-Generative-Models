@@ -499,9 +499,100 @@ We’ll derive this explicitly by completing the square in the exponent.</p>
 <p>Although we won’t use this posterior directly during sampling, this closed-form expression is essential for defining the ELBO used in training. It gives us a precise target that the reverse model attempts to approximate.</p>
 </blockquote>
 <p>We now complete the square to put the expression into standard Gaussian form.</p>
-
-
+<hr>
 </section>
+<section id="complete-the-square" class="level4" data-number="2.2.2">
+<h4 data-number="2.2.2" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">2.2.2</span> Complete the square</h4>
+<p>To express the exponent in Gaussian form, we’ll complete the square using the identity:<br>
+<span class="math display">\[
+a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+\]</span></p>
+<p>From earlier, we arrived at this expression for the exponent of the posterior:<br>
+<span class="math display">\[
+-\frac{1}{2} \left[
+\frac{(x_t - \sqrt{\alpha_t} \, x_{t-1})^2}{\beta_t} +
+\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} \, x_0)^2}{1 - \bar{\alpha}_{t-1}}
+\right]
+\]</span></p>
+<p>We expand both terms:</p>
+<p><strong>First term:</strong><br>
+<span class="math display">\[
+\frac{(x_t - \sqrt{\alpha_t} \, x_{t-1})^2}{\beta_t}
+= \frac{x_t^2 - 2 \sqrt{\alpha_t} \, x_t x_{t-1} + \alpha_t x_{t-1}^2}{\beta_t}
+\]</span></p>
+<p><strong>Second term:</strong><br>
+<span class="math display">\[
+\frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} \, x_0)^2}{1 - \bar{\alpha}_{t-1}}
+= \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} \, x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
+\]</span></p>
+</section>
+</section>
+<section id="group-like-terms" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="group-like-terms"><span class="header-section-number">2.3</span> Group like terms</h3>
+<p>Now we collect all the terms involving <span class="math inline">\(x_{t-1}\)</span>:</p>
+<p><strong>Coefficient of <span class="math inline">\(x_{t-1}^2\)</span>:</strong><br>
+<span class="math display">\[
+a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
+\]</span></p>
+<p><strong>Coefficient of <span class="math inline">\(x_{t-1}\)</span> (the full linear term):</strong><br>
+<span class="math display">\[
+-2 \left(
+\frac{ \sqrt{\alpha_t} \, x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} \, x_0 }{ 1 - \bar{\alpha}_{t-1} }
+\right)
+\]</span></p>
+<p>So we define:<br>
+<span class="math display">\[
+b = \frac{ \sqrt{\alpha_t} \, x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} \, x_0 }{ 1 - \bar{\alpha}_{t-1} }
+\]</span></p>
+<p>Remaining terms (like <span class="math inline">\(x_t^2\)</span> and <span class="math inline">\(x_0^2\)</span>) are independent of <span class="math inline">\(x_{t-1}\)</span> and can be absorbed into a constant.</p>
+<p>We are modeling the conditional distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span>, which means both <span class="math inline">\(x_t\)</span> and <span class="math inline">\(x_0\)</span> are known and fixed. So any expression involving only <span class="math inline">\(x_t\)</span> or <span class="math inline">\(x_0\)</span> behaves like a constant and does not influence the shape of the Gaussian over <span class="math inline">\(x_{t-1}\)</span>.</p>
+<p>The exponent now has the form:<br>
+<span class="math display">\[
+-\frac{1}{2} \left( a x_{t-1}^2 - 2 b x_{t-1} \right) + \text{(constants)}
+\]</span></p>
+</section>
+<section id="apply-the-identity" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="apply-the-identity"><span class="header-section-number">2.4</span> Apply the identity</h3>
+<p>Using the identity:<br>
+<span class="math display">\[
+a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+\]</span></p>
+<p>we rewrite the exponent as:<br>
+<span class="math display">\[
+-\frac{1}{2} \left[
+a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+\right]
+\]</span></p>
+<p>The constant term <span class="math inline">\(\frac{b^2}{a}\)</span> can be ignored under proportionality, giving:<br>
+<span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
+- \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
+\right)
+\]</span></p>
+</section>
+<section id="final-expressions" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="final-expressions"><span class="header-section-number">2.5</span> Final expressions</h3>
+<p>Now we can directly read off the mean and variance of the Gaussian:</p>
+<p><strong>Mean:</strong><br>
+<span class="math display">\[
+\tilde{\mu}_t =
+\frac{
+\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1}) x_t +
+\sqrt{\bar{\alpha}_{t-1}} \beta_t x_0
+}{
+1 - \bar{\alpha}_t
+}
+\]</span></p>
+<p><strong>Variance:</strong><br>
+<span class="math display">\[
+\tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
+\]</span></p>
+<p>So the full form of the posterior is:<br>
+<span class="math display">\[
+q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
+\]</span></p>
+
+
 </section>
 </section>
 

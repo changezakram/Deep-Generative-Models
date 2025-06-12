@@ -17,17 +17,17 @@ website:
             href: flows.qmd
           - text: Energy-Based Models (EBMs)
             href: ebm.qmd
+          - text: Diffusion Models
+            href: diffusion.qmd
+
 
       - text: Large Language Models
         menu:
           - text: Recurrent Neural Networks [Coming Soon]
             href: coming-soon.qmd
-          - text: Sequence to Sequence Models [Coming Soon]
-            href: coming-soon.qmd
           - text: Transformers [Coming Soon]
             href: coming-soon.qmd
-          - text: Benchmarking and Evaluation [Coming Soon]
-            href: coming-soon.qmd
+
 
       - text: Math Review
         menu:

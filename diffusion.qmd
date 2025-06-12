@@ -1,5 +1,6 @@
 ---
-title: "Diffusion Models"  
+title: "Diffusion Models"
+format: html
 ---
 
 ## Introduction
@@ -267,14 +268,15 @@ We’ll derive this explicitly by completing the square in the exponent.
 We now complete the square to put the expression into standard Gaussian form.
 
 ---
+
 #### Complete the square
 
-To express the exponent in Gaussian form, we’ll complete the square using the identity:
+To express the exponent in Gaussian form, we’ll complete the square using the identity:  
 $$
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 $$
 
-From earlier, we arrived at this expression for the exponent of the posterior:
+From earlier, we arrived at this expression for the exponent of the posterior:  
 $$
 -\frac{1}{2} \left[
 \frac{(x_t - \sqrt{\alpha_t} \, x_{t-1})^2}{\beta_t} +
@@ -284,77 +286,74 @@ $$
 
 We expand both terms:
 
-**First term:**
+**First term:**  
 $$
 \frac{(x_t - \sqrt{\alpha_t} \, x_{t-1})^2}{\beta_t}
 = \frac{x_t^2 - 2 \sqrt{\alpha_t} \, x_t x_{t-1} + \alpha_t x_{t-1}^2}{\beta_t}
 $$
 
-**Second term:**
+**Second term:**  
 $$
 \frac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} \, x_0)^2}{1 - \bar{\alpha}_{t-1}}
 = \frac{x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} \, x_{t-1} x_0 + \bar{\alpha}_{t-1} x_0^2}{1 - \bar{\alpha}_{t-1}}
 $$
 
-
 ### Group like terms
 
 Now we collect all the terms involving $x_{t-1}$:
 
-- **Coefficient of $x_{t-1}^2$:**
+**Coefficient of $x_{t-1}^2$:**  
 $$
 a = \frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar{\alpha}_{t-1}}
 $$
 
-- **Coefficient of $x_{t-1}$ (the full linear term):**
+**Coefficient of $x_{t-1}$ (the full linear term):**  
 $$
 -2 \left(
 \frac{ \sqrt{\alpha_t} \, x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} \, x_0 }{ 1 - \bar{\alpha}_{t-1} }
 \right)
 $$
 
-So we define:
+So we define:  
 $$
 b = \frac{ \sqrt{\alpha_t} \, x_t }{ \beta_t } + \frac{ \sqrt{\bar{\alpha}_{t-1}} \, x_0 }{ 1 - \bar{\alpha}_{t-1} }
 $$
 
-Remaining terms (like $x_t^2$ and $x_0^2$) are independent of $x_{t-1}$ and can be absorbed into a constant.  
+Remaining terms (like $x_t^2$ and $x_0^2$) are independent of $x_{t-1}$ and can be absorbed into a constant.
+
 We are modeling the conditional distribution $q(x_{t-1} \mid x_t, x_0)$, which means both $x_t$ and $x_0$ are known and fixed. So any expression involving only $x_t$ or $x_0$ behaves like a constant and does not influence the shape of the Gaussian over $x_{t-1}$.
 
-
-The exponent now has the form:
+The exponent now has the form:  
 $$
 -\frac{1}{2} \left( a x_{t-1}^2 - 2 b x_{t-1} \right) + \text{(constants)}
 $$
 
-
 ### Apply the identity
 
-Using the identity:
+Using the identity:  
 $$
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 $$
 
-we rewrite the exponent as:
+we rewrite the exponent as:  
 $$
 -\frac{1}{2} \left[
 a \left( x_{t-1} - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \right]
 $$
 
-The constant term $\frac{b^2}{a}$ can be ignored under proportionality, giving:
+The constant term $\frac{b^2}{a}$ can be ignored under proportionality, giving:  
 $$
 q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 - \frac{1}{2 \tilde{\beta}_t} \| x_{t-1} - \tilde{\mu}_t \|^2
 \right)
 $$
 
-
 ### Final expressions
 
 Now we can directly read off the mean and variance of the Gaussian:
 
-**Mean:**
+**Mean:**  
 $$
 \tilde{\mu}_t =
 \frac{
@@ -365,337 +364,13 @@ $$
 }
 $$
 
-**Variance:**
+**Variance:**  
 $$
 \tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
 $$
 
-So the full form of the posterior is:
+So the full form of the posterior is:  
 $$
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 $$
 
----
-
-
-#### Parameterizing the Reverse Process
-
-During training, we can compute this posterior exactly since $x_0$ is known. But at sampling time, we don’t know $x_0$, so we must express everything in terms of $x_t$ and predicted noise $\epsilon$.
-
-Since we don’t know $x_0$ during the reverse process, we algebraically express it in terms of $x_t$ and $\epsilon$ using the forward noising equation:
-
-$$
-x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
-$$
-
-Substituting this into $\tilde{\mu}_t$, we get:
-
-$$
-\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
-$$
-
-where $\epsilon$ is the noise added to $x_0$ to get $x_t$.
-
-
-#### Training the Neural Network
-
-The reverse process is implemented as a neural network (often a U-Net), which is trained to **predict the noise** $\epsilon$ from $x_t$ at each step. The forward process is fixed and non-learned.
-
-Let $\epsilon_\theta(x_t, t)$ be the network's prediction. Then the training objective is:
-$$
-\mathcal{L}_{\text{simple}} = \mathbb{E}_{t, x_0, \epsilon \sim \mathcal{N}(0, I)} 
-\left[ \left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2 \right]
-$$
-
-::: {.callout-note appearance="simple"}
-**Intuition:** The model learns to "denoise" each $x_t$ by predicting the noise that was added to create it.
-:::
-
-
-#### Sampling (Generating New Data)
-
-To generate a sample:
-
-1. Sample noise: $x_T \sim \mathcal{N}(0, I)$  
-2. For each $t = T, T-1, ..., 1$:
-   - Predict noise: $\epsilon_\theta(x_t, t)$
-   - Compute $x_{t-1}$ as:
-$$
-x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \epsilon_\theta(x_t, t)\right) + \sigma_t z
-$$
-Where:
-- $z \sim \mathcal{N}(0, I)$  
-- $\sigma_t^2 = \beta_t$
-
-
-#### Simplifications in DDPM
-
-In the **Denoising Diffusion Probabilistic Models (DDPM)** paper:
-
-- The variance is fixed: $\Sigma_\theta = \beta_t I$
-- The stochastic term $z$ is removed for **deterministic** sampling
-
-This simplifies the sampling equation to:
-$$
-x_{t-1} = \mu_\theta(x_t, t)
-$$
-
-
-#### In Summary
-
-- The forward process is a fixed schedule of adding Gaussian noise.
-- The reverse process is **learned** by a neural network that predicts noise $\epsilon$ at each step.
-- Sampling starts from pure noise and applies the learned denoising steps iteratively.
-
----
-
-
-### Learning
-**What is the Goal?**
-The ultimate goal in diffusion models is to train the neural network so that it can reverse the noising process. In other words, we want the network to learn how to turn random noise back into realistic data (like images).
-But how do we actually train the network? We need a loss function—a way to measure how good or bad the network’s predictions are, so we can improve it.
-
-
-#### Detailed Explanation of the ELBO in Diffusion Models
-
-Let’s break down the **Evidence Lower Bound (ELBO)** used in diffusion models, step by step. This is the core mathematical foundation for training diffusion models, and understanding it will clarify how the neural network learns to reverse the noising process.
-
-
-##### What is the ELBO?
-
-The ELBO is a **lower bound** on the log-likelihood of the data. Maximizing the ELBO is equivalent to maximizing the likelihood that the model can generate the training data. For diffusion models, the ELBO ensures that the reverse process (denoising) aligns with the forward process (noising).
-
-
-#### Deriving the ELBO for Diffusion Models
-
-**Goal:**  
-We want to maximize the log-likelihood of the data:
-
-$$
-\log p_\theta(x_0)
-$$
-
-where $x_0$ is a clean data sample (e.g., an image).
-
-**Problem:**  
-Computing $\log p_\theta(x_0)$ directly is **intractable** because it involves integrating over all possible noisy intermediate states $x_{1:T}$.
-
-**Solution:**  
-Use **Jensen’s Inequality** to derive a lower bound (the ELBO) that we can optimize instead.
-
-
-##### Full Derivation (Step-by-Step)
-
-**Step 1: Start with the log-likelihood**
-
-$$
-\log p_\theta(x_0) = \log \int p_\theta(x_{0:T}) \, dx_{1:T}
-$$
-
-**Step 2: Introduce the forward process $q(x_{1:T} \mid x_0)$**
-
-Multiply and divide by the fixed forward process:
-
-$$
-\log p_\theta(x_0) = \log \int \frac{p_\theta(x_{0:T})}{q(x_{1:T} \mid x_0)} q(x_{1:T} \mid x_0) \, dx_{1:T}
-$$
-
-**Step 3: Rewrite as an expectation**
-
-$$
-\log p_\theta(x_0) = \log \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \frac{p_\theta(x_{0:T})}{q(x_{1:T} \mid x_0)} \right]
-$$
-
-**Step 4: Apply Jensen’s Inequality**
-
-$$
-\log p_\theta(x_0) \geq \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log \frac{p_\theta(x_{0:T})}{q(x_{1:T} \mid x_0)} \right] = \text{ELBO}
-$$
-
-**Step 5: Expand $p_\theta(x_{0:T})$ and $q(x_{1:T} \mid x_0)$**
-
-Forward process:
-$$
-q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
-$$
-
-Reverse process:
-$$
-p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
-$$
-
-Substitute into the ELBO:
-
-$$
-\text{ELBO} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right]
-$$
-
-**Step 6: Decompose the ELBO**
-
-$$
-\text{ELBO} = \mathbb{E}_{q} \left[ \log p(x_T) \right] + \sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] + \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
-$$
-
-
-##### Interpreting Each Term
-
-**Reconstruction Term:**  
-- $\mathbb{E}_q[\log p_\theta(x_0 \mid x_1)]$ measures how well the model can reconstruct $x_0$ from the first noisy sample $x_1$.
-
-**Prior Matching Term:**  
-- $\mathbb{E}_q[\log p(x_T)]$ encourages the final state $x_T$ to match the prior $\mathcal{N}(0, I)$.
-
-**Consistency Terms:**  
-- $\sum \mathbb{E}_q[\log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}]$ ensures each denoising step approximates the forward noising step.
-
-
-##### Practical Training Simplification (DDPM)
-
-In DDPM:
-
-- **$p(x_T) = \mathcal{N}(0, I)$** is fixed and known.  
-- The reconstruction term is small and often ignored.  
-- The KL terms are approximated via **noise prediction**:
-
-$$
-\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
-$$
-
-Where:
-- $\epsilon$ is the actual noise  
-- $\epsilon_\theta$ is the predicted noise by the neural network
-
-**Why?** If the network can predict the noise $\epsilon$, it can denoise $x_t$ and reverse the diffusion.
-
-
-##### Connection to VAEs
-
-| Aspect              | VAEs                                   | Diffusion Models                                 |
-|---------------------|----------------------------------------|--------------------------------------------------|
-| Forward process     | Learned encoder $q_\phi(z \mid x)$      | Fixed noising process $q(x_t \mid x_{t-1})$      |
-| Reverse process     | Learned decoder $p_\theta(x \mid z)$     | Learned denoising network $p_\theta(x_{t-1} \mid x_t)$ |
-| Training objective  | Optimize ELBO over latent variables     | Optimize ELBO via noise prediction loss          |
-
----
-
-##### Takeaways
-
-- The ELBO is a tractable lower bound on $\log p_\theta(x_0)$.  
-- It aligns the reverse (learned) process with the forward (fixed) noising process.  
-- In practice, training reduces to minimizing the difference between predicted and true noise.
-
----
-
-
-
-
-
-
-
-
-
-
-
-## Back to the Diffusion (Detailed Explanation)
-
-### Recap: What Is Diffusion in This Context?
-
-Diffusion models work by gradually adding noise to data (like images) in small steps until the data becomes nearly pure noise. This is called the **forward diffusion process**. The challenge lies in reversing this process: starting from noise and recovering realistic data. This is known as the **reverse diffusion process**.
-
-
-### The Reverse Diffusion Process: Step by Step
-
-#### 1. The Goal
-
-The reverse diffusion process aims to start from random noise and, through a sequence of learned steps, remove the noise and reconstruct a realistic data sample (e.g., an image).
-
-#### 2. Why Is This Hard?
-
-- The forward process is simple and analytically defined.
-- The reverse process requires "undoing" the added noise, which is complex and intractable for real data.
-- To solve this, we use a neural network to learn how to denoise the sample step-by-step.
-
-#### 3. How Is the Reverse Process Modeled?
-
-- The reverse process is represented as a Markov chain of conditional Gaussians:
-
-$$
-p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
-$$
-
-- Here, $p(x_T)$ is a standard normal distribution.
-- Each $p_\theta(x_{t-1} \mid x_t)$ is a Gaussian with parameters predicted by a neural network.
-
-#### 4. Why Use Gaussians?
-
-- If the forward noise schedule uses small variances $\beta_t$, the reverse conditional distributions can be well-approximated by Gaussians.
-- This makes training and sampling tractable using standard probabilistic tools.
-
-#### 5. What Does the Neural Network Actually Do?
-
-- Given a noisy input $x_t$ and the time step $t$, the neural network predicts:
-  - The mean $\mu_\theta(x_t, t)$ of the reverse Gaussian
-  - The added noise $\epsilon$
-  - Or another related signal, depending on how the model is parameterized
-
-#### 6. The Sampling (Generation) Process
-
-To generate a new sample:
-
-1. Sample noise: $x_T \sim \mathcal{N}(0, I)$  
-2. For $t = T, T-1, \dots, 1$:
-   - Predict $\mu_\theta(x_t, t)$ and optionally $\Sigma_\theta(x_t, t)$
-   - Sample:
-
-$$
-x_{t-1} = \mu_\theta(x_t, t) + \Sigma_\theta^{1/2}(x_t, t) \cdot z, \quad z \sim \mathcal{N}(0, I)
-$$
-
-3. The final output $x_0$ should resemble realistic data.
-
-#### 7. Discrete Data and the Final Step
-
-- Real images have discrete pixel values (e.g., 0 to 255).
-- The final step often uses a discrete decoder (like a softmax over 256 bins) to convert continuous predictions into discrete outputs.
-
----
-
-### Key Mathematical Details (With Explanations)
-
-- **Forward process:**
-
-$$
-x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
-$$
-
-where $\epsilon \sim \mathcal{N}(0, I)$, and $\bar{\alpha}_t$ is the cumulative product of $\alpha_t = 1 - \beta_t$.
-
-- **Reverse process:**
-
-$$
-p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
-$$
-
-- **Sampling equation:**
-
-$$
-x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
-$$
-
-- **Final decoding:** Produces discrete pixel values from continuous outputs.
-
-
-### Why Is This Important?
-
-- Connects the forward and reverse processes to the actual generative algorithm.
-- Explains how the neural network learns to remove noise step-by-step.
-- Clarifies why Gaussian assumptions and probabilistic modeling matter.
-
----
-
-### Summary
-
-- The reverse diffusion process generates new data by progressively denoising a random noise sample.
-- It’s guided by a neural network trained to predict the direction of denoising at each step.
-- Each reverse step is modeled as a Gaussian, and the final output is discretized to match real data.
-- This process allows diffusion models to create realistic images, audio, or other types of structured data.
