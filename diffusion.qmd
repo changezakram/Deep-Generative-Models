@@ -460,3 +460,136 @@ This allows us to compute the mean of the reverse process using only $x_t$, $\ep
 | 2 | $\tilde{\mu}_t = \dfrac{1}{\sqrt{\alpha_t}} \left( x_t - \dfrac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)$ | Posterior mean rewritten using $x_t$ and noise |
 | 3 | $\epsilon \approx \epsilon_\theta(x_t, t)$ | At test time, model predicts the noise |
 | 4 | $p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(\tilde{\mu}_t, \tilde{\beta}_t I)$ | Reverse step sampled from model's predicted mean and fixed variance |
+
+---
+
+### Training: Understanding the ELBO 
+
+**What is the Goal?**
+The ultimate goal in diffusion models is to train the neural network so that it can reverse the noising process. In other words, we want the network to learn how to turn random noise back into realistic data (like images). But how do we actually train the network? We need a loss function—a way to measure how good or bad the network’s predictions are, so we can improve it.
+
+
+##### What is the ELBO?
+
+The ELBO is a **lower bound** on the log-likelihood of the data. Maximizing the ELBO is equivalent to maximizing the likelihood that the model can generate the training data. For diffusion models, the ELBO ensures that the reverse process (denoising) aligns with the forward process (noising).
+
+
+#### Deriving the ELBO for Diffusion Models
+
+**Goal:**  
+We want to maximize the log-likelihood of the data:
+
+$$
+\log p_\theta(x_0)
+$$
+
+where $x_0$ is a clean data sample (e.g., an image).
+
+**Problem:**  
+Computing $\log p_\theta(x_0)$ directly is **intractable** because it involves integrating over all possible noisy intermediate states $x_{1:T}$.
+
+**Solution:**  
+Use **Jensen’s Inequality** to derive a lower bound (the ELBO) that we can optimize instead.
+
+
+##### Full Derivation (Step-by-Step)
+
+**Step 1: Start with the log-likelihood**
+
+$$
+\log p_\theta(x_0) = \log \int p_\theta(x_{0:T}) \, dx_{1:T}
+$$
+
+**Step 2: Introduce the forward process $q(x_{1:T} \mid x_0)$**
+
+Multiply and divide by the fixed forward process:
+
+$$
+\log p_\theta(x_0) = \log \int \frac{p_\theta(x_{0:T})}{q(x_{1:T} \mid x_0)} q(x_{1:T} \mid x_0) \, dx_{1:T}
+$$
+
+**Step 3: Rewrite as an expectation**
+
+$$
+\log p_\theta(x_0) = \log \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \frac{p_\theta(x_{0:T})}{q(x_{1:T} \mid x_0)} \right]
+$$
+
+**Step 4: Apply Jensen’s Inequality**
+
+$$
+\log p_\theta(x_0) \geq \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log \frac{p_\theta(x_{0:T})}{q(x_{1:T} \mid x_0)} \right] = \text{ELBO}
+$$
+
+**Step 5: Expand $p_\theta(x_{0:T})$ and $q(x_{1:T} \mid x_0)$**
+
+Forward process:
+$$
+q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
+$$
+
+Reverse process:
+$$
+p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
+$$
+
+Substitute into the ELBO:
+
+$$
+\text{ELBO} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right]
+$$
+
+**Step 6: Decompose the ELBO**
+
+$$
+\text{ELBO} = \mathbb{E}_{q} \left[ \log p(x_T) \right] + \sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] + \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
+$$
+
+
+##### Interpreting Each Term
+
+**Reconstruction Term:**  
+- $\mathbb{E}_q[\log p_\theta(x_0 \mid x_1)]$ measures how well the model can reconstruct $x_0$ from the first noisy sample $x_1$.
+
+**Prior Matching Term:**  
+- $\mathbb{E}_q[\log p(x_T)]$ encourages the final state $x_T$ to match the prior $\mathcal{N}(0, I)$.
+
+**Consistency Terms:**  
+- $\sum \mathbb{E}_q[\log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}]$ ensures each denoising step approximates the forward noising step.
+
+
+##### Practical Training Simplification (DDPM)
+
+In DDPM:
+
+- **$p(x_T) = \mathcal{N}(0, I)$** is fixed and known.  
+- The reconstruction term is small and often ignored.  
+- The KL terms are approximated via **noise prediction**:
+
+$$
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
+$$
+
+Where:
+- $\epsilon$ is the actual noise  
+- $\epsilon_\theta$ is the predicted noise by the neural network
+
+**Why?** If the network can predict the noise $\epsilon$, it can denoise $x_t$ and reverse the diffusion.
+
+
+##### Connection to VAEs
+
+| Aspect              | VAEs                                   | Diffusion Models                                 |
+|---------------------|----------------------------------------|--------------------------------------------------|
+| Forward process     | Learned encoder $q_\phi(z \mid x)$      | Fixed noising process $q(x_t \mid x_{t-1})$      |
+| Reverse process     | Learned decoder $p_\theta(x \mid z)$     | Learned denoising network $p_\theta(x_{t-1} \mid x_t)$ |
+| Training objective  | Optimize ELBO over latent variables     | Optimize ELBO via noise prediction loss          |
+
+---
+
+##### Takeaways
+
+- The ELBO is a tractable lower bound on $\log p_\theta(x_0)$.  
+- It aligns the reverse (learned) process with the forward (fixed) noising process.  
+- In practice, training reduces to minimizing the difference between predicted and true noise.
+
+---
