@@ -615,18 +615,34 @@ q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}
 </section>
 <section id="parameterizing-the-reverse-process" class="level4" data-number="2.2.3">
 <h4 data-number="2.2.3" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">2.2.3</span> Parameterizing the Reverse Process</h4>
-<p>During training, we can compute the true posterior exactly, since <span class="math inline">\(x_0\)</span> is known.<br>
-But at sampling time, we don’t have access to <span class="math inline">\(x_0\)</span>, so we need to re-express everything using only <span class="math inline">\(x_t\)</span> and the model’s predicted noise <span class="math inline">\(\epsilon\)</span>.</p>
-<p>Using the forward noising equation, we solve for <span class="math inline">\(x_0\)</span> in terms of <span class="math inline">\(x_t\)</span> and <span class="math inline">\(\epsilon\)</span>:</p>
+<p>During training, we can compute the posterior exactly because <span class="math inline">\(x_0\)</span> is known. But at sampling time, we don’t have access to <span class="math inline">\(x_0\)</span>, so we must express everything in terms of the current noisy sample <span class="math inline">\(x_t\)</span> and the model’s prediction of noise <span class="math inline">\(\epsilon\)</span>.</p>
+<p>We start from the forward noising equation:</p>
+<p><span class="math display">\[
+x_t = \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+\]</span></p>
+<p>This expresses how noise is added to the clean image <span class="math inline">\(x_0\)</span> to produce the noisy observation <span class="math inline">\(x_t\)</span>.</p>
+<p>We rearrange this to solve for <span class="math inline">\(x_0\)</span> in terms of <span class="math inline">\(x_t\)</span> and <span class="math inline">\(\epsilon\)</span>:</p>
 <p><span class="math display">\[
 x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 \]</span></p>
-<p>Now we substitute this into the expression for <span class="math inline">\(\tilde{\mu}_t\)</span> from the true posterior:</p>
+<p>Now we substitute this into the posterior mean expression <span class="math inline">\(\tilde{\mu}_t\)</span>, which originally depended on <span class="math inline">\(x_0\)</span>:</p>
 <p><span class="math display">\[
-\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+\tilde{\mu}_t =
+\frac{
+\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1}) x_t +
+\sqrt{\bar{\alpha}_{t-1}} \beta_t x_0
+}{
+1 - \bar{\alpha}_t
+}
 \]</span></p>
-<p>Here, <span class="math inline">\(\epsilon\)</span> is the noise that was added to <span class="math inline">\(x_0\)</span> to produce <span class="math inline">\(x_t\)</span>.<br>
-At test time, we use the model to predict this noise, so we can reconstruct <span class="math inline">\(\tilde{\mu}_t\)</span> without needing <span class="math inline">\(x_0\)</span>.</p>
+<p>Substituting <span class="math inline">\(x_0\)</span> into this gives:</p>
+<p><span class="math display">\[
+\tilde{\mu}_t =
+\frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+\]</span></p>
+<p>This allows us to compute the mean of the reverse process using only <span class="math inline">\(x_t\)</span>, <span class="math inline">\(\epsilon\)</span>, and known scalars from the noise schedule.</p>
+<p>Here, <span class="math inline">\(\epsilon\)</span> is the noise that was added to <span class="math inline">\(x_0\)</span> to get <span class="math inline">\(x_t\)</span>.<br>
+At test time, we use the model’s prediction <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> in its place.</p>
 
 
 </section>

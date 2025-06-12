@@ -414,20 +414,42 @@ $$
 
 #### Parameterizing the Reverse Process
 
-During training, we can compute the true posterior exactly, since $x_0$ is known.  
-But at sampling time, we don’t have access to $x_0$, so we need to re-express everything using only $x_t$ and the model’s predicted noise $\epsilon$.
+During training, we can compute the posterior exactly because $x_0$ is known. But at sampling time, we don’t have access to $x_0$, so we must express everything in terms of the current noisy sample $x_t$ and the model’s prediction of noise $\epsilon$.
 
-Using the forward noising equation, we solve for $x_0$ in terms of $x_t$ and $\epsilon$:
+We start from the forward noising equation:
+
+$$
+x_t = \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+$$
+
+This expresses how noise is added to the clean image $x_0$ to produce the noisy observation $x_t$.
+
+We rearrange this to solve for $x_0$ in terms of $x_t$ and $\epsilon$:
 
 $$
 x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 $$
 
-Now we substitute this into the expression for $\tilde{\mu}_t$ from the true posterior:
+Now we substitute this into the posterior mean expression $\tilde{\mu}_t$, which originally depended on $x_0$:
 
 $$
-\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+\tilde{\mu}_t =
+\frac{
+\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1}) x_t +
+\sqrt{\bar{\alpha}_{t-1}} \beta_t x_0
+}{
+1 - \bar{\alpha}_t
+}
 $$
 
-Here, $\epsilon$ is the noise that was added to $x_0$ to produce $x_t$.  
-At test time, we use the model to predict this noise, so we can reconstruct $\tilde{\mu}_t$ without needing $x_0$.
+Substituting $x_0$ into this gives:
+
+$$
+\tilde{\mu}_t =
+\frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+$$
+
+This allows us to compute the mean of the reverse process using only $x_t$, $\epsilon$, and known scalars from the noise schedule.
+
+Here, $\epsilon$ is the noise that was added to $x_0$ to get $x_t$.  
+At test time, we use the model’s prediction $\epsilon_\theta(x_t, t)$ in its place.
