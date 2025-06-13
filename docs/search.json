@@ -396,14 +396,14 @@
     "href": "index.html",
     "title": "Deep Generative Models",
     "section": "",
-    "text": "Assume that all data comes from a true but unknown distribution ( p_{}(x) ). The goal of generative machine learning models is to learn this distribution as closely as possible.\n\nThe distribution learned by the model is denoted as ( p_(x) )\nWe generate new data by sampling from this learned distribution\nIn practice, generative models are trained to maximize the expected log-likelihood of ( p_(x) ), or equivalently, minimize the divergence between ( p_(x) ) and ( p_{}(x) )\n\nThis site explores how different model families approach this goal—from Variational Autoencoders (VAEs) to Diffusion Models—grounded in theory and real-world use."
+    "text": "Assume that all data comes from a true but unknown distribution \\(p_{\\text{data}}(x)\\). The goal of generative machine learning models is to learn this distribution as closely as possible.\n\nThe distribution learned by the model is denoted as \\(p_\\theta(x)\\)\n\nWe generate new data by sampling from this learned distribution\n\nIn practice, generative models are trained to maximize the expected log-likelihood of \\(p_\\theta(x)\\), or equivalently, minimize the divergence between \\(p_\\theta(x)\\) and \\(p_{\\text{data}}(x)\\)\n\nThis site explores how different model families approach this goal — from Variational Autoencoders (VAEs) to Diffusion Models — grounded in theory and real-world use."
   },
   {
     "objectID": "index.html#overview",
     "href": "index.html#overview",
     "title": "Deep Generative Models",
     "section": "",
-    "text": "Assume that all data comes from a true but unknown distribution ( p_{}(x) ). The goal of generative machine learning models is to learn this distribution as closely as possible.\n\nThe distribution learned by the model is denoted as ( p_(x) )\nWe generate new data by sampling from this learned distribution\nIn practice, generative models are trained to maximize the expected log-likelihood of ( p_(x) ), or equivalently, minimize the divergence between ( p_(x) ) and ( p_{}(x) )\n\nThis site explores how different model families approach this goal—from Variational Autoencoders (VAEs) to Diffusion Models—grounded in theory and real-world use."
+    "text": "Assume that all data comes from a true but unknown distribution \\(p_{\\text{data}}(x)\\). The goal of generative machine learning models is to learn this distribution as closely as possible.\n\nThe distribution learned by the model is denoted as \\(p_\\theta(x)\\)\n\nWe generate new data by sampling from this learned distribution\n\nIn practice, generative models are trained to maximize the expected log-likelihood of \\(p_\\theta(x)\\), or equivalently, minimize the divergence between \\(p_\\theta(x)\\) and \\(p_{\\text{data}}(x)\\)\n\nThis site explores how different model families approach this goal — from Variational Autoencoders (VAEs) to Diffusion Models — grounded in theory and real-world use."
   },
   {
     "objectID": "index.html#key-model-families",
