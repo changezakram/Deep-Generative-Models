@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deep Generative Models</title>
+<title>About</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -155,22 +155,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#key-model-families" id="toc-key-model-families" class="nav-link active" data-scroll-target="#key-model-families"><span class="header-section-number">1</span> Key Model Families</a></li>
-  <li><a href="#industry-use-cases" id="toc-industry-use-cases" class="nav-link" data-scroll-target="#industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deep Generative Models</h1>
+<h1 class="title">About</h1>
 </div>
 
 
@@ -187,132 +180,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Deep generative models learn complex data distributions and generate realistic new content using probabilistic and neural techniques.</p>
-<p>Explore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.</p>
-<blockquote class="blockquote">
-<p>Learn by building · Backed by math · Inspired by real-world problems</p>
-</blockquote>
-<section id="key-model-families" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="key-model-families"><span class="header-section-number">1</span> Key Model Families</h2>
-<details>
-<summary>
-<strong> Variational Autoencoders (VAEs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Encode input to a latent space and reconstruct it while optimizing a lower bound on likelihood (ELBO).</li>
-<li><strong>Likelihood</strong>: Approximate (variational lower bound).</li>
-<li><strong>Sampling</strong>: Fast — sample latent vector and decode.</li>
-<li><strong>Use Cases</strong>: Representation learning, image generation.</li>
-<li><strong>Example Models</strong>: β-VAE, Conditional VAE</li>
-<li><a href="./vae.html">Go to VAE write-up →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Generative Adversarial Networks (GANs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: A generator and discriminator compete in a minimax game to produce realistic samples.</li>
-<li><strong>Likelihood</strong>: None (implicit model).</li>
-<li><strong>Sampling</strong>: Fast — sample latent vector and pass through generator.</li>
-<li><strong>Use Cases</strong>: High-quality image generation, style transfer.</li>
-<li><strong>Example Models</strong>: StyleGAN, CycleGAN</li>
-<li>[Go to GAN write-up →]</li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Autoregressive Models</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Factor the joint distribution as a product of conditional probabilities.</li>
-<li><strong>Likelihood</strong>: Exact.</li>
-<li><strong>Sampling</strong>: Slow — token-by-token generation.</li>
-<li><strong>Use Cases</strong>: Language modeling, code generation, time series.</li>
-<li><strong>Example Models</strong>: GPT, PixelRNN</li>
-<li>[Go to Autoregressive Models →]</li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Normalizing Flows</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Learn invertible transformations of latent variables using the change-of-variable formula.</li>
-<li><strong>Likelihood</strong>: Exact and tractable.</li>
-<li><strong>Sampling</strong>: Fast — sample from base distribution and invert.</li>
-<li><strong>Use Cases</strong>: Density estimation, latent space modeling.</li>
-<li><strong>Example Models</strong>: RealNVP, Glow</li>
-<li><a href="./flows.html">Go to Flow Models →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Energy-Based Models (EBMs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = higher probability.</li>
-<li><strong>Likelihood</strong>: Unnormalized (intractable partition function).</li>
-<li><strong>Sampling</strong>: Very slow — requires MCMC or Langevin dynamics.</li>
-<li><strong>Use Cases</strong>: Uncertainty modeling, compositional generation.</li>
-<li><strong>Example Models</strong>: Score-based EBMs</li>
-<li><a href="./ebm.html">Go to EBMs →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Diffusion Models</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
-<li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
-<li><strong>Sampling</strong>: Slow — requires hundreds of reverse steps.</li>
-<li><strong>Use Cases</strong>: High-resolution image and audio generation.</li>
-<li><strong>Example Models</strong>: Stable Diffusion</li>
-<li>[Go to Diffusion Models →]</li>
-</ul>
-</details>
-</section>
-<section id="industry-use-cases" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</h2>
-<details>
-<summary>
-<strong>Banking</strong>
-</summary>
-<ul>
-<li><strong>Customer Service</strong> — Autoregressive Models (e.g., GPT)<br>
-</li>
-<li><strong>Fraud Detection</strong> — Energy-Based Models<br>
-</li>
-<li><strong>Operational Efficiency</strong> — RAG for document automation and summarization<br>
-</li>
-<li><strong>Business Intelligence</strong> — VAE for anomaly detection in transaction patterns</li>
-<li><strong>Marketing</strong> — GANs for personalized message generation and segmentation</li>
-</ul>
-<p>Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.<br>
-<a href="gen-ai-use-cases/banking-use-cases.html">View full Banking use cases →</a></p>
-</details>
-<details>
-<summary>
-<strong>Healthcare</strong>
-</summary>
-<ul>
-<li><strong>Clinical Documentation</strong> — Autoregressive Models (e.g., GPT-4), RAG (Nuance DAX)<br>
-</li>
-<li><strong>Medical Imaging</strong> — Diffusion Models for image enhancement<br>
-</li>
-<li><strong>Diagnostics &amp; Triage</strong> — VAEs for uncertainty-aware diagnosis<br>
-</li>
-<li><strong>Patient Education</strong> — Conversational AI built on large language models<br>
-</li>
-<li><strong>Drug Discovery</strong> — Normalizing Flows for molecular sampling and VAEs for molecule generation</li>
-</ul>
-<p>Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.<br>
-<a href="gen-ai-use-cases/healthcare-use-cases.html">View full Healthcare use cases →</a></p>
-</details>
+<p>About this site</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

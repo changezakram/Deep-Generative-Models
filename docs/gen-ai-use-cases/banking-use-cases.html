@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deep Generative Models</title>
+<title>Generative AI Use Cases in Banking</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,19 +93,19 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-generative-models">    
         <li>
-    <a class="dropdown-item" href="./vae.html">
+    <a class="dropdown-item" href="../vae.html">
  <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flows.html">
+    <a class="dropdown-item" href="../flows.html">
  <span class="dropdown-text">Normalizing Flows</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ebm.html">
+    <a class="dropdown-item" href="../ebm.html">
  <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./diffusion.html">
+    <a class="dropdown-item" href="../diffusion.html">
  <span class="dropdown-text">Diffusion Models</span></a>
   </li>  
     </ul>
@@ -116,11 +116,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
         <li>
-    <a class="dropdown-item" href="./coming-soon.html">
+    <a class="dropdown-item" href="../coming-soon.html">
  <span class="dropdown-text">Recurrent Neural Networks [Coming Soon]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coming-soon.html">
+    <a class="dropdown-item" href="../coming-soon.html">
  <span class="dropdown-text">Transformers [Coming Soon]</span></a>
   </li>  
     </ul>
@@ -160,8 +160,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#key-model-families" id="toc-key-model-families" class="nav-link active" data-scroll-target="#key-model-families"><span class="header-section-number">1</span> Key Model Families</a></li>
-  <li><a href="#industry-use-cases" id="toc-industry-use-cases" class="nav-link" data-scroll-target="#industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</a></li>
+  <li><a href="#summary-of-use-cases" id="toc-summary-of-use-cases" class="nav-link active" data-scroll-target="#summary-of-use-cases"><span class="header-section-number">1</span> 📋 Summary of Use Cases</a></li>
+  <li><a href="#use-cases-in-banking" id="toc-use-cases-in-banking" class="nav-link" data-scroll-target="#use-cases-in-banking"><span class="header-section-number">2</span> Use Cases in Banking</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">3</span> 🧾 Key Takeaways</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">4</span> 📚 References</a></li>
   </ul>
 </nav>
     </div>
@@ -170,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deep Generative Models</h1>
+<h1 class="title">Generative AI Use Cases in Banking</h1>
 </div>
 
 
@@ -187,129 +189,194 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Deep generative models learn complex data distributions and generate realistic new content using probabilistic and neural techniques.</p>
-<p>Explore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.</p>
-<blockquote class="blockquote">
-<p>Learn by building · Backed by math · Inspired by real-world problems</p>
-</blockquote>
-<section id="key-model-families" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="key-model-families"><span class="header-section-number">1</span> Key Model Families</h2>
-<details>
-<summary>
-<strong> Variational Autoencoders (VAEs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Encode input to a latent space and reconstruct it while optimizing a lower bound on likelihood (ELBO).</li>
-<li><strong>Likelihood</strong>: Approximate (variational lower bound).</li>
-<li><strong>Sampling</strong>: Fast — sample latent vector and decode.</li>
-<li><strong>Use Cases</strong>: Representation learning, image generation.</li>
-<li><strong>Example Models</strong>: β-VAE, Conditional VAE</li>
-<li><a href="./vae.html">Go to VAE write-up →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Generative Adversarial Networks (GANs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: A generator and discriminator compete in a minimax game to produce realistic samples.</li>
-<li><strong>Likelihood</strong>: None (implicit model).</li>
-<li><strong>Sampling</strong>: Fast — sample latent vector and pass through generator.</li>
-<li><strong>Use Cases</strong>: High-quality image generation, style transfer.</li>
-<li><strong>Example Models</strong>: StyleGAN, CycleGAN</li>
-<li>[Go to GAN write-up →]</li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Autoregressive Models</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Factor the joint distribution as a product of conditional probabilities.</li>
-<li><strong>Likelihood</strong>: Exact.</li>
-<li><strong>Sampling</strong>: Slow — token-by-token generation.</li>
-<li><strong>Use Cases</strong>: Language modeling, code generation, time series.</li>
-<li><strong>Example Models</strong>: GPT, PixelRNN</li>
-<li>[Go to Autoregressive Models →]</li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Normalizing Flows</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Learn invertible transformations of latent variables using the change-of-variable formula.</li>
-<li><strong>Likelihood</strong>: Exact and tractable.</li>
-<li><strong>Sampling</strong>: Fast — sample from base distribution and invert.</li>
-<li><strong>Use Cases</strong>: Density estimation, latent space modeling.</li>
-<li><strong>Example Models</strong>: RealNVP, Glow</li>
-<li><a href="./flows.html">Go to Flow Models →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Energy-Based Models (EBMs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = higher probability.</li>
-<li><strong>Likelihood</strong>: Unnormalized (intractable partition function).</li>
-<li><strong>Sampling</strong>: Very slow — requires MCMC or Langevin dynamics.</li>
-<li><strong>Use Cases</strong>: Uncertainty modeling, compositional generation.</li>
-<li><strong>Example Models</strong>: Score-based EBMs</li>
-<li><a href="./ebm.html">Go to EBMs →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Diffusion Models</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
-<li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
-<li><strong>Sampling</strong>: Slow — requires hundreds of reverse steps.</li>
-<li><strong>Use Cases</strong>: High-resolution image and audio generation.</li>
-<li><strong>Example Models</strong>: Stable Diffusion</li>
-<li>[Go to Diffusion Models →]</li>
-</ul>
-</details>
+<p>Generative AI is redefining how banks operate — from automating customer service to streamlining underwriting. Below are practical examples showing how leading financial institutions are applying GenAI for real business value.</p>
+<section id="summary-of-use-cases" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="summary-of-use-cases"><span class="header-section-number">1</span> 📋 Summary of Use Cases</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 36%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Use Case Area</th>
+<th>Examples</th>
+<th>Benefits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Customer Engagement</td>
+<td>Erica, Cora+, Fargo, Eliza</td>
+<td>24/7 support, lower call volume</td>
+</tr>
+<tr class="even">
+<td>Operational Efficiency</td>
+<td>LLM Suite, AskResearchGPT, PwC</td>
+<td>Process streamlining, reduced manual work</td>
+</tr>
+<tr class="odd">
+<td>Risk Management</td>
+<td>Mastercard DI, Wells Fargo Fraud</td>
+<td>Early fraud detection, loss prevention</td>
+</tr>
+<tr class="even">
+<td>Credit Underwriting</td>
+<td>CreditLens, COiN Platform</td>
+<td>Quicker approvals, lower compliance risk</td>
+</tr>
+<tr class="odd">
+<td>Personalized Marketing</td>
+<td>JPMorgan Campaigns</td>
+<td>Better targeting, higher engagement</td>
+</tr>
+<tr class="even">
+<td>Generative BI</td>
+<td>Copilot, ThoughtSpot, Custom Assistants</td>
+<td>Self-service insights, exec summaries</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="industry-use-cases" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</h2>
-<details>
-<summary>
-<strong>Banking</strong>
-</summary>
+<section id="use-cases-in-banking" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="use-cases-in-banking"><span class="header-section-number">2</span> Use Cases in Banking</h2>
+<section id="customer-engagement" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="customer-engagement"><span class="header-section-number">2.1</span> 🏦 Customer Engagement</h3>
+<div class="callout callout-style-simple callout-none no-icon" title="">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why it matters:</strong><br>
+Generative AI enables banks to deliver faster, more intelligent, and more personalized customer service. By automating routine interactions and offering real-time assistance, banks can improve customer satisfaction, reduce support costs, and scale their service capabilities without increasing headcount.</p>
+</div>
+</div>
+</div>
+<p><strong>Examples:</strong><br>
+- Bank of America – Erica: Offers financial guidance through natural language interactions, helping users with budgeting, transactions, and account management.<br>
+- NatWest – Cora+: Anticipates customer needs and provides proactive responses using conversational AI.<br>
+- Wells Fargo – Fargo: Supports English and Spanish to help customers manage cards and access banking services via natural language.<br>
+- BNY Mellon – Eliza: Internal chatbot and tooling platform used by 52,000 employees to build GenAI-powered apps like lead generation tools.</p>
+</section>
+<section id="operational-efficiency" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="operational-efficiency"><span class="header-section-number">2.2</span> 📊 Operational Efficiency</h3>
+<div class="callout callout-style-simple callout-none no-icon" title="">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why it matters:</strong><br>
+Banks deal with vast volumes of reports, compliance documentation, and internal knowledge. Generative AI improves productivity by summarizing documents, automating workflows, and assisting developers — freeing employees to focus on higher-value tasks and accelerating project delivery.</p>
+</div>
+</div>
+</div>
+<p><strong>Examples:</strong><br>
+- JPMorgan – LLM Suite: Automates document summarization, content creation, and reporting.<br>
+- Morgan Stanley – AskResearchGPT: Provides natural language access to 70,000+ research reports.<br>
+- PwC – Compliance Automation: Uses GenAI to summarize regulatory documents and extract clauses.<br>
+- Citi – Reporting Automation: Streamlines compliance reporting and data extraction.<br>
+- Standard Chartered – SC GPT: SC GPT helps employees retrieve information faster, and summarize internal documents. - Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance.</p>
+</section>
+<section id="risk-management" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="risk-management"><span class="header-section-number">2.3</span> 🔐 Risk Management</h3>
+<div class="callout callout-style-simple callout-none no-icon" title="">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why it matters:</strong><br>
+Fraud detection and risk modeling are core to banking safety. GenAI enhances traditional models by spotting subtle anomalies, synthesizing potential fraud scenarios, and enabling faster investigation of suspicious transactions.</p>
+</div>
+</div>
+</div>
+<p><strong>Examples:</strong><br>
+- Mastercard – Decision Intelligence: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually.<br>
+- Wells Fargo – AI for Fraud: Uses GenAI for enhanced anomaly detection in transactional data.</p>
+</section>
+<section id="credit-approval-and-loan-underwriting" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="credit-approval-and-loan-underwriting"><span class="header-section-number">2.4</span> 📝 Credit Approval and Loan Underwriting</h3>
+<div class="callout callout-style-simple callout-none no-icon" title="">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why it matters:</strong><br>
+Credit underwriting involves reviewing complex financial documents and assessing risk within tight timeframes. Generative AI helps automate the analysis of financial statements, legal documents, and industry benchmarks, enabling faster loan decisions, improved accuracy, and streamlined compliance.</p>
+</div>
+</div>
+</div>
+<p><strong>Examples:</strong><br>
+- Moody’s Analytics – CreditLens: Automates credit memo creation and industry analysis with generative tools.<br>
+- JPMorgan Chase – COiN Platform: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time.</p>
+</section>
+<section id="personalized-marketing" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="personalized-marketing"><span class="header-section-number">2.5</span> 📣 Personalized Marketing</h3>
+<div class="callout callout-style-simple callout-none no-icon" title="">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why it matters:</strong><br>
+Generative AI enables banks to move beyond mass marketing and deliver personalized, data-driven messaging. This improves customer engagement, increases conversion rates, and enhances long-term loyalty.</p>
+</div>
+</div>
+</div>
+<p><strong>Examples:</strong><br>
+- JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials.</p>
+</section>
+<section id="generative-business-intelligence-gen-bi" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="generative-business-intelligence-gen-bi"><span class="header-section-number">2.6</span> 📈 Generative Business Intelligence (Gen BI)</h3>
+<div class="callout callout-style-simple callout-none no-icon" title="">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why it matters:</strong><br>
+Generative BI transforms data consumption by allowing non-technical users to explore reports, uncover insights, and ask ad hoc questions using natural language — all without waiting on analysts. This boosts data literacy and speeds up decision-making across business units.</p>
+</div>
+</div>
+</div>
+<p><strong>Examples:</strong><br>
+- Microsoft Copilot in Power BI: Enables users to ask natural-language questions and instantly generate charts or summaries.<br>
+- ThoughtSpot Sage: Combines search with GenAI to explain patterns and alert users to anomalies.<br>
+- Internal Gen BI tools: Many banks are building custom assistants on top of Snowflake, BigQuery, or Lakehouse environments to support executive dashboards and ops reviews.</p>
+</section>
+</section>
+<section id="key-takeaways" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3</span> 🧾 Key Takeaways</h2>
 <ul>
-<li><strong>Customer Service</strong> — Autoregressive Models (e.g., GPT)<br>
-</li>
-<li><strong>Fraud Detection</strong> — Energy-Based Models<br>
-</li>
-<li><strong>Operational Efficiency</strong> — RAG for document automation and summarization<br>
-</li>
-<li><strong>Business Intelligence</strong> — VAE for anomaly detection in transaction patterns</li>
-<li><strong>Marketing</strong> — GANs for personalized message generation and segmentation</li>
+<li>GenAI is no longer experimental in banking — it’s powering real customer-facing and internal systems.</li>
+<li>Use cases like customer engagement, underwriting, and Gen BI deliver measurable productivity and experience gains.</li>
+<li>As the industry matures, GenAI will likely integrate deeper into core banking platforms and regulatory processes.</li>
 </ul>
-<p>Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.<br>
-<a href="gen-ai-use-cases/banking-use-cases.html">View full Banking use cases →</a></p>
-</details>
-<details>
-<summary>
-<strong>Healthcare</strong>
-</summary>
-<ul>
-<li><strong>Clinical Documentation</strong> — Autoregressive Models (e.g., GPT-4), RAG (Nuance DAX)<br>
-</li>
-<li><strong>Medical Imaging</strong> — Diffusion Models for image enhancement<br>
-</li>
-<li><strong>Diagnostics &amp; Triage</strong> — VAEs for uncertainty-aware diagnosis<br>
-</li>
-<li><strong>Patient Education</strong> — Conversational AI built on large language models<br>
-</li>
-<li><strong>Drug Discovery</strong> — Normalizing Flows for molecular sampling and VAEs for molecule generation</li>
-</ul>
-<p>Highlights work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.<br>
-<a href="gen-ai-use-cases/healthcare-use-cases.html">View full Healthcare use cases →</a></p>
-</details>
+</section>
+<section id="references" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="references"><span class="header-section-number">4</span> 📚 References</h2>
+<p>[1] Bank of America. (2024). <em>Erica: Virtual Financial Assistant</em>. <a href="https://info.bankofamerica.com/en/digital-banking/erica">https://info.bankofamerica.com/en/digital-banking/erica</a></p>
+<p>[2] NatWest Group. (2024). <em>NatWest launches Cora+</em>. <a href="https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html">https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html</a></p>
+<p>[3] Wells Fargo. (2024). <em>Meet Fargo: AI-powered banking assistant</em>. <a href="https://sites.wf.com/fargo/">https://sites.wf.com/fargo/</a></p>
+<p>[4] Wall Street Journal. (2024). <em>BNY signs multiyear deal with OpenAI</em>. <a href="https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d">https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d</a></p>
+<p>[5] Morgan Stanley. (2024). <em>AI at Morgan Stanley Debrief launch</em>. <a href="https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch">https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch</a></p>
+<p>[6] Wall Street Journal. (2024). <em>Inside OpenAI’s deal with BBVA</em>. <a href="https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03">https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03</a></p>
+<p>[7] JPMorgan Chase. (2024). <em>Deploying ChatGPT-like Assistant</em>. <a href="https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html">https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html</a></p>
+<p>[8] Morgan Stanley. (2024). <em>Announces AskResearchGPT</em>. <a href="https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt">https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt</a></p>
+<p>[9] PwC. (2023). <em>Building trust in AI for tax compliance</em>. <a href="https://www.pwc.com/gx/en/services/tax/connected-tax-compliance/build-trust-ai-tax-compliance.html">https://www.pwc.com/gx/en/services/tax/connected-tax-compliance/build-trust-ai-tax-compliance.html</a></p>
+<p>[10] Citigroup. (2019). <em>Citi Global Trade uses AI to digitize compliance in next-generational project</em>. <a href="https://www.citigroup.com/global/news/press-release/2019/citi-global-trade-uses-ai-to-digitie-compliance-in-next-generational-project">https://www.citigroup.com/global/news/press-release/2019/citi-global-trade-uses-ai-to-digitie-compliance-in-next-generational-project</a></p>
+<p>[11] Citi Ventures. (2024). <em>Investing in Poolside</em>. <a href="https://www.citi.com/ventures/perspectives/pressrelease/investing-in-poolside.html">https://www.citi.com/ventures/perspectives/pressrelease/investing-in-poolside.html</a></p>
+<p>[12] Mastercard. (2024, February). <em>Mastercard supercharges consumer protection with Gen AI</em>. <a href="https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/">https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/</a></p>
+<p>[13] Wells Fargo Stories. (2024). <em>How AI could reshape banking</em>. <a href="https://stories.wf.com/artificial-intelligence-has-the-potential-to-reshape-banking/">https://stories.wf.com/artificial-intelligence-has-the-potential-to-reshape-banking/</a></p>
+<p>[14] Moody’s Analytics. (2024). <em>Revolutionizing loan origination with GenAI</em>. <a href="https://www.moodys.com/web/en/us/insights/lending/revolutionizing-loan-origination-with-genai.html">https://www.moodys.com/web/en/us/insights/lending/revolutionizing-loan-origination-with-genai.html</a></p>
+<p>[15] Futurism. (2024). <em>AI completed 360,000 hours of finance work in just seconds</em>. <a href="https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds">https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds</a></p>
+<p>[16] CTO Magazine. (2024). <em>JP Morgan Chase accelerates AI adoption</em>. <a href="https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/">https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/</a></p>
+<p>[17] Standard Chartered. (2024). <em>Standard Chartered Rolls Out SC GPT, Advancing AI-Driven Innovation in Banking</em>. Retrieved from <a href="https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/">https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/</a></p>
+<p>[18] Standard Chartered. (2024). <em>The Disruptive Potential of Generative AI</em>. Retrieved from <a href="https://www.sc.com/en/overlay/the-disruptive-potential-of-generative-ai/">https://www.sc.com/en/overlay/the-disruptive-potential-of-generative-ai/</a></p>
 
 
 </section>
