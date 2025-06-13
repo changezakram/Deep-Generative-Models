@@ -593,3 +593,71 @@ Where:
 - In practice, training reduces to minimizing the difference between predicted and true noise.
 
 ---
+
+
+## Sampling from the Reverse Process
+
+Now that we’ve learned how to train the model using the ELBO, let’s understand how it generates new data at test time.
+
+### Recap: What Are We Trying to Do?
+
+In the **forward diffusion process**, we gradually add noise to a data sample (like an image) over $T$ steps, eventually turning it into nearly pure Gaussian noise.
+
+In the **reverse process**, we start from that noise and apply a learned denoising step at each time step to recover a realistic data sample. This is the generation phase.
+
+### The Reverse Process as a Markov Chain
+
+At sampling time, we generate a new sample using the reverse process defined by:
+
+$$
+p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
+$$
+
+- $p(x_T)$ is a standard Gaussian $\mathcal{N}(0, I)$.
+- Each $p_\theta(x_{t-1} \mid x_t)$ is modeled as a Gaussian whose mean $\mu_\theta(x_t, t)$ is predicted by the neural network.
+- The variance may be fixed or learned (e.g., $\beta_t$, $\Sigma_\theta$).
+
+Each reverse step is:
+
+$$
+x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
+$$
+
+This recursive process transforms noise into a structured sample like an image.
+
+### What Does the Neural Network Predict?
+
+During training, we derived the true posterior mean $\tilde{\mu}_t$ as:
+
+$$
+\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+$$
+
+At test time, since we don’t have access to the true noise $\epsilon$, the network predicts it as $\epsilon_\theta(x_t, t)$ and substitutes it into the expression:
+
+$$
+\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon_\theta(x_t, t) \right)
+$$
+
+This lets the model estimate the mean of the reverse Gaussian using only $x_t$, $t$, and the predicted noise.
+
+### Sampling Procedure
+
+To generate a sample, we do the following:
+
+1. Sample initial noise:  
+   $x_T \sim \mathcal{N}(0, I)$
+
+2. For $t = T, T-1, \dots, 1$:  
+   - Predict $\mu_\theta(x_t, t)$  
+   - Optionally use fixed or learned variance $\sigma_t^2$  
+   - Sample from the reverse step:  
+     $x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z$, where $z \sim \mathcal{N}(0, I)$
+
+3. Return $x_0$ as the final generated sample.
+
+This is how diffusion models synthesize data — by gradually denoising random noise using the learned reverse process.
+
+### Optional: Final Discretization
+
+In some implementations (e.g., image generation), the final output $x_0$ may be continuous. A post-processing step such as rounding or softmax discretization is often used to map it to valid image pixel values (e.g., integers from 0 to 255).

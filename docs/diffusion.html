@@ -194,6 +194,7 @@ window.Quarto = {
   <li><a href="#forward-diffusion-process" id="toc-forward-diffusion-process" class="nav-link" data-scroll-target="#forward-diffusion-process"><span class="header-section-number">2</span> Forward Diffusion Process</a></li>
   <li><a href="#reverse-diffusion-process" id="toc-reverse-diffusion-process" class="nav-link" data-scroll-target="#reverse-diffusion-process"><span class="header-section-number">3</span> Reverse Diffusion Process</a></li>
   <li><a href="#training-understanding-the-elbo" id="toc-training-understanding-the-elbo" class="nav-link" data-scroll-target="#training-understanding-the-elbo"><span class="header-section-number">4</span> Training: Understanding the ELBO</a></li>
+  <li><a href="#sampling-from-the-reverse-process" id="toc-sampling-from-the-reverse-process" class="nav-link" data-scroll-target="#sampling-from-the-reverse-process"><span class="header-section-number">5</span> Sampling from the Reverse Process</a></li>
   </ul>
 </nav>
     </div>
@@ -813,6 +814,67 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 <li>In practice, training reduces to minimizing the difference between predicted and true noise.</li>
 </ul>
 <hr>
+</section>
+</section>
+<section id="sampling-from-the-reverse-process" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sampling-from-the-reverse-process"><span class="header-section-number">5</span> Sampling from the Reverse Process</h2>
+<p>Now that we’ve learned how to train the model using the ELBO, let’s understand how it generates new data at test time.</p>
+<section id="recap-what-are-we-trying-to-do" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="recap-what-are-we-trying-to-do"><span class="header-section-number">5.1</span> Recap: What Are We Trying to Do?</h3>
+<p>In the <strong>forward diffusion process</strong>, we gradually add noise to a data sample (like an image) over <span class="math inline">\(T\)</span> steps, eventually turning it into nearly pure Gaussian noise.</p>
+<p>In the <strong>reverse process</strong>, we start from that noise and apply a learned denoising step at each time step to recover a realistic data sample. This is the generation phase.</p>
+</section>
+<section id="the-reverse-process-as-a-markov-chain" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="the-reverse-process-as-a-markov-chain"><span class="header-section-number">5.2</span> The Reverse Process as a Markov Chain</h3>
+<p>At sampling time, we generate a new sample using the reverse process defined by:</p>
+<p><span class="math display">\[
+p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(p(x_T)\)</span> is a standard Gaussian <span class="math inline">\(\mathcal{N}(0, I)\)</span>.</li>
+<li>Each <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span> is modeled as a Gaussian whose mean <span class="math inline">\(\mu_\theta(x_t, t)\)</span> is predicted by the neural network.</li>
+<li>The variance may be fixed or learned (e.g., <span class="math inline">\(\beta_t\)</span>, <span class="math inline">\(\Sigma_\theta\)</span>).</li>
+</ul>
+<p>Each reverse step is:</p>
+<p><span class="math display">\[
+x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
+\]</span></p>
+<p>This recursive process transforms noise into a structured sample like an image.</p>
+</section>
+<section id="what-does-the-neural-network-predict" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="what-does-the-neural-network-predict"><span class="header-section-number">5.3</span> What Does the Neural Network Predict?</h3>
+<p>During training, we derived the true posterior mean <span class="math inline">\(\tilde{\mu}_t\)</span> as:</p>
+<p><span class="math display">\[
+\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
+\]</span></p>
+<p>At test time, since we don’t have access to the true noise <span class="math inline">\(\epsilon\)</span>, the network predicts it as <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> and substitutes it into the expression:</p>
+<p><span class="math display">\[
+\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon_\theta(x_t, t) \right)
+\]</span></p>
+<p>This lets the model estimate the mean of the reverse Gaussian using only <span class="math inline">\(x_t\)</span>, <span class="math inline">\(t\)</span>, and the predicted noise.</p>
+</section>
+<section id="sampling-procedure" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="sampling-procedure"><span class="header-section-number">5.4</span> Sampling Procedure</h3>
+<p>To generate a sample, we do the following:</p>
+<ol type="1">
+<li><p>Sample initial noise:<br>
+<span class="math inline">\(x_T \sim \mathcal{N}(0, I)\)</span></p></li>
+<li><p>For <span class="math inline">\(t = T, T-1, \dots, 1\)</span>:</p>
+<ul>
+<li>Predict <span class="math inline">\(\mu_\theta(x_t, t)\)</span><br>
+</li>
+<li>Optionally use fixed or learned variance <span class="math inline">\(\sigma_t^2\)</span><br>
+</li>
+<li>Sample from the reverse step:<br>
+<span class="math inline">\(x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z\)</span>, where <span class="math inline">\(z \sim \mathcal{N}(0, I)\)</span></li>
+</ul></li>
+<li><p>Return <span class="math inline">\(x_0\)</span> as the final generated sample.</p></li>
+</ol>
+<p>This is how diffusion models synthesize data — by gradually denoising random noise using the learned reverse process.</p>
+</section>
+<section id="optional-final-discretization" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="optional-final-discretization"><span class="header-section-number">5.5</span> Optional: Final Discretization</h3>
+<p>In some implementations (e.g., image generation), the final output <span class="math inline">\(x_0\)</span> may be continuous. A post-processing step such as rounding or softmax discretization is often used to map it to valid image pixel values (e.g., integers from 0 to 255).</p>
 
 
 </section>
