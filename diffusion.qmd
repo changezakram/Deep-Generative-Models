@@ -575,7 +575,7 @@ Where:
 
 **Why?** If the network can predict the noise $\epsilon$, it can denoise $x_t$ and reverse the diffusion.
 
-## The Noise Prediction Network
+### The Noise Prediction Network
 
 So far, we've seen that the training objective can be simplified to:
 
@@ -585,13 +585,13 @@ $$
 
 But what exactly is this $\epsilon_\theta(x_t, t)$?
 
-### What the Network Learns
+#### What the Network Learns
 
 - During training, we **know the true noise** $\epsilon$ used to generate the noisy sample $x_t$ from $x_0$.
 - The network $\epsilon_\theta(x_t, t)$ is trained to **predict this noise**.
 - Once trained, it can "undo" the noise and help reconstruct $x_0$ at test time.
 
-### Why Predicting Noise Works
+#### Why Predicting Noise Works
 
 Recall the forward process:
 
@@ -609,7 +609,7 @@ So if the model can **accurately predict** the noise $\epsilon$, we can plug it 
 
 This denoised estimate can then be used to compute the mean of the posterior distribution $q(x_{t-1} \mid x_t, x_0)$ — which is the key to reversing the diffusion process step by step.
 
-### Architecture Note
+#### Architecture Note
 
 The network $\epsilon_\theta(x_t, t)$ is typically implemented as a **U-Net**, which takes:
 - A noisy image $x_t$
@@ -621,7 +621,7 @@ It outputs the predicted noise $\epsilon$.
 
 This lets the model gradually learn how to denoise.
 
-### Connection to VAEs
+#### Connection to VAEs
 
 | Aspect              | VAEs                                   | Diffusion Models                                 |
 |---------------------|----------------------------------------|--------------------------------------------------|
@@ -631,7 +631,7 @@ This lets the model gradually learn how to denoise.
 
 ---
 
-### Takeaways
+#### Takeaways
 
 - The ELBO is a tractable lower bound on $\log p_\theta(x_0)$.  
 - It aligns the reverse (learned) process with the forward (fixed) noising process.  
