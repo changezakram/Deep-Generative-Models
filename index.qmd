@@ -11,6 +11,12 @@ Generative machine learning models aim to learn the underlying distribution of r
 - We generate new data by **sampling** from this learned distribution  
 - In practice, generative models are trained to **maximize the expected log-likelihood** of $p_\theta(x)$, or equivalently, **minimize the divergence** between $p_\theta(x)$ and $p_{\text{data}}(x)$
 
+> 📌 **Note**:  
+> - Models like **Autoregressive models** and **Normalizing Flows** directly maximize log-likelihood.  
+> - **VAEs** maximize a variational lower bound (ELBO) on log-likelihood.  
+> - **GANs** minimize the **Jensen-Shannon divergence** through adversarial training.  
+> - **Diffusion models** and **EBMs** use score matching or other divergence-minimizing techniques.
+
 This site explores how different model families approach this goal — from Variational Autoencoders (VAEs) to Diffusion Models — grounded in theory and real-world use.
 
 ## Key Model Families
