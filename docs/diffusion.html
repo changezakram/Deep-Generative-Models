@@ -194,7 +194,8 @@ window.Quarto = {
   <li><a href="#forward-diffusion-process" id="toc-forward-diffusion-process" class="nav-link" data-scroll-target="#forward-diffusion-process"><span class="header-section-number">2</span> Forward Diffusion Process</a></li>
   <li><a href="#reverse-diffusion-process" id="toc-reverse-diffusion-process" class="nav-link" data-scroll-target="#reverse-diffusion-process"><span class="header-section-number">3</span> Reverse Diffusion Process</a></li>
   <li><a href="#training-understanding-the-elbo" id="toc-training-understanding-the-elbo" class="nav-link" data-scroll-target="#training-understanding-the-elbo"><span class="header-section-number">4</span> Training: Understanding the ELBO</a></li>
-  <li><a href="#sampling-from-the-reverse-process" id="toc-sampling-from-the-reverse-process" class="nav-link" data-scroll-target="#sampling-from-the-reverse-process"><span class="header-section-number">5</span> Sampling from the Reverse Process</a></li>
+  <li><a href="#the-noise-prediction-network" id="toc-the-noise-prediction-network" class="nav-link" data-scroll-target="#the-noise-prediction-network"><span class="header-section-number">5</span> The Noise Prediction Network</a></li>
+  <li><a href="#sampling-from-the-reverse-process" id="toc-sampling-from-the-reverse-process" class="nav-link" data-scroll-target="#sampling-from-the-reverse-process"><span class="header-section-number">6</span> Sampling from the Reverse Process</a></li>
   </ul>
 </nav>
     </div>
@@ -769,30 +770,44 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 - <span class="math inline">\(\epsilon_\theta\)</span> is the predicted noise by the neural network</p>
 <p><strong>Why?</strong> If the network can predict the noise <span class="math inline">\(\epsilon\)</span>, it can denoise <span class="math inline">\(x_t\)</span> and reverse the diffusion.</p>
 </section>
-<section id="the-noise-prediction-network" class="level3" data-number="4.6">
-<h3 data-number="4.6" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.6</span> The Noise Prediction Network</h3>
-<p>So far, we’ve described what the model <strong>should</strong> do. But what kind of neural network actually learns this?</p>
-<ul>
-<li>The model used is typically a <strong>U-Net</strong>, designed to handle image structures well.</li>
-<li>The input includes:
-<ul>
-<li>A noisy image <span class="math inline">\(x_t\)</span></li>
-<li>A timestep <span class="math inline">\(t\)</span> (encoded using sinusoidal embeddings)</li>
-</ul></li>
-<li>The output is:
-<ul>
-<li>Either <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> (predicted noise)</li>
-<li>Or other parameterizations like <span class="math inline">\(\mu_\theta(x_t, t)\)</span> or <span class="math inline">\(x_0\)</span></li>
-</ul></li>
-</ul>
-<p>In DDPM, the network is trained to predict noise using the simple MSE loss:</p>
+</section>
+<section id="the-noise-prediction-network" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">5</span> The Noise Prediction Network</h2>
+<p>So far, we’ve seen that the training objective can be simplified to:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
 \]</span></p>
+<p>But what exactly is this <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span>?</p>
+<section id="what-the-network-learns" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="what-the-network-learns"><span class="header-section-number">5.1</span> What the Network Learns</h3>
+<ul>
+<li>During training, we <strong>know the true noise</strong> <span class="math inline">\(\epsilon\)</span> used to generate the noisy sample <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span>.</li>
+<li>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is trained to <strong>predict this noise</strong>.</li>
+<li>Once trained, it can “undo” the noise and help reconstruct <span class="math inline">\(x_0\)</span> at test time.</li>
+</ul>
+</section>
+<section id="why-predicting-noise-works" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="why-predicting-noise-works"><span class="header-section-number">5.2</span> Why Predicting Noise Works</h3>
+<p>Recall the forward process:</p>
+<p><span class="math display">\[
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+\]</span></p>
+<p>Rearranging this gives us an estimate of the original (clean) image:</p>
+<p><span class="math display">\[
+x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
+\]</span></p>
+<p>So if the model can <strong>accurately predict</strong> the noise <span class="math inline">\(\epsilon\)</span>, we can plug it in to estimate <span class="math inline">\(x_0\)</span>.</p>
+<p>This denoised estimate can then be used to compute the mean of the posterior distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is the key to reversing the diffusion process step by step.</p>
+</section>
+<section id="architecture-note" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">5.3</span> Architecture Note</h3>
+<p>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is typically implemented as a <strong>U-Net</strong>, which takes: - A noisy image <span class="math inline">\(x_t\)</span> - A timestep <span class="math inline">\(t\)</span> (encoded using sinusoidal or learned embeddings)</p>
+<p>It outputs the predicted noise <span class="math inline">\(\epsilon\)</span>.</p>
+<hr>
 <p>This lets the model gradually learn how to denoise.</p>
 </section>
-<section id="connection-to-vaes" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">4.7</span> Connection to VAEs</h3>
+<section id="connection-to-vaes" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">5.4</span> Connection to VAEs</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -826,8 +841,8 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 </table>
 <hr>
 </section>
-<section id="takeaways" class="level3" data-number="4.8">
-<h3 data-number="4.8" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.8</span> Takeaways</h3>
+<section id="takeaways" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">5.5</span> Takeaways</h3>
 <ul>
 <li>The ELBO is a tractable lower bound on <span class="math inline">\(\log p_\theta(x_0)\)</span>.<br>
 </li>
@@ -838,16 +853,16 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 <hr>
 </section>
 </section>
-<section id="sampling-from-the-reverse-process" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sampling-from-the-reverse-process"><span class="header-section-number">5</span> Sampling from the Reverse Process</h2>
+<section id="sampling-from-the-reverse-process" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sampling-from-the-reverse-process"><span class="header-section-number">6</span> Sampling from the Reverse Process</h2>
 <p>Now that we’ve learned how to train the model using the ELBO, let’s understand how it generates new data at test time.</p>
-<section id="recap-what-are-we-trying-to-do" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="recap-what-are-we-trying-to-do"><span class="header-section-number">5.1</span> Recap: What Are We Trying to Do?</h3>
+<section id="recap-what-are-we-trying-to-do" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="recap-what-are-we-trying-to-do"><span class="header-section-number">6.1</span> Recap: What Are We Trying to Do?</h3>
 <p>In the <strong>forward diffusion process</strong>, we gradually add noise to a data sample (like an image) over <span class="math inline">\(T\)</span> steps, eventually turning it into nearly pure Gaussian noise.</p>
 <p>In the <strong>reverse process</strong>, we start from that noise and apply a learned denoising step at each time step to recover a realistic data sample. This is the generation phase.</p>
 </section>
-<section id="the-reverse-process-as-a-markov-chain" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="the-reverse-process-as-a-markov-chain"><span class="header-section-number">5.2</span> The Reverse Process as a Markov Chain</h3>
+<section id="the-reverse-process-as-a-markov-chain" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="the-reverse-process-as-a-markov-chain"><span class="header-section-number">6.2</span> The Reverse Process as a Markov Chain</h3>
 <p>At sampling time, we generate a new sample using the reverse process defined by:</p>
 <p><span class="math display">\[
 p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
@@ -863,8 +878,8 @@ x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
 \]</span></p>
 <p>This recursive process transforms noise into a structured sample like an image.</p>
 </section>
-<section id="what-does-the-neural-network-predict" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="what-does-the-neural-network-predict"><span class="header-section-number">5.3</span> What Does the Neural Network Predict?</h3>
+<section id="what-does-the-neural-network-predict" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="what-does-the-neural-network-predict"><span class="header-section-number">6.3</span> What Does the Neural Network Predict?</h3>
 <p>During training, we derived the true posterior mean <span class="math inline">\(\tilde{\mu}_t\)</span> as:</p>
 <p><span class="math display">\[
 \tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon \right)
@@ -875,8 +890,8 @@ x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
 \]</span></p>
 <p>This lets the model estimate the mean of the reverse Gaussian using only <span class="math inline">\(x_t\)</span>, <span class="math inline">\(t\)</span>, and the predicted noise.</p>
 </section>
-<section id="sampling-procedure" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="sampling-procedure"><span class="header-section-number">5.4</span> Sampling Procedure</h3>
+<section id="sampling-procedure" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="sampling-procedure"><span class="header-section-number">6.4</span> Sampling Procedure</h3>
 <p>To generate a sample, we do the following:</p>
 <ol type="1">
 <li><p>Sample initial noise:<br>

@@ -575,23 +575,49 @@ Where:
 
 **Why?** If the network can predict the noise $\epsilon$, it can denoise $x_t$ and reverse the diffusion.
 
-### The Noise Prediction Network
+## The Noise Prediction Network
 
-So far, we’ve described what the model **should** do. But what kind of neural network actually learns this?
-
-- The model used is typically a **U-Net**, designed to handle image structures well.
-- The input includes:
-  - A noisy image $x_t$
-  - A timestep $t$ (encoded using sinusoidal embeddings)
-- The output is:
-  - Either $\epsilon_\theta(x_t, t)$ (predicted noise)
-  - Or other parameterizations like $\mu_\theta(x_t, t)$ or $x_0$
-
-In DDPM, the network is trained to predict noise using the simple MSE loss:
+So far, we've seen that the training objective can be simplified to:
 
 $$
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
 $$
+
+But what exactly is this $\epsilon_\theta(x_t, t)$?
+
+### What the Network Learns
+
+- During training, we **know the true noise** $\epsilon$ used to generate the noisy sample $x_t$ from $x_0$.
+- The network $\epsilon_\theta(x_t, t)$ is trained to **predict this noise**.
+- Once trained, it can "undo" the noise and help reconstruct $x_0$ at test time.
+
+### Why Predicting Noise Works
+
+Recall the forward process:
+
+$$
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+$$
+
+Rearranging this gives us an estimate of the original (clean) image:
+
+$$
+x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
+$$
+
+So if the model can **accurately predict** the noise $\epsilon$, we can plug it in to estimate $x_0$.
+
+This denoised estimate can then be used to compute the mean of the posterior distribution $q(x_{t-1} \mid x_t, x_0)$ — which is the key to reversing the diffusion process step by step.
+
+### Architecture Note
+
+The network $\epsilon_\theta(x_t, t)$ is typically implemented as a **U-Net**, which takes:
+- A noisy image $x_t$
+- A timestep $t$ (encoded using sinusoidal or learned embeddings)
+
+It outputs the predicted noise $\epsilon$.
+
+---
 
 This lets the model gradually learn how to denoise.
 
