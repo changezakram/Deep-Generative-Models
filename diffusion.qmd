@@ -575,6 +575,25 @@ Where:
 
 **Why?** If the network can predict the noise $\epsilon$, it can denoise $x_t$ and reverse the diffusion.
 
+### The Noise Prediction Network
+
+So far, we’ve described what the model **should** do. But what kind of neural network actually learns this?
+
+- The model used is typically a **U-Net**, designed to handle image structures well.
+- The input includes:
+  - A noisy image $x_t$
+  - A timestep $t$ (encoded using sinusoidal embeddings)
+- The output is:
+  - Either $\epsilon_\theta(x_t, t)$ (predicted noise)
+  - Or other parameterizations like $\mu_\theta(x_t, t)$ or $x_0$
+
+In DDPM, the network is trained to predict noise using the simple MSE loss:
+
+$$
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
+$$
+
+This lets the model gradually learn how to denoise.
 
 ### Connection to VAEs
 
@@ -658,6 +677,3 @@ To generate a sample, we do the following:
 
 This is how diffusion models synthesize data — by gradually denoising random noise using the learned reverse process.
 
-### Optional: Final Discretization
-
-In some implementations (e.g., image generation), the final output $x_0$ may be continuous. A post-processing step such as rounding or softmax discretization is often used to map it to valid image pixel values (e.g., integers from 0 to 255).

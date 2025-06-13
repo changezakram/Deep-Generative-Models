@@ -769,8 +769,30 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 - <span class="math inline">\(\epsilon_\theta\)</span> is the predicted noise by the neural network</p>
 <p><strong>Why?</strong> If the network can predict the noise <span class="math inline">\(\epsilon\)</span>, it can denoise <span class="math inline">\(x_t\)</span> and reverse the diffusion.</p>
 </section>
-<section id="connection-to-vaes" class="level3" data-number="4.6">
-<h3 data-number="4.6" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">4.6</span> Connection to VAEs</h3>
+<section id="the-noise-prediction-network" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.6</span> The Noise Prediction Network</h3>
+<p>So far, we’ve described what the model <strong>should</strong> do. But what kind of neural network actually learns this?</p>
+<ul>
+<li>The model used is typically a <strong>U-Net</strong>, designed to handle image structures well.</li>
+<li>The input includes:
+<ul>
+<li>A noisy image <span class="math inline">\(x_t\)</span></li>
+<li>A timestep <span class="math inline">\(t\)</span> (encoded using sinusoidal embeddings)</li>
+</ul></li>
+<li>The output is:
+<ul>
+<li>Either <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> (predicted noise)</li>
+<li>Or other parameterizations like <span class="math inline">\(\mu_\theta(x_t, t)\)</span> or <span class="math inline">\(x_0\)</span></li>
+</ul></li>
+</ul>
+<p>In DDPM, the network is trained to predict noise using the simple MSE loss:</p>
+<p><span class="math display">\[
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
+\]</span></p>
+<p>This lets the model gradually learn how to denoise.</p>
+</section>
+<section id="connection-to-vaes" class="level3" data-number="4.7">
+<h3 data-number="4.7" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">4.7</span> Connection to VAEs</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -804,8 +826,8 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 </table>
 <hr>
 </section>
-<section id="takeaways" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.7</span> Takeaways</h3>
+<section id="takeaways" class="level3" data-number="4.8">
+<h3 data-number="4.8" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.8</span> Takeaways</h3>
 <ul>
 <li>The ELBO is a tractable lower bound on <span class="math inline">\(\log p_\theta(x_0)\)</span>.<br>
 </li>
@@ -871,10 +893,6 @@ x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
 <li><p>Return <span class="math inline">\(x_0\)</span> as the final generated sample.</p></li>
 </ol>
 <p>This is how diffusion models synthesize data — by gradually denoising random noise using the learned reverse process.</p>
-</section>
-<section id="optional-final-discretization" class="level3" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="optional-final-discretization"><span class="header-section-number">5.5</span> Optional: Final Discretization</h3>
-<p>In some implementations (e.g., image generation), the final output <span class="math inline">\(x_0\)</span> may be continuous. A post-processing step such as rounding or softmax discretization is often used to map it to valid image pixel values (e.g., integers from 0 to 255).</p>
 
 
 </section>
