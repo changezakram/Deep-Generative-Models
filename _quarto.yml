@@ -8,7 +8,7 @@ website:
     left:
       - icon: house
         text: "Changez Akram"
-        href: index.qmd
+        href: href: https://changezakram.github.io/
       - text: Deep Generative Models
         menu:
           - text: Variational Autoencoders (VAEs)
