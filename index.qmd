@@ -83,7 +83,7 @@ This site explores how different model families approach this goal — from Vari
 - **Sampling**: Slow — requires hundreds of reverse steps.
 - **Use Cases**: High-resolution image and audio generation.
 - **Example Models**: Stable Diffusion
-- [Go to Diffusion Models →]
+- [Go to Diffusion Models →](diffusion.qmd)
 
 </details>
 
