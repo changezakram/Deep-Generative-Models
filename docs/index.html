@@ -160,8 +160,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#key-model-families" id="toc-key-model-families" class="nav-link active" data-scroll-target="#key-model-families"><span class="header-section-number">1</span> Key Model Families</a></li>
-  <li><a href="#industry-use-cases" id="toc-industry-use-cases" class="nav-link" data-scroll-target="#industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
+  <li><a href="#key-model-families" id="toc-key-model-families" class="nav-link" data-scroll-target="#key-model-families"><span class="header-section-number">2</span> Key Model Families</a></li>
+  <li><a href="#industry-use-cases" id="toc-industry-use-cases" class="nav-link" data-scroll-target="#industry-use-cases"><span class="header-section-number">3</span> Industry Use Cases</a></li>
   </ul>
 </nav>
     </div>
@@ -187,13 +188,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Deep generative models learn complex data distributions and generate realistic new content using probabilistic and neural techniques.</p>
-<p>Explore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.</p>
-<blockquote class="blockquote">
-<p>Learn by building · Backed by math · Inspired by real-world problems</p>
-</blockquote>
-<section id="key-model-families" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="key-model-families"><span class="header-section-number">1</span> Key Model Families</h2>
+<section id="overview" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
+<p>Assume that all data comes from a true but unknown distribution ( p_{}(x) ). The goal of generative machine learning models is to <strong>learn</strong> this distribution as closely as possible.</p>
+<ul>
+<li>The distribution learned by the model is denoted as ( p_(x) )</li>
+<li>We generate new data by <strong>sampling</strong> from this learned distribution</li>
+<li>In practice, generative models are trained to <strong>maximize the expected log-likelihood</strong> of ( p_(x) ), or equivalently, <strong>minimize the divergence</strong> between ( p_(x) ) and ( p_{}(x) )</li>
+</ul>
+<p>This site explores how different model families approach this goal—from Variational Autoencoders (VAEs) to Diffusion Models—grounded in theory and real-world use.</p>
+</section>
+<section id="key-model-families" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="key-model-families"><span class="header-section-number">2</span> Key Model Families</h2>
 <details>
 <summary>
 <strong> Variational Autoencoders (VAEs)</strong>
@@ -273,8 +279,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </details>
 </section>
-<section id="industry-use-cases" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">2</span> Industry Use Cases</h2>
+<section id="industry-use-cases" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">3</span> Industry Use Cases</h2>
 <details>
 <summary>
 <strong>Banking</strong>

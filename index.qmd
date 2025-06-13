@@ -2,12 +2,15 @@
 title: "Deep Generative Models"
 ---
 
-Deep generative models learn complex data distributions and generate realistic new content using probabilistic and neural techniques.
+## Overview
 
-Explore VAEs, GANs, flows, and diffusion — with theory, code, and real-world insights.
+Assume that all data comes from a true but unknown distribution \( p_{\text{data}}(x) \). The goal of generative machine learning models is to **learn** this distribution as closely as possible.
 
-> Learn by building · Backed by math · Inspired by real-world problems
+- The distribution learned by the model is denoted as \( p_\theta(x) \)
+- We generate new data by **sampling** from this learned distribution
+- In practice, generative models are trained to **maximize the expected log-likelihood** of \( p_\theta(x) \), or equivalently, **minimize the divergence** between \( p_\theta(x) \) and \( p_{\text{data}}(x) \)
 
+This site explores how different model families approach this goal—from Variational Autoencoders (VAEs) to Diffusion Models—grounded in theory and real-world use.
 
 
 ## Key Model Families
