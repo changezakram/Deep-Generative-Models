@@ -621,7 +621,7 @@ It outputs the predicted noise $\epsilon$.
 
 This lets the model gradually learn how to denoise.
 
-#### Connection to VAEs
+### Connection to VAEs
 
 | Aspect              | VAEs                                   | Diffusion Models                                 |
 |---------------------|----------------------------------------|--------------------------------------------------|
@@ -631,7 +631,7 @@ This lets the model gradually learn how to denoise.
 
 ---
 
-#### Takeaways
+### Takeaways
 
 - The ELBO is a tractable lower bound on $\log p_\theta(x_0)$.  
 - It aligns the reverse (learned) process with the forward (fixed) noising process.  
