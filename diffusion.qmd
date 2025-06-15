@@ -538,48 +538,53 @@ $$
 \text{ELBO} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right]
 $$
 
-**Step 6: Decompose the ELBO**
+### Step 6: Decompose the ELBO
 
 We now decompose the ELBO into interpretable components:
 
 $$
-\text{ELBO} = \mathbb{E}_{q} \left[ \log p(x_T) \right] + \sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] + \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
+\text{ELBO} = \mathbb{E}_q \left[ \log p(x_T) \right] +
+\sum_{t=2}^{T} \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] +
+\mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 $$
 
-Following the DDPM paper, we can write this as a **sum of three losses**:
+Following the DDPM paper, we can express this as a **sum of three losses**:
 
 - **Reconstruction loss** (final step):
-  \[
+  $$
   \mathcal{L}_0 = -\mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
-  \]
+  $$
 
-- **Prior loss** (matching the prior noise):
-  \[
-  \mathcal{L}_{T} = -\mathbb{E}_q \left[ \log p(x_T) \right]
-  \]
+- **Prior loss** (matching the prior noise at the final step):
+  $$
+  \mathcal{L}_T = -\mathbb{E}_q \left[ \log p(x_T) \right]
+  $$
 
 - **Denoising KL terms** (all intermediate steps):
-  \[
-  \mathcal{L}_{1:T-1} = \sum_{t=2}^T \mathbb{E}_q \left[ D_{\text{KL}} \left( q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t) \right) \right]
-  \]
+  $$
+  \mathcal{L}_{1:T-1} = \sum_{t=2}^{T} \mathbb{E}_q \left[ D_{\text{KL}} \left( q(x_{t-1} \mid x_t, x_0) \;\|\; p_\theta(x_{t-1} \mid x_t) \right) \right]
+  $$
 
 So the full training objective becomes:
-\[
-\text{ELBO} = - \left( \mathcal{L}_0 + \mathcal{L}_{1:T-1} + \mathcal{L}_T \right)
-\]
+
+$$
+\mathcal{L}_{\text{ELBO}} = \mathcal{L}_0 + \mathcal{L}_{1:T-1} + \mathcal{L}_T
+$$
 
 
 ### Interpreting Each Term
 
-**Reconstruction Term:**  
-- $\mathbb{E}_q[\log p_\theta(x_0 \mid x_1)]$ measures how well the model can reconstruct $x_0$ from the first noisy sample $x_1$.
+**Reconstruction Loss (\(\mathcal{L}_0\))**  
+- Encourages the model to reconstruct \(x_0\) from the first noisy sample \(x_1\).  
+- Penalizes poor reconstructions using negative log-likelihood.
 
-**Prior Matching Term:**  
-- $\mathbb{E}_q[\log p(x_T)]$ encourages the final state $x_T$ to match the prior $\mathcal{N}(0, I)$.
+**Prior Matching Loss (\(\mathcal{L}_T\))**  
+- Matches the final latent state \(x_T\) to a standard Gaussian prior \(\mathcal{N}(0, I)\).  
+- Ensures the generative process starts from pure noise.
 
-**Consistency Terms:**  
-- $\sum \mathbb{E}_q[\log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}]$ ensures each denoising step approximates the forward noising step.
-
+**Denoising KL Terms (\(\mathcal{L}_{1:T-1}\))**  
+- Ensures that each reverse step \(p_\theta(x_{t-1} \mid x_t)\) closely matches the true posterior \(q(x_{t-1} \mid x_t, x_0)\).  
+- Encourages accurate denoising throughout the diffusion chain.
 
 ### Practical Training Simplification (DDPM)
 
