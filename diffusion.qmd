@@ -739,7 +739,7 @@ If $p_\theta(x_0 \mid x_1)$ is modeled as a Gaussian, this term becomes a **mean
 
 $$
 \begin{align*}
-\mathcal{L}_{\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \Big[ \,
+\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \Big[ \,
 & D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T)) \\
 & + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t)) \\
 & - \log p_\theta(x_0 \mid x_1) \, \Big]
@@ -747,26 +747,26 @@ $$
 $$
 
 
-### ELBO vs. Loss
+### 4.4 ELBO vs. Loss
 
 We write the ELBO as:
 
 $$
-\mathcal{L}_{\text{ELBO}} = 
-+ \mathbb{E}_{q} \left[ \log p_\theta(x_0 \mid x_1) \right]
+\text{ELBO} = 
 - D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
 - \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
++ \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 $$
 
 Since we minimize loss instead of maximizing ELBO, we flip the sign.
 
-We write the loss as:
+We write the Loss as:
 
 $$
-\mathcal{L}_{\text{Loss}} = 
-- \mathbb{E}_{q} \left[ \log p_\theta(x_0 \mid x_1) \right]
+\text{Loss} = 
 + D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
 + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
+- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 $$
 
 

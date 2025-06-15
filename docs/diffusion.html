@@ -877,7 +877,7 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 <p><strong>Putting all the parts together (ELBO vs.&nbsp;Loss):</strong></p>
 <p><span class="math display">\[
 \begin{align*}
-\mathcal{L}_{\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \Big[ \,
+\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \Big[ \,
 &amp; D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T)) \\
 &amp; + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t)) \\
 &amp; - \log p_\theta(x_0 \mid x_1) \, \Big]
@@ -885,21 +885,21 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 \]</span></p>
 </section>
 <section id="elbo-vs.-loss" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="elbo-vs.-loss"><span class="header-section-number">4.4</span> ELBO vs.&nbsp;Loss</h3>
+<h3 data-number="4.4" class="anchored" data-anchor-id="elbo-vs.-loss"><span class="header-section-number">4.4</span> 4.4 ELBO vs.&nbsp;Loss</h3>
 <p>We write the ELBO as:</p>
 <p><span class="math display">\[
-\mathcal{L}_{\text{ELBO}} =
-+ \mathbb{E}_{q} \left[ \log p_\theta(x_0 \mid x_1) \right]
+\text{ELBO} =
 - D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
 - \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
++ \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 \]</span></p>
 <p>Since we minimize loss instead of maximizing ELBO, we flip the sign.</p>
-<p>We write the loss as:</p>
+<p>We write the Loss as:</p>
 <p><span class="math display">\[
-\mathcal{L}_{\text{Loss}} =
-- \mathbb{E}_{q} \left[ \log p_\theta(x_0 \mid x_1) \right]
+\text{Loss} =
 + D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
 + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
+- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 \]</span></p>
 <p><strong>Interpreting Each Term in the ELBO</strong></p>
 <p><strong>Reconstruction Loss (<span class="math inline">\(\mathcal{L}_0\)</span>)</strong><br>
