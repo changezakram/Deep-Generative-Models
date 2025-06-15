@@ -571,6 +571,17 @@ $$
 \mathcal{L}_{\text{ELBO}} = \mathcal{L}_0 + \mathcal{L}_{1:T-1} + \mathcal{L}_T
 $$
 
+We can also express the same ELBO using KL divergences, as done in the DDPM paper:
+
+$$
+\mathcal{L}_{\text{ELBO}} = \mathbb{E}_q \left[
+    D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
+    + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t))
+    - \log p_\theta(x_0 \mid x_1)
+\right]
+$$
+
+This form is equivalent to the earlier decomposition into $\mathcal{L}_0$, $\mathcal{L}_{1:T-1}$, and $\mathcal{L}_T$, but is written entirely in terms of KL divergences and a reconstruction log-likelihood. It offers practical advantages such as lower variance and closed-form evaluation when all distributions are Gaussian.
 
 ### Interpreting Each Term
 

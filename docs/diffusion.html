@@ -762,6 +762,15 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 <p><span class="math display">\[
 \mathcal{L}_{\text{ELBO}} = \mathcal{L}_0 + \mathcal{L}_{1:T-1} + \mathcal{L}_T
 \]</span></p>
+<p>We can also express the same ELBO using KL divergences, as done in the DDPM paper:</p>
+<p><span class="math display">\[
+\mathcal{L}_{\text{ELBO}} = \mathbb{E}_q \left[
+    D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
+    + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t))
+    - \log p_\theta(x_0 \mid x_1)
+\right]
+\]</span></p>
+<p>This form is equivalent to the earlier decomposition into <span class="math inline">\(\mathcal{L}_0\)</span>, <span class="math inline">\(\mathcal{L}_{1:T-1}\)</span>, and <span class="math inline">\(\mathcal{L}_T\)</span>, but is written entirely in terms of KL divergences and a reconstruction log-likelihood. It offers practical advantages such as lower variance and closed-form evaluation when all distributions are Gaussian.</p>
 </section>
 <section id="interpreting-each-term" class="level3" data-number="4.5">
 <h3 data-number="4.5" class="anchored" data-anchor-id="interpreting-each-term"><span class="header-section-number">4.5</span> Interpreting Each Term</h3>
