@@ -876,12 +876,10 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 <p>If <span class="math inline">\(p_\theta(x_0 \mid x_1)\)</span> is modeled as a Gaussian, this term becomes a <strong>mean squared error</strong> between the predicted and true <span class="math inline">\(x_0\)</span> values.</p>
 <p><strong>Putting all the parts together (ELBO vs.&nbsp;Loss):</strong></p>
 <p><span class="math display">\[
-\begin{align*}
-\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \Big[ \,
-&amp; D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T)) \\
-&amp; + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t)) \\
-&amp; - \log p_\theta(x_0 \mid x_1) \, \Big]
-\end{align*}
+\text{ELBO} =
+- D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
+- \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
++ \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 \]</span></p>
 </section>
 <section id="elbo-vs.-loss" class="level3" data-number="4.4">
