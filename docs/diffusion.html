@@ -794,7 +794,8 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 - \log q(x_1 \mid x_0)
 \right]
 \]</span></p>
-<p>Each log-ratio can now be written as a KL divergence.</p>
+<p>The last term, <span class="math inline">\(\log q(x_1 \mid x_0)\)</span>, is part of the known forward process and is independent of the model parameters. Since it remains constant during training, we drop it from the objective and only retain the remaining three terms.</p>
+<p>Each of the remaining log-ratio can now be written as a KL divergence.</p>
 <p><strong>Rewriting the First Term as a KL Divergence</strong></p>
 <p>We begin with the first term from the ELBO expression:</p>
 <p><span class="math display">\[
@@ -823,7 +824,7 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 \mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] \quad \propto \quad -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
 \]</span></p>
 <p>This shows that the first term in the ELBO can be rewritten as a KL divergence between the forward process at time <span class="math inline">\(T\)</span> and the prior.</p>
-<p><strong>Rewriting the Middle Terms as KL Divergences</strong></p>
+<p><strong>Rewriting the Second Terms as KL Divergences</strong></p>
 <p>Next, we consider the sum of log-ratio terms from the ELBO expression:</p>
 <p><span class="math display">\[
 \sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} \right]
@@ -854,7 +855,7 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 = - \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t))
 \]</span></p>
 <p>This shows that the middle terms in the ELBO can be rewritten as a sum of KL divergences between the true posterior and the model’s learned reverse process at each timestep.</p>
-<p><strong>Rewriting the Final Term as a Reconstruction Loss</strong></p>
+<p><strong>Rewriting the Third Term as a Reconstruction Loss</strong></p>
 <p>The last part of the ELBO expression is:</p>
 <p><span class="math display">\[
 \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]

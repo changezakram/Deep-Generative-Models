@@ -616,7 +616,9 @@ $$
 \right]
 $$
 
-Each log-ratio can now be written as a KL divergence.
+The last term, $\log q(x_1 \mid x_0)$, is part of the known forward process and is independent of the model parameters. Since it remains constant during training, we drop it from the objective and only retain the remaining three terms.
+
+Each of the remaining log-ratio can now be written as a KL divergence.
 
 **Rewriting the First Term as a KL Divergence**
 
@@ -662,7 +664,7 @@ This shows that the first term in the ELBO can be rewritten as a KL divergence b
 
 
 
-**Rewriting the Middle Terms as KL Divergences**
+**Rewriting the Second Terms as KL Divergences**
 
 Next, we consider the sum of log-ratio terms from the ELBO expression:
 
@@ -705,7 +707,7 @@ $$
 This shows that the middle terms in the ELBO can be rewritten as a sum of KL divergences between the true posterior and the model's learned reverse process at each timestep.
 
 
-**Rewriting the Final Term as a Reconstruction Loss**
+**Rewriting the Third Term as a Reconstruction Loss**
 
 The last part of the ELBO expression is:
 
