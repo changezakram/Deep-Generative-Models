@@ -836,13 +836,13 @@ $$
 
 But what exactly is this $\epsilon_\theta(x_t, t)$?
 
-#### What the Network Learns
+**What the Network Learns**
 
 - During training, we **know the true noise** $\epsilon$ used to generate the noisy sample $x_t$ from $x_0$.
 - The network $\epsilon_\theta(x_t, t)$ is trained to **predict this noise**.
 - Once trained, it can "undo" the noise and help reconstruct $x_0$ at test time.
 
-#### Why Predicting Noise Works
+**Why Predicting Noise Works**
 
 Recall the forward process:
 

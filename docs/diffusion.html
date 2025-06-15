@@ -994,16 +994,13 @@ How the ELBO Helps Us Understand the MSE Loss
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
 \]</span></p>
 <p>But what exactly is this <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span>?</p>
-<section id="what-the-network-learns" class="level4" data-number="4.6.1">
-<h4 data-number="4.6.1" class="anchored" data-anchor-id="what-the-network-learns"><span class="header-section-number">4.6.1</span> What the Network Learns</h4>
+<p><strong>What the Network Learns</strong></p>
 <ul>
 <li>During training, we <strong>know the true noise</strong> <span class="math inline">\(\epsilon\)</span> used to generate the noisy sample <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span>.</li>
 <li>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is trained to <strong>predict this noise</strong>.</li>
 <li>Once trained, it can “undo” the noise and help reconstruct <span class="math inline">\(x_0\)</span> at test time.</li>
 </ul>
-</section>
-<section id="why-predicting-noise-works" class="level4" data-number="4.6.2">
-<h4 data-number="4.6.2" class="anchored" data-anchor-id="why-predicting-noise-works"><span class="header-section-number">4.6.2</span> Why Predicting Noise Works</h4>
+<p><strong>Why Predicting Noise Works</strong></p>
 <p>Recall the forward process:</p>
 <p><span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
@@ -1014,9 +1011,8 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 \]</span></p>
 <p>So if the model can predict the noise <span class="math inline">\(\epsilon\)</span>, we can subtract it from the noisy input <span class="math inline">\(x_t\)</span> and recover the clean image <span class="math inline">\(x_0\)</span>.</p>
 <p>This denoised estimate can then be used to compute the mean of the posterior distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is the key to reversing the diffusion process step by step.</p>
-</section>
-<section id="architecture-note" class="level4" data-number="4.6.3">
-<h4 data-number="4.6.3" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.6.3</span> Architecture Note</h4>
+<section id="architecture-note" class="level4" data-number="4.6.1">
+<h4 data-number="4.6.1" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.6.1</span> Architecture Note</h4>
 <p>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is typically implemented as a <strong>U-Net</strong>, which takes: - A noisy image <span class="math inline">\(x_t\)</span> - A timestep <span class="math inline">\(t\)</span> (encoded using sinusoidal or learned embeddings)</p>
 <p>It outputs the predicted noise <span class="math inline">\(\epsilon\)</span>.</p>
 <hr>
