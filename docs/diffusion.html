@@ -760,105 +760,95 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 \right]
 \]</span></p>
 <p><strong>Step 6: Decompose the ELBO</strong></p>
-<p>To train the model, we rewrite the original ELBO into a more practical form using <strong>KL divergences</strong>.</p>
-<p>While the earlier ELBO expression involved log-ratios like</p>
-<p><span class="math display">\[
-\log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})},
-\]</span></p>
-<p>we can apply algebraic transformations and substitute the true posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> (which is known during training) to re-express the ELBO in terms of <strong>KL divergences</strong>.</p>
-<p>This gives us the following training-compatible form:</p>
-<p><span class="math display">\[
-\text{ELBO} = \mathbb{E}_q \left[
-    D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) +
-    \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t)) -
-    \log p_\theta(x_0 \mid x_1)
-\right]
-\]</span></p>
-<p>This decomposition makes each component interpretable and optimizable:</p>
+<p>We now break down the <strong>Evidence Lower Bound (ELBO)</strong> into three interpretable components:</p>
 <ul>
-<li><span class="math inline">\(D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))\)</span>: matches the final state <span class="math inline">\(x_T\)</span> to the prior <span class="math inline">\(\mathcal{N}(0, I)\)</span></li>
-<li><span class="math inline">\(\sum D_{\text{KL}}\)</span>: enforces accurate denoising at each step</li>
-<li><span class="math inline">\(-\log p_\theta(x_0 \mid x_1)\)</span>: ensures reconstruction of the original image</li>
+<li>The <strong>prior loss</strong> — how well the final noisy sample matches the prior<br>
+</li>
+<li>The <strong>denoising KL terms</strong> — how well the model learns to denoise at each timestep<br>
+</li>
+<li>The <strong>reconstruction loss</strong> — how well the model recovers the original input</li>
 </ul>
-<p>This form allows for efficient training using stochastic gradient descent and serves as the foundation for defining the training loss.</p>
+<p><strong>ELBO Definition</strong></p>
+<p>We start with the standard ELBO expression used in diffusion models:</p>
 <p><span class="math display">\[
-\begin{aligned}
-\mathcal{L}_{\text{ELBO}}
-&amp;= \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log \frac{p(x_T) \prod_{t=1}^{T} p_\theta(x_{t-1} \mid x_t)}{\prod_{t=1}^{T} q(x_t \mid x_{t-1})} \right] \\
-&amp;= \mathbb{E}_q \left[ \log p(x_T) + \sum_{t=1}^{T} \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] \\
-&amp;= \mathbb{E}_q \left[ \log p(x_T) + \sum_{t=2}^{T} \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} + \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)} \right] \\
-&amp;= \mathbb{E}_q \left[ \log p(x_T) + \sum_{t=2}^{T} \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} + \sum_{t=2}^{T} \log \frac{q(x_{t-1} \mid x_t, x_0)}{q(x_t \mid x_{t-1})} + \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)} \right] \\
-&amp;= \mathbb{E}_q \left[ \log p(x_T) + \sum_{t=2}^{T} \log \frac{q(x_{t-1} \mid x_t, x_0)}{q(x_t \mid x_{t-1})} \right]
-+ \sum_{t=2}^{T} \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} \right]
-+ \mathbb{E}_q \left[ \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)} \right] \\
-&amp;= -\mathbb{E}_q \left[ \log \frac{q(x_T \mid x_0)}{p(x_T)} \right]
-- \sum_{t=2}^{T} \mathbb{E}_q \left[ \log \frac{q(x_{t-1} \mid x_t, x_0)}{p_\theta(x_{t-1} \mid x_t)} \right]
-+ \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right] \\
-&amp;= \mathbb{E}_q \left[ D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) \right]
-+ \sum_{t=2}^{T} \mathbb{E}_q \left[ D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t)) \right]
-- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
-\end{aligned}
-\]</span></p>
-<p><strong>Step 6: Decompose the ELBO</strong></p>
-<p>Now we decompose the ELBO into three interpretable components: the prior loss, the denoising KL terms, and the reconstruction loss.</p>
-<p><span class="math display">\[
-\mathcal{L}_{\text{ELBO}}
-= \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[
-    \log \frac{p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)}{\prod_{t=1}^T q(x_t \mid x_{t-1})}
+\mathcal{L}_{\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[
+\log \frac{
+p(x_T) \cdot \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
+}{
+\prod_{t=1}^T q(x_t \mid x_{t-1})
+}
 \right]
 \]</span></p>
+<p>This expression compares the model’s reverse process (numerator) with the known forward noising process (denominator), averaged over noisy trajectories that start from <span class="math inline">\(x_0\)</span>.</p>
+<p><strong>Expanding the Log</strong></p>
+<p>Using the identity <span class="math inline">\(\log \frac{a}{b} = \log a - \log b\)</span>, we can expand the expression:</p>
 <p><span class="math display">\[
 = \mathbb{E}_q \left[
-    \log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}
+\log p(x_T) + \sum_{t=1}^T \log p_\theta(x_{t-1} \mid x_t) - \sum_{t=1}^T \log q(x_t \mid x_{t-1})
 \right]
 \]</span></p>
+<p>This simplifies to:</p>
 <p><span class="math display">\[
 = \mathbb{E}_q \left[
-    \log p(x_T) + \sum_{t=2}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} + \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)}
+\log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}
 \right]
 \]</span></p>
+<p><strong>Isolating the Reconstruction Term</strong></p>
+<p>The case for <span class="math inline">\(t = 1\)</span> is special: it’s the step where the model tries to reconstruct <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span>. So we separate it from the rest of the sum:</p>
 <p><span class="math display">\[
 = \mathbb{E}_q \left[
-    \log p(x_T) + \sum_{t=2}^T \log \left(
-        \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} \cdot
-        \frac{q(x_{t-1} \mid x_t, x_0)}{q(x_t \mid x_{t-1})}
-    \right) + \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)}
+\log p(x_T)
++ \sum_{t=2}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}
++ \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)}
 \right]
 \]</span></p>
+<p><strong>Rewriting Using the Known Forward Process</strong></p>
+<p>The forward process <span class="math inline">\(q(x_t \mid x_{t-1})\)</span> is fully determined once we know <span class="math inline">\(x_0\)</span>. So we can express it using Bayes’ rule as <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span>.</p>
+<p>This gives:</p>
 <p><span class="math display">\[
 = \mathbb{E}_q \left[
-    \sum_{t=2}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)}
-\right]
-+ \mathbb{E}_q \left[
-    \log \frac{p(x_T)}{q(x_T \mid x_0)}
-\right]
-+ \mathbb{E}_q \left[
-    \sum_{t=2}^T \log \frac{q(x_{t-1} \mid x_t, x_0)}{q(x_t \mid x_{t-1})} + \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)}
+\log p(x_T)
++ \sum_{t=2}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)}
++ \log p_\theta(x_0 \mid x_1)
+- \log q(x_1 \mid x_0)
 \right]
 \]</span></p>
-<p><span class="math display">\[
-= - D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
-+ \sum_{t=2}^T \mathbb{E}_q \left[
-    - D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t))
-\right]
-- \mathbb{E}_q \left[
-    \log p_\theta(x_0 \mid x_1)
-\right]
-\]</span></p>
-<p><span class="math display">\[
-= \mathbb{E}_q \left[
-    D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
-    + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t))
-    - \log p_\theta(x_0 \mid x_1)
-\right]
-\]</span></p>
-<p>This final decomposition is often interpreted as:</p>
+<p><strong>Expressing as KL Divergences</strong></p>
+<p>Each log-ratio can now be written as a KL divergence:</p>
 <ul>
-<li><strong><span class="math inline">\(\mathcal{L}_T\)</span> (Prior loss):</strong> Matches the distribution of <span class="math inline">\(x_T\)</span> to the prior <span class="math inline">\(\mathcal{N}(0, I)\)</span><br>
+<li>The first term becomes the KL between the final noisy sample and the prior:</li>
+</ul>
+<p><span class="math display">\[
+D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
+\]</span></p>
+<ul>
+<li>The middle terms become a sum of KL divergences at each denoising step:</li>
+</ul>
+<p><span class="math display">\[
+\sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
+\]</span></p>
+<ul>
+<li>The final term is a standard negative log-likelihood loss for reconstructing <span class="math inline">\(x_0\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+- \log p_\theta(x_0 \mid x_1)
+\]</span></p>
+<p>Putting all the parts together, the full decomposition becomes:</p>
+<p><span class="math display">\[
+\mathcal{L}_{\text{ELBO}} = \mathbb{E}_q \left[
+D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
++ \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
+- \log p_\theta(x_0 \mid x_1)
+\right]
+\]</span></p>
+<p><strong>Final Interpretation</strong></p>
+<p>Each component plays a key role during training:</p>
+<ul>
+<li><strong><span class="math inline">\(\mathcal{L}_T\)</span> (Prior loss):</strong> Encourages the final noisy sample <span class="math inline">\(x_T\)</span> to match the Gaussian prior <span class="math inline">\(\mathcal{N}(0, I)\)</span><br>
 </li>
-<li><strong><span class="math inline">\(\mathcal{L}_{1:T-1}\)</span> (Denoising KL terms):</strong> Ensures accurate denoising at each timestep<br>
+<li><strong><span class="math inline">\(\mathcal{L}_{1:T-1}\)</span> (Denoising KL terms):</strong> Teaches the model how to reverse the noise at each timestep<br>
 </li>
-<li><strong><span class="math inline">\(\mathcal{L}_0\)</span> (Reconstruction loss):</strong> Encourages accurate reconstruction of <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span></li>
+<li><strong><span class="math inline">\(\mathcal{L}_0\)</span> (Reconstruction loss):</strong> Encourages accurate recovery of <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span></li>
 </ul>
 </section>
 <section id="interpreting-each-term" class="level3" data-number="4.4">
