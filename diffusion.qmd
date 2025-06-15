@@ -660,9 +660,11 @@ $$
 \mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] \quad \propto \quad -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
 $$
 
+$$
 \mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] 
 \approx -D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T)) 
 \quad \text{(ignoring constant entropy term)}
+$$
 
 \text{This shows that the first term in the ELBO corresponds to } 
 D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)),
