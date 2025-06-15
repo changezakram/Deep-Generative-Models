@@ -17,6 +17,18 @@ This approach has enabled state-of-the-art results in image generation, powering
 This combination of **theoretical simplicity**, **training robustness**, and **high-quality outputs** has made diffusion models one of the most effective generative modeling techniques in use today.
 
 
+
+### Connection to VAEs
+
+| Aspect              | VAEs                                   | Diffusion Models                                 |
+|---------------------|----------------------------------------|--------------------------------------------------|
+| Forward process     | Learned encoder $q_\phi(z \mid x)$      | Fixed noising process $q(x_t \mid x_{t-1})$      |
+| Reverse process     | Learned decoder $p_\theta(x \mid z)$     | Learned denoising network $p_\theta(x_{t-1} \mid x_t)$ |
+| Training objective  | Optimize ELBO over latent variables     | Optimize ELBO via noise prediction loss          |
+
+---
+
+
 ## Forward Diffusion Process
 
 The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.
@@ -761,7 +773,7 @@ $$
 \underbrace{- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]}_{\mathcal{L}_0}
 $$
 
-**Interpreting Each Term in the ELBO**
+### Interpreting Each Term in the ELBO**
 
 **Reconstruction Loss ($\mathcal{L}_0$)**  
 - Encourages the model to reconstruct $x_0$ from the first noisy sample $x_1$  
@@ -855,18 +867,6 @@ The network $\epsilon_\theta(x_t, t)$ is typically implemented as a **U-Net**, w
 - A timestep $t$ (encoded using sinusoidal or learned embeddings)
 
 It outputs the predicted noise $\epsilon$.
-
----
-
-This lets the model gradually learn how to denoise.
-
-### Connection to VAEs
-
-| Aspect              | VAEs                                   | Diffusion Models                                 |
-|---------------------|----------------------------------------|--------------------------------------------------|
-| Forward process     | Learned encoder $q_\phi(z \mid x)$      | Fixed noising process $q(x_t \mid x_{t-1})$      |
-| Reverse process     | Learned decoder $p_\theta(x \mid z)$     | Learned denoising network $p_\theta(x_{t-1} \mid x_t)$ |
-| Training objective  | Optimize ELBO over latent variables     | Optimize ELBO via noise prediction loss          |
 
 ---
 
