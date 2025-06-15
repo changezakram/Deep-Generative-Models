@@ -754,7 +754,22 @@ Each component plays a key role during training:
 - **$\mathcal{L}_0$ (Reconstruction loss):** Encourages accurate recovery of $x_0$ from $x_1$
 
 
+**Final Interpretation**
 
+Each component of the ELBO corresponds to a distinct learning objective:
+
+- **Prior Matching Loss** ($\mathcal{L}_T$):  
+  Penalizes mismatch between the final noisy sample $x_T$ and the prior distribution $p(x_T)$ (typically $\mathcal{N}(0, I)$).  
+  This helps ensure that samples drawn from the prior can be denoised back to valid data.
+
+- **Denoising KL Loss** ($\mathcal{L}_{1:T-1}$):  
+  Encourages the model’s learned reverse process $p_\theta(x_{t-1} \mid x_t)$ to match the true posterior  
+  $q(x_{t-1} \mid x_t, x_0)$ for each intermediate timestep $t = 2$ to $T$.  
+  This teaches the model how to gradually reverse the noise added during the forward process.
+
+- **Reconstruction Loss** ($\mathcal{L}_0$):  
+  Measures how well the model can recover the original clean data $x_0$ from $x_1$.  
+  Often implemented as a negative log-likelihood or MSE when $p_\theta(x_0 \mid x_1)$ is Gaussian.
 
 
 

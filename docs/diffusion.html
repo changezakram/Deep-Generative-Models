@@ -891,6 +891,20 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 </li>
 <li><strong><span class="math inline">\(\mathcal{L}_0\)</span> (Reconstruction loss):</strong> Encourages accurate recovery of <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span></li>
 </ul>
+<p><strong>Final Interpretation</strong></p>
+<p>Each component of the ELBO corresponds to a distinct learning objective:</p>
+<ul>
+<li><p><strong>Prior Matching Loss</strong> (<span class="math inline">\(\mathcal{L}_T\)</span>):<br>
+Penalizes mismatch between the final noisy sample <span class="math inline">\(x_T\)</span> and the prior distribution <span class="math inline">\(p(x_T)\)</span> (typically <span class="math inline">\(\mathcal{N}(0, I)\)</span>).<br>
+This helps ensure that samples drawn from the prior can be denoised back to valid data.</p></li>
+<li><p><strong>Denoising KL Loss</strong> (<span class="math inline">\(\mathcal{L}_{1:T-1}\)</span>):<br>
+Encourages the model’s learned reverse process <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span> to match the true posterior<br>
+<span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> for each intermediate timestep <span class="math inline">\(t = 2\)</span> to <span class="math inline">\(T\)</span>.<br>
+This teaches the model how to gradually reverse the noise added during the forward process.</p></li>
+<li><p><strong>Reconstruction Loss</strong> (<span class="math inline">\(\mathcal{L}_0\)</span>):<br>
+Measures how well the model can recover the original clean data <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span>.<br>
+Often implemented as a negative log-likelihood or MSE when <span class="math inline">\(p_\theta(x_0 \mid x_1)\)</span> is Gaussian.</p></li>
+</ul>
 </section>
 <section id="interpreting-each-term" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="interpreting-each-term"><span class="header-section-number">4.4</span> Interpreting Each Term</h3>
