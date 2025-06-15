@@ -924,13 +924,13 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 - <span class="math inline">\(\epsilon\)</span> is the actual noise<br>
 - <span class="math inline">\(\epsilon_\theta\)</span> is the predicted noise by the neural network</p>
 <p><strong>Why?</strong> If the network can predict the noise <span class="math inline">\(\epsilon\)</span>, it can denoise <span class="math inline">\(x_t\)</span> and reverse the diffusion.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Why Derive the Full ELBO If We Just Use MSE?">
+<div class="callout callout-style-default callout-note callout-titled" title="How the ELBO Helps Us Understand the MSE Loss">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Why Derive the Full ELBO If We Just Use MSE?
+How the ELBO Helps Us Understand the MSE Loss
 </div>
 </div>
 <div class="callout-body-container callout-body">

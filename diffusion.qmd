@@ -800,7 +800,7 @@ Where:
 
 **Why?** If the network can predict the noise $\epsilon$, it can denoise $x_t$ and reverse the diffusion.
 
-::: {.callout-note title="Why Derive the Full ELBO If We Just Use MSE?"}
+::: {.callout-note title="How the ELBO Helps Us Understand the MSE Loss"}
 
 Even though we end up training with a simplified MSE loss in DDPM, deriving the full ELBO helps us understand **what the model is truly learning** — and **why** the simplification works.
 
