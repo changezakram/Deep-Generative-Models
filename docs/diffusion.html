@@ -881,6 +881,14 @@ D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
 - \log p_\theta(x_0 \mid x_1)
 \right]
 \]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+\mathcal{L}_{\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \Big[ \,
+&amp; D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T)) \\
+&amp; + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t)) \\
+&amp; - \log p_\theta(x_0 \mid x_1) \, \Big]
+\end{align*}
+\]</span></p>
 <p><strong>Final Interpretation</strong></p>
 <p>Each component plays a key role during training:</p>
 <ul>
