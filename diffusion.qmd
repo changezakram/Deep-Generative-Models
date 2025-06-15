@@ -596,18 +596,43 @@ This decomposition makes each component interpretable and optimizable:
 
 This form allows for efficient training using stochastic gradient descent and serves as the foundation for defining the training loss.
 
+
+
+
+$$
+\begin{aligned}
+\mathcal{L}_{\text{ELBO}} 
+&= \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log \frac{p(x_T) \prod_{t=1}^{T} p_\theta(x_{t-1} \mid x_t)}{\prod_{t=1}^{T} q(x_t \mid x_{t-1})} \right] \\
+&= \mathbb{E}_q \left[ \log p(x_T) + \sum_{t=1}^{T} \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] \\
+&= \mathbb{E}_q \left[ \log p(x_T) + \sum_{t=2}^{T} \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} + \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)} \right] \\
+&= \mathbb{E}_q \left[ \log p(x_T) + \sum_{t=2}^{T} \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} + \sum_{t=2}^{T} \log \frac{q(x_{t-1} \mid x_t, x_0)}{q(x_t \mid x_{t-1})} + \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)} \right] \\
+&= \mathbb{E}_q \left[ \log p(x_T) + \sum_{t=2}^{T} \log \frac{q(x_{t-1} \mid x_t, x_0)}{q(x_t \mid x_{t-1})} \right] 
++ \sum_{t=2}^{T} \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} \right] 
++ \mathbb{E}_q \left[ \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)} \right] \\
+&= -\mathbb{E}_q \left[ \log \frac{q(x_T \mid x_0)}{p(x_T)} \right] 
+- \sum_{t=2}^{T} \mathbb{E}_q \left[ \log \frac{q(x_{t-1} \mid x_t, x_0)}{p_\theta(x_{t-1} \mid x_t)} \right]
++ \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right] \\
+&= \mathbb{E}_q \left[ D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) \right]
++ \sum_{t=2}^{T} \mathbb{E}_q \left[ D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t)) \right]
+- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
+\end{aligned}
+$$
+
+
+
+
 ### Interpreting Each Term
 
-**Reconstruction Loss (\(\mathcal{L}_0\))**  
-- Encourages the model to reconstruct \(x_0\) from the first noisy sample \(x_1\).  
+**Reconstruction Loss ($\mathcal{L}_0$)**  
+- Encourages the model to reconstruct $x_0$ from the first noisy sample $x_1$.  
 - Penalizes poor reconstructions using negative log-likelihood.
 
-**Prior Matching Loss (\(\mathcal{L}_T\))**  
-- Matches the final latent state \(x_T\) to a standard Gaussian prior \(\mathcal{N}(0, I)\).  
+**Prior Matching Loss ($\mathcal{L}_T$)**  
+- Matches the final latent state $x_T$ to a standard Gaussian prior $\mathcal{N}(0, I)$.  
 - Ensures the generative process starts from pure noise.
 
-**Denoising KL Terms (\(\mathcal{L}_{1:T-1}\))**  
-- Ensures that each reverse step \(p_\theta(x_{t-1} \mid x_t)\) closely matches the true posterior \(q(x_{t-1} \mid x_t, x_0)\).  
+**Denoising KL Terms ($\mathcal{L}_{1:T-1}$)**  
+- Ensures that each reverse step $p_\theta(x_{t-1} \mid x_t)$ closely matches the true posterior $q(x_{t-1} \mid x_t, x_0)$.  
 - Encourages accurate denoising throughout the diffusion chain.
 
 ### Practical Training Simplification (DDPM)
