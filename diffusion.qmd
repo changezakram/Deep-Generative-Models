@@ -660,6 +660,12 @@ $$
 \mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] \quad \propto \quad -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
 $$
 
+$$
+\mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] 
+= -D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T)) 
++ \mathbb{H}[q(x_T \mid x_0)]
+$$
+
 This shows that the first term in the ELBO can be rewritten as a KL divergence between the forward process at time $T$ and the prior.
 
 

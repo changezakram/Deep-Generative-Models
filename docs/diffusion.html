@@ -823,6 +823,11 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 <p><span class="math display">\[
 \mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] \quad \propto \quad -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
 \]</span></p>
+<p><span class="math display">\[
+\mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)]
+= -D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
++ \mathbb{H}[q(x_T \mid x_0)]
+\]</span></p>
 <p>This shows that the first term in the ELBO can be rewritten as a KL divergence between the forward process at time <span class="math inline">\(T\)</span> and the prior.</p>
 <p><strong>Rewriting the Second Terms as KL Divergences</strong></p>
 <p>Next, we consider the sum of log-ratio terms from the ELBO expression:</p>
