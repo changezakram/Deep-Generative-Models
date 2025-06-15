@@ -581,18 +581,18 @@ We now break down the **Evidence Lower Bound (ELBO)** into three interpretable c
 
 **ELBO Expression from Previous Step**
 
-
+$$
 = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[
 \log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}
 \right]
-
+$$
 
 **Isolating the Reconstruction Term**
 
 The case for $t = 1$ is special: it's the step where the model tries to reconstruct $x_0$ from $x_1$. So we separate it from the rest of the sum:
 
 $$
-= \mathbb{E}_q \left[
+= \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[
 \log p(x_T)
 + \sum_{t=2}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}
 + \log \frac{p_\theta(x_0 \mid x_1)}{q(x_1 \mid x_0)}
@@ -607,7 +607,7 @@ The forward process gives us a complete description of how noise is added to dat
 This gives:
 
 $$
-= \mathbb{E}_q \left[
+= \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[
 \log p(x_T)
 + \sum_{t=2}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)}
 + \log p_\theta(x_0 \mid x_1)
