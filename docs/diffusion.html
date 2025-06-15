@@ -1086,7 +1086,7 @@ x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
 </section>
 <div class="grid">
 <section id="algorithm-1-training-ddpm" class="level3 g-col-6" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="algorithm-1-training-ddpm"><span class="header-section-number">5.5</span> Algorithm 1: Training (DDPM)</h3>
+<h3 data-number="5.5" class="anchored" data-anchor-id="algorithm-1-training-ddpm"><span class="header-section-number">5.5</span> 5.5 Algorithm 1: Training (DDPM)</h3>
 <pre><code>repeat:
     x₀ ~ q(x₀)
     t ~ Uniform({1, ..., T})
@@ -1101,11 +1101,13 @@ until converged</code></pre>
 - Minimize mean squared error between true noise and predicted noise</p>
 </section>
 <section id="algorithm-2-sampling-ddpm" class="level3 g-col-6" data-number="5.6">
-<h3 data-number="5.6" class="anchored" data-anchor-id="algorithm-2-sampling-ddpm"><span class="header-section-number">5.6</span> Algorithm 2: Sampling (DDPM)</h3>
+<h3 data-number="5.6" class="anchored" data-anchor-id="algorithm-2-sampling-ddpm"><span class="header-section-number">5.6</span> 5.6 Algorithm 2: Sampling (DDPM)</h3>
 <pre><code>x_T ~ 𝒩(0, I)
 for t = T, ..., 1:
     z ~ 𝒩(0, I) if t &gt; 1 else z = 0
-    x_{t-1} = 1/√αₜ (xₜ - (1−αₜ)/√(1−ᾱₜ) εθ(xₜ, t)) + σₜ z
+    x_{t-1} = 1/√αₜ (
+        xₜ - (1−αₜ)/√(1−ᾱₜ) εθ(xₜ, t)
+    ) + σₜ z
 return x₀</code></pre>
 <p><strong>Explanation</strong><br>
 - Start with pure Gaussian noise <span class="math inline">\(x_T\)</span><br>
