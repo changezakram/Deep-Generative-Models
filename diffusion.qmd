@@ -568,13 +568,17 @@ $$
 
 **Step 6: Decompose the ELBO**
 
-We now decompose the ELBO into interpretable components:
+We now rewrite the ELBO into interpretable components that match the form used during training in the DDPM paper:
 
 $$
-\text{ELBO} = \mathbb{E}_q[\log p(x_T)] + \sum_{t=2}^{T} \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] + \mathbb{E}_q[\log p_\theta(x_0 \mid x_1)]
+\text{ELBO} = \mathbb{E}_q \left[
+    D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) +
+    \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t)) -
+    \log p_\theta(x_0 \mid x_1)
+\right]
 $$
 
-Following the DDPM paper, we can express this as a **sum of three losses**:
+We can now express this as a **sum of three losses**:
 
 - **Reconstruction loss** (final step):  
   $$
@@ -584,7 +588,7 @@ Following the DDPM paper, we can express this as a **sum of three losses**:
 
 - **Prior loss** (matching the prior noise at the final step):  
   $$
-  \mathcal{L}_T = -\mathbb{E}_q \left[ \log p(x_T) \right]
+  \mathcal{L}_T = \mathbb{E}_q \left[ D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) \right]
   $$
   This encourages the final noisy sample $x_T$ to match the standard normal prior $\mathcal{N}(0, I)$, enabling sampling at test time.
 

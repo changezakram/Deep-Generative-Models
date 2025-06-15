@@ -760,11 +760,15 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 \right]
 \]</span></p>
 <p><strong>Step 6: Decompose the ELBO</strong></p>
-<p>We now decompose the ELBO into interpretable components:</p>
+<p>We now rewrite the ELBO into interpretable components that match the form used during training in the DDPM paper:</p>
 <p><span class="math display">\[
-\text{ELBO} = \mathbb{E}_q[\log p(x_T)] + \sum_{t=2}^{T} \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] + \mathbb{E}_q[\log p_\theta(x_0 \mid x_1)]
+\text{ELBO} = \mathbb{E}_q \left[
+    D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) +
+    \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t)) -
+    \log p_\theta(x_0 \mid x_1)
+\right]
 \]</span></p>
-<p>Following the DDPM paper, we can express this as a <strong>sum of three losses</strong>:</p>
+<p>We can now express this as a <strong>sum of three losses</strong>:</p>
 <ul>
 <li><p><strong>Reconstruction loss</strong> (final step):<br>
 <span class="math display">\[
@@ -772,7 +776,7 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 \]</span> This term measures how well the model can recover the original image from the first noisy step <span class="math inline">\(x_1\)</span>. It behaves like a typical reconstruction loss (e.g., mean squared error or cross-entropy).</p></li>
 <li><p><strong>Prior loss</strong> (matching the prior noise at the final step):<br>
 <span class="math display">\[
-\mathcal{L}_T = -\mathbb{E}_q \left[ \log p(x_T) \right]
+\mathcal{L}_T = \mathbb{E}_q \left[ D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) \right]
 \]</span> This encourages the final noisy sample <span class="math inline">\(x_T\)</span> to match the standard normal prior <span class="math inline">\(\mathcal{N}(0, I)\)</span>, enabling sampling at test time.</p></li>
 <li><p><strong>Denoising KL terms</strong> (intermediate steps):<br>
 <span class="math display">\[
