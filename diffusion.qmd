@@ -784,10 +784,15 @@ $$
 
 
 
-
-
-
 ### Practical Training Simplification (DDPM)
+
+In practice, training with the full ELBO can be computationally expensive, and several terms can be simplified or approximated without significantly impacting performance.
+
+- The prior term $\mathcal{L}_T$ is often treated as a constant (since $p(x_T) = \mathcal{N}(0, I)$ is fixed).
+- The reconstruction term $\mathcal{L}_0$ can be small and is sometimes dropped entirely.
+- The denoising KL terms $\mathcal{L}_{1:T-1}$ can be simplified by making certain modeling assumptions.
+
+These assumptions allow us to rewrite the training objective as a simple **mean squared error (MSE)** between the **true noise $\epsilon$** and the **predicted noise $\epsilon_\theta$**, giving us the DDPM training loss:
 
 In DDPM:
 

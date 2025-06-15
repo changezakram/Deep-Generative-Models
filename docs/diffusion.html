@@ -910,6 +910,13 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 </section>
 <section id="practical-training-simplification-ddpm" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="practical-training-simplification-ddpm"><span class="header-section-number">4.4</span> Practical Training Simplification (DDPM)</h3>
+<p>In practice, training with the full ELBO can be computationally expensive, and several terms can be simplified or approximated without significantly impacting performance.</p>
+<ul>
+<li>The prior term <span class="math inline">\(\mathcal{L}_T\)</span> is often treated as a constant (since <span class="math inline">\(p(x_T) = \mathcal{N}(0, I)\)</span> is fixed).</li>
+<li>The reconstruction term <span class="math inline">\(\mathcal{L}_0\)</span> can be small and is sometimes dropped entirely.</li>
+<li>The denoising KL terms <span class="math inline">\(\mathcal{L}_{1:T-1}\)</span> can be simplified by making certain modeling assumptions.</li>
+</ul>
+<p>These assumptions allow us to rewrite the training objective as a simple <strong>mean squared error (MSE)</strong> between the <strong>true noise <span class="math inline">\(\epsilon\)</span></strong> and the <strong>predicted noise <span class="math inline">\(\epsilon_\theta\)</span></strong>, giving us the DDPM training loss:</p>
 <p>In DDPM:</p>
 <ul>
 <li><strong><span class="math inline">\(p(x_T) = \mathcal{N}(0, I)\)</span></strong> is fixed and known.<br>
