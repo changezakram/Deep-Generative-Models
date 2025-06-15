@@ -768,26 +768,7 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 </li>
 <li>The <strong>reconstruction loss</strong> — how well the model recovers the original input</li>
 </ul>
-<p><strong>ELBO Definition</strong></p>
-<p>We start with the standard ELBO expression used in diffusion models:</p>
-<p><span class="math display">\[
-\mathcal{L}_{\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[
-\log \frac{
-p(x_T) \cdot \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
-}{
-\prod_{t=1}^T q(x_t \mid x_{t-1})
-}
-\right]
-\]</span></p>
-<p>This expression compares the model’s reverse process (numerator) with the known forward noising process (denominator), averaged over noisy trajectories that start from <span class="math inline">\(x_0\)</span>.</p>
-<p><strong>Expanding the Log</strong></p>
-<p>Using the identity <span class="math inline">\(\log \frac{a}{b} = \log a - \log b\)</span>, we can expand the expression:</p>
-<p><span class="math display">\[
-= \mathbb{E}_q \left[
-\log p(x_T) + \sum_{t=1}^T \log p_\theta(x_{t-1} \mid x_t) - \sum_{t=1}^T \log q(x_t \mid x_{t-1})
-\right]
-\]</span></p>
-<p>This simplifies to:</p>
+<p><strong>ELBO Expression from Previous Step</strong></p>
 <p><span class="math display">\[
 = \mathbb{E}_q \left[
 \log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}
