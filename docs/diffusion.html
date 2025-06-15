@@ -823,18 +823,53 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 \mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] \quad \propto \quad -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
 \]</span></p>
 <p>This shows that the first term in the ELBO can be rewritten as a KL divergence between the forward process at time <span class="math inline">\(T\)</span> and the prior.</p>
-<ul>
-<li>The middle terms become a sum of KL divergences at each denoising step:</li>
-</ul>
+<p><strong>Rewriting the Middle Terms as KL Divergences</strong></p>
+<p>Next, we consider the sum of log-ratio terms from the ELBO expression:</p>
 <p><span class="math display">\[
-\sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
+\sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} \right]
 \]</span></p>
+<p>This expression compares two distributions:</p>
 <ul>
-<li>The final term is a standard negative log-likelihood loss for reconstructing <span class="math inline">\(x_0\)</span>:</li>
+<li><span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span>: the model’s learned reverse (denoising) process<br>
+</li>
+<li><span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span>: the true posterior over <span class="math inline">\(x_{t-1}\)</span> given <span class="math inline">\(x_t\)</span> and the original data <span class="math inline">\(x_0\)</span><br>
+(this is computable in closed-form since the forward process is known)</li>
 </ul>
+<p>Now recall the definition of KL divergence:</p>
+<p><span class="math display">\[
+D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)} \right]
+\]</span></p>
+<p>If we flip the log-ratio, we get:</p>
+<p><span class="math display">\[
+\mathbb{E}_{q(x)} \left[ \log \frac{p(x)}{q(x)} \right] = - D_{\text{KL}}(q(x) \,\|\, p(x))
+\]</span></p>
+<p>So each log term becomes the <strong>negative KL divergence</strong>:</p>
+<p><span class="math display">\[
+\mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} \right]
+= - D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t))
+\]</span></p>
+<p>Applying this for every timestep from <span class="math inline">\(t = 2\)</span> to <span class="math inline">\(T\)</span>, we get:</p>
+<p><span class="math display">\[
+\sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_{t-1} \mid x_t, x_0)} \right]
+= - \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t))
+\]</span></p>
+<p>This shows that the middle terms in the ELBO can be rewritten as a sum of KL divergences between the true posterior and the model’s learned reverse process at each timestep.</p>
+<p><strong>Rewriting the Final Term as a Reconstruction Loss</strong></p>
+<p>The last part of the ELBO expression is:</p>
+<p><span class="math display">\[
+\mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
+\]</span></p>
+<p>This term does <strong>not</strong> involve any KL divergence — it directly corresponds to the model’s attempt to reconstruct the original input <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span>.</p>
+<ul>
+<li><span class="math inline">\(x_1\)</span> is a slightly noisy version of <span class="math inline">\(x_0\)</span> (after one step of the forward process).</li>
+<li><span class="math inline">\(p_\theta(x_0 \mid x_1)\)</span> is the model’s decoder — it tries to map the noisy input <span class="math inline">\(x_1\)</span> back to the clean data <span class="math inline">\(x_0\)</span>.</li>
+</ul>
+<p>During training, this term is treated as a <strong>standard log-likelihood</strong> loss. Since we want to maximize the ELBO, we want to maximize this log-probability — which is equivalent to <strong>minimizing the negative log-likelihood</strong>:</p>
 <p><span class="math display">\[
 - \log p_\theta(x_0 \mid x_1)
 \]</span></p>
+<p>This is referred to as the <strong>reconstruction loss</strong> in diffusion models.</p>
+<p>If <span class="math inline">\(p_\theta(x_0 \mid x_1)\)</span> is modeled as a Gaussian, this term becomes a <strong>mean squared error</strong> between the predicted and true <span class="math inline">\(x_0\)</span> values.</p>
 <p>Putting all the parts together, the full decomposition becomes:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{ELBO}} = \mathbb{E}_q \left[
