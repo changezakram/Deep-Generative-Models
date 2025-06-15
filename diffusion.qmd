@@ -737,14 +737,6 @@ If $p_\theta(x_0 \mid x_1)$ is modeled as a Gaussian, this term becomes a **mean
 **Putting all the parts together, the full decomposition becomes:**
 
 $$
-\mathcal{L}_{\text{ELBO}} = \mathbb{E}_q \left[
-D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
-+ \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
-- \log p_\theta(x_0 \mid x_1)
-\right]
-$$
-
-$$
 \begin{align*}
 \mathcal{L}_{\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \Big[ \,
 & D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T)) \\
