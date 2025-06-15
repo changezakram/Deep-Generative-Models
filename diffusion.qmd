@@ -942,3 +942,57 @@ To generate a sample, we do the following:
 
 This is how diffusion models synthesize data — by gradually denoising random noise using the learned reverse process.
 
+
+
+
+
+
+
+
+
+::: {.grid}
+
+::: {.g-col-6}
+
+### Algorithm 1: Training (DDPM)
+
+```
+repeat:
+    x₀ ~ q(x₀)
+    t ~ Uniform({1, ..., T})
+    ε ~ 𝒩(0, I)
+    Take gradient step on:
+        ∇θ ‖ε − εθ(√ᾱₜ x₀ + √(1−ᾱₜ) ε, t)‖²
+until converged
+```
+
+**Explanation**  
+- Start with real data sample $x_0$  
+- Add noise to create a corrupted version $x_t$  
+- Train the model $\epsilon_\theta$ to predict the noise that was added  
+- Minimize mean squared error between true noise and predicted noise  
+
+:::
+
+::: {.g-col-6}
+
+### Algorithm 2: Sampling (DDPM)
+
+```
+x_T ~ 𝒩(0, I)
+for t = T, ..., 1:
+    z ~ 𝒩(0, I) if t > 1 else z = 0
+    x_{t-1} = 1/√αₜ (xₜ - (1−αₜ)/√(1−ᾱₜ) εθ(xₜ, t)) + σₜ z
+return x₀
+```
+
+**Explanation**  
+- Start with pure Gaussian noise $x_T$  
+- For each timestep, predict the noise at that step  
+- Remove predicted noise and add scaled Gaussian noise  
+- Gradually denoise to get a clean sample $x_0$  
+
+:::
+
+:::
+
