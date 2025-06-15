@@ -860,7 +860,7 @@ So if the model can predict the noise $\epsilon$, we can subtract it from the no
 
 This denoised estimate can then be used to compute the mean of the posterior distribution $q(x_{t-1} \mid x_t, x_0)$ — which is the key to reversing the diffusion process step by step.
 
-#### Architecture Note
+### Architecture Note
 
 The network $\epsilon_\theta(x_t, t)$ is typically implemented as a **U-Net**, which takes:
 - A noisy image $x_t$
@@ -872,9 +872,9 @@ It outputs the predicted noise $\epsilon$.
 
 ### Takeaways
 
-- The ELBO is a tractable lower bound on $\log p_\theta(x_0)$.  
-- It aligns the reverse (learned) process with the forward (fixed) noising process.  
-- In practice, training reduces to minimizing the difference between predicted and true noise.
+- The ELBO provides a tractable lower bound on the data likelihood $\log p_\theta(x_0)$, and serves as the theoretical training objective.
+- It decomposes into loss terms that align the learned reverse process with the fixed forward noising process, step by step.
+- In practice (as in DDPM), training is simplified to minimizing the mean squared error between the **true noise** $\epsilon$ and the **predicted noise** $\epsilon_\theta(x_t, t)$.
 
 ---
 

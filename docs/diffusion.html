@@ -1011,21 +1011,19 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 \]</span></p>
 <p>So if the model can predict the noise <span class="math inline">\(\epsilon\)</span>, we can subtract it from the noisy input <span class="math inline">\(x_t\)</span> and recover the clean image <span class="math inline">\(x_0\)</span>.</p>
 <p>This denoised estimate can then be used to compute the mean of the posterior distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is the key to reversing the diffusion process step by step.</p>
-<section id="architecture-note" class="level4" data-number="4.6.1">
-<h4 data-number="4.6.1" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.6.1</span> Architecture Note</h4>
+</section>
+<section id="architecture-note" class="level3" data-number="4.7">
+<h3 data-number="4.7" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.7</span> Architecture Note</h3>
 <p>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is typically implemented as a <strong>U-Net</strong>, which takes: - A noisy image <span class="math inline">\(x_t\)</span> - A timestep <span class="math inline">\(t\)</span> (encoded using sinusoidal or learned embeddings)</p>
 <p>It outputs the predicted noise <span class="math inline">\(\epsilon\)</span>.</p>
 <hr>
 </section>
-</section>
-<section id="takeaways" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.7</span> Takeaways</h3>
+<section id="takeaways" class="level3" data-number="4.8">
+<h3 data-number="4.8" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.8</span> Takeaways</h3>
 <ul>
-<li>The ELBO is a tractable lower bound on <span class="math inline">\(\log p_\theta(x_0)\)</span>.<br>
-</li>
-<li>It aligns the reverse (learned) process with the forward (fixed) noising process.<br>
-</li>
-<li>In practice, training reduces to minimizing the difference between predicted and true noise.</li>
+<li>The ELBO provides a tractable lower bound on the data likelihood <span class="math inline">\(\log p_\theta(x_0)\)</span>, and serves as the theoretical training objective.</li>
+<li>It decomposes into loss terms that align the learned reverse process with the fixed forward noising process, step by step.</li>
+<li>In practice (as in DDPM), training is simplified to minimizing the mean squared error between the <strong>true noise</strong> <span class="math inline">\(\epsilon\)</span> and the <strong>predicted noise</strong> <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span>.</li>
 </ul>
 <hr>
 </section>
