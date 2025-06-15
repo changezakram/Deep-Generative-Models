@@ -735,7 +735,7 @@ If $p_\theta(x_0 \mid x_1)$ is modeled as a Gaussian, this term becomes a **mean
 
 
 
-### ELBO vs. Loss
+**ELBO vs. Loss**
 
 We write the ELBO as:
 
@@ -761,7 +761,7 @@ $$
 \underbrace{- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]}_{\mathcal{L}_0}
 $$
 
-### Interpreting Each Term in the ELBO
+**Interpreting Each Term in the ELBO**
 
 **Reconstruction Loss ($\mathcal{L}_0$)**  
 - Encourages the model to reconstruct $x_0$ from the first noisy sample $x_1$  
