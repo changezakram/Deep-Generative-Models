@@ -603,7 +603,7 @@ $$
 
 **Rewriting Using the Known Forward Process**
 
-The forward process $q(x_t \mid x_{t-1})$ is fully determined once we know $x_0$. So we can express it using Bayes’ rule as $q(x_{t-1} \mid x_t, x_0)$.
+The forward process defines a full joint distribution over all variables, so we can compute the exact posterior over any subset conditioned on others. In particular, since both $x_t$ and $x_0$ are known during training, we can evaluate the true posterior $q(x_{t-1} \mid x_t, x_0)$. This allows us to compare it directly to the model's learned reverse process $p_\theta(x_{t-1} \mid x_t)$.
 
 This gives:
 
