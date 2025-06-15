@@ -735,54 +735,48 @@ If $p_\theta(x_0 \mid x_1)$ is modeled as a Gaussian, this term becomes a **mean
 
 
 
-**Putting all the parts together (ELBO vs. Loss):**
-
-$$
-\text{ELBO} = 
-- D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
-- \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
-+ \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
-$$
-
-
 ### ELBO vs. Loss
 
 We write the ELBO as:
 
 $$
 \text{ELBO} = 
-- D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
-- \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
-+ \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
+\underbrace{- D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))}_{\mathcal{L}_T}
+\quad
+\underbrace{- \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))}_{\mathcal{L}_{1:T-1}}
+\quad
+\underbrace{+ \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]}_{\mathcal{L}_0}
 $$
 
 Since we minimize loss instead of maximizing ELBO, we flip the sign.
 
-We write the Loss as:
+We write the loss as:
 
 $$
 \text{Loss} = 
-+ D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
-+ \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
-- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
+\underbrace{+ D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))}_{\mathcal{L}_T}
+\quad
+\underbrace{+ \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))}_{\mathcal{L}_{1:T-1}}
+\quad
+\underbrace{- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]}_{\mathcal{L}_0}
 $$
 
-
-**Interpreting Each Term in the ELBO**
+### Interpreting Each Term in the ELBO
 
 **Reconstruction Loss ($\mathcal{L}_0$)**  
-- Encourages the model to reconstruct $x_0$ from the first noisy sample $x_1$.  
-- Implemented as a negative log-likelihood (e.g., MSE if modeled as Gaussian).  
-- Drives the decoder to recover clean data from slightly noisy input.
+- Encourages the model to reconstruct $x_0$ from the first noisy sample $x_1$  
+- Comes from the log-probability term $\log p_\theta(x_0 \mid x_1)$  
+- Treated as a negative log-likelihood (e.g., MSE if modeled as Gaussian)
 
 **Prior Matching Loss ($\mathcal{L}_T$)**  
-- Penalizes mismatch between the final noisy sample $x_T$ and the prior $p(x_T)$ (typically $\mathcal{N}(0, I)$).  
-- Ensures the generative process can start from pure noise and produce realistic outputs.
+- Penalizes mismatch between the final noisy sample $x_T$ and the prior $p(x_T)$  
+- Comes from the KL divergence $D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))$  
+- Ensures the generative process starts from pure noise
 
 **Denoising KL Terms ($\mathcal{L}_{1:T-1}$)**  
-- For each timestep $t = 2$ to $T$, encourages the model’s reverse step $p_\theta(x_{t-1} \mid x_t)$  
-  to approximate the true posterior $q(x_{t-1} \mid x_t, x_0)$.  
-- Teaches the model how to reverse the diffusion process step-by-step.
+- Encourage the model to learn the correct reverse step at each $t = 2$ to $T$  
+- Each term compares $q(x_{t-1} \mid x_t, x_0)$ to the learned $p_\theta(x_{t-1} \mid x_t)$  
+- Drives step-by-step denoising behavior
 
 
 
