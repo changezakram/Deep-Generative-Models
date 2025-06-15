@@ -951,38 +951,44 @@ This is how diffusion models synthesize data — by gradually denoising random n
 ### 5.5 Algorithm 1: Training (DDPM)
 
 ```
-1. repeat
-2.   x₀ ~ q(x₀)
-3.   t ~ Uniform({1, ..., T})
-4.   ε ~ 𝒩(0, I)
-5.   Take gradient descent step on:
-       ∇θ ‖ε − εθ(√ᾱₜ x₀ + √(1−ᾱₜ) ε, t)‖²
-6. until converged
+1. $x_0 \sim q(x_0)$
+2. $t \sim \text{Uniform}(\{1, \dots, T\})$
+3. $\epsilon \sim \mathcal{N}(0, I)$
+4. Take gradient step on loss
 ```
 
-**Explanation**  
-- Start with real data sample $x_0$  
-- Add noise to create a corrupted version $x_t$  
-- Train the model $\epsilon_\theta$ to predict the noise that was added  
-- Minimize mean squared error between true noise and predicted noise  
+**The training loss is:**
 
+$$
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, t \right) \right\|^2 \right]
+$$
+
+**Explanation**  
+- Sample a real data point $x_0$  
+- Corrupt it to get $x_t$ using the forward noising process  
+- Train $\epsilon_\theta$ to predict the added noise $\epsilon$  
+- Optimize using mean squared error between predicted and true noise  
 
 ---
 
 ### 5.6 Algorithm 2: Sampling (DDPM)
 
 ```
-1. x_T ~ 𝒩(0, I)
-2. for t = T, ..., 1:
-3.   z ~ 𝒩(0, I) if t > 1 else z = 0
-4.   x_{t-1} = 1/√αₜ (
-       xₜ − (1−αₜ)/√(1−ᾱₜ) εθ(xₜ, t)
-     ) + σₜ z
-5. return x₀
+1. $x_T \sim \mathcal{N}(0, I)$
+2. for $t = T, \dots, 1$:
+3.  $z \sim \mathcal{N}(0, I)$ if $t > 1$, else $z = 0$
+4.  Update using predicted noise
+5. return $x_0$
 ```
 
+**The update equation is:**
+
+$$
+x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon_\theta(x_t, t) \right) + \sigma_t z
+$$
+
 **Explanation**  
-- Start with pure Gaussian noise $x_T$  
-- For each timestep, predict the noise at that step  
-- Remove predicted noise and add scaled Gaussian noise  
-- Gradually denoise to get a clean sample $x_0$
+- Start from pure Gaussian noise $x_T$  
+- At each timestep $t$, use $\epsilon_\theta$ to estimate and remove noise  
+- Add back a small amount of Gaussian noise $z$  
+- Continue until you obtain a clean sample $x_0$
