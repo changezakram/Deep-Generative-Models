@@ -745,7 +745,7 @@ $$
 $$
 
 
-### 4.4 ELBO vs. Loss
+### ELBO vs. Loss
 
 We write the ELBO as:
 
