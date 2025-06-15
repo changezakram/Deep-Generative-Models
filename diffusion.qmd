@@ -616,12 +616,9 @@ $$
 \right]
 $$
 
+Each log-ratio can now be written as a KL divergence.
 
-**Expressing as KL Divergences**
-
-Each log-ratio can now be written as a KL divergence:
-
-- Rewriting the First Term as a KL Divergence
+**Rewriting the First Term as a KL Divergence**
 
 We begin with the first term from the ELBO expression:
 
