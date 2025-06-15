@@ -800,8 +800,9 @@ $$
 $$
 
 Where:
-- $\epsilon$ is the actual noise  
-- $\epsilon_\theta$ is the predicted noise by the neural network
+
+- $\epsilon$ is the actual noise     
+- $\epsilon_\theta$ is the predicted noise by the neural network   
 
 **Why?** If the network can predict the noise $\epsilon$, it can denoise $x_t$ and reverse the diffusion.
 
