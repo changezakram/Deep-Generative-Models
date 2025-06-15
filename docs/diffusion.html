@@ -193,7 +193,7 @@ window.Quarto = {
   <li><a href="#forward-diffusion-process" id="toc-forward-diffusion-process" class="nav-link" data-scroll-target="#forward-diffusion-process"><span class="header-section-number">2</span> Forward Diffusion Process</a></li>
   <li><a href="#reverse-diffusion-process" id="toc-reverse-diffusion-process" class="nav-link" data-scroll-target="#reverse-diffusion-process"><span class="header-section-number">3</span> Reverse Diffusion Process</a></li>
   <li><a href="#training-understanding-the-elbo" id="toc-training-understanding-the-elbo" class="nav-link" data-scroll-target="#training-understanding-the-elbo"><span class="header-section-number">4</span> Training: Understanding the ELBO</a></li>
-  <li><a href="#sampling" id="toc-sampling" class="nav-link" data-scroll-target="#sampling"><span class="header-section-number">5</span> Sampling</a></li>
+  <li><a href="#training-and-sampling-algorithms-ddpm" id="toc-training-and-sampling-algorithms-ddpm" class="nav-link" data-scroll-target="#training-and-sampling-algorithms-ddpm"><span class="header-section-number">5</span> Training and Sampling Algorithms (DDPM)</a></li>
   </ul>
 </nav>
     </div>
@@ -1028,14 +1028,14 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 <hr>
 </section>
 </section>
-<section id="sampling" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sampling"><span class="header-section-number">5</span> Sampling</h2>
-<section id="algorithm-1-training-ddpm" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="algorithm-1-training-ddpm"><span class="header-section-number">5.1</span> Algorithm 1: Training (DDPM)</h3>
-<pre><code>1. $x_0 \sim q(x_0)$
-2. $t \sim \text{Uniform}(\{1, \dots, T\})$
-3. $\epsilon \sim \mathcal{N}(0, I)$
-4. Take gradient step on loss</code></pre>
+<section id="training-and-sampling-algorithms-ddpm" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="training-and-sampling-algorithms-ddpm"><span class="header-section-number">5</span> Training and Sampling Algorithms (DDPM)</h2>
+<section id="algorithm-training-ddpm" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="algorithm-training-ddpm"><span class="header-section-number">5.1</span> Algorithm: Training (DDPM)</h3>
+<p><strong>Steps:</strong> - Sample a data point: <span class="math inline">\(x_0 \sim q(x_0)\)</span><br>
+- Choose a timestep: <span class="math inline">\(t \sim \text{Uniform}(\{1, \dots, T\})\)</span><br>
+- Sample noise: <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span><br>
+- Take a gradient step to minimize noise prediction error</p>
 <p><strong>The training loss is:</strong></p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, t \right) \right\|^2 \right]
@@ -1047,13 +1047,13 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 - Optimize using mean squared error between predicted and true noise</p>
 <hr>
 </section>
-<section id="algorithm-2-sampling-ddpm" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="algorithm-2-sampling-ddpm"><span class="header-section-number">5.2</span> Algorithm 2: Sampling (DDPM)</h3>
-<pre><code>1. $x_T \sim \mathcal{N}(0, I)$
-2. for $t = T, \dots, 1$:
-3.  $z \sim \mathcal{N}(0, I)$ if $t &gt; 1$, else $z = 0$
-4.  Update using predicted noise
-5. return $x_0$</code></pre>
+<section id="algorithm-sampling-ddpm" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="algorithm-sampling-ddpm"><span class="header-section-number">5.2</span> Algorithm: Sampling (DDPM)</h3>
+<p><strong>Steps:</strong> - Start with noise: <span class="math inline">\(x_T \sim \mathcal{N}(0, I)\)</span><br>
+- For <span class="math inline">\(t = T, \dots, 1\)</span>:<br>
+  - <span class="math inline">\(z \sim \mathcal{N}(0, I)\)</span> if <span class="math inline">\(t &gt; 1\)</span>, else <span class="math inline">\(z = 0\)</span><br>
+  - Use predicted noise to update <span class="math inline">\(x_{t-1}\)</span><br>
+- Return <span class="math inline">\(x_0\)</span></p>
 <p><strong>The update equation is:</strong></p>
 <p><span class="math display">\[
 x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \, \epsilon_\theta(x_t, t) \right) + \sigma_t z

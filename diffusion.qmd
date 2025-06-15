@@ -879,16 +879,15 @@ It outputs the predicted noise $\epsilon$.
 ---
 
 
-## Sampling
+## Training and Sampling Algorithms (DDPM)
 
-### Algorithm 1: Training (DDPM)
+### Algorithm: Training (DDPM)
 
-```
-1. $x_0 \sim q(x_0)$
-2. $t \sim \text{Uniform}(\{1, \dots, T\})$
-3. $\epsilon \sim \mathcal{N}(0, I)$
-4. Take gradient step on loss
-```
+**Steps:**
+- Sample a data point: $x_0 \sim q(x_0)$  
+- Choose a timestep: $t \sim \text{Uniform}(\{1, \dots, T\})$  
+- Sample noise: $\epsilon \sim \mathcal{N}(0, I)$  
+- Take a gradient step to minimize noise prediction error
 
 **The training loss is:**
 
@@ -900,19 +899,18 @@ $$
 - Sample a real data point $x_0$  
 - Corrupt it to get $x_t$ using the forward noising process  
 - Train $\epsilon_\theta$ to predict the added noise $\epsilon$  
-- Optimize using mean squared error between predicted and true noise  
+- Optimize using mean squared error between predicted and true noise
 
 ---
 
-### Algorithm 2: Sampling (DDPM)
+### Algorithm: Sampling (DDPM)
 
-```
-1. $x_T \sim \mathcal{N}(0, I)$
-2. for $t = T, \dots, 1$:
-3.  $z \sim \mathcal{N}(0, I)$ if $t > 1$, else $z = 0$
-4.  Update using predicted noise
-5. return $x_0$
-```
+**Steps:**
+- Start with noise: $x_T \sim \mathcal{N}(0, I)$  
+- For $t = T, \dots, 1$:  
+  - $z \sim \mathcal{N}(0, I)$ if $t > 1$, else $z = 0$  
+  - Use predicted noise to update $x_{t-1}$  
+- Return $x_0$
 
 **The update equation is:**
 
