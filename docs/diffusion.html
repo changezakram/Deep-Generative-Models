@@ -874,7 +874,7 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 <p>This is why the reconstruction term appears with a <strong>positive sign in the loss</strong> (as a value we minimize), but a <strong>negative sign inside the ELBO</strong>.</p>
 <p>This is referred to as the <strong>reconstruction loss</strong> in diffusion models.</p>
 <p>If <span class="math inline">\(p_\theta(x_0 \mid x_1)\)</span> is modeled as a Gaussian, this term becomes a <strong>mean squared error</strong> between the predicted and true <span class="math inline">\(x_0\)</span> values.</p>
-<p><strong>Putting all the parts together, the full decomposition becomes:</strong></p>
+<p><strong>Putting all the parts together (ELBO vs.&nbsp;Loss):</strong></p>
 <p><span class="math display">\[
 \begin{align*}
 \mathcal{L}_{\text{ELBO}} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \Big[ \,
@@ -882,6 +882,24 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 &amp; + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t)) \\
 &amp; - \log p_\theta(x_0 \mid x_1) \, \Big]
 \end{align*}
+\]</span></p>
+</section>
+<section id="elbo-vs.-loss" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="elbo-vs.-loss"><span class="header-section-number">4.4</span> ELBO vs.&nbsp;Loss</h3>
+<p>We write the ELBO as:</p>
+<p><span class="math display">\[
+\mathcal{L}_{\text{ELBO}} =
++ \mathbb{E}_{q} \left[ \log p_\theta(x_0 \mid x_1) \right]
+- D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
+- \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
+\]</span></p>
+<p>Since we minimize loss instead of maximizing ELBO, we flip the sign.</p>
+<p>We write the loss as:</p>
+<p><span class="math display">\[
+\mathcal{L}_{\text{Loss}} =
+- \mathbb{E}_{q} \left[ \log p_\theta(x_0 \mid x_1) \right]
++ D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
++ \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
 \]</span></p>
 <p><strong>Interpreting Each Term in the ELBO</strong></p>
 <p><strong>Reconstruction Loss (<span class="math inline">\(\mathcal{L}_0\)</span>)</strong><br>
@@ -896,8 +914,8 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 to approximate the true posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span>.<br>
 - Teaches the model how to reverse the diffusion process step-by-step.</p>
 </section>
-<section id="practical-training-simplification-ddpm" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="practical-training-simplification-ddpm"><span class="header-section-number">4.4</span> Practical Training Simplification (DDPM)</h3>
+<section id="practical-training-simplification-ddpm" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="practical-training-simplification-ddpm"><span class="header-section-number">4.5</span> Practical Training Simplification (DDPM)</h3>
 <p>In DDPM:</p>
 <ul>
 <li><strong><span class="math inline">\(p(x_T) = \mathcal{N}(0, I)\)</span></strong> is fixed and known.<br>
@@ -913,23 +931,23 @@ to approximate the true posterior <span class="math inline">\(q(x_{t-1} \mid x_t
 - <span class="math inline">\(\epsilon_\theta\)</span> is the predicted noise by the neural network</p>
 <p><strong>Why?</strong> If the network can predict the noise <span class="math inline">\(\epsilon\)</span>, it can denoise <span class="math inline">\(x_t\)</span> and reverse the diffusion.</p>
 </section>
-<section id="the-noise-prediction-network" class="level3" data-number="4.5">
-<h3 data-number="4.5" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.5</span> The Noise Prediction Network</h3>
+<section id="the-noise-prediction-network" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.6</span> The Noise Prediction Network</h3>
 <p>So far, we’ve seen that the training objective can be simplified to:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
 \]</span></p>
 <p>But what exactly is this <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span>?</p>
-<section id="what-the-network-learns" class="level4" data-number="4.5.1">
-<h4 data-number="4.5.1" class="anchored" data-anchor-id="what-the-network-learns"><span class="header-section-number">4.5.1</span> What the Network Learns</h4>
+<section id="what-the-network-learns" class="level4" data-number="4.6.1">
+<h4 data-number="4.6.1" class="anchored" data-anchor-id="what-the-network-learns"><span class="header-section-number">4.6.1</span> What the Network Learns</h4>
 <ul>
 <li>During training, we <strong>know the true noise</strong> <span class="math inline">\(\epsilon\)</span> used to generate the noisy sample <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span>.</li>
 <li>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is trained to <strong>predict this noise</strong>.</li>
 <li>Once trained, it can “undo” the noise and help reconstruct <span class="math inline">\(x_0\)</span> at test time.</li>
 </ul>
 </section>
-<section id="why-predicting-noise-works" class="level4" data-number="4.5.2">
-<h4 data-number="4.5.2" class="anchored" data-anchor-id="why-predicting-noise-works"><span class="header-section-number">4.5.2</span> Why Predicting Noise Works</h4>
+<section id="why-predicting-noise-works" class="level4" data-number="4.6.2">
+<h4 data-number="4.6.2" class="anchored" data-anchor-id="why-predicting-noise-works"><span class="header-section-number">4.6.2</span> Why Predicting Noise Works</h4>
 <p>Recall the forward process:</p>
 <p><span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
@@ -941,16 +959,16 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 <p>So if the model can <strong>accurately predict</strong> the noise <span class="math inline">\(\epsilon\)</span>, we can plug it in to estimate <span class="math inline">\(x_0\)</span>.</p>
 <p>This denoised estimate can then be used to compute the mean of the posterior distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is the key to reversing the diffusion process step by step.</p>
 </section>
-<section id="architecture-note" class="level4" data-number="4.5.3">
-<h4 data-number="4.5.3" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.5.3</span> Architecture Note</h4>
+<section id="architecture-note" class="level4" data-number="4.6.3">
+<h4 data-number="4.6.3" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.6.3</span> Architecture Note</h4>
 <p>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is typically implemented as a <strong>U-Net</strong>, which takes: - A noisy image <span class="math inline">\(x_t\)</span> - A timestep <span class="math inline">\(t\)</span> (encoded using sinusoidal or learned embeddings)</p>
 <p>It outputs the predicted noise <span class="math inline">\(\epsilon\)</span>.</p>
 <hr>
 <p>This lets the model gradually learn how to denoise.</p>
 </section>
 </section>
-<section id="connection-to-vaes" class="level3" data-number="4.6">
-<h3 data-number="4.6" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">4.6</span> Connection to VAEs</h3>
+<section id="connection-to-vaes" class="level3" data-number="4.7">
+<h3 data-number="4.7" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">4.7</span> Connection to VAEs</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -984,8 +1002,8 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 </table>
 <hr>
 </section>
-<section id="takeaways" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.7</span> Takeaways</h3>
+<section id="takeaways" class="level3" data-number="4.8">
+<h3 data-number="4.8" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.8</span> Takeaways</h3>
 <ul>
 <li>The ELBO is a tractable lower bound on <span class="math inline">\(\log p_\theta(x_0)\)</span>.<br>
 </li>

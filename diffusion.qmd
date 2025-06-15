@@ -735,7 +735,7 @@ If $p_\theta(x_0 \mid x_1)$ is modeled as a Gaussian, this term becomes a **mean
 
 
 
-**Putting all the parts together, the full decomposition becomes:**
+**Putting all the parts together (ELBO vs. Loss):**
 
 $$
 \begin{align*}
@@ -745,6 +745,30 @@ $$
 & - \log p_\theta(x_0 \mid x_1) \, \Big]
 \end{align*}
 $$
+
+
+### ELBO vs. Loss
+
+We write the ELBO as:
+
+$$
+\mathcal{L}_{\text{ELBO}} = 
++ \mathbb{E}_{q} \left[ \log p_\theta(x_0 \mid x_1) \right]
+- D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
+- \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
+$$
+
+Since we minimize loss instead of maximizing ELBO, we flip the sign.
+
+We write the loss as:
+
+$$
+\mathcal{L}_{\text{Loss}} = 
+- \mathbb{E}_{q} \left[ \log p_\theta(x_0 \mid x_1) \right]
++ D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
++ \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \parallel p_\theta(x_{t-1} \mid x_t))
+$$
+
 
 **Interpreting Each Term in the ELBO**
 
