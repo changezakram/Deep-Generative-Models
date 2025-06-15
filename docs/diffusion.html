@@ -931,7 +931,7 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 \]</span></p>
 </section>
 <section id="interpreting-each-term-in-the-elbo" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="interpreting-each-term-in-the-elbo"><span class="header-section-number">4.4</span> Interpreting Each Term in the ELBO**</h3>
+<h3 data-number="4.4" class="anchored" data-anchor-id="interpreting-each-term-in-the-elbo"><span class="header-section-number">4.4</span> Interpreting Each Term in the ELBO</h3>
 <p><strong>Reconstruction Loss (<span class="math inline">\(\mathcal{L}_0\)</span>)</strong><br>
 - Encourages the model to reconstruct <span class="math inline">\(x_0\)</span> from the first noisy sample <span class="math inline">\(x_1\)</span><br>
 - Comes from the log-probability term <span class="math inline">\(\log p_\theta(x_0 \mid x_1)\)</span><br>
@@ -944,6 +944,21 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 - Encourage the model to learn the correct reverse step at each <span class="math inline">\(t = 2\)</span> to <span class="math inline">\(T\)</span><br>
 - Each term compares <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> to the learned <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span><br>
 - Drives step-by-step denoising behavior</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Bridging ELBO and the DDPM Training Loss">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Bridging ELBO and the DDPM Training Loss
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The ELBO gives us a principled objective that encourages the learned reverse process to match the true posterior. In practice, however, the KL terms can be simplified when we assume Gaussian forward and reverse processes.</p>
+<p>This lets us rewrite the training objective in terms of the model’s ability to predict the noise <span class="math inline">\(\epsilon\)</span> that was added during the forward process.</p>
+</div>
+</div>
+<p>This lets us rewrite the training objective in terms of the model’s ability to predict the noise <span class="math inline">\(\epsilon\)</span> that was added during the forward process.</p>
 </section>
 <section id="practical-training-simplification-ddpm" class="level3" data-number="4.5">
 <h3 data-number="4.5" class="anchored" data-anchor-id="practical-training-simplification-ddpm"><span class="header-section-number">4.5</span> Practical Training Simplification (DDPM)</h3>
