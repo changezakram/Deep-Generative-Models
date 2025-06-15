@@ -784,7 +784,7 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 \right]
 \]</span></p>
 <p><strong>Rewriting Using the Known Forward Process</strong></p>
-<p>The forward process defines a full joint distribution over all variables, so we can compute the exact posterior over any subset conditioned on others. In particular, since both <span class="math inline">\(x_t\)</span> and <span class="math inline">\(x_0\)</span> are known during training, we can evaluate the true posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span>. This allows us to compare it directly to the model’s learned reverse process <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span>.</p>
+<p>The forward process gives us a complete description of how noise is added to data. Because of this, we can calculate the exact probability of earlier steps given later ones. In particular, since both <span class="math inline">\(x_t\)</span> and <span class="math inline">\(x_0\)</span> are known during training, we can compute the true backward distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span>. This lets us directly compare it to the model’s learned reverse process <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span>.</p>
 <p>This gives:</p>
 <p><span class="math display">\[
 = \mathbb{E}_q \left[

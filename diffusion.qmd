@@ -603,7 +603,7 @@ $$
 
 **Rewriting Using the Known Forward Process**
 
-The forward process defines a full joint distribution over all variables, so we can compute the exact posterior over any subset conditioned on others. In particular, since both $x_t$ and $x_0$ are known during training, we can evaluate the true posterior $q(x_{t-1} \mid x_t, x_0)$. This allows us to compare it directly to the model's learned reverse process $p_\theta(x_{t-1} \mid x_t)$.
+The forward process gives us a complete description of how noise is added to data. Because of this, we can calculate the exact probability of earlier steps given later ones. In particular, since both $x_t$ and $x_0$ are known during training, we can compute the true backward distribution $q(x_{t-1} \mid x_t, x_0)$. This lets us directly compare it to the model’s learned reverse process $p_\theta(x_{t-1} \mid x_t)$.
 
 This gives:
 
