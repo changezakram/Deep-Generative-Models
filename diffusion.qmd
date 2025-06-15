@@ -887,7 +887,7 @@ It outputs the predicted noise $\epsilon$.
 - Sample a data point: $x_0 \sim q(x_0)$  
 - Choose a timestep: $t \sim \text{Uniform}(\{1, \dots, T\})$  
 - Sample noise: $\epsilon \sim \mathcal{N}(0, I)$  
-- Take a gradient step to minimize noise prediction error
+- Take a gradient step to minimize loss
 
 **The training loss is:**
 

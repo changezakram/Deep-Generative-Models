@@ -1035,7 +1035,7 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 <p><strong>Steps:</strong> - Sample a data point: <span class="math inline">\(x_0 \sim q(x_0)\)</span><br>
 - Choose a timestep: <span class="math inline">\(t \sim \text{Uniform}(\{1, \dots, T\})\)</span><br>
 - Sample noise: <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span><br>
-- Take a gradient step to minimize noise prediction error</p>
+- Take a gradient step to minimize loss</p>
 <p><strong>The training loss is:</strong></p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, t \right) \right\|^2 \right]
