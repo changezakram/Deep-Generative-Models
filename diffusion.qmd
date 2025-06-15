@@ -587,6 +587,7 @@ $$
 \right]
 $$
 
+Here, $\mathbb{E}_q$ denotes expectation under $q(x_{1:T} \mid x_0)$ — the full forward trajectory from data to noise, conditioned on $x_0$.
 
 **Isolating the Reconstruction Term**
 
