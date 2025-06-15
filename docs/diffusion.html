@@ -769,11 +769,11 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 <li><p><strong>Reconstruction loss</strong> (final step):<br>
 <span class="math display">\[
 \mathcal{L}_0 = -\mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
-\]</span> This term measures how well the model can recover the original image from the first noisy step <span class="math inline">\(begin:math:text\)</span> x_1 <span class="math inline">\(end:math:text\)</span>. It behaves like a typical reconstruction loss (e.g., mean squared error or cross-entropy).</p></li>
+\]</span> This term measures how well the model can recover the original image from the first noisy step <span class="math inline">\(x_1\)</span>. It behaves like a typical reconstruction loss (e.g., mean squared error or cross-entropy).</p></li>
 <li><p><strong>Prior loss</strong> (matching the prior noise at the final step):<br>
 <span class="math display">\[
 \mathcal{L}_T = -\mathbb{E}_q \left[ \log p(x_T) \right]
-\]</span> This encourages the final noisy sample <span class="math inline">\(begin:math:text\)</span> x_T <span class="math inline">\(end:math:text\)</span> to match the standard normal prior <span class="math inline">\(begin:math:text\)</span> \mathcal{N}(0, I) <span class="math inline">\(end:math:text\)</span>, enabling sampling at test time.</p></li>
+\]</span> This encourages the final noisy sample <span class="math inline">\(x_T\)</span> to match the standard normal prior <span class="math inline">\(\mathcal{N}(0, I)\)</span>, enabling sampling at test time.</p></li>
 <li><p><strong>Denoising KL terms</strong> (intermediate steps):<br>
 <span class="math display">\[
 \mathcal{L}_{1:T-1} = \sum_{t=2}^{T} \mathbb{E}_q \left[ D_{\text{KL}} \left( q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t) \right) \right]

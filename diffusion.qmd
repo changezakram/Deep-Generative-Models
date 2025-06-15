@@ -580,13 +580,13 @@ Following the DDPM paper, we can express this as a **sum of three losses**:
   $$
   \mathcal{L}_0 = -\mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
   $$
-  This term measures how well the model can recover the original image from the first noisy step $begin:math:text$ x_1 $end:math:text$. It behaves like a typical reconstruction loss (e.g., mean squared error or cross-entropy).
+  This term measures how well the model can recover the original image from the first noisy step $x_1$. It behaves like a typical reconstruction loss (e.g., mean squared error or cross-entropy).
 
 - **Prior loss** (matching the prior noise at the final step):  
   $$
   \mathcal{L}_T = -\mathbb{E}_q \left[ \log p(x_T) \right]
   $$
-  This encourages the final noisy sample $begin:math:text$ x_T $end:math:text$ to match the standard normal prior $begin:math:text$ \\mathcal{N}(0, I) $end:math:text$, enabling sampling at test time.
+  This encourages the final noisy sample $x_T$ to match the standard normal prior $\mathcal{N}(0, I)$, enabling sampling at test time.
 
 - **Denoising KL terms** (intermediate steps):  
   $$
