@@ -589,7 +589,7 @@ $$
 
 **Isolating the Reconstruction Term**
 
-The case for $t = 1$ is special: it's the step where the model tries to reconstruct $x_0$ from $x_1$. So we separate it from the rest of the sum:
+The case for $t = 1$ is special: it's the step where the model tries to reconstruct $x_0$ from $x_1$. So we isolate it from the rest of the trajectory-based KL terms.
 
 $$
 = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[

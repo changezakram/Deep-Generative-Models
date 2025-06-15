@@ -775,7 +775,7 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 \right]
 \]</span></p>
 <p><strong>Isolating the Reconstruction Term</strong></p>
-<p>The case for <span class="math inline">\(t = 1\)</span> is special: it’s the step where the model tries to reconstruct <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span>. So we separate it from the rest of the sum:</p>
+<p>The case for <span class="math inline">\(t = 1\)</span> is special: it’s the step where the model tries to reconstruct <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span>. So we isolate it from the rest of the trajectory-based KL terms.</p>
 <p><span class="math display">\[
 = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[
 \log p(x_T)
