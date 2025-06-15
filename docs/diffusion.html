@@ -738,9 +738,17 @@ p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
 \text{ELBO} = \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right]
 \]</span></p>
 <p><strong>Step 6: Decompose the ELBO</strong></p>
+<p>We now decompose the ELBO into interpretable components:</p>
 <p><span class="math display">\[
 \text{ELBO} = \mathbb{E}_{q} \left[ \log p(x_T) \right] + \sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] + \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 \]</span></p>
+<p>Following the DDPM paper, we can write this as a <strong>sum of three losses</strong>:</p>
+<ul>
+<li><p><strong>Reconstruction loss</strong> (final step): [ _0 = -_q ]</p></li>
+<li><p><strong>Prior loss</strong> (matching the prior noise): [ _{T} = -_q ]</p></li>
+<li><p><strong>Denoising KL terms</strong> (all intermediate steps): [ <em>{1:T-1} = </em>{t=2}^T _q ]</p></li>
+</ul>
+<p>So the full training objective becomes: [ = - ( <em>0 + </em>{1:T-1} + _T ) ]</p>
 </section>
 <section id="interpreting-each-term" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="interpreting-each-term"><span class="header-section-number">4.4</span> Interpreting Each Term</h3>

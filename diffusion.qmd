@@ -540,9 +540,33 @@ $$
 
 **Step 6: Decompose the ELBO**
 
+We now decompose the ELBO into interpretable components:
+
 $$
 \text{ELBO} = \mathbb{E}_{q} \left[ \log p(x_T) \right] + \sum_{t=2}^T \mathbb{E}_q \left[ \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})} \right] + \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
 $$
+
+Following the DDPM paper, we can write this as a **sum of three losses**:
+
+- **Reconstruction loss** (final step):
+  \[
+  \mathcal{L}_0 = -\mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
+  \]
+
+- **Prior loss** (matching the prior noise):
+  \[
+  \mathcal{L}_{T} = -\mathbb{E}_q \left[ \log p(x_T) \right]
+  \]
+
+- **Denoising KL terms** (all intermediate steps):
+  \[
+  \mathcal{L}_{1:T-1} = \sum_{t=2}^T \mathbb{E}_q \left[ D_{\text{KL}} \left( q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t) \right) \right]
+  \]
+
+So the full training objective becomes:
+\[
+\text{ELBO} = - \left( \mathcal{L}_0 + \mathcal{L}_{1:T-1} + \mathcal{L}_T \right)
+\]
 
 
 ### Interpreting Each Term
