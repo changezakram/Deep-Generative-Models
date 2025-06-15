@@ -621,11 +621,49 @@ $$
 
 Each log-ratio can now be written as a KL divergence:
 
-- The first term becomes the KL between the final noisy sample and the prior:
+- Rewriting the First Term as a KL Divergence
+
+We begin with the first term from the ELBO expression:
 
 $$
-D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
+\mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log p(x_T) \right]
 $$
+
+Since this expectation only involves $x_T$, we can simplify it as:
+
+$$
+\mathbb{E}_{q(x_T \mid x_0)} \left[ \log p(x_T) \right]
+$$
+
+Now recall the definition of KL divergence between two distributions $q(x)$ and $p(x)$:
+
+$$
+D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)} \right]
+= \mathbb{E}_{q(x)} [\log q(x)] - \mathbb{E}_{q(x)} [\log p(x)]
+$$
+
+Rearranging this gives:
+
+$$
+\mathbb{E}_{q(x)} [\log p(x)] = -D_{\text{KL}}(q(x) \,\|\, p(x)) + \mathbb{E}_{q(x)} [\log q(x)]
+= -D_{\text{KL}}(q(x) \,\|\, p(x)) + \mathbb{H}[q(x)]
+$$
+
+Applying this identity to $q(x_T \mid x_0)$ and $p(x_T)$:
+
+$$
+\mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] = -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) + \mathbb{H}[q(x_T \mid x_0)]
+$$
+
+Since $q(x_T \mid x_0)$ is part of the fixed forward process, its entropy $\mathbb{H}[q(x_T \mid x_0)]$ is independent of model parameters and can be ignored during training. So we drop it:
+
+$$
+\mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] \quad \propto \quad -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
+$$
+
+This shows that the first term in the ELBO can be rewritten as a KL divergence between the forward process at time $T$ and the prior.
+
+
 
 - The middle terms become a sum of KL divergences at each denoising step:
 

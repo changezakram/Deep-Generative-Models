@@ -797,11 +797,35 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 <p><strong>Expressing as KL Divergences</strong></p>
 <p>Each log-ratio can now be written as a KL divergence:</p>
 <ul>
-<li>The first term becomes the KL between the final noisy sample and the prior:</li>
+<li>Rewriting the First Term as a KL Divergence</li>
 </ul>
+<p>We begin with the first term from the ELBO expression:</p>
 <p><span class="math display">\[
-D_{\text{KL}}(q(x_T \mid x_0) \parallel p(x_T))
+\mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log p(x_T) \right]
 \]</span></p>
+<p>Since this expectation only involves <span class="math inline">\(x_T\)</span>, we can simplify it as:</p>
+<p><span class="math display">\[
+\mathbb{E}_{q(x_T \mid x_0)} \left[ \log p(x_T) \right]
+\]</span></p>
+<p>Now recall the definition of KL divergence between two distributions <span class="math inline">\(q(x)\)</span> and <span class="math inline">\(p(x)\)</span>:</p>
+<p><span class="math display">\[
+D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)} \right]
+= \mathbb{E}_{q(x)} [\log q(x)] - \mathbb{E}_{q(x)} [\log p(x)]
+\]</span></p>
+<p>Rearranging this gives:</p>
+<p><span class="math display">\[
+\mathbb{E}_{q(x)} [\log p(x)] = -D_{\text{KL}}(q(x) \,\|\, p(x)) + \mathbb{E}_{q(x)} [\log q(x)]
+= -D_{\text{KL}}(q(x) \,\|\, p(x)) + \mathbb{H}[q(x)]
+\]</span></p>
+<p>Applying this identity to <span class="math inline">\(q(x_T \mid x_0)\)</span> and <span class="math inline">\(p(x_T)\)</span>:</p>
+<p><span class="math display">\[
+\mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] = -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) + \mathbb{H}[q(x_T \mid x_0)]
+\]</span></p>
+<p>Since <span class="math inline">\(q(x_T \mid x_0)\)</span> is part of the fixed forward process, its entropy <span class="math inline">\(\mathbb{H}[q(x_T \mid x_0)]\)</span> is independent of model parameters and can be ignored during training. So we drop it:</p>
+<p><span class="math display">\[
+\mathbb{E}_{q(x_T \mid x_0)} [\log p(x_T)] \quad \propto \quad -D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
+\]</span></p>
+<p>This shows that the first term in the ELBO can be rewritten as a KL divergence between the forward process at time <span class="math inline">\(T\)</span> and the prior.</p>
 <ul>
 <li>The middle terms become a sum of KL divergences at each denoising step:</li>
 </ul>
