@@ -731,7 +731,7 @@ If $p_\theta(x_0 \mid x_1)$ is modeled as a Gaussian, this term becomes a **mean
 
 
 
-Putting all the parts together, the full decomposition becomes:
+**Putting all the parts together, the full decomposition becomes:**
 
 $$
 \mathcal{L}_{\text{ELBO}} = \mathbb{E}_q \left[
