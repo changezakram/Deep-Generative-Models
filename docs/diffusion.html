@@ -920,13 +920,35 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
 \]</span></p>
-<p>Where:</p>
-<ul>
-<li><span class="math inline">\(\epsilon\)</span> is the actual noise<br>
-</li>
-<li><span class="math inline">\(\epsilon_\theta\)</span> is the predicted noise by the neural network</li>
-</ul>
+<p>Where:<br>
+- <span class="math inline">\(\epsilon\)</span> is the actual noise<br>
+- <span class="math inline">\(\epsilon_\theta\)</span> is the predicted noise by the neural network</p>
 <p><strong>Why?</strong> If the network can predict the noise <span class="math inline">\(\epsilon\)</span>, it can denoise <span class="math inline">\(x_t\)</span> and reverse the diffusion.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Why Derive the Full ELBO If We Just Use MSE?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why Derive the Full ELBO If We Just Use MSE?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Even though we end up training with a simplified MSE loss in DDPM, deriving the full ELBO helps us understand <strong>what the model is truly learning</strong> — and <strong>why</strong> the simplification works.</p>
+<ul>
+<li>The ELBO gives us a <strong>principled, variational objective</strong><br>
+</li>
+<li>It tells us that training involves matching noise distributions and reconstructing data step-by-step<br>
+</li>
+<li>The simplified DDPM loss is an <strong>approximation</strong> of the denoising KL terms (<span class="math inline">\(\mathcal{L}_{1:T-1}\)</span>)<br>
+</li>
+<li>Other terms (like <span class="math inline">\(\mathcal{L}_T\)</span> and <span class="math inline">\(\mathcal{L}_0\)</span>) are often treated as constants or dropped for efficiency<br>
+</li>
+<li>Many advanced diffusion models return to the ELBO to add back or rethink these terms</li>
+</ul>
+<p>So the ELBO is like the blueprint — and the DDPM loss is an optimized shortcut that works because we understand the full path.</p>
+</div>
+</div>
 </section>
 <section id="the-noise-prediction-network" class="level3" data-number="4.5">
 <h3 data-number="4.5" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.5</span> The Noise Prediction Network</h3>
