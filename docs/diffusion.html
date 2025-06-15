@@ -1084,40 +1084,39 @@ x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I)
 </ol>
 <p>This is how diffusion models synthesize data — by gradually denoising random noise using the learned reverse process.</p>
 </section>
-<div class="grid">
-<section id="algorithm-1-training-ddpm" class="level3 g-col-6" data-number="5.5">
+<section id="algorithm-1-training-ddpm" class="level3" data-number="5.5">
 <h3 data-number="5.5" class="anchored" data-anchor-id="algorithm-1-training-ddpm"><span class="header-section-number">5.5</span> 5.5 Algorithm 1: Training (DDPM)</h3>
-<pre><code>repeat:
-    x₀ ~ q(x₀)
-    t ~ Uniform({1, ..., T})
-    ε ~ 𝒩(0, I)
-    Take gradient step on:
-        ∇θ ‖ε − εθ(√ᾱₜ x₀ + √(1−ᾱₜ) ε, t)‖²
-until converged</code></pre>
+<pre><code>1. repeat
+2.   x₀ ~ q(x₀)
+3.   t ~ Uniform({1, ..., T})
+4.   ε ~ 𝒩(0, I)
+5.   Take gradient descent step on:
+       ∇θ ‖ε − εθ(√ᾱₜ x₀ + √(1−ᾱₜ) ε, t)‖²
+6. until converged</code></pre>
 <p><strong>Explanation</strong><br>
 - Start with real data sample <span class="math inline">\(x_0\)</span><br>
 - Add noise to create a corrupted version <span class="math inline">\(x_t\)</span><br>
 - Train the model <span class="math inline">\(\epsilon_\theta\)</span> to predict the noise that was added<br>
 - Minimize mean squared error between true noise and predicted noise</p>
+<hr>
 </section>
-<section id="algorithm-2-sampling-ddpm" class="level3 g-col-6" data-number="5.6">
+<section id="algorithm-2-sampling-ddpm" class="level3" data-number="5.6">
 <h3 data-number="5.6" class="anchored" data-anchor-id="algorithm-2-sampling-ddpm"><span class="header-section-number">5.6</span> 5.6 Algorithm 2: Sampling (DDPM)</h3>
-<pre><code>x_T ~ 𝒩(0, I)
-for t = T, ..., 1:
-    z ~ 𝒩(0, I) if t &gt; 1 else z = 0
-    x_{t-1} = 1/√αₜ (
-        xₜ - (1−αₜ)/√(1−ᾱₜ) εθ(xₜ, t)
-    ) + σₜ z
-return x₀</code></pre>
+<pre><code>1. x_T ~ 𝒩(0, I)
+2. for t = T, ..., 1:
+3.   z ~ 𝒩(0, I) if t &gt; 1 else z = 0
+4.   x_{t-1} = 1/√αₜ (
+       xₜ − (1−αₜ)/√(1−ᾱₜ) εθ(xₜ, t)
+     ) + σₜ z
+5. return x₀</code></pre>
 <p><strong>Explanation</strong><br>
 - Start with pure Gaussian noise <span class="math inline">\(x_T\)</span><br>
 - For each timestep, predict the noise at that step<br>
 - Remove predicted noise and add scaled Gaussian noise<br>
 - Gradually denoise to get a clean sample <span class="math inline">\(x_0\)</span></p>
+
+
 </section>
-</div>
-
-
 </section>
 
 </main> <!-- /main -->

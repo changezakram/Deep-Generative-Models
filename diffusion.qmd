@@ -948,21 +948,16 @@ This is how diffusion models synthesize data — by gradually denoising random n
 
 
 
-
-::: {.grid}
-
-::: {.g-col-6}
-
 ### 5.5 Algorithm 1: Training (DDPM)
 
 ```
-repeat:
-    x₀ ~ q(x₀)
-    t ~ Uniform({1, ..., T})
-    ε ~ 𝒩(0, I)
-    Take gradient step on:
-        ∇θ ‖ε − εθ(√ᾱₜ x₀ + √(1−ᾱₜ) ε, t)‖²
-until converged
+1. repeat
+2.   x₀ ~ q(x₀)
+3.   t ~ Uniform({1, ..., T})
+4.   ε ~ 𝒩(0, I)
+5.   Take gradient descent step on:
+       ∇θ ‖ε − εθ(√ᾱₜ x₀ + √(1−ᾱₜ) ε, t)‖²
+6. until converged
 ```
 
 **Explanation**  
@@ -971,28 +966,23 @@ until converged
 - Train the model $\epsilon_\theta$ to predict the noise that was added  
 - Minimize mean squared error between true noise and predicted noise  
 
-:::
 
-::: {.g-col-6}
+---
 
 ### 5.6 Algorithm 2: Sampling (DDPM)
 
 ```
-x_T ~ 𝒩(0, I)
-for t = T, ..., 1:
-    z ~ 𝒩(0, I) if t > 1 else z = 0
-    x_{t-1} = 1/√αₜ (
-        xₜ - (1−αₜ)/√(1−ᾱₜ) εθ(xₜ, t)
-    ) + σₜ z
-return x₀
+1. x_T ~ 𝒩(0, I)
+2. for t = T, ..., 1:
+3.   z ~ 𝒩(0, I) if t > 1 else z = 0
+4.   x_{t-1} = 1/√αₜ (
+       xₜ − (1−αₜ)/√(1−ᾱₜ) εθ(xₜ, t)
+     ) + σₜ z
+5. return x₀
 ```
 
 **Explanation**  
 - Start with pure Gaussian noise $x_T$  
 - For each timestep, predict the noise at that step  
 - Remove predicted noise and add scaled Gaussian noise  
-- Gradually denoise to get a clean sample $x_0$  
-
-:::
-
-:::
+- Gradually denoise to get a clean sample $x_0$
