@@ -616,9 +616,10 @@ $$
 \right]
 $$
 
-The last term, $\log q(x_1 \mid x_0)$, is part of the known forward process and is independent of the model parameters. Since it remains constant during training, we drop it from the objective and only retain the remaining three terms.
+The last term, $\log q(x_1 \mid x_0)$, comes from the known forward process and does not depend on the model parameters. Since it stays constant during training, we drop it from the objective and retain the remaining three terms.
 
-Each of the remaining log-ratio can now be written as a KL divergence.
+The first two log-ratios can now be rewritten as KL divergences, and the third term becomes a standard reconstruction loss.
+
 
 **Rewriting the First Term as a KL Divergence**
 
