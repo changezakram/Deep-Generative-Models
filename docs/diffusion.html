@@ -769,12 +769,7 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 <li>The <strong>reconstruction loss</strong> — how well the model recovers the original input</li>
 </ul>
 <p><strong>ELBO Expression from Previous Step</strong></p>
-<p><span class="math display">\[
-= \mathbb{E}_q \left[
-\log p(x_T) + \sum_{t=1}^T \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}
-\right]
-\]</span></p>
-<p>Here, <span class="math inline">\(\mathbb{E}_q\)</span> denotes expectation under <span class="math inline">\(q(x_{1:T} \mid x_0)\)</span> — the full forward trajectory from data to noise, conditioned on <span class="math inline">\(x_0\)</span>.</p>
+<p>= <em>{q(x</em>{1:T} x_0)} </p>
 <p><strong>Isolating the Reconstruction Term</strong></p>
 <p>The case for <span class="math inline">\(t = 1\)</span> is special: it’s the step where the model tries to reconstruct <span class="math inline">\(x_0\)</span> from <span class="math inline">\(x_1\)</span>. So we separate it from the rest of the sum:</p>
 <p><span class="math display">\[
