@@ -760,7 +760,13 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
 \right]
 \]</span></p>
 <p><strong>Step 6: Decompose the ELBO</strong></p>
-<p>We now rewrite the ELBO into interpretable components that match the form used during training in the DDPM paper:</p>
+<p>To train the model, we rewrite the original ELBO into a more practical form using <strong>KL divergences</strong>.</p>
+<p>While the earlier ELBO expression involved log-ratios like</p>
+<p><span class="math display">\[
+\log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})},
+\]</span></p>
+<p>we can apply algebraic transformations and substitute the true posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> (which is known during training) to re-express the ELBO in terms of <strong>KL divergences</strong>.</p>
+<p>This gives us the following training-compatible form:</p>
 <p><span class="math display">\[
 \text{ELBO} = \mathbb{E}_q \left[
     D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) +
@@ -768,34 +774,13 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
     \log p_\theta(x_0 \mid x_1)
 \right]
 \]</span></p>
-<p>We can now express this as a <strong>sum of three losses</strong>:</p>
+<p>This decomposition makes each component interpretable and optimizable:</p>
 <ul>
-<li><p><strong>Reconstruction loss</strong> (final step):<br>
-<span class="math display">\[
-\mathcal{L}_0 = -\mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]
-\]</span> This term measures how well the model can recover the original image from the first noisy step <span class="math inline">\(x_1\)</span>. It behaves like a typical reconstruction loss (e.g., mean squared error or cross-entropy).</p></li>
-<li><p><strong>Prior loss</strong> (matching the prior noise at the final step):<br>
-<span class="math display">\[
-\mathcal{L}_T = \mathbb{E}_q \left[ D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T)) \right]
-\]</span> This encourages the final noisy sample <span class="math inline">\(x_T\)</span> to match the standard normal prior <span class="math inline">\(\mathcal{N}(0, I)\)</span>, enabling sampling at test time.</p></li>
-<li><p><strong>Denoising KL terms</strong> (intermediate steps):<br>
-<span class="math display">\[
-\mathcal{L}_{1:T-1} = \sum_{t=2}^{T} \mathbb{E}_q \left[ D_{\text{KL}} \left( q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t) \right) \right]
-\]</span> These terms align the learned reverse transitions with the true posteriors, ensuring the denoising steps are statistically correct.</p></li>
+<li><span class="math inline">\(D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))\)</span>: matches the final state <span class="math inline">\(x_T\)</span> to the prior <span class="math inline">\(\mathcal{N}(0, I)\)</span></li>
+<li><span class="math inline">\(\sum D_{\text{KL}}\)</span>: enforces accurate denoising at each step</li>
+<li><span class="math inline">\(-\log p_\theta(x_0 \mid x_1)\)</span>: ensures reconstruction of the original image</li>
 </ul>
-<p>So the full training objective becomes:</p>
-<p><span class="math display">\[
-\mathcal{L}_{\text{ELBO}} = \mathcal{L}_0 + \mathcal{L}_{1:T-1} + \mathcal{L}_T
-\]</span></p>
-<p>We can also express the same ELBO using KL divergences, as done in the DDPM paper:</p>
-<p><span class="math display">\[
-\mathcal{L}_{\text{ELBO}} = \mathbb{E}_q \left[
-    D_{\text{KL}}(q(x_T \mid x_0) \,\|\, p(x_T))
-    + \sum_{t=2}^T D_{\text{KL}}(q(x_{t-1} \mid x_t, x_0) \,\|\, p_\theta(x_{t-1} \mid x_t))
-    - \log p_\theta(x_0 \mid x_1)
-\right]
-\]</span></p>
-<p>This form is equivalent to the earlier decomposition into <span class="math inline">\(\mathcal{L}_0\)</span>, <span class="math inline">\(\mathcal{L}_{1:T-1}\)</span>, and <span class="math inline">\(\mathcal{L}_T\)</span>, but is written entirely in terms of KL divergences and a reconstruction log-likelihood. It offers practical advantages such as lower variance and closed-form evaluation when all distributions are Gaussian.</p>
+<p>This form allows for efficient training using stochastic gradient descent and serves as the foundation for defining the training loss.</p>
 </section>
 <section id="interpreting-each-term" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="interpreting-each-term"><span class="header-section-number">4.4</span> Interpreting Each Term</h3>
