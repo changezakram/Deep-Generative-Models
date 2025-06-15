@@ -952,7 +952,7 @@ How the ELBO Helps Us Understand the MSE Loss
 </section>
 <section id="the-noise-prediction-network" class="level3" data-number="4.5">
 <h3 data-number="4.5" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.5</span> The Noise Prediction Network</h3>
-<p>So far, we’ve seen that the training objective can be simplified to:</p>
+<p>Now that we’ve seen how the ELBO leads to a simplified MSE loss in DDPM, let’s understand the network that’s trained to minimize it — the noise predictor <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span>.</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
 \]</span></p>
@@ -975,7 +975,7 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 <p><span class="math display">\[
 x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
 \]</span></p>
-<p>So if the model can <strong>accurately predict</strong> the noise <span class="math inline">\(\epsilon\)</span>, we can plug it in to estimate <span class="math inline">\(x_0\)</span>.</p>
+<p>So if the model can predict the noise <span class="math inline">\(\epsilon\)</span>, we can subtract it from the noisy input <span class="math inline">\(x_t\)</span> and recover the clean image <span class="math inline">\(x_0\)</span>.</p>
 <p>This denoised estimate can then be used to compute the mean of the posterior distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is the key to reversing the diffusion process step by step.</p>
 </section>
 <section id="architecture-note" class="level4" data-number="4.5.3">
