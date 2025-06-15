@@ -871,6 +871,7 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 <p><span class="math display">\[
 - \log p_\theta(x_0 \mid x_1)
 \]</span></p>
+<p>This is why the reconstruction term appears with a <strong>positive sign in the loss</strong> (as a value we minimize), but a <strong>negative sign inside the ELBO</strong>.</p>
 <p>This is referred to as the <strong>reconstruction loss</strong> in diffusion models.</p>
 <p>If <span class="math inline">\(p_\theta(x_0 \mid x_1)\)</span> is modeled as a Gaussian, this term becomes a <strong>mean squared error</strong> between the predicted and true <span class="math inline">\(x_0\)</span> values.</p>
 <p><strong>Putting all the parts together, the full decomposition becomes:</strong></p>

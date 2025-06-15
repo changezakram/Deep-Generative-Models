@@ -727,10 +727,11 @@ $$
 - \log p_\theta(x_0 \mid x_1)
 $$
 
+This is why the reconstruction term appears with a **positive sign in the loss** (as a value we minimize), but a **negative sign inside the ELBO**.
+
 This is referred to as the **reconstruction loss** in diffusion models.
 
 If $p_\theta(x_0 \mid x_1)$ is modeled as a Gaussian, this term becomes a **mean squared error** between the predicted and true $x_0$ values.
-
 
 
 
