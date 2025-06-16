@@ -822,21 +822,33 @@ $$
 \right]
 $$
 
-Here, $x_t$ is a noisy version of $x_0$, obtained via the forward process:
+---
+
+#### Step 1: Use the forward process definition
+
+In the forward process, the noisy sample $x_t$ is generated from $x_0$ by adding scaled Gaussian noise $\epsilon$:
 
 $$
 x_t = \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 $$
 
-We now substitute this expression for $x_t$ into the model input:
+---
+
+#### Step 2: Plug in this expression for $x_t$ into the network input
+
+The network input originally is $x_t$, but now we explicitly substitute its definition:
 
 $$
 \epsilon_\theta(x_t, t)
-\;\Rightarrow\;
+\quad \Rightarrow \quad
 \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right)
 $$
 
-Substituting into the full loss function gives:
+---
+
+#### Step 3: Replace inside the full loss function
+
+We now substitute this new expression into the full loss:
 
 $$
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
@@ -846,7 +858,13 @@ $$
 \right]
 $$
 
-This is the **expanded form** of the loss used during training. The model sees a noisy input $x_t$ (generated from $x_0$ and $\epsilon$), and learns to recover the exact noise $\epsilon$ that was added.
+---
+
+This is the **fully expanded form** of the DDPM loss used during training.
+
+- The model **receives a noisy input** $x_t$ that is synthesized from $x_0$ and $\epsilon$
+- It **tries to predict the exact noise** $\epsilon$ that was added
+- The loss compares the **true noise** to the **predicted noise**, and minimizes their difference using squared error
 
 ---
 
