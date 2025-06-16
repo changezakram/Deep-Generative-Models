@@ -968,34 +968,22 @@ Bridging ELBO and the DDPM Training Loss
 D_{\text{KL}}\left( q(x_{t-1} \mid x_t, x_0) \;\|\; p_\theta(x_{t-1} \mid x_t) \right)
 \]</span></p>
 <p>Since both distributions are Gaussian, this KL has a closed-form expression. If we fix the variances and only match the <strong>means</strong>, minimizing the KL reduces to a squared error loss between the true noise <span class="math inline">\(\epsilon\)</span> and the model’s prediction <span class="math inline">\(\epsilon_\theta\)</span>.</p>
-<hr>
 <p>To approximate the ELBO in practice, DDPM uses a simplified MSE loss between the predicted and true noise:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
 \left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2
 \right]
 \]</span></p>
-<hr>
-<section id="step-1-use-the-forward-process-definition" class="level4" data-number="4.5.1">
-<h4 data-number="4.5.1" class="anchored" data-anchor-id="step-1-use-the-forward-process-definition"><span class="header-section-number">4.5.1</span> Step 1: Use the forward process definition</h4>
 <p>In the forward process, the noisy sample <span class="math inline">\(x_t\)</span> is generated from <span class="math inline">\(x_0\)</span> by adding scaled Gaussian noise <span class="math inline">\(\epsilon\)</span>:</p>
 <p><span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 \]</span></p>
-<hr>
-</section>
-<section id="step-2-plug-in-this-expression-for-x_t-into-the-network-input" class="level4" data-number="4.5.2">
-<h4 data-number="4.5.2" class="anchored" data-anchor-id="step-2-plug-in-this-expression-for-x_t-into-the-network-input"><span class="header-section-number">4.5.2</span> Step 2: Plug in this expression for <span class="math inline">\(x_t\)</span> into the network input</h4>
 <p>The network input originally is <span class="math inline">\(x_t\)</span>, but now we explicitly substitute its definition:</p>
 <p><span class="math display">\[
 \epsilon_\theta(x_t, t)
 \quad \Rightarrow \quad
 \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right)
 \]</span></p>
-<hr>
-</section>
-<section id="step-3-replace-inside-the-full-loss-function" class="level4" data-number="4.5.3">
-<h4 data-number="4.5.3" class="anchored" data-anchor-id="step-3-replace-inside-the-full-loss-function"><span class="header-section-number">4.5.3</span> Step 3: Replace inside the full loss function</h4>
 <p>We now substitute this new expression into the full loss:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
@@ -1004,14 +992,12 @@ x_t = \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 \right\|^2
 \right]
 \]</span></p>
-<hr>
 <p>This is the <strong>fully expanded form</strong> of the DDPM loss used during training.</p>
 <ul>
 <li>The model <strong>receives a noisy input</strong> <span class="math inline">\(x_t\)</span> that is synthesized from <span class="math inline">\(x_0\)</span> and <span class="math inline">\(\epsilon\)</span></li>
 <li>It <strong>tries to predict the exact noise</strong> <span class="math inline">\(\epsilon\)</span> that was added</li>
 <li>The loss compares the <strong>true noise</strong> to the <strong>predicted noise</strong>, and minimizes their difference using squared error</li>
 </ul>
-<hr>
 <div class="callout callout-style-default callout-note callout-titled" title="How the ELBO Helps Us Understand the MSE Loss">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1033,7 +1019,6 @@ How the ELBO Helps Us Understand the MSE Loss
 <p>So the ELBO is like the blueprint — and the DDPM loss is an optimized shortcut that works because we understand the full path.</p>
 </div>
 </div>
-</section>
 </section>
 <section id="the-noise-prediction-network" class="level3" data-number="4.6">
 <h3 data-number="4.6" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.6</span> The Noise Prediction Network</h3>
