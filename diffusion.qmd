@@ -26,6 +26,8 @@ This combination of **theoretical simplicity**, **training robustness**, and **h
 
 Diffusion models may seem very different from VAEs at first glance, but they share a surprising number of structural similarities. Both involve a forward process that adds noise and a reverse process that reconstructs data. And both optimize a form of the ELBO — though with very different interpretations.
 
+![Visual comparison of latent structure in VAEs vs. Diffusion Models.](images/diffusion-vae.png)
+
 The table below highlights key conceptual parallels:
 
 | **Aspect**            | **VAEs**                                                   | **Diffusion Models**                                             |
