@@ -324,6 +324,10 @@ We’ll later see that it’s also possible to sample <span class="math inline">
 <section id="add-noise-recursively" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="add-noise-recursively"><span class="header-section-number">2.2</span> Add Noise Recursively</h3>
 <p>To model the forward noising process, we define a noise schedule <span class="math inline">\(\{\beta_1, \dots, \beta_T\}\)</span>, where each <span class="math inline">\(\beta_t \in (0, 1)\)</span> controls how much Gaussian noise is added at step <span class="math inline">\(t\)</span>.</p>
+<p>This gives the following transition distribution:</p>
+<p><span class="math display">\[
+q(x_t \mid x_{t-1}) = \mathcal{N}\left(\sqrt{1 - \beta_t} \, x_{t-1}, \, \beta_t \mathbf{I} \right)
+\]</span></p>
 <p>To simplify notation, we define: <span class="math display">\[
 \alpha_t = 1 - \beta_t, \quad \bar{\alpha}_t = \prod_{i=1}^t \alpha_i
 \]</span></p>

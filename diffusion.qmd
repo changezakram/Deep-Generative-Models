@@ -72,6 +72,12 @@ We’ll later see that it’s also possible to sample $x_t$ directly from $x_0$,
 
 To model the forward noising process, we define a noise schedule $\{\beta_1, \dots, \beta_T\}$, where each $\beta_t \in (0, 1)$ controls how much Gaussian noise is added at step $t$.
 
+This gives the following transition distribution:
+
+$$
+q(x_t \mid x_{t-1}) = \mathcal{N}\left(\sqrt{1 - \beta_t} \, x_{t-1}, \, \beta_t \mathbf{I} \right)
+$$
+
 To simplify notation, we define:
 $$
 \alpha_t = 1 - \beta_t, \quad \bar{\alpha}_t = \prod_{i=1}^t \alpha_i
