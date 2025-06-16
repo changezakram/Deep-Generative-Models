@@ -194,6 +194,7 @@ window.Quarto = {
   <li><a href="#reverse-diffusion-process" id="toc-reverse-diffusion-process" class="nav-link" data-scroll-target="#reverse-diffusion-process"><span class="header-section-number">3</span> Reverse Diffusion Process</a></li>
   <li><a href="#training-understanding-the-elbo" id="toc-training-understanding-the-elbo" class="nav-link" data-scroll-target="#training-understanding-the-elbo"><span class="header-section-number">4</span> Training: Understanding the ELBO</a></li>
   <li><a href="#training-and-sampling-algorithms-ddpm" id="toc-training-and-sampling-algorithms-ddpm" class="nav-link" data-scroll-target="#training-and-sampling-algorithms-ddpm"><span class="header-section-number">5</span> Training and Sampling Algorithms (DDPM)</a></li>
+  <li><a href="#tricks-for-improving-generation" id="toc-tricks-for-improving-generation" class="nav-link" data-scroll-target="#tricks-for-improving-generation"><span class="header-section-number">6</span> Tricks for Improving Generation</a></li>
   </ul>
 </nav>
     </div>
@@ -1098,6 +1099,47 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \
 - At each timestep <span class="math inline">\(t\)</span>, use <span class="math inline">\(\epsilon_\theta\)</span> to estimate and remove noise<br>
 - Add back a small amount of Gaussian noise <span class="math inline">\(z\)</span><br>
 - Continue until you obtain a clean sample <span class="math inline">\(x_0\)</span></p>
+</section>
+</section>
+<section id="tricks-for-improving-generation" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="tricks-for-improving-generation"><span class="header-section-number">6</span> Tricks for Improving Generation</h2>
+<p>While the original DDPM formulation already achieves impressive results, several refinements have been proposed to improve sample quality and likelihood estimates. Below are three effective categories of improvements.</p>
+<section id="better-noise-schedules" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="better-noise-schedules"><span class="header-section-number">6.1</span> Better Noise Schedules</h3>
+<p>In DDPM, the noise schedule defines how much noise is added at each timestep during the forward process. A common default is a <strong>linear schedule</strong>, but this can overly distort early inputs:</p>
+<ul>
+<li>A <strong>linear noise schedule</strong> adds noise too aggressively in early steps, quickly erasing structure from <span class="math inline">\(x_0\)</span>.</li>
+<li>To address this, researchers proposed a <strong>cosine schedule</strong>, where noise increases more gradually near the ends.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Key Insight</strong>: A cosine schedule preserves structure for longer, giving the reverse process a better chance at learning to denoise effectively — even though the choice of cosine was somewhat arbitrary, it empirically works better.</p>
+</blockquote>
+</section>
+<section id="learning-the-variance-covariance-matrix" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="learning-the-variance-covariance-matrix"><span class="header-section-number">6.2</span> Learning the Variance (Covariance Matrix)</h3>
+<p>In the basic DDPM, the reverse process uses a <strong>fixed variance</strong> (i.e., isotropic Gaussian). However, variance also influences generation:</p>
+<ul>
+<li><p>DDPM authors initially used fixed values:<br>
+<span class="math inline">\(\Sigma_\theta(x_t, t) = \sigma_t^2 I\)</span><br>
+where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="math inline">\(\beta_t\)</span> or a smoothed estimate <span class="math inline">\(\tilde{\beta}_t\)</span>.</p></li>
+<li><p>Nichol and Dhariwal proposed a <strong>learned variance model</strong>: <span class="math display">\[
+\Sigma_\theta(x_t, t) = \exp \left( v \log \beta_t + (1 - v) \log \tilde{\beta}_t \right)
+\]</span></p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Why it helps</strong>: While the <strong>mean</strong> dominates sample quality, a better variance estimate improves <strong>likelihood estimation</strong> without hurting visual fidelity.</p>
+</blockquote>
+</section>
+<section id="architectural-enhancements" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="architectural-enhancements"><span class="header-section-number">6.3</span> Architectural Enhancements</h3>
+<p>In addition to schedule and variance tweaks, the architecture of the denoising network matters:</p>
+<ul>
+<li><strong>Depth vs.&nbsp;Width</strong>: Wider U-Nets improve sample quality more efficiently than deeper ones.</li>
+<li><strong>Multi-Resolution Attention</strong>: Adding attention layers at multiple resolutions enhances the model’s ability to capture global structure.</li>
+<li><strong>BigGAN Residual Blocks</strong>: Using residual blocks from BigGAN for upsampling/downsampling improves learning and gradient flow.</li>
+<li><strong>Adaptive Group Normalization</strong>: A normalization technique that conditions on timestep (and class label if available) to help the model adapt better at each denoising step.</li>
+</ul>
+<p>These tricks are often combined in modern diffusion models and form the backbone of high-quality sample generation pipelines like improved DDPMs and diffusion-based image generators (e.g., ADM, Imagen, and Stable Diffusion).</p>
 
 
 </section>

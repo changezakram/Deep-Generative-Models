@@ -957,3 +957,44 @@ $$
 - At each timestep $t$, use $\epsilon_\theta$ to estimate and remove noise  
 - Add back a small amount of Gaussian noise $z$  
 - Continue until you obtain a clean sample $x_0$
+
+
+
+## Tricks for Improving Generation
+
+While the original DDPM formulation already achieves impressive results, several refinements have been proposed to improve sample quality and likelihood estimates. Below are three effective categories of improvements.
+
+### Better Noise Schedules
+
+In DDPM, the noise schedule defines how much noise is added at each timestep during the forward process. A common default is a **linear schedule**, but this can overly distort early inputs:
+
+- A **linear noise schedule** adds noise too aggressively in early steps, quickly erasing structure from $x_0$.
+- To address this, researchers proposed a **cosine schedule**, where noise increases more gradually near the ends.
+
+> **Key Insight**: A cosine schedule preserves structure for longer, giving the reverse process a better chance at learning to denoise effectively — even though the choice of cosine was somewhat arbitrary, it empirically works better.
+
+### Learning the Variance (Covariance Matrix)
+
+In the basic DDPM, the reverse process uses a **fixed variance** (i.e., isotropic Gaussian). However, variance also influences generation:
+
+- DDPM authors initially used fixed values:  
+  $\Sigma_\theta(x_t, t) = \sigma_t^2 I$  
+  where $\sigma_t^2$ is either $\beta_t$ or a smoothed estimate $\tilde{\beta}_t$.
+
+- Nichol and Dhariwal proposed a **learned variance model**:
+  $$
+  \Sigma_\theta(x_t, t) = \exp \left( v \log \beta_t + (1 - v) \log \tilde{\beta}_t \right)
+  $$
+
+> **Why it helps**: While the **mean** dominates sample quality, a better variance estimate improves **likelihood estimation** without hurting visual fidelity.
+
+### Architectural Enhancements
+
+In addition to schedule and variance tweaks, the architecture of the denoising network matters:
+
+- **Depth vs. Width**: Wider U-Nets improve sample quality more efficiently than deeper ones.
+- **Multi-Resolution Attention**: Adding attention layers at multiple resolutions enhances the model's ability to capture global structure.
+- **BigGAN Residual Blocks**: Using residual blocks from BigGAN for upsampling/downsampling improves learning and gradient flow.
+- **Adaptive Group Normalization**: A normalization technique that conditions on timestep (and class label if available) to help the model adapt better at each denoising step.
+
+These tricks are often combined in modern diffusion models and form the backbone of high-quality sample generation pipelines like improved DDPMs and diffusion-based image generators (e.g., ADM, Imagen, and Stable Diffusion).
