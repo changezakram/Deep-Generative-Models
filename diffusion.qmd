@@ -28,6 +28,24 @@ This combination of **theoretical simplicity**, **training robustness**, and **h
 
 ---
 
+## Real-World Applications of Diffusion Models
+
+Diffusion models have rapidly moved from research labs to real-world applications. Today, they power many state-of-the-art generative tools:
+
+### Text-to-Image
+- **DALL·E 2** (OpenAI): Generates realistic images from text prompts.
+- **Imagen** (Google): Leverages powerful language encoders for high-fidelity image synthesis.
+
+### Text-to-Video
+- **Make-A-Video** (Meta): Extends image models to video generation using textual input.
+- **Imagen Video** (Google): Builds on Imagen to generate coherent video sequences.
+
+### Text-to-3D
+- **DreamFusion** (Google): Produces 3D scenes from text by combining diffusion with 3D rendering techniques.
+
+These use cases highlight why diffusion models are considered the most promising family of generative models today. The rest of this guide will unpack how they work, step by step.
+
+---
 
 ## Forward Diffusion Process
 
