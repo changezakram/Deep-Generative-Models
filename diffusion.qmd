@@ -966,7 +966,6 @@ It outputs the predicted noise \( \epsilon \), allowing the model to reverse the
 
 *The U-Net receives both the noisy input and a time embedding, and is trained to predict the added noise \( \epsilon \). This predicted noise is used to reconstruct a cleaner version of the image at each reverse step.*
 
-_Adapted from Stanford CS236: Deep Generative Models (Winter 2023)._
 
 ---
 
