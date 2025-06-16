@@ -331,10 +331,14 @@ We’ll later see that it’s also possible to sample <span class="math inline">
 <p>Then, at each time step <span class="math inline">\(t\)</span>, the forward process is defined as: <span class="math display">\[
 q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I \right)
 \]</span></p>
-<p>Where:<br>
-- <span class="math inline">\(\alpha_t = 1 - \beta_t\)</span>, with <span class="math inline">\(\beta_t\)</span> a small positive number controlling the noise level.<br>
-- The variance term <span class="math inline">\((1 - \alpha_t) I = \beta_t I\)</span> controls how much noise is added at each step.<br>
-- <span class="math inline">\(I\)</span> is the identity matrix, so noise is added independently to each pixel or component.</p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\alpha_t = 1 - \beta_t\)</span>, with <span class="math inline">\(\beta_t\)</span> a small positive number controlling the noise level.<br>
+</li>
+<li>The variance term <span class="math inline">\((1 - \alpha_t) I = \beta_t I\)</span> controls how much noise is added at each step.<br>
+</li>
+<li><span class="math inline">\(I\)</span> is the identity matrix, so noise is added independently to each pixel or component.</li>
+</ul>
 <blockquote class="blockquote">
 <p><strong>Intuition:</strong> At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.</p>
 </blockquote>
