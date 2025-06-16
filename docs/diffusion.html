@@ -811,6 +811,15 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 </tr>
 </tbody>
 </table>
+</section>
+<section id="key-takeaways-1" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="key-takeaways-1"><span class="header-section-number">3.5</span> Key Takeaways</h3>
+<ul>
+<li>The reverse diffusion process defines a learned Markov chain that gradually removes noise from the input.</li>
+<li>Although we can’t compute the true reverse distribution <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span>, we derive a tractable Gaussian approximation using Bayes’ rule.</li>
+<li>The reverse mean depends on both <span class="math inline">\(x_t\)</span> and the original data <span class="math inline">\(x_0\)</span>, but at test time we use the model’s prediction of noise <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> to estimate <span class="math inline">\(x_0\)</span>.</li>
+<li>The reverse steps preserve a Gaussian structure, enabling efficient sampling using the predicted mean <span class="math inline">\(\mu_\theta(x_t, t)\)</span> and fixed variance <span class="math inline">\(\Sigma_\theta(x_t, t)\)</span>.</li>
+</ul>
 <hr>
 </section>
 </section>
