@@ -369,7 +369,7 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/noise-schedule.png" class="img-fluid figure-img"></p>
-<figcaption>Comparison of signal and noise schedules for linear and cosine noise schedules. Cosine adds noise more gradually early on, improving training and generation.</figcaption>
+<figcaption>Comparison of signal (<span class="math inline">\(\bar{\alpha}_t\)</span>) and noise (<span class="math inline">\(1 - \bar{\alpha}_t\)</span>) schedules for linear and cosine noise schedules. Cosine adds noise more gradually early on, improving training stability and sample quality.</figcaption>
 </figure>
 </div>
 <p>By chaining these noise steps over time, we define a forward Markov process that gradually transforms <span class="math inline">\(x_0\)</span> into pure noise <span class="math inline">\(x_T\)</span>.</p>
