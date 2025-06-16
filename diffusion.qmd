@@ -9,6 +9,8 @@ Diffusion models are a powerful class of generative models that learn to create 
 
 ![Diffusion models gradually corrupt real data with noise and then learn to reverse that corruption to generate realistic samples.](images/diffusion-intro.png)
 
+*Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.*
+
 
 This approach has enabled state-of-the-art results in image generation, powering tools like **DALL·E 2**, **Imagen**, and **Stable Diffusion**. One of the key advantages of diffusion models lies in their training stability and output quality, especially when compared to earlier generative approaches:
 
