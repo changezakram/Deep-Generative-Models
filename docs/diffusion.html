@@ -1145,8 +1145,8 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 </section>
 <section id="architecture-note" class="level3" data-number="4.7">
 <h3 data-number="4.7" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.7</span> Architecture Note</h3>
-<p>The network ( _(x_t, t) ) is typically implemented as a <strong>U-Net</strong>, which takes: - A noisy image ( x_t ) - A timestep ( t ), encoded using sinusoidal or learned embeddings</p>
-<p>It outputs the predicted noise ( ), allowing the model to reverse the diffusion process.</p>
+<p>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is typically implemented as a <strong>U-Net</strong>, which takes: - A noisy image <span class="math inline">\(x_t\)</span> - A timestep <span class="math inline">\(t\)</span>, encoded using sinusoidal or learned embeddings</p>
+<p>It outputs the predicted noise <span class="math inline">\(\epsilon\)</span>, allowing the model to reverse the diffusion process.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/unet.png" class="img-fluid figure-img"></p>
