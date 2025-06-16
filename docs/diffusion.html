@@ -962,20 +962,23 @@ Bridging ELBO and the DDPM Training Loss
 </section>
 <section id="practical-training-simplification-ddpm" class="level3" data-number="4.5">
 <h3 data-number="4.5" class="anchored" data-anchor-id="practical-training-simplification-ddpm"><span class="header-section-number">4.5</span> Practical Training Simplification (DDPM)</h3>
-<p>In practice, training with the full ELBO can be computationally expensive, and several terms can be simplified or approximated without significantly impacting performance.</p>
-<ul>
-<li>The prior term <span class="math inline">\(\mathcal{L}_T\)</span> is often treated as a constant (since <span class="math inline">\(p(x_T) = \mathcal{N}(0, I)\)</span> is fixed).</li>
-<li>The reconstruction term <span class="math inline">\(\mathcal{L}_0\)</span> can be small and is sometimes dropped entirely.</li>
-<li>The denoising KL terms <span class="math inline">\(\mathcal{L}_{1:T-1}\)</span> can be simplified by making certain modeling assumptions.</li>
-</ul>
-<p>These assumptions allow us to rewrite the training objective as a simple <strong>mean squared error (MSE)</strong> between the <strong>true noise <span class="math inline">\(\epsilon\)</span></strong> and the <strong>predicted noise <span class="math inline">\(\epsilon_\theta\)</span></strong>, giving us the DDPM training loss:</p>
+<p>When all forward and reverse steps in the diffusion process are modeled as Gaussians, the KL terms in the ELBO can be simplified significantly.</p>
+<p>For example, the KL divergence between the true posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> and the model’s reverse process <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span> becomes:</p>
 <p><span class="math display">\[
-\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
+D_{\text{KL}}\left( q(x_{t-1} \mid x_t, x_0) \;\|\; p_\theta(x_{t-1} \mid x_t) \right)
 \]</span></p>
-<p>Where:<br>
-- <span class="math inline">\(\epsilon\)</span> is the actual noise<br>
-- <span class="math inline">\(\epsilon_\theta\)</span> is the predicted noise by the neural network</p>
-<p><strong>Why?</strong> If the network can predict the noise <span class="math inline">\(\epsilon\)</span>, it can denoise <span class="math inline">\(x_t\)</span> and reverse the diffusion.</p>
+<p>Since both distributions are Gaussian, this KL has a closed-form expression. If we assume the variances are fixed and only match the <strong>means</strong>, minimizing the KL reduces to a squared error loss between the true noise <span class="math inline">\(\epsilon\)</span> and the model’s prediction <span class="math inline">\(\epsilon_\theta\)</span>.</p>
+<p>To see why, recall that the forward process constructs <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span> and noise <span class="math inline">\(\epsilon\)</span>:</p>
+<p><span class="math display">\[
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+\]</span></p>
+<p>Substituting this into the simplified loss gives the DDPM training objective:</p>
+<p><span class="math display">\[
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
+\left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right) \right\|^2
+\right]
+\]</span></p>
+<p>This is the loss we will use to train the model in practice.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="How the ELBO Helps Us Understand the MSE Loss">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -986,16 +989,12 @@ How the ELBO Helps Us Understand the MSE Loss
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Even though we end up training with a simplified MSE loss in DDPM, deriving the full ELBO helps us understand <strong>what the model is truly learning</strong> — and <strong>why</strong> the simplification works.</p>
+<p>Even though we end up training with a simplified MSE loss in DDPM, deriving the full ELBO helps us understand <strong>what the model is truly learning</strong> — and why the simplification works.</p>
 <ul>
-<li>The ELBO gives us a <strong>principled, variational objective</strong><br>
-</li>
-<li>It tells us that training involves matching noise distributions and reconstructing data step-by-step<br>
-</li>
-<li>The simplified DDPM loss is an <strong>approximation</strong> of the denoising KL terms (<span class="math inline">\(\mathcal{L}_{1:T-1}\)</span>)<br>
-</li>
-<li>Other terms (like <span class="math inline">\(\mathcal{L}_T\)</span> and <span class="math inline">\(\mathcal{L}_0\)</span>) are often treated as constants or dropped for efficiency<br>
-</li>
+<li>The ELBO gives us a <strong>principled, variational objective</strong></li>
+<li>It tells us that training involves matching noise distributions and reconstructing data step-by-step</li>
+<li>The simplified DDPM loss is an <strong>approximation</strong> of the denoising KL terms (<span class="math inline">\(\mathcal{L}_{1:T-1}\)</span>)</li>
+<li>Other terms (like <span class="math inline">\(\mathcal{L}_T\)</span> and <span class="math inline">\(\mathcal{L}_0\)</span>) are often treated as constants or dropped for efficiency</li>
 <li>Many advanced diffusion models return to the ELBO to add back or rethink these terms</li>
 </ul>
 <p>So the ELBO is like the blueprint — and the DDPM loss is an optimized shortcut that works because we understand the full path.</p>
@@ -1004,28 +1003,30 @@ How the ELBO Helps Us Understand the MSE Loss
 </section>
 <section id="the-noise-prediction-network" class="level3" data-number="4.6">
 <h3 data-number="4.6" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.6</span> The Noise Prediction Network</h3>
-<p>Now that we’ve seen how the ELBO leads to a simplified MSE loss in DDPM, let’s understand the network that’s trained to minimize it — the noise predictor <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span>.</p>
-<p><span class="math display">\[
-\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
-\]</span></p>
-<p>But what exactly is this <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span>?</p>
-<p><strong>What the Network Learns</strong></p>
+<p>Now that we’ve arrived at the simplified training loss used in DDPM, let’s understand what the model is actually learning.</p>
+<section id="what-the-network-learns" class="level4" data-number="4.6.1">
+<h4 data-number="4.6.1" class="anchored" data-anchor-id="what-the-network-learns"><span class="header-section-number">4.6.1</span> What the Network Learns</h4>
 <ul>
-<li>During training, we <strong>know the true noise</strong> <span class="math inline">\(\epsilon\)</span> used to generate the noisy sample <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span>.</li>
-<li>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is trained to <strong>predict this noise</strong>.</li>
-<li>Once trained, it can “undo” the noise and help reconstruct <span class="math inline">\(x_0\)</span> at test time.</li>
+<li>During training, we <strong>know the true noise</strong> <span class="math inline">\(\epsilon\)</span> used to generate the noisy sample <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span><br>
+</li>
+<li>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is trained to <strong>predict this noise</strong><br>
+</li>
+<li>Once trained, the model can use this prediction to “undo” the noise and reconstruct <span class="math inline">\(x_0\)</span> at test time</li>
 </ul>
-<p><strong>Why Predicting Noise Works</strong></p>
+</section>
+<section id="why-predicting-noise-works" class="level4" data-number="4.6.2">
+<h4 data-number="4.6.2" class="anchored" data-anchor-id="why-predicting-noise-works"><span class="header-section-number">4.6.2</span> Why Predicting Noise Works</h4>
 <p>Recall the forward process:</p>
 <p><span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 \]</span></p>
-<p>Rearranging this gives us an estimate of the original (clean) image:</p>
+<p>Rearranging this gives an estimate of the original (clean) image:</p>
 <p><span class="math display">\[
 x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
 \]</span></p>
-<p>So if the model can predict the noise <span class="math inline">\(\epsilon\)</span>, we can subtract it from the noisy input <span class="math inline">\(x_t\)</span> and recover the clean image <span class="math inline">\(x_0\)</span>.</p>
-<p>This denoised estimate can then be used to compute the mean of the posterior distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is the key to reversing the diffusion process step by step.</p>
+<p>So if the model can <strong>accurately predict</strong> the noise <span class="math inline">\(\epsilon\)</span>, it can plug it into this expression to estimate <span class="math inline">\(x_0\)</span>.</p>
+<p>This denoised estimate is also used during sampling to compute the mean of the reverse distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is key to reversing the diffusion process one step at a time.</p>
+</section>
 </section>
 <section id="architecture-note" class="level3" data-number="4.7">
 <h3 data-number="4.7" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.7</span> Architecture Note</h3>

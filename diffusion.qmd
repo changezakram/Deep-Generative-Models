@@ -802,33 +802,40 @@ This lets us rewrite the training objective in terms of the model’s ability to
 
 ### Practical Training Simplification (DDPM)
 
-In practice, training with the full ELBO can be computationally expensive, and several terms can be simplified or approximated without significantly impacting performance.
+When all forward and reverse steps in the diffusion process are modeled as Gaussians, the KL terms in the ELBO can be simplified significantly.
 
-- The prior term $\mathcal{L}_T$ is often treated as a constant (since $p(x_T) = \mathcal{N}(0, I)$ is fixed).
-- The reconstruction term $\mathcal{L}_0$ can be small and is sometimes dropped entirely.
-- The denoising KL terms $\mathcal{L}_{1:T-1}$ can be simplified by making certain modeling assumptions.
-
-These assumptions allow us to rewrite the training objective as a simple **mean squared error (MSE)** between the **true noise $\epsilon$** and the **predicted noise $\epsilon_\theta$**, giving us the DDPM training loss:
-
+For example, the KL divergence between the true posterior $q(x_{t-1} \mid x_t, x_0)$ and the model’s reverse process $p_\theta(x_{t-1} \mid x_t)$ becomes:
 
 $$
-\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
+D_{\text{KL}}\left( q(x_{t-1} \mid x_t, x_0) \;\|\; p_\theta(x_{t-1} \mid x_t) \right)
 $$
 
-Where:   
-- $\epsilon$ is the actual noise     
-- $\epsilon_\theta$ is the predicted noise by the neural network   
+Since both distributions are Gaussian, this KL has a closed-form expression. If we assume the variances are fixed and only match the **means**, minimizing the KL reduces to a squared error loss between the true noise $\epsilon$ and the model’s prediction $\epsilon_\theta$.
 
-**Why?** If the network can predict the noise $\epsilon$, it can denoise $x_t$ and reverse the diffusion.
+To see why, recall that the forward process constructs $x_t$ from $x_0$ and noise $\epsilon$:
+
+$$
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+$$
+
+Substituting this into the simplified loss gives the DDPM training objective:
+
+$$
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
+\left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right) \right\|^2
+\right]
+$$
+
+This is the loss we will use to train the model in practice.
 
 ::: {.callout-note title="How the ELBO Helps Us Understand the MSE Loss"}
 
-Even though we end up training with a simplified MSE loss in DDPM, deriving the full ELBO helps us understand **what the model is truly learning** — and **why** the simplification works.
+Even though we end up training with a simplified MSE loss in DDPM, deriving the full ELBO helps us understand **what the model is truly learning** — and why the simplification works.
 
-- The ELBO gives us a **principled, variational objective**  
-- It tells us that training involves matching noise distributions and reconstructing data step-by-step  
-- The simplified DDPM loss is an **approximation** of the denoising KL terms ($\mathcal{L}_{1:T-1}$)  
-- Other terms (like $\mathcal{L}_T$ and $\mathcal{L}_0$) are often treated as constants or dropped for efficiency  
+- The ELBO gives us a **principled, variational objective**
+- It tells us that training involves matching noise distributions and reconstructing data step-by-step
+- The simplified DDPM loss is an **approximation** of the denoising KL terms ($\mathcal{L}_{1:T-1}$)
+- Other terms (like $\mathcal{L}_T$ and $\mathcal{L}_0$) are often treated as constants or dropped for efficiency
 - Many advanced diffusion models return to the ELBO to add back or rethink these terms
 
 So the ELBO is like the blueprint — and the DDPM loss is an optimized shortcut that works because we understand the full path.
@@ -837,21 +844,15 @@ So the ELBO is like the blueprint — and the DDPM loss is an optimized shortcut
 
 ### The Noise Prediction Network
 
-Now that we've seen how the ELBO leads to a simplified MSE loss in DDPM, let's understand the network that's trained to minimize it — the noise predictor $\epsilon_\theta(x_t, t)$.
+Now that we've arrived at the simplified training loss used in DDPM, let's understand what the model is actually learning.
 
-$$
-\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
-$$
+#### What the Network Learns
 
-But what exactly is this $\epsilon_\theta(x_t, t)$?
+- During training, we **know the true noise** $\epsilon$ used to generate the noisy sample $x_t$ from $x_0$  
+- The network $\epsilon_\theta(x_t, t)$ is trained to **predict this noise**  
+- Once trained, the model can use this prediction to "undo" the noise and reconstruct $x_0$ at test time
 
-**What the Network Learns**
-
-- During training, we **know the true noise** $\epsilon$ used to generate the noisy sample $x_t$ from $x_0$.
-- The network $\epsilon_\theta(x_t, t)$ is trained to **predict this noise**.
-- Once trained, it can "undo" the noise and help reconstruct $x_0$ at test time.
-
-**Why Predicting Noise Works**
+#### Why Predicting Noise Works
 
 Recall the forward process:
 
@@ -859,15 +860,15 @@ $$
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 $$
 
-Rearranging this gives us an estimate of the original (clean) image:
+Rearranging this gives an estimate of the original (clean) image:
 
 $$
 x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
 $$
 
-So if the model can predict the noise $\epsilon$, we can subtract it from the noisy input $x_t$ and recover the clean image $x_0$.
+So if the model can **accurately predict** the noise $\epsilon$, it can plug it into this expression to estimate $x_0$.
 
-This denoised estimate can then be used to compute the mean of the posterior distribution $q(x_{t-1} \mid x_t, x_0)$ — which is the key to reversing the diffusion process step by step.
+This denoised estimate is also used during sampling to compute the mean of the reverse distribution $q(x_{t-1} \mid x_t, x_0)$ — which is key to reversing the diffusion process one step at a time.
 
 ### Architecture Note
 
