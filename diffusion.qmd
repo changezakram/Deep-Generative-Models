@@ -98,9 +98,13 @@ Where:
 
 > **Intuition:** At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.
 
+![Forward diffusion process: gradually adds Gaussian noise to the input image across $T$ steps.](images/diffusion-forward.png)
+
 ::: {.callout-note title="Why keep $\beta_t$ small?"}
 Keeping $\beta_t$ small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of $\beta_t$ would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via $\sqrt{\alpha_t}$) and noise growth (via $\sqrt{1 - \alpha_t}$) to ensure a smooth, learnable transition.
 :::
+
+![Comparison of signal and noise schedules for linear and cosine noise schedules. Cosine adds noise more gradually early on, improving training and generation.](images/noise-schedule.png)
 
 By chaining these steps together, we define a forward Markov process from $x_0$ to $x_T$.
 
@@ -188,6 +192,8 @@ $$
 x_T \sim \mathcal{N}(0, I)
 $$
 
+![Each step in the forward process applies a Gaussian kernel that gradually transforms $x_0$ to $x_T$.](images/diffusion-kernel.png)
+
 ### Recap: Forward Diffusion Steps
 
 | **Step** | **Formula** | **Explanation** |
@@ -216,6 +222,7 @@ Let’s break down the reverse diffusion process step by step. This is the **gen
 - **Forward process**: Gradually adds noise to data via $q(x_t \mid x_{t-1})$
 - **Reverse process**: Gradually removes noise via $p_\theta(x_{t-1} \mid x_t)$, learned by a neural network
 
+![Reverse process: a neural network learns to iteratively denoise samples from $x_T$ back to $x_0$.](images/diffusion-reverse.png)
 
 **The Goal of the Reverse Process**
 
