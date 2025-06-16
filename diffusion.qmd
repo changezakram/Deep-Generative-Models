@@ -114,7 +114,7 @@ $$
 
 This means we can sample the whole chain by repeatedly applying the noise step.
 
-::: {.callout-note appearance="simple"}
+::: {.callout-note title="Why it’s still useful to model the full chain"}
 **Insight:** While the forward process defines a full Markov chain from $x_0$ to $x_T$, we’ll soon see that it’s also possible to sample any $x_t$ directly from $x_0$ using a closed-form Gaussian — without simulating each intermediate step.
 :::
 
