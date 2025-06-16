@@ -372,7 +372,7 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 <figcaption>Comparison of signal and noise schedules for linear and cosine noise schedules. Cosine adds noise more gradually early on, improving training and generation.</figcaption>
 </figure>
 </div>
-<p>By chaining these steps together, we define a forward Markov process from <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>.</p>
+<p>By chaining these noise steps over time, we define a forward Markov process that gradually transforms <span class="math inline">\(x_0\)</span> into pure noise <span class="math inline">\(x_T\)</span>.</p>
 </section>
 <section id="the-markov-chain" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">2.3</span> The Markov Chain</h3>
@@ -441,7 +441,7 @@ x_T \sim \mathcal{N}(0, I)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/diffusion-kernel.png" class="img-fluid figure-img"></p>
-<figcaption>Each step in the forward process applies a Gaussian kernel that gradually transforms <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>.</figcaption>
+<figcaption>Instead of simulating each step recursively, we can directly compute <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span> using the closed-form expression.</figcaption>
 </figure>
 </div>
 <p><em>Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.</em></p>

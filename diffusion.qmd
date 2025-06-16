@@ -108,7 +108,7 @@ Keeping $\beta_t$ small ensures that noise is added gradually. This allows the m
 
 ![Comparison of signal and noise schedules for linear and cosine noise schedules. Cosine adds noise more gradually early on, improving training and generation.](images/noise-schedule.png)
 
-By chaining these steps together, we define a forward Markov process from $x_0$ to $x_T$.
+By chaining these noise steps over time, we define a forward Markov process that gradually transforms $x_0$ into pure noise $x_T$.
 
 ### The Markov Chain
 
@@ -194,7 +194,7 @@ $$
 x_T \sim \mathcal{N}(0, I)
 $$
 
-![Each step in the forward process applies a Gaussian kernel that gradually transforms $x_0$ to $x_T$.](images/diffusion-kernel.png)
+![Instead of simulating each step recursively, we can directly compute $x_t$ from $x_0$ using the closed-form expression.](images/diffusion-kernel.png)
 
 *Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.*
 
