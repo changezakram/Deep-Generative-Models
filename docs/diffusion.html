@@ -355,6 +355,7 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 <p>Keeping <span class="math inline">\(\beta_t\)</span> small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of <span class="math inline">\(\beta_t\)</span> would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via <span class="math inline">\(\sqrt{\alpha_t}\)</span>) and noise growth (via <span class="math inline">\(\sqrt{1 - \alpha_t}\)</span>) to ensure a smooth, learnable transition.</p>
 </div>
 </div>
+<p>By chaining these steps together, we define a forward Markov process from <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>.</p>
 </section>
 <section id="the-markov-chain" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">2.3</span> The Markov Chain</h3>
