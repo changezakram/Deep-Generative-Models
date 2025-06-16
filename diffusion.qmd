@@ -43,7 +43,9 @@ Diffusion models have rapidly moved from research labs to real-world application
 ### Text-to-3D
 - **DreamFusion** (Google): Produces 3D scenes from text by combining diffusion with 3D rendering techniques.
 
-These use cases highlight why diffusion models are considered the most promising family of generative models today. The rest of this guide will unpack how they work, step by step.
+These use cases highlight why diffusion models are considered one of the most promising families of generative models today. The rest of this guide will unpack how they work, step by step.
+
+To understand how these systems operate, we’ll first explore the mathematical core of diffusion models.
 
 ---
 
@@ -818,7 +820,7 @@ This lets us rewrite the training objective in terms of the model’s ability to
 This lets us rewrite the training objective in terms of the model’s ability to predict the noise $\epsilon$ that was added during the forward process.
 
 
-### Practical Training Simplification (DDPM)
+### The core loss used in DDPM training
 
 When all forward and reverse steps in the diffusion process are modeled as Gaussians, the KL terms in the ELBO can be simplified significantly.
 
@@ -908,9 +910,14 @@ $$
 x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
 $$
 
-So if the model can **accurately predict** the noise $\epsilon$, it can plug it into this expression to estimate $x_0$.
+This is exactly why the DDPM training objective minimizes  
+$$
+\left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2
+$$  
+— because if we can predict the noise, we can recover the clean image $x_0$.
 
 This denoised estimate is also used during sampling to compute the mean of the reverse distribution $q(x_{t-1} \mid x_t, x_0)$ — which is key to reversing the diffusion process one step at a time.
+
 
 ### Architecture Note
 

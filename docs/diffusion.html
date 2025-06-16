@@ -290,7 +290,8 @@ window.Quarto = {
 <ul>
 <li><strong>DreamFusion</strong> (Google): Produces 3D scenes from text by combining diffusion with 3D rendering techniques.</li>
 </ul>
-<p>These use cases highlight why diffusion models are considered the most promising family of generative models today. The rest of this guide will unpack how they work, step by step.</p>
+<p>These use cases highlight why diffusion models are considered one of the most promising families of generative models today. The rest of this guide will unpack how they work, step by step.</p>
+<p>To understand how these systems operate, we’ll first explore the mathematical core of diffusion models.</p>
 <hr>
 </section>
 </section>
@@ -988,8 +989,8 @@ Bridging ELBO and the DDPM Training Loss
 </div>
 <p>This lets us rewrite the training objective in terms of the model’s ability to predict the noise <span class="math inline">\(\epsilon\)</span> that was added during the forward process.</p>
 </section>
-<section id="practical-training-simplification-ddpm" class="level3" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="practical-training-simplification-ddpm"><span class="header-section-number">5.5</span> Practical Training Simplification (DDPM)</h3>
+<section id="the-core-loss-used-in-ddpm-training" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="the-core-loss-used-in-ddpm-training"><span class="header-section-number">5.5</span> The core loss used in DDPM training</h3>
 <p>When all forward and reverse steps in the diffusion process are modeled as Gaussians, the KL terms in the ELBO can be simplified significantly.</p>
 <p>For example, the KL divergence between the true posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> and the model’s reverse process <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span> becomes:</p>
 <p><span class="math display">\[
@@ -1071,7 +1072,11 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 <p><span class="math display">\[
 x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon \right)
 \]</span></p>
-<p>So if the model can <strong>accurately predict</strong> the noise <span class="math inline">\(\epsilon\)</span>, it can plug it into this expression to estimate <span class="math inline">\(x_0\)</span>.</p>
+<p>This is exactly why the DDPM training objective minimizes<br>
+<span class="math display">\[
+\left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2
+\]</span><br>
+— because if we can predict the noise, we can recover the clean image <span class="math inline">\(x_0\)</span>.</p>
 <p>This denoised estimate is also used during sampling to compute the mean of the reverse distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is key to reversing the diffusion process one step at a time.</p>
 </section>
 </section>
