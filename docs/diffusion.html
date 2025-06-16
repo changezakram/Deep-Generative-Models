@@ -1167,8 +1167,9 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <li><strong>Adaptive Group Normalization</strong>: A normalization technique that conditions on timestep (and class label if available) to help the model adapt better at each denoising step.</li>
 </ul>
 <p>These tricks are often combined in modern diffusion models and form the backbone of high-quality sample generation pipelines like improved DDPMs and diffusion-based image generators (e.g., ADM, Imagen, and Stable Diffusion).</p>
-<section id="classifier-free-guidance" class="level4" data-number="7.3.1">
-<h4 data-number="7.3.1" class="anchored" data-anchor-id="classifier-free-guidance"><span class="header-section-number">7.3.1</span> Classifier-Free Guidance</h4>
+</section>
+<section id="classifier-free-guidance" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="classifier-free-guidance"><span class="header-section-number">7.4</span> Classifier-Free Guidance</h3>
 <p>Used by: <em>Stable Diffusion</em>, <em>Imagen</em>, <em>DALLE 2</em>, and more.</p>
 <ul>
 <li>Allows the model to <strong>control generation</strong> (e.g., with text prompts) without requiring a separate classifier.</li>
@@ -1180,8 +1181,8 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <p>Where: - <span class="math inline">\(w\)</span> is the guidance scale (typically 1–5). - <span class="math inline">\(y\)</span> is the conditioning input (e.g., a caption). - <span class="math inline">\(\epsilon_\theta(x_t, t, y)\)</span> is the predicted noise <strong>with</strong> conditioning. - <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is the predicted noise <strong>without</strong> conditioning.</p>
 <p>Higher <span class="math inline">\(w\)</span> increases adherence to the prompt — but can also reduce diversity or realism.</p>
 </section>
-<section id="improved-samplers-ddim-dpm-solver" class="level4" data-number="7.3.2">
-<h4 data-number="7.3.2" class="anchored" data-anchor-id="improved-samplers-ddim-dpm-solver"><span class="header-section-number">7.3.2</span> Improved Samplers (DDIM, DPM-Solver)</h4>
+<section id="improved-samplers-ddim-dpm-solver" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="improved-samplers-ddim-dpm-solver"><span class="header-section-number">7.5</span> Improved Samplers (DDIM, DPM-Solver)</h3>
 <p>The original DDPM sampling takes <strong>~1000 steps</strong>. These improved samplers accelerate generation dramatically.</p>
 <ul>
 <li><strong>DDIM (Denoising Diffusion Implicit Models):</strong>
@@ -1198,7 +1199,6 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <p>These methods let us trade off between <strong>speed</strong> and <strong>quality</strong>, enabling practical use in real-time applications.</p>
 
 
-</section>
 </section>
 </section>
 

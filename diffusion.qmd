@@ -1017,7 +1017,7 @@ In addition to schedule and variance tweaks, the architecture of the denoising n
 
 These tricks are often combined in modern diffusion models and form the backbone of high-quality sample generation pipelines like improved DDPMs and diffusion-based image generators (e.g., ADM, Imagen, and Stable Diffusion).
 
-#### Classifier-Free Guidance
+### Classifier-Free Guidance
 
 Used by: *Stable Diffusion*, *Imagen*, *DALLE 2*, and more.
 
@@ -1036,7 +1036,7 @@ Where:
 
 Higher $w$ increases adherence to the prompt — but can also reduce diversity or realism.
 
-#### Improved Samplers (DDIM, DPM-Solver)
+### Improved Samplers (DDIM, DPM-Solver)
 
 The original DDPM sampling takes **~1000 steps**. These improved samplers accelerate generation dramatically.
 
