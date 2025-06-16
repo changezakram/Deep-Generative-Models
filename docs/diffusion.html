@@ -352,6 +352,7 @@ q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \al
 <figcaption>Forward diffusion process: gradually adds Gaussian noise to the input image across <span class="math inline">\(T\)</span> steps.</figcaption>
 </figure>
 </div>
+<p><em>Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.</em></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Why keep $\beta_t$ small?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -443,6 +444,7 @@ x_T \sim \mathcal{N}(0, I)
 <figcaption>Each step in the forward process applies a Gaussian kernel that gradually transforms <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>.</figcaption>
 </figure>
 </div>
+<p><em>Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.</em></p>
 </section>
 <section id="recap-forward-diffusion-steps" class="level3" data-number="2.6">
 <h3 data-number="2.6" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">2.6</span> Recap: Forward Diffusion Steps</h3>
@@ -512,6 +514,7 @@ x_T \sim \mathcal{N}(0, I)
 <figcaption>Reverse process: a neural network learns to iteratively denoise samples from <span class="math inline">\(x_T\)</span> back to <span class="math inline">\(x_0\)</span>.</figcaption>
 </figure>
 </div>
+<p><em>Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.</em></p>
 <p><strong>The Goal of the Reverse Process</strong></p>
 <p><strong>Objective</strong>: Given a noisy sample <span class="math inline">\(x_t\)</span>, we want to estimate the conditional distribution <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span>. However, this is <strong>intractable</strong> because it would require knowing the true data distribution.</p>
 <p>Instead, we train a neural network to approximate it: <span class="math display">\[
