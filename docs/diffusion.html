@@ -190,12 +190,11 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#real-world-applications-of-diffusion-models" id="toc-real-world-applications-of-diffusion-models" class="nav-link" data-scroll-target="#real-world-applications-of-diffusion-models"><span class="header-section-number">2</span> Real-World Applications of Diffusion Models</a></li>
-  <li><a href="#forward-diffusion-process" id="toc-forward-diffusion-process" class="nav-link" data-scroll-target="#forward-diffusion-process"><span class="header-section-number">3</span> Forward Diffusion Process</a></li>
-  <li><a href="#reverse-diffusion-process" id="toc-reverse-diffusion-process" class="nav-link" data-scroll-target="#reverse-diffusion-process"><span class="header-section-number">4</span> Reverse Diffusion Process</a></li>
-  <li><a href="#training-understanding-the-elbo" id="toc-training-understanding-the-elbo" class="nav-link" data-scroll-target="#training-understanding-the-elbo"><span class="header-section-number">5</span> Training: Understanding the ELBO</a></li>
-  <li><a href="#training-and-sampling-algorithms-ddpm" id="toc-training-and-sampling-algorithms-ddpm" class="nav-link" data-scroll-target="#training-and-sampling-algorithms-ddpm"><span class="header-section-number">6</span> Training and Sampling Algorithms (DDPM)</a></li>
-  <li><a href="#tricks-for-improving-generation" id="toc-tricks-for-improving-generation" class="nav-link" data-scroll-target="#tricks-for-improving-generation"><span class="header-section-number">7</span> Tricks for Improving Generation</a></li>
+  <li><a href="#forward-diffusion-process" id="toc-forward-diffusion-process" class="nav-link" data-scroll-target="#forward-diffusion-process"><span class="header-section-number">2</span> Forward Diffusion Process</a></li>
+  <li><a href="#reverse-diffusion-process" id="toc-reverse-diffusion-process" class="nav-link" data-scroll-target="#reverse-diffusion-process"><span class="header-section-number">3</span> Reverse Diffusion Process</a></li>
+  <li><a href="#training-understanding-the-elbo" id="toc-training-understanding-the-elbo" class="nav-link" data-scroll-target="#training-understanding-the-elbo"><span class="header-section-number">4</span> Training: Understanding the ELBO</a></li>
+  <li><a href="#training-and-sampling-algorithms-ddpm" id="toc-training-and-sampling-algorithms-ddpm" class="nav-link" data-scroll-target="#training-and-sampling-algorithms-ddpm"><span class="header-section-number">5</span> Training and Sampling Algorithms (DDPM)</a></li>
+  <li><a href="#tricks-for-improving-generation" id="toc-tricks-for-improving-generation" class="nav-link" data-scroll-target="#tricks-for-improving-generation"><span class="header-section-number">6</span> Tricks for Improving Generation</a></li>
   </ul>
 </nav>
     </div>
@@ -272,28 +271,27 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
-</section>
-<section id="real-world-applications-of-diffusion-models" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="real-world-applications-of-diffusion-models"><span class="header-section-number">2</span> Real-World Applications of Diffusion Models</h2>
+<section id="real-world-applications-of-diffusion-models" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="real-world-applications-of-diffusion-models"><span class="header-section-number">1.2</span> Real-World Applications of Diffusion Models</h3>
 <p>Diffusion models have rapidly moved from research labs to real-world applications. Today, they power many state-of-the-art generative tools:</p>
-<section id="text-to-image" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="text-to-image"><span class="header-section-number">2.1</span> Text-to-Image</h3>
+</section>
+<section id="text-to-image" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="text-to-image"><span class="header-section-number">1.3</span> Text-to-Image</h3>
 <ul>
 <li><strong>DALL·E 2</strong> (OpenAI): Generates realistic images from text prompts.</li>
 <li><strong>Imagen</strong> (Google): Leverages powerful language encoders for high-fidelity image synthesis.</li>
 </ul>
 </section>
-<section id="text-to-video" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="text-to-video"><span class="header-section-number">2.2</span> Text-to-Video</h3>
+<section id="text-to-video" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="text-to-video"><span class="header-section-number">1.4</span> Text-to-Video</h3>
 <ul>
 <li><strong>Make-A-Video</strong> (Meta): Extends image models to video generation using textual input.</li>
 <li><strong>Imagen Video</strong> (Google): Builds on Imagen to generate coherent video sequences.</li>
 </ul>
 </section>
-<section id="text-to-3d" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="text-to-3d"><span class="header-section-number">2.3</span> Text-to-3D</h3>
+<section id="text-to-3d" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="text-to-3d"><span class="header-section-number">1.5</span> Text-to-3D</h3>
 <ul>
 <li><strong>DreamFusion</strong> (Google): Produces 3D scenes from text by combining diffusion with 3D rendering techniques.</li>
 </ul>
@@ -302,16 +300,16 @@ window.Quarto = {
 <hr>
 </section>
 </section>
-<section id="forward-diffusion-process" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="forward-diffusion-process"><span class="header-section-number">3</span> Forward Diffusion Process</h2>
+<section id="forward-diffusion-process" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="forward-diffusion-process"><span class="header-section-number">2</span> Forward Diffusion Process</h2>
 <p>The forward diffusion process gradually turns a data sample (such as an image) into pure noise by adding a little bit of random noise at each step. This process is a Markov chain, meaning each step depends only on the previous one.</p>
-<section id="start-with-a-data-sample" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="start-with-a-data-sample"><span class="header-section-number">3.1</span> Start with a Data Sample</h3>
+<section id="start-with-a-data-sample" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="start-with-a-data-sample"><span class="header-section-number">2.1</span> Start with a Data Sample</h3>
 <p>Begin with a data point <span class="math inline">\(x_0\)</span>, sampled from dataset (such as a real image). The goal is to slowly corrupt <span class="math inline">\(x_0\)</span> by adding noise over many steps, until it becomes indistinguishable from random Gaussian noise.<br>
 We’ll later see that it’s also possible to sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span>, without simulating every step.</p>
 </section>
-<section id="add-noise-recursively" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="add-noise-recursively"><span class="header-section-number">3.2</span> Add Noise Recursively</h3>
+<section id="add-noise-recursively" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="add-noise-recursively"><span class="header-section-number">2.2</span> Add Noise Recursively</h3>
 <p>At each time step <span class="math inline">\(t\)</span>, the process is defined as: <span class="math display">\[
 q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I\right)
 \]</span></p>
@@ -335,8 +333,8 @@ q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha
 Keeping <span class="math inline">\(\beta_t\)</span> small ensures that noise is added gradually. This allows the model to retain structure across steps and converge slowly to pure noise. Large values of <span class="math inline">\(\beta_t\)</span> would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via <span class="math inline">\(\sqrt{\alpha_t}\)</span>) and noise growth (via <span class="math inline">\(\sqrt{1 - \alpha_t}\)</span>) to ensure a smooth, learnable transition.</p>
 </blockquote>
 </section>
-<section id="the-markov-chain" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">3.3</span> The Markov Chain</h3>
+<section id="the-markov-chain" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">2.3</span> The Markov Chain</h3>
 <p>The full sequence is:</p>
 <p><span class="math display">\[
 x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
@@ -357,8 +355,8 @@ q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
 </div>
 </div>
 </section>
-<section id="deriving-the-marginal-distribution-qx_t-mid-x_0" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="deriving-the-marginal-distribution-qx_t-mid-x_0"><span class="header-section-number">3.4</span> Deriving the Marginal Distribution <span class="math inline">\(q(x_t \mid x_0)\)</span></h3>
+<section id="deriving-the-marginal-distribution-qx_t-mid-x_0" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="deriving-the-marginal-distribution-qx_t-mid-x_0"><span class="header-section-number">2.4</span> Deriving the Marginal Distribution <span class="math inline">\(q(x_t \mid x_0)\)</span></h3>
 <p> How do we get the formula that lets us sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> (without simulating all the intermediate steps)?</p>
 <p></p>
 <p>Let’s see how <span class="math inline">\(x_t\)</span> is built up from <span class="math inline">\(x_0\)</span>:</p>
@@ -383,8 +381,8 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sum_{i=1}^t \left( \sqrt{ \left( \prod_{j=i+1
 <p>This can be proved by induction or by telescoping the sum.</p>
 <p>All the little bits of noise added at each step combine into one big Gaussian noise term, with variance <span class="math inline">\(1 - \bar{\alpha}_t\)</span>.</p>
 </section>
-<section id="the-final-marginal-distribution" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="the-final-marginal-distribution"><span class="header-section-number">3.5</span> The Final Marginal Distribution</h3>
+<section id="the-final-marginal-distribution" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="the-final-marginal-distribution"><span class="header-section-number">2.5</span> The Final Marginal Distribution</h3>
 <p>So, we can sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using: <span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)
 \]</span></p>
@@ -397,8 +395,8 @@ q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\al
 x_T \sim \mathcal{N}(0, I)
 \]</span></p>
 </section>
-<section id="recap-forward-diffusion-steps" class="level3" data-number="3.6">
-<h3 data-number="3.6" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">3.6</span> Recap: Forward Diffusion Steps</h3>
+<section id="recap-forward-diffusion-steps" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">2.6</span> Recap: Forward Diffusion Steps</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -441,8 +439,8 @@ x_T \sim \mathcal{N}(0, I)
 </tbody>
 </table>
 </section>
-<section id="key-takeaways" class="level3" data-number="3.7">
-<h3 data-number="3.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3.7</span> Key Takeaways</h3>
+<section id="key-takeaways" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.7</span> Key Takeaways</h3>
 <ul>
 <li>The forward diffusion process is just repeatedly adding noise to your data.</li>
 <li>Thanks to properties of Gaussian noise, you can describe the result as the original data scaled down plus one cumulative chunk of Gaussian noise.<br>
@@ -452,8 +450,8 @@ x_T \sim \mathcal{N}(0, I)
 <hr>
 </section>
 </section>
-<section id="reverse-diffusion-process" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="reverse-diffusion-process"><span class="header-section-number">4</span> Reverse Diffusion Process</h2>
+<section id="reverse-diffusion-process" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="reverse-diffusion-process"><span class="header-section-number">3</span> Reverse Diffusion Process</h2>
 <p>Let’s break down the reverse diffusion process step by step. This is the <strong>generative phase</strong> of diffusion models, where we learn to turn pure noise back into data. For clarity, we’ll use the same notation as in the forward process:</p>
 <ul>
 <li><strong>Forward process</strong>: Gradually adds noise to data via <span class="math inline">\(q(x_t \mid x_{t-1})\)</span></li>
@@ -493,8 +491,8 @@ Glossary of Symbols
 </ul>
 </div>
 </div>
-<section id="deriving-qx_t-1-mid-x_t-x_0-using-bayes-rule" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="deriving-qx_t-1-mid-x_t-x_0-using-bayes-rule"><span class="header-section-number">4.1</span> Deriving <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> Using Bayes’ Rule</h3>
+<section id="deriving-qx_t-1-mid-x_t-x_0-using-bayes-rule" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="deriving-qx_t-1-mid-x_t-x_0-using-bayes-rule"><span class="header-section-number">3.1</span> Deriving <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> Using Bayes’ Rule</h3>
 <p>We can’t directly evaluate <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span>, but we can derive the <strong>posterior</strong> <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> using Bayes’ rule:</p>
 <p><span class="math display">\[
 q(x_{t-1} \mid x_t, x_0) = \frac{q(x_t \mid x_{t-1}, x_0) \cdot q(x_{t-1} \mid x_0)}{q(x_t \mid x_0)}
@@ -572,8 +570,8 @@ We’ll derive this explicitly by completing the square in the exponent.</p>
 <p>We now complete the square to put the expression into standard Gaussian form.</p>
 <hr>
 </section>
-<section id="complete-the-square" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">4.2</span> Complete the square</h3>
+<section id="complete-the-square" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">3.2</span> Complete the square</h3>
 <p>To express the exponent in Gaussian form, we’ll complete the square using the identity:<br>
 <span class="math display">\[
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
@@ -684,8 +682,8 @@ q(x_{t-1} \mid x_t, x_0) \propto \exp\left(
 q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1};\, \tilde{\mu}_t,\, \tilde{\beta}_t I)
 \]</span></p>
 </section>
-<section id="parameterizing-the-reverse-process" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">4.3</span> Parameterizing the Reverse Process</h3>
+<section id="parameterizing-the-reverse-process" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="parameterizing-the-reverse-process"><span class="header-section-number">3.3</span> Parameterizing the Reverse Process</h3>
 <p>During training, we can compute the posterior exactly because <span class="math inline">\(x_0\)</span> is known. But at sampling time, we don’t have access to <span class="math inline">\(x_0\)</span>, so we must express everything in terms of the current noisy sample <span class="math inline">\(x_t\)</span> and the model’s prediction of noise <span class="math inline">\(\epsilon\)</span>.</p>
 <p>We start from the forward noising equation:</p>
 <p><span class="math display">\[
@@ -717,8 +715,8 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 <li>At test time, we use the model’s prediction <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> in its place</li>
 </ul>
 </section>
-<section id="recap-reverse-diffusion-steps" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="recap-reverse-diffusion-steps"><span class="header-section-number">4.4</span> Recap: Reverse Diffusion Steps</h3>
+<section id="recap-reverse-diffusion-steps" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="recap-reverse-diffusion-steps"><span class="header-section-number">3.4</span> Recap: Reverse Diffusion Steps</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -758,15 +756,15 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 <hr>
 </section>
 </section>
-<section id="training-understanding-the-elbo" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="training-understanding-the-elbo"><span class="header-section-number">5</span> Training: Understanding the ELBO</h2>
+<section id="training-understanding-the-elbo" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="training-understanding-the-elbo"><span class="header-section-number">4</span> Training: Understanding the ELBO</h2>
 <p><strong>What is the Goal?</strong> The ultimate goal in diffusion models is to train the neural network so that it can reverse the noising process. In other words, we want the network to learn how to turn random noise back into realistic data (like images). But how do we actually train the network? We need a loss function—a way to measure how good or bad the network’s predictions are, so we can improve it.</p>
-<section id="what-is-the-elbo" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="what-is-the-elbo"><span class="header-section-number">5.1</span> What is the ELBO?</h3>
+<section id="what-is-the-elbo" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="what-is-the-elbo"><span class="header-section-number">4.1</span> What is the ELBO?</h3>
 <p>The ELBO is a <strong>lower bound</strong> on the log-likelihood of the data. Maximizing the ELBO is equivalent to maximizing the likelihood that the model can generate the training data. For diffusion models, the ELBO ensures that the reverse process (denoising) aligns with the forward process (noising).</p>
 </section>
-<section id="deriving-the-elbo-for-diffusion-models" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="deriving-the-elbo-for-diffusion-models"><span class="header-section-number">5.2</span> Deriving the ELBO for Diffusion Models</h3>
+<section id="deriving-the-elbo-for-diffusion-models" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="deriving-the-elbo-for-diffusion-models"><span class="header-section-number">4.2</span> Deriving the ELBO for Diffusion Models</h3>
 <p><strong>Goal:</strong><br>
 We want to maximize the log-likelihood of the data:</p>
 <p><span class="math display">\[
@@ -778,8 +776,8 @@ Computing <span class="math inline">\(\log p_\theta(x_0)\)</span> directly is <s
 <p><strong>Solution:</strong><br>
 Use <strong>Jensen’s Inequality</strong> to derive a lower bound (the ELBO) that we can optimize instead.</p>
 </section>
-<section id="full-derivation-step-by-step" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="full-derivation-step-by-step"><span class="header-section-number">5.3</span> Full Derivation (Step-by-Step)</h3>
+<section id="full-derivation-step-by-step" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="full-derivation-step-by-step"><span class="header-section-number">4.3</span> Full Derivation (Step-by-Step)</h3>
 <p><strong>Step 1: Start with the log-likelihood</strong></p>
 <p><span class="math display">\[
 \log p_\theta(x_0) = \log \int p_\theta(x_{0:T}) \, dx_{1:T}
@@ -966,8 +964,8 @@ D_{\text{KL}}(q(x) \,\|\, p(x)) = \mathbb{E}_{q(x)} \left[ \log \frac{q(x)}{p(x)
 \underbrace{- \mathbb{E}_q \left[ \log p_\theta(x_0 \mid x_1) \right]}_{\mathcal{L}_0}
 \]</span></p>
 </section>
-<section id="interpreting-each-term-in-the-elbo" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="interpreting-each-term-in-the-elbo"><span class="header-section-number">5.4</span> Interpreting Each Term in the ELBO</h3>
+<section id="interpreting-each-term-in-the-elbo" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="interpreting-each-term-in-the-elbo"><span class="header-section-number">4.4</span> Interpreting Each Term in the ELBO</h3>
 <p><strong>Reconstruction Loss (<span class="math inline">\(\mathcal{L}_0\)</span>)</strong><br>
 - Encourages the model to reconstruct <span class="math inline">\(x_0\)</span> from the first noisy sample <span class="math inline">\(x_1\)</span><br>
 - Comes from the log-probability term <span class="math inline">\(\log p_\theta(x_0 \mid x_1)\)</span><br>
@@ -996,8 +994,8 @@ Bridging ELBO and the DDPM Training Loss
 </div>
 <p>This lets us rewrite the training objective in terms of the model’s ability to predict the noise <span class="math inline">\(\epsilon\)</span> that was added during the forward process.</p>
 </section>
-<section id="the-core-loss-used-in-ddpm-training" class="level3" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="the-core-loss-used-in-ddpm-training"><span class="header-section-number">5.5</span> The core loss used in DDPM training</h3>
+<section id="the-core-loss-used-in-ddpm-training" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="the-core-loss-used-in-ddpm-training"><span class="header-section-number">4.5</span> The core loss used in DDPM training</h3>
 <p>When all forward and reverse steps in the diffusion process are modeled as Gaussians, the KL terms in the ELBO can be simplified significantly.</p>
 <p>For example, the KL divergence between the true posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> and the model’s reverse process <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span> becomes:</p>
 <p><span class="math display">\[
@@ -1056,11 +1054,11 @@ How the ELBO Helps Us Understand the MSE Loss
 </div>
 </div>
 </section>
-<section id="the-noise-prediction-network" class="level3" data-number="5.6">
-<h3 data-number="5.6" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">5.6</span> The Noise Prediction Network</h3>
+<section id="the-noise-prediction-network" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="the-noise-prediction-network"><span class="header-section-number">4.6</span> The Noise Prediction Network</h3>
 <p>Now that we’ve arrived at the simplified training loss used in DDPM, let’s understand what the model is actually learning.</p>
-<section id="what-the-network-learns" class="level4" data-number="5.6.1">
-<h4 data-number="5.6.1" class="anchored" data-anchor-id="what-the-network-learns"><span class="header-section-number">5.6.1</span> What the Network Learns</h4>
+<section id="what-the-network-learns" class="level4" data-number="4.6.1">
+<h4 data-number="4.6.1" class="anchored" data-anchor-id="what-the-network-learns"><span class="header-section-number">4.6.1</span> What the Network Learns</h4>
 <ul>
 <li>During training, we <strong>know the true noise</strong> <span class="math inline">\(\epsilon\)</span> used to generate the noisy sample <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span><br>
 </li>
@@ -1069,8 +1067,8 @@ How the ELBO Helps Us Understand the MSE Loss
 <li>Once trained, the model can use this prediction to “undo” the noise and reconstruct <span class="math inline">\(x_0\)</span> at test time</li>
 </ul>
 </section>
-<section id="why-predicting-noise-works" class="level4" data-number="5.6.2">
-<h4 data-number="5.6.2" class="anchored" data-anchor-id="why-predicting-noise-works"><span class="header-section-number">5.6.2</span> Why Predicting Noise Works</h4>
+<section id="why-predicting-noise-works" class="level4" data-number="4.6.2">
+<h4 data-number="4.6.2" class="anchored" data-anchor-id="why-predicting-noise-works"><span class="header-section-number">4.6.2</span> Why Predicting Noise Works</h4>
 <p>Recall the forward process:</p>
 <p><span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
@@ -1087,14 +1085,14 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 <p>This denoised estimate is also used during sampling to compute the mean of the reverse distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is key to reversing the diffusion process one step at a time.</p>
 </section>
 </section>
-<section id="architecture-note" class="level3" data-number="5.7">
-<h3 data-number="5.7" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">5.7</span> Architecture Note</h3>
+<section id="architecture-note" class="level3" data-number="4.7">
+<h3 data-number="4.7" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.7</span> Architecture Note</h3>
 <p>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is typically implemented as a <strong>U-Net</strong>, which takes: - A noisy image <span class="math inline">\(x_t\)</span> - A timestep <span class="math inline">\(t\)</span> (encoded using sinusoidal or learned embeddings)</p>
 <p>It outputs the predicted noise <span class="math inline">\(\epsilon\)</span>.</p>
 <hr>
 </section>
-<section id="takeaways" class="level3" data-number="5.8">
-<h3 data-number="5.8" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">5.8</span> Takeaways</h3>
+<section id="takeaways" class="level3" data-number="4.8">
+<h3 data-number="4.8" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.8</span> Takeaways</h3>
 <ul>
 <li>The ELBO provides a tractable lower bound on the data likelihood <span class="math inline">\(\log p_\theta(x_0)\)</span>, and serves as the theoretical training objective.</li>
 <li>It decomposes into loss terms that align the learned reverse process with the fixed forward noising process, step by step.</li>
@@ -1103,10 +1101,10 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 <hr>
 </section>
 </section>
-<section id="training-and-sampling-algorithms-ddpm" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="training-and-sampling-algorithms-ddpm"><span class="header-section-number">6</span> Training and Sampling Algorithms (DDPM)</h2>
-<section id="algorithm-training-ddpm" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="algorithm-training-ddpm"><span class="header-section-number">6.1</span> Algorithm: Training (DDPM)</h3>
+<section id="training-and-sampling-algorithms-ddpm" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="training-and-sampling-algorithms-ddpm"><span class="header-section-number">5</span> Training and Sampling Algorithms (DDPM)</h2>
+<section id="algorithm-training-ddpm" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="algorithm-training-ddpm"><span class="header-section-number">5.1</span> Algorithm: Training (DDPM)</h3>
 <p><strong>Steps:</strong> - Sample a data point: <span class="math inline">\(x_0 \sim q(x_0)\)</span><br>
 - Choose a timestep: <span class="math inline">\(t \sim \text{Uniform}(\{1, \dots, T\})\)</span><br>
 - Sample noise: <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span><br>
@@ -1122,8 +1120,8 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 - Optimize using mean squared error between predicted and true noise</p>
 <hr>
 </section>
-<section id="algorithm-sampling-ddpm" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="algorithm-sampling-ddpm"><span class="header-section-number">6.2</span> Algorithm: Sampling (DDPM)</h3>
+<section id="algorithm-sampling-ddpm" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="algorithm-sampling-ddpm"><span class="header-section-number">5.2</span> Algorithm: Sampling (DDPM)</h3>
 <p><strong>Steps:</strong> - Start with noise: <span class="math inline">\(x_T \sim \mathcal{N}(0, I)\)</span><br>
 - For <span class="math inline">\(t = T, \dots, 1\)</span>:<br>
   - <span class="math inline">\(z \sim \mathcal{N}(0, I)\)</span> if <span class="math inline">\(t &gt; 1\)</span>, else <span class="math inline">\(z = 0\)</span><br>
@@ -1140,11 +1138,11 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \
 - Continue until you obtain a clean sample <span class="math inline">\(x_0\)</span></p>
 </section>
 </section>
-<section id="tricks-for-improving-generation" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="tricks-for-improving-generation"><span class="header-section-number">7</span> Tricks for Improving Generation</h2>
+<section id="tricks-for-improving-generation" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="tricks-for-improving-generation"><span class="header-section-number">6</span> Tricks for Improving Generation</h2>
 <p>While the original DDPM formulation already achieves impressive results, several refinements have been proposed to improve sample quality and likelihood estimates. Below are three effective categories of improvements.</p>
-<section id="better-noise-schedules" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="better-noise-schedules"><span class="header-section-number">7.1</span> Better Noise Schedules</h3>
+<section id="better-noise-schedules" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="better-noise-schedules"><span class="header-section-number">6.1</span> Better Noise Schedules</h3>
 <p>In DDPM, the noise schedule defines how much noise is added at each timestep during the forward process. A common default is a <strong>linear schedule</strong>, but this can overly distort early inputs:</p>
 <ul>
 <li>A <strong>linear noise schedule</strong> adds noise too aggressively in early steps, quickly erasing structure from <span class="math inline">\(x_0\)</span>.</li>
@@ -1154,8 +1152,8 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \
 <p><strong>Key Insight</strong>: A cosine schedule preserves structure for longer, giving the reverse process a better chance at learning to denoise effectively — even though the choice of cosine was somewhat arbitrary, it empirically works better.</p>
 </blockquote>
 </section>
-<section id="learning-the-variance-covariance-matrix" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="learning-the-variance-covariance-matrix"><span class="header-section-number">7.2</span> Learning the Variance (Covariance Matrix)</h3>
+<section id="learning-the-variance-covariance-matrix" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="learning-the-variance-covariance-matrix"><span class="header-section-number">6.2</span> Learning the Variance (Covariance Matrix)</h3>
 <p>In the basic DDPM, the reverse process uses a <strong>fixed variance</strong> (i.e., isotropic Gaussian). However, variance also influences generation:</p>
 <ul>
 <li><p>DDPM authors initially used fixed values:<br>
@@ -1169,8 +1167,8 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <p><strong>Why it helps</strong>: While the <strong>mean</strong> dominates sample quality, a better variance estimate improves <strong>likelihood estimation</strong> without hurting visual fidelity.</p>
 </blockquote>
 </section>
-<section id="architectural-enhancements" class="level3" data-number="7.3">
-<h3 data-number="7.3" class="anchored" data-anchor-id="architectural-enhancements"><span class="header-section-number">7.3</span> Architectural Enhancements</h3>
+<section id="architectural-enhancements" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="architectural-enhancements"><span class="header-section-number">6.3</span> Architectural Enhancements</h3>
 <p>In addition to schedule and variance tweaks, the architecture of the denoising network matters:</p>
 <ul>
 <li><strong>Depth vs.&nbsp;Width</strong>: Wider U-Nets improve sample quality more efficiently than deeper ones.</li>
@@ -1180,8 +1178,8 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 </ul>
 <p>These tricks are often combined in modern diffusion models and form the backbone of high-quality sample generation pipelines like improved DDPMs and diffusion-based image generators (e.g., ADM, Imagen, and Stable Diffusion).</p>
 </section>
-<section id="classifier-free-guidance" class="level3" data-number="7.4">
-<h3 data-number="7.4" class="anchored" data-anchor-id="classifier-free-guidance"><span class="header-section-number">7.4</span> Classifier-Free Guidance</h3>
+<section id="classifier-free-guidance" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="classifier-free-guidance"><span class="header-section-number">6.4</span> Classifier-Free Guidance</h3>
 <p>Used by: <em>Stable Diffusion</em>, <em>Imagen</em>, <em>DALLE 2</em>, and more.</p>
 <ul>
 <li>Allows the model to <strong>control generation</strong> (e.g., with text prompts) without requiring a separate classifier.</li>
@@ -1193,8 +1191,8 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <p>Where: - <span class="math inline">\(w\)</span> is the guidance scale (typically 1–5). - <span class="math inline">\(y\)</span> is the conditioning input (e.g., a caption). - <span class="math inline">\(\epsilon_\theta(x_t, t, y)\)</span> is the predicted noise <strong>with</strong> conditioning. - <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is the predicted noise <strong>without</strong> conditioning.</p>
 <p>Higher <span class="math inline">\(w\)</span> increases adherence to the prompt — but can also reduce diversity or realism.</p>
 </section>
-<section id="improved-samplers-ddim-dpm-solver" class="level3" data-number="7.5">
-<h3 data-number="7.5" class="anchored" data-anchor-id="improved-samplers-ddim-dpm-solver"><span class="header-section-number">7.5</span> Improved Samplers (DDIM, DPM-Solver)</h3>
+<section id="improved-samplers-ddim-dpm-solver" class="level3" data-number="6.5">
+<h3 data-number="6.5" class="anchored" data-anchor-id="improved-samplers-ddim-dpm-solver"><span class="header-section-number">6.5</span> Improved Samplers (DDIM, DPM-Solver)</h3>
 <p>The original DDPM sampling takes <strong>~1000 steps</strong>. These improved samplers accelerate generation dramatically.</p>
 <ul>
 <li><strong>DDIM (Denoising Diffusion Implicit Models):</strong>

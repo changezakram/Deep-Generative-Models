@@ -17,7 +17,6 @@ This approach has enabled state-of-the-art results in image generation, powering
 This combination of **theoretical simplicity**, **training robustness**, and **high-quality outputs** has made diffusion models one of the most effective generative modeling techniques in use today.
 
 
-
 ### Connection to VAEs
 
 Diffusion models may seem very different from VAEs at first glance, but they share a surprising number of structural similarities. Both involve a forward process that adds noise and a reverse process that reconstructs data. And both optimize a form of the ELBO — though with very different interpretations.
@@ -32,9 +31,7 @@ The table below highlights key conceptual parallels:
 | Training objective    | Maximize ELBO over $z$                                      | Maximize ELBO via simplified KL terms and noise prediction      |
 
 
----
-
-## Real-World Applications of Diffusion Models
+### Real-World Applications of Diffusion Models
 
 Diffusion models have rapidly moved from research labs to real-world applications. Today, they power many state-of-the-art generative tools:
 
