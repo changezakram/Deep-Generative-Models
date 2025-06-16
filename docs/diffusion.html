@@ -520,7 +520,7 @@ x_T \sim \mathcal{N}(0, I)
 <p>Instead, we train a neural network to approximate it: <span class="math display">\[
 p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
 \]</span></p>
-<p>Here, <span class="math inline">\(\mu_\theta(x_t, t)\)</span> is the predicted mean and <span class="math inline">\(\Sigma_\theta(x_t, t)\)</span> is the predicted covariance (often diagonal) of the reverse Gaussian distribution.</p>
+<p>Here, <span class="math inline">\(\mu_\theta(x_t, t)\)</span> is the predicted mean and <span class="math inline">\(\Sigma_\theta(x_t, t)\)</span> is the predicted covariance (often diagonal) of the reverse Gaussian distribution. In many implementations, the variance <span class="math inline">\(\Sigma_\theta(x_t, t)\)</span> is either fixed or parameterized separately, so the model focuses on learning the mean <span class="math inline">\(\mu_\theta(x_t, t)\)</span> during training.</p>
 <p>In practice, many diffusion models do not directly predict <span class="math inline">\(\mu_\theta\)</span> or <span class="math inline">\(x_0\)</span>, but instead predict the noise <span class="math inline">\(\epsilon\)</span> added in the forward process. This makes the objective simpler and more effective, as we’ll see in the next section.</p>
 <p><strong>Key Insight from the Forward Process</strong></p>
 <p>If the noise added in the forward process is small (i.e., <span class="math inline">\(\beta_t \ll 1\)</span>), then the reverse conditional <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span> is also Gaussian: <span class="math display">\[
@@ -630,8 +630,8 @@ We’ll derive this explicitly by completing the square in the exponent.</p>
 </section>
 <section id="complete-the-square" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">3.2</span> Complete the square</h3>
-<p>To express the exponent in Gaussian form, we’ll complete the square using the identity:<br>
-<span class="math display">\[
+<p>We complete the square by rewriting the quadratic expression in a way that matches the standard form of a Gaussian. This lets us rewrite the posterior <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> in standard Gaussian form by identifying its mean and variance.</p>
+<p><span class="math display">\[
 a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 \]</span></p>
 <p>From earlier, we arrived at this expression for the exponent of the posterior:<br>
