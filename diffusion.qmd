@@ -70,23 +70,31 @@ We’ll later see that it’s also possible to sample $x_t$ directly from $x_0$,
 
 ### Add Noise Recursively
 
-At each time step $t$, the process is defined as:
+To model the forward noising process, we define a noise schedule $\{\beta_1, \dots, \beta_T\}$, where each $\beta_t \in (0, 1)$ controls how much Gaussian noise is added at step $t$.
+
+To simplify notation, we define:
 $$
-q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I\right)
+\alpha_t = 1 - \beta_t, \quad \bar{\alpha}_t = \prod_{i=1}^t \alpha_i
+$$
+
+Here, $\alpha_t$ represents the amount of signal preserved at each step, and $\bar{\alpha}_t$ gives the cumulative signal retention over $t$ steps.
+
+Then, at each time step $t$, the forward process is defined as:
+$$
+q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I \right)
 $$
 
 Where:
+- $\alpha_t = 1 - \beta_t$, with $\beta_t$ being a small positive number controlling the noise level.
+- $I$ is the identity matrix, so noise is added independently to each pixel or component.
 
-- $\alpha_t = 1 - \beta_t$, where $\beta_t$ a small positive number controlling the noise level at step $t$, while $\alpha_t$ emphasizes the **amount of original signal retained**.
-- $I$ is the identity matrix, so noise is added independently to each component.
+> **Intuition:** At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.
 
+::: {.callout-note title="Why keep $\beta_t$ small?"}
+Keeping $\beta_t$ small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of $\beta_t$ would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data.
 
-::: {.callout-note appearance="simple"}
-**Intuition:** At each step, we shrink the signal and add new Gaussian noise. Over many steps, the image becomes blurrier and more like random noise.
+The design of the forward process balances signal decay (via $\sqrt{\alpha_t}$) and noise growth (via $\sqrt{1 - \alpha_t}$) to ensure a smooth, learnable transition.
 :::
-
-> **Why keep $\beta_t$ small?**  
-> Keeping $\beta_t$ small ensures that noise is added gradually. This allows the model to retain structure across steps and converge slowly to pure noise. Large values of $\beta_t$ would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via $\sqrt{\alpha_t}$) and noise growth (via $\sqrt{1 - \alpha_t}$) to ensure a smooth, learnable transition.
 
 
 ### The Markov Chain

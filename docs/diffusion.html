@@ -323,28 +323,32 @@ We’ll later see that it’s also possible to sample <span class="math inline">
 </section>
 <section id="add-noise-recursively" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="add-noise-recursively"><span class="header-section-number">2.2</span> Add Noise Recursively</h3>
-<p>At each time step <span class="math inline">\(t\)</span>, the process is defined as: <span class="math display">\[
-q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I\right)
+<p>To model the forward noising process, we define a noise schedule <span class="math inline">\(\{\beta_1, \dots, \beta_T\}\)</span>, where each <span class="math inline">\(\beta_t \in (0, 1)\)</span> controls how much Gaussian noise is added at step <span class="math inline">\(t\)</span>.</p>
+<p>To simplify notation, we define: <span class="math display">\[
+\alpha_t = 1 - \beta_t, \quad \bar{\alpha}_t = \prod_{i=1}^t \alpha_i
 \]</span></p>
-<p>Where:</p>
-<ul>
-<li><span class="math inline">\(\alpha_t = 1 - \beta_t\)</span>, where <span class="math inline">\(\beta_t\)</span> a small positive number controlling the noise level at step <span class="math inline">\(t\)</span>, while <span class="math inline">\(\alpha_t\)</span> emphasizes the <strong>amount of original signal retained</strong>.</li>
-<li><span class="math inline">\(I\)</span> is the identity matrix, so noise is added independently to each component.</li>
-</ul>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
+<p>Here, <span class="math inline">\(\alpha_t\)</span> represents the amount of signal preserved at each step, and <span class="math inline">\(\bar{\alpha}_t\)</span> gives the cumulative signal retention over <span class="math inline">\(t\)</span> steps.</p>
+<p>Then, at each time step <span class="math inline">\(t\)</span>, the forward process is defined as: <span class="math display">\[
+q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I \right)
+\]</span></p>
+<p>Where: - <span class="math inline">\(\alpha_t = 1 - \beta_t\)</span>, with <span class="math inline">\(\beta_t\)</span> being a small positive number controlling the noise level. - <span class="math inline">\(I\)</span> is the identity matrix, so noise is added independently to each pixel or component.</p>
+<blockquote class="blockquote">
+<p><strong>Intuition:</strong> At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.</p>
+</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="Why keep $\beta_t$ small?">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Intuition:</strong> At each step, we shrink the signal and add new Gaussian noise. Over many steps, the image becomes blurrier and more like random noise.</p>
+<div class="callout-title-container flex-fill">
+Why keep <span class="math inline">\(\beta_t\)</span> small?
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>Keeping <span class="math inline">\(\beta_t\)</span> small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of <span class="math inline">\(\beta_t\)</span> would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data.</p>
+<p>The design of the forward process balances signal decay (via <span class="math inline">\(\sqrt{\alpha_t}\)</span>) and noise growth (via <span class="math inline">\(\sqrt{1 - \alpha_t}\)</span>) to ensure a smooth, learnable transition.</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Why keep <span class="math inline">\(\beta_t\)</span> small?</strong><br>
-Keeping <span class="math inline">\(\beta_t\)</span> small ensures that noise is added gradually. This allows the model to retain structure across steps and converge slowly to pure noise. Large values of <span class="math inline">\(\beta_t\)</span> would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via <span class="math inline">\(\sqrt{\alpha_t}\)</span>) and noise growth (via <span class="math inline">\(\sqrt{1 - \alpha_t}\)</span>) to ensure a smooth, learnable transition.</p>
-</blockquote>
+</div>
 </section>
 <section id="the-markov-chain" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">2.3</span> The Markov Chain</h3>
