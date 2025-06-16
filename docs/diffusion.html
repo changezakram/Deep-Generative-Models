@@ -1140,8 +1140,38 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <li><strong>Adaptive Group Normalization</strong>: A normalization technique that conditions on timestep (and class label if available) to help the model adapt better at each denoising step.</li>
 </ul>
 <p>These tricks are often combined in modern diffusion models and form the backbone of high-quality sample generation pipelines like improved DDPMs and diffusion-based image generators (e.g., ADM, Imagen, and Stable Diffusion).</p>
+<section id="classifier-free-guidance" class="level4" data-number="6.3.1">
+<h4 data-number="6.3.1" class="anchored" data-anchor-id="classifier-free-guidance"><span class="header-section-number">6.3.1</span> Classifier-Free Guidance</h4>
+<p>Used by: <em>Stable Diffusion</em>, <em>Imagen</em>, <em>DALLE 2</em>, and more.</p>
+<ul>
+<li>Allows the model to <strong>control generation</strong> (e.g., with text prompts) without requiring a separate classifier.</li>
+<li>During training, the model sees both conditional and unconditional inputs. During sampling, we guide generation by interpolating the two outputs:</li>
+</ul>
+<p><span class="math display">\[
+\epsilon_\theta^{\text{guided}} = (1 + w) \cdot \epsilon_\theta(x_t, t, y) - w \cdot \epsilon_\theta(x_t, t)
+\]</span></p>
+<p>Where: - <span class="math inline">\(w\)</span> is the guidance scale (typically 1–5). - <span class="math inline">\(y\)</span> is the conditioning input (e.g., a caption). - <span class="math inline">\(\epsilon_\theta(x_t, t, y)\)</span> is the predicted noise <strong>with</strong> conditioning. - <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is the predicted noise <strong>without</strong> conditioning.</p>
+<p>Higher <span class="math inline">\(w\)</span> increases adherence to the prompt — but can also reduce diversity or realism.</p>
+</section>
+<section id="improved-samplers-ddim-dpm-solver" class="level4" data-number="6.3.2">
+<h4 data-number="6.3.2" class="anchored" data-anchor-id="improved-samplers-ddim-dpm-solver"><span class="header-section-number">6.3.2</span> Improved Samplers (DDIM, DPM-Solver)</h4>
+<p>The original DDPM sampling takes <strong>~1000 steps</strong>. These improved samplers accelerate generation dramatically.</p>
+<ul>
+<li><strong>DDIM (Denoising Diffusion Implicit Models):</strong>
+<ul>
+<li>Uses a non-Markovian deterministic process.</li>
+<li>Can sample in <strong>10–50 steps</strong> while maintaining high fidelity.</li>
+</ul></li>
+<li><strong>DPM-Solver:</strong>
+<ul>
+<li>Treats the reverse process as an ODE and solves it directly using numerical methods.</li>
+<li>Even faster than DDIM with excellent sample quality.</li>
+</ul></li>
+</ul>
+<p>These methods let us trade off between <strong>speed</strong> and <strong>quality</strong>, enabling practical use in real-time applications.</p>
 
 
+</section>
 </section>
 </section>
 
