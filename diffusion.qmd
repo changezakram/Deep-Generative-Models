@@ -7,7 +7,7 @@ format: html
 
 Diffusion models are a powerful class of generative models that learn to create data—such as images—by reversing a gradual noising process. During training, real data is progressively corrupted by adding small amounts of Gaussian noise over many steps until it becomes nearly indistinguishable from pure noise. A neural network is then trained to learn the reverse process: transforming noise back into realistic samples, one step at a time.
 
-![Diffusion models gradually corrupt real data with noise and then learn to reverse that corruption to generate realistic samples.](images/diffusion-intro.png)
+![Diffusion models start by gradually adding noise to real data, then learn to reverse this process step by step to generate realistic samples.](images/diffusion-intro.png)
 
 *Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.*
 
