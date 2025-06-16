@@ -830,11 +830,11 @@ $$
 
 Substituting this expression for $x_t$ into the loss function gives:
 
-\[
+$$
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
 \left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right) \right\|^2
 \right]
-\]
+$$
 
 This is the **expanded form** of the loss used during training. The model sees $x_t$ and $t$, and is trained to recover the noise $\epsilon$ that was originally used to corrupt $x_0$.
 
