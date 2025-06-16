@@ -35,15 +35,15 @@ The table below highlights key conceptual parallels:
 
 Diffusion models have rapidly moved from research labs to real-world applications. Today, they power many state-of-the-art generative tools:
 
-### Text-to-Image
+#### Text-to-Image
 - **DALL·E 2** (OpenAI): Generates realistic images from text prompts.
 - **Imagen** (Google): Leverages powerful language encoders for high-fidelity image synthesis.
 
-### Text-to-Video
+#### Text-to-Video
 - **Make-A-Video** (Meta): Extends image models to video generation using textual input.
 - **Imagen Video** (Google): Builds on Imagen to generate coherent video sequences.
 
-### Text-to-3D
+#### Text-to-3D
 - **DreamFusion** (Google): Produces 3D scenes from text by combining diffusion with 3D rendering techniques.
 
 These use cases highlight why diffusion models are considered one of the most promising families of generative models today. The rest of this guide will unpack how they work, step by step.
