@@ -98,7 +98,7 @@ Where:
 
 > **Intuition:** At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.
 
-![](images/diffusion-forward.png)
+![Forward diffusion process: gradually adds Gaussian noise to the input image across $T$ steps.](images/diffusion-forward.png)
 
 ::: {.callout-note title="Why keep $\beta_t$ small?"}
 Keeping $\beta_t$ small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of $\beta_t$ would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via $\sqrt{\alpha_t}$) and noise growth (via $\sqrt{1 - \alpha_t}$) to ensure a smooth, learnable transition.

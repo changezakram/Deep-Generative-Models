@@ -346,7 +346,12 @@ q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \al
 <blockquote class="blockquote">
 <p><strong>Intuition:</strong> At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.</p>
 </blockquote>
-<p><img src="images/diffusion-forward.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/diffusion-forward.png" class="img-fluid figure-img"></p>
+<figcaption>Forward diffusion process: gradually adds Gaussian noise to the input image across <span class="math inline">\(T\)</span> steps.</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-note callout-titled" title="Why keep $\beta_t$ small?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
