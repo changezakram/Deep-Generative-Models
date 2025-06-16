@@ -810,15 +810,23 @@ $$
 D_{\text{KL}}\left( q(x_{t-1} \mid x_t, x_0) \;\|\; p_\theta(x_{t-1} \mid x_t) \right)
 $$
 
-Since both distributions are Gaussian, this KL has a closed-form expression. If we assume the variances are fixed and only match the **means**, minimizing the KL reduces to a squared error loss between the true noise $\epsilon$ and the model’s prediction $\epsilon_\theta$.
+Since both distributions are Gaussian, this KL has a closed-form expression. If we fix the variances and only match the **means**, minimizing the KL reduces to a simple squared error between the true noise $\epsilon$ and the model's prediction $\epsilon_\theta$.
 
-To see why, recall that the forward process constructs $x_t$ from $x_0$ and noise $\epsilon$:
+To approximate the ELBO, DDPM uses the following simplified training loss:
+
+$$
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
+\left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2
+\right]
+$$
+
+Here, $x_t$ is a noisy version of $x_0$, produced by the forward process:
 
 $$
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 $$
 
-Substituting this into the simplified loss gives the DDPM training objective:
+Substituting this into the loss gives us the **expanded form** used during implementation:
 
 $$
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
@@ -826,7 +834,9 @@ $$
 \right]
 $$
 
-This is the loss we will use to train the model in practice.
+This is the loss minimized during training — encouraging the model to predict the exact noise that was added in the forward process.
+
+---
 
 ::: {.callout-note title="How the ELBO Helps Us Understand the MSE Loss"}
 

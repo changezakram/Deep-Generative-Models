@@ -967,18 +967,25 @@ Bridging ELBO and the DDPM Training Loss
 <p><span class="math display">\[
 D_{\text{KL}}\left( q(x_{t-1} \mid x_t, x_0) \;\|\; p_\theta(x_{t-1} \mid x_t) \right)
 \]</span></p>
-<p>Since both distributions are Gaussian, this KL has a closed-form expression. If we assume the variances are fixed and only match the <strong>means</strong>, minimizing the KL reduces to a squared error loss between the true noise <span class="math inline">\(\epsilon\)</span> and the model’s prediction <span class="math inline">\(\epsilon_\theta\)</span>.</p>
-<p>To see why, recall that the forward process constructs <span class="math inline">\(x_t\)</span> from <span class="math inline">\(x_0\)</span> and noise <span class="math inline">\(\epsilon\)</span>:</p>
+<p>Since both distributions are Gaussian, this KL has a closed-form expression. If we fix the variances and only match the <strong>means</strong>, minimizing the KL reduces to a simple squared error between the true noise <span class="math inline">\(\epsilon\)</span> and the model’s prediction <span class="math inline">\(\epsilon_\theta\)</span>.</p>
+<p>To approximate the ELBO, DDPM uses the following simplified training loss:</p>
+<p><span class="math display">\[
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
+\left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2
+\right]
+\]</span></p>
+<p>Here, <span class="math inline">\(x_t\)</span> is a noisy version of <span class="math inline">\(x_0\)</span>, produced by the forward process:</p>
 <p><span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 \]</span></p>
-<p>Substituting this into the simplified loss gives the DDPM training objective:</p>
+<p>Substituting this into the loss gives us the <strong>expanded form</strong> used during implementation:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
 \left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right) \right\|^2
 \right]
 \]</span></p>
-<p>This is the loss we will use to train the model in practice.</p>
+<p>This is the loss minimized during training — encouraging the model to predict the exact noise that was added in the forward process.</p>
+<hr>
 <div class="callout callout-style-default callout-note callout-titled" title="How the ELBO Helps Us Understand the MSE Loss">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
