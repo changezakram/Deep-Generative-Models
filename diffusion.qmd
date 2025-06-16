@@ -20,13 +20,16 @@ This combination of **theoretical simplicity**, **training robustness**, and **h
 
 ### Connection to VAEs
 
+Diffusion models may seem very different from VAEs at first glance, but they share a surprising number of structural similarities. Both involve a forward process that adds noise and a reverse process that reconstructs data. And both optimize a form of the ELBO — though with very different interpretations.
+
+The table below highlights key conceptual parallels:
+
 | **Aspect**            | **VAEs**                                                   | **Diffusion Models**                                             |
 |-----------------------|-------------------------------------------------------------|------------------------------------------------------------------|
 | Forward process       | Learned encoder $q_\phi(z \mid x)$                          | Fixed noising process $q(x_t \mid x_{t-1})$                      |
 | Reverse process       | Learned decoder $p_\theta(x \mid z)$                        | Learned denoising model $p_\theta(x_{t-1} \mid x_t)$             |
 | Latent space          | Explicit latent variable $z$                                | No explicit latent; $x_t$ acts as noisy latent                  |
 | Training objective    | Maximize ELBO over $z$                                      | Maximize ELBO via simplified KL terms and noise prediction      |
-| Loss function         | $\mathrm{KL}(q(z \mid x) \| p(z)) + \text{Reconstruction}$  | $\mathbb{E}\left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]$ |
 
 
 ---

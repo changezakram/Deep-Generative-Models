@@ -234,6 +234,8 @@ window.Quarto = {
 <p>This combination of <strong>theoretical simplicity</strong>, <strong>training robustness</strong>, and <strong>high-quality outputs</strong> has made diffusion models one of the most effective generative modeling techniques in use today.</p>
 <section id="connection-to-vaes" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">1.1</span> Connection to VAEs</h3>
+<p>Diffusion models may seem very different from VAEs at first glance, but they share a surprising number of structural similarities. Both involve a forward process that adds noise and a reverse process that reconstructs data. And both optimize a form of the ELBO — though with very different interpretations.</p>
+<p>The table below highlights key conceptual parallels:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 15%">
@@ -267,11 +269,6 @@ window.Quarto = {
 <td>Training objective</td>
 <td>Maximize ELBO over <span class="math inline">\(z\)</span></td>
 <td>Maximize ELBO via simplified KL terms and noise prediction</td>
-</tr>
-<tr class="odd">
-<td>Loss function</td>
-<td><span class="math inline">\(\mathrm{KL}(q(z \mid x) \| p(z)) + \text{Reconstruction}\)</span></td>
-<td><span class="math inline">\(\mathbb{E}\left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]\)</span></td>
 </tr>
 </tbody>
 </table>
