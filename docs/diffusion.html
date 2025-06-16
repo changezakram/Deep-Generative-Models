@@ -236,15 +236,15 @@ window.Quarto = {
 <h3 data-number="1.1" class="anchored" data-anchor-id="connection-to-vaes"><span class="header-section-number">1.1</span> Connection to VAEs</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 36%">
-<col style="width: 45%">
+<col style="width: 15%">
+<col style="width: 40%">
+<col style="width: 43%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Aspect</th>
-<th>VAEs</th>
-<th>Diffusion Models</th>
+<th><strong>Aspect</strong></th>
+<th><strong>VAEs</strong></th>
+<th><strong>Diffusion Models</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -259,9 +259,29 @@ window.Quarto = {
 <td>Learned denoising network <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span></td>
 </tr>
 <tr class="odd">
+<td>Latent space</td>
+<td>Explicit latent variable <span class="math inline">\(z\)</span></td>
+<td>No explicit latent; <span class="math inline">\(x_t\)</span> serves as noisy latent</td>
+</tr>
+<tr class="even">
+<td>Sampling</td>
+<td>One-pass decoding from <span class="math inline">\(z\)</span> to <span class="math inline">\(x\)</span></td>
+<td>Iterative denoising over <span class="math inline">\(T\)</span> steps</td>
+</tr>
+<tr class="odd">
 <td>Training objective</td>
 <td>Optimize ELBO over latent variables</td>
 <td>Optimize ELBO via noise prediction loss</td>
+</tr>
+<tr class="even">
+<td>Loss function</td>
+<td>KL + reconstruction loss</td>
+<td>MSE between <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Output quality</td>
+<td>Blurry (due to Gaussian decoder)</td>
+<td>Sharp, high-fidelity samples</td>
 </tr>
 </tbody>
 </table>
