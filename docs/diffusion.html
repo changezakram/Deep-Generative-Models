@@ -346,6 +346,7 @@ q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \al
 <blockquote class="blockquote">
 <p><strong>Intuition:</strong> At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.</p>
 </blockquote>
+<p><img src="images/diffusion-forward.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Why keep $\beta_t$ small?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -358,6 +359,12 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 <div class="callout-body-container callout-body">
 <p>Keeping <span class="math inline">\(\beta_t\)</span> small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of <span class="math inline">\(\beta_t\)</span> would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via <span class="math inline">\(\sqrt{\alpha_t}\)</span>) and noise growth (via <span class="math inline">\(\sqrt{1 - \alpha_t}\)</span>) to ensure a smooth, learnable transition.</p>
 </div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/noise-schedule.png" class="img-fluid figure-img"></p>
+<figcaption>Comparison of signal and noise schedules for linear and cosine noise schedules. Cosine adds noise more gradually early on, improving training and generation.</figcaption>
+</figure>
 </div>
 <p>By chaining these steps together, we define a forward Markov process from <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>.</p>
 </section>
@@ -425,6 +432,12 @@ q(x_t \mid x_0) = \mathcal{N}\left(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\al
 <p><span class="math display">\[
 x_T \sim \mathcal{N}(0, I)
 \]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/diffusion-kernel.png" class="img-fluid figure-img"></p>
+<figcaption>Each step in the forward process applies a Gaussian kernel that gradually transforms <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>.</figcaption>
+</figure>
+</div>
 </section>
 <section id="recap-forward-diffusion-steps" class="level3" data-number="2.6">
 <h3 data-number="2.6" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">2.6</span> Recap: Forward Diffusion Steps</h3>
@@ -488,6 +501,12 @@ x_T \sim \mathcal{N}(0, I)
 <li><strong>Forward process</strong>: Gradually adds noise to data via <span class="math inline">\(q(x_t \mid x_{t-1})\)</span></li>
 <li><strong>Reverse process</strong>: Gradually removes noise via <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span>, learned by a neural network</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/diffusion-reverse.png" class="img-fluid figure-img"></p>
+<figcaption>Reverse process: a neural network learns to iteratively denoise samples from <span class="math inline">\(x_T\)</span> back to <span class="math inline">\(x_0\)</span>.</figcaption>
+</figure>
+</div>
 <p><strong>The Goal of the Reverse Process</strong></p>
 <p><strong>Objective</strong>: Given a noisy sample <span class="math inline">\(x_t\)</span>, we want to estimate the conditional distribution <span class="math inline">\(q(x_{t-1} \mid x_t)\)</span>. However, this is <strong>intractable</strong> because it would require knowing the true data distribution.</p>
 <p>Instead, we train a neural network to approximate it: <span class="math display">\[
