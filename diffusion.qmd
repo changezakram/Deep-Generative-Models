@@ -84,7 +84,7 @@ $$
 q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I \right)
 $$
 
-Where:     
+Where:    
 - $\alpha_t = 1 - \beta_t$, with $\beta_t$ a small positive number controlling the noise level.     
 - The variance term $(1 - \alpha_t) I = \beta_t I$ controls how much noise is added at each step.     
 - $I$ is the identity matrix, so noise is added independently to each pixel or component.   
