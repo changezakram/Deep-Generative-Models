@@ -638,9 +638,6 @@ $$
 
 
 
-
-
-
 **Step 6: Decompose the ELBO**
 
 We now break down the **Evidence Lower Bound (ELBO)** into three interpretable components:
@@ -959,11 +956,17 @@ This denoised estimate is also used during sampling to compute the mean of the r
 
 ### Architecture Note
 
-The network $\epsilon_\theta(x_t, t)$ is typically implemented as a **U-Net**, which takes:
-- A noisy image $x_t$
-- A timestep $t$ (encoded using sinusoidal or learned embeddings)
+The network \( \epsilon_\theta(x_t, t) \) is typically implemented as a **U-Net**, which takes:
+- A noisy image \( x_t \)
+- A timestep \( t \), encoded using sinusoidal or learned embeddings
 
-It outputs the predicted noise $\epsilon$.
+It outputs the predicted noise \( \epsilon \), allowing the model to reverse the diffusion process.
+
+![The denoising model receives the noisy input $x_t$ and a time embedding $t$, and predicts the noise $\epsilon_\theta(x_t, t)$ that was added at step $t$.](images/unet.png)
+
+*The U-Net receives both the noisy input and a time embedding, and is trained to predict the added noise \( \epsilon \). This predicted noise is used to reconstruct a cleaner version of the image at each reverse step.*
+
+_Adapted from Stanford CS236: Deep Generative Models (Winter 2023)._
 
 ---
 
