@@ -975,17 +975,25 @@ D_{\text{KL}}\left( q(x_{t-1} \mid x_t, x_0) \;\|\; p_\theta(x_{t-1} \mid x_t) \
 \left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2
 \right]
 \]</span></p>
-<p>Here, <span class="math inline">\(x_t\)</span> is a noisy version of <span class="math inline">\(x_0\)</span> obtained via the forward process:</p>
+<p>Here, <span class="math inline">\(x_t\)</span> is a noisy version of <span class="math inline">\(x_0\)</span>, obtained via the forward process:</p>
 <p><span class="math display">\[
-x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+x_t = \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 \]</span></p>
-<p>Substituting this expression for <span class="math inline">\(x_t\)</span> into the loss function gives:</p>
+<p>We now substitute this expression for <span class="math inline">\(x_t\)</span> into the model input:</p>
+<p><span class="math display">\[
+\epsilon_\theta(x_t, t)
+\;\Rightarrow\;
+\epsilon_\theta\left( \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right)
+\]</span></p>
+<p>Substituting into the full loss function gives:</p>
 <p><span class="math display">\[
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
-\left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right) \right\|^2
+\left\| \epsilon -
+\epsilon_\theta\left( \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right)
+\right\|^2
 \right]
 \]</span></p>
-<p>This is the <strong>expanded form</strong> of the loss used during training. The model sees <span class="math inline">\(x_t\)</span> and <span class="math inline">\(t\)</span>, and is trained to recover the noise <span class="math inline">\(\epsilon\)</span> that was originally used to corrupt <span class="math inline">\(x_0\)</span>.</p>
+<p>This is the <strong>expanded form</strong> of the loss used during training. The model sees a noisy input <span class="math inline">\(x_t\)</span> (generated from <span class="math inline">\(x_0\)</span> and <span class="math inline">\(\epsilon\)</span>), and learns to recover the exact noise <span class="math inline">\(\epsilon\)</span> that was added.</p>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled" title="How the ELBO Helps Us Understand the MSE Loss">
 <div class="callout-header d-flex align-content-center">

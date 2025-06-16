@@ -822,21 +822,31 @@ $$
 \right]
 $$
 
-Here, $x_t$ is a noisy version of $x_0$ obtained via the forward process:
+Here, $x_t$ is a noisy version of $x_0$, obtained via the forward process:
 
 $$
-x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
+x_t = \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon
 $$
 
-Substituting this expression for $x_t$ into the loss function gives:
+We now substitute this expression for $x_t$ into the model input:
+
+$$
+\epsilon_\theta(x_t, t)
+\;\Rightarrow\;
+\epsilon_\theta\left( \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right)
+$$
+
+Substituting into the full loss function gives:
 
 $$
 \mathcal{L}_{\text{simple}} = \mathbb{E}_{x_0, t, \epsilon} \left[
-\left\| \epsilon - \epsilon_\theta\left( \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right) \right\|^2
+\left\| \epsilon -
+\epsilon_\theta\left( \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon, \, t \right)
+\right\|^2
 \right]
 $$
 
-This is the **expanded form** of the loss used during training. The model sees $x_t$ and $t$, and is trained to recover the noise $\epsilon$ that was originally used to corrupt $x_0$.
+This is the **expanded form** of the loss used during training. The model sees a noisy input $x_t$ (generated from $x_0$ and $\epsilon$), and learns to recover the exact noise $\epsilon$ that was added.
 
 ---
 
