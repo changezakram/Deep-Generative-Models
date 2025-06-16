@@ -238,7 +238,7 @@ window.Quarto = {
 <colgroup>
 <col style="width: 15%">
 <col style="width: 40%">
-<col style="width: 43%">
+<col style="width: 44%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -256,32 +256,22 @@ window.Quarto = {
 <tr class="even">
 <td>Reverse process</td>
 <td>Learned decoder <span class="math inline">\(p_\theta(x \mid z)\)</span></td>
-<td>Learned denoising network <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span></td>
+<td>Learned denoising model <span class="math inline">\(p_\theta(x_{t-1} \mid x_t)\)</span></td>
 </tr>
 <tr class="odd">
 <td>Latent space</td>
 <td>Explicit latent variable <span class="math inline">\(z\)</span></td>
-<td>No explicit latent; <span class="math inline">\(x_t\)</span> serves as noisy latent</td>
+<td>No explicit latent; <span class="math inline">\(x_t\)</span> acts as noisy latent</td>
 </tr>
 <tr class="even">
-<td>Sampling</td>
-<td>One-pass decoding from <span class="math inline">\(z\)</span> to <span class="math inline">\(x\)</span></td>
-<td>Iterative denoising over <span class="math inline">\(T\)</span> steps</td>
-</tr>
-<tr class="odd">
 <td>Training objective</td>
-<td>Optimize ELBO over latent variables</td>
-<td>Optimize ELBO via noise prediction loss</td>
-</tr>
-<tr class="even">
-<td>Loss function</td>
-<td>KL + reconstruction loss</td>
-<td>MSE between <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span></td>
+<td>Maximize ELBO over <span class="math inline">\(z\)</span></td>
+<td>Maximize ELBO via simplified KL terms and noise prediction</td>
 </tr>
 <tr class="odd">
-<td>Output quality</td>
-<td>Blurry (due to Gaussian decoder)</td>
-<td>Sharp, high-fidelity samples</td>
+<td>Loss function</td>
+<td><span class="math inline">\(\mathrm{KL}(q(z \mid x) \| p(z)) + \text{Reconstruction}\)</span></td>
+<td><span class="math inline">\(\mathbb{E}\left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]\)</span></td>
 </tr>
 </tbody>
 </table>

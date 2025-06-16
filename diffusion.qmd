@@ -20,15 +20,14 @@ This combination of **theoretical simplicity**, **training robustness**, and **h
 
 ### Connection to VAEs
 
-| **Aspect**            | **VAEs**                                                 | **Diffusion Models**                                          |
-|-----------------------|-----------------------------------------------------------|----------------------------------------------------------------|
-| Forward process       | Learned encoder $q_\phi(z \mid x)$                       | Fixed noising process $q(x_t \mid x_{t-1})$                    |
-| Reverse process       | Learned decoder $p_\theta(x \mid z)$                     | Learned denoising network $p_\theta(x_{t-1} \mid x_t)$         |
-| Latent space          | Explicit latent variable $z$                              | No explicit latent; $x_t$ serves as noisy latent               |
-| Sampling              | One-pass decoding from $z$ to $x$                         | Iterative denoising over $T$ steps                             |
-| Training objective    | Optimize ELBO over latent variables                       | Optimize ELBO via noise prediction loss                        |
-| Loss function         | KL + reconstruction loss                                  | MSE between $\epsilon$ and $\epsilon_\theta(x_t, t)$           |
-| Output quality        | Blurry (due to Gaussian decoder)                          | Sharp, high-fidelity samples                                   |
+| **Aspect**            | **VAEs**                                                   | **Diffusion Models**                                             |
+|-----------------------|-------------------------------------------------------------|------------------------------------------------------------------|
+| Forward process       | Learned encoder $q_\phi(z \mid x)$                          | Fixed noising process $q(x_t \mid x_{t-1})$                      |
+| Reverse process       | Learned decoder $p_\theta(x \mid z)$                        | Learned denoising model $p_\theta(x_{t-1} \mid x_t)$             |
+| Latent space          | Explicit latent variable $z$                                | No explicit latent; $x_t$ acts as noisy latent                  |
+| Training objective    | Maximize ELBO over $z$                                      | Maximize ELBO via simplified KL terms and noise prediction      |
+| Loss function         | $\mathrm{KL}(q(z \mid x) \| p(z)) + \text{Reconstruction}$  | $\mathbb{E}\left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]$ |
+
 
 ---
 
