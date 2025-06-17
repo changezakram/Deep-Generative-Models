@@ -368,46 +368,42 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 </section>
 <section id="noise-schedules-linear-vs-cosine" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="noise-schedules-linear-vs-cosine"><span class="header-section-number">2.3</span> Noise Schedules: Linear vs Cosine</h3>
-<p>The noise schedule determines how much Gaussian noise is added at each step in the forward diffusion process. It defines the values of <span class="math inline">\(\beta_t\)</span> — or more commonly, the cumulative signal retention <span class="math inline">\(\bar{\alpha}_t\)</span> — which control how quickly the signal fades and noise dominates.</p>
-<p>Adding noise too aggressively destroys the structure early. Too conservatively, and training becomes inefficient. So a carefully chosen schedule is key.</p>
-<p><strong>Linear vs Cosine Schedules</strong></p>
-<p>The two most common schedules are:</p>
-<ul>
-<li><strong>Linear schedule</strong>: <span class="math inline">\(\beta_t\)</span> increases linearly with <span class="math inline">\(t\)</span>.
-<ul>
-<li>Signal (<span class="math inline">\(\bar{\alpha}_t\)</span>) drops off rapidly.</li>
-<li>Noise (<span class="math inline">\(1 - \bar{\alpha}_t\)</span>) ramps up quickly, making early training steps harder.</li>
-</ul></li>
-<li><strong>Cosine schedule</strong>: <span class="math inline">\(\bar{\alpha}_t\)</span> follows a cosine decay curve.
-<ul>
-<li>Signal decays more gradually.</li>
-<li>Noise builds up slowly at first, which improves training stability.</li>
-</ul></li>
-</ul>
-<p><strong>Visualizing Signal and Noise Progression</strong></p>
-<p>These plots compare signal (<span class="math inline">\(\bar{\alpha}_t\)</span>) and noise (<span class="math inline">\(1 - \bar{\alpha}_t\)</span>) values over time:</p>
+<p>The noise schedule determines how much Gaussian noise is added at each step via the sequence <span class="math inline">\(\{\beta_1, \beta_2, \dots, \beta_T\}\)</span>. A well-designed schedule ensures that noise increases gradually—preserving structure early on and enabling the model to learn the reverse process more effectively.</p>
+<p>Two commonly used schedules are:</p>
+<p><strong>Linear Schedule</strong></p>
+<p>In a linear schedule, <span class="math inline">\(\beta_t\)</span> increases linearly from a small to a larger value. This causes the retained signal <span class="math inline">\(\bar{\alpha}_t\)</span> to decay rapidly, injecting noise aggressively in early steps. As a result, fine details are lost early, making denoising more difficult.</p>
+<p><strong>Cosine Schedule</strong></p>
+<p>Cosine schedules are designed to make <span class="math inline">\(\bar{\alpha}_t\)</span> follow a smooth cosine decay curve. This retains more signal over a longer period, allowing the model to degrade structure more gradually and learn a more stable denoising path.</p>
+<section id="visualizing-signal-and-noise-tradeoffs" class="level4" data-number="2.3.1">
+<h4 data-number="2.3.1" class="anchored" data-anchor-id="visualizing-signal-and-noise-tradeoffs"><span class="header-section-number">2.3.1</span> Visualizing Signal and Noise Tradeoffs</h4>
+<p>The following plot compares signal preservation and noise growth across the diffusion process for linear and cosine schedules:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/noise-schedule.png" class="img-fluid figure-img"></p>
 <figcaption>Comparison of signal and noise schedules</figcaption>
 </figure>
 </div>
-<p>In the cosine schedule, signal decays slowly at first, giving the model more intermediate structure to learn from. The linear schedule, on the other hand, adds too much noise too early.</p>
-<p><strong>Visualizing the Effect on Images</strong></p>
-<p>The figure below shows how a sample image degrades under both schedules. Each column represents a different timestep from <span class="math inline">\(t = 0\)</span> to <span class="math inline">\(t = T\)</span>.</p>
+<p>The cosine schedule maintains more signal during early and middle steps, whereas the linear schedule injects noise quickly, causing structure to be lost early in the process.</p>
+</section>
+<section id="visualizing-effects-on-images" class="level4" data-number="2.3.2">
+<h4 data-number="2.3.2" class="anchored" data-anchor-id="visualizing-effects-on-images"><span class="header-section-number">2.3.2</span> Visualizing Effects on Images</h4>
+<p>This plot shows how an image is progressively corrupted under each schedule:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/linear_vs_cos.png" class="img-fluid figure-img"></p>
 <figcaption>Latent image degradation under linear vs cosine noise schedules</figcaption>
 </figure>
 </div>
-<p>The linear schedule quickly overwhelms the image with noise, especially in the later steps. The cosine schedule retains visual features longer, which helps the reverse process recover better samples.</p>
-<p><strong>Takeaways</strong></p>
+<p>Cosine schedules preserve details longer, while linear schedules degrade the image more aggressively in fewer steps—highlighting why noise scheduling is critical for downstream generation quality.</p>
+</section>
+<section id="takeaways" class="level4" data-number="2.3.3">
+<h4 data-number="2.3.3" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">2.3.3</span> Takeaways</h4>
 <ul>
-<li>Cosine schedules help models retain image structure longer, improving denoising and final output quality.</li>
-<li>Linear schedules may be easier to implement but are more aggressive, often harming early-stage training.</li>
-<li>Most modern implementations (such as Stable Diffusion) default to cosine schedules.</li>
+<li><strong>Cosine schedules</strong> produce better sample quality by preserving image structure longer.</li>
+<li><strong>Linear schedules</strong> are simpler but may hinder training due to early signal loss.</li>
+<li>Most modern diffusion models (e.g., Stable Diffusion, Imagen) prefer cosine schedules for their superior denoising behavior.</li>
 </ul>
+</section>
 </section>
 <section id="the-markov-chain" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">2.4</span> The Markov Chain</h3>
@@ -1221,8 +1217,8 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 </div>
 <p><em>Adapted from Stanford CS236: Deep Generative Models (Winter 2023).</em></p>
 </section>
-<section id="takeaways" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">5.2</span> Takeaways</h3>
+<section id="takeaways-1" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="takeaways-1"><span class="header-section-number">5.2</span> Takeaways</h3>
 <ul>
 <li>The ELBO provides a tractable lower bound on the data likelihood <span class="math inline">\(\log p_\theta(x_0)\)</span>, and serves as the theoretical training objective.</li>
 <li>It decomposes into loss terms that align the learned reverse process with the fixed forward noising process, step by step.</li>
