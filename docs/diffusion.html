@@ -1153,22 +1153,40 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 </section>
 </section>
 <section id="architecture-note" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.7</span> Architecture Note</h3>
-<p>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is typically implemented as a <strong>U-Net</strong>, which takes:</p>
+<h3 data-number="4.7" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.7</span> 4.7 Architecture Note</h3>
+<p>The network <span class="math inline">\(begin:math:text\)</span> \epsilon_\theta(x_t, t) <span class="math inline">\(end:math:text\)</span> is typically implemented as a <strong>U-Net</strong>, which takes:</p>
 <ul>
-<li>A noisy image <span class="math inline">\(x_t\)</span></li>
-<li>A timestep <span class="math inline">\(t\)</span>, encoded using sinusoidal or learned embeddings</li>
+<li>A noisy image <span class="math inline">\(begin:math:text\)</span> x_t <span class="math inline">\(end:math:text\)</span></li>
+<li>A timestep <span class="math inline">\(begin:math:text\)</span> t <span class="math inline">\(end:math:text\)</span>, encoded using sinusoidal or learned embeddings</li>
 </ul>
-<p>It outputs the predicted noise <span class="math inline">\(\epsilon\)</span>, allowing the model to reverse the diffusion process.</p>
+<p>It outputs the predicted noise <span class="math inline">\(begin:math:text\)</span> \epsilon <span class="math inline">\(end:math:text\)</span>, allowing the model to reverse the diffusion process.</p>
+<p>The <strong>U-Net</strong> architecture is particularly effective in diffusion models because it preserves the spatial resolution of the input throughout the network. Unlike VAEs, which compress the input into a lower-dimensional latent space, the U-Net uses <strong>skip connections</strong> to pass fine-grained information directly from downsampling to upsampling layers. This helps preserve image detail and texture throughout the denoising process.</p>
+<section id="key-components-of-the-u-net-used-in-diffusion-models" class="level4" data-number="4.7.1">
+<h4 data-number="4.7.1" class="anchored" data-anchor-id="key-components-of-the-u-net-used-in-diffusion-models"><span class="header-section-number">4.7.1</span> Key components of the U-Net used in diffusion models:</h4>
+<ul>
+<li>The input is a noisy image (e.g., shape <span class="math inline">\(begin:math:text\)</span> 64 \times 64 \times 3 <span class="math inline">\(end:math:text\)</span>) that we wish to denoise.</li>
+<li>A second input provides the noise variance (or timestep), passed through a sinusoidal embedding function.</li>
+<li>The time embedding is upsampled and concatenated with the noisy image along the channel dimension.</li>
+<li>The combined input is passed through:
+<ul>
+<li>A <strong>downsampling path</strong> composed of <code>DownBlocks</code>, which increase the number of channels while reducing spatial dimensions.</li>
+<li><strong>Residual blocks</strong> at the bottleneck that help learn deeper representations.</li>
+<li>An <strong>upsampling path</strong> composed of <code>UpBlocks</code>, which mirror the downsampling layers.</li>
+<li><strong>Skip connections</strong> between corresponding down and up blocks to preserve spatial detail.</li>
+</ul></li>
+<li>The output is produced by a final <span class="math inline">\(begin:math:text\)</span> 1 \times 1 <span class="math inline">\(end:math:text\)</span> convolutional layer initialized to zeros.</li>
+</ul>
+<p>This structure allows the model to iteratively refine and denoise its estimate of the clean image across reverse steps.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/unet.png" class="img-fluid figure-img"></p>
-<figcaption>The denoising model receives the noisy input <span class="math inline">\(x_t\)</span> and a time embedding <span class="math inline">\(t\)</span>, and predicts the noise <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> that was added at step <span class="math inline">\(t\)</span>.</figcaption>
+<figcaption>The denoising model receives the noisy input <span class="math inline">\(begin:math:text\)</span>x_t<span class="math inline">\(end:math:text\)</span> and a time embedding <span class="math inline">\(begin:math:text\)</span>t<span class="math inline">\(end:math:text\)</span>, and predicts the noise <span class="math inline">\(begin:math:text\)</span>\epsilon_\theta(x_t, t)<span class="math inline">\(end:math:text\)</span> that was added at step <span class="math inline">\(begin:math:text\)</span>t<span class="math inline">\(end:math:text\)</span>.</figcaption>
 </figure>
 </div>
-<p><em>The U-Net receives both the noisy input and a time embedding, and is trained to predict the added noise ( ). This predicted noise is used to reconstruct a cleaner version of the image at each reverse step.</em></p>
-<p><em>Adapted from Stanford CS236: Deep Generative Models (Winter 2023).</em></p>
+<p>*The U-Net receives both the noisy input and a time embedding, and is trained to predict the added noise. This predicted noise is used to reconstruct a cleaner version of the image at each reverse step.*</p>
+<p><em>Adapted from Stanford CS236: Deep Generative Models (Winter 2023)</em></p>
 <hr>
+</section>
 </section>
 <section id="takeaways" class="level3" data-number="4.8">
 <h3 data-number="4.8" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.8</span> Takeaways</h3>
