@@ -629,7 +629,6 @@ We’ll derive this explicitly by completing the square in the exponent.</p>
 <p>Although we won’t use this posterior directly during sampling, this closed-form expression is essential for defining the ELBO used in training. It gives us a precise target that the reverse model attempts to approximate.</p>
 </blockquote>
 <p>We now complete the square to put the expression into standard Gaussian form.</p>
-<hr>
 </section>
 <section id="complete-the-square" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="complete-the-square"><span class="header-section-number">3.2</span> Complete the square</h3>
@@ -1153,6 +1152,7 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 \]</span><br>
 — because if we can predict the noise, we can recover the clean image <span class="math inline">\(x_0\)</span>.</p>
 <p>This denoised estimate is also used during sampling to compute the mean of the reverse distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is key to reversing the diffusion process one step at a time.</p>
+<hr>
 </section>
 </section>
 </section>
@@ -1188,7 +1188,6 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 </figure>
 </div>
 <p><em>Adapted from Stanford CS236: Deep Generative Models (Winter 2023).</em></p>
-<hr>
 </section>
 <section id="takeaways" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">5.2</span> Takeaways</h3>
@@ -1217,7 +1216,6 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 - Corrupt it to get <span class="math inline">\(x_t\)</span> using the forward noising process<br>
 - Train <span class="math inline">\(\epsilon_\theta\)</span> to predict the added noise <span class="math inline">\(\epsilon\)</span><br>
 - Optimize using mean squared error between predicted and true noise</p>
-<hr>
 </section>
 <section id="algorithm-sampling-ddpm" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="algorithm-sampling-ddpm"><span class="header-section-number">6.2</span> Algorithm: Sampling (DDPM)</h3>
@@ -1235,6 +1233,7 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \
 - At each timestep <span class="math inline">\(t\)</span>, use <span class="math inline">\(\epsilon_\theta\)</span> to estimate and remove noise<br>
 - Add back a small amount of Gaussian noise <span class="math inline">\(z\)</span><br>
 - Continue until you obtain a clean sample <span class="math inline">\(x_0\)</span></p>
+<hr>
 </section>
 </section>
 <section id="tricks-for-improving-generation" class="level2" data-number="7">
