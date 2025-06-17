@@ -171,11 +171,9 @@ This formulation means we can generate the full noise trajectory by repeatedly a
 
 ### Deriving the Marginal Distribution $q(x_t \mid x_0)$
 
-\textbf{Key Question:} How do we get the formula that lets us sample $x_t$ directly from $x_0$ (without simulating all the intermediate steps)?
+So far, we've modeled the full Markov chain step-by-step. But how do we compute $x_t$ directly from $x_0$, without simulating each intermediate step?
 
-\textbf{a. Unrolling the Recursion}
-
-Let’s see how $x_t$ is built up from $x_0$:
+Let’s see how $x_t$ accumulates noise from $x_0$.
 
 For $t = 1$:
 $$

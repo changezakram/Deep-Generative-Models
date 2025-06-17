@@ -451,9 +451,8 @@ Why it’s still useful to model the full chain
 </section>
 <section id="deriving-the-marginal-distribution-qx_t-mid-x_0" class="level3" data-number="2.5">
 <h3 data-number="2.5" class="anchored" data-anchor-id="deriving-the-marginal-distribution-qx_t-mid-x_0"><span class="header-section-number">2.5</span> Deriving the Marginal Distribution <span class="math inline">\(q(x_t \mid x_0)\)</span></h3>
-<p> How do we get the formula that lets us sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> (without simulating all the intermediate steps)?</p>
-<p></p>
-<p>Let’s see how <span class="math inline">\(x_t\)</span> is built up from <span class="math inline">\(x_0\)</span>:</p>
+<p>So far, we’ve modeled the full Markov chain step-by-step. But how do we compute <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span>, without simulating each intermediate step?</p>
+<p>Let’s see how <span class="math inline">\(x_t\)</span> accumulates noise from <span class="math inline">\(x_0\)</span>.</p>
 <p>For <span class="math inline">\(t = 1\)</span>: <span class="math display">\[
 x_1 = \sqrt{\alpha_1} x_0 + \sqrt{1 - \alpha_1} \epsilon_1, \qquad \epsilon_1 \sim \mathcal{N}(0, I)
 \]</span></p>
