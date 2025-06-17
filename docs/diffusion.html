@@ -403,6 +403,24 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 <li><strong>Linear schedules</strong> are simpler but may hinder training due to early signal loss.</li>
 <li>Most modern diffusion models (e.g., Stable Diffusion, Imagen) prefer cosine schedules for their superior denoising behavior.</li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Practical Guidance: Choosing a Noise Schedule">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practical Guidance: Choosing a Noise Schedule
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use a <strong>cosine schedule</strong> if your goal is to generate high-quality samples or train a stable diffusion model. It preserves structure longer and results in smoother denoising.</li>
+<li>A <strong>linear schedule</strong> may be acceptable for simple tasks or quick experimentation but can inject noise too aggressively in early steps.</li>
+<li>Always visualize your <span class="math inline">\(\bar{\alpha}_t\)</span> or signal-to-noise ratio across timesteps to understand how your schedule behaves.</li>
+<li>Many libraries (e.g., Hugging Face diffusers, OpenAI’s improved DDPM repo) implement cosine schedules by default—use these as reliable starting points.</li>
+</ul>
+</div>
+</div>
 </section>
 </section>
 <section id="the-markov-chain" class="level3" data-number="2.4">

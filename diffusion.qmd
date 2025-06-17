@@ -139,6 +139,12 @@ Cosine schedules preserve details longer, while linear schedules degrade the ima
 - **Linear schedules** are simpler but may hinder training due to early signal loss.
 - Most modern diffusion models (e.g., Stable Diffusion, Imagen) prefer cosine schedules for their superior denoising behavior.
 
+::: {.callout-tip title="Practical Guidance: Choosing a Noise Schedule"}
+- Use a **cosine schedule** if your goal is to generate high-quality samples or train a stable diffusion model. It preserves structure longer and results in smoother denoising.
+- A **linear schedule** may be acceptable for simple tasks or quick experimentation but can inject noise too aggressively in early steps.
+- Always visualize your $\bar{\alpha}_t$ or signal-to-noise ratio across timesteps to understand how your schedule behaves.
+- Many libraries (e.g., Hugging Face diffusers, OpenAI’s improved DDPM repo) implement cosine schedules by default—use these as reliable starting points.
+:::
 
 
 ### The Markov Chain
