@@ -589,6 +589,7 @@ The ultimate goal in diffusion models is to train the neural network so that it 
 
 The ELBO is a **lower bound** on the log-likelihood of the data. Maximizing the ELBO is equivalent to maximizing the likelihood that the model can generate the training data. For diffusion models, the ELBO ensures that the reverse process (denoising) aligns with the forward process (noising).
 
+*Note: For a foundational introduction to the ELBO and its role in generative models, see my Variational Autoencoder (VAE) post at changezakram.github.io/Deep-Generative-Models/vae.html.*
 
 ### Deriving the ELBO for Diffusion Models
 
@@ -1170,6 +1171,8 @@ These methods let us trade off between **speed** and **quality**, enabling pract
 [3] Vahdat, A. (2023). *CVPR 2023 Tutorial on Diffusion Models*. Retrieved from https://cvpr2023-tutorial-diffusion-models.github.io/
 
 [4] Nichol, A., & Dhariwal, P. (2021). *Improved Denoising Diffusion Probabilistic Models*. arXiv:2102.09672.
+
+[5] Akram, C. (2024). *Variational Autoencoders (VAEs)*. Available at changezakram.github.io/Deep-Generative-Models/vae.html
 
 
 ## 📘 Further Reading

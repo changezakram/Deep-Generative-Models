@@ -878,6 +878,7 @@ x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \, \epsilon}{\sqrt{\bar{\alpha}_t}}
 <section id="what-is-the-elbo" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="what-is-the-elbo"><span class="header-section-number">4.1</span> What is the ELBO?</h3>
 <p>The ELBO is a <strong>lower bound</strong> on the log-likelihood of the data. Maximizing the ELBO is equivalent to maximizing the likelihood that the model can generate the training data. For diffusion models, the ELBO ensures that the reverse process (denoising) aligns with the forward process (noising).</p>
+<p><em>Note: For a foundational introduction to the ELBO and its role in generative models, see my Variational Autoencoder (VAE) post at changezakram.github.io/Deep-Generative-Models/vae.html.</em></p>
 </section>
 <section id="deriving-the-elbo-for-diffusion-models" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="deriving-the-elbo-for-diffusion-models"><span class="header-section-number">4.2</span> Deriving the ELBO for Diffusion Models</h3>
@@ -1360,6 +1361,7 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <p>[2] Stanford University. (2023). <em>CS236: Deep Generative Models – Winter 2023 Course Materials</em>. Retrieved from https://deepgenerativemodels.github.io/</p>
 <p>[3] Vahdat, A. (2023). <em>CVPR 2023 Tutorial on Diffusion Models</em>. Retrieved from https://cvpr2023-tutorial-diffusion-models.github.io/</p>
 <p>[4] Nichol, A., &amp; Dhariwal, P. (2021). <em>Improved Denoising Diffusion Probabilistic Models</em>. arXiv:2102.09672.</p>
+<p>[5] Akram, C. (2024). <em>Variational Autoencoders (VAEs)</em>. Available at changezakram.github.io/Deep-Generative-Models/vae.html</p>
 </section>
 <section id="further-reading" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">9</span> 📘 Further Reading</h2>
