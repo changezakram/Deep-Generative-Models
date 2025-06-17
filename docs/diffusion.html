@@ -327,7 +327,15 @@ We’ll later see that it’s also possible to sample <span class="math inline">
 <section id="add-noise-recursively" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="add-noise-recursively"><span class="header-section-number">2.2</span> Add Noise Recursively</h3>
 <p>To model the forward diffusion process, we recursively add Gaussian noise at each step. Each step <span class="math inline">\(q(x_t \mid x_{t-1})\)</span> is defined as a Gaussian distribution, where the mean retains a fraction of the signal from the previous step and the variance controls the amount of noise added.</p>
-<p>We define the noise schedule as a sequence of small positive values <span class="math inline">\(\{ \beta_1, \beta_2, \dots, \beta_T \}\)</span>, where <span class="math inline">\(\beta_t \in (0, 1)\)</span> controls how much noise is injected at step <span class="math inline">\(t\)</span>. Then:</p>
+<p>We define the noise schedule as a sequence of small positive values <span class="math inline">\(\{ \beta_1, \beta_2, \dots, \beta_T \}\)</span>, where <span class="math inline">\(\beta_t \in (0, 1)\)</span> controls how much noise is injected at step <span class="math inline">\(t\)</span>.</p>
+<p>To visualize the effect of the forward process on the entire data distribution (not just individual samples), consider the following:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/forward_dist_shift.png" class="img-fluid figure-img"></p>
+<figcaption>Forward diffusion process in distribution space: data distribution gradually transitions to a standard Gaussian</figcaption>
+</figure>
+</div>
+<p><em>Over time, the data distribution <span class="math inline">\(q_0(x) = p_{\text{data}}(x)\)</span> is progressively perturbed into <span class="math inline">\(q_T(x)\)</span>, which approximates an isotropic Gaussian <span class="math inline">\(\pi(x)\)</span>.</em></p>
 <p><span class="math display">\[
 q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} \, x_{t-1}, \beta_t \, \mathbf{I})
 \]</span></p>
