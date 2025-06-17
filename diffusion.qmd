@@ -98,7 +98,7 @@ At each step, the signal is scaled down by a factor of $\sqrt{\alpha_t}$, and ne
 *Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.*
 
 ::: {.callout-note title="Why keep $\beta_t$ small?"}
-Keeping $\beta_t$ small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of $\beta_t$ would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via $\sqrt{\alpha_t}$) and noise growth (via $\sqrt{1 - \alpha_t}$) to ensure a smooth, learnable transition.
+Choosing small values of $\beta_t$ ensures that noise is added gradually at each step, allowing the model to retain structure over time. This makes the reverse process easier to learn, as the signal decays smoothly via $\sqrt{\bar{\alpha}_t}$ rather than being overwhelmed by noise. Large $\beta_t$ values, on the other hand, can destroy signal too quickly, leading to poor reconstructions.
 :::
 
 ### Noise Schedules: Linear vs Cosine

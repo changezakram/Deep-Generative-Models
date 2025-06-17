@@ -361,7 +361,7 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Keeping <span class="math inline">\(\beta_t\)</span> small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of <span class="math inline">\(\beta_t\)</span> would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via <span class="math inline">\(\sqrt{\alpha_t}\)</span>) and noise growth (via <span class="math inline">\(\sqrt{1 - \alpha_t}\)</span>) to ensure a smooth, learnable transition.</p>
+<p>Choosing small values of <span class="math inline">\(\beta_t\)</span> ensures that noise is added gradually at each step, allowing the model to retain structure over time. This makes the reverse process easier to learn, as the signal decays smoothly via <span class="math inline">\(\sqrt{\bar{\alpha}_t}\)</span> rather than being overwhelmed by noise. Large <span class="math inline">\(\beta_t\)</span> values, on the other hand, can destroy signal too quickly, leading to poor reconstructions.</p>
 </div>
 </div>
 </section>
