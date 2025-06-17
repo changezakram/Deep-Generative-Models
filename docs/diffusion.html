@@ -193,8 +193,9 @@ window.Quarto = {
   <li><a href="#forward-diffusion-process" id="toc-forward-diffusion-process" class="nav-link" data-scroll-target="#forward-diffusion-process"><span class="header-section-number">2</span> Forward Diffusion Process</a></li>
   <li><a href="#reverse-diffusion-process" id="toc-reverse-diffusion-process" class="nav-link" data-scroll-target="#reverse-diffusion-process"><span class="header-section-number">3</span> Reverse Diffusion Process</a></li>
   <li><a href="#training-understanding-the-elbo" id="toc-training-understanding-the-elbo" class="nav-link" data-scroll-target="#training-understanding-the-elbo"><span class="header-section-number">4</span> Training: Understanding the ELBO</a></li>
-  <li><a href="#training-and-sampling-algorithms-ddpm" id="toc-training-and-sampling-algorithms-ddpm" class="nav-link" data-scroll-target="#training-and-sampling-algorithms-ddpm"><span class="header-section-number">5</span> Training and Sampling Algorithms (DDPM)</a></li>
-  <li><a href="#tricks-for-improving-generation" id="toc-tricks-for-improving-generation" class="nav-link" data-scroll-target="#tricks-for-improving-generation"><span class="header-section-number">6</span> Tricks for Improving Generation</a></li>
+  <li><a href="#u-net-architecture-for-denoising" id="toc-u-net-architecture-for-denoising" class="nav-link" data-scroll-target="#u-net-architecture-for-denoising"><span class="header-section-number">5</span> U-Net Architecture for Denoising</a></li>
+  <li><a href="#training-and-sampling-algorithms-ddpm" id="toc-training-and-sampling-algorithms-ddpm" class="nav-link" data-scroll-target="#training-and-sampling-algorithms-ddpm"><span class="header-section-number">6</span> Training and Sampling Algorithms (DDPM)</a></li>
+  <li><a href="#tricks-for-improving-generation" id="toc-tricks-for-improving-generation" class="nav-link" data-scroll-target="#tricks-for-improving-generation"><span class="header-section-number">7</span> Tricks for Improving Generation</a></li>
   </ul>
 </nav>
     </div>
@@ -1152,19 +1153,20 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 <p>This denoised estimate is also used during sampling to compute the mean of the reverse distribution <span class="math inline">\(q(x_{t-1} \mid x_t, x_0)\)</span> — which is key to reversing the diffusion process one step at a time.</p>
 </section>
 </section>
-<section id="architecture-note" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="architecture-note"><span class="header-section-number">4.7</span> 4.7 Architecture Note</h3>
-<p>The network <span class="math inline">\(begin:math:text\)</span> \epsilon_\theta(x_t, t) <span class="math inline">\(end:math:text\)</span> is typically implemented as a <strong>U-Net</strong>, which takes:</p>
+</section>
+<section id="u-net-architecture-for-denoising" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="u-net-architecture-for-denoising"><span class="header-section-number">5</span> U-Net Architecture for Denoising</h2>
+<p>The network <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is typically implemented as a <strong>U-Net</strong>, which takes:</p>
 <ul>
-<li>A noisy image <span class="math inline">\(begin:math:text\)</span> x_t <span class="math inline">\(end:math:text\)</span></li>
-<li>A timestep <span class="math inline">\(begin:math:text\)</span> t <span class="math inline">\(end:math:text\)</span>, encoded using sinusoidal or learned embeddings</li>
+<li>A noisy image <span class="math inline">\(x_t\)</span></li>
+<li>A timestep <span class="math inline">\(t\)</span>, encoded using sinusoidal or learned embeddings</li>
 </ul>
-<p>It outputs the predicted noise <span class="math inline">\(begin:math:text\)</span> \epsilon <span class="math inline">\(end:math:text\)</span>, allowing the model to reverse the diffusion process.</p>
+<p>It outputs the predicted noise <span class="math inline">\(\epsilon\)</span>, allowing the model to reverse the diffusion process.</p>
 <p>The <strong>U-Net</strong> architecture is particularly effective in diffusion models because it preserves the spatial resolution of the input throughout the network. Unlike VAEs, which compress the input into a lower-dimensional latent space, the U-Net uses <strong>skip connections</strong> to pass fine-grained information directly from downsampling to upsampling layers. This helps preserve image detail and texture throughout the denoising process.</p>
-<section id="key-components-of-the-u-net-used-in-diffusion-models" class="level4" data-number="4.7.1">
-<h4 data-number="4.7.1" class="anchored" data-anchor-id="key-components-of-the-u-net-used-in-diffusion-models"><span class="header-section-number">4.7.1</span> Key components of the U-Net used in diffusion models:</h4>
+<section id="key-components-of-the-u-net-used-in-diffusion-models" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="key-components-of-the-u-net-used-in-diffusion-models"><span class="header-section-number">5.1</span> Key components of the U-Net used in diffusion models:</h3>
 <ul>
-<li>The input is a noisy image (e.g., shape <span class="math inline">\(begin:math:text\)</span> 64 \times 64 \times 3 <span class="math inline">\(end:math:text\)</span>) that we wish to denoise.</li>
+<li>The input is a noisy image (e.g., shape <span class="math inline">\(64 \times 64 \times 3\)</span>) that we wish to denoise.</li>
 <li>A second input provides the noise variance (or timestep), passed through a sinusoidal embedding function.</li>
 <li>The time embedding is upsampled and concatenated with the noisy image along the channel dimension.</li>
 <li>The combined input is passed through:
@@ -1174,22 +1176,20 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 <li>An <strong>upsampling path</strong> composed of <code>UpBlocks</code>, which mirror the downsampling layers.</li>
 <li><strong>Skip connections</strong> between corresponding down and up blocks to preserve spatial detail.</li>
 </ul></li>
-<li>The output is produced by a final <span class="math inline">\(begin:math:text\)</span> 1 \times 1 <span class="math inline">\(end:math:text\)</span> convolutional layer initialized to zeros.</li>
+<li>The output is produced by a final <span class="math inline">\(1 \times 1\)</span> convolutional layer initialized to zeros.</li>
 </ul>
 <p>This structure allows the model to iteratively refine and denoise its estimate of the clean image across reverse steps.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/unet.png" class="img-fluid figure-img"></p>
-<figcaption>The denoising model receives the noisy input <span class="math inline">\(begin:math:text\)</span>x_t<span class="math inline">\(end:math:text\)</span> and a time embedding <span class="math inline">\(begin:math:text\)</span>t<span class="math inline">\(end:math:text\)</span>, and predicts the noise <span class="math inline">\(begin:math:text\)</span>\epsilon_\theta(x_t, t)<span class="math inline">\(end:math:text\)</span> that was added at step <span class="math inline">\(begin:math:text\)</span>t<span class="math inline">\(end:math:text\)</span>.</figcaption>
+<figcaption>The denoising model receives the noisy input <span class="math inline">\(x_t\)</span> and a time embedding <span class="math inline">\(t\)</span>, and predicts the noise <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> that was added at step <span class="math inline">\(t\)</span>.</figcaption>
 </figure>
 </div>
-<p>*The U-Net receives both the noisy input and a time embedding, and is trained to predict the added noise. This predicted noise is used to reconstruct a cleaner version of the image at each reverse step.*</p>
-<p><em>Adapted from Stanford CS236: Deep Generative Models (Winter 2023)</em></p>
+<p><em>Adapted from Stanford CS236: Deep Generative Models (Winter 2023).</em></p>
 <hr>
 </section>
-</section>
-<section id="takeaways" class="level3" data-number="4.8">
-<h3 data-number="4.8" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.8</span> Takeaways</h3>
+<section id="takeaways" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">5.2</span> Takeaways</h3>
 <ul>
 <li>The ELBO provides a tractable lower bound on the data likelihood <span class="math inline">\(\log p_\theta(x_0)\)</span>, and serves as the theoretical training objective.</li>
 <li>It decomposes into loss terms that align the learned reverse process with the fixed forward noising process, step by step.</li>
@@ -1198,10 +1198,10 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 <hr>
 </section>
 </section>
-<section id="training-and-sampling-algorithms-ddpm" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="training-and-sampling-algorithms-ddpm"><span class="header-section-number">5</span> Training and Sampling Algorithms (DDPM)</h2>
-<section id="algorithm-training-ddpm" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="algorithm-training-ddpm"><span class="header-section-number">5.1</span> Algorithm: Training (DDPM)</h3>
+<section id="training-and-sampling-algorithms-ddpm" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="training-and-sampling-algorithms-ddpm"><span class="header-section-number">6</span> Training and Sampling Algorithms (DDPM)</h2>
+<section id="algorithm-training-ddpm" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="algorithm-training-ddpm"><span class="header-section-number">6.1</span> Algorithm: Training (DDPM)</h3>
 <p><strong>Steps:</strong> - Sample a data point: <span class="math inline">\(x_0 \sim q(x_0)\)</span><br>
 - Choose a timestep: <span class="math inline">\(t \sim \text{Uniform}(\{1, \dots, T\})\)</span><br>
 - Sample noise: <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span><br>
@@ -1217,8 +1217,8 @@ x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}} \left( x_t - \sqrt{1 - \bar{\alpha}_t} \, 
 - Optimize using mean squared error between predicted and true noise</p>
 <hr>
 </section>
-<section id="algorithm-sampling-ddpm" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="algorithm-sampling-ddpm"><span class="header-section-number">5.2</span> Algorithm: Sampling (DDPM)</h3>
+<section id="algorithm-sampling-ddpm" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="algorithm-sampling-ddpm"><span class="header-section-number">6.2</span> Algorithm: Sampling (DDPM)</h3>
 <p><strong>Steps:</strong> - Start with noise: <span class="math inline">\(x_T \sim \mathcal{N}(0, I)\)</span><br>
 - For <span class="math inline">\(t = T, \dots, 1\)</span>:<br>
   - <span class="math inline">\(z \sim \mathcal{N}(0, I)\)</span> if <span class="math inline">\(t &gt; 1\)</span>, else <span class="math inline">\(z = 0\)</span><br>
@@ -1235,11 +1235,11 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \
 - Continue until you obtain a clean sample <span class="math inline">\(x_0\)</span></p>
 </section>
 </section>
-<section id="tricks-for-improving-generation" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="tricks-for-improving-generation"><span class="header-section-number">6</span> Tricks for Improving Generation</h2>
+<section id="tricks-for-improving-generation" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="tricks-for-improving-generation"><span class="header-section-number">7</span> Tricks for Improving Generation</h2>
 <p>While the original DDPM formulation already achieves impressive results, several refinements have been proposed to improve sample quality and likelihood estimates. Below are three effective categories of improvements.</p>
-<section id="better-noise-schedules" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="better-noise-schedules"><span class="header-section-number">6.1</span> Better Noise Schedules</h3>
+<section id="better-noise-schedules" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="better-noise-schedules"><span class="header-section-number">7.1</span> Better Noise Schedules</h3>
 <p>In DDPM, the noise schedule defines how much noise is added at each timestep during the forward process. A common default is a <strong>linear schedule</strong>, but this can overly distort early inputs:</p>
 <ul>
 <li>A <strong>linear noise schedule</strong> adds noise too aggressively in early steps, quickly erasing structure from <span class="math inline">\(x_0\)</span>.</li>
@@ -1249,8 +1249,8 @@ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \
 <p><strong>Key Insight</strong>: A cosine schedule preserves structure for longer, giving the reverse process a better chance at learning to denoise effectively — even though the choice of cosine was somewhat arbitrary, it empirically works better.</p>
 </blockquote>
 </section>
-<section id="learning-the-variance-covariance-matrix" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="learning-the-variance-covariance-matrix"><span class="header-section-number">6.2</span> Learning the Variance (Covariance Matrix)</h3>
+<section id="learning-the-variance-covariance-matrix" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="learning-the-variance-covariance-matrix"><span class="header-section-number">7.2</span> Learning the Variance (Covariance Matrix)</h3>
 <p>In the basic DDPM, the reverse process uses a <strong>fixed variance</strong> (i.e., isotropic Gaussian). However, variance also influences generation:</p>
 <ul>
 <li><p>DDPM authors initially used fixed values:<br>
@@ -1264,8 +1264,8 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <p><strong>Why it helps</strong>: While the <strong>mean</strong> dominates sample quality, a better variance estimate improves <strong>likelihood estimation</strong> without hurting visual fidelity.</p>
 </blockquote>
 </section>
-<section id="architectural-enhancements" class="level3" data-number="6.3">
-<h3 data-number="6.3" class="anchored" data-anchor-id="architectural-enhancements"><span class="header-section-number">6.3</span> Architectural Enhancements</h3>
+<section id="architectural-enhancements" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="architectural-enhancements"><span class="header-section-number">7.3</span> Architectural Enhancements</h3>
 <p>In addition to schedule and variance tweaks, the architecture of the denoising network matters:</p>
 <ul>
 <li><strong>Depth vs.&nbsp;Width</strong>: Wider U-Nets improve sample quality more efficiently than deeper ones.</li>
@@ -1275,8 +1275,8 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 </ul>
 <p>These tricks are often combined in modern diffusion models and form the backbone of high-quality sample generation pipelines like improved DDPMs and diffusion-based image generators (e.g., ADM, Imagen, and Stable Diffusion).</p>
 </section>
-<section id="classifier-free-guidance" class="level3" data-number="6.4">
-<h3 data-number="6.4" class="anchored" data-anchor-id="classifier-free-guidance"><span class="header-section-number">6.4</span> Classifier-Free Guidance</h3>
+<section id="classifier-free-guidance" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="classifier-free-guidance"><span class="header-section-number">7.4</span> Classifier-Free Guidance</h3>
 <p>Used by: <em>Stable Diffusion</em>, <em>Imagen</em>, <em>DALLE 2</em>, and more.</p>
 <ul>
 <li>Allows the model to <strong>control generation</strong> (e.g., with text prompts) without requiring a separate classifier.</li>
@@ -1288,8 +1288,8 @@ where <span class="math inline">\(\sigma_t^2\)</span> is either <span class="mat
 <p>Where: - <span class="math inline">\(w\)</span> is the guidance scale (typically 1–5). - <span class="math inline">\(y\)</span> is the conditioning input (e.g., a caption). - <span class="math inline">\(\epsilon_\theta(x_t, t, y)\)</span> is the predicted noise <strong>with</strong> conditioning. - <span class="math inline">\(\epsilon_\theta(x_t, t)\)</span> is the predicted noise <strong>without</strong> conditioning.</p>
 <p>Higher <span class="math inline">\(w\)</span> increases adherence to the prompt — but can also reduce diversity or realism.</p>
 </section>
-<section id="improved-samplers-ddim-dpm-solver" class="level3" data-number="6.5">
-<h3 data-number="6.5" class="anchored" data-anchor-id="improved-samplers-ddim-dpm-solver"><span class="header-section-number">6.5</span> Improved Samplers (DDIM, DPM-Solver)</h3>
+<section id="improved-samplers-ddim-dpm-solver" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="improved-samplers-ddim-dpm-solver"><span class="header-section-number">7.5</span> Improved Samplers (DDIM, DPM-Solver)</h3>
 <p>The original DDPM sampling takes <strong>~1000 steps</strong>. These improved samplers accelerate generation dramatically.</p>
 <ul>
 <li><strong>DDIM (Denoising Diffusion Implicit Models):</strong>
