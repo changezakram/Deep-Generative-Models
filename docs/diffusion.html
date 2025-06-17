@@ -364,6 +364,7 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 <p>Choosing small values of <span class="math inline">\(\beta_t\)</span> ensures that noise is added gradually at each step, allowing the model to retain structure over time. This makes the reverse process easier to learn, as the signal decays smoothly via <span class="math inline">\(\sqrt{\bar{\alpha}_t}\)</span> rather than being overwhelmed by noise. Large <span class="math inline">\(\beta_t\)</span> values, on the other hand, can destroy signal too quickly, leading to poor reconstructions.</p>
 </div>
 </div>
+<p>The choice of <span class="math inline">\(\beta_t\)</span> at each step—known as the noise schedule—plays a critical role in how effectively the model can learn the reverse denoising process. A well-designed schedule balances signal retention and noise addition, ensuring gradual degradation of structure without overwhelming the data too early. In the next section, we compare common scheduling strategies and their effect on training and image quality.</p>
 </section>
 <section id="noise-schedules-linear-vs-cosine" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="noise-schedules-linear-vs-cosine"><span class="header-section-number">2.3</span> Noise Schedules: Linear vs Cosine</h3>

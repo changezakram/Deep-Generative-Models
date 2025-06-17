@@ -101,6 +101,8 @@ At each step, the signal is scaled down by a factor of $\sqrt{\alpha_t}$, and ne
 Choosing small values of $\beta_t$ ensures that noise is added gradually at each step, allowing the model to retain structure over time. This makes the reverse process easier to learn, as the signal decays smoothly via $\sqrt{\bar{\alpha}_t}$ rather than being overwhelmed by noise. Large $\beta_t$ values, on the other hand, can destroy signal too quickly, leading to poor reconstructions.
 :::
 
+The choice of $\beta_t$ at each step—known as the noise schedule—plays a critical role in how effectively the model can learn the reverse denoising process. A well-designed schedule balances signal retention and noise addition, ensuring gradual degradation of structure without overwhelming the data too early. In the next section, we compare common scheduling strategies and their effect on training and image quality.
+
 ### Noise Schedules: Linear vs Cosine
 
 The noise schedule determines how much Gaussian noise is added at each step in the forward diffusion process. It defines the values of $\beta_t$ — or more commonly, the cumulative signal retention $\bar{\alpha}_t$ — which control how quickly the signal fades and noise dominates.
