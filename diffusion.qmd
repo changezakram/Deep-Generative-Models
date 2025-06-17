@@ -78,7 +78,9 @@ To visualize the effect of the forward process on the entire data distribution (
 
 ![Forward diffusion process in distribution space: data distribution gradually transitions to a standard Gaussian](images/forward_dist_shift.png)
 
-*Over time, the data distribution $q_0(x) = p_{\text{data}}(x)$ is progressively perturbed into $q_T(x)$, which approximates an isotropic Gaussian $\pi(x)$.*
+*Adapted from Stanford CS236: Deep Generative Models (Winter 2023).*
+
+
 
 $$
 q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} \, x_{t-1}, \beta_t \, \mathbf{I})

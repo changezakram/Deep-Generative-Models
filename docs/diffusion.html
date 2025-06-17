@@ -335,7 +335,7 @@ We’ll later see that it’s also possible to sample <span class="math inline">
 <figcaption>Forward diffusion process in distribution space: data distribution gradually transitions to a standard Gaussian</figcaption>
 </figure>
 </div>
-<p><em>Over time, the data distribution <span class="math inline">\(q_0(x) = p_{\text{data}}(x)\)</span> is progressively perturbed into <span class="math inline">\(q_T(x)\)</span>, which approximates an isotropic Gaussian <span class="math inline">\(\pi(x)\)</span>.</em></p>
+<p><em>Adapted from Stanford CS236: Deep Generative Models (Winter 2023).</em></p>
 <p><span class="math display">\[
 q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} \, x_{t-1}, \beta_t \, \mathbf{I})
 \]</span></p>
