@@ -70,33 +70,28 @@ We’ll later see that it’s also possible to sample $x_t$ directly from $x_0$,
 
 ### Add Noise Recursively
 
-To model the forward noising process, we define a noise schedule $\{\beta_1, \dots, \beta_T\}$, where each $\beta_t \in (0, 1)$ controls how much Gaussian noise is added at step $t$.
+To model the forward diffusion process, we recursively add Gaussian noise at each step. Each step $q(x_t \mid x_{t-1})$ is defined as a Gaussian distribution, where the mean retains a fraction of the signal from the previous step and the variance controls the amount of noise added.
 
-This gives the following transition distribution:
+We define the noise schedule as a sequence of small positive values $\{ \beta_1, \beta_2, \dots, \beta_T \}$, where $\beta_t \in (0, 1)$ controls how much noise is injected at step $t$. Then:
 
 $$
-q(x_t \mid x_{t-1}) = \mathcal{N}\left(\sqrt{1 - \beta_t} \, x_{t-1}, \, \beta_t \mathbf{I} \right)
+q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} \, x_{t-1}, \beta_t \, \mathbf{I})
 $$
 
-To simplify notation, we define:
+For convenience, we define:
+
+- $\alpha_t = 1 - \beta_t$ (signal retention at step $t$)
+- $\bar{\alpha}_t = \prod_{s=1}^{t} \alpha_s$ (cumulative signal retention up to step $t$)
+
+This lets us express the forward process directly in terms of the original data $x_0$:
+
 $$
-\alpha_t = 1 - \beta_t, \quad \bar{\alpha}_t = \prod_{i=1}^t \alpha_i
+q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} \, x_0, (1 - \bar{\alpha}_t) \, \mathbf{I})
 $$
 
-Here, $\alpha_t$ represents the amount of signal preserved at each step, and $\bar{\alpha}_t$ gives the cumulative signal retention over $t$ steps.
+At each step, the signal is scaled down by a factor of $\sqrt{\alpha_t}$, and new Gaussian noise is added with variance $(1 - \alpha_t)$. After many steps, the sample becomes increasingly noisy and approaches an isotropic Gaussian distribution.
 
-Then, at each time step $t$, the forward process is defined as:
-$$
-q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I \right)
-$$
-
-Where:
- 
-- $\alpha_t = 1 - \beta_t$, with $\beta_t$ a small positive number controlling the noise level.     
-- The variance term $(1 - \alpha_t) I = \beta_t I$ controls how much noise is added at each step.     
-- $I$ is the identity matrix, so noise is added independently to each pixel or component.   
-
-> **Intuition:** At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.
+> **Intuition:** The signal shrinks gradually while fresh noise is added. Over many steps, the data becomes indistinguishable from pure noise.
 
 ![Forward diffusion process: gradually adds Gaussian noise to the input image across $T$ steps.](images/diffusion-forward.png)
 

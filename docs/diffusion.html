@@ -326,28 +326,23 @@ We’ll later see that it’s also possible to sample <span class="math inline">
 </section>
 <section id="add-noise-recursively" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="add-noise-recursively"><span class="header-section-number">2.2</span> Add Noise Recursively</h3>
-<p>To model the forward noising process, we define a noise schedule <span class="math inline">\(\{\beta_1, \dots, \beta_T\}\)</span>, where each <span class="math inline">\(\beta_t \in (0, 1)\)</span> controls how much Gaussian noise is added at step <span class="math inline">\(t\)</span>.</p>
-<p>This gives the following transition distribution:</p>
+<p>To model the forward diffusion process, we recursively add Gaussian noise at each step. Each step <span class="math inline">\(q(x_t \mid x_{t-1})\)</span> is defined as a Gaussian distribution, where the mean retains a fraction of the signal from the previous step and the variance controls the amount of noise added.</p>
+<p>We define the noise schedule as a sequence of small positive values <span class="math inline">\(\{ \beta_1, \beta_2, \dots, \beta_T \}\)</span>, where <span class="math inline">\(\beta_t \in (0, 1)\)</span> controls how much noise is injected at step <span class="math inline">\(t\)</span>. Then:</p>
 <p><span class="math display">\[
-q(x_t \mid x_{t-1}) = \mathcal{N}\left(\sqrt{1 - \beta_t} \, x_{t-1}, \, \beta_t \mathbf{I} \right)
+q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} \, x_{t-1}, \beta_t \, \mathbf{I})
 \]</span></p>
-<p>To simplify notation, we define: <span class="math display">\[
-\alpha_t = 1 - \beta_t, \quad \bar{\alpha}_t = \prod_{i=1}^t \alpha_i
-\]</span></p>
-<p>Here, <span class="math inline">\(\alpha_t\)</span> represents the amount of signal preserved at each step, and <span class="math inline">\(\bar{\alpha}_t\)</span> gives the cumulative signal retention over <span class="math inline">\(t\)</span> steps.</p>
-<p>Then, at each time step <span class="math inline">\(t\)</span>, the forward process is defined as: <span class="math display">\[
-q(x_t \mid x_{t-1}) = \mathcal{N} \left( x_t ; \sqrt{\alpha_t} x_{t-1}, (1 - \alpha_t) I \right)
-\]</span></p>
-<p>Where:</p>
+<p>For convenience, we define:</p>
 <ul>
-<li><span class="math inline">\(\alpha_t = 1 - \beta_t\)</span>, with <span class="math inline">\(\beta_t\)</span> a small positive number controlling the noise level.<br>
-</li>
-<li>The variance term <span class="math inline">\((1 - \alpha_t) I = \beta_t I\)</span> controls how much noise is added at each step.<br>
-</li>
-<li><span class="math inline">\(I\)</span> is the identity matrix, so noise is added independently to each pixel or component.</li>
+<li><span class="math inline">\(\alpha_t = 1 - \beta_t\)</span> (signal retention at step <span class="math inline">\(t\)</span>)</li>
+<li><span class="math inline">\(\bar{\alpha}_t = \prod_{s=1}^{t} \alpha_s\)</span> (cumulative signal retention up to step <span class="math inline">\(t\)</span>)</li>
 </ul>
+<p>This lets us express the forward process directly in terms of the original data <span class="math inline">\(x_0\)</span>:</p>
+<p><span class="math display">\[
+q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} \, x_0, (1 - \bar{\alpha}_t) \, \mathbf{I})
+\]</span></p>
+<p>At each step, the signal is scaled down by a factor of <span class="math inline">\(\sqrt{\alpha_t}\)</span>, and new Gaussian noise is added with variance <span class="math inline">\((1 - \alpha_t)\)</span>. After many steps, the sample becomes increasingly noisy and approaches an isotropic Gaussian distribution.</p>
 <blockquote class="blockquote">
-<p><strong>Intuition:</strong> At each step, we shrink the signal and add new Gaussian noise. Over many steps, the data becomes increasingly noisy and eventually indistinguishable from pure noise.</p>
+<p><strong>Intuition:</strong> The signal shrinks gradually while fresh noise is added. Over many steps, the data becomes indistinguishable from pure noise.</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
