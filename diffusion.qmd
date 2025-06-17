@@ -72,7 +72,13 @@ We’ll later see that it’s also possible to sample $x_t$ directly from $x_0$,
 
 To model the forward diffusion process, we recursively add Gaussian noise at each step. Each step $q(x_t \mid x_{t-1})$ is defined as a Gaussian distribution, where the mean retains a fraction of the signal from the previous step and the variance controls the amount of noise added.
 
-We define the noise schedule as a sequence of small positive values $\{ \beta_1, \beta_2, \dots, \beta_T \}$, where $\beta_t \in (0, 1)$ controls how much noise is injected at step $t$. Then:
+We define the noise schedule as a sequence of small positive values $\{ \beta_1, \beta_2, \dots, \beta_T \}$, where $\beta_t \in (0, 1)$ controls how much noise is injected at step $t$.
+
+To visualize the effect of the forward process on the entire data distribution (not just individual samples), consider the following:
+
+![Forward diffusion process in distribution space: data distribution gradually transitions to a standard Gaussian](images/forward_dist_shift.png)
+
+*Over time, the data distribution $q_0(x) = p_{\text{data}}(x)$ is progressively perturbed into $q_T(x)$, which approximates an isotropic Gaussian $\pi(x)$.*
 
 $$
 q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} \, x_{t-1}, \beta_t \, \mathbf{I})
