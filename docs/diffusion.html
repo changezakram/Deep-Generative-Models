@@ -425,15 +425,16 @@ Practical Guidance: Choosing a Noise Schedule
 </section>
 <section id="the-markov-chain" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">2.4</span> The Markov Chain</h3>
-<p>The full sequence is:</p>
+<p>The forward diffusion process forms a Markov chain: each state <span class="math inline">\(x_t\)</span> depends only on the previous state <span class="math inline">\(x_{t-1}\)</span>. This property enables efficient sampling and simplifies the math behind both training and generation.</p>
+<p>The full sequence can be written as:</p>
 <p><span class="math display">\[
-x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
+x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \cdots \rightarrow x_T
 \]</span></p>
-<p>The joint probability of the sequence is:</p>
+<p>The joint probability over all noisy samples given the original data <span class="math inline">\(x_0\)</span> is:</p>
 <p><span class="math display">\[
 q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
 \]</span></p>
-<p>This means we can sample the whole chain by repeatedly applying the noise step.</p>
+<p>This formulation means we can generate the full noise trajectory by repeatedly applying the noise step defined earlier.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Why it’s still useful to model the full chain">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -444,7 +445,7 @@ Why it’s still useful to model the full chain
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Insight:</strong> While the forward process defines a full Markov chain from <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_T\)</span>, we’ll soon see that it’s also possible to sample any <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using a closed-form Gaussian — without simulating each intermediate step.</p>
+<p><strong>Insight:</strong> Even though we can sample any <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using a closed-form Gaussian, modeling the full Markov chain is still essential. It forms the foundation for defining the reverse (denoising) process, which we’ll learn next.</p>
 </div>
 </div>
 </section>

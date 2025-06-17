@@ -149,22 +149,24 @@ Cosine schedules preserve details longer, while linear schedules degrade the ima
 
 ### The Markov Chain
 
-The full sequence is:
+The forward diffusion process forms a Markov chain: each state $x_t$ depends only on the previous state $x_{t-1}$. This property enables efficient sampling and simplifies the math behind both training and generation.
+
+The full sequence can be written as:
 
 $$
-x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
+x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \cdots \rightarrow x_T
 $$
 
-The joint probability of the sequence is:
+The joint probability over all noisy samples given the original data $x_0$ is:
 
 $$
 q(x_{1:T} \mid x_0) = \prod_{t=1}^{T} q(x_t \mid x_{t-1})
 $$
 
-This means we can sample the whole chain by repeatedly applying the noise step.
+This formulation means we can generate the full noise trajectory by repeatedly applying the noise step defined earlier.
 
 ::: {.callout-note title="Why it’s still useful to model the full chain"}
-**Insight:** While the forward process defines a full Markov chain from $x_0$ to $x_T$, we’ll soon see that it’s also possible to sample any $x_t$ directly from $x_0$ using a closed-form Gaussian — without simulating each intermediate step.
+**Insight:** Even though we can sample any $x_t$ directly from $x_0$ using a closed-form Gaussian, modeling the full Markov chain is still essential. It forms the foundation for defining the reverse (denoising) process, which we’ll learn next.
 :::
 
 ### Deriving the Marginal Distribution $q(x_t \mid x_0)$
