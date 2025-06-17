@@ -369,16 +369,52 @@ Why keep <span class="math inline">\(\beta_t\)</span> small?
 <p>Keeping <span class="math inline">\(\beta_t\)</span> small ensures that noise is added gradually. This allows the model to retain structure across many steps and converge slowly to pure noise. Large values of <span class="math inline">\(\beta_t\)</span> would destroy the signal too quickly, making it harder for the reverse model to reconstruct the data. The design of the forward process balances signal decay (via <span class="math inline">\(\sqrt{\alpha_t}\)</span>) and noise growth (via <span class="math inline">\(\sqrt{1 - \alpha_t}\)</span>) to ensure a smooth, learnable transition.</p>
 </div>
 </div>
+</section>
+<section id="noise-schedules-linear-vs-cosine" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="noise-schedules-linear-vs-cosine"><span class="header-section-number">2.3</span> Noise Schedules: Linear vs Cosine</h3>
+<p>The noise schedule determines how much Gaussian noise is added at each step in the forward diffusion process. It defines the values of <span class="math inline">\(\beta_t\)</span> — or more commonly, the cumulative signal retention <span class="math inline">\(\bar{\alpha}_t\)</span> — which control how quickly the signal fades and noise dominates.</p>
+<p>Adding noise too aggressively destroys the structure early. Too conservatively, and training becomes inefficient. So a carefully chosen schedule is key.</p>
+<p><strong>Linear vs Cosine Schedules</strong></p>
+<p>The two most common schedules are:</p>
+<ul>
+<li><strong>Linear schedule</strong>: <span class="math inline">\(\beta_t\)</span> increases linearly with <span class="math inline">\(t\)</span>.
+<ul>
+<li>Signal (<span class="math inline">\(\bar{\alpha}_t\)</span>) drops off rapidly.</li>
+<li>Noise (<span class="math inline">\(1 - \bar{\alpha}_t\)</span>) ramps up quickly, making early training steps harder.</li>
+</ul></li>
+<li><strong>Cosine schedule</strong>: <span class="math inline">\(\bar{\alpha}_t\)</span> follows a cosine decay curve.
+<ul>
+<li>Signal decays more gradually.</li>
+<li>Noise builds up slowly at first, which improves training stability.</li>
+</ul></li>
+</ul>
+<p><strong>Visualizing Signal and Noise Progression</strong></p>
+<p>These plots compare signal (<span class="math inline">\(\bar{\alpha}_t\)</span>) and noise (<span class="math inline">\(1 - \bar{\alpha}_t\)</span>) values over time:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/noise-schedule.png" class="img-fluid figure-img"></p>
-<figcaption>Comparison of signal (<span class="math inline">\(\bar{\alpha}_t\)</span>) and noise (<span class="math inline">\(1 - \bar{\alpha}_t\)</span>) schedules for linear and cosine noise schedules. Cosine adds noise more gradually early on, improving training stability and sample quality.</figcaption>
+<figcaption>Comparison of signal and noise schedules</figcaption>
 </figure>
 </div>
-<p>By chaining these noise steps over time, we define a forward Markov process that gradually transforms <span class="math inline">\(x_0\)</span> into pure noise <span class="math inline">\(x_T\)</span>.</p>
+<p>In the cosine schedule, signal decays slowly at first, giving the model more intermediate structure to learn from. The linear schedule, on the other hand, adds too much noise too early.</p>
+<p><strong>Visualizing the Effect on Images</strong></p>
+<p>The figure below shows how a sample image degrades under both schedules. Each column represents a different timestep from <span class="math inline">\(t = 0\)</span> to <span class="math inline">\(t = T\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/linear_vs_cos.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Latent image degradation under linear vs cosine noise schedules</figcaption>
+</figure>
+</div>
+<p>The linear schedule quickly overwhelms the image with noise, especially in the later steps. The cosine schedule retains visual features longer, which helps the reverse process recover better samples.</p>
+<p><strong>Takeaways</strong></p>
+<ul>
+<li>Cosine schedules help models retain image structure longer, improving denoising and final output quality.</li>
+<li>Linear schedules may be easier to implement but are more aggressive, often harming early-stage training.</li>
+<li>Most modern implementations (such as Stable Diffusion) default to cosine schedules.</li>
+</ul>
 </section>
-<section id="the-markov-chain" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">2.3</span> The Markov Chain</h3>
+<section id="the-markov-chain" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="the-markov-chain"><span class="header-section-number">2.4</span> The Markov Chain</h3>
 <p>The full sequence is:</p>
 <p><span class="math display">\[
 x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow \ldots \rightarrow x_T
@@ -402,8 +438,8 @@ Why it’s still useful to model the full chain
 </div>
 </div>
 </section>
-<section id="deriving-the-marginal-distribution-qx_t-mid-x_0" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="deriving-the-marginal-distribution-qx_t-mid-x_0"><span class="header-section-number">2.4</span> Deriving the Marginal Distribution <span class="math inline">\(q(x_t \mid x_0)\)</span></h3>
+<section id="deriving-the-marginal-distribution-qx_t-mid-x_0" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="deriving-the-marginal-distribution-qx_t-mid-x_0"><span class="header-section-number">2.5</span> Deriving the Marginal Distribution <span class="math inline">\(q(x_t \mid x_0)\)</span></h3>
 <p> How do we get the formula that lets us sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> (without simulating all the intermediate steps)?</p>
 <p></p>
 <p>Let’s see how <span class="math inline">\(x_t\)</span> is built up from <span class="math inline">\(x_0\)</span>:</p>
@@ -428,8 +464,8 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sum_{i=1}^t \left( \sqrt{ \left( \prod_{j=i+1
 <p>This can be proved by induction or by telescoping the sum.</p>
 <p>All the little bits of noise added at each step combine into one big Gaussian noise term, with variance <span class="math inline">\(1 - \bar{\alpha}_t\)</span>.</p>
 </section>
-<section id="the-final-marginal-distribution" class="level3" data-number="2.5">
-<h3 data-number="2.5" class="anchored" data-anchor-id="the-final-marginal-distribution"><span class="header-section-number">2.5</span> The Final Marginal Distribution</h3>
+<section id="the-final-marginal-distribution" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="the-final-marginal-distribution"><span class="header-section-number">2.6</span> The Final Marginal Distribution</h3>
 <p>So, we can sample <span class="math inline">\(x_t\)</span> directly from <span class="math inline">\(x_0\)</span> using: <span class="math display">\[
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)
 \]</span></p>
@@ -449,8 +485,8 @@ x_T \sim \mathcal{N}(0, I)
 </div>
 <p><em>Adapted from the CVPR 2023 Tutorial on Diffusion Models by Arash Vahdat.</em></p>
 </section>
-<section id="recap-forward-diffusion-steps" class="level3" data-number="2.6">
-<h3 data-number="2.6" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">2.6</span> Recap: Forward Diffusion Steps</h3>
+<section id="recap-forward-diffusion-steps" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="recap-forward-diffusion-steps"><span class="header-section-number">2.7</span> Recap: Forward Diffusion Steps</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -493,8 +529,8 @@ x_T \sim \mathcal{N}(0, I)
 </tbody>
 </table>
 </section>
-<section id="key-takeaways" class="level3" data-number="2.7">
-<h3 data-number="2.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.7</span> Key Takeaways</h3>
+<section id="key-takeaways" class="level3" data-number="2.8">
+<h3 data-number="2.8" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.8</span> Key Takeaways</h3>
 <ul>
 <li>The forward diffusion process is just repeatedly adding noise to your data.</li>
 <li>Thanks to properties of Gaussian noise, you can describe the result as the original data scaled down plus one cumulative chunk of Gaussian noise.<br>
