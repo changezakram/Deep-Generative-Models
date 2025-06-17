@@ -131,6 +131,8 @@ This plot shows how an image is progressively corrupted under each schedule:
 
 ![Latent image degradation under linear vs cosine noise schedules](images/linear_vs_cos.png)
 
+*Adapted from Nichol & Dhariwal (2021), "Improved Denoising Diffusion Probabilistic Models", arXiv:2102.09672.*
+
 Cosine schedules preserve details longer, while linear schedules degrade the image more aggressively in fewer steps—highlighting why noise scheduling is critical for downstream generation quality.
 
 #### Takeaways
@@ -1166,6 +1168,8 @@ These methods let us trade off between **speed** and **quality**, enabling pract
 [2] Stanford University. (2023). *CS236: Deep Generative Models – Winter 2023 Course Materials*. Retrieved from https://deepgenerativemodels.github.io/
 
 [3] Vahdat, A. (2023). *CVPR 2023 Tutorial on Diffusion Models*. Retrieved from https://cvpr2023-tutorial-diffusion-models.github.io/
+
+[4] Nichol, A., & Dhariwal, P. (2021). *Improved Denoising Diffusion Probabilistic Models*. arXiv:2102.09672.
 
 
 ## 📘 Further Reading
