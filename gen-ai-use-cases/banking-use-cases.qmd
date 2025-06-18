@@ -10,14 +10,51 @@ Generative AI is redefining how banks operate — from automating customer servi
 
 ## 📋 Summary of Use Cases
 
-| Use Case Area             | Examples                            | Benefits                              |
-|---------------------------|--------------------------------------|----------------------------------------|
-| Customer Engagement       | Erica, Cora+, Fargo, Eliza           | 24/7 support, lower call volume         |
-| Operational Efficiency    | LLM Suite, AskResearchGPT, PwC       | Process streamlining, reduced manual work  |
-| Risk Management           | Mastercard DI, Wells Fargo Fraud     | Early fraud detection, loss prevention |
-| Credit Underwriting       | CreditLens, COiN Platform            | Quicker approvals, lower compliance risk|
-| Personalized Marketing    | JPMorgan Campaigns                   | Better targeting, higher engagement    |
-| Generative BI             | Copilot, ThoughtSpot, Custom Assistants| Self-service insights, exec summaries |
+| Use Case Area           | Examples                                  | Benefits                                     | Underlying Models       |
+|-------------------------|-------------------------------------------|----------------------------------------------|--------------------------|
+| Customer Engagement     | Erica (BoA), Cora+ (NatWest), Fargo       | 24/7 support, lower call volume              | LLM                      |
+| Operational Efficiency  | AskResearchGPT, PwC Virtual Assistant     | Streamlined processes, reduced manual work   | LLM, Retrieval-Augmented |
+| Risk Management         | Wells Fargo Fraud, Mastercard DI          | Early fraud detection, AML support           | EBM, VAE, Ensemble Models|
+| Credit Underwriting     | COiN (JPM), CreditLens (FICO)             | Faster, fairer approvals                     | LLM, Tabular GANs        |
+| Personalized Marketing  | JPMorgan Campaign Generator               | Targeted outreach, reduced churn             | VAE, RealNVP             |
+| Generative BI           | Copilot, ThoughtSpot, Custom GPTs         | Self-service dashboards, exec summaries      | LLM, Diffusion + LLM     |
+| Synthetic Data Gen      | PwC, Mostly AI, JPMC internal testing     | Privacy-safe test data for dev/testing       | VAE, Diffusion, GAN      |
+| Stress Testing          | Stress scenario generation                | Resilience modeling, tail risk assessment    | Diffusion, RealNVP       |
+| Smart Document Gen      | Compliance memos, summaries, offer letters| Faster documentation, fewer errors           | Diffusion + LLM          |
+
+## 🔍 Detailed Use Cases
+
+### 1. Synthetic Data Generation
+- **Problem**: Real data can't be shared freely due to privacy concerns.
+- **Solution**: Use VAE, Diffusion, or GAN models to create synthetic but statistically accurate datasets.
+- **Example**: PwC and JPMorgan use synthetic data for model development and testing environments.
+- **Citation**: [Add source here]
+
+### 2. Stress Testing
+- **Problem**: Limited historical examples of rare financial events.
+- **Solution**: Use diffusion models to simulate plausible future scenarios that challenge capital planning.
+- **Example**: Stress testing for liquidity during a simulated market shock.
+- **Citation**: [Add source here]
+
+### 3. Risk Management (Fraud & AML)
+- **Problem**: Detecting rare, evolving fraud patterns.
+- **Solution**: EBMs and VAE-based anomaly detection to flag outlier transactions.
+- **Example**: Wells Fargo and Mastercard use GenAI for real-time fraud prevention.
+- **Citation**: [Add source here]
+
+### 4. Generative BI
+- **Problem**: Executives need fast insights from complex data.
+- **Solution**: Combine LLMs with backend signal generators (like VAE or Diffusion) to auto-generate summaries.
+- **Example**: Microsoft Copilot, ThoughtSpot AI-Powered BI.
+- **Citation**: [Add source here]
+
+### 5. Smart Document Generation
+- **Problem**: Writing compliance memos and customer forms is time-consuming.
+- **Solution**: Use LLMs + diffusion-generated embeddings to auto-draft documents.
+- **Example**: Internal tools generating SAR narratives or executive briefs.
+- **Citation**: [Add source here]
+
+
 
 ## Use Cases in Banking
 
