@@ -162,8 +162,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#summary-of-use-cases" id="toc-summary-of-use-cases" class="nav-link active" data-scroll-target="#summary-of-use-cases"><span class="header-section-number">1</span> 📋 Summary of Use Cases</a></li>
   <li><a href="#detailed-use-cases" id="toc-detailed-use-cases" class="nav-link" data-scroll-target="#detailed-use-cases"><span class="header-section-number">2</span> 🔍 Detailed Use Cases</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">3</span> 🧾 Key Takeaways</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">4</span> 📚 References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3</span> 📚 References</a></li>
   </ul>
 </nav>
     </div>
@@ -312,9 +311,6 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds">JPMorgan COiN automates contract review</a></li>
 </ul></li>
 </ul>
-<p><strong>Examples:</strong><br>
-- Moody’s Analytics – CreditLens: Automates credit memo creation and industry analysis with generative tools.<br>
-- JPMorgan Chase – COiN Platform: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time.</p>
 </section>
 <section id="document-summarization" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="document-summarization"><span class="header-section-number">2.4</span> Document Summarization</h3>
@@ -330,22 +326,28 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><a href="https://www.cnbc.com/2023/05/22/jpmorgan-building-chatgpt-like-service-to-aid-investment-strategy.html">JPMorgan LLM Suite for operations</a></li>
 <li><a href="https://www.morganstanley.com/articles/morgan-stanley-research-and-openai/">Morgan Stanley AskResearchGPT</a></li>
-</ul></li>
 <li>PwC – Compliance Automation: Uses GenAI to summarize regulatory documents and extract clauses.<br>
 </li>
-<li>Citi – Reporting Automation: Streamlines compliance reporting and data extraction.<br>
-</li>
-<li>Standard Chartered – SC GPT: SC GPT helps employees retrieve information faster, and summarize internal documents.</li>
-<li>Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance.</li>
+<li>Citi – Reporting Automation: Streamlines compliance reporting and data extraction.</li>
+</ul></li>
 </ul>
 </section>
 <section id="smart-document-generation" class="level3" data-number="2.5">
-<h3 data-number="2.5" class="anchored" data-anchor-id="smart-document-generation"><span class="header-section-number">2.5</span> Smart Document Generation</h3>
+<h3 data-number="2.5" class="anchored" data-anchor-id="smart-document-generation"><span class="header-section-number">2.5</span> 7. Smart Document Generation</h3>
 <ul>
-<li><strong>Problem</strong>: Writing compliance memos and customer forms is time-consuming.</li>
-<li><strong>Solution</strong>: Use LLMs + diffusion-generated embeddings to auto-draft documents.</li>
-<li><strong>Example</strong>: Internal tools generating SAR narratives or executive briefs.</li>
-<li><strong>Citation</strong>: [Add source here]</li>
+<li><strong>Problem</strong>: Writing compliance memos, suspicious activity reports (SARs), and internal summaries requires significant manual effort and is prone to inconsistencies.</li>
+<li><strong>Solution</strong>: Generative AI models—particularly LLMs and IDP frameworks—automate the drafting, summarization, and structuring of regulatory and internal documents.</li>
+<li><strong>Examples</strong>:
+<ul>
+<li>Financial institutions are deploying AI-powered intelligent document processing (IDP) to accelerate loan processing, SAR creation, and internal reporting.</li>
+<li>Banks using GenAI for back-office automation have reported up to 70% reduction in manual effort.</li>
+</ul></li>
+<li><strong>Citations</strong>:
+<ul>
+<li><a href="https://home.treasury.gov/system/files/136/Treasury-Report-Responsible-AI-Financial-Services.pdf">U.S. Treasury: AI in back-office compliance</a></li>
+<li><a href="https://www.ey.com/en_us/financial-services/how-ai-and-idp-are-transforming-financial-services">Intelligent document processing in financial services (EY)</a></li>
+<li><a href="https://www.mckinsey.com/industries/financial-services/our-insights/generative-ai-in-risk-and-compliance-functions">AI in compliance documentation — McKinsey</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="personalized-insights" class="level3" data-number="2.6">
@@ -368,10 +370,19 @@ ul.task-list li input[type="checkbox"] {
 <section id="generative-bi" class="level3" data-number="2.7">
 <h3 data-number="2.7" class="anchored" data-anchor-id="generative-bi"><span class="header-section-number">2.7</span> Generative BI</h3>
 <ul>
-<li><strong>Problem</strong>: Executives need fast insights from complex data.</li>
-<li><strong>Solution</strong>: Combine LLMs with backend signal generators (like VAE or Diffusion) to auto-generate summaries.</li>
-<li><strong>Example</strong>: Microsoft Copilot, ThoughtSpot AI-Powered BI.</li>
-<li><strong>Citation</strong>: [Add source here]</li>
+<li><strong>Problem</strong>: Business leaders often struggle to extract timely insights from complex, multi-source data environments, relying on static dashboards or analysts.</li>
+<li><strong>Solution</strong>: Combine LLMs with backend analytical pipelines or generative models (e.g., VAE, Diffusion) to create dynamic, conversational, and auto-generated insights tailored to executive needs.</li>
+<li><strong>Examples</strong>:
+<ul>
+<li>Microsoft Copilot integrates GenAI into Excel and Power BI, enabling real-time natural language summaries and Q&amp;A over data models.</li>
+<li>ThoughtSpot Sage allows users to ask business questions and get AI-generated narrative responses powered by LLMs.</li>
+</ul></li>
+<li><strong>Citations</strong>:
+<ul>
+<li><a href="https://powerbi.microsoft.com/en-us/blog/announcing-microsoft-fabric-and-copilot-in-microsoft-power-bi/">Microsoft Copilot for Power BI</a></li>
+<li><a href="https://www.thoughtspot.com/blog/introducing-sage-the-new-generative-ai-pioneer-in-analytics">ThoughtSpot Sage – LLM for BI</a></li>
+<li><a href="https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/how-generative-ai-is-transforming-business-intelligence">McKinsey: How GenAI is transforming BI and decision-making</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="stress-testing" class="level3" data-number="2.8">
@@ -418,35 +429,9 @@ Generative AI enables banks to move beyond mass marketing and deliver personaliz
 <p><strong>Examples:</strong><br>
 - JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials.</p>
 </section>
-<section id="generative-business-intelligence-gen-bi" class="level3" data-number="2.11">
-<h3 data-number="2.11" class="anchored" data-anchor-id="generative-business-intelligence-gen-bi"><span class="header-section-number">2.11</span> 📈 Generative Business Intelligence (Gen BI)</h3>
-<div class="callout callout-style-simple callout-none no-icon" title="">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Why it matters:</strong><br>
-Generative BI transforms data consumption by allowing non-technical users to explore reports, uncover insights, and ask ad hoc questions using natural language — all without waiting on analysts. This boosts data literacy and speeds up decision-making across business units.</p>
-</div>
-</div>
-</div>
-<p><strong>Examples:</strong><br>
-- Microsoft Copilot in Power BI: Enables users to ask natural-language questions and instantly generate charts or summaries.<br>
-- ThoughtSpot Sage: Combines search with GenAI to explain patterns and alert users to anomalies.<br>
-- Internal Gen BI tools: Many banks are building custom assistants on top of Snowflake, BigQuery, or Lakehouse environments to support executive dashboards and ops reviews.</p>
 </section>
-</section>
-<section id="key-takeaways" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3</span> 🧾 Key Takeaways</h2>
-<ul>
-<li>GenAI is no longer experimental in banking — it’s powering real customer-facing and internal systems.</li>
-<li>Use cases like customer engagement, underwriting, and Gen BI deliver measurable productivity and experience gains.</li>
-<li>As the industry matures, GenAI will likely integrate deeper into core banking platforms and regulatory processes.</li>
-</ul>
-</section>
-<section id="references" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="references"><span class="header-section-number">4</span> 📚 References</h2>
+<section id="references" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="references"><span class="header-section-number">3</span> 📚 References</h2>
 <p>[1] Bank of America. (2024). <em>Erica: Virtual Financial Assistant</em>. <a href="https://info.bankofamerica.com/en/digital-banking/erica">https://info.bankofamerica.com/en/digital-banking/erica</a></p>
 <p>[2] NatWest Group. (2024). <em>NatWest launches Cora+</em>. <a href="https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html">https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html</a></p>
 <p>[3] Wells Fargo. (2024). <em>Meet Fargo: AI-powered banking assistant</em>. <a href="https://sites.wf.com/fargo/">https://sites.wf.com/fargo/</a></p>
