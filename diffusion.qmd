@@ -53,9 +53,7 @@ Diffusion models have rapidly moved from research labs to real-world application
 #### Text-to-3D
 - **DreamFusion** (Google): Produces 3D scenes from text by combining diffusion with 3D rendering techniques.
 
-These use cases highlight why diffusion models are considered one of the most promising families of generative models today. The rest of this guide will unpack how they work, step by step.
-
-To understand how these systems operate, we’ll first explore the mathematical core of diffusion models.
+These use cases highlight why diffusion models are considered one of the most promising families of generative models today. To understand how these systems operate, we’ll first explore the mathematical core of diffusion models.
 
 ---
 
