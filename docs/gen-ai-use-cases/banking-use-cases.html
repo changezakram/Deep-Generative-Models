@@ -193,10 +193,10 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="1" class="anchored" data-anchor-id="summary-of-use-cases"><span class="header-section-number">1</span> 📋 Summary of Use Cases</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 30%">
-<col style="width: 32%">
-<col style="width: 18%">
+<col style="width: 19%">
+<col style="width: 34%">
+<col style="width: 29%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -208,79 +208,60 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Customer Engagement</td>
-<td>Erica (BoA), Cora+ (NatWest), Fargo</td>
-<td>24/7 support, lower call volume</td>
-<td>LLM</td>
+<td>Fraud Detection</td>
+<td>Wells Fargo – Fraud Intel, Mastercard</td>
+<td>Real-time anomaly detection, improved fraud response</td>
+<td>EBM, Graph Models, VAE</td>
 </tr>
 <tr class="even">
-<td>Operational Efficiency</td>
-<td>AskResearchGPT, PwC Virtual Assistant</td>
-<td>Streamlined processes, reduced manual work</td>
-<td>LLM, Retrieval-Augmented</td>
-</tr>
-<tr class="odd">
-<td>Risk Management</td>
-<td>Wells Fargo - Fraud Intel, Mastercard DI</td>
-<td>Early fraud detection, AML support</td>
-<td>EBM, VAE, Ensemble Models</td>
-</tr>
-<tr class="even">
-<td>Credit Underwriting</td>
-<td>COiN (JPM), CreditLens (FICO)</td>
-<td>Faster, fairer approvals</td>
+<td>Credit Approval and Loan Underwriting</td>
+<td>JPM COiN, FICO CreditLens</td>
+<td>Faster decisions, consistent underwriting</td>
 <td>LLM, Tabular GANs</td>
 </tr>
 <tr class="odd">
-<td>Personalized Marketing</td>
-<td>JPMorgan Campaign Generator</td>
-<td>Targeted outreach, reduced churn</td>
-<td>VAE, RealNVP</td>
+<td>Customer Engagement</td>
+<td>Erica (BoA), Cora+ (NatWest), Fargo, Eliza (BNYM)</td>
+<td>Automated support, 24/7 service</td>
+<td>LLM</td>
 </tr>
 <tr class="even">
+<td>Personalized Insights</td>
+<td>BBVA ChatGPT, Morgan Stanley Debrief</td>
+<td>Tailored financial advice, better CX</td>
+<td>LLM, Portfolio Analysis</td>
+</tr>
+<tr class="odd">
 <td>Generative BI</td>
-<td>Copilot, ThoughtSpot, Custom GPTs</td>
-<td>Self-service dashboards, exec summaries</td>
-<td>LLM, Diffusion + LLM</td>
-</tr>
-<tr class="odd">
-<td>Synthetic Data Gen</td>
-<td>PwC, Mostly AI, JPMC internal testing</td>
-<td>Privacy-safe test data for dev/testing</td>
-<td>VAE, Diffusion, GAN</td>
+<td>Microsoft Copilot, ThoughtSpot Sage</td>
+<td>Instant dashboards, conversational BI</td>
+<td>LLM + Structured Signal Models</td>
 </tr>
 <tr class="even">
-<td>Stress Testing</td>
-<td>Stress scenario generation</td>
-<td>Resilience modeling, tail risk assessment</td>
-<td>Diffusion, RealNVP</td>
+<td>Smart Document Generation</td>
+<td>SARs, compliance memos, offer letters</td>
+<td>Auto-drafted docs, reduced manual effort</td>
+<td>LLM, IDP, Diffusion</td>
 </tr>
 <tr class="odd">
-<td>Smart Document Gen</td>
-<td>Compliance memos, summaries, offer letters</td>
-<td>Faster documentation, fewer errors</td>
-<td>Diffusion + LLM</td>
+<td>Document Summarization</td>
+<td>JPM AI Suite, Morgan Stanley AskResearchGPT</td>
+<td>Faster reading, internal reporting, decision support</td>
+<td>LLM</td>
+</tr>
+<tr class="even">
+<td>Synthetic Data Generation</td>
+<td>Internal testing, privacy-safe modeling</td>
+<td>Augmented training data, preserves confidentiality</td>
+<td>VAE, Diffusion, GAN</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="detailed-use-cases" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="detailed-use-cases"><span class="header-section-number">2</span> 🔍 Detailed Use Cases</h2>
-<section id="synthetic-data-generation" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="synthetic-data-generation"><span class="header-section-number">2.1</span> Synthetic Data Generation</h3>
-<ul>
-<li><strong>Problem</strong>: Real data can’t be shared freely due to privacy concerns.</li>
-<li><strong>Solution</strong>: Use VAE, Diffusion, or GAN models to create synthetic but statistically accurate datasets.</li>
-<li><strong>Example</strong>: PwC and JPMorgan use synthetic data for model development and testing environments.</li>
-<li><strong>Citation</strong>:
-<ul>
-<li><a href="https://www.jpmorgan.com/technology/artificial-intelligence/initiatives/synthetic-data">J.P. Morgan’s synthetic data research</a></li>
-<li><a href="https://arxiv.org/pdf/2410.18897v1">Survey: GANs and Diffusion for Financial Synthetic Data</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="fraud-detection" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="fraud-detection"><span class="header-section-number">2.2</span> Fraud Detection</h3>
+<section id="fraud-detection" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="fraud-detection"><span class="header-section-number">2.1</span> Fraud Detection</h3>
 <ul>
 <li><strong>Problem</strong>: Detecting rare, evolving fraud patterns is difficult with traditional rule-based systems.</li>
 <li><strong>Solution</strong>: Energy-Based Models (EBMs) and VAE-based anomaly detection are used to identify outlier transactions in real time.</li>
@@ -295,8 +276,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="credit-approval-and-loan-underwriting" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="credit-approval-and-loan-underwriting"><span class="header-section-number">2.3</span> Credit Approval and Loan Underwriting</h3>
+<section id="credit-approval-and-loan-underwriting" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="credit-approval-and-loan-underwriting"><span class="header-section-number">2.2</span> Credit Approval and Loan Underwriting</h3>
 <ul>
 <li><strong>Problem</strong>: Credit underwriting requires reviewing financial statements, legal documents, and industry data under time pressure — a process that is slow, manual, and error-prone.</li>
 <li><strong>Solution</strong>: Generative AI accelerates underwriting by analyzing credit memos, extracting key risk metrics, and summarizing legal clauses, enabling faster and more consistent loan decisions.</li>
@@ -312,8 +293,79 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="document-summarization" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="document-summarization"><span class="header-section-number">2.4</span> Document Summarization</h3>
+<section id="customer-engagement" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="customer-engagement"><span class="header-section-number">2.3</span> Customer Engagement</h3>
+<ul>
+<li><strong>Problem</strong>: Call centers and support channels face high volumes of routine queries, long wait times, and rising operational costs.</li>
+<li><strong>Solution</strong>: Generative AI powers conversational agents that provide real-time, personalized support across multiple languages and channels, improving CX while reducing human workload.</li>
+<li><strong>Examples</strong>:
+<ul>
+<li><strong>Bank of America – Erica</strong>: Offers financial guidance via natural language, helping users manage budgeting, transactions, and account tasks.</li>
+<li><strong>NatWest – Cora+</strong>: Uses GenAI to anticipate customer needs and deliver proactive, contextual assistance.</li>
+<li><strong>BNY Mellon – Eliza</strong>: Internal GenAI platform enabling 52,000 employees to build productivity tools like lead generation apps.</li>
+</ul></li>
+<li><strong>Citations</strong>:
+<ul>
+<li><a href="https://info.bankofamerica.com/en/digital-banking/erica">Erica at Bank of America</a></li>
+<li><a href="https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html">NatWest Cora+</a></li>
+<li><a href="https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d?st=zWQR4X&amp;reflink=article_email_share">BNY Mellon’s Eliza GenAI platform</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="personalized-insights" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="personalized-insights"><span class="header-section-number">2.4</span> Personalized Insights</h3>
+<ul>
+<li><strong>Problem</strong>: Financial advisors often struggle to provide timely, personalized advice due to information overload and manual follow-up tasks.</li>
+<li><strong>Solution</strong>: Generative AI automates note-taking, analyzes client profiles and market trends, and generates tailored investment recommendations.</li>
+<li><strong>Examples</strong>:
+<ul>
+<li>Morgan Stanley’s <em>AI @ Morgan Stanley Debrief</em> tool generates meeting notes and suggested action items for financial advisors in real time.</li>
+<li>BBVA’s ChatGPT integration provides personalized investment advice based on client portfolio performance and market analysis.</li>
+</ul></li>
+<li><strong>Citations</strong>:
+<ul>
+<li><a href="https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch">Morgan Stanley’s GenAI for personalized insights</a></li>
+<li><a href="https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03">BBVA launches GenAI-powered investment assistant</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="generative-bi" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="generative-bi"><span class="header-section-number">2.5</span> Generative BI</h3>
+<ul>
+<li><strong>Problem</strong>: Business leaders often struggle to extract timely insights from complex, multi-source data environments, relying on static dashboards or analysts.</li>
+<li><strong>Solution</strong>: Combine LLMs with backend analytical pipelines or generative models (e.g., VAE, Diffusion) to create dynamic, conversational, and auto-generated insights tailored to executive needs.</li>
+<li><strong>Examples</strong>:
+<ul>
+<li>Microsoft Copilot integrates GenAI into Excel and Power BI, enabling real-time natural language summaries and Q&amp;A over data models.</li>
+<li>ThoughtSpot Sage allows users to ask business questions and get AI-generated narrative responses powered by LLMs.</li>
+</ul></li>
+<li><strong>Citations</strong>:
+<ul>
+<li><a href="https://powerbi.microsoft.com/en-us/blog/announcing-microsoft-fabric-and-copilot-in-microsoft-power-bi/">Microsoft Copilot for Power BI</a></li>
+<li><a href="https://www.thoughtspot.com/blog/introducing-sage-the-new-generative-ai-pioneer-in-analytics">ThoughtSpot Sage – LLM for BI</a></li>
+<li><a href="https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/how-generative-ai-is-transforming-business-intelligence">McKinsey: How GenAI is transforming BI and decision-making</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="smart-document-generation" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="smart-document-generation"><span class="header-section-number">2.6</span> Smart Document Generation</h3>
+<ul>
+<li><strong>Problem</strong>: Writing compliance memos, suspicious activity reports (SARs), and internal summaries requires significant manual effort and is prone to inconsistencies.</li>
+<li><strong>Solution</strong>: Generative AI models—particularly LLMs and intelligent document processing (IDP) systems—automate document classification, data extraction, summarization, and drafting, while supporting compliance standards.</li>
+<li><strong>Examples</strong>:
+<ul>
+<li>Financial institutions using AI-powered IDP report significant reductions in manual review time—for example, up to 90% less—along with improved accuracy and consistency in key document workflows.</li>
+</ul></li>
+<li><strong>Citations</strong>:
+<ul>
+<li><a href="https://home.treasury.gov/system/files/136/Artificial-Intelligence-in-Financial-Services.pdf">U.S. Treasury: AI in back-office compliance automation (June 2024)</a></li>
+<li><a href="https://www.ey.com/en_gl/alliances/microsoft/document-intelligence-platform">EY: Document Intelligence Platform (~90% review time reduction)</a></li>
+<li><a href="https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/how-generative-ai-can-help-banks-manage-risk-and-compliance">McKinsey: GenAI in risk &amp; compliance documentation</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="document-summarization" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="document-summarization"><span class="header-section-number">2.7</span> Document Summarization</h3>
 <ul>
 <li><strong>Problem</strong>: Manual summarization of research and compliance documents is time-consuming and error-prone.</li>
 <li><strong>Solution</strong>: GenAI tools powered by LLMs extract, synthesize, and summarize large volumes of internal content at scale.</li>
@@ -332,75 +384,16 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="smart-document-generation" class="level3" data-number="2.5">
-<h3 data-number="2.5" class="anchored" data-anchor-id="smart-document-generation"><span class="header-section-number">2.5</span> Smart Document Generation</h3>
+<section id="synthetic-data-generation" class="level3" data-number="2.8">
+<h3 data-number="2.8" class="anchored" data-anchor-id="synthetic-data-generation"><span class="header-section-number">2.8</span> Synthetic Data Generation</h3>
 <ul>
-<li><strong>Problem</strong>: Writing compliance memos, suspicious activity reports (SARs), and internal summaries requires significant manual effort and is prone to inconsistencies.</li>
-<li><strong>Solution</strong>: Generative AI models—particularly LLMs and intelligent document processing (IDP) systems—automate document classification, data extraction, summarization, and drafting, while supporting compliance standards.</li>
-<li><strong>Examples</strong>:
+<li><strong>Problem</strong>: Real data can’t be shared freely due to privacy concerns.</li>
+<li><strong>Solution</strong>: Use VAE, Diffusion, or GAN models to create synthetic but statistically accurate datasets.</li>
+<li><strong>Example</strong>: PwC and JPMorgan use synthetic data for model development and testing environments.</li>
+<li><strong>Citation</strong>:
 <ul>
-<li>Financial institutions using AI-powered IDP report significant reductions in manual review time—for example, up to 90% less—along with improved accuracy and consistency in key document workflows.</li>
-</ul></li>
-<li><strong>Citations</strong>:
-<ul>
-<li><a href="https://home.treasury.gov/system/files/136/Artificial-Intelligence-in-Financial-Services.pdf">U.S. Treasury: AI in back-office compliance automation (June 2024)</a></li>
-<li><a href="https://www.ey.com/en_gl/alliances/microsoft/document-intelligence-platform">EY: Document Intelligence Platform (~90% review time reduction)</a></li>
-<li><a href="https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/how-generative-ai-can-help-banks-manage-risk-and-compliance">McKinsey: GenAI in risk &amp; compliance documentation</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="personalized-insights" class="level3" data-number="2.6">
-<h3 data-number="2.6" class="anchored" data-anchor-id="personalized-insights"><span class="header-section-number">2.6</span> Personalized Insights</h3>
-<ul>
-<li><strong>Problem</strong>: Financial advisors often struggle to provide timely, personalized advice due to information overload and manual follow-up tasks.</li>
-<li><strong>Solution</strong>: Generative AI automates note-taking, analyzes client profiles and market trends, and generates tailored investment recommendations.</li>
-<li><strong>Examples</strong>:
-<ul>
-<li>Morgan Stanley’s <em>AI @ Morgan Stanley Debrief</em> tool generates meeting notes and suggested action items for financial advisors in real time.</li>
-<li>BBVA’s ChatGPT integration provides personalized investment advice based on client portfolio performance and market analysis.</li>
-</ul></li>
-<li><strong>Citations</strong>:
-<ul>
-<li><a href="https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch">Morgan Stanley’s GenAI for personalized insights</a></li>
-<li><a href="https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03">BBVA launches GenAI-powered investment assistant</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="generative-bi" class="level3" data-number="2.7">
-<h3 data-number="2.7" class="anchored" data-anchor-id="generative-bi"><span class="header-section-number">2.7</span> Generative BI</h3>
-<ul>
-<li><strong>Problem</strong>: Business leaders often struggle to extract timely insights from complex, multi-source data environments, relying on static dashboards or analysts.</li>
-<li><strong>Solution</strong>: Combine LLMs with backend analytical pipelines or generative models (e.g., VAE, Diffusion) to create dynamic, conversational, and auto-generated insights tailored to executive needs.</li>
-<li><strong>Examples</strong>:
-<ul>
-<li>Microsoft Copilot integrates GenAI into Excel and Power BI, enabling real-time natural language summaries and Q&amp;A over data models.</li>
-<li>ThoughtSpot Sage allows users to ask business questions and get AI-generated narrative responses powered by LLMs.</li>
-</ul></li>
-<li><strong>Citations</strong>:
-<ul>
-<li><a href="https://powerbi.microsoft.com/en-us/blog/announcing-microsoft-fabric-and-copilot-in-microsoft-power-bi/">Microsoft Copilot for Power BI</a></li>
-<li><a href="https://www.thoughtspot.com/blog/introducing-sage-the-new-generative-ai-pioneer-in-analytics">ThoughtSpot Sage – LLM for BI</a></li>
-<li><a href="https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/how-generative-ai-is-transforming-business-intelligence">McKinsey: How GenAI is transforming BI and decision-making</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="customer-engagement" class="level3" data-number="2.8">
-<h3 data-number="2.8" class="anchored" data-anchor-id="customer-engagement"><span class="header-section-number">2.8</span> Customer Engagement</h3>
-<ul>
-<li><strong>Problem</strong>: Call centers and support channels face high volumes of routine queries, long wait times, and rising operational costs.</li>
-<li><strong>Solution</strong>: Generative AI powers conversational agents that provide real-time, personalized support across multiple languages and channels, improving CX while reducing human workload.</li>
-<li><strong>Examples</strong>:
-<ul>
-<li><strong>Bank of America – Erica</strong>: Offers financial guidance via natural language, helping users manage budgeting, transactions, and account tasks.</li>
-<li><strong>NatWest – Cora+</strong>: Uses GenAI to anticipate customer needs and deliver proactive, contextual assistance.</li>
-<li><strong>Wells Fargo – Fargo</strong>: Supports English and Spanish for managing cards and accessing banking services using conversational AI.</li>
-<li><strong>BNY Mellon – Eliza</strong>: Internal GenAI platform enabling 52,000 employees to build productivity tools like lead generation apps.</li>
-</ul></li>
-<li><strong>Citations</strong>:
-<ul>
-<li><a href="https://info.bankofamerica.com/en/digital-banking/erica">Erica at Bank of America</a></li>
-<li><a href="https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html">NatWest Cora+</a></li>
-<li><a href="https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d?st=zWQR4X&amp;reflink=article_email_share">BNY Mellon’s Eliza GenAI platform</a></li>
+<li><a href="https://www.jpmorgan.com/technology/artificial-intelligence/initiatives/synthetic-data">J.P. Morgan’s synthetic data research</a></li>
+<li><a href="https://arxiv.org/pdf/2410.18897v1">Survey: GANs and Diffusion for Financial Synthetic Data</a></li>
 </ul></li>
 </ul>
 </section>
