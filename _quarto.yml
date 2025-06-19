@@ -37,6 +37,15 @@ website:
             href: https://changezakram.github.io/math-review/calculus.html
           - text: Probability
             href: https://changezakram.github.io/math-review/probability.html
+
+
+      - text: Use Cases
+        menu:
+          - text: Banking
+            href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html
+          - text: Healthcare
+            href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html
+
 format:
   html:
     theme: cosmo
