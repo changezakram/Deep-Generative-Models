@@ -10,167 +10,142 @@ Generative AI is redefining how banks operate — from automating customer servi
 
 ## 📋 Summary of Use Cases
 
-| Use Case Area           | Examples                                  | Benefits                                     | Underlying Models       |
-|-------------------------|-------------------------------------------|----------------------------------------------|--------------------------|
-| Customer Engagement     | Erica (BoA), Cora+ (NatWest), Fargo       | 24/7 support, lower call volume              | LLM                      |
-| Operational Efficiency  | AskResearchGPT, PwC Virtual Assistant     | Streamlined processes, reduced manual work   | LLM, Retrieval-Augmented |
-| Risk Management         | Wells Fargo Fraud, Mastercard DI          | Early fraud detection, AML support           | EBM, VAE, Ensemble Models|
-| Credit Underwriting     | COiN (JPM), CreditLens (FICO)             | Faster, fairer approvals                     | LLM, Tabular GANs        |
-| Personalized Marketing  | JPMorgan Campaign Generator               | Targeted outreach, reduced churn             | VAE, RealNVP             |
-| Generative BI           | Copilot, ThoughtSpot, Custom GPTs         | Self-service dashboards, exec summaries      | LLM, Diffusion + LLM     |
-| Synthetic Data Gen      | PwC, Mostly AI, JPMC internal testing     | Privacy-safe test data for dev/testing       | VAE, Diffusion, GAN      |
-| Stress Testing          | Stress scenario generation                | Resilience modeling, tail risk assessment    | Diffusion, RealNVP       |
-| Smart Document Gen      | Compliance memos, summaries, offer letters| Faster documentation, fewer errors           | Diffusion + LLM          |
+
+| Use Case Area                     | Examples                                                 | Benefits                                         | Underlying Models         |
+|----------------------------------|----------------------------------------------------------|--------------------------------------------------|----------------------------|
+| Fraud Detection                  | Mastercard Decision Intelligence Pro                  | Real-time anomaly detection, improved fraud response | EBM, Graph Models, VAE    |
+| Credit Approval and Underwriting | JPM COiN, Zest AI LuLu Stragey                          | Faster decisions, consistent underwriting         | LLM, Tabular GANs         |
+| Customer Engagement              | Erica (BoA), Cora+ (NatWest), Fargo, Eliza (BNYM)        | Automated support, 24/7 service                   | LLM                       |
+| Personalized Insights            | BBVA ChatGPT, Morgan Stanley Debrief                    | Tailored financial advice, better CX              | LLM (GPT-4), RAG    |
+| Generative BI                    | Microsoft Copilot, ThoughtSpot Sage                     | Instant dashboards, conversational BI             | LLM, NLQ, NLG |
+| Document Generation              | SARs, compliance memos, offer letters                    | Auto-drafted docs, reduced manual effort          | LLM, IDP, Diffusion        |
+| Document Summarization           | JPM AI Suite, Morgan Stanley AskResearchGPT             | Faster reading, internal reporting, decision support | LLM                       |
+| Synthetic Data Generation        | Internal testing, privacy-safe modeling                  | Augmented training data, preserves confidentiality | VAE, Diffusion, GAN       |
 
 ## 🔍 Detailed Use Cases
 
-### 1. Synthetic Data Generation
-- **Problem**: Real data can't be shared freely due to privacy concerns.
-- **Solution**: Use VAE, Diffusion, or GAN models to create synthetic but statistically accurate datasets.
-- **Example**: PwC and JPMorgan use synthetic data for model development and testing environments.
-- **Citation**: [Add source here]
 
-### 2. Stress Testing
-- **Problem**: Limited historical examples of rare financial events.
-- **Solution**: Use diffusion models to simulate plausible future scenarios that challenge capital planning.
-- **Example**: Stress testing for liquidity during a simulated market shock.
-- **Citation**: [Add source here]
+### Fraud Detection
 
-### 3. Risk Management (Fraud & AML)
-- **Problem**: Detecting rare, evolving fraud patterns.
-- **Solution**: EBMs and VAE-based anomaly detection to flag outlier transactions.
-- **Example**: Wells Fargo and Mastercard use GenAI for real-time fraud prevention.
-- **Citation**: [Add source here]
+- **Problem**: Detecting rare, evolving fraud patterns is difficult with traditional rule-based systems.
+- **Solution**: Energy-Based Models (EBMs) and VAE-based anomaly detection are used to identify outlier transactions in real time.<sup>[1]<sup>
+- **Impact**: +20% detection accuracy and –85% false positives (Mastercard).<sup>[2]<sup>
 
-### 4. Generative BI
-- **Problem**: Executives need fast insights from complex data.
-- **Solution**: Combine LLMs with backend signal generators (like VAE or Diffusion) to auto-generate summaries.
-- **Example**: Microsoft Copilot, ThoughtSpot AI-Powered BI.
-- **Citation**: [Add source here]
+### Credit Approval and Loan Underwriting
 
-### 5. Smart Document Generation
-- **Problem**: Writing compliance memos and customer forms is time-consuming.
-- **Solution**: Use LLMs + diffusion-generated embeddings to auto-draft documents.
-- **Example**: Internal tools generating SAR narratives or executive briefs.
-- **Citation**: [Add source here]
+- **Problem**: Credit underwriting requires reviewing financial statements, legal documents, and industry data under time pressure — a process that is slow, manual, and error-prone.  
+- **Solution**: Generative AI accelerates underwriting by analyzing credit memos, extracting key risk metrics, and summarizing legal clauses, enabling faster and more consistent loan decisions.  
+- **Impact**: JPMorgan COiN saved over 360,000 hours by automating legal reviews; Zest AI reduced underwriting time from days to minutes and increased approvals by up to 25% with no added risk.<sup>[3][4]</sup>
 
+### Customer Engagement
 
+- **Problem**: Call centers and support channels face high volumes of routine queries, long wait times, and rising operational costs.  
+- **Solution**: Generative AI powers conversational agents that provide real-time, personalized support across multiple languages and channels, improving CX while reducing human workload.  
+- **Impact**: Erica has handled 2B+ interactions with an average 44s resolution time; Cora+ reduced escalations by 50% and improved customer satisfaction by 150%. <sup>[5][6]</sup>
 
-## Use Cases in Banking
+### Personalized Insights
 
-### 🏦 Customer Engagement
+- **Problem**: Financial advisors often struggle to provide timely, personalized advice due to information overload and manual follow-up tasks.
+- **Solution**: Generative AI automates note-taking, analyzes client profiles and market trends, and generates tailored investment recommendations.
+- **Impact**: Morgan Stanley’s *AI @ Morgan Stanley Debrief* saves ~30 minutes per meeting, freeing up 10–15 hours/week per advisor for higher-value interactions. <sup>[7][8]</sup>
 
-::: {.callout appearance="simple" title=""}
-**Why it matters:**  
-Generative AI enables banks to deliver faster, more intelligent, and more personalized customer service. By automating routine interactions and offering real-time assistance, banks can improve customer satisfaction, reduce support costs, and scale their service capabilities without increasing headcount.
-:::
+### Generative BI
 
-**Examples:**  
-- Bank of America – Erica: Offers financial guidance through natural language interactions, helping users with budgeting, transactions, and account management.  
-- NatWest – Cora+: Anticipates customer needs and provides proactive responses using conversational AI.  
-- Wells Fargo – Fargo: Supports English and Spanish to help customers manage cards and access banking services via natural language.  
-- BNY Mellon – Eliza: Internal chatbot and tooling platform used by 52,000 employees to build GenAI-powered apps like lead generation tools.
+- **Problem**: Business leaders often struggle to extract timely insights from complex, multi-source data environments, relying on static dashboards or analysts.  
+- **Solution**: Generative AI combines LLMs with backend analytical pipelines or generative models (e.g., VAE, Diffusion) to deliver real-time, conversational insights tailored to executive needs.  
+- **Impact**: Power BI Copilot users save +1.2 hours/week through automated summaries; ThoughtSpot achieves up to 95% accuracy in insights generated. <sup>[9][10]</sup>
 
-### 📊 Operational Efficiency
+### Document Generation
 
-::: {.callout appearance="simple" title=""}
-**Why it matters:**  
-Banks deal with vast volumes of reports, compliance documentation, and internal knowledge. Generative AI improves productivity by summarizing documents, automating workflows, and assisting developers — freeing employees to focus on higher-value tasks and accelerating project delivery.
-:::
+- **Problem**: Writing compliance memos, suspicious activity reports (SARs), and internal summaries requires significant manual effort and is prone to inconsistencies.  
+- **Solution**: Generative AI models—particularly LLMs and intelligent document processing (IDP) systems—automate document classification, data extraction, summarization, and drafting, while supporting compliance standards.  
+- **Impact**: AI-powered IDP platforms have reduced review time by up to 90%, improved processing accuracy, and enabled faster turnaround for compliance documents. <sup>[11][12][13]</sup>
 
-**Examples:**  
-- JPMorgan – LLM Suite: Automates document summarization, content creation, and reporting.  
-- Morgan Stanley – AskResearchGPT: Provides natural language access to 70,000+ research reports.  
-- PwC – Compliance Automation: Uses GenAI to summarize regulatory documents and extract clauses.  
-- Citi – Reporting Automation: Streamlines compliance reporting and data extraction.  
-- Standard Chartered – SC GPT: SC GPT helps employees retrieve information faster, and summarize internal documents.
-- Citigroup – AI Tools for Developers: Boosts engineering productivity with GenAI code assistance.
+### Document Summarization
 
-### 🔐 Risk Management
+- **Problem**: Manual summarization of research and compliance documents is time-consuming and error-prone.  
+- **Solution**: GenAI tools powered by LLMs extract, synthesize, and summarize large volumes of internal content at scale.  
+- **Impact**: Morgan Stanley’s AskResearchGPT summarizes insights from 70,000+ proprietary reports; EY’s DI Platform saves 90% review time, cuts costs by 80%, and improves accuracy by 25%.<sup>[14][15][16]</sup>
 
-::: {.callout appearance="simple" title=""}
-**Why it matters:**  
-Fraud detection and risk modeling are core to banking safety. GenAI enhances traditional models by spotting subtle anomalies, synthesizing potential fraud scenarios, and enabling faster investigation of suspicious transactions.
-:::
+### Synthetic Data Generation
 
-**Examples:**  
-- Mastercard – Decision Intelligence: Evaluates over 1 trillion data points in real time to approve 143+ billion transactions annually.  
-- Wells Fargo – AI for Fraud: Uses GenAI for enhanced anomaly detection in transactional data.
-
-### 📝 Credit Approval and Loan Underwriting
-
-::: {.callout appearance="simple" title=""}
-**Why it matters:**  
-Credit underwriting involves reviewing complex financial documents and assessing risk within tight timeframes. Generative AI helps automate the analysis of financial statements, legal documents, and industry benchmarks, enabling faster loan decisions, improved accuracy, and streamlined compliance.
-:::
-
-**Examples:**  
-- Moody’s Analytics – CreditLens: Automates credit memo creation and industry analysis with generative tools.  
-- JPMorgan Chase – COiN Platform: Uses GenAI to analyze legal contracts in seconds, reducing loan underwriting time.
-
-### 📣 Personalized Marketing
-
-::: {.callout appearance="simple" title=""}
-**Why it matters:**  
-Generative AI enables banks to move beyond mass marketing and deliver personalized, data-driven messaging. This improves customer engagement, increases conversion rates, and enhances long-term loyalty.
-:::
-
-**Examples:**  
-- JPMorgan Chase – Hyper-personalized Campaigns: Uses GenAI to create individualized marketing materials.
-
-### 📈 Generative Business Intelligence (Gen BI)
-
-::: {.callout appearance="simple" title=""}
-**Why it matters:**  
-Generative BI transforms data consumption by allowing non-technical users to explore reports, uncover insights, and ask ad hoc questions using natural language — all without waiting on analysts. This boosts data literacy and speeds up decision-making across business units.
-:::
-
-**Examples:**  
-- Microsoft Copilot in Power BI: Enables users to ask natural-language questions and instantly generate charts or summaries.  
-- ThoughtSpot Sage: Combines search with GenAI to explain patterns and alert users to anomalies.  
-- Internal Gen BI tools: Many banks are building custom assistants on top of Snowflake, BigQuery, or Lakehouse environments to support executive dashboards and ops reviews.
-
-## 🧾 Key Takeaways
-
-- GenAI is no longer experimental in banking — it's powering real customer-facing and internal systems.
-- Use cases like customer engagement, underwriting, and Gen BI deliver measurable productivity and experience gains.
-- As the industry matures, GenAI will likely integrate deeper into core banking platforms and regulatory processes.
+- **Problem**: Real data can't be shared freely due to privacy, regulatory, and operational constraints.  
+- **Solution**: Use VAE, Diffusion, or GAN-based models to generate synthetic datasets that preserve statistical properties while protecting sensitive information.  
+- **Impact**: JPMorgan uses synthetic data to develop and test AI models in secure environments; industry surveys highlight growing adoption of GANs and Diffusion for financial data simulation.<sup>[17][18]</sup>
 
 
-## 📚 References
 
-[1] Bank of America. (2024). *Erica: Virtual Financial Assistant*. [https://info.bankofamerica.com/en/digital-banking/erica](https://info.bankofamerica.com/en/digital-banking/erica)
+## References
 
-[2] NatWest Group. (2024). *NatWest launches Cora+*. [https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html](https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html)
+[1] NVIDIA - How Is AI Used in Fraud Detection? [https://blogs.nvidia.com/blog/ai-fraud-detection-rapids-triton-tensorrt-nemo/](https://blogs.nvidia.com/blog/ai-fraud-detection-rapids-triton-tensorrt-nemo/)
 
-[3] Wells Fargo. (2024). *Meet Fargo: AI-powered banking assistant*. [https://sites.wf.com/fargo/](https://sites.wf.com/fargo/)
+[2] Mastercard supercharges consumer protection with Gen AI. [https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/](https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/)
 
-[4] Wall Street Journal. (2024). *BNY signs multiyear deal with OpenAI*. [https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d](https://www.wsj.com/articles/bny-americas-oldest-bank-signs-multiyear-deal-with-openai-74987d1d)
+[3] Zest AI Launches LuLu Strategy Module to Expand Generative AI to Financial Institutions [https://www.zest.ai/company/announcements/zest-ai-launches-lulu-strategy-module-to-expand-generative-ai-to-financial-institutions/](https://www.zest.ai/company/announcements/zest-ai-launches-lulu-strategy-module-to-expand-generative-ai-to-financial-institutions/)
 
-[5] Morgan Stanley. (2024). *AI at Morgan Stanley Debrief launch*. [https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch](https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch)
+[4] Bloomberg. (2017). *JPMorgan Software Does in Seconds What Took Lawyers 360,000 Hours*. [https://www.bloomberg.com/news/articles/2017-02-28/jpmorgan-marshals-an-army-of-developers-to-automate-high-finance?embedded-checkout=true](https://www.bloomberg.com/news/articles/2017-02-28/jpmorgan-marshals-an-army-of-developers-to-automate-high-finance?embedded-checkout=true)
 
-[6] Wall Street Journal. (2024). *Inside OpenAI’s deal with BBVA*. [https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03](https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03)
+[5] Erica at Bank of America [https://info.bankofamerica.com/en/digital-banking/erica](https://info.bankofamerica.com/en/digital-banking/erica)
 
-[7] JPMorgan Chase. (2024). *Deploying ChatGPT-like Assistant*. [https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html](https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html)
+[6] NatWest Cora+ [https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html](https://www.natwestgroup.com/news-and-insights/news-room/press-releases/data-and-technology/2024/jun/natwest-launches-cora-plus-the-latest-generative-ai-upgrade-to-t.html)
 
-[8] Morgan Stanley. (2024). *Announces AskResearchGPT*. [https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt](https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt)
+[7] Morgan Stanley. (2024). *AI @ Morgan Stanley Debrief Launch*. [https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch](https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch)
 
-[9] PwC. (2023). *Building trust in AI for tax compliance*. [https://www.pwc.com/gx/en/services/tax/connected-tax-compliance/build-trust-ai-tax-compliance.html](https://www.pwc.com/gx/en/services/tax/connected-tax-compliance/build-trust-ai-tax-compliance.html)
+[8] The Wall Street Journal. (2024). *Inside OpenAI’s Deal With BBVA*. [https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03](https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03)
 
-[10] Citigroup. (2019). *Citi Global Trade uses AI to digitize compliance in next-generational project*. [https://www.citigroup.com/global/news/press-release/2019/citi-global-trade-uses-ai-to-digitie-compliance-in-next-generational-project](https://www.citigroup.com/global/news/press-release/2019/citi-global-trade-uses-ai-to-digitie-compliance-in-next-generational-project)
+[9] Microsoft. (2023). *Announcing Microsoft Fabric and Copilot in Microsoft Power BI*. [https://powerbi.microsoft.com/en-us/blog/announcing-microsoft-fabric-and-copilot-in-microsoft-power-bi/](https://powerbi.microsoft.com/en-us/blog/announcing-microsoft-fabric-and-copilot-in-microsoft-power-bi/)
 
-[11] Citi Ventures. (2024). *Investing in Poolside*. [https://www.citi.com/ventures/perspectives/pressrelease/investing-in-poolside.html](https://www.citi.com/ventures/perspectives/pressrelease/investing-in-poolside.html)
+[10] ThoughtSpot. (2023). *Introducing Sage: The New Generative AI Pioneer in Analytics*. [https://www.thoughtspot.com/blog/introducing-sage-the-new-generative-ai-pioneer-in-analytics](https://www.thoughtspot.com/blog/introducing-sage-the-new-generative-ai-pioneer-in-analytics)
 
-[12] Mastercard. (2024, February). *Mastercard supercharges consumer protection with Gen AI*. [https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/](https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/)
+[11] U.S. Department of the Treasury. (2024). *Artificial Intelligence in Financial Services*. [https://home.treasury.gov/system/files/136/Artificial-Intelligence-in-Financial-Services.pdf](https://home.treasury.gov/system/files/136/Artificial-Intelligence-in-Financial-Services.pdf)
 
-[13] Wells Fargo Stories. (2024). *How AI could reshape banking*. [https://stories.wf.com/artificial-intelligence-has-the-potential-to-reshape-banking/](https://stories.wf.com/artificial-intelligence-has-the-potential-to-reshape-banking/)
+[12] EY. (2024). *Document Intelligence Platform*. [https://www.ey.com/en_gl/alliances/microsoft/document-intelligence-platform](https://www.ey.com/en_gl/alliances/microsoft/document-intelligence-platform)
 
-[14] Moody’s Analytics. (2024). *Revolutionizing loan origination with GenAI*. [https://www.moodys.com/web/en/us/insights/lending/revolutionizing-loan-origination-with-genai.html](https://www.moodys.com/web/en/us/insights/lending/revolutionizing-loan-origination-with-genai.html)
+[13] McKinsey & Company. (2024). *How Generative AI Can Help Banks Manage Risk and Compliance*. [https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/how-generative-ai-can-help-banks-manage-risk-and-compliance](https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/how-generative-ai-can-help-banks-manage-risk-and-compliance)
 
-[15] Futurism. (2024). *AI completed 360,000 hours of finance work in just seconds*. [https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds](https://futurism.com/an-ai-completed-360000-hours-of-finance-work-in-just-seconds)
+[14] Morgan Stanley. (2024). *AskResearchGPT helps advisors access 70,000+ research reports*. [https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt](https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt)
 
-[16] CTO Magazine. (2024). *JP Morgan Chase accelerates AI adoption*. [https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/](https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/)
+[15] JPMorgan Chase. (2024). *LLM Suite for operations and reporting automation*. [https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html](https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html)
 
-[17] Standard Chartered. (2024). *Standard Chartered Rolls Out SC GPT, Advancing AI-Driven Innovation in Banking*. Retrieved from [https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/](https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/)
+[16] EY. (2024). *Document Intelligence Platform: Transforming document processing in financial services*. [https://www.ey.com/en_gl/alliances/microsoft/document-intelligence-platform](https://www.ey.com/en_gl/alliances/microsoft/document-intelligence-platform)
 
-[18] Standard Chartered. (2024). *The Disruptive Potential of Generative AI*. Retrieved from [https://www.sc.com/en/overlay/the-disruptive-potential-of-generative-ai/](https://www.sc.com/en/overlay/the-disruptive-potential-of-generative-ai/)
+[17] J.P. Morgan. (2024). *Synthetic data enables privacy-preserving model development*. [https://www.jpmorgan.com/technology/artificial-intelligence/initiatives/synthetic-data](https://www.jpmorgan.com/technology/artificial-intelligence/initiatives/synthetic-data)
+
+[18] X. Wang et al. (2024). *A Survey on Financial Synthetic Data Generation with GANs and Diffusion*. [https://arxiv.org/pdf/2410.18897v1](https://arxiv.org/pdf/2410.18897v1)
+
+
+## Further Reading
+
+[1] Boston Consulting Group (BCG). (2023). *A Generative AI Roadmap for Financial Institutions*. [https://www.bcg.com/publications/2023/a-genai-roadmap-for-fis](https://www.bcg.com/publications/2023/a-genai-roadmap-for-fis)
+
+[2] McKinsey & Company. (2023). *How generative AI can help banks manage risk and compliance*. [https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/how-generative-ai-can-help-banks-manage-risk-and-compliance](https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/how-generative-ai-can-help-banks-manage-risk-and-compliance)
+
+[3] McKinsey & Company. (2023). *Capturing the full value of generative AI in banking*. [https://www.mckinsey.com/industries/financial-services/our-insights/capturing-the-full-value-of-generative-ai-in-banking](https://www.mckinsey.com/industries/financial-services/our-insights/capturing-the-full-value-of-generative-ai-in-banking)
+
+[4] Gartner. (2023). *Emerging Tech Impact Radar: Artificial Intelligence in Banking*. [https://www.gartner.com/en/documents/4558699](https://www.gartner.com/en/documents/4558699)
+
+[5] CTO Magazine. (2023). *JPMorgan Chase Accelerates AI Adoption*. [https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/](https://ctomagazine.com/jp-morgan-chase-accelerates-ai-adoption/)
+
+[6] Bain & Company. (2023). *Generative AI in Banking – Interactive*. [https://www.bain.com/insights/generative-ai-banking-interactive/](https://www.bain.com/insights/generative-ai-banking-interactive/)
+
+[7] PwC Middle East. (2023). *Leveraging Generative AI in Banking*. [https://www.pwc.com/m1/en/publications/leveraging-generative-ai-in-banking.html](https://www.pwc.com/m1/en/publications/leveraging-generative-ai-in-banking.html)
+
+[8] KPMG. (2023). *Unleashing Potential: Exploring Generative AI’s Role in Banking*. [https://kpmg.com/xx/en/our-insights/ai-and-technology/unleashing-potential-exploring-generative-ai-role-in-banking.html](https://kpmg.com/xx/en/our-insights/ai-and-technology/unleashing-potential-exploring-generative-ai-role-in-banking.html)
+
+[9] Mastercard. (2023). *Signals: Generative AI is Transforming Banking*. [https://innovationinsights.mastercard.com/signals-generative-ai-transforming-banking/p/1](https://innovationinsights.mastercard.com/signals-generative-ai-transforming-banking/p/1)
+
+[10] Mastercard. (2023). *Generative Banking: How Financial Institutions Are Embracing the New AI*. [https://newsroom.mastercard.com/news/perspectives/2023/generative-banking-how-financial-institutions-are-embracing-the-new-ai/](https://newsroom.mastercard.com/news/perspectives/2023/generative-banking-how-financial-institutions-are-embracing-the-new-ai/)
+
+[11] Accenture. (2023). *Generative AI in Banking*. [https://www.accenture.com/us-en/insights/banking/generative-ai-banking](https://www.accenture.com/us-en/insights/banking/generative-ai-banking)
+
+[12] Accenture. (2023). *3 Ways Generative AI Will Transform Banking*. [https://bankingblog.accenture.com/3-ways-generative-ai-will-transform-banking](https://bankingblog.accenture.com/3-ways-generative-ai-will-transform-banking)
+
+[13] Deloitte. (2023). *Generative AI in Financial Services: Google & Deloitte Alliance*. [https://www.deloitte.com/global/en/alliances/google/blogs/generative-ai-in-financial-services.html](https://www.deloitte.com/global/en/alliances/google/blogs/generative-ai-in-financial-services.html)
+
+[14] KPMG US. (2024). *How Generative AI Can Help Banks Accelerate Digital Transformation*. [https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2024/generative-ai-help-bank-accelerate-digital-transformation.pdf](https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2024/generative-ai-help-bank-accelerate-digital-transformation.pdf)
+
+[15] Bain & Company. (2023). *How Bank CIOs Can Build a Solid Foundation for Generative AI*. [https://www.bain.com/insights/how-bank-cios-can-build-a-solid-foundation-for-generative-ai/](https://www.bain.com/insights/how-bank-cios-can-build-a-solid-foundation-for-generative-ai/)
+
+[16] PwC US. (2023). *Generative AI in Financial Services – Salesforce Partnership*. [https://www.pwc.com/us/en/technology/alliances/library/salesforce-generative-ai-banking-financial-services.html](https://www.pwc.com/us/en/technology/alliances/library/salesforce-generative-ai-banking-financial-services.html)
+
+[17] IBM. (2023). *Generative AI in Banking*. [https://www.ibm.com/think/topics/generative-ai-banking](https://www.ibm.com/think/topics/generative-ai-banking)

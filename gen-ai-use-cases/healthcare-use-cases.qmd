@@ -10,13 +10,14 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 ## 📋 Summary of Use Cases
 
-| Use Case Area             | Examples                          | Benefits                               |
-|---------------------------|------------------------------------|------------------------------------------|
-| Clinical Documentation    | Nuance DAX, AWS HealthScribe       | Reduced burden, faster note capture      |
-| Medical Imaging & Diagnostics | DeepMind, MIT CSAIL              | Enhanced resolution, rare disease training|
-| Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Faster R&D cycles, AI-generated molecules |
-| Patient Communication     | Mayo Copilot, Ada Health           | Simplified education, automated triage   |
-| Admin Workflow Automation | MedLM, Abridge                     | Process improvement, reduced manual work |
+| Use Case Area                    | Examples                     | Impact                                                                               | Underlying Models                    |
+|----------------------------------|------------------------------|--------------------------------------------------------------------------------------|--------------------------------------|
+| Clinical Documentation           | Nuance DAX, AWS HealthScribe | Cuts documentation time by ~50%, saves 1–2 hours/day, $500K/year (Fisher–Titus)      | LLM, Speech-to-Text                  |
+| Medical Imaging & Diagnostics    | DeepMind, MIT CSAIL          | Reduces false positives by 6%, false negatives by 9%; speeds up CT diagnosis by 44%  | Transformer-based CNNs               |
+| Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to <6 months; improves success rate to 25%               | Generative Models, Graph Neural Nets |
+| Patient Communication            | Mayo Copilot, Ada Health     | AI messages rated 4.58/5 by patients; 81% clinician adoption in UCSD pilot           | LLM, RAG                             |
+| Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Saves ~1,500 staff-hours/month; boosts ED efficiency by 30%                          | LLM, IDP, Workflow Automation Agents |
+
 
 ## Use Cases in Healthcare
 
