@@ -13,7 +13,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 | Use Case Area                    | Examples                     | Impact                                                                               | Underlying Models                    |
 |----------------------------------|------------------------------|--------------------------------------------------------------------------------------|--------------------------------------|
 | Clinical Documentation           | Nuance DAX, AWS HealthScribe | Nuance DAX reduces physician documentation time by up to 50%                         | LLM, Speech-to-Text                  |
-| Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and unnecessary surgeries by 30%    | Diffusion models, CNN               |
+| Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and unnecessary surgeries by 30%    | CNN, Diffusion models               |
 | Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to <6 months; improves success rate to 25%               | Generative Models, Graph Neural Nets |
 | Patient Communication            | Mayo Copilot, Ada Health     | AI messages rated 4.58/5 by patients; 81% clinician adoption in UCSD pilot           | LLM, RAG                             |
 | Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Saves ~1,500 staff-hours/month; boosts ED efficiency by 30%                          | LLM, IDP, Workflow Automation Agents |
@@ -69,9 +69,9 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 [4] De Fauw et al. (2024). EyeDiff: text-to-image diffusion model improves rare eye disease diagnosis. [https://arxiv.org/abs/2411.10004](https://arxiv.org/abs/2411.10004)
 
-[5] Insilico Medicine. First AI-Designed Drug for IPF Enters Phase II Trials. [https://www.insilico.com/news/insilico-medicine-first-ai-designed-drug-enters-phase-ii](https://www.insilico.com/news/insilico-medicine-first-ai-designed-drug-enters-phase-ii)
+[5] Insilico Medicine — First Generative AI Drug Begins Phase II Trials with Patients. [https://insilico.com/blog/first_phase2](https://insilico.com/blog/first_phase2)
 
-[6] BenevolentAI. Accelerating Drug Discovery Using Generative AI. [https://www.benevolent.com/news/benevolentai-accelerating-drug-discovery-using-generative-ai](https://www.benevolent.com/news/benevolentai-accelerating-drug-discovery-using-generative-ai)
+[6] BenevolentAI. How AI is transforming drug discovery. [https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery](https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery)
 
 [7] Mayo Clinic. GenAI for Patient-Facing Communication. [https://www.mayoclinicplatform.org/genai-patient-communication](https://www.mayoclinicplatform.org/genai-patient-communication)
 
