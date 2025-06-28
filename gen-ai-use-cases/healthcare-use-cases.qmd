@@ -16,7 +16,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 | Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and surgeries by 30%      | CNN, Diffusion models      		|
 | Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to <6 months(Insilico); improves success rate to 25% (BenevolentAI)  | VAEs, GNNs, RNNs, Transformers, RL |
 | Patient Communication            | Mayo Copilot, Ada Health     | AI messages rated 4.58/5 by patients; 81% clinician adoption in UCSD pilot           | LLM, RAG, RL                         |
-| Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Saves ~1,500 staff-hours/month; boosts ED efficiency by 30%                          | LLM, IDP, Workflow Automation Agents |
+| Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Reduces admin burden (~28–36 hrs/week); boosts clinician productivity (cognitive load ↓78%, after-hours ↓86%) | LLM, IDP, Workflow Automation Agents |
 
 
 ## Use Cases in Healthcare
@@ -44,15 +44,14 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 - **Problem**: Patients often struggle to understand medical terminology, follow treatment plans, or navigate post-discharge instructions, leading to poor adherence and health outcomes.  
 - **Solution**: GenAI-powered assistants use LLMs with retrieval-augmented generation (RAG) to explain conditions in plain language, answer patient questions, and personalize health education at scale.  
-- **Impact**: Mayo Clinic reports improved patient experience and discharge workflows through AI assistance<sup>[7]</sup>; After using Ada Health, 66% of users feel more certain about what care to seek, **40%** report reduced anxiety, and 80% feel better prepared for doctor consultations<sup>[8]</sup>; At UC San Diego Health, physicians using AI-generated replies wrote longer, more empathetic messages with reduced cognitive burden <sup>[9]</sup>
+- **Impact**: Mayo Clinic reports improved patient experience and discharge workflows through AI assistance<sup>[7]</sup>; After using Ada Health, 66% of users feel more certain about what care to seek, 40% report reduced anxiety, and 80% feel better prepared for doctor consultations<sup>[8]</sup>; At UC San Diego Health, physicians using AI-generated replies wrote longer, more empathetic messages with reduced cognitive burden <sup>[9]</sup>.
 
 
 ### Administrative Workflow Automation
 
 - **Problem**: Healthcare organizations face growing administrative burdens—from insurance pre-authorizations to medical coding and claim processing—which consume valuable time and increase operational costs.  
 - **Solution**: GenAI streamlines back-office tasks using LLMs and document intelligence platforms to automate medical coding, summarize prior authorizations, extract insurance clauses, and generate routine correspondence.  
-- **Impact**: Google’s MedLM improves efficiency across clinical and admin workflows<sup>[9]</sup>; Abridge's AI platform reduces manual note review and enables clinicians to focus on care delivery<sup>[10]</sup>.
-
+- **Impact**: Google’s MedLM (via tools like Augmedix) automates clinical documentation, empowering clinicians with faster, more accurate notes and reducing administrative burden; Google Cloud estimates staff spend ~28–36 hours/week on admin tasks, which GenAI can help reclaim<sup>[10]</sup>; Abridge reports up to 78% reduction in clinician cognitive load and 86% drop in after-hours documentation <sup>[11]</sup>.
 ## 🧾 Key Takeaways
 
 - Generative AI is transitioning from pilots to production across healthcare, with mature applications in clinical documentation, medical imaging, and drug discovery.  
@@ -79,7 +78,8 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 [9] UC San Diego Health. Study Reveals AI Enhances Physician-Patient Communication. [https://health.ucsd.edu/news/press-releases/2024-04-15-study-reveals-ai-enhances-physician-patient-communication/](https://health.ucsd.edu/news/press-releases/2024-04-15-study-reveals-ai-enhances-physician-patient-communication/)
 
-[10] Google Cloud. MedLM: Foundation Models for Healthcare. [https://cloud.google.com/blog/products/ai-machine-learning/google-clouds-medlm-foundation-models-for-healthcare](https://cloud.google.com/blog/products/ai-machine-learning/google-clouds-medlm-foundation-models-for-healthcare)
+[10] Google Cloud. MedLM: Foundation Models for Healthcare. [https://cloud.google.com/blog/topics/healthcare-life-sciences/introducing-medlm-for-the-healthcare-industry](https://cloud.google.com/blog/topics/healthcare-life-sciences/introducing-medlm-for-the-healthcare-industry)
 
-[11] Abridge. AI in Clinical Documentation and Admin Tasks. [https://www.abridge.com/blog/2024-ai-impact-healthcare](https://www.abridge.com/blog/2024-ai-impact-healthcare)
+[11] Christus Health reduces cognitive load on clinicians by 78% with Abridge. [https://www.abridge.com/press-release/christus-health-announcement](https://www.abridge.com/press-release/christus-health-announcement)
+
 
