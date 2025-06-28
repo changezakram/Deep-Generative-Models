@@ -44,7 +44,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 - **Problem**: Patients often struggle to understand medical terminology, follow treatment plans, or navigate post-discharge instructions, leading to poor adherence and health outcomes.  
 - **Solution**: GenAI-powered assistants use LLMs with retrieval-augmented generation (RAG) to explain conditions in plain language, answer patient questions, and personalize health education at scale.  
-- **Impact**: Mayo Clinic's GenAI assistant reduced time spent on patient Q&A and simplified discharge instruction workflows<sup>[7]</sup>; Ada Health's AI triage platform has been used by over 13 million users across 150+ countries to provide personalized medical guidance<sup>[8]</sup>.
+- **Impact**: Mayo Clinic reports improved patient experience and discharge workflows through AI assistance<sup>[7]</sup>; After using Ada Health, 66% of users feel more certain about what care to seek, **40%** report reduced anxiety, and 80% feel better prepared for doctor consultations<sup>[8]</sup>; At UC San Diego Health, physicians using AI-generated replies wrote longer, more empathetic messages with reduced cognitive burden <sup>[9]</sup>
 
 
 ### Administrative Workflow Automation
@@ -73,11 +73,13 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 [6] The Pharmaceutical Journal. How AI is transforming drug discovery. [https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery](https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery)
 
-[7] Mayo Clinic. GenAI for Patient-Facing Communication. [https://www.mayoclinicplatform.org/genai-patient-communication](https://www.mayoclinicplatform.org/genai-patient-communication)
+[7] Mayo Clinic. AI Improves Patient Experience. [https://mayomagazine.mayoclinic.org/2025/04/ai-improves-patient-experience/](https://mayomagazine.mayoclinic.org/2025/04/ai-improves-patient-experience/)
 
-[8] Ada Health. How Ada Helps Patients Make Informed Decisions. [https://ada.com/insights/how-ada-helps-patients-make-informed-decisions](https://ada.com/insights/how-ada-helps-patients-make-informed-decisions)
+[8] Ada Health. Improving patient pathways with AI. [https://about.ada.com/improving-patient-pathways-with-ada-digital-triage/](https://about.ada.com/improving-patient-pathways-with-ada-digital-triage/)
 
-[9] Google Cloud. MedLM: Foundation Models for Healthcare. [https://cloud.google.com/blog/products/ai-machine-learning/google-clouds-medlm-foundation-models-for-healthcare](https://cloud.google.com/blog/products/ai-machine-learning/google-clouds-medlm-foundation-models-for-healthcare)
+[9] UC San Diego Health. Study Reveals AI Enhances Physician-Patient Communication. [https://health.ucsd.edu/news/press-releases/2024-04-15-study-reveals-ai-enhances-physician-patient-communication/](https://health.ucsd.edu/news/press-releases/2024-04-15-study-reveals-ai-enhances-physician-patient-communication/)
 
-[10] Abridge. AI in Clinical Documentation and Admin Tasks. [https://www.abridge.com/blog/2024-ai-impact-healthcare](https://www.abridge.com/blog/2024-ai-impact-healthcare)
+[10] Google Cloud. MedLM: Foundation Models for Healthcare. [https://cloud.google.com/blog/products/ai-machine-learning/google-clouds-medlm-foundation-models-for-healthcare](https://cloud.google.com/blog/products/ai-machine-learning/google-clouds-medlm-foundation-models-for-healthcare)
+
+[11] Abridge. AI in Clinical Documentation and Admin Tasks. [https://www.abridge.com/blog/2024-ai-impact-healthcare](https://www.abridge.com/blog/2024-ai-impact-healthcare)
 
