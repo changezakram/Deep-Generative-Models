@@ -13,7 +13,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 | Use Case Area                    | Examples                     | Impact                                                                               | Underlying Models                    |
 |----------------------------------|------------------------------|--------------------------------------------------------------------------------------|--------------------------------------|
 | Clinical Documentation           | Nuance DAX, AWS HealthScribe | Nuance DAX reduces physician documentation time by up to 50%                         | LLM, Speech-to-Text                  |
-| Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and unnecessary surgeries by 30%    | Diffusion models, GANs               |
+| Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and unnecessary surgeries by 30%    | Diffusion models, CNN               |
 | Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to <6 months; improves success rate to 25%               | Generative Models, Graph Neural Nets |
 | Patient Communication            | Mayo Copilot, Ada Health     | AI messages rated 4.58/5 by patients; 81% clinician adoption in UCSD pilot           | LLM, RAG                             |
 | Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Saves ~1,500 staff-hours/month; boosts ED efficiency by 30%                          | LLM, IDP, Workflow Automation Agents |
@@ -30,7 +30,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 ### Medical Imaging and Diagnostics
 
 - **Problem**: Medical imaging analysis for rare conditions or low-resolution scans can be difficult, time-consuming, and resource-intensive for radiologists.  
-- **Solution**: Generative AI improves resolution, enhances image quality, and synthesizes diverse datasets using GANs and diffusion models to support diagnostics—especially for rare or underrepresented diseases.  
+- **Solution**: Generative AI supports diagnostics by synthesizing high-quality, diverse medical images using diffusion models (as in DeepMind’s EyeDiff) and improving image interpretation and reducing false positives through discriminative models like CNNs (as used by MIT CSAIL).  
 - **Impact**: MIT CSAIL’s AI reduced false positives by 37.3%, biopsy rates by 27.8%, and unnecessary breast surgeries by over 30%<sup>[2]</sup><sup>[3]</sup>; DeepMind’s diffusion-based EyeDiff model improved rare disease classification accuracy on retinal OCT scans by enhancing detection of minority classes and outperforming traditional oversampling techniques<sup>[4]</sup>.
 
 ### Drug Discovery and Molecular Design
