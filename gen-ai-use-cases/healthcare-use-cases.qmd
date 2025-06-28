@@ -71,7 +71,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 [5] Insilico Medicine. First Generative AI Drug Begins Phase II Trials with Patients. [https://insilico.com/blog/first_phase2](https://insilico.com/blog/first_phase2)
 
-[6] BenevolentAI. How AI is transforming drug discovery. [https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery](https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery)
+[6] The Pharmaceutical Journal. How AI is transforming drug discovery. [https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery](https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery)
 
 [7] Mayo Clinic. GenAI for Patient-Facing Communication. [https://www.mayoclinicplatform.org/genai-patient-communication](https://www.mayoclinicplatform.org/genai-patient-communication)
 
