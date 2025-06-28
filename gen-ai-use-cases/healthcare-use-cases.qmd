@@ -13,8 +13,8 @@ Generative AI is accelerating transformation in healthcare by automating documen
 | Use Case Area                    | Examples                     | Impact                                                                               | Underlying Models                    |
 |----------------------------------|------------------------------|--------------------------------------------------------------------------------------|--------------------------------------|
 | Clinical Documentation           | Nuance DAX, AWS HealthScribe | Nuance DAX reduces physician documentation time by up to 50%                         | LLM, Speech-to-Text                  |
-| Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and unnecessary surgeries by 30%    | CNN, Diffusion models               |
-| Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to <6 months; improves success rate to 25%               | Generative Models, Graph Neural Nets |
+| Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and surgeries by 30%      | CNN, Diffusion models      		|
+| Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to <6 months(Insilico); improves success rate to 25% (BenevolentAI)  | VAEs, GNNs, RNNs, Transformers, RL |
 | Patient Communication            | Mayo Copilot, Ada Health     | AI messages rated 4.58/5 by patients; 81% clinician adoption in UCSD pilot           | LLM, RAG                             |
 | Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Saves ~1,500 staff-hours/month; boosts ED efficiency by 30%                          | LLM, IDP, Workflow Automation Agents |
 
@@ -36,8 +36,8 @@ Generative AI is accelerating transformation in healthcare by automating documen
 ### Drug Discovery and Molecular Design
 
 - **Problem**: Traditional drug discovery is costly and slow, often taking over a decade and billions of dollars to bring new therapies to market.  
-- **Solution**: GenAI platforms use diffusion models and generative graph neural networks (GNNs) to design novel compounds, optimize drug-like properties, and simulate binding efficacy—all at scale.  
-- **Impact**: Insilico Medicine used GenAI to identify a novel drug candidate for idiopathic pulmonary fibrosis (IPF) in under 18 months<sup>[5]</sup>; BenevolentAI’s platform generated molecules targeting resistant diseases that advanced to clinical trials<sup>[6]</sup>.
+- **Solution**: GenAI platforms use model families such as graph neural networks (GNNs), variational autoencoders (VAEs), RNNs, and transformers to design novel compounds, optimize drug-like properties, and prioritize candidates for clinical development.  
+- **Impact**: Insilico Medicine used GenAI to identify and advance a novel drug candidate for idiopathic pulmonary fibrosis (IPF) to Phase II trials in under 30 months, including <18 months from target identification to candidate nomination<sup>[5]</sup>; BenevolentAI’s platform has generated molecules targeting resistant diseases, with several candidates progressing into preclinical and clinical trials<sup>[6]</sup>.
 
 
 ### Patient Communication and Education
@@ -69,7 +69,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 [4] De Fauw et al. (2024). EyeDiff: text-to-image diffusion model improves rare eye disease diagnosis. [https://arxiv.org/abs/2411.10004](https://arxiv.org/abs/2411.10004)
 
-[5] Insilico Medicine — First Generative AI Drug Begins Phase II Trials with Patients. [https://insilico.com/blog/first_phase2](https://insilico.com/blog/first_phase2)
+[5] Insilico Medicine. First Generative AI Drug Begins Phase II Trials with Patients. [https://insilico.com/blog/first_phase2](https://insilico.com/blog/first_phase2)
 
 [6] BenevolentAI. How AI is transforming drug discovery. [https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery](https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery)
 
