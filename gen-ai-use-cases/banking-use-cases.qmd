@@ -52,8 +52,8 @@ Generative AI is redefining how banks operate — from automating customer servi
 ### Generative BI
 
 - **Problem**: Business leaders often struggle to extract timely insights from complex, multi-source data environments, relying on static dashboards or analysts.  
-- **Solution**: Generative AI combines LLMs with backend analytical pipelines or generative models (e.g., VAE, Diffusion) to deliver real-time, conversational insights tailored to executive needs.  
-- **Impact**: Power BI Copilot users save +1.2 hours/week through automated summaries; ThoughtSpot achieves up to 95% accuracy in insights generated. <sup>[9][10]</sup>
+- **Solution**: Generative AI combines LLMs with backend analytical pipelines to deliver real-time, conversational insights tailored to executive needs.  
+- **Impact**: Forrester reports a 379% ROI and 20% analyst efficiency gain from Power BI with Copilot; users save up to 2.4 hours/week through automated tasks. <sup>[9][10]</sup>
 
 ### Document Generation
 
@@ -93,9 +93,9 @@ Generative AI is redefining how banks operate — from automating customer servi
 
 [8] The Wall Street Journal. (2024). *Inside OpenAI’s Deal With BBVA*. [https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03](https://www.wsj.com/articles/six-months-thousands-of-gpts-and-some-big-unknowns-inside-openais-deal-with-bbva-5d6f1c03)
 
-[9] Microsoft. (2023). *Announcing Microsoft Fabric and Copilot in Microsoft Power BI*. [https://powerbi.microsoft.com/en-us/blog/announcing-microsoft-fabric-and-copilot-in-microsoft-power-bi/](https://powerbi.microsoft.com/en-us/blog/announcing-microsoft-fabric-and-copilot-in-microsoft-power-bi/)
+[9] Microsoft. (2024). *Forrester Total Economic Impact™ study: Microsoft Fabric delivers 379% ROI over three years*. [https://www.microsoft.com/en-us/microsoft-fabric/blog/2024/06/03/forrester-total-economic-impact-study-microsoft-fabric-delivers-379-roi-over-three-years/](https://www.microsoft.com/en-us/microsoft-fabric/blog/2024/06/03/forrester-total-economic-impact-study-microsoft-fabric-delivers-379-roi-over-three-years/)
 
-[10] ThoughtSpot. (2023). *Introducing Sage: The New Generative AI Pioneer in Analytics*. [https://www.thoughtspot.com/blog/introducing-sage-the-new-generative-ai-pioneer-in-analytics](https://www.thoughtspot.com/blog/introducing-sage-the-new-generative-ai-pioneer-in-analytics)
+[10] Forrester. (2024). *New Technology: The Projected Total Economic Impact™ Of Microsoft Copilot For Microsoft 365*. [https://tei.forrester.com/go/Microsoft/365Copilot/?lang=en-us](https://tei.forrester.com/go/Microsoft/365Copilot/?lang=en-us)
 
 [11] U.S. Department of the Treasury. (2024). *Artificial Intelligence in Financial Services*. [https://home.treasury.gov/system/files/136/Artificial-Intelligence-in-Financial-Services.pdf](https://home.treasury.gov/system/files/136/Artificial-Intelligence-in-Financial-Services.pdf)
 
