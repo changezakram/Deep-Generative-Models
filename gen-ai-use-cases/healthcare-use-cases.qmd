@@ -13,7 +13,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 | Use Case Area                    | Examples                     | Impact                                                                               | Underlying Models                    |
 |----------------------------------|------------------------------|--------------------------------------------------------------------------------------|--------------------------------------|
 | Clinical Documentation           | Nuance DAX, AWS HealthScribe | Nuance DAX reduces physician documentation time by up to 50%                         | LLM, Speech-to-Text                  |
-| Medical Imaging & Diagnostics    | DeepMind, MIT CSAIL          | Reduces false positives by 6%, false negatives by 9%; speeds up CT diagnosis by 44%  | Transformer-based CNNs               |
+| Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and unnecessary surgeries by 30%    | Diffusion models, GANs               |
 | Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to <6 months; improves success rate to 25%               | Generative Models, Graph Neural Nets |
 | Patient Communication            | Mayo Copilot, Ada Health     | AI messages rated 4.58/5 by patients; 81% clinician adoption in UCSD pilot           | LLM, RAG                             |
 | Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Saves ~1,500 staff-hours/month; boosts ED efficiency by 30%                          | LLM, IDP, Workflow Automation Agents |
@@ -31,7 +31,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 - **Problem**: Medical imaging analysis for rare conditions or low-resolution scans can be difficult, time-consuming, and resource-intensive for radiologists.  
 - **Solution**: Generative AI improves resolution, enhances image quality, and synthesizes diverse datasets using GANs and diffusion models to support diagnostics—especially for rare or underrepresented diseases.  
-- **Impact**: Google’s Med-PaLM Multimodal can generate radiology-quality X-rays from text prompts<sup>[3]</sup>; DeepMind’s diffusion-based approach improved rare disease classification accuracy on retinal OCT scans<sup>[4]</sup>.
+- **Impact**: MIT CSAIL’s AI reduced false positives by 37.3%, biopsy rates by 27.8%, and unnecessary breast surgeries by over 30%<sup>[2]</sup><sup>[3]</sup>; DeepMind’s diffusion-based EyeDiff model improved rare disease classification accuracy on retinal OCT scans by enhancing detection of minority classes and outperforming traditional oversampling techniques<sup>[4]</sup>.
 
 ### Drug Discovery and Molecular Design
 
@@ -63,9 +63,11 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 [1] Microsoft Nuance. Move beyond scribes to automatically document care [https://www.nuance.com/content/dam/nuance/en_us/collateral/healthcare/infographic/ig-move-beyond-scribes-to-automatically-document-care-en-us.pdf](https://www.nuance.com/content/dam/nuance/en_us/collateral/healthcare/infographic/ig-move-beyond-scribes-to-automatically-document-care-en-us.pdf)
 
-[3] Google Research. Med-PaLM Multimodal: Scaling Large Language Models to 2D and 3D Medical Imaging. [https://arxiv.org/abs/2310.03744](https://arxiv.org/abs/2310.03744)
+[2] MIT CSAIL News. Using AI to improve early breast cancer detection. [https://www.csail.mit.edu/news/using-artificial-intelligence-improve-early-breast-cancer-detection](https://www.csail.mit.edu/news/using-artificial-intelligence-improve-early-breast-cancer-detection)
 
-[4] DeepMind. Using generative AI to improve the diagnosis of rare diseases. [https://www.deepmind.com/blog/using-generative-ai-to-improve-the-diagnosis-of-rare-diseases](https://www.deepmind.com/blog/using-generative-ai-to-improve-the-diagnosis-of-rare-diseases)
+[3] Artificial intelligence system reduces false-positive findings in the interpretation of breast ultrasound exams. [https://pmc.ncbi.nlm.nih.gov/articles/PMC8463596/pdf/41467_2021_Article_26023.pdf](https://pmc.ncbi.nlm.nih.gov/articles/PMC8463596/pdf/41467_2021_Article_26023.pdf)
+
+[4] De Fauw et al. (2024). EyeDiff: text-to-image diffusion model improves rare eye disease diagnosis. [https://arxiv.org/abs/2411.10004](https://arxiv.org/abs/2411.10004)
 
 [5] Insilico Medicine. First AI-Designed Drug for IPF Enters Phase II Trials. [https://www.insilico.com/news/insilico-medicine-first-ai-designed-drug-enters-phase-ii](https://www.insilico.com/news/insilico-medicine-first-ai-designed-drug-enters-phase-ii)
 
