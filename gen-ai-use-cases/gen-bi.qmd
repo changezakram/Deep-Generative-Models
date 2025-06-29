@@ -145,20 +145,6 @@ This layer powers **Spotter**, ThoughtSpot’s LLM-based assistant, enabling fol
 
 ThoughtSpot’s approach reflects a shift from static models to **real-time, AI-native interaction**, positioning the semantic layer not just as a backend modeling tool but as a **dynamic interface between users and enterprise knowledge**.
 
-::: note
-
-**Governance, Consistency, and Reusability in Action**
-
-Beyond technical abstraction, the semantic layer offers major strategic advantages:
-
-- **Governance**: Enforces access controls, ensures accurate metric logic, and prevents unauthorized joins  
-- **Consistency**: Everyone calculates KPIs the same way — no more “multiple versions of the truth”  
-- **Reusability**: Build once, reuse across Gen BI assistants, dashboards, and reports  
-- **Efficiency**: Reduces analyst workload by removing ambiguity and duplication
-
-*These principles are emphasized in BI architectures from Microsoft<sup>[5]</sup>, ThoughtSpot<sup>[6]</sup>, and IBM<sup>[7]</sup>.*
-
-:::
 
 ## Summary
 
