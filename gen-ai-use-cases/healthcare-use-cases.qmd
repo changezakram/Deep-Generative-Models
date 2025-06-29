@@ -52,6 +52,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 - **Problem**: Healthcare organizations face growing administrative burdens—from insurance pre-authorizations to medical coding and claim processing—which consume valuable time and increase operational costs. 
 - **Solution**: GenAI streamlines back-office tasks using LLMs and document intelligence platforms to automate medical coding, summarize prior authorizations, extract insurance clauses, and generate routine correspondence.
 - **Impact**: Google’s MedLM (via tools like Augmedix) automates clinical documentation, empowering clinicians with faster, more accurate notes and reducing administrative burden; Google Cloud estimates staff spend ~28–36 hours/week on admin tasks, which GenAI can help reclaim<sup>[10]</sup>; Abridge reports up to 78% reduction in clinician cognitive load and 86% drop in after-hours documentation <sup>[11]</sup>.
+
 ## 🧾 Key Takeaways
 
 - Generative AI is transitioning from pilots to production across healthcare, with mature applications in clinical documentation, medical imaging, and drug discovery.  
