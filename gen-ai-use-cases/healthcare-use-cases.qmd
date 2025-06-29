@@ -19,7 +19,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 | Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Reduces admin burden by ~28–36 hrs/week; reduces cognitive load on clinicians by 78%) | LLM, IDP, Workflow Automation Agents |
 
 
-## Use Cases in Healthcare
+## Detailed Use Cases
 
 ### Clinical Documentation
 
