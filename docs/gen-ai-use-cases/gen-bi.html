@@ -192,8 +192,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#what-is-a-semantic-layer" id="toc-what-is-a-semantic-layer" class="nav-link" data-scroll-target="#what-is-a-semantic-layer"><span class="header-section-number">3.1</span> What Is a Semantic Layer?</a></li>
   <li><a href="#why-it-matters-in-generative-bi" id="toc-why-it-matters-in-generative-bi" class="nav-link" data-scroll-target="#why-it-matters-in-generative-bi"><span class="header-section-number">3.2</span> Why It Matters in Generative BI</a></li>
   <li><a href="#core-benefits" id="toc-core-benefits" class="nav-link" data-scroll-target="#core-benefits"><span class="header-section-number">3.3</span> Core Benefits</a></li>
-  <li><a href="#how-leading-platforms-implement-it" id="toc-how-leading-platforms-implement-it" class="nav-link" data-scroll-target="#how-leading-platforms-implement-it"><span class="header-section-number">3.4</span> How Leading Platforms Implement It</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.5</span> Summary</a></li>
+  <li><a href="#architecture-approaches-to-building-a-semantic-layer" id="toc-architecture-approaches-to-building-a-semantic-layer" class="nav-link" data-scroll-target="#architecture-approaches-to-building-a-semantic-layer"><span class="header-section-number">3.4</span> Architecture Approaches to Building a Semantic Layer</a></li>
+  <li><a href="#how-leading-platforms-implement-it" id="toc-how-leading-platforms-implement-it" class="nav-link" data-scroll-target="#how-leading-platforms-implement-it"><span class="header-section-number">3.5</span> How Leading Platforms Implement It</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.6</span> Summary</a></li>
   </ul></li>
   <li><a href="#current-gen-bi-solutions-landscape-strengths-and-weaknesses" id="toc-current-gen-bi-solutions-landscape-strengths-and-weaknesses" class="nav-link" data-scroll-target="#current-gen-bi-solutions-landscape-strengths-and-weaknesses"><span class="header-section-number">4</span> Current Gen BI Solutions: Landscape, Strengths, and Weaknesses</a></li>
   <li><a href="#use-cases-and-applications" id="toc-use-cases-and-applications" class="nav-link" data-scroll-target="#use-cases-and-applications"><span class="header-section-number">5</span> Use Cases and Applications</a></li>
@@ -399,10 +400,95 @@ Autonomous agents or copilots can proactively detect anomalies, generate executi
 <li><strong>Efficiency</strong>: Reduces analyst workload by removing ambiguity and duplication</li>
 </ul>
 </section>
-<section id="how-leading-platforms-implement-it" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="how-leading-platforms-implement-it"><span class="header-section-number">3.4</span> How Leading Platforms Implement It</h2>
-<section id="power-bi-microsoft" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="power-bi-microsoft"><span class="header-section-number">3.4.1</span> Power BI (Microsoft)</h3>
+<section id="architecture-approaches-to-building-a-semantic-layer" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="architecture-approaches-to-building-a-semantic-layer"><span class="header-section-number">3.4</span> Architecture Approaches to Building a Semantic Layer</h2>
+<p>Not all semantic layers are built the same way. The architecture you choose can significantly affect flexibility, governance, and GenAI readiness. Based on a framework outlined by Kyligence[^1], there are three dominant approaches:</p>
+<section id="in-warehouse-semantic-layer" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="in-warehouse-semantic-layer"><span class="header-section-number">3.4.1</span> In-Warehouse Semantic Layer</h3>
+<p>Built directly within the data warehouse or lake (e.g., as SQL views or materialized metrics).</p>
+<ul>
+<li>✅ <strong>Pros</strong>: No vendor lock-in, trusted by IT, close to raw data<br>
+</li>
+<li>❌ <strong>Cons</strong>: Poor UX for non-technical users, hard to scale conversational BI</li>
+</ul>
+</section>
+<section id="standalone-semantic-layer" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="standalone-semantic-layer"><span class="header-section-number">3.4.2</span> Standalone Semantic Layer</h3>
+<p>A dedicated platform (e.g., AtScale, Kyligence Zen, Cube.dev) between raw data and BI/AI tools.</p>
+<ul>
+<li>✅ <strong>Pros</strong>: Central logic, GenAI-ready, cross-tool reuse, strong governance<br>
+</li>
+<li>❌ <strong>Cons</strong>: Requires infrastructure and integration effort</li>
+</ul>
+</section>
+<section id="in-bi-tool-semantic-layer" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="in-bi-tool-semantic-layer"><span class="header-section-number">3.4.3</span> In-BI Tool Semantic Layer</h3>
+<p>Embedded in a specific tool like Power BI datasets or LookML in Looker.</p>
+<ul>
+<li>✅ <strong>Pros</strong>: Seamless UX, low setup friction<br>
+</li>
+<li>❌ <strong>Cons</strong>: Vendor lock-in, limited cross-platform use</li>
+</ul>
+</section>
+<section id="architecture-comparison" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="architecture-comparison"><span class="header-section-number">3.4.4</span> 🔄 Architecture Comparison</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Flexibility</th>
+<th>Governance</th>
+<th>Vendor Lock-In</th>
+<th>GenAI Ready</th>
+<th>End-User UX</th>
+<th>Big Data Support</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>In-Warehouse</td>
+<td>Low</td>
+<td>Strong</td>
+<td>None</td>
+<td>Low</td>
+<td>Poor</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Standalone Layer</td>
+<td>High</td>
+<td>Strong</td>
+<td>None</td>
+<td>High</td>
+<td>Good</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td>In-BI Tool</td>
+<td>Low</td>
+<td>Weak</td>
+<td>High</td>
+<td>Medium</td>
+<td>Excellent</td>
+<td>Limited</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="how-leading-platforms-implement-it" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="how-leading-platforms-implement-it"><span class="header-section-number">3.5</span> How Leading Platforms Implement It</h2>
+<section id="power-bi-microsoft" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="power-bi-microsoft"><span class="header-section-number">3.5.1</span> Power BI (Microsoft)</h3>
 <p>Power BI uses <strong>tabular semantic models</strong>, which define relationships, hierarchies, calculated measures, and row-level security. These models are tightly integrated into Microsoft Fabric and Power BI Desktop, enabling:</p>
 <ul>
 <li>Centralized data modeling<br>
@@ -415,8 +501,8 @@ Autonomous agents or copilots can proactively detect anomalies, generate executi
 </ul>
 <p>Power BI’s semantic layer is mature, stable, and deeply embedded in Microsoft’s ecosystem — making it an ideal foundation for governed, enterprise-grade Generative BI.</p>
 </section>
-<section id="thoughtspot" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="thoughtspot"><span class="header-section-number">3.4.2</span> ThoughtSpot</h3>
+<section id="thoughtspot" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="thoughtspot"><span class="header-section-number">3.5.2</span> ThoughtSpot</h3>
 <p>While Power BI leads in market share and enterprise adoption, <strong>ThoughtSpot is included here because it represents a GenAI-native approach to semantic modeling</strong>. Its architecture was designed from the ground up for AI-first interaction, making it a forward-looking example of how semantic layers are evolving to support dynamic, conversational, and agent-driven analytics.</p>
 <p>ThoughtSpot has built an <strong>Agentic Semantic Layer</strong> designed specifically for GenAI applications. Its key features include:</p>
 <ul>
@@ -454,8 +540,8 @@ Other Semantic Layer Platforms
 </div>
 </section>
 </section>
-<section id="summary" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.5</span> Summary</h2>
+<section id="summary" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.6</span> Summary</h2>
 <p>In the age of Generative BI, the semantic layer is no longer optional — it’s foundational. Whether implemented as structured tabular models in Power BI or as dynamic, AI-augmented context layers in ThoughtSpot, the goal is the same:</p>
 <p>To enable every user to ask questions in plain language and receive reliable, explainable answers rooted in trusted business logic.</p>
 <p>A strong semantic layer unlocks the full potential of Generative BI — by combining the <strong>ease of conversation</strong> with the <strong>rigor of governance</strong>.</p>

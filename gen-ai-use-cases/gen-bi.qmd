@@ -116,6 +116,44 @@ Below the surface, these benefits also support key strategic outcomes:
 - **Efficiency**: Reduces analyst workload by removing ambiguity and duplication
 
 
+
+
+## Architecture Approaches to Building a Semantic Layer
+
+Not all semantic layers are built the same way. The architecture you choose can significantly affect flexibility, governance, and GenAI readiness. Based on a framework outlined by Kyligence[^1], there are three dominant approaches:
+
+### In-Warehouse Semantic Layer  
+Built directly within the data warehouse or lake (e.g., as SQL views or materialized metrics).
+
+- ✅ **Pros**: No vendor lock-in, trusted by IT, close to raw data  
+- ❌ **Cons**: Poor UX for non-technical users, hard to scale conversational BI
+
+### Standalone Semantic Layer  
+A dedicated platform (e.g., AtScale, Kyligence Zen, Cube.dev) between raw data and BI/AI tools.
+
+- ✅ **Pros**: Central logic, GenAI-ready, cross-tool reuse, strong governance  
+- ❌ **Cons**: Requires infrastructure and integration effort
+
+### In-BI Tool Semantic Layer  
+Embedded in a specific tool like Power BI datasets or LookML in Looker.
+
+- ✅ **Pros**: Seamless UX, low setup friction  
+- ❌ **Cons**: Vendor lock-in, limited cross-platform use
+
+### 🔄 Architecture Comparison
+
+| Approach               | Flexibility | Governance | Vendor Lock-In | GenAI Ready | End-User UX | Big Data Support |
+|------------------------|-------------|------------|----------------|--------------|---------------|------------------|
+| In-Warehouse           | Low         | Strong     | None           | Low          | Poor          | High             |
+| Standalone Layer       | High        | Strong     | None           | High         | Good          | High             |
+| In-BI Tool             | Low         | Weak       | High           | Medium       | Excellent     | Limited          |
+
+
+
+
+
+
+
 ## How Leading Platforms Implement It
 
 ### Power BI (Microsoft)
