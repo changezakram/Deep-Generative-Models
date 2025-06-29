@@ -26,6 +26,8 @@ According to Gartner, 40% of enterprise applications now include conversational 
 
 A 2024 McKinsey survey found that 65% of organizations use generative AI in at least one business function — nearly double the rate from the previous year<sup>[2]</sup>.
 
+Recent trends support this shift: **67% of business leaders** now report using generative AI specifically for data analysis and business intelligence<sup>[3]</sup>. This highlights growing recognition that BI must evolve from simply being accessible to being intelligent, adaptive, and proactive.
+
 ## Strategic Relevance for Our Organization
 
 For data-driven organizations, Gen BI offers immediate strategic benefits:
@@ -35,16 +37,51 @@ For data-driven organizations, Gen BI offers immediate strategic benefits:
 - **Improves data literacy**: Translates structured data into business-friendly language
 - **Boosts BI ROI**: Enhances the value of existing BI tools like Power BI, Tableau, or ThoughtSpot without requiring replacement
 
-McKinsey estimates that generative AI could contribute up to $4.4 trillion annually to global productivity gains<sup>[3]</sup>. Organizations that embed Gen BI early stand to gain a decisive advantage in decision velocity, efficiency, and user empowerment.
+McKinsey estimates that generative AI could contribute up to $4.4 trillion annually to global productivity gains<sup>[4]</sup>. Organizations that embed Gen BI early stand to gain a decisive advantage in decision velocity, efficiency, and user empowerment.
+
+---
+
+# Foundations of Generative BI
+
+## From Traditional BI to Generative BI
+
+Traditional Business Intelligence (BI) is centered around predefined reports, dashboards, and structured queries. Business users often depend on analysts to write SQL, prepare data models, or build dashboards — leading to bottlenecks and long turnaround times.
+
+Self-service BI platforms like Power BI and Tableau introduced visual interfaces and drag-and-drop tools to reduce technical friction. However, even these tools require users to understand data schemas, relationships, and filters to get meaningful insights.
+
+**Generative BI represents a major leap forward.** It allows users to interact with enterprise data using plain language, receive direct answers, and generate narrative summaries — powered by large language models (LLMs). This approach removes barriers to insight by making analytics conversational, contextual, and personalized.
+
+## Key Capabilities of Gen BI
+
+1. **Natural Language Querying (NLQ)**  
+   Users can ask business questions like “What were sales last quarter by region?” and receive charted responses — no code or filters needed.
+
+2. **Natural Language Generation (NLG)**  
+   Automated summaries explain what changed, why it matters, and what to watch next — saving time and making data actionable.
+
+3. **Agent-Based Analysis**  
+   Autonomous agents or copilots can proactively detect anomalies, generate executive reports, or monitor KPIs without needing explicit prompts.
+
+These capabilities enable faster insight generation, broader adoption of analytics, and reduced dependence on BI developers.
+
+## Distinction from Self-Service and Augmented Analytics
+
+Generative BI builds on — but meaningfully differs from — self-service and augmented analytics platforms:
+
+| Capability                        | Self-Service BI | Augmented Analytics | Generative BI |
+|----------------------------------|------------------|----------------------|----------------|
+| Requires dashboard interaction   | Yes              | Sometimes            | No             |
+| Natural language interface       | Limited          | Intermediate         | Primary method |
+| AI-generated narratives          | Rare             | Sometimes            | Yes            |
+| Proactive insight generation     | No               | Limited              | Yes (agents)   |
+| Ease of use for business users   | Medium           | High                 | Very High      |
 
 ---
 
 
 
-# Foundations of Generative BI  
-- From Traditional BI to Generative BI  
-- Key capabilities: NLQ, NLG, agent-based analysis  
-- Difference from self-service BI and augmented analytics  
+
+
 
 # Semantic Layer: The Bridge Between Data and Language  
 - What is a semantic layer?  
@@ -106,6 +143,10 @@ McKinsey estimates that generative AI could contribute up to $4.4 trillion annua
 
 ## References
 
-<sup>[1]</sup> Gartner. “Generative AI.” [https://www.gartner.com/en/topics/generative-ai](https://www.gartner.com/en/topics/generative-ai)  
-<sup>[2]</sup> McKinsey & Company. *Charting a Path to the Data- and AI-Driven Enterprise of 2030*. [https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/charting-a-path-to-the-data-and-ai-driven-enterprise-of-2030](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/charting-a-path-to-the-data-and-ai-driven-enterprise-of-2030)  
-<sup>[3]</sup> McKinsey & Company. *The Economic Potential of Generative AI*. [https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)
+[1] Gartner. “Generative AI.” [https://www.gartner.com/en/topics/generative-ai](https://www.gartner.com/en/topics/generative-ai)  
+[2] McKinsey & Company. *Charting a Path to the Data- and AI-Driven Enterprise of 2030*. [https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/charting-a-path-to-the-data-and-ai-driven-enterprise-of-2030](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/charting-a-path-to-the-data-and-ai-driven-enterprise-of-2030)  
+[3] ThoughtSpot. *AI in Business Intelligence: Trends Shaping the Future of Analytics*.  
+[https://www.thoughtspot.com/data-trends/ai/ai-in-business-intelligence](https://www.thoughtspot.com/data-trends/ai/ai-in-business-intelligence) 
+[4] McKinsey & Company. *The Economic Potential of Generative AI*. [https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)
+
+
