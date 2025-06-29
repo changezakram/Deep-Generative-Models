@@ -1,10 +1,9 @@
 ---
 title: "Generative Business Intelligence (Gen BI)"
-format:
-  html:
-    toc: true
-    number-sections: true
+format: html
 ---
+
+
 
 # Executive Summary
 
