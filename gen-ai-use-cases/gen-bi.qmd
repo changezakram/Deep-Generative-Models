@@ -26,7 +26,7 @@ According to Gartner, 40% of enterprise applications now include conversational 
 
 A 2024 McKinsey survey found that 65% of organizations use generative AI in at least one business function — nearly double the rate from the previous year<sup>[2]</sup>.
 
-Recent trends support this shift: **67% of business leaders** now report using generative AI specifically for data analysis and business intelligence<sup>[3]</sup>. This highlights growing recognition that BI must evolve from simply being accessible to being intelligent, adaptive, and proactive.
+Recent trends support this shift: 67% of business leaders now report using generative AI specifically for data analysis and business intelligence<sup>[3]</sup>. This highlights growing recognition that BI must evolve from simply being accessible to being intelligent, adaptive, and proactive.
 
 ## Strategic Relevance for Our Organization
 
@@ -149,9 +149,12 @@ Generative BI is the next step beyond self-service and augmented analytics. Whil
 ## References
 
 [1] Gartner. “Generative AI.” [https://www.gartner.com/en/topics/generative-ai](https://www.gartner.com/en/topics/generative-ai)  
+
 [2] McKinsey & Company. *Charting a Path to the Data- and AI-Driven Enterprise of 2030*. [https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/charting-a-path-to-the-data-and-ai-driven-enterprise-of-2030](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/charting-a-path-to-the-data-and-ai-driven-enterprise-of-2030)  
+
 [3] ThoughtSpot. *AI in Business Intelligence: Trends Shaping the Future of Analytics*.  
 [https://www.thoughtspot.com/data-trends/ai/ai-in-business-intelligence](https://www.thoughtspot.com/data-trends/ai/ai-in-business-intelligence) 
+
 [4] McKinsey & Company. *The Economic Potential of Generative AI*. [https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)
 
 
