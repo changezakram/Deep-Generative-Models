@@ -14,9 +14,9 @@ Generative AI is accelerating transformation in healthcare by automating documen
 |----------------------------------|------------------------------|--------------------------------------------------------------------------------------|--------------------------------------|
 | Clinical Documentation           | Nuance DAX, AWS HealthScribe | Nuance DAX reduces physician documentation time by up to 50%                         | LLM, Speech-to-Text                  |
 | Medical Imaging & Diagnostics    | MIT CSAI, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and surgeries by 30%      | CNN, Diffusion models      		|
-| Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to <6 months(Insilico); improves success rate to 25% (BenevolentAI)  | VAEs, GNNs, RNNs, Transformers, RL |
+| Drug Discovery & Molecule Design | Insilico, BenevolentAI       | Cuts lead time from 2 years to 6 months (Insilico); improves success rate to 25% (BenevolentAI)  | VAEs, GNNs, RNNs, Transformers, RL |
 | Patient Communication            | Mayo Copilot, Ada Health     | Improves patient experience (Mayo); 66% feel more confident, 40% less anxious (Ada); 81% clinician adoption (UCSD)  | LLM, RAG, RL      |
-| Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Reduces admin burden by ~28–36 hrs/week); reduces cognitive load on clinicians by 78%) | LLM, IDP, Workflow Automation Agents |
+| Admin Workflow Automation        | MedLM, Abridge, NexusMD      | Reduces admin burden by ~28–36 hrs/week; reduces cognitive load on clinicians by 78%) | LLM, IDP, Workflow Automation Agents |
 
 
 ## Use Cases in Healthcare
