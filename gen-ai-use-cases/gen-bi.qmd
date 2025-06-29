@@ -66,7 +66,7 @@ These capabilities enable faster insight generation, broader adoption of analyti
 
 ## Distinction from Self-Service and Augmented Analytics
 
-Generative BI builds on — but meaningfully differs from — self-service and augmented analytics platforms:
+Generative BI is the next step beyond self-service and augmented analytics. While it builds on the foundation they created, it introduces a new level of intelligence, automation, and ease of use — especially through natural language interaction.
 
 | Capability                        | Self-Service BI | Augmented Analytics | Generative BI |
 |----------------------------------|------------------|----------------------|----------------|
