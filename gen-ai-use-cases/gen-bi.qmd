@@ -152,7 +152,6 @@ Several modern platforms also support semantic modeling and may be part of a bro
 - **AtScale**  
 - **Cube.dev**  
 - **LookML (Looker)**  
-- **Power BI Dataset Model**
 
 :::
 
