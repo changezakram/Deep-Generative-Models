@@ -146,6 +146,7 @@ This layer powers **Spotter**, ThoughtSpot’s LLM-based assistant, enabling fol
 ThoughtSpot’s approach reflects a shift from static models to **real-time, AI-native interaction**, positioning the semantic layer not just as a backend modeling tool but as a **dynamic interface between users and enterprise knowledge**.
 
 ::: note
+
 **Governance, Consistency, and Reusability in Action**
 
 Beyond technical abstraction, the semantic layer offers major strategic advantages:
