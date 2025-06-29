@@ -41,5 +41,8 @@
   },
   "diffusion.qmd": {
     "diffusion.html": "d2f2e07f"
+  },
+  "gen-ai-use-cases/gen-bi.qmd": {
+    "gen-bi.html": "5dc2ab78"
   }
 }
