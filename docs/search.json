@@ -84,6 +84,41 @@
     "text": "2.3 Distinction from Self-Service and Augmented Analytics\nSelf-Service BI allows business users to create their own reports and dashboards using drag-and-drop interfaces and visual tools — typically without writing code. It empowers users but still requires them to understand filters, dimensions, and data relationships.\nAugmented Analytics builds on self-service BI by adding AI and machine learning to assist users with automated insights. These tools can suggest visualizations, detect anomalies, or highlight trends, but they still rely primarily on user-driven dashboard interaction.\nGenerative BI is the next step beyond self-service and augmented analytics. While it builds on the foundation they created, it introduces a new level of intelligence, automation, and ease of use — especially through natural language interaction.\n\n\n\n\n\n\n\n\n\nCapability\nSelf-Service BI\nAugmented Analytics\nGenerative BI\n\n\n\n\nRequires dashboard interaction\nYes\nSometimes\nNo\n\n\nNatural language interface\nLimited\nIntermediate\nPrimary method\n\n\nAI-generated narratives\nRare\nSometimes\nYes\n\n\nProactive insight generation\nNo\nLimited\nYes (agents)\n\n\nEase of use for business users\nMedium\nHigh\nVery High"
   },
   {
+    "objectID": "gen-ai-use-cases/gen-bi.html#what-is-a-semantic-layer",
+    "href": "gen-ai-use-cases/gen-bi.html#what-is-a-semantic-layer",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "3.1 What is a Semantic Layer?",
+    "text": "3.1 What is a Semantic Layer?\nA semantic layer is a business-friendly abstraction that sits on top of raw data sources and translates technical data structures into commonly understood business terms. It acts as a translator between end users (who think in terms like “customer,” “revenue,” or “region”) and the actual fields, tables, and joins in the data warehouse.\nInstead of requiring users to understand how data is stored, the semantic layer allows them to query using familiar business language — ensuring consistency, clarity, and confidence in analysis."
+  },
+  {
+    "objectID": "gen-ai-use-cases/gen-bi.html#mapping-business-terms-to-technical-data",
+    "href": "gen-ai-use-cases/gen-bi.html#mapping-business-terms-to-technical-data",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "3.2 Mapping Business Terms to Technical Data",
+    "text": "3.2 Mapping Business Terms to Technical Data\nAt the heart of the semantic layer is semantic modeling — defining business metrics (like “net revenue” or “churn rate”) once, then reusing them across tools and teams. For example:\n\nA business user might ask: “What is monthly active customer growth?”\nThe semantic layer interprets this using pre-defined logic: count(distinct customer_id) where activity_flag = true and date in current_month.\n\nThis ensures every team uses the same definition, regardless of which BI or AI tool they’re using."
+  },
+  {
+    "objectID": "gen-ai-use-cases/gen-bi.html#nlq-enablement-through-semantic-modeling",
+    "href": "gen-ai-use-cases/gen-bi.html#nlq-enablement-through-semantic-modeling",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "3.3 NLQ Enablement Through Semantic Modeling",
+    "text": "3.3 NLQ Enablement Through Semantic Modeling\nGenerative BI systems rely heavily on a well-defined semantic layer to power Natural Language Querying (NLQ). Without it, LLMs may misinterpret field names, generate invalid queries, or return inconsistent results.\nThe semantic layer acts as a trusted interface for the LLM: - Guides query construction\n- Enforces governed metric definitions\n- Reduces risk of hallucinations or logic errors\nA strong semantic layer transforms Gen BI from “chatting with your data” into “asking questions and getting correct, trusted answers.”"
+  },
+  {
+    "objectID": "gen-ai-use-cases/gen-bi.html#tools-and-frameworks",
+    "href": "gen-ai-use-cases/gen-bi.html#tools-and-frameworks",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "3.4 Tools and Frameworks",
+    "text": "3.4 Tools and Frameworks\nSeveral modern platforms support semantic modeling — either natively or as external layers:\n\ndbt Semantic Layer – integrates with the dbt transformation workflow to define and expose metrics as code\n\nAtScale – semantic layer platform designed for governed analytics across tools\n\nCube.dev – headless BI platform offering a semantic API for querying\n\nPower BI Dataset Model – supports semantic definitions through tabular models and shared datasets\n\nLookML (Looker) – defines semantic logic as code and exposes it to BI and ML tools\n\nThese tools enable interoperability across LLMs, BI platforms, and downstream applications."
+  },
+  {
+    "objectID": "gen-ai-use-cases/gen-bi.html#governance-consistency-and-reusability-benefits",
+    "href": "gen-ai-use-cases/gen-bi.html#governance-consistency-and-reusability-benefits",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "3.5 Governance, Consistency, and Reusability Benefits",
+    "text": "3.5 Governance, Consistency, and Reusability Benefits\nBeyond technical abstraction, the semantic layer offers major strategic advantages:\n\nGovernance: Enforces access controls, ensures accurate metric logic, and prevents unauthorized joins\n\nConsistency: Everyone calculates KPIs the same way — no more “multiple versions of the truth”\n\nReusability: Build once, reuse across Gen BI assistants, dashboards, and reports\n\nEfficiency: Reduces analyst workload by removing ambiguity and duplication\n\nIn a Generative BI environment, the semantic layer is not optional — it’s essential infrastructure. It ensures LLMs interact safely with enterprise data and that users can trust the answers they receive."
+  },
+  {
     "objectID": "gen-ai-use-cases/gen-bi.html#references",
     "href": "gen-ai-use-cases/gen-bi.html#references",
     "title": "Generative Business Intelligence (Gen BI)",
