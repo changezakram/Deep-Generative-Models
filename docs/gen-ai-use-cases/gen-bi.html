@@ -175,7 +175,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">1</span> Executive Summary</a></li>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">1</span> Executive Summary</a>
+  <ul class="collapse">
+  <li><a href="#what-is-generative-bi" id="toc-what-is-generative-bi" class="nav-link" data-scroll-target="#what-is-generative-bi"><span class="header-section-number">1.1</span> What is Generative BI?</a></li>
+  <li><a href="#why-now" id="toc-why-now" class="nav-link" data-scroll-target="#why-now"><span class="header-section-number">1.2</span> Why Now?</a></li>
+  <li><a href="#strategic-relevance-for-our-organization" id="toc-strategic-relevance-for-our-organization" class="nav-link" data-scroll-target="#strategic-relevance-for-our-organization"><span class="header-section-number">1.3</span> Strategic Relevance for Our Organization</a></li>
+  </ul></li>
   <li><a href="#foundations-of-generative-bi" id="toc-foundations-of-generative-bi" class="nav-link" data-scroll-target="#foundations-of-generative-bi"><span class="header-section-number">2</span> Foundations of Generative BI</a></li>
   <li><a href="#semantic-layer-the-bridge-between-data-and-language" id="toc-semantic-layer-the-bridge-between-data-and-language" class="nav-link" data-scroll-target="#semantic-layer-the-bridge-between-data-and-language"><span class="header-section-number">3</span> Semantic Layer: The Bridge Between Data and Language</a></li>
   <li><a href="#current-gen-bi-solutions-landscape-strengths-and-weaknesses" id="toc-current-gen-bi-solutions-landscape-strengths-and-weaknesses" class="nav-link" data-scroll-target="#current-gen-bi-solutions-landscape-strengths-and-weaknesses"><span class="header-section-number">4</span> Current Gen BI Solutions: Landscape, Strengths, and Weaknesses</a></li>
@@ -185,7 +190,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#responsible-and-ethical-gen-bi" id="toc-responsible-and-ethical-gen-bi" class="nav-link" data-scroll-target="#responsible-and-ethical-gen-bi"><span class="header-section-number">8</span> Responsible and Ethical Gen BI</a></li>
   <li><a href="#implementation-roadmap" id="toc-implementation-roadmap" class="nav-link" data-scroll-target="#implementation-roadmap"><span class="header-section-number">9</span> Implementation Roadmap</a></li>
   <li><a href="#roi-and-value-realization" id="toc-roi-and-value-realization" class="nav-link" data-scroll-target="#roi-and-value-realization"><span class="header-section-number">10</span> ROI and Value Realization</a></li>
-  <li><a href="#risks-and-challenges" id="toc-risks-and-challenges" class="nav-link" data-scroll-target="#risks-and-challenges"><span class="header-section-number">11</span> Risks and Challenges</a></li>
+  <li><a href="#risks-and-challenges" id="toc-risks-and-challenges" class="nav-link" data-scroll-target="#risks-and-challenges"><span class="header-section-number">11</span> Risks and Challenges</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11.1</span> References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -213,13 +221,34 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="executive-summary" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Executive Summary</h1>
+<section id="what-is-generative-bi" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-generative-bi"><span class="header-section-number">1.1</span> What is Generative BI?</h2>
+<p>Generative Business Intelligence (Gen BI) integrates large language models (LLMs) into business intelligence workflows, enabling users to interact with data through natural language queries (NLQ) and generate dynamic narratives (NLG). This shift moves BI from static dashboards and pre-defined filters to real-time, conversational insight delivery.</p>
+<p>Unlike traditional BI tools that require technical skill to extract insights, Gen BI allows users to ask questions in plain English, automates reporting, and generates personalized summaries — all grounded in enterprise data.</p>
+</section>
+<section id="why-now" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="why-now"><span class="header-section-number">1.2</span> Why Now?</h2>
+<p>Three converging trends are accelerating the adoption of Gen BI:</p>
 <ul>
-<li>What is Generative BI?<br>
-</li>
-<li>Why now?<br>
-</li>
-<li>Strategic relevance for our organization</li>
+<li><strong>LLM Maturity</strong>: Advanced models like GPT-4, Claude, and Gemini now support complex reasoning and multilingual interaction.</li>
+<li><strong>Technology Convergence</strong>: Modern data stacks (e.g., Snowflake, dbt, Power BI) provide clean, governed data layers that LLMs can safely access.</li>
+<li><strong>Business Demand</strong>: Organizations want faster, more intuitive access to insights without expanding BI teams.</li>
 </ul>
+<p>According to Gartner, 40% of enterprise applications now include conversational AI, up from less than 5% in 2020<sup>[1]</sup>.</p>
+<p>A 2024 McKinsey survey found that 65% of organizations use generative AI in at least one business function — nearly double the rate from the previous year<sup>[2]</sup>.</p>
+</section>
+<section id="strategic-relevance-for-our-organization" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="strategic-relevance-for-our-organization"><span class="header-section-number">1.3</span> Strategic Relevance for Our Organization</h2>
+<p>For data-driven organizations, Gen BI offers immediate strategic benefits:</p>
+<ul>
+<li><strong>Democratizes analytics</strong>: Empowers non-technical users to access data independently</li>
+<li><strong>Automates narrative generation</strong>: Saves analysts time with auto-generated summaries, KPI explanations, and board-ready briefs</li>
+<li><strong>Improves data literacy</strong>: Translates structured data into business-friendly language</li>
+<li><strong>Boosts BI ROI</strong>: Enhances the value of existing BI tools like Power BI, Tableau, or ThoughtSpot without requiring replacement</li>
+</ul>
+<p>McKinsey estimates that generative AI could contribute up to $4.4 trillion annually to global productivity gains<sup>[3]</sup>. Organizations that embed Gen BI early stand to gain a decisive advantage in decision velocity, efficiency, and user empowerment.</p>
+<hr>
+</section>
 </section>
 <section id="foundations-of-generative-bi" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Foundations of Generative BI</h1>
@@ -342,8 +371,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li>Security, compliance, and vendor lock-in</li>
 </ul>
+<section id="references" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="references"><span class="header-section-number">11.1</span> References</h2>
+<p><sup>[1]</sup> Gartner. “Generative AI.” <a href="https://www.gartner.com/en/topics/generative-ai">https://www.gartner.com/en/topics/generative-ai</a><br>
+<sup>[2]</sup> McKinsey &amp; Company. <em>Charting a Path to the Data- and AI-Driven Enterprise of 2030</em>. <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/charting-a-path-to-the-data-and-ai-driven-enterprise-of-2030">https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/charting-a-path-to-the-data-and-ai-driven-enterprise-of-2030</a><br>
+<sup>[3]</sup> McKinsey &amp; Company. <em>The Economic Potential of Generative AI</em>. <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier">https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
