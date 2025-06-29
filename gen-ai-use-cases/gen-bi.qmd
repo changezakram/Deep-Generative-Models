@@ -145,16 +145,17 @@ This layer powers **Spotter**, ThoughtSpot’s LLM-based assistant, enabling fol
 
 ThoughtSpot’s approach reflects a shift from static models to **real-time, AI-native interaction**, positioning the semantic layer not just as a backend modeling tool but as a **dynamic interface between users and enterprise knowledge**.
 
-::: sidebar
-#### Other Semantic Layer Platforms
+::: note
+**Governance, Consistency, and Reusability in Action**
 
-Beyond Power BI and ThoughtSpot, several other modern platforms offer semantic modeling capabilities that may play a role in a broader Gen BI ecosystem:
+Beyond technical abstraction, the semantic layer offers major strategic advantages:
 
-- **dbt Semantic Layer** – integrates with dbt to define metrics as code and expose them for BI/AI use  
-- **AtScale** – external semantic layer for governed analytics across tools  
-- **Cube.dev** – headless BI platform with semantic APIs for structured access  
-- **LookML (Looker)** – defines semantic logic in code and serves both BI and ML tools  
-- **Power BI Dataset Model** – Microsoft’s tabular modeling framework for governance and reuse  
+- **Governance**: Enforces access controls, ensures accurate metric logic, and prevents unauthorized joins  
+- **Consistency**: Everyone calculates KPIs the same way — no more “multiple versions of the truth”  
+- **Reusability**: Build once, reuse across Gen BI assistants, dashboards, and reports  
+- **Efficiency**: Reduces analyst workload by removing ambiguity and duplication
+
+*These principles are emphasized in BI architectures from Microsoft<sup>[1]</sup>, ThoughtSpot<sup>[2]</sup>, and IBM<sup>[3]</sup>.*
 :::
 
 ## Summary
