@@ -126,6 +126,41 @@
     "text": "3.6 Summary\nIn the age of Generative BI, the semantic layer is no longer optional — it’s foundational. Whether implemented as structured tabular models in Power BI or as dynamic, AI-augmented context layers in ThoughtSpot, the goal is the same:\nTo enable every user to ask questions in plain language and receive reliable, explainable answers rooted in trusted business logic.\nA strong semantic layer unlocks the full potential of Generative BI — by combining the ease of conversation with the rigor of governance."
   },
   {
+    "objectID": "gen-ai-use-cases/gen-bi.html#core-components-of-gen-bi-architecture",
+    "href": "gen-ai-use-cases/gen-bi.html#core-components-of-gen-bi-architecture",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "6.1 Core Components of Gen BI Architecture",
+    "text": "6.1 Core Components of Gen BI Architecture\n\n6.1.1 Large Language Models (LLMs)\nLLMs (e.g., GPT, Claude, Gemini) are foundational to Gen BI, serving as the natural language engine that interprets user queries and generates responses.\n\nUnderstand plain-English prompts\n\nGenerate SQL or semantic queries\n\nCreate narratives and data summaries\n\nEnable follow-up dialogue and clarifications\n\n\n\n6.1.2 Embeddings\nEmbeddings convert business concepts and user queries into vector space representations that LLMs and retrieval systems can understand.\n\nUsed in semantic search\n\nSupport intent classification and prompt routing\n\nHelp match vague queries to structured metadata\n\n\n\n6.1.3 Prompt Routing and Orchestration\nRouting logic determines which model, tool, or action handles a given user prompt.\n\nClassifies intent (e.g., NLQ, dashboard request, data explanation)\n\nChooses between query generation vs. content summarization\n\nEnables agent-based chaining (e.g., “Generate chart → explain trend → suggest actions”)\n\n\n\n6.1.4 Agents and Planning Logic\nMulti-step agents break complex questions into smaller tasks and chain them across tools.\n\nAsk clarifying questions\n\nExecute queries and retrieve results\n\nFormulate explanations or next-best actions"
+  },
+  {
+    "objectID": "gen-ai-use-cases/gen-bi.html#nlqnlg-pipeline-how-it-works",
+    "href": "gen-ai-use-cases/gen-bi.html#nlqnlg-pipeline-how-it-works",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "6.2 NLQ/NLG Pipeline: How It Works",
+    "text": "6.2 NLQ/NLG Pipeline: How It Works\nThe NLQ (Natural Language Querying) and NLG (Natural Language Generation) workflow in Gen BI involves the following pipeline:\n```text User Prompt ↓ Intent Detection (NLQ vs NLG vs FAQ) ↓ Semantic Layer Query Mapping ↓ SQL or API Query Generation ↓ Execution on Data Platform (e.g., Snowflake) ↓ Result Interpretation & Summary Generation ↓ Optional Follow-up (via Agent)\n\nThis modular pipeline enables systems to dynamically adapt to user needs while staying grounded in governed metrics and business logic."
+  },
+  {
+    "objectID": "gen-ai-use-cases/gen-bi.html#integration-with-bi-and-data-platforms",
+    "href": "gen-ai-use-cases/gen-bi.html#integration-with-bi-and-data-platforms",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "6.3 Integration with BI and Data Platforms",
+    "text": "6.3 Integration with BI and Data Platforms\nModern Gen BI systems are not standalone — they embed into the existing BI and data ecosystem:\n\n\n\n\n\n\n\nPlatform\nRole in Gen BI Stack\n\n\n\n\nPower BI\nSemantic model layer + Copilot for NLQ/NLG inside BI workflows\n\n\nTableau\nNLQ interface (Ask Data), LLM integrations via Tableau GPT\n\n\nSnowflake\nExecution engine; integrates with vector search, semantic cache\n\n\ndbt\nTransformation logic and semantic modeling; aligns with Gen BI via dbt metrics and dbt Semantic Layer (optional)\n\n\n\n\nGen BI tools use these platforms not only to execute queries but also to embed generative capabilities directly into dashboards, reports, and collaboration interfaces."
+  },
+  {
+    "objectID": "gen-ai-use-cases/gen-bi.html#vector-databases-and-retrieval-systems",
+    "href": "gen-ai-use-cases/gen-bi.html#vector-databases-and-retrieval-systems",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "6.4 Vector Databases and Retrieval Systems",
+    "text": "6.4 Vector Databases and Retrieval Systems\nVector databases store and retrieve embeddings — a critical component for retrieval-augmented generation (RAG) and conversational memory.\n\nExamples: Pinecone, Weaviate, Chroma, FAISS\nUse cases in Gen BI:\n\nStoring previous Q&A history\nRetrieving metric definitions or documentation\nEnhancing query recall and follow-up interaction\n\n\n\nWhen used effectively, vector search improves both the accuracy and context-awareness of Gen BI assistants."
+  },
+  {
+    "objectID": "gen-ai-use-cases/gen-bi.html#summary-1",
+    "href": "gen-ai-use-cases/gen-bi.html#summary-1",
+    "title": "Generative Business Intelligence (Gen BI)",
+    "section": "6.5 Summary",
+    "text": "6.5 Summary\nGenerative BI’s architecture extends beyond traditional BI. It merges language intelligence (LLMs, embeddings, agents) with governed data access (semantic layers, BI tools) — orchestrated via prompt routing and vector-based retrieval systems. The result is a system that enables users to interact with enterprise data in intuitive, adaptive, and explainable ways."
+  },
+  {
     "objectID": "gen-ai-use-cases/gen-bi.html#references",
     "href": "gen-ai-use-cases/gen-bi.html#references",
     "title": "Generative Business Intelligence (Gen BI)",

@@ -198,7 +198,14 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#current-gen-bi-solutions-landscape-strengths-and-weaknesses" id="toc-current-gen-bi-solutions-landscape-strengths-and-weaknesses" class="nav-link" data-scroll-target="#current-gen-bi-solutions-landscape-strengths-and-weaknesses"><span class="header-section-number">4</span> Current Gen BI Solutions: Landscape, Strengths, and Weaknesses</a></li>
   <li><a href="#use-cases-and-applications" id="toc-use-cases-and-applications" class="nav-link" data-scroll-target="#use-cases-and-applications"><span class="header-section-number">5</span> Use Cases and Applications</a></li>
-  <li><a href="#architecture-and-technical-stack" id="toc-architecture-and-technical-stack" class="nav-link" data-scroll-target="#architecture-and-technical-stack"><span class="header-section-number">6</span> Architecture and Technical Stack</a></li>
+  <li><a href="#architecture-and-technical-stack" id="toc-architecture-and-technical-stack" class="nav-link" data-scroll-target="#architecture-and-technical-stack"><span class="header-section-number">6</span> Architecture and Technical Stack</a>
+  <ul class="collapse">
+  <li><a href="#core-components-of-gen-bi-architecture" id="toc-core-components-of-gen-bi-architecture" class="nav-link" data-scroll-target="#core-components-of-gen-bi-architecture"><span class="header-section-number">6.1</span> Core Components of Gen BI Architecture</a></li>
+  <li><a href="#nlqnlg-pipeline-how-it-works" id="toc-nlqnlg-pipeline-how-it-works" class="nav-link" data-scroll-target="#nlqnlg-pipeline-how-it-works"><span class="header-section-number">6.2</span> NLQ/NLG Pipeline: How It Works</a></li>
+  <li><a href="#integration-with-bi-and-data-platforms" id="toc-integration-with-bi-and-data-platforms" class="nav-link" data-scroll-target="#integration-with-bi-and-data-platforms"><span class="header-section-number">6.3</span> Integration with BI and Data Platforms</a></li>
+  <li><a href="#vector-databases-and-retrieval-systems" id="toc-vector-databases-and-retrieval-systems" class="nav-link" data-scroll-target="#vector-databases-and-retrieval-systems"><span class="header-section-number">6.4</span> Vector Databases and Retrieval Systems</a></li>
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1"><span class="header-section-number">6.5</span> Summary</a></li>
+  </ul></li>
   <li><a href="#data-governance-and-trust" id="toc-data-governance-and-trust" class="nav-link" data-scroll-target="#data-governance-and-trust"><span class="header-section-number">7</span> Data Governance and Trust</a></li>
   <li><a href="#responsible-and-ethical-gen-bi" id="toc-responsible-and-ethical-gen-bi" class="nav-link" data-scroll-target="#responsible-and-ethical-gen-bi"><span class="header-section-number">8</span> Responsible and Ethical Gen BI</a></li>
   <li><a href="#implementation-roadmap" id="toc-implementation-roadmap" class="nav-link" data-scroll-target="#implementation-roadmap"><span class="header-section-number">9</span> Implementation Roadmap</a></li>
@@ -576,15 +583,121 @@ Other Semantic Layer Platforms
 </section>
 <section id="architecture-and-technical-stack" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Architecture and Technical Stack</h1>
+<p>The architecture of Generative Business Intelligence (Gen BI) systems blends traditional BI components with modern AI capabilities, enabling intuitive, language-based interaction with enterprise data. Below, we outline the foundational components and their integration pathways.</p>
+<section id="core-components-of-gen-bi-architecture" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="core-components-of-gen-bi-architecture"><span class="header-section-number">6.1</span> Core Components of Gen BI Architecture</h2>
+<section id="large-language-models-llms" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="large-language-models-llms"><span class="header-section-number">6.1.1</span> Large Language Models (LLMs)</h3>
+<p>LLMs (e.g., GPT, Claude, Gemini) are foundational to Gen BI, serving as the natural language engine that interprets user queries and generates responses.</p>
 <ul>
-<li>LLMs, Embeddings, Prompt Routing, Agents<br>
+<li>Understand plain-English prompts<br>
 </li>
-<li>NLQ/NLG pipelines: how they work technically<br>
+<li>Generate SQL or semantic queries<br>
 </li>
-<li>Integration with BI tools: Power BI, Tableau, Snowflake, dbt<br>
+<li>Create narratives and data summaries<br>
 </li>
-<li>Vector databases and retrieval systems</li>
+<li>Enable follow-up dialogue and clarifications</li>
 </ul>
+</section>
+<section id="embeddings" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="embeddings"><span class="header-section-number">6.1.2</span> Embeddings</h3>
+<p>Embeddings convert business concepts and user queries into vector space representations that LLMs and retrieval systems can understand.</p>
+<ul>
+<li>Used in semantic search<br>
+</li>
+<li>Support intent classification and prompt routing<br>
+</li>
+<li>Help match vague queries to structured metadata</li>
+</ul>
+</section>
+<section id="prompt-routing-and-orchestration" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="prompt-routing-and-orchestration"><span class="header-section-number">6.1.3</span> Prompt Routing and Orchestration</h3>
+<p>Routing logic determines which model, tool, or action handles a given user prompt.</p>
+<ul>
+<li>Classifies intent (e.g., NLQ, dashboard request, data explanation)<br>
+</li>
+<li>Chooses between query generation vs.&nbsp;content summarization<br>
+</li>
+<li>Enables agent-based chaining (e.g., “Generate chart → explain trend → suggest actions”)</li>
+</ul>
+</section>
+<section id="agents-and-planning-logic" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="agents-and-planning-logic"><span class="header-section-number">6.1.4</span> Agents and Planning Logic</h3>
+<p>Multi-step agents break complex questions into smaller tasks and chain them across tools.</p>
+<ul>
+<li>Ask clarifying questions<br>
+</li>
+<li>Execute queries and retrieve results<br>
+</li>
+<li>Formulate explanations or next-best actions</li>
+</ul>
+</section>
+</section>
+<section id="nlqnlg-pipeline-how-it-works" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="nlqnlg-pipeline-how-it-works"><span class="header-section-number">6.2</span> NLQ/NLG Pipeline: How It Works</h2>
+<p>The NLQ (Natural Language Querying) and NLG (Natural Language Generation) workflow in Gen BI involves the following pipeline:</p>
+<p>```text User Prompt ↓ Intent Detection (NLQ vs NLG vs FAQ) ↓ Semantic Layer Query Mapping ↓ SQL or API Query Generation ↓ Execution on Data Platform (e.g., Snowflake) ↓ Result Interpretation &amp; Summary Generation ↓ Optional Follow-up (via Agent)</p>
+<blockquote class="blockquote">
+<p>This modular pipeline enables systems to dynamically adapt to user needs while staying grounded in governed metrics and business logic.</p>
+</blockquote>
+</section>
+<section id="integration-with-bi-and-data-platforms" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="integration-with-bi-and-data-platforms"><span class="header-section-number">6.3</span> Integration with BI and Data Platforms</h2>
+<p>Modern Gen BI systems are not standalone — they embed into the existing BI and data ecosystem:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Platform</th>
+<th>Role in Gen BI Stack</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Power BI</strong></td>
+<td>Semantic model layer + Copilot for NLQ/NLG inside BI workflows</td>
+</tr>
+<tr class="even">
+<td><strong>Tableau</strong></td>
+<td>NLQ interface (Ask Data), LLM integrations via Tableau GPT</td>
+</tr>
+<tr class="odd">
+<td><strong>Snowflake</strong></td>
+<td>Execution engine; integrates with vector search, semantic cache</td>
+</tr>
+<tr class="even">
+<td><strong>dbt</strong></td>
+<td>Transformation logic and semantic modeling; aligns with Gen BI via dbt metrics and dbt Semantic Layer (optional)</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>Gen BI tools use these platforms not only to execute queries but also to embed generative capabilities directly into dashboards, reports, and collaboration interfaces.</p>
+</blockquote>
+</section>
+<section id="vector-databases-and-retrieval-systems" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="vector-databases-and-retrieval-systems"><span class="header-section-number">6.4</span> Vector Databases and Retrieval Systems</h2>
+<p>Vector databases store and retrieve embeddings — a critical component for retrieval-augmented generation (RAG) and conversational memory.</p>
+<ul>
+<li>Examples: <strong>Pinecone, Weaviate, Chroma, FAISS</strong></li>
+<li>Use cases in Gen BI:
+<ul>
+<li>Storing previous Q&amp;A history</li>
+<li>Retrieving metric definitions or documentation</li>
+<li>Enhancing query recall and follow-up interaction</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>When used effectively, vector search improves both the accuracy and context-awareness of Gen BI assistants.</p>
+</blockquote>
+</section>
+<section id="summary-1" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="summary-1"><span class="header-section-number">6.5</span> Summary</h2>
+<p>Generative BI’s architecture extends beyond traditional BI. It merges <strong>language intelligence (LLMs, embeddings, agents)</strong> with <strong>governed data access (semantic layers, BI tools)</strong> — orchestrated via prompt routing and vector-based retrieval systems. The result is a system that enables users to interact with enterprise data in intuitive, adaptive, and explainable ways.</p>
+</section>
 </section>
 <section id="data-governance-and-trust" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Data Governance and Trust</h1>

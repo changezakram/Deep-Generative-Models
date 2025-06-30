@@ -219,11 +219,98 @@ A strong semantic layer unlocks the full potential of Generative BI — by combi
 - Use cases by function (Finance, Risk, Ops, Marketing, HR, etc.)  
 - BI Copilots, GenAI chat interfaces, and report generation  
 
-# Architecture and Technical Stack  
-- LLMs, Embeddings, Prompt Routing, Agents  
-- NLQ/NLG pipelines: how they work technically  
-- Integration with BI tools: Power BI, Tableau, Snowflake, dbt  
-- Vector databases and retrieval systems  
+# Architecture and Technical Stack
+
+The architecture of Generative Business Intelligence (Gen BI) systems blends traditional BI components with modern AI capabilities, enabling intuitive, language-based interaction with enterprise data. Below, we outline the foundational components and their integration pathways.
+
+## Core Components of Gen BI Architecture
+
+### Large Language Models (LLMs)
+
+LLMs (e.g., GPT, Claude, Gemini) are foundational to Gen BI, serving as the natural language engine that interprets user queries and generates responses.
+
+- Understand plain-English prompts  
+- Generate SQL or semantic queries  
+- Create narratives and data summaries  
+- Enable follow-up dialogue and clarifications
+
+### Embeddings
+
+Embeddings convert business concepts and user queries into vector space representations that LLMs and retrieval systems can understand.
+
+- Used in semantic search  
+- Support intent classification and prompt routing  
+- Help match vague queries to structured metadata
+
+### Prompt Routing and Orchestration
+
+Routing logic determines which model, tool, or action handles a given user prompt.
+
+- Classifies intent (e.g., NLQ, dashboard request, data explanation)  
+- Chooses between query generation vs. content summarization  
+- Enables agent-based chaining (e.g., “Generate chart → explain trend → suggest actions”)
+
+### Agents and Planning Logic
+
+Multi-step agents break complex questions into smaller tasks and chain them across tools.
+
+- Ask clarifying questions  
+- Execute queries and retrieve results  
+- Formulate explanations or next-best actions
+
+## NLQ/NLG Pipeline: How It Works
+
+The NLQ (Natural Language Querying) and NLG (Natural Language Generation) workflow in Gen BI involves the following pipeline:
+
+```text
+User Prompt
+   ↓
+Intent Detection (NLQ vs NLG vs FAQ)
+   ↓
+Semantic Layer Query Mapping
+   ↓
+SQL or API Query Generation
+   ↓
+Execution on Data Platform (e.g., Snowflake)
+   ↓
+Result Interpretation & Summary Generation
+   ↓
+Optional Follow-up (via Agent)
+
+
+> This modular pipeline enables systems to dynamically adapt to user needs while staying grounded in governed metrics and business logic.
+
+## Integration with BI and Data Platforms
+
+Modern Gen BI systems are not standalone — they embed into the existing BI and data ecosystem:
+
+| Platform      | Role in Gen BI Stack                                               |
+|---------------|---------------------------------------------------------------------|
+| **Power BI**  | Semantic model layer + Copilot for NLQ/NLG inside BI workflows      |
+| **Tableau**   | NLQ interface (Ask Data), LLM integrations via Tableau GPT          |
+| **Snowflake** | Execution engine; integrates with vector search, semantic cache     |
+| **dbt**       | Transformation logic and semantic modeling; aligns with Gen BI via dbt metrics and dbt Semantic Layer (optional) |
+
+> Gen BI tools use these platforms not only to execute queries but also to embed generative capabilities directly into dashboards, reports, and collaboration interfaces.
+
+## Vector Databases and Retrieval Systems
+
+Vector databases store and retrieve embeddings — a critical component for retrieval-augmented generation (RAG) and conversational memory.
+
+- Examples: **Pinecone, Weaviate, Chroma, FAISS**
+- Use cases in Gen BI:
+  - Storing previous Q&A history
+  - Retrieving metric definitions or documentation
+  - Enhancing query recall and follow-up interaction
+
+> When used effectively, vector search improves both the accuracy and context-awareness of Gen BI assistants.
+
+## Summary
+
+Generative BI’s architecture extends beyond traditional BI. It merges **language intelligence (LLMs, embeddings, agents)** with **governed data access (semantic layers, BI tools)** — orchestrated via prompt routing and vector-based retrieval systems. The result is a system that enables users to interact with enterprise data in intuitive, adaptive, and explainable ways.
+
+
+
 
 # Data Governance and Trust  
 - Access control and permissioning  
