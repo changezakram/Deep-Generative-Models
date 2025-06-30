@@ -10,7 +10,7 @@ Generative AI is accelerating transformation in healthcare by automating documen
 
 ## 📋 Summary of Use Cases
 
-| Use Case Area                    | Examples                     | Impact                                                                               | Underlying Models                    |
+| Use Case.                        | Examples                     | Impact                                                                               | Underlying Models                    |
 |----------------------------------|------------------------------|--------------------------------------------------------------------------------------|--------------------------------------|
 | Clinical Documentation           | Nuance DAX, AWS HealthScribe | Nuance DAX reduces physician documentation time by up to 50%                         | LLM, Speech-to-Text                  |
 | Medical Imaging & Diagnostics    | MIT CSAIL, DeepMind’s EyeDiff | MIT CSAIL reduced false positives by 37%, biopsies by 27%, and surgeries by 30%      | CNN, Diffusion models      		|
@@ -24,8 +24,8 @@ Generative AI is accelerating transformation in healthcare by automating documen
 ### Clinical Documentation
 
 - **Problem**: Clinicians spend significant time on documentation, contributing to burnout and reducing time available for patient care. Manual entry can also introduce delays and inconsistencies.
-- **Solution**: GenAI tools like ambient scribing (e.g., Nuance DAX) and real-time note generation (e.g., AWS HealthScribe) automatically generate clinical notes, transcripts, and summaries from conversations, streamlining EHR workflows.
-- **Impact**: Nuance DAX reduces physician documentation time by up to 50%, saving about 7 minutes per patient encounter and allowing 3–5 extra appointments per clinic day<sup>[1]</sup>. 
+- **Solution**: GenAI tools like ambient scribing (e.g., Nuance DAX) and real-time note generation (e.g., AWS HealthScribe) automatically generate clinical notes, transcripts, and summaries from conversations — streamlining EHR workflows.
+- **Impact**: Nuance DAX reduces physician documentation time by up to 50%, saving an average of 7 minutes per patient encounter and enabling 3–5 additional appointments per day<sup>[1]</sup>. 
 
 ### Medical Imaging and Diagnostics
 
