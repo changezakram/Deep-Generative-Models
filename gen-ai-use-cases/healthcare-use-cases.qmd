@@ -150,7 +150,7 @@ Taken together, these ethical pillars—transparency, fairness, privacy, governa
 
 [15] World Health Organization. Ethics and Governance of Artificial Intelligence for Health. [https://www.who.int/publications/i/item/9789240029200](https://www.who.int/publications/i/item/9789240029200) 
 
-[16] HIMSS. The Role of Artificial Intelligence in Protecting Health Information. []() 
+[16] Momani A. Implications of Artificial Intelligence on Health Data Privacy and Confidentiality. *arXiv*, January 2025. [https://arxiv.org/abs/2501.01639](https://arxiv.org/abs/2501.01639)
 
 [17] Stanford HAI. On the Opportunities and Risks of Foundation Models. [https://crfm.stanford.edu/report.html](https://crfm.stanford.edu/report.html)
 
