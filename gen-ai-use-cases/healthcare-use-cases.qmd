@@ -53,14 +53,6 @@ Generative AI is accelerating transformation in healthcare by automating documen
 - **Solution**: GenAI streamlines back-office tasks using LLMs and document intelligence platforms to automate medical coding, summarize prior authorizations, extract insurance clauses, and generate routine correspondence.
 - **Impact**: Google’s MedLM (via tools like Augmedix) automates clinical documentation, empowering clinicians with faster, more accurate notes and reducing administrative burden; Google Cloud estimates staff spend ~28–36 hours/week on admin tasks, which GenAI can help reclaim<sup>[10]</sup>; Abridge reports up to 78% reduction in clinician cognitive load and 86% drop in after-hours documentation <sup>[11]</sup>.
 
-## 🧾 Key Takeaways
-
-- Generative AI is transitioning from pilots to production across healthcare, with mature applications in clinical documentation, medical imaging, and drug discovery.  
-- Providers, insurers, and biotech firms are leveraging GenAI to automate back-office tasks, accelerate research, and improve decision-making—delivering measurable time and cost savings.  
-- Patient-facing tools for education, triage, and communication are enabling more personalized, accessible, and scalable care experiences.
-
-
-
 
 ## Ethical and Regulatory Considerations
 
@@ -112,6 +104,12 @@ Generative AI should *augment*, not replace, clinical judgment. Over-automation 
 
 Taken together, these ethical pillars—transparency, fairness, privacy, governance, drift monitoring, interoperability, and human-AI collaboration—form the foundation for trustworthy and effective use of GenAI in healthcare. Responsible design and deployment not only reduce risks but also build the confidence needed for widespread adoption.
 
+
+## 🧾 Key Takeaways
+
+- Generative AI is transitioning from pilots to production across healthcare, with mature applications in clinical documentation, medical imaging, and drug discovery.  
+- Providers, insurers, and biotech firms are leveraging GenAI to automate back-office tasks, accelerate research, and improve decision-making—delivering measurable time and cost savings.  
+- Patient-facing tools for education, triage, and communication are enabling more personalized, accessible, and scalable care experiences.
 
 
 

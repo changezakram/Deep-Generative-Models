@@ -177,8 +177,8 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#summary-of-use-cases" id="toc-summary-of-use-cases" class="nav-link active" data-scroll-target="#summary-of-use-cases"><span class="header-section-number">1</span> 📋 Summary of Use Cases</a></li>
   <li><a href="#detailed-use-cases" id="toc-detailed-use-cases" class="nav-link" data-scroll-target="#detailed-use-cases"><span class="header-section-number">2</span> Detailed Use Cases</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">3</span> 🧾 Key Takeaways</a></li>
-  <li><a href="#ethical-and-regulatory-considerations" id="toc-ethical-and-regulatory-considerations" class="nav-link" data-scroll-target="#ethical-and-regulatory-considerations"><span class="header-section-number">4</span> Ethical and Regulatory Considerations</a></li>
+  <li><a href="#ethical-and-regulatory-considerations" id="toc-ethical-and-regulatory-considerations" class="nav-link" data-scroll-target="#ethical-and-regulatory-considerations"><span class="header-section-number">3</span> Ethical and Regulatory Considerations</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">4</span> 🧾 Key Takeaways</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5</span> 📚 References</a></li>
   </ul>
 </nav>
@@ -306,8 +306,51 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="key-takeaways" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3</span> 🧾 Key Takeaways</h2>
+<section id="ethical-and-regulatory-considerations" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="ethical-and-regulatory-considerations"><span class="header-section-number">3</span> Ethical and Regulatory Considerations</h2>
+<p>The use of Generative AI in healthcare offers immense potential, but it also raises complex ethical and regulatory challenges that must be addressed to ensure safety, trust, and fairness. Below are the key pillars guiding responsible deployment:</p>
+<section id="transparency-and-explainability" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="transparency-and-explainability"><span class="header-section-number">3.1</span> Transparency and Explainability</h3>
+<p>Generative models like large language models (LLMs) often operate as black boxes, making it difficult to trace how decisions are made. In healthcare, this lack of explainability is a critical barrier to adoption. The U.S. FDA’s AI/ML Software as a Medical Device (SaMD) Action Plan calls for <em>real-world performance monitoring</em>, <em>clear labeling</em>, and <em>transparency in algorithm logic</em>, especially for high-risk clinical applications <sup>[12]</sup>. Similarly, the European Commission’s ethics guidelines designate transparency as a foundational requirement for AI systems in medicine <sup>[13]</sup>.</p>
+<p><strong>Best practice:</strong> Use explainable models or complement black-box systems with post-hoc interpretability tools (e.g., SHAP, LIME), and communicate limitations clearly to clinicians.</p>
+</section>
+<section id="bias-mitigation-and-fairness" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="bias-mitigation-and-fairness"><span class="header-section-number">3.2</span> Bias Mitigation and Fairness</h3>
+<p>AI systems trained on healthcare data can inherit or amplify existing disparities. A landmark study published in <em>Science</em> revealed that a commercial algorithm systematically underestimated the needs of Black patients, leading to reduced care referrals <sup>[14]</sup>. The WHO urges developers to adopt <em>inclusive data sourcing</em>, perform <em>subgroup analysis</em>, and use <em>fairness-aware learning techniques</em> to ensure equitable performance <sup>[15]</sup>.</p>
+<p><strong>Best practice:</strong> Conduct bias audits, stratify model evaluation by race, gender, and age, and iteratively improve fairness during retraining.</p>
+</section>
+<section id="privacy-and-consent" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="privacy-and-consent"><span class="header-section-number">3.3</span> Privacy and Consent</h3>
+<p>Generative AI models may memorize and regurgitate sensitive patient information, posing serious risks under HIPAA and GDPR. Experts emphasize the need for <em>differential privacy</em>, <em>federated learning</em>, and strong access controls to protect PHI <sup>[16]</sup><sup>[17]</sup>. In addition, <em>explicit informed consent</em> should be obtained when AI is used in patient-facing workflows or influences clinical decisions <sup>[15]</sup>.</p>
+<p><strong>Best practice:</strong> Train models on de-identified data, disclose AI involvement to patients, and obtain consent when appropriate.</p>
+</section>
+<section id="governance-and-accountability" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="governance-and-accountability"><span class="header-section-number">3.4</span> Governance and Accountability</h3>
+<p>As AI becomes embedded in clinical workflows, clear accountability mechanisms are essential. Who is responsible if an AI-driven recommendation is wrong? The FDA’s Predetermined Change Control Plans and Total Product Lifecycle (TPLC) framework recommend ongoing oversight, version control, and human review <sup>[18]</sup>.</p>
+<p><strong>Best practice:</strong> Maintain audit trails, define roles and responsibilities, and require human-in-the-loop verification for all high-impact decisions.</p>
+</section>
+<section id="model-drift-and-continuous-validation" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="model-drift-and-continuous-validation"><span class="header-section-number">3.5</span> Model Drift and Continuous Validation</h3>
+<p>AI systems may become less reliable over time as clinical practices or populations evolve—a phenomenon known as <em>model drift</em>. Without regular validation, GenAI tools risk producing inaccurate or even harmful outputs.</p>
+<p><strong>Best practice:</strong> Set up monitoring pipelines to detect performance degradation and retrain models periodically using current data <sup>[18]</sup>.</p>
+</section>
+<section id="interoperability-and-integration-ethics" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="interoperability-and-integration-ethics"><span class="header-section-number">3.6</span> Interoperability and Integration Ethics</h3>
+<p>Many GenAI tools rely on integration with EHRs and proprietary systems. This raises ethical concerns about <em>vendor lock-in</em>, <em>data portability</em>, and <em>access inequality</em>, particularly for under-resourced institutions <sup>[15]</sup>.</p>
+<p><strong>Best practice:</strong> Prioritize open standards, API-based interoperability, and avoid closed ecosystems that restrict innovation or access.</p>
+</section>
+<section id="human-ai-collaboration" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="human-ai-collaboration"><span class="header-section-number">3.7</span> Human-AI Collaboration</h3>
+<p>Generative AI should <em>augment</em>, not replace, clinical judgment. Over-automation can erode clinician trust and lead to overreliance on AI outputs. Leading health AI researchers emphasize the importance of human-in-the-loop design to ensure clinicians remain central to the decision-making process <sup>[17]</sup><sup>[19]</sup>.</p>
+<p><strong>Best practice:</strong> Embed AI into workflows in a way that supports clinician expertise, rather than bypassing it.</p>
+</section>
+<section id="conclusion" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.8</span> Conclusion</h3>
+<p>Taken together, these ethical pillars—transparency, fairness, privacy, governance, drift monitoring, interoperability, and human-AI collaboration—form the foundation for trustworthy and effective use of GenAI in healthcare. Responsible design and deployment not only reduce risks but also build the confidence needed for widespread adoption.</p>
+</section>
+</section>
+<section id="key-takeaways" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">4</span> 🧾 Key Takeaways</h2>
 <ul>
 <li>Generative AI is transitioning from pilots to production across healthcare, with mature applications in clinical documentation, medical imaging, and drug discovery.<br>
 </li>
@@ -315,49 +358,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li>Patient-facing tools for education, triage, and communication are enabling more personalized, accessible, and scalable care experiences.</li>
 </ul>
-</section>
-<section id="ethical-and-regulatory-considerations" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="ethical-and-regulatory-considerations"><span class="header-section-number">4</span> Ethical and Regulatory Considerations</h2>
-<p>The use of Generative AI in healthcare offers immense potential, but it also raises complex ethical and regulatory challenges that must be addressed to ensure safety, trust, and fairness. Below are the key pillars guiding responsible deployment:</p>
-<section id="transparency-and-explainability" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="transparency-and-explainability"><span class="header-section-number">4.1</span> Transparency and Explainability</h3>
-<p>Generative models like large language models (LLMs) often operate as black boxes, making it difficult to trace how decisions are made. In healthcare, this lack of explainability is a critical barrier to adoption. The U.S. FDA’s AI/ML Software as a Medical Device (SaMD) Action Plan calls for <em>real-world performance monitoring</em>, <em>clear labeling</em>, and <em>transparency in algorithm logic</em>, especially for high-risk clinical applications <sup>[12]</sup>. Similarly, the European Commission’s ethics guidelines designate transparency as a foundational requirement for AI systems in medicine <sup>[13]</sup>.</p>
-<p><strong>Best practice:</strong> Use explainable models or complement black-box systems with post-hoc interpretability tools (e.g., SHAP, LIME), and communicate limitations clearly to clinicians.</p>
-</section>
-<section id="bias-mitigation-and-fairness" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="bias-mitigation-and-fairness"><span class="header-section-number">4.2</span> Bias Mitigation and Fairness</h3>
-<p>AI systems trained on healthcare data can inherit or amplify existing disparities. A landmark study published in <em>Science</em> revealed that a commercial algorithm systematically underestimated the needs of Black patients, leading to reduced care referrals <sup>[14]</sup>. The WHO urges developers to adopt <em>inclusive data sourcing</em>, perform <em>subgroup analysis</em>, and use <em>fairness-aware learning techniques</em> to ensure equitable performance <sup>[15]</sup>.</p>
-<p><strong>Best practice:</strong> Conduct bias audits, stratify model evaluation by race, gender, and age, and iteratively improve fairness during retraining.</p>
-</section>
-<section id="privacy-and-consent" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="privacy-and-consent"><span class="header-section-number">4.3</span> Privacy and Consent</h3>
-<p>Generative AI models may memorize and regurgitate sensitive patient information, posing serious risks under HIPAA and GDPR. Experts emphasize the need for <em>differential privacy</em>, <em>federated learning</em>, and strong access controls to protect PHI <sup>[16]</sup><sup>[17]</sup>. In addition, <em>explicit informed consent</em> should be obtained when AI is used in patient-facing workflows or influences clinical decisions <sup>[15]</sup>.</p>
-<p><strong>Best practice:</strong> Train models on de-identified data, disclose AI involvement to patients, and obtain consent when appropriate.</p>
-</section>
-<section id="governance-and-accountability" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="governance-and-accountability"><span class="header-section-number">4.4</span> Governance and Accountability</h3>
-<p>As AI becomes embedded in clinical workflows, clear accountability mechanisms are essential. Who is responsible if an AI-driven recommendation is wrong? The FDA’s Predetermined Change Control Plans and Total Product Lifecycle (TPLC) framework recommend ongoing oversight, version control, and human review <sup>[18]</sup>.</p>
-<p><strong>Best practice:</strong> Maintain audit trails, define roles and responsibilities, and require human-in-the-loop verification for all high-impact decisions.</p>
-</section>
-<section id="model-drift-and-continuous-validation" class="level3" data-number="4.5">
-<h3 data-number="4.5" class="anchored" data-anchor-id="model-drift-and-continuous-validation"><span class="header-section-number">4.5</span> Model Drift and Continuous Validation</h3>
-<p>AI systems may become less reliable over time as clinical practices or populations evolve—a phenomenon known as <em>model drift</em>. Without regular validation, GenAI tools risk producing inaccurate or even harmful outputs.</p>
-<p><strong>Best practice:</strong> Set up monitoring pipelines to detect performance degradation and retrain models periodically using current data <sup>[18]</sup>.</p>
-</section>
-<section id="interoperability-and-integration-ethics" class="level3" data-number="4.6">
-<h3 data-number="4.6" class="anchored" data-anchor-id="interoperability-and-integration-ethics"><span class="header-section-number">4.6</span> Interoperability and Integration Ethics</h3>
-<p>Many GenAI tools rely on integration with EHRs and proprietary systems. This raises ethical concerns about <em>vendor lock-in</em>, <em>data portability</em>, and <em>access inequality</em>, particularly for under-resourced institutions <sup>[15]</sup>.</p>
-<p><strong>Best practice:</strong> Prioritize open standards, API-based interoperability, and avoid closed ecosystems that restrict innovation or access.</p>
-</section>
-<section id="human-ai-collaboration" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="human-ai-collaboration"><span class="header-section-number">4.7</span> Human-AI Collaboration</h3>
-<p>Generative AI should <em>augment</em>, not replace, clinical judgment. Over-automation can erode clinician trust and lead to overreliance on AI outputs. Leading health AI researchers emphasize the importance of human-in-the-loop design to ensure clinicians remain central to the decision-making process <sup>[17]</sup><sup>[19]</sup>.</p>
-<p><strong>Best practice:</strong> Embed AI into workflows in a way that supports clinician expertise, rather than bypassing it.</p>
-</section>
-<section id="conclusion" class="level3" data-number="4.8">
-<h3 data-number="4.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.8</span> Conclusion</h3>
-<p>Taken together, these ethical pillars—transparency, fairness, privacy, governance, drift monitoring, interoperability, and human-AI collaboration—form the foundation for trustworthy and effective use of GenAI in healthcare. Responsible design and deployment not only reduce risks but also build the confidence needed for widespread adoption.</p>
-</section>
 </section>
 <section id="references" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="references"><span class="header-section-number">5</span> 📚 References</h2>
