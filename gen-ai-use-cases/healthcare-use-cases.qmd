@@ -88,11 +88,6 @@ AI systems may become less reliable over time as clinical practices or populatio
 
 **Best practice:** Set up monitoring pipelines to detect performance degradation and retrain models periodically using current data <sup>[18]</sup>.
 
-### Interoperability and Integration Ethics
-
-Many GenAI tools rely on integration with EHRs and proprietary systems. This raises ethical concerns about *vendor lock-in*, *data portability*, and *access inequality*, particularly for under-resourced institutions <sup>[15]</sup>.
-
-**Best practice:** Prioritize open standards, API-based interoperability, and avoid closed ecosystems that restrict innovation or access.
 
 ### Human-AI Collaboration
 
@@ -111,7 +106,6 @@ Taken together, these ethical pillars—transparency, fairness, privacy, governa
 - Providers, insurers, and biotech firms are leveraging GenAI to automate back-office tasks, accelerate research, and improve decision-making—delivering measurable time and cost savings.  
 - Patient-facing tools for education, triage, and communication are enabling more personalized, accessible, and scalable care experiences.
 - As adoption increases, organizations must address critical concerns around transparency, bias, privacy, and accountability to ensure responsible and equitable deployment of GenAI in clinical settings.
-
 
 
 
@@ -138,9 +132,6 @@ Taken together, these ethical pillars—transparency, fairness, privacy, governa
 [10] Google Cloud. MedLM: Foundation Models for Healthcare. [https://cloud.google.com/blog/topics/healthcare-life-sciences/introducing-medlm-for-the-healthcare-industry](https://cloud.google.com/blog/topics/healthcare-life-sciences/introducing-medlm-for-the-healthcare-industry)
 
 [11] Christus Health reduces cognitive load on clinicians by 78% with Abridge. [https://www.abridge.com/press-release/christus-health-announcement](https://www.abridge.com/press-release/christus-health-announcement)
-
-
-
 
 [12] U.S. FDA. Artificial Intelligence and Machine Learning Software as a Medical Device Action Plan. [https://www.fda.gov/media/145022/download](https://www.fda.gov/media/145022/download)
 
