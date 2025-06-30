@@ -217,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Use Case.</th>
+<th>Use Case</th>
 <th>Examples</th>
 <th>Impact</th>
 <th>Underlying Models</th>
@@ -263,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="2.1" class="anchored" data-anchor-id="clinical-documentation"><span class="header-section-number">2.1</span> Clinical Documentation</h3>
 <ul>
 <li><strong>Problem</strong>: Clinicians spend significant time on documentation, contributing to burnout and reducing time available for patient care. Manual entry can also introduce delays and inconsistencies.</li>
-<li><strong>Solution</strong>: GenAI tools like ambient scribing (e.g., Nuance DAX) and real-time note generation (e.g., AWS HealthScribe) automatically generate clinical notes, transcripts, and summaries from conversations — streamlining EHR workflows.</li>
+<li><strong>Solution</strong>: Generative AI tools like ambient scribing (e.g., Nuance DAX) and real-time note generation (e.g., AWS HealthScribe) automatically generate clinical notes, transcripts, and summaries from conversations — streamlining EHR workflows.</li>
 <li><strong>Impact</strong>: Nuance DAX reduces physician documentation time by up to 50%, saving an average of 7 minutes per patient encounter and enabling 3–5 additional appointments per day<sup>[1]</sup>.</li>
 </ul>
 </section>
@@ -272,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Problem</strong>: Medical imaging analysis for rare conditions or low-resolution scans can be difficult, time-consuming, and resource-intensive for radiologists.<br>
 </li>
-<li><strong>Solution</strong>: Generative AI supports diagnostics by synthesizing high-quality, diverse medical images using diffusion models (as in DeepMind’s EyeDiff) and improving image interpretation and reducing false positives through discriminative models like CNNs (as used by MIT CSAIL).<br>
+<li><strong>Solution</strong>: Generative AI improves diagnostic workflows in two key ways. First, it creates high-quality medical images that represent a wide range of conditions, patients, and scan types—using techniques like diffusion models (e.g., DeepMind’s EyeDiff). Second, it enhances image interpretation and helps reduce false positives through advanced pattern recognition models such as convolutional neural networks (CNNs), as demonstrated by MIT CSAIL.<br>
 </li>
 <li><strong>Impact</strong>: MIT CSAIL’s AI reduced false positives by 37.3%, biopsy rates by 27.8%, and unnecessary breast surgeries by over 30%<sup>[2]</sup><sup>[3]</sup>; DeepMind’s diffusion-based EyeDiff model improved rare disease classification accuracy on retinal OCT scans by enhancing detection of minority classes and outperforming traditional oversampling techniques<sup>[4]</sup>.</li>
 </ul>
@@ -280,29 +280,28 @@ ul.task-list li input[type="checkbox"] {
 <section id="drug-discovery-and-molecular-design" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="drug-discovery-and-molecular-design"><span class="header-section-number">2.3</span> Drug Discovery and Molecular Design</h3>
 <ul>
-<li><strong>Problem</strong>: Traditional drug discovery is costly and slow, often taking over a decade and billions of dollars to bring new therapies to market.<br>
+<li><strong>Problem</strong>: Traditional drug discovery is time-consuming and expensive, often taking over a decade and billions of dollars to bring a new therapy to market.<br>
 </li>
-<li><strong>Solution</strong>: GenAI platforms use model families such as graph neural networks (GNNs), variational autoencoders (VAEs), RNNs, and transformers to design novel compounds, optimize drug-like properties, and prioritize candidates for clinical development.<br>
+<li><strong>Solution</strong>: Generative AI platforms accelerate this process by using models like graph neural networks (GNNs), variational autoencoders (VAEs), recurrent neural networks (RNNs), and transformers to generate novel compounds, optimize drug-like properties, and prioritize candidates for development.<br>
 </li>
-<li><strong>Impact</strong>: Insilico Medicine used GenAI to identify and advance a novel drug candidate for idiopathic pulmonary fibrosis (IPF) to Phase II trials in under 30 months, including &lt;18 months from target identification to candidate nomination<sup>[5]</sup>; BenevolentAI’s platform has generated molecules targeting resistant diseases, with several candidates progressing into preclinical and clinical trials<sup>[6]</sup>.</li>
+<li><strong>Impact</strong>: Insilico Medicine advanced a novel drug candidate for idiopathic pulmonary fibrosis (IPF) to Phase II trials in under 30 months, including less than 18 months from target identification to candidate nomination<sup>[5]</sup>; BenevolentAI has used GenAI to generate molecules targeting resistant diseases, with multiple candidates advancing to preclinical and clinical stages<sup>[6]</sup>.</li>
 </ul>
 </section>
 <section id="patient-communication-and-education" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="patient-communication-and-education"><span class="header-section-number">2.4</span> Patient Communication and Education</h3>
 <ul>
-<li><strong>Problem</strong>: Patients often struggle to understand medical terminology, follow treatment plans, or navigate post-discharge instructions, leading to poor adherence and health outcomes.<br>
+<li><strong>Problem</strong>: Patients often find it difficult to understand complex medical language, follow care instructions, or manage their treatment after discharge—leading to confusion, low adherence, and worse health outcomes.</li>
+<li><strong>Solution</strong>: GenAI-powered assistants use large language models (LLMs) with retrieval-augmented generation (RAG) to simplify medical information, answer patient questions in plain language, and deliver personalized health education at scale.<br>
 </li>
-<li><strong>Solution</strong>: GenAI-powered assistants use LLMs with retrieval-augmented generation (RAG) to explain conditions in plain language, answer patient questions, and personalize health education at scale.<br>
-</li>
-<li><strong>Impact</strong>: Mayo Clinic reports improved patient experience and discharge workflows through AI assistance<sup>[7]</sup>; After using Ada Health, 66% of users feel more certain about what care to seek, 40% report reduced anxiety, and 80% feel better prepared for doctor consultations<sup>[8]</sup>; At UC San Diego Health, physicians using AI-generated replies wrote longer, more empathetic messages with reduced cognitive burden <sup>[9]</sup>.</li>
+<li><strong>Impact</strong>: Mayo Clinic reports improved patient experience and more efficient discharge workflows through AI-assisted communication<sup>[7]</sup>; Ada Health users showed significant engagement benefits—66% felt more certain about the care they needed, 40% reported reduced anxiety, and 80% felt better prepared for doctor consultations<sup>[8]</sup>; At UC San Diego Health, physicians using AI-generated replies wrote longer, more empathetic messages with less cognitive effort <sup>[9]</sup>.</li>
 </ul>
 </section>
 <section id="administrative-workflow-automation" class="level3" data-number="2.5">
 <h3 data-number="2.5" class="anchored" data-anchor-id="administrative-workflow-automation"><span class="header-section-number">2.5</span> Administrative Workflow Automation</h3>
 <ul>
-<li><strong>Problem</strong>: Healthcare organizations face growing administrative burdens—from insurance pre-authorizations to medical coding and claim processing—which consume valuable time and increase operational costs.</li>
-<li><strong>Solution</strong>: GenAI streamlines back-office tasks using LLMs and document intelligence platforms to automate medical coding, summarize prior authorizations, extract insurance clauses, and generate routine correspondence.</li>
-<li><strong>Impact</strong>: Google’s MedLM (via tools like Augmedix) automates clinical documentation, empowering clinicians with faster, more accurate notes and reducing administrative burden; Google Cloud estimates staff spend ~28–36 hours/week on admin tasks, which GenAI can help reclaim<sup>[10]</sup>; Abridge reports up to 78% reduction in clinician cognitive load and 86% drop in after-hours documentation <sup>[11]</sup>.</li>
+<li><strong>Problem</strong>: Healthcare organizations face rising administrative workloads—from prior authorizations to claims processing and medical coding—that consume staff time, and drive up costs.</li>
+<li><strong>Solution</strong>: Generative AI streamlines these tasks by combining LLMs and document intelligence platforms to automate medical coding, summarize prior authorization requests, extract insurance policy details, and generate routine correspondence.</li>
+<li><strong>Impact</strong>: Google’s MedLM, used in tools like Augmedix, automates clinical documentation to deliver faster, more accurate notes and reduce administrative burden. Google Cloud estimates that staff spend 28–36 hours per week on administrative tasks—time that GenAI can help reclaim<sup>[10]</sup>; Abridge reports up to 78% reduction in clinician cognitive load and 86% drop in after-hours documentation <sup>[11]</sup>.</li>
 </ul>
 </section>
 </section>
