@@ -110,7 +110,7 @@ Taken together, these ethical pillars—transparency, fairness, privacy, governa
 - Generative AI is transitioning from pilots to production across healthcare, with mature applications in clinical documentation, medical imaging, and drug discovery.  
 - Providers, insurers, and biotech firms are leveraging GenAI to automate back-office tasks, accelerate research, and improve decision-making—delivering measurable time and cost savings.  
 - Patient-facing tools for education, triage, and communication are enabling more personalized, accessible, and scalable care experiences.
-
+- As adoption increases, organizations must address critical concerns around transparency, bias, privacy, and accountability to ensure responsible and equitable deployment of GenAI in clinical settings.
 
 
 
