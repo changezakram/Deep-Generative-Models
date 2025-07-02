@@ -3,7 +3,6 @@ project:
   output-dir: docs
 
 website:
-  title: ""
   navbar:
     left:
       - icon: house
