@@ -302,7 +302,12 @@ They enable better parallelization and handle long-range dependencies more effec
 </section>
 <section id="architecture-overview" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="architecture-overview"><span class="header-section-number">3</span> Architecture Overview</h2>
-<p>At a high level: - <strong>Encoder–Decoder</strong> (original transformer) — used in translation. - <strong>Encoder-only</strong> (e.g., BERT) — for classification, masked language modeling. - <strong>Decoder-only</strong> (e.g., GPT) — for autoregressive text generation.</p>
+<p>At a high level:</p>
+<ul>
+<li><strong>Encoder–Decoder</strong> (original transformer) — used in translation.</li>
+<li><strong>Encoder-only</strong> (e.g., BERT) — for classification, masked language modeling.</li>
+<li><strong>Decoder-only</strong> (e.g., GPT) — for autoregressive text generation.</li>
+</ul>
 <p>We’ll break down the encoder and decoder below.</p>
 <hr>
 </section>
@@ -323,7 +328,12 @@ They enable better parallelization and handle long-range dependencies more effec
 <h3 data-number="4.1" class="anchored" data-anchor-id="core-concepts"><span class="header-section-number">4.1</span> Core Concepts</h3>
 <section id="attention-mechanism" class="level4" data-number="4.1.1">
 <h4 data-number="4.1.1" class="anchored" data-anchor-id="attention-mechanism"><span class="header-section-number">4.1.1</span> Attention Mechanism</h4>
-<p>Each token generates a: - <strong>Query (Q)</strong> — what we’re looking for. - <strong>Key (K)</strong> — what each token offers. - <strong>Value (V)</strong> — information to pass along.</p>
+<p>Each token generates a:</p>
+<ul>
+<li><strong>Query (Q)</strong> — what we’re looking for.</li>
+<li><strong>Key (K)</strong> — what each token offers.</li>
+<li><strong>Value (V)</strong> — information to pass along.</li>
+</ul>
 <p>The output is a weighted sum of values: <span class="math display">\[
 \text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V
 \]</span></p>
@@ -515,8 +525,18 @@ It also consists of stacked layers with three components:</p>
 </section>
 <section id="strengths-and-limitations" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="strengths-and-limitations"><span class="header-section-number">9</span> Strengths and Limitations</h2>
-<p><strong>Pros</strong>: - Captures long dependencies. - Parallelizable. - State-of-the-art results.</p>
-<p><strong>Cons</strong>: - Requires huge compute resources. - Data-hungry. - Less interpretable.</p>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Captures long dependencies.</li>
+<li>Parallelizable.</li>
+<li>State-of-the-art results.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>Requires huge compute resources.</li>
+<li>Data-hungry.</li>
+<li>Less interpretable.</li>
+</ul>
 <hr>
 </section>
 <section id="future-directions" class="level2" data-number="10">
