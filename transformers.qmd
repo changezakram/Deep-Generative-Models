@@ -1,0 +1,288 @@
+
+---
+title: "Transformers — A Deep Dive"
+format: html
+toc: true
+toc-depth: 3
+---
+
+# 📄 Transformers — A Deep Dive
+
+## 1️⃣ Introduction
+
+Transformers are a neural network architecture designed for processing sequential data.  
+Introduced in the 2017 paper *Attention is All You Need*, they replaced recurrent and convolutional architectures in many NLP tasks by leveraging a novel mechanism called **self-attention**.  
+They enable better parallelization and handle long-range dependencies more effectively.
+
+## 2️⃣ Background and Motivation
+
+### Why not RNNs/LSTMs?
+
+- RNNs process tokens sequentially, which is slow.
+- They struggle to remember information over long sequences (vanishing gradients).
+- CNNs capture local patterns but have limited context.
+
+Transformers solve these issues with **self-attention**, which can relate all tokens to each other directly and is fully parallelizable.
+
+## 3️⃣ Architecture Overview
+
+At a high level:
+- **Encoder–Decoder** (original transformer) — used in translation.
+- **Encoder-only** (e.g., BERT) — for classification, masked language modeling.
+- **Decoder-only** (e.g., GPT) — for autoregressive text generation.
+
+We’ll break down the encoder and decoder below.
+
+---
+
+# 🔷 Encoder
+
+The **encoder** consists of a stack of identical layers, each containing:
+1️⃣ Multi-Head Self-Attention  
+2️⃣ Feedforward Network  
+3️⃣ Residual Connections + Layer Norm  
+4️⃣ Positional Encoding
+
+---
+
+## 4️⃣ Core Concepts
+
+### 4.1 Attention Mechanism
+
+Each token generates a:
+- **Query (Q)** — what we’re looking for.
+- **Key (K)** — what each token offers.
+- **Value (V)** — information to pass along.
+
+The output is a weighted sum of values:
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V
+$$
+
+#### PyTorch: Scaled Dot-Product Attention
+
+```python
+import torch
+import torch.nn.functional as F
+
+def scaled_dot_product_attention(Q, K, V, mask=None):
+    d_k = Q.size(-1)
+    scores = torch.matmul(Q, K.transpose(-2, -1)) / torch.sqrt(torch.tensor(d_k, dtype=torch.float32))
+    if mask is not None:
+        scores = scores.masked_fill(mask == 0, -1e9)
+    weights = F.softmax(scores, dim=-1)
+    return torch.matmul(weights, V), weights
+```
+
+---
+
+### 4.2 Multi-Head Attention
+
+```python
+from torch import nn
+
+class MultiHeadAttention(nn.Module):
+    def __init__(self, d_model, num_heads):
+        super().__init__()
+        assert d_model % num_heads == 0
+        self.d_k = d_model // num_heads
+        self.num_heads = num_heads
+        
+        self.q_linear = nn.Linear(d_model, d_model)
+        self.k_linear = nn.Linear(d_model, d_model)
+        self.v_linear = nn.Linear(d_model, d_model)
+        self.out_linear = nn.Linear(d_model, d_model)
+
+    def forward(self, Q, K, V, mask=None):
+        batch_size = Q.size(0)
+        Q = self.q_linear(Q).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)
+        K = self.k_linear(K).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)
+        V = self.v_linear(V).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)
+        attn_output, _ = scaled_dot_product_attention(Q, K, V, mask)
+        attn_output = attn_output.transpose(1,2).contiguous().view(batch_size, -1, self.num_heads * self.d_k)
+        return self.out_linear(attn_output)
+```
+
+---
+
+### 4.3 Positional Encoding
+
+```python
+import math
+
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_len=5000):
+        super().__init__()
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * -(math.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        pe = pe.unsqueeze(0)
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        x = x + self.pe[:, :x.size(1), :]
+        return x
+```
+
+---
+
+### 4.4 Feedforward Network
+
+```python
+class PositionwiseFFN(nn.Module):
+    def __init__(self, d_model, d_ff, dropout=0.1):
+        super().__init__()
+        self.ffn = nn.Sequential(
+            nn.Linear(d_model, d_ff),
+            nn.ReLU(),
+            nn.Linear(d_ff, d_model),
+            nn.Dropout(dropout)
+        )
+
+    def forward(self, x):
+        return self.ffn(x)
+```
+
+---
+
+### 4.5 Residual Connections & Layer Norm
+
+```python
+class SublayerConnection(nn.Module):
+    def __init__(self, d_model, dropout=0.1):
+        super().__init__()
+        self.norm = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x, sublayer):
+        return x + self.dropout(sublayer(self.norm(x)))
+```
+
+---
+
+# 🔷 Decoder
+
+The **decoder** is used for sequence generation.  
+It also consists of stacked layers with three components:
+1️⃣ **Masked Multi-Head Self-Attention** — only attends to past tokens.  
+2️⃣ **Encoder–Decoder Attention** — attends to the encoder output.  
+3️⃣ **Feedforward + normalization + residuals**
+
+---
+
+### Attention Mask for Decoder
+
+```python
+def generate_square_subsequent_mask(sz):
+    mask = (torch.triu(torch.ones(sz, sz)) == 1).transpose(0, 1)
+    mask = mask.float().masked_fill(mask == 0, float('-inf')).masked_fill(mask == 1, float(0.0))
+    return mask
+```
+
+---
+
+### Simplified Decoder Layer
+
+```python
+class DecoderLayer(nn.Module):
+    def __init__(self, d_model, heads, d_ff, dropout=0.1):
+        super().__init__()
+        self.self_attn = MultiHeadAttention(d_model, heads)
+        self.cross_attn = MultiHeadAttention(d_model, heads)
+        self.ffn = PositionwiseFFN(d_model, d_ff, dropout)
+        self.norm1 = SublayerConnection(d_model, dropout)
+        self.norm2 = SublayerConnection(d_model, dropout)
+        self.norm3 = SublayerConnection(d_model, dropout)
+
+    def forward(self, x, memory, tgt_mask=None, memory_mask=None):
+        x = self.norm1(x, lambda x: self.self_attn(x, x, x, tgt_mask))
+        x = self.norm2(x, lambda x: self.cross_attn(x, memory, memory, memory_mask))
+        x = self.norm3(x, self.ffn)
+        return x
+```
+
+---
+
+## 5️⃣ Training Tips
+
+- Large batches & data.
+- Learning rate warm-up.
+- Label smoothing.
+- Gradient clipping.
+
+---
+
+## 6️⃣ Variants and Evolutions
+
+| Model   | Type           | Use Case                   |
+|---------|----------------|-----------------------------|
+| **BERT**| Encoder-only   | Classification, QA         |
+| **GPT** | Decoder-only   | Text generation            |
+| **T5**  | Encoder–Decoder| Translation, summarization |
+| **ViT** | Encoder-only   | Image classification       |
+
+---
+
+## 7️⃣ Applications
+
+- NLP: translation, summarization, question answering.
+- Vision: Vision Transformers (ViTs).
+- Multimodal: CLIP (image-text), Flamingo.
+- Other: Protein folding (AlphaFold).
+
+---
+
+## 8️⃣ Strengths and Limitations
+
+✅ Pros:
+- Captures long dependencies.
+- Parallelizable.
+- State-of-the-art results.
+
+🚫 Cons:
+- Requires huge compute resources.
+- Data-hungry.
+- Less interpretable.
+
+---
+
+## 9️⃣ Future Directions
+
+- Efficient transformers (Linformer, Performer).
+- Sparse attention.
+- Better interpretability.
+- New domains beyond NLP & vision.
+
+---
+
+## 🔟 References & Further Reading
+
+- *Attention is All You Need* — [arXiv:1706.03762](https://arxiv.org/abs/1706.03762)  
+- BERT — [arXiv:1810.04805](https://arxiv.org/abs/1810.04805)  
+- GPT-3 — [arXiv:2005.14165](https://arxiv.org/abs/2005.14165)  
+- Vision Transformer — [arXiv:2010.11929](https://arxiv.org/abs/2010.11929)
+
+---
+
+## 📊 Suggested Diagrams
+
+✅ Encoder–Decoder architecture block diagram.  
+✅ Self-attention computation (with Q/K/V and weights).  
+✅ Masked attention with triangular mask.  
+
+> _You can generate diagrams using tools like draw.io, Excalidraw, or embed images using `![](diagram.png)` here._
+
+---
+
+## 🚀 How to Render
+
+1️⃣ Save this file as `transformers.qmd`.  
+2️⃣ In the terminal:  
+```bash
+quarto render transformers.qmd
+```
+3️⃣ Open the generated `.html` in your browser.
+
+---
