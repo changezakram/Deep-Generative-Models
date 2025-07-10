@@ -44,5 +44,8 @@
   },
   "gen-ai-use-cases/gen-bi.qmd": {
     "gen-bi.html": "5dc2ab78"
+  },
+  "transformers.qmd": {
+    "transformers.html": "97502d10"
   }
 }
