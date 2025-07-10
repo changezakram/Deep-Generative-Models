@@ -5,8 +5,6 @@ format: html
 toc: true
 ---
 
-# Transformers — A Deep Dive
-
 ## Introduction
 
 Transformers are a neural network architecture designed for processing sequential data.  
@@ -37,10 +35,11 @@ We’ll break down the encoder and decoder below.
 # Encoder
 
 The **encoder** consists of a stack of identical layers, each containing:
-1️⃣ Multi-Head Self-Attention  
-2️⃣ Feedforward Network  
-3️⃣ Residual Connections + Layer Norm  
-4️⃣ Positional Encoding
+
+- Multi-Head Self-Attention  
+- Feedforward Network  
+- Residual Connections + Layer Norm  
+- Positional Encoding
 
 ---
 
@@ -236,12 +235,12 @@ class DecoderLayer(nn.Module):
 
 ## Strengths and Limitations
 
-✅ Pros:
+**Pros**:
 - Captures long dependencies.
 - Parallelizable.
 - State-of-the-art results.
 
-🚫 Cons:
+**Cons**:
 - Requires huge compute resources.
 - Data-hungry.
 - Less interpretable.
