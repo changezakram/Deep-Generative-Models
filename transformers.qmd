@@ -30,7 +30,7 @@ We’ll break down the encoder and decoder below.
 
 ---
 
-# Encoder
+## Encoder
 
 The **encoder** consists of a stack of identical layers, each containing:
 
@@ -41,9 +41,9 @@ The **encoder** consists of a stack of identical layers, each containing:
 
 ---
 
-## Core Concepts
+### Core Concepts
 
-### Attention Mechanism
+#### Attention Mechanism
 
 Each token generates a:
 - **Query (Q)** — what we’re looking for.
@@ -72,7 +72,7 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 
 ---
 
-### Multi-Head Attention
+#### Multi-Head Attention
 
 ```python
 from torch import nn
@@ -101,7 +101,7 @@ class MultiHeadAttention(nn.Module):
 
 ---
 
-### Positional Encoding
+#### Positional Encoding
 
 ```python
 import math
@@ -124,7 +124,7 @@ class PositionalEncoding(nn.Module):
 
 ---
 
-### Feedforward Network
+#### Feedforward Network
 
 ```python
 class PositionwiseFFN(nn.Module):
@@ -143,7 +143,7 @@ class PositionwiseFFN(nn.Module):
 
 ---
 
-### Residual Connections & Layer Norm
+#### Residual Connections & Layer Norm
 
 ```python
 class SublayerConnection(nn.Module):
@@ -158,7 +158,7 @@ class SublayerConnection(nn.Module):
 
 ---
 
-# Decoder
+## Decoder
 
 The **decoder** is used for sequence generation.  
 It also consists of stacked layers with three components:
