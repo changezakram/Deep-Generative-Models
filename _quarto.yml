@@ -27,8 +27,8 @@ website:
 
       - text: Agentic AI
         menu:
-          - text: Introduction [Coming Soon]
-            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
+          - text: Introduction
+            href: https://changezakram.github.io/agentic-ai/agentic-ai.html
 
       - text: Math Review
         menu:
