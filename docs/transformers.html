@@ -245,39 +245,25 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#transformers-a-deep-dive" id="toc-transformers-a-deep-dive" class="nav-link active" data-scroll-target="#transformers-a-deep-dive"><span class="header-section-number">1</span> 📄 Transformers — A Deep Dive</a>
   <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> 1️⃣ Introduction</a></li>
-  <li><a href="#background-and-motivation" id="toc-background-and-motivation" class="nav-link" data-scroll-target="#background-and-motivation"><span class="header-section-number">1.2</span> 2️⃣ Background and Motivation</a>
+  <li><a href="#transformers-a-deep-dive" id="toc-transformers-a-deep-dive" class="nav-link active" data-scroll-target="#transformers-a-deep-dive"><span class="header-section-number">1</span> Transformers — A Deep Dive</a>
   <ul class="collapse">
-  <li><a href="#why-not-rnnslstms" id="toc-why-not-rnnslstms" class="nav-link" data-scroll-target="#why-not-rnnslstms"><span class="header-section-number">1.2.1</span> Why not RNNs/LSTMs?</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a></li>
+  <li><a href="#background-and-motivation" id="toc-background-and-motivation" class="nav-link" data-scroll-target="#background-and-motivation"><span class="header-section-number">1.2</span> Background and Motivation</a></li>
+  <li><a href="#architecture-overview" id="toc-architecture-overview" class="nav-link" data-scroll-target="#architecture-overview"><span class="header-section-number">1.3</span> Architecture Overview</a></li>
   </ul></li>
-  <li><a href="#architecture-overview" id="toc-architecture-overview" class="nav-link" data-scroll-target="#architecture-overview"><span class="header-section-number">1.3</span> 3️⃣ Architecture Overview</a></li>
-  </ul></li>
-  <li><a href="#encoder" id="toc-encoder" class="nav-link" data-scroll-target="#encoder"><span class="header-section-number">2</span> 🔷 Encoder</a>
+  <li><a href="#encoder" id="toc-encoder" class="nav-link" data-scroll-target="#encoder"><span class="header-section-number">2</span> Encoder</a>
   <ul class="collapse">
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts"><span class="header-section-number">2.1</span> 4️⃣ Core Concepts</a>
-  <ul class="collapse">
-  <li><a href="#attention-mechanism" id="toc-attention-mechanism" class="nav-link" data-scroll-target="#attention-mechanism"><span class="header-section-number">2.1.1</span> 4.1 Attention Mechanism</a></li>
-  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention"><span class="header-section-number">2.1.2</span> 4.2 Multi-Head Attention</a></li>
-  <li><a href="#positional-encoding" id="toc-positional-encoding" class="nav-link" data-scroll-target="#positional-encoding"><span class="header-section-number">2.1.3</span> 4.3 Positional Encoding</a></li>
-  <li><a href="#feedforward-network" id="toc-feedforward-network" class="nav-link" data-scroll-target="#feedforward-network"><span class="header-section-number">2.1.4</span> 4.4 Feedforward Network</a></li>
-  <li><a href="#residual-connections-layer-norm" id="toc-residual-connections-layer-norm" class="nav-link" data-scroll-target="#residual-connections-layer-norm"><span class="header-section-number">2.1.5</span> 4.5 Residual Connections &amp; Layer Norm</a></li>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts"><span class="header-section-number">2.1</span> Core Concepts</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#decoder" id="toc-decoder" class="nav-link" data-scroll-target="#decoder"><span class="header-section-number">3</span> 🔷 Decoder</a>
+  <li><a href="#decoder" id="toc-decoder" class="nav-link" data-scroll-target="#decoder"><span class="header-section-number">3</span> Decoder</a>
   <ul class="collapse">
-  <li><a href="#attention-mask-for-decoder" id="toc-attention-mask-for-decoder" class="nav-link" data-scroll-target="#attention-mask-for-decoder"><span class="header-section-number">3.0.1</span> Attention Mask for Decoder</a></li>
-  <li><a href="#simplified-decoder-layer" id="toc-simplified-decoder-layer" class="nav-link" data-scroll-target="#simplified-decoder-layer"><span class="header-section-number">3.0.2</span> Simplified Decoder Layer</a></li>
-  <li><a href="#training-tips" id="toc-training-tips" class="nav-link" data-scroll-target="#training-tips"><span class="header-section-number">3.1</span> 5️⃣ Training Tips</a></li>
-  <li><a href="#variants-and-evolutions" id="toc-variants-and-evolutions" class="nav-link" data-scroll-target="#variants-and-evolutions"><span class="header-section-number">3.2</span> 6️⃣ Variants and Evolutions</a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><span class="header-section-number">3.3</span> 7️⃣ Applications</a></li>
-  <li><a href="#strengths-and-limitations" id="toc-strengths-and-limitations" class="nav-link" data-scroll-target="#strengths-and-limitations"><span class="header-section-number">3.4</span> 8️⃣ Strengths and Limitations</a></li>
-  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions"><span class="header-section-number">3.5</span> 9️⃣ Future Directions</a></li>
-  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">3.6</span> 🔟 References &amp; Further Reading</a></li>
-  <li><a href="#suggested-diagrams" id="toc-suggested-diagrams" class="nav-link" data-scroll-target="#suggested-diagrams"><span class="header-section-number">3.7</span> 📊 Suggested Diagrams</a></li>
-  <li><a href="#how-to-render" id="toc-how-to-render" class="nav-link" data-scroll-target="#how-to-render"><span class="header-section-number">3.8</span> 🚀 How to Render</a></li>
+  <li><a href="#training-tips" id="toc-training-tips" class="nav-link" data-scroll-target="#training-tips"><span class="header-section-number">3.1</span> Training Tips</a></li>
+  <li><a href="#variants-and-evolutions" id="toc-variants-and-evolutions" class="nav-link" data-scroll-target="#variants-and-evolutions"><span class="header-section-number">3.2</span> Variants and Evolutions</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><span class="header-section-number">3.3</span> Applications</a></li>
+  <li><a href="#strengths-and-limitations" id="toc-strengths-and-limitations" class="nav-link" data-scroll-target="#strengths-and-limitations"><span class="header-section-number">3.4</span> Strengths and Limitations</a></li>
+  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions"><span class="header-section-number">3.5</span> Future Directions</a></li>
+  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">3.6</span> References &amp; Further Reading</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -305,15 +291,15 @@ window.Quarto = {
 
 
 <section id="transformers-a-deep-dive" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 📄 Transformers — A Deep Dive</h1>
+<h1 data-number="1"><span class="header-section-number">1</span> Transformers — A Deep Dive</h1>
 <section id="introduction" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> 1️⃣ Introduction</h2>
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
 <p>Transformers are a neural network architecture designed for processing sequential data.<br>
 Introduced in the 2017 paper <em>Attention is All You Need</em>, they replaced recurrent and convolutional architectures in many NLP tasks by leveraging a novel mechanism called <strong>self-attention</strong>.<br>
 They enable better parallelization and handle long-range dependencies more effectively.</p>
 </section>
 <section id="background-and-motivation" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="background-and-motivation"><span class="header-section-number">1.2</span> 2️⃣ Background and Motivation</h2>
+<h2 data-number="1.2" class="anchored" data-anchor-id="background-and-motivation"><span class="header-section-number">1.2</span> Background and Motivation</h2>
 <section id="why-not-rnnslstms" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="why-not-rnnslstms"><span class="header-section-number">1.2.1</span> Why not RNNs/LSTMs?</h3>
 <ul>
@@ -325,21 +311,21 @@ They enable better parallelization and handle long-range dependencies more effec
 </section>
 </section>
 <section id="architecture-overview" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="architecture-overview"><span class="header-section-number">1.3</span> 3️⃣ Architecture Overview</h2>
+<h2 data-number="1.3" class="anchored" data-anchor-id="architecture-overview"><span class="header-section-number">1.3</span> Architecture Overview</h2>
 <p>At a high level: - <strong>Encoder–Decoder</strong> (original transformer) — used in translation. - <strong>Encoder-only</strong> (e.g., BERT) — for classification, masked language modeling. - <strong>Decoder-only</strong> (e.g., GPT) — for autoregressive text generation.</p>
 <p>We’ll break down the encoder and decoder below.</p>
 <hr>
 </section>
 </section>
 <section id="encoder" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> 🔷 Encoder</h1>
+<h1 data-number="2"><span class="header-section-number">2</span> Encoder</h1>
 <p>The <strong>encoder</strong> consists of a stack of identical layers, each containing: 1️⃣ Multi-Head Self-Attention<br>
 2️⃣ Feedforward Network<br>
 3️⃣ Residual Connections + Layer Norm<br>
 4️⃣ Positional Encoding</p>
 <hr>
 <section id="core-concepts" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="core-concepts"><span class="header-section-number">2.1</span> 4️⃣ Core Concepts</h2>
+<h2 data-number="2.1" class="anchored" data-anchor-id="core-concepts"><span class="header-section-number">2.1</span> Core Concepts</h2>
 <section id="attention-mechanism" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="attention-mechanism"><span class="header-section-number">2.1.1</span> 4.1 Attention Mechanism</h3>
 <p>Each token generates a: - <strong>Query (Q)</strong> — what we’re looking for. - <strong>Key (K)</strong> — what each token offers. - <strong>Value (V)</strong> — information to pass along.</p>
@@ -438,11 +424,16 @@ They enable better parallelization and handle long-range dependencies more effec
 </section>
 </section>
 <section id="decoder" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> 🔷 Decoder</h1>
+<h1 data-number="3"><span class="header-section-number">3</span> Decoder</h1>
 <p>The <strong>decoder</strong> is used for sequence generation.<br>
-It also consists of stacked layers with three components: 1️⃣ <strong>Masked Multi-Head Self-Attention</strong> — only attends to past tokens.<br>
-2️⃣ <strong>Encoder–Decoder Attention</strong> — attends to the encoder output.<br>
-3️⃣ <strong>Feedforward + normalization + residuals</strong></p>
+It also consists of stacked layers with three components:</p>
+<ul>
+<li><strong>Masked Multi-Head Self-Attention</strong> — only attends to past tokens.<br>
+</li>
+<li><strong>Encoder–Decoder Attention</strong> — attends to the encoder output.<br>
+</li>
+<li><strong>Feedforward + normalization + residuals</strong></li>
+</ul>
 <hr>
 <section id="attention-mask-for-decoder" class="level3" data-number="3.0.1">
 <h3 data-number="3.0.1" class="anchored" data-anchor-id="attention-mask-for-decoder"><span class="header-section-number">3.0.1</span> Attention Mask for Decoder</h3>
@@ -472,7 +463,7 @@ It also consists of stacked layers with three components: 1️⃣ <strong>Masked
 <hr>
 </section>
 <section id="training-tips" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="training-tips"><span class="header-section-number">3.1</span> 5️⃣ Training Tips</h2>
+<h2 data-number="3.1" class="anchored" data-anchor-id="training-tips"><span class="header-section-number">3.1</span> Training Tips</h2>
 <ul>
 <li>Large batches &amp; data.</li>
 <li>Learning rate warm-up.</li>
@@ -482,7 +473,7 @@ It also consists of stacked layers with three components: 1️⃣ <strong>Masked
 <hr>
 </section>
 <section id="variants-and-evolutions" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="variants-and-evolutions"><span class="header-section-number">3.2</span> 6️⃣ Variants and Evolutions</h2>
+<h2 data-number="3.2" class="anchored" data-anchor-id="variants-and-evolutions"><span class="header-section-number">3.2</span> Variants and Evolutions</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -517,7 +508,7 @@ It also consists of stacked layers with three components: 1️⃣ <strong>Masked
 <hr>
 </section>
 <section id="applications" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="applications"><span class="header-section-number">3.3</span> 7️⃣ Applications</h2>
+<h2 data-number="3.3" class="anchored" data-anchor-id="applications"><span class="header-section-number">3.3</span> Applications</h2>
 <ul>
 <li>NLP: translation, summarization, question answering.</li>
 <li>Vision: Vision Transformers (ViTs).</li>
@@ -527,13 +518,13 @@ It also consists of stacked layers with three components: 1️⃣ <strong>Masked
 <hr>
 </section>
 <section id="strengths-and-limitations" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="strengths-and-limitations"><span class="header-section-number">3.4</span> 8️⃣ Strengths and Limitations</h2>
+<h2 data-number="3.4" class="anchored" data-anchor-id="strengths-and-limitations"><span class="header-section-number">3.4</span> Strengths and Limitations</h2>
 <p>✅ Pros: - Captures long dependencies. - Parallelizable. - State-of-the-art results.</p>
 <p>🚫 Cons: - Requires huge compute resources. - Data-hungry. - Less interpretable.</p>
 <hr>
 </section>
 <section id="future-directions" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="future-directions"><span class="header-section-number">3.5</span> 9️⃣ Future Directions</h2>
+<h2 data-number="3.5" class="anchored" data-anchor-id="future-directions"><span class="header-section-number">3.5</span> Future Directions</h2>
 <ul>
 <li>Efficient transformers (Linformer, Performer).</li>
 <li>Sparse attention.</li>
@@ -543,7 +534,7 @@ It also consists of stacked layers with three components: 1️⃣ <strong>Masked
 <hr>
 </section>
 <section id="references-further-reading" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">3.6</span> 🔟 References &amp; Further Reading</h2>
+<h2 data-number="3.6" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">3.6</span> References &amp; Further Reading</h2>
 <ul>
 <li><em>Attention is All You Need</em> — <a href="https://arxiv.org/abs/1706.03762">arXiv:1706.03762</a><br>
 </li>
@@ -553,25 +544,6 @@ It also consists of stacked layers with three components: 1️⃣ <strong>Masked
 </li>
 <li>Vision Transformer — <a href="https://arxiv.org/abs/2010.11929">arXiv:2010.11929</a></li>
 </ul>
-<hr>
-</section>
-<section id="suggested-diagrams" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="suggested-diagrams"><span class="header-section-number">3.7</span> 📊 Suggested Diagrams</h2>
-<p>✅ Encoder–Decoder architecture block diagram.<br>
-✅ Self-attention computation (with Q/K/V and weights).<br>
-✅ Masked attention with triangular mask.</p>
-<blockquote class="blockquote">
-<p><em>You can generate diagrams using tools like draw.io, Excalidraw, or embed images using <code>![](diagram.png)</code> here.</em></p>
-</blockquote>
-<hr>
-</section>
-<section id="how-to-render" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="how-to-render"><span class="header-section-number">3.8</span> 🚀 How to Render</h2>
-<p>1️⃣ Save this file as <code>transformers.qmd</code>.<br>
-2️⃣ In the terminal:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render transformers.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>3️⃣ Open the generated <code>.html</code> in your browser.</p>
-<hr>
 
 
 </section>
