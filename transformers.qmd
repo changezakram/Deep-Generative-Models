@@ -1,8 +1,6 @@
-
 ---
 title: "Transformers — A Deep Dive"
 format: html
-toc: true
 ---
 
 ## Introduction
