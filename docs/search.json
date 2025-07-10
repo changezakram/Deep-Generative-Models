@@ -691,5 +691,110 @@
     "title": "Generative AI Use Cases in Healthcare",
     "section": "5 📚 References",
     "text": "5 📚 References\n[1] Microsoft Nuance. Move beyond scribes to automatically document care https://www.nuance.com/content/dam/nuance/en_us/collateral/healthcare/infographic/ig-move-beyond-scribes-to-automatically-document-care-en-us.pdf\n[2] MIT CSAIL News. Using AI to improve early breast cancer detection. https://www.csail.mit.edu/news/using-artificial-intelligence-improve-early-breast-cancer-detection\n[3] Liu et al. (2021). Artificial intelligence system reduces false-positive findings in the interpretation of breast ultrasound exams. https://pmc.ncbi.nlm.nih.gov/articles/PMC8463596/pdf/41467_2021_Article_26023.pdf\n[4] De Fauw et al. (2024). EyeDiff: text-to-image diffusion model improves rare eye disease diagnosis. https://arxiv.org/abs/2411.10004\n[5] Insilico Medicine. First Generative AI Drug Begins Phase II Trials with Patients. https://insilico.com/blog/first_phase2\n[6] The Pharmaceutical Journal. How AI is transforming drug discovery. https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery\n[7] Mayo Clinic. AI Improves Patient Experience. https://mayomagazine.mayoclinic.org/2025/04/ai-improves-patient-experience/\n[8] Ada Health. Improving patient pathways with AI. https://about.ada.com/improving-patient-pathways-with-ada-digital-triage/\n[9] UC San Diego Health. Study Reveals AI Enhances Physician-Patient Communication. https://health.ucsd.edu/news/press-releases/2024-04-15-study-reveals-ai-enhances-physician-patient-communication/\n[10] Google Cloud. MedLM: Foundation Models for Healthcare. https://cloud.google.com/blog/topics/healthcare-life-sciences/introducing-medlm-for-the-healthcare-industry\n[11] Christus Health reduces cognitive load on clinicians by 78% with Abridge. https://www.abridge.com/press-release/christus-health-announcement\n[12] U.S. FDA. Artificial Intelligence and Machine Learning Software as a Medical Device Action Plan. https://www.fda.gov/media/145022/download\n[13] European Commission. Ethics Guidelines for Trustworthy AI. https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai\n[14] Obermeyer Z, Powers B, Vogeli C, Mullainathan S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. Science. https://www.science.org/doi/10.1126/science.aax2342\n[15] World Health Organization. Ethics and Governance of Artificial Intelligence for Health. https://www.who.int/publications/i/item/9789240029200\n[16] Momani A. Implications of Artificial Intelligence on Health Data Privacy and Confidentiality. arXiv, January 2025. https://arxiv.org/abs/2501.01639\n[17] Stanford HAI. On the Opportunities and Risks of Foundation Models. https://crfm.stanford.edu/report.html\n[18] U.S. FDA. Artificial Intelligence and Machine Learning Discussion Paper. https://www.fda.gov/files/medical%20devices/published/US-FDA-Artificial-Intelligence-and-Machine-Learning-Discussion-Paper.pdf\n[19] JAMA. Artificial Intelligence in Health Care: Anticipating Challenges to Ethics, Privacy, and Bias. https://jamanetwork.com/journals/jama/fullarticle/2765681"
+  },
+  {
+    "objectID": "transformers.html",
+    "href": "transformers.html",
+    "title": "Transformers — A Deep Dive",
+    "section": "",
+    "text": "Transformers are a neural network architecture designed for processing sequential data.\nIntroduced in the 2017 paper Attention is All You Need, they replaced recurrent and convolutional architectures in many NLP tasks by leveraging a novel mechanism called self-attention.\nThey enable better parallelization and handle long-range dependencies more effectively."
+  },
+  {
+    "objectID": "transformers.html#introduction",
+    "href": "transformers.html#introduction",
+    "title": "Transformers — A Deep Dive",
+    "section": "",
+    "text": "Transformers are a neural network architecture designed for processing sequential data.\nIntroduced in the 2017 paper Attention is All You Need, they replaced recurrent and convolutional architectures in many NLP tasks by leveraging a novel mechanism called self-attention.\nThey enable better parallelization and handle long-range dependencies more effectively."
+  },
+  {
+    "objectID": "transformers.html#background-and-motivation",
+    "href": "transformers.html#background-and-motivation",
+    "title": "Transformers — A Deep Dive",
+    "section": "2 Background and Motivation",
+    "text": "2 Background and Motivation\n\n2.1 Why not RNNs/LSTMs?\n\nRNNs process tokens sequentially, which is slow.\nThey struggle to remember information over long sequences (vanishing gradients).\nCNNs capture local patterns but have limited context.\n\nTransformers solve these issues with self-attention, which can relate all tokens to each other directly and is fully parallelizable."
+  },
+  {
+    "objectID": "transformers.html#architecture-overview",
+    "href": "transformers.html#architecture-overview",
+    "title": "Transformers — A Deep Dive",
+    "section": "3 Architecture Overview",
+    "text": "3 Architecture Overview\nAt a high level: - Encoder–Decoder (original transformer) — used in translation. - Encoder-only (e.g., BERT) — for classification, masked language modeling. - Decoder-only (e.g., GPT) — for autoregressive text generation.\nWe’ll break down the encoder and decoder below."
+  },
+  {
+    "objectID": "transformers.html#core-concepts",
+    "href": "transformers.html#core-concepts",
+    "title": "Transformers — A Deep Dive",
+    "section": "1.1 Core Concepts",
+    "text": "1.1 Core Concepts\n\n1.1.1 Attention Mechanism\nEach token generates a: - Query (Q) — what we’re looking for. - Key (K) — what each token offers. - Value (V) — information to pass along.\nThe output is a weighted sum of values: \\[\n\\text{Attention}(Q, K, V) = \\text{softmax}\\left( \\frac{QK^T}{\\sqrt{d_k}} \\right) V\n\\]\n\n1.1.1.1 PyTorch: Scaled Dot-Product Attention\nimport torch\nimport torch.nn.functional as F\n\ndef scaled_dot_product_attention(Q, K, V, mask=None):\n    d_k = Q.size(-1)\n    scores = torch.matmul(Q, K.transpose(-2, -1)) / torch.sqrt(torch.tensor(d_k, dtype=torch.float32))\n    if mask is not None:\n        scores = scores.masked_fill(mask == 0, -1e9)\n    weights = F.softmax(scores, dim=-1)\n    return torch.matmul(weights, V), weights\n\n\n\n\n1.1.2 Multi-Head Attention\nfrom torch import nn\n\nclass MultiHeadAttention(nn.Module):\n    def __init__(self, d_model, num_heads):\n        super().__init__()\n        assert d_model % num_heads == 0\n        self.d_k = d_model // num_heads\n        self.num_heads = num_heads\n        \n        self.q_linear = nn.Linear(d_model, d_model)\n        self.k_linear = nn.Linear(d_model, d_model)\n        self.v_linear = nn.Linear(d_model, d_model)\n        self.out_linear = nn.Linear(d_model, d_model)\n\n    def forward(self, Q, K, V, mask=None):\n        batch_size = Q.size(0)\n        Q = self.q_linear(Q).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        K = self.k_linear(K).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        V = self.v_linear(V).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        attn_output, _ = scaled_dot_product_attention(Q, K, V, mask)\n        attn_output = attn_output.transpose(1,2).contiguous().view(batch_size, -1, self.num_heads * self.d_k)\n        return self.out_linear(attn_output)\n\n\n\n1.1.3 Positional Encoding\nimport math\n\nclass PositionalEncoding(nn.Module):\n    def __init__(self, d_model, max_len=5000):\n        super().__init__()\n        pe = torch.zeros(max_len, d_model)\n        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)\n        div_term = torch.exp(torch.arange(0, d_model, 2).float() * -(math.log(10000.0) / d_model))\n        pe[:, 0::2] = torch.sin(position * div_term)\n        pe[:, 1::2] = torch.cos(position * div_term)\n        pe = pe.unsqueeze(0)\n        self.register_buffer('pe', pe)\n\n    def forward(self, x):\n        x = x + self.pe[:, :x.size(1), :]\n        return x\n\n\n\n1.1.4 Feedforward Network\nclass PositionwiseFFN(nn.Module):\n    def __init__(self, d_model, d_ff, dropout=0.1):\n        super().__init__()\n        self.ffn = nn.Sequential(\n            nn.Linear(d_model, d_ff),\n            nn.ReLU(),\n            nn.Linear(d_ff, d_model),\n            nn.Dropout(dropout)\n        )\n\n    def forward(self, x):\n        return self.ffn(x)\n\n\n\n1.1.5 Residual Connections & Layer Norm\nclass SublayerConnection(nn.Module):\n    def __init__(self, d_model, dropout=0.1):\n        super().__init__()\n        self.norm = nn.LayerNorm(d_model)\n        self.dropout = nn.Dropout(dropout)\n\n    def forward(self, x, sublayer):\n        return x + self.dropout(sublayer(self.norm(x)))"
+  },
+  {
+    "objectID": "transformers.html#training-tips",
+    "href": "transformers.html#training-tips",
+    "title": "Transformers — A Deep Dive",
+    "section": "6 Training Tips",
+    "text": "6 Training Tips\n\nLarge batches & data.\nLearning rate warm-up.\nLabel smoothing.\nGradient clipping."
+  },
+  {
+    "objectID": "transformers.html#variants-and-evolutions",
+    "href": "transformers.html#variants-and-evolutions",
+    "title": "Transformers — A Deep Dive",
+    "section": "7 Variants and Evolutions",
+    "text": "7 Variants and Evolutions\n\n\n\nModel\nType\nUse Case\n\n\n\n\nBERT\nEncoder-only\nClassification, QA\n\n\nGPT\nDecoder-only\nText generation\n\n\nT5\nEncoder–Decoder\nTranslation, summarization\n\n\nViT\nEncoder-only\nImage classification"
+  },
+  {
+    "objectID": "transformers.html#applications",
+    "href": "transformers.html#applications",
+    "title": "Transformers — A Deep Dive",
+    "section": "8 Applications",
+    "text": "8 Applications\n\nNLP: translation, summarization, question answering.\nVision: Vision Transformers (ViTs).\nMultimodal: CLIP (image-text), Flamingo.\nOther: Protein folding (AlphaFold)."
+  },
+  {
+    "objectID": "transformers.html#strengths-and-limitations",
+    "href": "transformers.html#strengths-and-limitations",
+    "title": "Transformers — A Deep Dive",
+    "section": "9 Strengths and Limitations",
+    "text": "9 Strengths and Limitations\nPros: - Captures long dependencies. - Parallelizable. - State-of-the-art results.\nCons: - Requires huge compute resources. - Data-hungry. - Less interpretable."
+  },
+  {
+    "objectID": "transformers.html#future-directions",
+    "href": "transformers.html#future-directions",
+    "title": "Transformers — A Deep Dive",
+    "section": "10 Future Directions",
+    "text": "10 Future Directions\n\nEfficient transformers (Linformer, Performer).\nSparse attention.\nBetter interpretability.\nNew domains beyond NLP & vision."
+  },
+  {
+    "objectID": "transformers.html#references-further-reading",
+    "href": "transformers.html#references-further-reading",
+    "title": "Transformers — A Deep Dive",
+    "section": "11 References & Further Reading",
+    "text": "11 References & Further Reading\n\nAttention is All You Need — arXiv:1706.03762\n\nBERT — arXiv:1810.04805\n\nGPT-3 — arXiv:2005.14165\n\nVision Transformer — arXiv:2010.11929"
+  },
+  {
+    "objectID": "transformers.html#suggested-diagrams",
+    "href": "transformers.html#suggested-diagrams",
+    "title": "Transformers — A Deep Dive",
+    "section": "3.7 📊 Suggested Diagrams",
+    "text": "3.7 📊 Suggested Diagrams\n✅ Encoder–Decoder architecture block diagram.\n✅ Self-attention computation (with Q/K/V and weights).\n✅ Masked attention with triangular mask.\n\nYou can generate diagrams using tools like draw.io, Excalidraw, or embed images using ![](diagram.png) here."
+  },
+  {
+    "objectID": "transformers.html#how-to-render",
+    "href": "transformers.html#how-to-render",
+    "title": "Transformers — A Deep Dive",
+    "section": "3.8 🚀 How to Render",
+    "text": "3.8 🚀 How to Render\n1️⃣ Save this file as transformers.qmd.\n2️⃣ In the terminal:\nquarto render transformers.qmd\n3️⃣ Open the generated .html in your browser."
+  },
+  {
+    "objectID": "transformers.html#encoder",
+    "href": "transformers.html#encoder",
+    "title": "Transformers — A Deep Dive",
+    "section": "4 Encoder",
+    "text": "4 Encoder\nThe encoder consists of a stack of identical layers, each containing:\n\nMulti-Head Self-Attention\n\nFeedforward Network\n\nResidual Connections + Layer Norm\n\nPositional Encoding\n\n\n\n4.1 Core Concepts\n\n4.1.1 Attention Mechanism\nEach token generates a: - Query (Q) — what we’re looking for. - Key (K) — what each token offers. - Value (V) — information to pass along.\nThe output is a weighted sum of values: \\[\n\\text{Attention}(Q, K, V) = \\text{softmax}\\left( \\frac{QK^T}{\\sqrt{d_k}} \\right) V\n\\]\n\n\n4.1.2 PyTorch: Scaled Dot-Product Attention\nimport torch\nimport torch.nn.functional as F\n\ndef scaled_dot_product_attention(Q, K, V, mask=None):\n    d_k = Q.size(-1)\n    scores = torch.matmul(Q, K.transpose(-2, -1)) / torch.sqrt(torch.tensor(d_k, dtype=torch.float32))\n    if mask is not None:\n        scores = scores.masked_fill(mask == 0, -1e9)\n    weights = F.softmax(scores, dim=-1)\n    return torch.matmul(weights, V), weights\n\n\n\n4.1.3 Multi-Head Attention\nfrom torch import nn\n\nclass MultiHeadAttention(nn.Module):\n    def __init__(self, d_model, num_heads):\n        super().__init__()\n        assert d_model % num_heads == 0\n        self.d_k = d_model // num_heads\n        self.num_heads = num_heads\n        \n        self.q_linear = nn.Linear(d_model, d_model)\n        self.k_linear = nn.Linear(d_model, d_model)\n        self.v_linear = nn.Linear(d_model, d_model)\n        self.out_linear = nn.Linear(d_model, d_model)\n\n    def forward(self, Q, K, V, mask=None):\n        batch_size = Q.size(0)\n        Q = self.q_linear(Q).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        K = self.k_linear(K).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        V = self.v_linear(V).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        attn_output, _ = scaled_dot_product_attention(Q, K, V, mask)\n        attn_output = attn_output.transpose(1,2).contiguous().view(batch_size, -1, self.num_heads * self.d_k)\n        return self.out_linear(attn_output)\n\n\n\n4.1.4 Positional Encoding\nimport math\n\nclass PositionalEncoding(nn.Module):\n    def __init__(self, d_model, max_len=5000):\n        super().__init__()\n        pe = torch.zeros(max_len, d_model)\n        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)\n        div_term = torch.exp(torch.arange(0, d_model, 2).float() * -(math.log(10000.0) / d_model))\n        pe[:, 0::2] = torch.sin(position * div_term)\n        pe[:, 1::2] = torch.cos(position * div_term)\n        pe = pe.unsqueeze(0)\n        self.register_buffer('pe', pe)\n\n    def forward(self, x):\n        x = x + self.pe[:, :x.size(1), :]\n        return x\n\n\n\n4.1.5 Feedforward Network\nclass PositionwiseFFN(nn.Module):\n    def __init__(self, d_model, d_ff, dropout=0.1):\n        super().__init__()\n        self.ffn = nn.Sequential(\n            nn.Linear(d_model, d_ff),\n            nn.ReLU(),\n            nn.Linear(d_ff, d_model),\n            nn.Dropout(dropout)\n        )\n\n    def forward(self, x):\n        return self.ffn(x)\n\n\n\n4.1.6 Residual Connections & Layer Norm\nclass SublayerConnection(nn.Module):\n    def __init__(self, d_model, dropout=0.1):\n        super().__init__()\n        self.norm = nn.LayerNorm(d_model)\n        self.dropout = nn.Dropout(dropout)\n\n    def forward(self, x, sublayer):\n        return x + self.dropout(sublayer(self.norm(x)))"
+  },
+  {
+    "objectID": "transformers.html#decoder",
+    "href": "transformers.html#decoder",
+    "title": "Transformers — A Deep Dive",
+    "section": "5 Decoder",
+    "text": "5 Decoder\nThe decoder is used for sequence generation.\nIt also consists of stacked layers with three components:\n\nMasked Multi-Head Self-Attention — only attends to past tokens.\n\nEncoder–Decoder Attention — attends to the encoder output.\n\nFeedforward + normalization + residuals\n\n\n\n5.1 Attention Mask for Decoder\ndef generate_square_subsequent_mask(sz):\n    mask = (torch.triu(torch.ones(sz, sz)) == 1).transpose(0, 1)\n    mask = mask.float().masked_fill(mask == 0, float('-inf')).masked_fill(mask == 1, float(0.0))\n    return mask\n\n\n\n5.2 Simplified Decoder Layer\nclass DecoderLayer(nn.Module):\n    def __init__(self, d_model, heads, d_ff, dropout=0.1):\n        super().__init__()\n        self.self_attn = MultiHeadAttention(d_model, heads)\n        self.cross_attn = MultiHeadAttention(d_model, heads)\n        self.ffn = PositionwiseFFN(d_model, d_ff, dropout)\n        self.norm1 = SublayerConnection(d_model, dropout)\n        self.norm2 = SublayerConnection(d_model, dropout)\n        self.norm3 = SublayerConnection(d_model, dropout)\n\n    def forward(self, x, memory, tgt_mask=None, memory_mask=None):\n        x = self.norm1(x, lambda x: self.self_attn(x, x, x, tgt_mask))\n        x = self.norm2(x, lambda x: self.cross_attn(x, memory, memory, memory_mask))\n        x = self.norm3(x, self.ffn)\n        return x"
   }
 ]
