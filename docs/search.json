@@ -613,7 +613,7 @@
     "href": "transformers.html#architecture-overview",
     "title": "Transformers — A Deep Dive",
     "section": "3 Architecture Overview",
-    "text": "3 Architecture Overview\nAt a high level:\n\nEncoder–Decoder (original transformer) — used in translation.\nEncoder-only (e.g., BERT) — for classification, masked language modeling.\nDecoder-only (e.g., GPT) — for autoregressive text generation.\n\nWe’ll break down the encoder and decoder below."
+    "text": "3 Architecture Overview\nAt a high level:\n\nEncoder–Decoder (original transformer) — used in translation.\nEncoder-only (e.g., BERT) — for classification, masked language modeling.\nDecoder-only (e.g., GPT) — for autoregressive text generation.\n\nAt the heart of these architectures is the self-attention mechanism, which enables each token to attend to all others in the sequence — a key innovation that we’ll explain shortly.\nWe’ll break down the encoder and decoder below."
   },
   {
     "objectID": "transformers.html#encoder",

@@ -284,7 +284,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<p>Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper Attention is All You Need, transformers replaced recurrent and convolutional architectures in many NLP tasks. They leverage a novel mechanism called self-attention, which enables better parallelization and more effective handling of long-range dependencies.</p>
+<p>Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper <em>Attention is All You Need</em>, transformers replaced recurrent and convolutional architectures in many NLP tasks. They leverage a novel mechanism called self-attention, which enables better parallelization and more effective handling of long-range dependencies.</p>
 </section>
 <section id="limitations-of-recurrent-neural-networks-rnns" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="limitations-of-recurrent-neural-networks-rnns"><span class="header-section-number">2</span> Limitations of Recurrent Neural Networks (RNNs)</h2>
@@ -323,6 +323,7 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 <li><strong>Encoder-only</strong> (e.g., BERT) — for classification, masked language modeling.</li>
 <li><strong>Decoder-only</strong> (e.g., GPT) — for autoregressive text generation.</li>
 </ul>
+<p>At the heart of these architectures is the <em>self-attention mechanism</em>, which enables each token to attend to all others in the sequence — a key innovation that we’ll explain shortly.</p>
 <p>We’ll break down the encoder and decoder below.</p>
 <hr>
 </section>
