@@ -9,7 +9,7 @@ Transformers are a neural network architecture designed for processing sequentia
 
 ## Issues with modeling long sequences 
 
-Before the advent of transformers, **Recurrent Neural Networks (RNNs)** were the dominant architecture for sequence modeling tasks, thanks to their ability to process sequences of variable length and maintain a memory of past inputs. In an RNN, the hidden state $h_t$ at time $t$ is computed based on the current input $x_t$ and the previous hidden state $h_{t-1}$.  
+Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state $h_t$ at time $t$ is computed based on the current input $x_t$ and the previous hidden state $h_{t-1}$.  
 This allows RNNs to process sequences by carrying information forward over time.
 
 The recurrence relation is typically written as:
@@ -19,14 +19,14 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 $$
 
 where:
-- $W_h$ is the weight matrix for the hidden state,
-- $W_x$ is the weight matrix for the input,
-- $b$ is the bias term,
-- and $\tanh$ is the activation function.
+- $W_h$ — weight matrix for the hidden state
+- $W_x$ — weight matrix for the input
+- $b$ — bias term
+- $\tanh$ — activation function
 
 The figure below shows a single RNN cell (left) and the unrolled RNN over multiple time steps (right).
 
-![RNN unrolled over time](images/rnn.png)
+![RNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.](images/rnn.png)
 
 However, RNNs suffer from:
 
