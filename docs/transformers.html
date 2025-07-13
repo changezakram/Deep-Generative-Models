@@ -294,7 +294,13 @@ This allows RNNs to process sequences by carrying information forward over time.
 <p><span class="math display">\[
 h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 \]</span></p>
-<p>where: - <span class="math inline">\(W_h\)</span> — weight matrix for the hidden state - <span class="math inline">\(W_x\)</span> — weight matrix for the input - <span class="math inline">\(b\)</span> — bias term - <span class="math inline">\(\tanh\)</span> — activation function</p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(W_h\)</span> — weight matrix for the hidden state</li>
+<li><span class="math inline">\(W_x\)</span> — weight matrix for the input</li>
+<li><span class="math inline">\(b\)</span> — bias term</li>
+<li><span class="math inline">\(\tanh\)</span> — activation function</li>
+</ul>
 <p>The figure below shows a single RNN cell (left) and the unrolled RNN over multiple time steps (right).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
