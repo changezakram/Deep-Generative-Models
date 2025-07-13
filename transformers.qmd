@@ -9,10 +9,7 @@ Transformers are a neural network architecture designed for processing sequentia
 
 ## Issues with modeling long sequences 
 
-Before the advent of transformers, **Recurrent Neural Networks (RNNs)** were the dominant architecture for sequence modeling tasks.  
-For over a decade, RNNs (and their variants like LSTMs and GRUs) were widely used in **language modeling, machine translation, and speech recognition**, thanks to their ability to process sequences of variable length and maintain a memory of past inputs.
-
-In an RNN, the hidden state $h_t$ at time $t$ is computed based on the current input $x_t$ and the previous hidden state $h_{t-1}$.  
+Before the advent of transformers, **Recurrent Neural Networks (RNNs)** were the dominant architecture for sequence modeling tasks, thanks to their ability to process sequences of variable length and maintain a memory of past inputs. In an RNN, the hidden state $h_t$ at time $t$ is computed based on the current input $x_t$ and the previous hidden state $h_{t-1}$.  
 This allows RNNs to process sequences by carrying information forward over time.
 
 The recurrence relation is typically written as:

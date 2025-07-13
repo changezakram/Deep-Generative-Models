@@ -288,9 +288,7 @@ window.Quarto = {
 </section>
 <section id="issues-with-modeling-long-sequences" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="issues-with-modeling-long-sequences"><span class="header-section-number">2</span> Issues with modeling long sequences</h2>
-<p>Before the advent of transformers, <strong>Recurrent Neural Networks (RNNs)</strong> were the dominant architecture for sequence modeling tasks.<br>
-For over a decade, RNNs (and their variants like LSTMs and GRUs) were widely used in <strong>language modeling, machine translation, and speech recognition</strong>, thanks to their ability to process sequences of variable length and maintain a memory of past inputs.</p>
-<p>In an RNN, the hidden state <span class="math inline">\(h_t\)</span> at time <span class="math inline">\(t\)</span> is computed based on the current input <span class="math inline">\(x_t\)</span> and the previous hidden state <span class="math inline">\(h_{t-1}\)</span>.<br>
+<p>Before the advent of transformers, <strong>Recurrent Neural Networks (RNNs)</strong> were the dominant architecture for sequence modeling tasks, thanks to their ability to process sequences of variable length and maintain a memory of past inputs. In an RNN, the hidden state <span class="math inline">\(h_t\)</span> at time <span class="math inline">\(t\)</span> is computed based on the current input <span class="math inline">\(x_t\)</span> and the previous hidden state <span class="math inline">\(h_{t-1}\)</span>.<br>
 This allows RNNs to process sequences by carrying information forward over time.</p>
 <p>The recurrence relation is typically written as:</p>
 <p><span class="math display">\[
