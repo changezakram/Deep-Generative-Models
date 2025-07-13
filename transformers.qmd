@@ -333,15 +333,6 @@ class DecoderLayer(nn.Module):
 
 ---
 
-## Future Directions
-
-- Efficient transformers (Linformer, Performer).
-- Sparse attention.
-- Better interpretability.
-- New domains beyond NLP & vision.
-
----
-
 ## References & Further Reading
 
 - *Attention is All You Need* — [arXiv:1706.03762](https://arxiv.org/abs/1706.03762)  
