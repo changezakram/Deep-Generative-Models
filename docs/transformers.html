@@ -290,7 +290,7 @@ window.Quarto = {
 <h2 data-number="2" class="anchored" data-anchor-id="limitations-of-recurrent-neural-networks-rnns"><span class="header-section-number">2</span> Limitations of Recurrent Neural Networks (RNNs)</h2>
 <p>Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state <span class="math inline">\(h_t\)</span> at time <span class="math inline">\(t\)</span> is computed based on the current input <span class="math inline">\(x_t\)</span> and the previous hidden state <span class="math inline">\(h_{t-1}\)</span>.<br>
 This allows RNNs to process sequences by carrying information forward over time.</p>
-<p>The recurrence relation is typically written as:</p>
+<p>The hidden state at time t can be computed recursively as:</p>
 <p><span class="math display">\[
 h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 \]</span></p>
@@ -299,7 +299,7 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/rnn.png" class="img-fluid figure-img"></p>
-<figcaption>RNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.</figcaption>
+<figcaption>Figure: RNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.</figcaption>
 </figure>
 </div>
 <p>However, RNNs suffer from:</p>
