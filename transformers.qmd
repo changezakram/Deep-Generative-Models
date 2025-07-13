@@ -70,9 +70,9 @@ The **encoder** consists of a stack of identical layers, each containing:
 
 At the heart of the transformer is the scaled dot-product attention mechanism, which allows the model to weigh the relevance of each token in the sequence when processing a given token. This enables the model to capture relationships between tokens regardless of their distance in the sequence.
 
-#### What is Attention?
+**What is Attention?**
 
-Each token is projected into three vectors:
+Each token is projected into three vectors:   
 - **Query ($Q$):** represents the token we’re focusing on.
 - **Key ($K$):** represents the tokens we compare against.
 - **Value ($V$):** represents the information we retrieve if the key is relevant.
@@ -84,30 +84,26 @@ $$
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right) V
 $$
 
-where:
+where:   
 - $Q$ is the matrix of query vectors, shape $[n \times d_k]$
 - $K$ is the matrix of key vectors, shape $[n \times d_k]$
 - $V$ is the matrix of value vectors, shape $[n \times d_v]$
 - $d_k$ is the dimension of the keys (used for scaling)
 
----
 
-#### Step-by-step Computation
+**Step-by-step Computation**
 
 The figure below illustrates the computation flow of scaled dot-product attention, including the dimensions of each variable at every stage:
 
 ![Figure: Attention — step-by-step computation, with variables, operations, and dimensions.](images/attention-diagram.png)
 
 
----
-
-#### Breakdown of the Steps
+** Breakdown of the Steps **
 
 **1: Input Representation:**  
 $$
 X = \text{Embedding}(X_{\text{tokens}}) + \text{PositionalEncoding}
 $$  
-$X: [n \times d_e]$
 
 **2: Linear Projections:**  
 $$
@@ -116,27 +112,26 @@ $$
 
 **3: Compute Similarity Scores:**  
 $$
-Q K^T: [n \times n]
+Q K^T
 $$
 
 **4: Scale the Scores:**  
 $$
-\frac{Q K^T}{\sqrt{d_k}}: [n \times n]
+\frac{Q K^T}{\sqrt{d_k}}
 $$
 
 **5: Softmax to get Attention Weights:**  
 $$
-\text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right): [n \times n]
+\text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right)
 $$
 
 **6: Weighted Sum:**  
 $$
-\text{Attention Weights} \cdot V: [n \times d_v]
+\text{Attention Weights} \cdot V
 $$
 
----
 
-#### Why is Attention Powerful?
+** Why is Attention Powerful?**
 
 - Captures long-range dependencies.  
 - Learns which tokens are most relevant to each other.  
