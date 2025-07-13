@@ -247,7 +247,7 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#issues-with-modeling-long-sequences" id="toc-issues-with-modeling-long-sequences" class="nav-link" data-scroll-target="#issues-with-modeling-long-sequences"><span class="header-section-number">2</span> Issues with modeling long sequences</a></li>
+  <li><a href="#limitations-of-recurrent-neural-networks-rnns" id="toc-limitations-of-recurrent-neural-networks-rnns" class="nav-link" data-scroll-target="#limitations-of-recurrent-neural-networks-rnns"><span class="header-section-number">2</span> Limitations of Recurrent Neural Networks (RNNs)</a></li>
   <li><a href="#architecture-overview" id="toc-architecture-overview" class="nav-link" data-scroll-target="#architecture-overview"><span class="header-section-number">3</span> Architecture Overview</a></li>
   <li><a href="#encoder" id="toc-encoder" class="nav-link" data-scroll-target="#encoder"><span class="header-section-number">4</span> Encoder</a></li>
   <li><a href="#decoder" id="toc-decoder" class="nav-link" data-scroll-target="#decoder"><span class="header-section-number">5</span> Decoder</a></li>
@@ -286,8 +286,8 @@ window.Quarto = {
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper <em>Attention is All You Need</em>, they replaced recurrent and convolutional architectures in many NLP tasks by leveraging a novel mechanism called <strong>self-attention</strong>. They enable better parallelization and handle long-range dependencies more effectively.</p>
 </section>
-<section id="issues-with-modeling-long-sequences" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="issues-with-modeling-long-sequences"><span class="header-section-number">2</span> Issues with modeling long sequences</h2>
+<section id="limitations-of-recurrent-neural-networks-rnns" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="limitations-of-recurrent-neural-networks-rnns"><span class="header-section-number">2</span> Limitations of Recurrent Neural Networks (RNNs)</h2>
 <p>Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state <span class="math inline">\(h_t\)</span> at time <span class="math inline">\(t\)</span> is computed based on the current input <span class="math inline">\(x_t\)</span> and the previous hidden state <span class="math inline">\(h_{t-1}\)</span>.<br>
 This allows RNNs to process sequences by carrying information forward over time.</p>
 <p>The recurrence relation is typically written as:</p>

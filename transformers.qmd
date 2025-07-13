@@ -7,7 +7,7 @@ format: html
 
 Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper *Attention is All You Need*, they replaced recurrent and convolutional architectures in many NLP tasks by leveraging a novel mechanism called **self-attention**. They enable better parallelization and handle long-range dependencies more effectively.
 
-## Issues with modeling long sequences 
+## Limitations of Recurrent Neural Networks (RNNs)
 
 Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state $h_t$ at time $t$ is computed based on the current input $x_t$ and the previous hidden state $h_{t-1}$.  
 This allows RNNs to process sequences by carrying information forward over time.
