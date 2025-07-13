@@ -5,23 +5,42 @@ format: html
 
 ## Introduction
 
-Transformers are a neural network architecture designed for processing sequential data.  
-Introduced in the 2017 paper *Attention is All You Need*, they replaced recurrent and convolutional architectures in many NLP tasks by leveraging a novel mechanism called **self-attention**.  
-They enable better parallelization and handle long-range dependencies more effectively.
+Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper *Attention is All You Need*, they replaced recurrent and convolutional architectures in many NLP tasks by leveraging a novel mechanism called **self-attention**. They enable better parallelization and handle long-range dependencies more effectively.
 
-## Background and Motivation
+## Issues with modeling long sequences 
 
-### Why not RNNs/LSTMs?
+Before the advent of transformers, **Recurrent Neural Networks (RNNs)** were the dominant architecture for sequence modeling tasks.  
+For over a decade, RNNs (and their variants like LSTMs and GRUs) were widely used in **language modeling, machine translation, and speech recognition**, thanks to their ability to process sequences of variable length and maintain a memory of past inputs.
 
-- RNNs process tokens sequentially, which is slow.
-- They struggle to remember information over long sequences (vanishing gradients).
-- CNNs capture local patterns but have limited context.
+In an RNN, the hidden state $h_t$ at time $t$ is computed based on the current input $x_t$ and the previous hidden state $h_{t-1}$.  
+This allows RNNs to process sequences by carrying information forward over time.
 
-Transformers solve these issues with **self-attention**, which can relate all tokens to each other directly and is fully parallelizable.
+The recurrence relation is typically written as:
+
+$$
+h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
+$$
+
+where:
+- $W_h$ is the weight matrix for the hidden state,
+- $W_x$ is the weight matrix for the input,
+- $b$ is the bias term,
+- and $\tanh$ is the activation function.
+
+The figure below shows a single RNN cell (left) and the unrolled RNN over multiple time steps (right).
+
+![RNN unrolled over time](images/rnn.png)
+
+However, RNNs suffer from:
+- **Sequential computation**: Cannot fully parallelize processing of sequences.
+- **Vanishing/exploding gradients**: Gradients through many time steps can vanish or blow up, making it difficult to learn long-term dependencies.
+
+---
 
 ## Architecture Overview
 
 At a high level:
+
 - **Encoder–Decoder** (original transformer) — used in translation.
 - **Encoder-only** (e.g., BERT) — for classification, masked language modeling.
 - **Decoder-only** (e.g., GPT) — for autoregressive text generation.
@@ -46,6 +65,7 @@ The **encoder** consists of a stack of identical layers, each containing:
 #### Attention Mechanism
 
 Each token generates a:
+
 - **Query (Q)** — what we’re looking for.
 - **Key (K)** — what each token offers.
 - **Value (V)** — information to pass along.
@@ -234,11 +254,13 @@ class DecoderLayer(nn.Module):
 ## Strengths and Limitations
 
 **Pros**:
+
 - Captures long dependencies.
 - Parallelizable.
 - State-of-the-art results.
 
 **Cons**:
+
 - Requires huge compute resources.
 - Data-hungry.
 - Less interpretable.
