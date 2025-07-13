@@ -56,4 +56,4 @@ format:
     html-math-method: mathjax
 
 resources:
-  - images
+  - images/**
