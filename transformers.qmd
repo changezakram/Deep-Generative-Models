@@ -73,6 +73,7 @@ At the heart of the transformer is the scaled dot-product attention mechanism, w
 **What is Attention?**
 
 Each token is projected into three vectors:   
+
 - **Query ($Q$):** represents the token we’re focusing on.
 - **Key ($K$):** represents the tokens we compare against.
 - **Value ($V$):** represents the information we retrieve if the key is relevant.
@@ -85,6 +86,7 @@ $$
 $$
 
 where:     
+
 - $Q$ is the matrix of query vectors, shape $[n \times d_k]$
 - $K$ is the matrix of key vectors, shape $[n \times d_k]$
 - $V$ is the matrix of value vectors, shape $[n \times d_v]$
@@ -100,32 +102,32 @@ The figure below illustrates the computation flow of scaled dot-product attentio
 
 **Breakdown of the Steps**
 
-**1: Input Representation:**  
+1: Input Representation:
 $$
 X = \text{Embedding}(X_{\text{tokens}}) + \text{PositionalEncoding}
 $$  
 
-**2: Linear Projections:**  
+2: Linear Projections: 
 $$
 Q = X W_q, \quad K = X W_k, \quad V = X W_v
 $$
 
-**3: Compute Similarity Scores:**  
+3: Compute Similarity Scores:
 $$
 Q K^T
 $$
 
-**4: Scale the Scores:**  
+4: Scale the Scores:  
 $$
 \frac{Q K^T}{\sqrt{d_k}}
 $$
 
-**5: Softmax to get Attention Weights:**  
+5: Softmax to get Attention Weights:
 $$
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right)
 $$
 
-**6: Weighted Sum:**  
+6: Weighted Sum: 
 $$
 \text{Attention Weights} \cdot V
 $$

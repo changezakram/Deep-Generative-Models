@@ -352,15 +352,24 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 <h4 data-number="4.1.1" class="anchored" data-anchor-id="attention-mechanism"><span class="header-section-number">4.1.1</span> Attention Mechanism</h4>
 <p>At the heart of the transformer is the scaled dot-product attention mechanism, which allows the model to weigh the relevance of each token in the sequence when processing a given token. This enables the model to capture relationships between tokens regardless of their distance in the sequence.</p>
 <p><strong>What is Attention?</strong></p>
-<p>Each token is projected into three vectors:<br>
-- <strong>Query (<span class="math inline">\(Q\)</span>):</strong> represents the token we’re focusing on. - <strong>Key (<span class="math inline">\(K\)</span>):</strong> represents the tokens we compare against. - <strong>Value (<span class="math inline">\(V\)</span>):</strong> represents the information we retrieve if the key is relevant.</p>
+<p>Each token is projected into three vectors:</p>
+<ul>
+<li><strong>Query (<span class="math inline">\(Q\)</span>):</strong> represents the token we’re focusing on.</li>
+<li><strong>Key (<span class="math inline">\(K\)</span>):</strong> represents the tokens we compare against.</li>
+<li><strong>Value (<span class="math inline">\(V\)</span>):</strong> represents the information we retrieve if the key is relevant.</li>
+</ul>
 <p>For a given query <span class="math inline">\(Q\)</span>, the attention weights over all keys <span class="math inline">\(K\)</span> are computed by taking the dot product of <span class="math inline">\(Q\)</span> with <span class="math inline">\(K\)</span>, scaling, and passing through a softmax:</p>
 <p><span class="math display">\[
 \text{Attention}(Q, K, V) =
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right) V
 \]</span></p>
-<p>where:<br>
-- <span class="math inline">\(Q\)</span> is the matrix of query vectors, shape <span class="math inline">\([n \times d_k]\)</span> - <span class="math inline">\(K\)</span> is the matrix of key vectors, shape <span class="math inline">\([n \times d_k]\)</span> - <span class="math inline">\(V\)</span> is the matrix of value vectors, shape <span class="math inline">\([n \times d_v]\)</span> - <span class="math inline">\(d_k\)</span> is the dimension of the keys (used for scaling)</p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(Q\)</span> is the matrix of query vectors, shape <span class="math inline">\([n \times d_k]\)</span></li>
+<li><span class="math inline">\(K\)</span> is the matrix of key vectors, shape <span class="math inline">\([n \times d_k]\)</span></li>
+<li><span class="math inline">\(V\)</span> is the matrix of value vectors, shape <span class="math inline">\([n \times d_v]\)</span></li>
+<li><span class="math inline">\(d_k\)</span> is the dimension of the keys (used for scaling)</li>
+</ul>
 <p><strong>Step-by-step Computation</strong></p>
 <p>The figure below illustrates the computation flow of scaled dot-product attention, including the dimensions of each variable at every stage:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -370,28 +379,23 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 </figure>
 </div>
 <p><strong>Breakdown of the Steps</strong></p>
-<p><strong>1: Input Representation:</strong><br>
-<span class="math display">\[
+<p>1: Input Representation: <span class="math display">\[
 X = \text{Embedding}(X_{\text{tokens}}) + \text{PositionalEncoding}
 \]</span></p>
-<p><strong>2: Linear Projections:</strong><br>
-<span class="math display">\[
+<p>2: Linear Projections: <span class="math display">\[
 Q = X W_q, \quad K = X W_k, \quad V = X W_v
 \]</span></p>
-<p><strong>3: Compute Similarity Scores:</strong><br>
-<span class="math display">\[
+<p>3: Compute Similarity Scores: <span class="math display">\[
 Q K^T
 \]</span></p>
-<p><strong>4: Scale the Scores:</strong><br>
+<p>4: Scale the Scores:<br>
 <span class="math display">\[
 \frac{Q K^T}{\sqrt{d_k}}
 \]</span></p>
-<p><strong>5: Softmax to get Attention Weights:</strong><br>
-<span class="math display">\[
+<p>5: Softmax to get Attention Weights: <span class="math display">\[
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right)
 \]</span></p>
-<p><strong>6: Weighted Sum:</strong><br>
-<span class="math display">\[
+<p>6: Weighted Sum: <span class="math display">\[
 \text{Attention Weights} \cdot V
 \]</span></p>
 <p><strong>Why is Attention Powerful?</strong></p>
