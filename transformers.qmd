@@ -98,7 +98,7 @@ The figure below illustrates the computation flow of scaled dot-product attentio
 ![Figure: Attention — step-by-step computation, with variables, operations, and dimensions.](images/attention-diagram.png)
 
 
-** Breakdown of the Steps **
+**Breakdown of the Steps**
 
 **1: Input Representation:**  
 $$
@@ -131,7 +131,7 @@ $$
 $$
 
 
-** Why is Attention Powerful?**
+**Why is Attention Powerful?**
 
 - Captures long-range dependencies.  
 - Learns which tokens are most relevant to each other.  
