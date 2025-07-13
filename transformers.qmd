@@ -84,7 +84,7 @@ $$
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right) V
 $$
 
-where:   
+where:     
 - $Q$ is the matrix of query vectors, shape $[n \times d_k]$
 - $K$ is the matrix of key vectors, shape $[n \times d_k]$
 - $V$ is the matrix of value vectors, shape $[n \times d_v]$
@@ -134,8 +134,8 @@ $$
 **Why is Attention Powerful?**
 
 - Captures long-range dependencies.  
-- Learns which tokens are most relevant to each other.  
-- Fully parallelizable since it operates on the entire sequence at once.
+- Learns which tokens are most relevant to each other.   
+- Fully parallelizable since it operates on the entire sequence at once.  
 
 ---
 
