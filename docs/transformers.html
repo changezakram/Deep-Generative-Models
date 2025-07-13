@@ -302,7 +302,11 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 <figcaption>RNN unrolled over time</figcaption>
 </figure>
 </div>
-<p>However, RNNs suffer from: - <strong>Sequential computation</strong>: Cannot fully parallelize processing of sequences. - <strong>Vanishing/exploding gradients</strong>: Gradients through many time steps can vanish or blow up, making it difficult to learn long-term dependencies.</p>
+<p>However, RNNs suffer from:</p>
+<ul>
+<li><strong>Sequential computation</strong>: Cannot fully parallelize processing of sequences.</li>
+<li><strong>Vanishing/exploding gradients</strong>: Gradients through many time steps can vanish or blow up, making it difficult to learn long-term dependencies.</li>
+</ul>
 <hr>
 </section>
 <section id="architecture-overview" class="level2" data-number="3">

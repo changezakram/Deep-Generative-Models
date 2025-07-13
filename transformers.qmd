@@ -29,6 +29,7 @@ The figure below shows a single RNN cell (left) and the unrolled RNN over multip
 ![RNN unrolled over time](images/rnn.png)
 
 However, RNNs suffer from:
+
 - **Sequential computation**: Cannot fully parallelize processing of sequences.
 - **Vanishing/exploding gradients**: Gradients through many time steps can vanish or blow up, making it difficult to learn long-term dependencies.
 
