@@ -360,17 +360,21 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 <section id="input-representation" class="level4" data-number="4.1.1">
 <h4 data-number="4.1.1" class="anchored" data-anchor-id="input-representation"><span class="header-section-number">4.1.1</span> Input Representation</h4>
 <p>Before the attention mechanism can work, each input token is mapped to a continuous vector representation and enriched with positional information.</p>
-<p><strong>Token Embedding</strong> Each token in the sequence is mapped to a fixed-dimensional vector using an embedding matrix: <span class="math display">\[
-X_\text{tokens} \in \mathbb{R}^{n \times d_e}
+<p><strong>Token Embedding</strong></p>
+<p>We start with a sequence of token indices:<br>
+<span class="math display">\[
+T \in \{1, \dots, V\}^n
+\]</span> where <span class="math inline">\(n\)</span> is the sequence length and <span class="math inline">\(V\)</span> is the vocabulary size.</p>
+<p>These indices are mapped to continuous vectors using a learnable embedding matrix <span class="math inline">\(E \in \mathbb{R}^{V \times d_e}\)</span>:<br>
+<span class="math display">\[
+X_\text{tokens} = E[T] \in \mathbb{R}^{n \times d_e}
 \]</span></p>
-<p>where:</p>
-<ul>
-<li><span class="math inline">\(n\)</span> = number of tokens in the sequence</li>
-<li><span class="math inline">\(d_e\)</span> = embedding dimension</li>
-</ul>
-<p><strong>Positional Encoding</strong> Since attention is permutation-invariant and does not capture token order by itself, we add <strong>positional encoding</strong> to the embeddings: <span class="math display">\[
-X = \text{Embedding}(X_\text{tokens}) + \text{PositionalEncoding}
+<p><strong>Positional Encoding</strong></p>
+<p>Since the attention mechanism does not account for the order of tokens, we add positional encoding to the embeddings:<br>
+<span class="math display">\[
+X = X_\text{tokens} + \text{PositionalEncoding}
 \]</span></p>
+<p>where <span class="math inline">\(X\)</span> is the final input to the transformer encoder.</p>
 <p>This ensures the model is aware of the relative and absolute position of each token in the sequence.</p>
 <p>Typically, positional encoding can be:</p>
 <ul>

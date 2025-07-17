@@ -78,21 +78,26 @@ The **encoder** consists of a stack of identical layers, each containing:
 Before the attention mechanism can work, each input token is mapped to a continuous vector representation and enriched with positional information.
 
 **Token Embedding**
-Each token in the sequence is mapped to a fixed-dimensional vector using an embedding matrix:
-$$
-X_\text{tokens} \in \mathbb{R}^{n \times d_e}
-$$
 
-where:
+We start with a sequence of token indices:  
+$$
+T \in \{1, \dots, V\}^n
+$$
+where $n$ is the sequence length and $V$ is the vocabulary size.
 
-- $n$ = number of tokens in the sequence
-- $d_e$ = embedding dimension
+These indices are mapped to continuous vectors using a learnable embedding matrix $E \in \mathbb{R}^{V \times d_e}$:  
+$$
+X_\text{tokens} = E[T] \in \mathbb{R}^{n \times d_e}
+$$
 
 **Positional Encoding**
-Since attention is permutation-invariant and does not capture token order by itself, we add **positional encoding** to the embeddings:
+
+Since the attention mechanism does not account for the order of tokens, we add positional encoding to the embeddings:  
 $$
-X = \text{Embedding}(X_\text{tokens}) + \text{PositionalEncoding}
+X = X_\text{tokens} + \text{PositionalEncoding}
 $$
+
+where $X$ is the final input to the transformer encoder.
 
 This ensures the model is aware of the relative and absolute position of each token in the sequence.
 
