@@ -162,6 +162,12 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 
 While a single attention head can focus on certain aspects of the input sequence, it may miss other patterns. The multi-head attention (MHA) mechanism allows the model to attend to information from multiple representation subspaces at different positions simultaneously. This helps the transformer to capture more nuanced patterns in the input sequence.
 
+The figure below shows how multiple independent attention heads are computed in parallel, concatenated, and linearly transformed to produce the final output of the multi-head attention layer.
+
+![Figure: Multi-Head Attention — four parallel heads, concatenated and projected by $W_o$ to form the final output.](images/multi-head-attention.png)
+
+
+
 **What is Multi-Head Attention?**
 
 Instead of computing a single set of $Q$, $K$, $V$, the model projects the input into $h$ different sets of $Q$, $K$, $V$, called *heads*.  
