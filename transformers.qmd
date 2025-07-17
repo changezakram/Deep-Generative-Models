@@ -170,8 +170,7 @@ The figure below shows how multiple independent attention heads are computed in 
 
 **What is Multi-Head Attention?**
 
-Instead of computing a single set of $Q$, $K$, $V$, the model projects the input into $h$ different sets of $Q$, $K$, $V$, called *heads*.  
-Each head performs scaled dot-product attention independently, and their outputs are concatenated and linearly transformed.
+Instead of computing a single set of $Q$, $K$, $V$, the model projects the input into $h$ different sets of $Q$, $K$, $V$, called *heads*. Each head performs scaled dot-product attention independently, and their outputs are concatenated and linearly transformed.
 
 
 For head $i$:
