@@ -602,18 +602,18 @@
     "text": "Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper Attention is All You Need, transformers replaced recurrent and convolutional architectures in many NLP tasks. They leverage a novel mechanism called self-attention, which enables better parallelization and more effective handling of long-range dependencies.\n\n\n\nFigure: High-level schematic of the Transformer architecture (Vaswani et al., 2017, Attention Is All You Need)."
   },
   {
-    "objectID": "transformers.html#background-and-motivation",
-    "href": "transformers.html#background-and-motivation",
+    "objectID": "transformers.html#limitations-of-recurrent-neural-networks-rnns",
+    "href": "transformers.html#limitations-of-recurrent-neural-networks-rnns",
     "title": "Transformers — A Deep Dive",
-    "section": "2 Background and Motivation",
-    "text": "2 Background and Motivation\n\n2.1 Why not RNNs/LSTMs?\n\nRNNs process tokens sequentially, which is slow.\nThey struggle to remember information over long sequences (vanishing gradients).\nCNNs capture local patterns but have limited context.\n\nTransformers solve these issues with self-attention, which can relate all tokens to each other directly and is fully parallelizable."
+    "section": "2 Limitations of Recurrent Neural Networks (RNNs)",
+    "text": "2 Limitations of Recurrent Neural Networks (RNNs)\nBefore the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state \\(h_t\\) at time \\(t\\) is computed based on the current input \\(x_t\\) and the previous hidden state \\(h_{t-1}\\).\nThis allows RNNs to process sequences by carrying information forward over time.\nThe hidden state at time t can be computed recursively as:\n\\[\nh_t = \\tanh(W_h h_{t-1} + W_x x_t + b)\n\\]\nwhere:\n\n\\(W_h\\) — weight matrix for the hidden state\n\\(W_x\\) — weight matrix for the input\n\\(b\\) — bias term\n\\(\\tanh\\) — activation function\n\nThe figure below shows a single RNN cell (left) and the unrolled RNN over multiple time steps (right).\n\n\n\nFigure: RNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.\n\n\nHowever, RNNs suffer from:\n\nSequential computation: Cannot fully parallelize processing of sequences.\nVanishing/exploding gradients: Gradients through many time steps can vanish or blow up, making it difficult to learn long-term dependencies."
   },
   {
     "objectID": "transformers.html#architecture-overview",
     "href": "transformers.html#architecture-overview",
     "title": "Transformers — A Deep Dive",
     "section": "3 Architecture Overview",
-    "text": "3 Architecture Overview\nAt a high level:\n\nEncoder–Decoder (original transformer) — used in translation.\nEncoder-only (e.g., BERT) — for classification, masked language modeling.\nDecoder-only (e.g., GPT) — for autoregressive text generation.\n\nAt the heart of these architectures is the self-attention mechanism, which enables each token to attend to all others in the sequence — a key innovation that we’ll explain shortly.\nWe’ll break down the encoder and decoder below."
+    "text": "3 Architecture Overview\nAt a high level:\n\nEncoder–Decoder (original transformer) — used in translation.\nEncoder-only (e.g., BERT) — for classification, masked language modeling.\nDecoder-only (e.g., GPT) — for autoregressive text generation.\n\nAt the heart of these architectures is the self-attention mechanism, which enables each token to attend to all others in the sequence — a key innovation that we’ll explain shortly.\nWe’ll break down the encoder and decoder below.\n\n3.1 Key Variables\nThe following table summarizes the notations, shapes, and meanings of the variables that will appear throughout the Encoder and Attention sections.\n\n\n\nNotation Table"
   },
   {
     "objectID": "transformers.html#encoder",
@@ -656,13 +656,6 @@
     "title": "Transformers — A Deep Dive",
     "section": "9 Strengths and Limitations",
     "text": "9 Strengths and Limitations\nPros:\n\nCaptures long dependencies.\nParallelizable.\nState-of-the-art results.\n\nCons:\n\nRequires huge compute resources.\nData-hungry.\nLess interpretable."
-  },
-  {
-    "objectID": "transformers.html#future-directions",
-    "href": "transformers.html#future-directions",
-    "title": "Transformers — A Deep Dive",
-    "section": "10 Future Directions",
-    "text": "10 Future Directions\n\nEfficient transformers (Linformer, Performer).\nSparse attention.\nBetter interpretability.\nNew domains beyond NLP & vision."
   },
   {
     "objectID": "transformers.html#references-further-reading",
@@ -775,19 +768,5 @@
     "title": "Generative AI Use Cases in Healthcare",
     "section": "5 📚 References",
     "text": "5 📚 References\n[1] Microsoft Nuance. Move beyond scribes to automatically document care https://www.nuance.com/content/dam/nuance/en_us/collateral/healthcare/infographic/ig-move-beyond-scribes-to-automatically-document-care-en-us.pdf\n[2] MIT CSAIL News. Using AI to improve early breast cancer detection. https://www.csail.mit.edu/news/using-artificial-intelligence-improve-early-breast-cancer-detection\n[3] Liu et al. (2021). Artificial intelligence system reduces false-positive findings in the interpretation of breast ultrasound exams. https://pmc.ncbi.nlm.nih.gov/articles/PMC8463596/pdf/41467_2021_Article_26023.pdf\n[4] De Fauw et al. (2024). EyeDiff: text-to-image diffusion model improves rare eye disease diagnosis. https://arxiv.org/abs/2411.10004\n[5] Insilico Medicine. First Generative AI Drug Begins Phase II Trials with Patients. https://insilico.com/blog/first_phase2\n[6] The Pharmaceutical Journal. How AI is transforming drug discovery. https://pharmaceutical-journal.com/article/feature/how-ai-is-transforming-drug-discovery\n[7] Mayo Clinic. AI Improves Patient Experience. https://mayomagazine.mayoclinic.org/2025/04/ai-improves-patient-experience/\n[8] Ada Health. Improving patient pathways with AI. https://about.ada.com/improving-patient-pathways-with-ada-digital-triage/\n[9] UC San Diego Health. Study Reveals AI Enhances Physician-Patient Communication. https://health.ucsd.edu/news/press-releases/2024-04-15-study-reveals-ai-enhances-physician-patient-communication/\n[10] Google Cloud. MedLM: Foundation Models for Healthcare. https://cloud.google.com/blog/topics/healthcare-life-sciences/introducing-medlm-for-the-healthcare-industry\n[11] Christus Health reduces cognitive load on clinicians by 78% with Abridge. https://www.abridge.com/press-release/christus-health-announcement\n[12] U.S. FDA. Artificial Intelligence and Machine Learning Software as a Medical Device Action Plan. https://www.fda.gov/media/145022/download\n[13] European Commission. Ethics Guidelines for Trustworthy AI. https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai\n[14] Obermeyer Z, Powers B, Vogeli C, Mullainathan S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. Science. https://www.science.org/doi/10.1126/science.aax2342\n[15] World Health Organization. Ethics and Governance of Artificial Intelligence for Health. https://www.who.int/publications/i/item/9789240029200\n[16] Momani A. Implications of Artificial Intelligence on Health Data Privacy and Confidentiality. arXiv, January 2025. https://arxiv.org/abs/2501.01639\n[17] Stanford HAI. On the Opportunities and Risks of Foundation Models. https://crfm.stanford.edu/report.html\n[18] U.S. FDA. Artificial Intelligence and Machine Learning Discussion Paper. https://www.fda.gov/files/medical%20devices/published/US-FDA-Artificial-Intelligence-and-Machine-Learning-Discussion-Paper.pdf\n[19] JAMA. Artificial Intelligence in Health Care: Anticipating Challenges to Ethics, Privacy, and Bias. https://jamanetwork.com/journals/jama/fullarticle/2765681"
-  },
-  {
-    "objectID": "transformers.html#issues-with-modeling-long-sequences",
-    "href": "transformers.html#issues-with-modeling-long-sequences",
-    "title": "Transformers — A Deep Dive",
-    "section": "2 Issues with modeling long sequences",
-    "text": "2 Issues with modeling long sequences\nBefore the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state \\(h_t\\) at time \\(t\\) is computed based on the current input \\(x_t\\) and the previous hidden state \\(h_{t-1}\\).\nThis allows RNNs to process sequences by carrying information forward over time.\nThe recurrence relation is typically written as:\n\\[\nh_t = \\tanh(W_h h_{t-1} + W_x x_t + b)\n\\]\nwhere: - \\(W_h\\) — weight matrix for the hidden state - \\(W_x\\) — weight matrix for the input - \\(b\\) — bias term - \\(\\tanh\\) — activation function\nThe figure below shows a single RNN cell (left) and the unrolled RNN over multiple time steps (right).\n\n\n\nRNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.\n\n\nHowever, RNNs suffer from:\n\nSequential computation: Cannot fully parallelize processing of sequences.\nVanishing/exploding gradients: Gradients through many time steps can vanish or blow up, making it difficult to learn long-term dependencies."
-  },
-  {
-    "objectID": "transformers.html#limitations-of-recurrent-neural-networks-rnns",
-    "href": "transformers.html#limitations-of-recurrent-neural-networks-rnns",
-    "title": "Transformers — A Deep Dive",
-    "section": "2 Limitations of Recurrent Neural Networks (RNNs)",
-    "text": "2 Limitations of Recurrent Neural Networks (RNNs)\nBefore the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state \\(h_t\\) at time \\(t\\) is computed based on the current input \\(x_t\\) and the previous hidden state \\(h_{t-1}\\).\nThis allows RNNs to process sequences by carrying information forward over time.\nThe hidden state at time t can be computed recursively as:\n\\[\nh_t = \\tanh(W_h h_{t-1} + W_x x_t + b)\n\\]\nwhere:\n\n\\(W_h\\) — weight matrix for the hidden state\n\\(W_x\\) — weight matrix for the input\n\\(b\\) — bias term\n\\(\\tanh\\) — activation function\n\nThe figure below shows a single RNN cell (left) and the unrolled RNN over multiple time steps (right).\n\n\n\nFigure: RNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.\n\n\nHowever, RNNs suffer from:\n\nSequential computation: Cannot fully parallelize processing of sequences.\nVanishing/exploding gradients: Gradients through many time steps can vanish or blow up, making it difficult to learn long-term dependencies."
   }
 ]

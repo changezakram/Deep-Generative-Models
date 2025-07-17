@@ -330,7 +330,17 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 </ul>
 <p>At the heart of these architectures is the <em>self-attention mechanism</em>, which enables each token to attend to all others in the sequence — a key innovation that we’ll explain shortly.</p>
 <p>We’ll break down the encoder and decoder below.</p>
+<section id="key-variables" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="key-variables"><span class="header-section-number">3.1</span> Key Variables</h3>
+<p>The following table summarizes the notations, shapes, and meanings of the variables that will appear throughout the Encoder and Attention sections.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/notations.png" class="img-fluid figure-img"></p>
+<figcaption>Notation Table</figcaption>
+</figure>
+</div>
 <hr>
+</section>
 </section>
 <section id="encoder" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="encoder"><span class="header-section-number">4</span> Encoder</h2>
