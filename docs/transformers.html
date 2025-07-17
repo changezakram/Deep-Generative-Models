@@ -387,7 +387,7 @@ To address this, we add a <strong>position vector</strong> <span class="math inl
 <li><span class="math inline">\(\tilde{x}_i\)</span> — position-aware embedding passed to the model</li>
 </ul>
 <p>Following are two approaches to Positional Encoding:</p>
-<p><strong>1: Sinusoidal Positional Encoding</strong></p>
+<p><strong>(A) Sinusoidal Positional Encoding</strong></p>
 <p>In the original Transformer paper, <span class="math inline">\(p_i\)</span> is defined using sinusoidal functions of varying frequencies:</p>
 <p><span class="math display">\[
 p_i =
@@ -408,7 +408,7 @@ p_i =
 <li>Limited extrapolation in practice.</li>
 </ul></li>
 </ul>
-<p><strong>2: Learned Positional Encoding</strong></p>
+<p><strong>(B) Learned Positional Encoding</strong></p>
 <p>An alternative is to treat <span class="math inline">\(p_i\)</span> as a learnable parameter:<br>
 We define a matrix <span class="math inline">\(P \in \mathbb{R}^{d_e \times n}\)</span>, where each <span class="math inline">\(p_i\)</span> is a column of <span class="math inline">\(P\)</span>.</p>
 <p><span class="math display">\[
