@@ -160,6 +160,50 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 
 #### Multi-Head Attention
 
+While a single attention head can focus on certain aspects of the input sequence, it may miss other patterns. The multi-head attention (MHA) mechanism allows the model to attend to information from multiple representation subspaces at different positions simultaneously. This helps the transformer to capture more nuanced patterns in the input sequence.
+
+**What is Multi-Head Attention?**
+
+Instead of computing a single set of $Q$, $K$, $V$, the model projects the input into $h$ different sets of $Q$, $K$, $V$, called *heads*.  
+Each head performs scaled dot-product attention independently, and their outputs are concatenated and linearly transformed.
+
+
+For head $i$:
+$$
+\text{head}_i = \text{Attention}(Q_i, K_i, V_i) =
+\text{softmax} \left( \frac{Q_i K_i^T}{\sqrt{d_k}} \right) V_i
+$$
+
+where:
+- $Q_i = X W_q^{(i)}$
+- $K_i = X W_k^{(i)}$
+- $V_i = X W_v^{(i)}$
+
+Here, $W_q^{(i)}, W_k^{(i)}, W_v^{(i)}$ are separate learnable weights for each head.
+
+
+**Combining the Heads**
+
+The outputs of all $h$ heads are concatenated along the feature dimension and projected back into $d_e$ dimensions:
+$$
+\text{MultiHead}(Q, K, V) =
+\text{Concat}(\text{head}_1, \dots, \text{head}_h) W_o
+$$
+
+where $W_o$ is a learnable weight matrix of shape $[h \cdot d_v \times d_e]$.
+
+**Why Multi-Head Attention?**
+
+- Allows the model to jointly attend to information from different representation subspaces.  
+- Provides richer and more diverse attention patterns.  
+- Empirically improves performance compared to a single head.
+
+
+
+
+
+
+
 ```python
 from torch import nn
 

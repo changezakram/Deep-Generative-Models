@@ -423,6 +423,30 @@ Q K^T
 </section>
 <section id="multi-head-attention" class="level4" data-number="4.1.3">
 <h4 data-number="4.1.3" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">4.1.3</span> Multi-Head Attention</h4>
+<p>While a single attention head can focus on certain aspects of the input sequence, it may miss other patterns. The multi-head attention (MHA) mechanism allows the model to attend to information from multiple representation subspaces at different positions simultaneously. This helps the transformer to capture more nuanced patterns in the input sequence.</p>
+<p><strong>What is Multi-Head Attention?</strong></p>
+<p>Instead of computing a single set of <span class="math inline">\(Q\)</span>, <span class="math inline">\(K\)</span>, <span class="math inline">\(V\)</span>, the model projects the input into <span class="math inline">\(h\)</span> different sets of <span class="math inline">\(Q\)</span>, <span class="math inline">\(K\)</span>, <span class="math inline">\(V\)</span>, called <em>heads</em>.<br>
+Each head performs scaled dot-product attention independently, and their outputs are concatenated and linearly transformed.</p>
+<p>For head <span class="math inline">\(i\)</span>: <span class="math display">\[
+\text{head}_i = \text{Attention}(Q_i, K_i, V_i) =
+\text{softmax} \left( \frac{Q_i K_i^T}{\sqrt{d_k}} \right) V_i
+\]</span></p>
+<p>where: - <span class="math inline">\(Q_i = X W_q^{(i)}\)</span> - <span class="math inline">\(K_i = X W_k^{(i)}\)</span> - <span class="math inline">\(V_i = X W_v^{(i)}\)</span></p>
+<p>Here, <span class="math inline">\(W_q^{(i)}, W_k^{(i)}, W_v^{(i)}\)</span> are separate learnable weights for each head.</p>
+<p><strong>Combining the Heads</strong></p>
+<p>The outputs of all <span class="math inline">\(h\)</span> heads are concatenated along the feature dimension and projected back into <span class="math inline">\(d_e\)</span> dimensions: <span class="math display">\[
+\text{MultiHead}(Q, K, V) =
+\text{Concat}(\text{head}_1, \dots, \text{head}_h) W_o
+\]</span></p>
+<p>where <span class="math inline">\(W_o\)</span> is a learnable weight matrix of shape <span class="math inline">\([h \cdot d_v \times d_e]\)</span>.</p>
+<p><strong>Why Multi-Head Attention?</strong></p>
+<ul>
+<li>Allows the model to jointly attend to information from different representation subspaces.<br>
+</li>
+<li>Provides richer and more diverse attention patterns.<br>
+</li>
+<li>Empirically improves performance compared to a single head.</li>
+</ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch <span class="im">import</span> nn</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiHeadAttention(nn.Module):</span>
