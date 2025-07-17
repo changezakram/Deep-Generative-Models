@@ -51,6 +51,13 @@ At the heart of these architectures is the *self-attention mechanism*, which ena
 
 We’ll break down the encoder and decoder below.
 
+
+### Key Variables
+
+The following table summarizes the notations, shapes, and meanings of the variables that will appear throughout the Encoder and Attention sections.
+
+![Notation Table](images/notations.png)
+
 ---
 
 ## Encoder
