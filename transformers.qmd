@@ -104,23 +104,24 @@ However, the meaning of a sentence depends on the order of its words.
 > *“The cat chased the dog” ≠ “The dog chased the cat”*
 
 Without positional information, self-attention would treat these sentences as identical.  
-To address this, we add a **position vector** \( p_i \) to each token embedding \( x_i \), producing a position-aware representation:  
+To address this, we add a **position vector** $p_i$ to each token embedding $x_i$, producing a position-aware representation:  
 
 $$
 \tilde{x}_i = x_i + p_i
 $$
 
 where:
-- \( x_i \) — embedding of the token at position \( i \)
-- \( p_i \) — positional encoding vector
-- \( \tilde{x}_i \) — position-aware embedding passed to the model
+
+- $x_i$ — embedding of the token at position $i$
+- $p_i$ — positional encoding vector
+- $\tilde{x}_i$ — position-aware embedding passed to the model
 
 
 Following are two approaches to Positional Encoding:
 
 **1: Sinusoidal Positional Encoding**
 
-In the original Transformer paper, \( p_i \) is defined using sinusoidal functions of varying frequencies:  
+In the original Transformer paper, $p_i$ is defined using sinusoidal functions of varying frequencies:  
 
 $$
 p_i =
@@ -139,8 +140,9 @@ $$
 
 **2: Learned Positional Encoding**
 
-An alternative is to treat \( p_i \) as a learnable parameter:  
-We define a matrix \( P \in \mathbb{R}^{d_e \times n} \), where each \( p_i \) is a column of \( P \).
+An alternative is to treat $p_i$ as a learnable parameter:  
+We define a matrix $P \in \mathbb{R}^{d_e \times n}$, where each $p_i$ is a column of $P$.
+
 
 $$
 P = [p_1, p_2, \dots, p_n], \quad P \in \mathbb{R}^{d_e \times n}

@@ -376,14 +376,19 @@ However, the meaning of a sentence depends on the order of its words.</p>
 <p><em>“The cat chased the dog” ≠ “The dog chased the cat”</em></p>
 </blockquote>
 <p>Without positional information, self-attention would treat these sentences as identical.<br>
-To address this, we add a <strong>position vector</strong> ( p_i ) to each token embedding ( x_i ), producing a position-aware representation:</p>
+To address this, we add a <strong>position vector</strong> <span class="math inline">\(p_i\)</span> to each token embedding <span class="math inline">\(x_i\)</span>, producing a position-aware representation:</p>
 <p><span class="math display">\[
 \tilde{x}_i = x_i + p_i
 \]</span></p>
-<p>where: - ( x_i ) — embedding of the token at position ( i ) - ( p_i ) — positional encoding vector - ( _i ) — position-aware embedding passed to the model</p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(x_i\)</span> — embedding of the token at position <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(p_i\)</span> — positional encoding vector</li>
+<li><span class="math inline">\(\tilde{x}_i\)</span> — position-aware embedding passed to the model</li>
+</ul>
 <p>Following are two approaches to Positional Encoding:</p>
 <p><strong>1: Sinusoidal Positional Encoding</strong></p>
-<p>In the original Transformer paper, ( p_i ) is defined using sinusoidal functions of varying frequencies:</p>
+<p>In the original Transformer paper, <span class="math inline">\(p_i\)</span> is defined using sinusoidal functions of varying frequencies:</p>
 <p><span class="math display">\[
 p_i =
 \begin{pmatrix}
@@ -404,8 +409,8 @@ p_i =
 </ul></li>
 </ul>
 <p><strong>2: Learned Positional Encoding</strong></p>
-<p>An alternative is to treat ( p_i ) as a learnable parameter:<br>
-We define a matrix ( P ^{d_e n} ), where each ( p_i ) is a column of ( P ).</p>
+<p>An alternative is to treat <span class="math inline">\(p_i\)</span> as a learnable parameter:<br>
+We define a matrix <span class="math inline">\(P \in \mathbb{R}^{d_e \times n}\)</span>, where each <span class="math inline">\(p_i\)</span> is a column of <span class="math inline">\(P\)</span>.</p>
 <p><span class="math display">\[
 P = [p_1, p_2, \dots, p_n], \quad P \in \mathbb{R}^{d_e \times n}
 \]</span></p>
