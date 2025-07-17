@@ -90,26 +90,79 @@ $$
 X_\text{tokens} = E[T] \in \mathbb{R}^{n \times d_e}
 $$
 
+
+
+
+
+
+
 **Positional Encoding**
 
-Since the attention mechanism does not account for the order of tokens, we add positional encoding to the embeddings:  
+The self-attention mechanism processes the input sequence as a set of vectors without any notion of order.  
+However, the meaning of a sentence depends on the order of its words.  
+
+> *“The cat chased the dog” ≠ “The dog chased the cat”*
+
+Without positional information, self-attention would treat these sentences as identical.  
+To address this, we add a **position vector** \( p_i \) to each token embedding \( x_i \), producing a position-aware representation:  
+
 $$
-X = X_\text{tokens} + \text{PositionalEncoding}
+\tilde{x}_i = x_i + p_i
 $$
 
-where $X$ is the final input to the transformer encoder.
-
-This ensures the model is aware of the relative and absolute position of each token in the sequence.
-
-Typically, positional encoding can be:
-
-- **Sinusoidal** (as in the original Transformer paper)
-- **Learned** (learnable parameters)
-
-The resulting $X$ is then used as the input to the encoder layers, starting with the attention mechanism.
+where:
+- \( x_i \) — embedding of the token at position \( i \)
+- \( p_i \) — positional encoding vector
+- \( \tilde{x}_i \) — position-aware embedding passed to the model
 
 
+Following are two approaches to Positional Encoding:
 
+**1: Sinusoidal Positional Encoding**
+
+In the original Transformer paper, \( p_i \) is defined using sinusoidal functions of varying frequencies:  
+
+$$
+p_i =
+\begin{pmatrix}
+\sin\big(i / 10000^{\frac{2j}{d_e}}\big) \\
+\cos\big(i / 10000^{\frac{2j}{d_e}}\big)
+\end{pmatrix}
+$$
+
+- **Pros:**
+  - Does not introduce additional parameters.
+  - Periodicity allows some generalization to longer sequences.
+- **Cons:**
+  - Not learnable — fixed at initialization.
+  - Limited extrapolation in practice.
+
+**2: Learned Positional Encoding**
+
+An alternative is to treat \( p_i \) as a learnable parameter:  
+We define a matrix \( P \in \mathbb{R}^{d_e \times n} \), where each \( p_i \) is a column of \( P \).
+
+$$
+P = [p_1, p_2, \dots, p_n], \quad P \in \mathbb{R}^{d_e \times n}
+$$
+
+- **Pros:**
+  - Fully learnable; each position can adapt to the data.
+  - Most modern systems (e.g., GPT) use this.
+- **Cons:**
+  - Cannot extrapolate to sequences longer than seen in training.
+
+
+In practice, most architectures today use **learned positional encodings** because of their flexibility and performance.
+
+
+**Summary**
+
+- Positional encoding ensures the model is aware of token order.  
+- Sinusoidal encodings are fixed & periodic.  
+- Learned encodings are flexible & widely used today.  
+
+---
 
 #### Attention Mechanism
 

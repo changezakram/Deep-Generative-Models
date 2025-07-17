@@ -370,18 +370,66 @@ T \in \{1, \dots, V\}^n
 X_\text{tokens} = E[T] \in \mathbb{R}^{n \times d_e}
 \]</span></p>
 <p><strong>Positional Encoding</strong></p>
-<p>Since the attention mechanism does not account for the order of tokens, we add positional encoding to the embeddings:<br>
-<span class="math display">\[
-X = X_\text{tokens} + \text{PositionalEncoding}
+<p>The self-attention mechanism processes the input sequence as a set of vectors without any notion of order.<br>
+However, the meaning of a sentence depends on the order of its words.</p>
+<blockquote class="blockquote">
+<p><em>“The cat chased the dog” ≠ “The dog chased the cat”</em></p>
+</blockquote>
+<p>Without positional information, self-attention would treat these sentences as identical.<br>
+To address this, we add a <strong>position vector</strong> ( p_i ) to each token embedding ( x_i ), producing a position-aware representation:</p>
+<p><span class="math display">\[
+\tilde{x}_i = x_i + p_i
 \]</span></p>
-<p>where <span class="math inline">\(X\)</span> is the final input to the transformer encoder.</p>
-<p>This ensures the model is aware of the relative and absolute position of each token in the sequence.</p>
-<p>Typically, positional encoding can be:</p>
+<p>where: - ( x_i ) — embedding of the token at position ( i ) - ( p_i ) — positional encoding vector - ( _i ) — position-aware embedding passed to the model</p>
+<p>Following are two approaches to Positional Encoding:</p>
+<p><strong>1: Sinusoidal Positional Encoding</strong></p>
+<p>In the original Transformer paper, ( p_i ) is defined using sinusoidal functions of varying frequencies:</p>
+<p><span class="math display">\[
+p_i =
+\begin{pmatrix}
+\sin\big(i / 10000^{\frac{2j}{d_e}}\big) \\
+\cos\big(i / 10000^{\frac{2j}{d_e}}\big)
+\end{pmatrix}
+\]</span></p>
 <ul>
-<li><strong>Sinusoidal</strong> (as in the original Transformer paper)</li>
-<li><strong>Learned</strong> (learnable parameters)</li>
+<li><strong>Pros:</strong>
+<ul>
+<li>Does not introduce additional parameters.</li>
+<li>Periodicity allows some generalization to longer sequences.</li>
+</ul></li>
+<li><strong>Cons:</strong>
+<ul>
+<li>Not learnable — fixed at initialization.</li>
+<li>Limited extrapolation in practice.</li>
+</ul></li>
 </ul>
-<p>The resulting <span class="math inline">\(X\)</span> is then used as the input to the encoder layers, starting with the attention mechanism.</p>
+<p><strong>2: Learned Positional Encoding</strong></p>
+<p>An alternative is to treat ( p_i ) as a learnable parameter:<br>
+We define a matrix ( P ^{d_e n} ), where each ( p_i ) is a column of ( P ).</p>
+<p><span class="math display">\[
+P = [p_1, p_2, \dots, p_n], \quad P \in \mathbb{R}^{d_e \times n}
+\]</span></p>
+<ul>
+<li><strong>Pros:</strong>
+<ul>
+<li>Fully learnable; each position can adapt to the data.</li>
+<li>Most modern systems (e.g., GPT) use this.</li>
+</ul></li>
+<li><strong>Cons:</strong>
+<ul>
+<li>Cannot extrapolate to sequences longer than seen in training.</li>
+</ul></li>
+</ul>
+<p>In practice, most architectures today use <strong>learned positional encodings</strong> because of their flexibility and performance.</p>
+<p><strong>Summary</strong></p>
+<ul>
+<li>Positional encoding ensures the model is aware of token order.<br>
+</li>
+<li>Sinusoidal encodings are fixed &amp; periodic.<br>
+</li>
+<li>Learned encodings are flexible &amp; widely used today.</li>
+</ul>
+<hr>
 </section>
 <section id="attention-mechanism" class="level4" data-number="4.1.2">
 <h4 data-number="4.1.2" class="anchored" data-anchor-id="attention-mechanism"><span class="header-section-number">4.1.2</span> Attention Mechanism</h4>
