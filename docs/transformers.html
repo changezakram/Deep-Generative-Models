@@ -431,7 +431,12 @@ Each head performs scaled dot-product attention independently, and their outputs
 \text{head}_i = \text{Attention}(Q_i, K_i, V_i) =
 \text{softmax} \left( \frac{Q_i K_i^T}{\sqrt{d_k}} \right) V_i
 \]</span></p>
-<p>where: - <span class="math inline">\(Q_i = X W_q^{(i)}\)</span> - <span class="math inline">\(K_i = X W_k^{(i)}\)</span> - <span class="math inline">\(V_i = X W_v^{(i)}\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(Q_i = X W_q^{(i)}\)</span></li>
+<li><span class="math inline">\(K_i = X W_k^{(i)}\)</span></li>
+<li><span class="math inline">\(V_i = X W_v^{(i)}\)</span></li>
+</ul>
 <p>Here, <span class="math inline">\(W_q^{(i)}, W_k^{(i)}, W_v^{(i)}\)</span> are separate learnable weights for each head.</p>
 <p><strong>Combining the Heads</strong></p>
 <p>The outputs of all <span class="math inline">\(h\)</span> heads are concatenated along the feature dimension and projected back into <span class="math inline">\(d_e\)</span> dimensions: <span class="math display">\[
