@@ -92,10 +92,6 @@ $$
 
 
 
-
-
-
-
 **Positional Encoding**
 
 The self-attention mechanism processes the input sequence as a set of vectors without any notion of order.  
@@ -115,6 +111,10 @@ where:
 - $x_i$ — embedding of the token at position $i$
 - $p_i$ — positional encoding vector
 - $\tilde{x}_i$ — position-aware embedding passed to the model
+
+The figure below illustrates this process:
+
+![Figure: Token and positional embeddings are summed element-wise to produce the final input embeddings fed into the transformer encoder.](images/embedding.png)
 
 
 Following are two approaches to Positional Encoding:
