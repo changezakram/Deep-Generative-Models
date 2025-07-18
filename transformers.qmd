@@ -297,6 +297,7 @@ After the self-attention layer, the transformer applies a **position-wise feedfo
 This introduces **nonlinearities** into the model and allows it to transform the attended information further.
 
 **Why is this needed?**
+
 - Self-attention by itself is a linear operation — it just computes weighted sums of the value vectors.
 - Stacking more self-attention layers without nonlinearity simply re-averages the values, limiting expressiveness.
 - To address this, each output vector of the self-attention layer is passed through a **multi-layer perceptron (MLP)**.
