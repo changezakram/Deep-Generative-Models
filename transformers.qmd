@@ -293,6 +293,37 @@ where $W_o$ is a learnable weight matrix of shape $[h \cdot d_v \times d_e]$.
 
 #### Feedforward Network
 
+After the self-attention layer, the transformer applies a **position-wise feedforward network (FFN)** to each token embedding independently.  
+This introduces **nonlinearities** into the model and allows it to transform the attended information further.
+
+**Why is this needed?**
+- Self-attention by itself is a linear operation — it just computes weighted sums of the value vectors.
+- Stacking more self-attention layers without nonlinearity simply re-averages the values, limiting expressiveness.
+- To address this, each output vector of the self-attention layer is passed through a **multi-layer perceptron (MLP)**.
+
+**Computation**
+For each token output vector $output_i$ from the self-attention:
+$$
+m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
+$$
+
+where:
+- $W_1$, $W_2$ — learnable weight matrices.
+- $b_1$, $b_2$ — learnable biases.
+- $ReLU$ — non-linear activation function applied element-wise.
+
+This is done independently for each position.
+
+The figure below illustrates the architecture:
+![Feedforward Network in Transformer](images/feedforward_network.png)
+
+Here the FFN (pink box) sits on top of each token's output after self-attention, applying the same MLP to each token embedding in parallel.
+
+**Summary:**
+
+- Adds nonlinearity and expressiveness.  
+- Processes each token independently after attention.  
+- Helps the model learn complex transformations beyond weighted averages.
 
 ---
 

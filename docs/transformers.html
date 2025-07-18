@@ -509,6 +509,24 @@ Q K^T
 </section>
 <section id="feedforward-network" class="level4" data-number="4.1.4">
 <h4 data-number="4.1.4" class="anchored" data-anchor-id="feedforward-network"><span class="header-section-number">4.1.4</span> Feedforward Network</h4>
+<p>After the self-attention layer, the transformer applies a <strong>position-wise feedforward network (FFN)</strong> to each token embedding independently.<br>
+This introduces <strong>nonlinearities</strong> into the model and allows it to transform the attended information further.</p>
+<p><strong>Why is this needed?</strong> - Self-attention by itself is a linear operation — it just computes weighted sums of the value vectors. - Stacking more self-attention layers without nonlinearity simply re-averages the values, limiting expressiveness. - To address this, each output vector of the self-attention layer is passed through a <strong>multi-layer perceptron (MLP)</strong>.</p>
+<p><strong>Computation</strong> For each token output vector <span class="math inline">\(output_i\)</span> from the self-attention: <span class="math display">\[
+m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
+\]</span></p>
+<p>where: - <span class="math inline">\(W_1\)</span>, <span class="math inline">\(W_2\)</span> — learnable weight matrices. - <span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span> — learnable biases. - <span class="math inline">\(ReLU\)</span> — non-linear activation function applied element-wise.</p>
+<p>This is done independently for each position.</p>
+<p>The figure below illustrates the architecture: <img src="images/feedforward_network.png" class="img-fluid" alt="Feedforward Network in Transformer"></p>
+<p>Here the FFN (pink box) sits on top of each token’s output after self-attention, applying the same MLP to each token embedding in parallel.</p>
+<p><strong>Summary:</strong></p>
+<ul>
+<li>Adds nonlinearity and expressiveness.<br>
+</li>
+<li>Processes each token independently after attention.<br>
+</li>
+<li>Helps the model learn complex transformations beyond weighted averages.</li>
+</ul>
 <hr>
 </section>
 <section id="residual-connections-layer-norm" class="level4" data-number="4.1.5">
