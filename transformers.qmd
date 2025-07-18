@@ -241,23 +241,6 @@ $$
 
 ---
 
-#### PyTorch: Scaled Dot-Product Attention
-
-```python
-import torch
-import torch.nn.functional as F
-
-def scaled_dot_product_attention(Q, K, V, mask=None):
-    d_k = Q.size(-1)
-    scores = torch.matmul(Q, K.transpose(-2, -1)) / torch.sqrt(torch.tensor(d_k, dtype=torch.float32))
-    if mask is not None:
-        scores = scores.masked_fill(mask == 0, -1e9)
-    weights = F.softmax(scores, dim=-1)
-    return torch.matmul(weights, V), weights
-```
-
----
-
 #### Multi-Head Attention
 
 While a single attention head can focus on certain aspects of the input sequence, it may miss other patterns. The multi-head attention (MHA) mechanism allows the model to attend to information from multiple representation subspaces at different positions simultaneously. This helps the transformer to capture more nuanced patterns in the input sequence.
@@ -337,60 +320,14 @@ class MultiHeadAttention(nn.Module):
 
 ---
 
-#### Positional Encoding
-
-```python
-import math
-
-class PositionalEncoding(nn.Module):
-    def __init__(self, d_model, max_len=5000):
-        super().__init__()
-        pe = torch.zeros(max_len, d_model)
-        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
-        div_term = torch.exp(torch.arange(0, d_model, 2).float() * -(math.log(10000.0) / d_model))
-        pe[:, 0::2] = torch.sin(position * div_term)
-        pe[:, 1::2] = torch.cos(position * div_term)
-        pe = pe.unsqueeze(0)
-        self.register_buffer('pe', pe)
-
-    def forward(self, x):
-        x = x + self.pe[:, :x.size(1), :]
-        return x
-```
-
----
-
 #### Feedforward Network
 
-```python
-class PositionwiseFFN(nn.Module):
-    def __init__(self, d_model, d_ff, dropout=0.1):
-        super().__init__()
-        self.ffn = nn.Sequential(
-            nn.Linear(d_model, d_ff),
-            nn.ReLU(),
-            nn.Linear(d_ff, d_model),
-            nn.Dropout(dropout)
-        )
-
-    def forward(self, x):
-        return self.ffn(x)
-```
 
 ---
 
 #### Residual Connections & Layer Norm
 
-```python
-class SublayerConnection(nn.Module):
-    def __init__(self, d_model, dropout=0.1):
-        super().__init__()
-        self.norm = nn.LayerNorm(d_model)
-        self.dropout = nn.Dropout(dropout)
 
-    def forward(self, x, sublayer):
-        return x + self.dropout(sublayer(self.norm(x)))
-```
 
 ---
 
@@ -407,34 +344,11 @@ It also consists of stacked layers with three components:
 
 ### Attention Mask for Decoder
 
-```python
-def generate_square_subsequent_mask(sz):
-    mask = (torch.triu(torch.ones(sz, sz)) == 1).transpose(0, 1)
-    mask = mask.float().masked_fill(mask == 0, float('-inf')).masked_fill(mask == 1, float(0.0))
-    return mask
-```
 
 ---
 
 ### Simplified Decoder Layer
 
-```python
-class DecoderLayer(nn.Module):
-    def __init__(self, d_model, heads, d_ff, dropout=0.1):
-        super().__init__()
-        self.self_attn = MultiHeadAttention(d_model, heads)
-        self.cross_attn = MultiHeadAttention(d_model, heads)
-        self.ffn = PositionwiseFFN(d_model, d_ff, dropout)
-        self.norm1 = SublayerConnection(d_model, dropout)
-        self.norm2 = SublayerConnection(d_model, dropout)
-        self.norm3 = SublayerConnection(d_model, dropout)
-
-    def forward(self, x, memory, tgt_mask=None, memory_mask=None):
-        x = self.norm1(x, lambda x: self.self_attn(x, x, x, tgt_mask))
-        x = self.norm2(x, lambda x: self.cross_attn(x, memory, memory, memory_mask))
-        x = self.norm3(x, self.ffn)
-        return x
-```
 
 ---
 
