@@ -308,16 +308,12 @@ m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
 $$
 
 where:
+
 - $W_1$, $W_2$ — learnable weight matrices.
 - $b_1$, $b_2$ — learnable biases.
 - $ReLU$ — non-linear activation function applied element-wise.
 
 This is done independently for each position.
-
-The figure below illustrates the architecture:
-![Feedforward Network in Transformer](images/feedforward_network.png)
-
-Here the FFN (pink box) sits on top of each token's output after self-attention, applying the same MLP to each token embedding in parallel.
 
 **Summary:**
 
