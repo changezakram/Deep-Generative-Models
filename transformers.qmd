@@ -64,16 +64,14 @@ The following table summarizes the notations, shapes, and meanings of the variab
 
 The **encoder** consists of a stack of identical layers, each containing:
 
-- Multi-Head Self-Attention  
+- Self-Attention  
 - Feedforward Network  
 - Residual Connections + Layer Norm  
 - Positional Encoding
 
 ---
 
-### Core Concepts
-
-#### Input Representation
+### Input Representation
 
 Before the attention mechanism can work, each input token is mapped to a continuous vector representation and enriched with positional information.
 
@@ -291,7 +289,7 @@ where $W_o$ is a learnable weight matrix of shape $[h \cdot d_v \times d_e]$.
 
 ---
 
-#### Feedforward Network
+### Feedforward Network
 
 After the self-attention layer, the transformer applies a **position-wise feedforward network (FFN)** to each token embedding independently.  
 This introduces **nonlinearities** into the model and allows it to transform the attended information further.
