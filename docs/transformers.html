@@ -591,6 +591,32 @@ It also consists of stacked layers with three components:</p>
 <hr>
 <section id="attention-mask-for-decoder" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="attention-mask-for-decoder"><span class="header-section-number">5.1</span> Attention Mask for Decoder</h3>
+<p>When using self-attention in <strong>decoders</strong>, it is critical to prevent the model from “looking into the future,” i.e., accessing tokens that come later in the sequence. This ensures proper <strong>causal</strong> sequence generation (left-to-right).</p>
+<p><strong>Why do we need masking?</strong></p>
+<ul>
+<li>In sequence prediction tasks (like <strong>machine translation</strong> or <strong>language modeling</strong>), the model should predict the next token based <strong>only</strong> on past and current tokens — not on future tokens.</li>
+<li>Without masking, the self-attention mechanism would compute attention over all tokens in the sequence, violating the causal order.</li>
+<li>We solve this by <strong>masking out</strong> the attention to future tokens.</li>
+</ul>
+<p><strong>How does masking work?</strong></p>
+<p>At each position <span class="math inline">\(i\)</span>, we: - Keep attention scores for tokens at <span class="math inline">\(j \leq i\)</span> (past &amp; current positions). - Set attention scores to <span class="math inline">\(-\infty\)</span> (or equivalently, weights to 0 after softmax) for <span class="math inline">\(j &gt; i\)</span> (future positions).</p>
+<p>Mathematically, the masked attention score <span class="math inline">\(e_{ij}\)</span> is:</p>
+<p><span class="math display">\[
+e_{ij} =
+\begin{cases}
+q_i^\top k_j, &amp; j \leq i \\\\
+-\infty, &amp; j &gt; i
+\end{cases}
+\]</span></p>
+<p>After applying softmax, this ensures the model attends only to the allowed tokens up to position <span class="math inline">\(i\)</span>.</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Enables <strong>parallel computation</strong> — the mask is precomputed and applied during training.<br>
+</li>
+<li>Prevents <strong>information leakage</strong> from future tokens.<br>
+</li>
+<li>Allows the decoder to autoregressively predict tokens during inference.</li>
+</ul>
 <hr>
 </section>
 <section id="simplified-decoder-layer" class="level3" data-number="5.2">
