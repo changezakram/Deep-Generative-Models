@@ -30,7 +30,7 @@ where:
 
 The figure below shows a single RNN cell (left) and the unrolled RNN over multiple time steps (right).
 
-![Figure: RNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.](images/rnn.png)
+![Figure: RNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.](images/rnn.png){fig-align="center"}
 
 However, RNNs suffer from:
 
@@ -114,7 +114,7 @@ where:
 
 The figure below illustrates this process:
 
-![Figure: Token and positional embeddings are summed element-wise to produce the final input embeddings fed into the transformer encoder.](images/embedding.png)
+![Figure: Token and positional embeddings are summed element-wise to produce the final input embeddings fed into the transformer encoder.](images/embedding.png){fig-align="center"}
 
 
 Following are two approaches to Positional Encoding:
@@ -197,7 +197,7 @@ where:
 
 The figure below illustrates the computation flow of scaled dot-product attention, including the dimensions of each variable at every stage:
 
-![Figure: Attention — step-by-step computation, with variables, and operations.](images/attention-diagram.png)
+![Figure: Attention — step-by-step computation, with variables, and operations.](images/attention-diagram.png){fig-align="center"}
 
 
 **Breakdown of the Steps**
@@ -247,7 +247,7 @@ While a single attention head can focus on certain aspects of the input sequence
 
 The figure below shows how multiple independent attention heads are computed in parallel, concatenated, and linearly transformed to produce the final output of the multi-head attention layer.
 
-![Figure: Multi-Head Attention — four parallel heads, concatenated and projected by $W_o$ to form the final output.](images/multi-head-attention.png)
+![Figure: Multi-Head Attention — four parallel heads, concatenated and projected by $W_o$ to form the final output.](images/multi-head-attention.png){fig-align="center"}
 
 
 
@@ -427,7 +427,7 @@ The figure below illustrates how the attention mask is applied to $QK^\top$, blo
 
 ---
 
-### Simplified Decoder Layer
+### Encoder–Decoder Attention
 
 
 ---
