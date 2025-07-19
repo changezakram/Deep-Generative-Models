@@ -415,6 +415,10 @@ $$
 
 After applying softmax, this ensures the model attends only to the allowed tokens up to position $i$.
 
+The figure below illustrates how the attention mask is applied to $QK^\top$, blocking future tokens by assigning them $-\infty$, and producing the masked attention matrix.
+
+![Figure: Masked Attention Visualization](images/masked-attention.png){fig-align="center"}
+
 **Benefits:**
 
 - Enables **parallel computation** — the mask is precomputed and applied during training.  

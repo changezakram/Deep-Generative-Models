@@ -609,6 +609,13 @@ q_i^\top k_j, &amp; j \leq i \\\\
 \end{cases}
 \]</span></p>
 <p>After applying softmax, this ensures the model attends only to the allowed tokens up to position <span class="math inline">\(i\)</span>.</p>
+<p>The figure below illustrates how the attention mask is applied to <span class="math inline">\(QK^\top\)</span>, blocking future tokens by assigning them <span class="math inline">\(-\infty\)</span>, and producing the masked attention matrix.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/masked-attention.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Masked Attention Visualization</figcaption>
+</figure>
+</div>
 <p><strong>Benefits:</strong></p>
 <ul>
 <li>Enables <strong>parallel computation</strong> — the mask is precomputed and applied during training.<br>
