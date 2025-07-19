@@ -374,8 +374,6 @@ where:
 - $\epsilon$ is a small constant for numerical stability.
 
 
-
-
 ---
 
 ## Decoder
@@ -391,6 +389,37 @@ It also consists of stacked layers with three components:
 
 ### Attention Mask for Decoder
 
+When using self-attention in **decoders**, it is critical to prevent the model from "looking into the future," i.e., accessing tokens that come later in the sequence. This ensures proper **causal** sequence generation (left-to-right).
+
+**Why do we need masking?**
+
+- In sequence prediction tasks (like **machine translation** or **language modeling**), the model should predict the next token based **only** on past and current tokens — not on future tokens.
+- Without masking, the self-attention mechanism would compute attention over all tokens in the sequence, violating the causal order.
+- We solve this by **masking out** the attention to future tokens.
+
+**How does masking work?**
+
+At each position $i$, we:
+- Keep attention scores for tokens at $j \leq i$ (past & current positions).
+- Set attention scores to $-\infty$ (or equivalently, weights to 0 after softmax) for $j > i$ (future positions).
+
+Mathematically, the masked attention score $e_{ij}$ is:
+
+$$
+e_{ij} =
+\begin{cases}
+q_i^\top k_j, & j \leq i \\\\
+-\infty, & j > i
+\end{cases}
+$$
+
+After applying softmax, this ensures the model attends only to the allowed tokens up to position $i$.
+
+**Benefits:**
+
+- Enables **parallel computation** — the mask is precomputed and applied during training.  
+- Prevents **information leakage** from future tokens.  
+- Allows the decoder to autoregressively predict tokens during inference.
 
 ---
 
