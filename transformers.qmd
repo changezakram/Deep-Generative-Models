@@ -166,7 +166,7 @@ In practice, most architectures today use **learned positional encodings** becau
 
 ---
 
-#### Attention Mechanism
+### Attention Mechanism
 
 At the heart of the transformer is the scaled dot-product attention mechanism, which allows the model to weigh the relevance of each token in the sequence when processing a given token. This enables the model to capture relationships between tokens regardless of their distance in the sequence.
 
