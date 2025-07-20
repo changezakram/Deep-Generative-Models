@@ -437,23 +437,31 @@ P = [p_1, p_2, \dots, p_n], \quad P \in \mathbb{R}^{d_e \times n}
 </figure>
 </div>
 <p><strong>Breakdown of the Steps</strong></p>
-<p>1: Input Representation: <span class="math display">\[
+<p><strong>1: Input Representation:</strong> The input tokens are embedded into a continuous vector space and positional encodings are added to inject sequence order information:</p>
+<p><span class="math display">\[
 X = \text{Embedding}(X_{\text{tokens}}) + \text{PositionalEncoding}
 \]</span></p>
-<p>2: Linear Projections: <span class="math display">\[
+<p><strong>2: Linear Projections:</strong> The embedded input <span class="math inline">\(X\)</span> is projected into three different spaces to produce the query (Q), key (K), and value (V) matrices, using learnable weight matrices <span class="math inline">\(W_q\)</span>, <span class="math inline">\(W_k\)</span>, <span class="math inline">\(W_v\)</span>:</p>
+<p><span class="math display">\[
 Q = X W_q, \quad K = X W_k, \quad V = X W_v
 \]</span></p>
-<p>3: Compute Similarity Scores: <span class="math display">\[
+<p>These projections allow the model to attend to different aspects of the input.</p>
+<p><strong>3: Compute Similarity Scores:</strong> We compute the dot product between the queries and the transposed keys to measure similarity (or relevance) between tokens:</p>
+<p><span class="math display">\[
 Q K^T
 \]</span></p>
-<p>4: Scale the Scores:<br>
-<span class="math display">\[
+<p>This gives a matrix of raw attention scores.</p>
+<p><strong>4: Scale the Scores:</strong> To avoid extremely large values when the dimensionality <span class="math inline">\(d_k\)</span> is high, the similarity scores are scaled by <span class="math inline">\(\sqrt{d_k}\)</span>:</p>
+<p><span class="math display">\[
 \frac{Q K^T}{\sqrt{d_k}}
 \]</span></p>
-<p>5: Softmax to get Attention Weights: <span class="math display">\[
+<p>This stabilizes gradients during training.</p>
+<p><strong>5: Softmax to get Attention Weights:</strong> The scaled scores are passed through a softmax function to convert them into probabilities that sum to 1. These are the <strong>attention weights</strong> <span class="math inline">\(A\)</span>, indicating how much focus to put on each token:</p>
+<p><span class="math display">\[
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right)
 \]</span></p>
-<p>6: Weighted Sum: <span class="math display">\[
+<p><strong>6: Weighted Sum:</strong> Finally, the attention weights are multiplied with the value vectors <span class="math inline">\(V\)</span> to produce a weighted sum, which is the attention output:</p>
+<p><span class="math display">\[
 \text{Attention Weights} \cdot V
 \]</span></p>
 <p><strong>Why is Attention Powerful?</strong></p>

@@ -200,32 +200,44 @@ The figure below illustrates the computation flow of scaled dot-product attentio
 
 **Breakdown of the Steps**
 
-1: Input Representation:
+**1: Input Representation:** The input tokens are embedded into a continuous vector space and positional encodings are added to inject sequence order information:
+
 $$
 X = \text{Embedding}(X_{\text{tokens}}) + \text{PositionalEncoding}
 $$  
 
-2: Linear Projections: 
+**2: Linear Projections:** The embedded input $X$ is projected into three different spaces to produce the query (Q), key (K), and value (V) matrices, using learnable weight matrices $W_q$, $W_k$, $W_v$:
+
 $$
 Q = X W_q, \quad K = X W_k, \quad V = X W_v
 $$
 
-3: Compute Similarity Scores:
+These projections allow the model to attend to different aspects of the input.
+
+**3: Compute Similarity Scores:** We compute the dot product between the queries and the transposed keys to measure similarity (or relevance) between tokens:
+
 $$
 Q K^T
 $$
 
-4: Scale the Scores:  
+This gives a matrix of raw attention scores.
+
+**4: Scale the Scores:** To avoid extremely large values when the dimensionality $d_k$ is high, the similarity scores are scaled by $\sqrt{d_k}$:
+  
 $$
 \frac{Q K^T}{\sqrt{d_k}}
 $$
 
-5: Softmax to get Attention Weights:
+This stabilizes gradients during training.
+
+**5: Softmax to get Attention Weights:** The scaled scores are passed through a softmax function to convert them into probabilities that sum to 1. These are the **attention weights** $A$, indicating how much focus to put on each token:
+
 $$
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right)
 $$
 
-6: Weighted Sum: 
+**6: Weighted Sum:** Finally, the attention weights are multiplied with the value vectors $V$ to produce a weighted sum, which is the attention output:
+ 
 $$
 \text{Attention Weights} \cdot V
 $$
