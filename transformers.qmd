@@ -195,7 +195,7 @@ where:
 
 The figure below illustrates the computation flow of scaled dot-product attention, including the dimensions of each variable at every stage:
 
-![Figure: Attention — step-by-step computation, with variables, and operations.](images/self-attention.png){fig-align="center"}
+![Figure: Attention — step-by-step computation, with variables, shapes, and operations.](images/self-attention.png){fig-align="center"}
 
 
 **Breakdown of the Steps**
