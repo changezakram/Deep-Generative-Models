@@ -568,7 +568,7 @@ X^{(i)} = X^{(i-1)} + \text{Layer}(X^{(i-1)})
 <section id="layer-normalization" class="level4" data-number="4.4.2">
 <h4 data-number="4.4.2" class="anchored" data-anchor-id="layer-normalization"><span class="header-section-number">4.4.2</span> Layer Normalization</h4>
 <p>Layer normalization helps by reducing uninformative variation in the hidden states of each layer.<br>
-It normalizes each token embedding to have zero mean and unit variance <strong>within each layer</strong>.</p>
+It normalizes each token embedding to have zero mean and unit variance <strong>within each layer</strong>, and <strong>within the feature dimension of a single token</strong> — independent of other tokens or samples in the batch.</p>
 <p>For a vector <span class="math inline">\(x \in \mathbb{R}^d\)</span>, layer norm is computed as:</p>
 <p><span class="math display">\[
 \mu = \frac{1}{d} \sum_{j=1}^{d} x_j, \quad \sigma = \sqrt{\frac{1}{d} \sum_{j=1}^{d} (x_j - \mu)^2}
@@ -578,6 +578,65 @@ It normalizes each token embedding to have zero mean and unit variance <strong>w
 \text{output} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta
 \]</span></p>
 <p>where: - <span class="math inline">\(\gamma \in \mathbb{R}^d\)</span>, <span class="math inline">\(\beta \in \mathbb{R}^d\)</span> are learnable gain and bias parameters. - <span class="math inline">\(\epsilon\)</span> is a small constant for numerical stability.</p>
+<p>In conventional neural networks, such as convolutional neural networks (CNNs), it is common to use <strong>Batch Normalization</strong> to stabilize training.<br>
+However, in sequence models like Transformers, <strong>Layer Normalization</strong> is preferred because it normalizes each token independently of the batch and sequence length — making it more suitable for NLP tasks and small batches.</p>
+<p>The figure below shows the difference between <strong>Layer Normalization</strong> and <strong>Batch Normalization</strong>, highlighting which dimensions they operate over.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/layer-norm.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Comparison of Layer Normalization and Batch Normalization.</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<caption>Comparison of Layer Norm and Batch Norm.</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 44%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect</strong></th>
+<th><strong>Layer Normalization</strong></th>
+<th><strong>Batch Normalization</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What it normalizes over</strong></td>
+<td>Feature dimension (per token)</td>
+<td>Feature dimension (across the batch)</td>
+</tr>
+<tr class="even">
+<td><strong>When it is computed</strong></td>
+<td>Independently for each token</td>
+<td>Depends on the batch statistics</td>
+</tr>
+<tr class="odd">
+<td><strong>Suitable for</strong></td>
+<td>Sequence models, NLP, Transformers (small batch sizes)</td>
+<td>CNNs, vision tasks (large batch sizes)</td>
+</tr>
+<tr class="even">
+<td><strong>Handles variable batch sizes?</strong></td>
+<td>Yes</td>
+<td>No (depends on batch)</td>
+</tr>
+<tr class="odd">
+<td><strong>Effect on sequence length</strong></td>
+<td>Works regardless of sequence length</td>
+<td>Not designed for sequence length, usually fixed</td>
+</tr>
+<tr class="even">
+<td><strong>Why in Transformers?</strong></td>
+<td>Works well with per-token operations &amp; small batch settings</td>
+<td>Batch stats unreliable in small batches &amp; sequences</td>
+</tr>
+</tbody>
+</table>
+<p>In summary:<br>
+✨ <strong>Layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks.<br>
+Batch Normalization normalizes each feature across the batch, which is less suitable for NLP.</strong></p>
 <hr>
 </section>
 </section>
