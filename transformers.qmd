@@ -389,7 +389,7 @@ However, in sequence models like Transformers, **Layer Normalization** is prefer
 
 The figure and the table below shows the difference between **Layer Normalization** and **Batch Normalization**, highlighting which dimensions they operate over.
 
-![Figure: Comparison of Layer Normalization and Batch Normalization. ](images/layer-norm.png){fig-align="center"}
+![Figure: Layer Norm operates across the feature dimension of each token individually, while Batch Norm operates across the batch for each feature.](images/layer-norm.png){fig-align="center"}
 
 
 | **Aspect**                | **Layer Normalization**                                         | **Batch Normalization**                             |
