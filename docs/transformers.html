@@ -610,24 +610,14 @@ However, in sequence models like Transformers, <strong>Layer Normalization</stro
 <td>Feature dimension (across the batch)</td>
 </tr>
 <tr class="even">
-<td><strong>When it is computed</strong></td>
-<td>Independently for each token</td>
-<td>Depends on the batch statistics</td>
-</tr>
-<tr class="odd">
 <td><strong>Suitable for</strong></td>
 <td>Sequence models, NLP, Transformers (small batch sizes)</td>
 <td>CNNs, vision tasks (large batch sizes)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Handles variable batch sizes?</strong></td>
 <td>Yes</td>
 <td>No (depends on batch size)</td>
-</tr>
-<tr class="odd">
-<td><strong>Effect on sequence length</strong></td>
-<td>Works regardless of sequence length</td>
-<td>Not designed for sequence length, usually fixed</td>
 </tr>
 <tr class="even">
 <td><strong>Why in Transformers?</strong></td>
