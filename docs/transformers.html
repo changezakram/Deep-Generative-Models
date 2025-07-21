@@ -567,8 +567,7 @@ X^{(i)} = X^{(i-1)} + \text{Layer}(X^{(i-1)})
 </section>
 <section id="layer-normalization" class="level4" data-number="4.4.2">
 <h4 data-number="4.4.2" class="anchored" data-anchor-id="layer-normalization"><span class="header-section-number">4.4.2</span> Layer Normalization</h4>
-<p>Layer normalization helps by reducing uninformative variation in the hidden states of each layer.<br>
-It normalizes each token embedding to have zero mean and unit variance <strong>within each layer</strong>, and <strong>within the feature dimension of a single token</strong> — independent of other tokens or samples in the batch.</p>
+<p>Layer normalization helps by reducing uninformative variation in the hidden states of each layer. It normalizes each token embedding to have zero mean and unit variance within each layer, and within the feature dimension of a single token — independent of other tokens or samples in the batch.</p>
 <p>For a vector <span class="math inline">\(x \in \mathbb{R}^d\)</span>, layer norm is computed as:</p>
 <p><span class="math display">\[
 \mu = \frac{1}{d} \sum_{j=1}^{d} x_j, \quad \sigma = \sqrt{\frac{1}{d} \sum_{j=1}^{d} (x_j - \mu)^2}
@@ -588,7 +587,7 @@ However, in sequence models like Transformers, <strong>Layer Normalization</stro
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/layer-norm.png" class="img-fluid figure-img"></p>
-<figcaption>Figure: Layer Norm operates across the feature dimension of each token individually, while Batch Norm operates across the batch for each feature.</figcaption>
+<figcaption>Figure: Layer Norm normalizes each token’s features (independently of other tokens and samples), while Batch Norm normalizes each feature across the batch.</figcaption>
 </figure>
 </div>
 <table class="caption-top table">
@@ -623,7 +622,7 @@ However, in sequence models like Transformers, <strong>Layer Normalization</stro
 <tr class="even">
 <td><strong>Handles variable batch sizes?</strong></td>
 <td>Yes</td>
-<td>No (depends on batch)</td>
+<td>No (depends on batch size)</td>
 </tr>
 <tr class="odd">
 <td><strong>Effect on sequence length</strong></td>
@@ -637,7 +636,7 @@ However, in sequence models like Transformers, <strong>Layer Normalization</stro
 </tr>
 </tbody>
 </table>
-<p>In summary, layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks. Batch Normalization normalizes each feature across the batch, which is less suitable for NLP.**</p>
+<p>In summary, Layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks. Batch Normalization normalizes each feature across the batch, which is less suitable for NLP. Layer normalization’s independence from batch size and sequence structure makes it ideal for NLP and sequence models.</p>
 <hr>
 </section>
 </section>

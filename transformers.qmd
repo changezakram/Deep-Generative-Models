@@ -364,8 +364,7 @@ This ensures that the model only needs to learn the *residual* (the difference f
 
 #### Layer Normalization
 
-Layer normalization helps by reducing uninformative variation in the hidden states of each layer.  
-It normalizes each token embedding to have zero mean and unit variance **within each layer**, and **within the feature dimension of a single token** — independent of other tokens or samples in the batch.
+Layer normalization helps by reducing uninformative variation in the hidden states of each layer. It normalizes each token embedding to have zero mean and unit variance within each layer, and within the feature dimension of a single token — independent of other tokens or samples in the batch.
 
 For a vector $x \in \mathbb{R}^d$, layer norm is computed as:
 
@@ -389,7 +388,7 @@ However, in sequence models like Transformers, **Layer Normalization** is prefer
 
 The figure and the table below shows the difference between **Layer Normalization** and **Batch Normalization**, highlighting which dimensions they operate over.
 
-![Figure: Layer Norm operates across the feature dimension of each token individually, while Batch Norm operates across the batch for each feature.](images/layer-norm.png){fig-align="center"}
+![Figure: Layer Norm normalizes each token’s features (independently of other tokens and samples), while Batch Norm normalizes each feature across the batch.](images/layer-norm.png){fig-align="center"}
 
 
 | **Aspect**                | **Layer Normalization**                                         | **Batch Normalization**                             |
@@ -397,11 +396,11 @@ The figure and the table below shows the difference between **Layer Normalizatio
 | **What it normalizes over** | Feature dimension (per token)                                  | Feature dimension (across the batch)              |
 | **When it is computed**     | Independently for each token                                   | Depends on the batch statistics                   |
 | **Suitable for**            | Sequence models, NLP, Transformers (small batch sizes)        | CNNs, vision tasks (large batch sizes)            |
-| **Handles variable batch sizes?** | Yes                                                       | No (depends on batch)                          |
+| **Handles variable batch sizes?** | Yes                                                       | No (depends on batch size)                      |
 | **Effect on sequence length** | Works regardless of sequence length                         | Not designed for sequence length, usually fixed  |
 | **Why in Transformers?**    | Works well with per-token operations & small batch settings   | Batch stats unreliable in small batches & sequences |
 
-In summary, layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks. Batch Normalization normalizes each feature across the batch, which is less suitable for NLP.**
+In summary, Layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks. Batch Normalization normalizes each feature across the batch, which is less suitable for NLP. Layer normalization’s independence from batch size and sequence structure makes it ideal for NLP and sequence models.
 
 
 ---
