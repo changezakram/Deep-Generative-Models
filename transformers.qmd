@@ -396,7 +396,7 @@ The figure and the table below shows the difference between **Layer Normalizatio
 | **What it normalizes over** | Feature dimension (per token)                                  | Feature dimension (across the batch)              |
 | **Suitable for**            | Sequence models, NLP, Transformers (small batch sizes)        | CNNs, vision tasks (large batch sizes)            |
 | **Handles variable batch sizes?** | Yes                                                       | No (depends on batch size)                      |
-| **Why in Transformers?**    | Works well with per-token operations & small batch settings   | Batch stats unreliable in small batches & sequences |
+| **Why in Transformers?**    | Stable for per-token operations & small batches  			| Unstable in small batches & sequences 	|
 
 In summary, Layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks. Batch Normalization normalizes each feature across the batch, which is less suitable for NLP. Layer normalization’s independence from batch size and sequence structure makes it ideal for NLP and sequence models.
 
