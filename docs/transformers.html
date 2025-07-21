@@ -680,9 +680,44 @@ q_i^\top k_j, &amp; j \leq i \\\\
 </ul>
 <hr>
 </section>
-<section id="encoderdecoder-attention" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="encoderdecoder-attention"><span class="header-section-number">5.2</span> Encoder–Decoder Attention</h3>
+<section id="cross-attention-in-the-decoder" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="cross-attention-in-the-decoder"><span class="header-section-number">5.2</span> Cross-Attention in the Decoder</h3>
+<p>After the decoder’s <strong>self-attention</strong> step, the transformer uses a <strong>cross-attention layer</strong> (sometimes called encoder-decoder attention) to incorporate information from the encoder’s output into each decoder token representation.</p>
+<p>In this layer:</p>
+<ul>
+<li>The <strong>queries (<span class="math inline">\(x_1\)</span>)</strong> come from the <em>decoder hidden states</em> at the current layer.</li>
+<li>The <strong>keys (<span class="math inline">\(x_2\)</span>)</strong> and <strong>values (<span class="math inline">\(x_2\)</span>)</strong> come from the <em>encoder output</em>.</li>
+</ul>
+<p>This allows the decoder to attend to the entire input sequence (from the encoder) for each token it generates.</p>
+<p>The figure below shows the computation flow of the cross-attention mechanism, including the dimensions of each variable at every stage:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cross-attention.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Cross-attention mechanism in the decoder. Queries (<span class="math inline">\(x_1\)</span>) come from the decoder, while keys and values (<span class="math inline">\(x_2\)</span>) come from the encoder output. The attention weights determine how much each encoder token contributes to each decoder token.</figcaption>
+</figure>
+</div>
+<section id="step-by-step" class="level4" data-number="5.2.1">
+<h4 data-number="5.2.1" class="anchored" data-anchor-id="step-by-step"><span class="header-section-number">5.2.1</span> Step-by-step</h4>
+<ol type="1">
+<li><p>The decoder hidden states <span class="math inline">\(x_1 \in \mathbb{R}^{n \times d_e}\)</span> (where <span class="math inline">\(n\)</span> is the number of decoder tokens) are projected into <strong>queries</strong>: <span class="math display">\[
+Q = x_1 W_q \in \mathbb{R}^{n \times d_q}
+\]</span></p></li>
+<li><p>The encoder output <span class="math inline">\(x_2 \in \mathbb{R}^{m \times d_e}\)</span> (where <span class="math inline">\(m\)</span> is the number of encoder tokens) is projected into <strong>keys</strong> and <strong>values</strong>: <span class="math display">\[
+K = x_2 W_k \in \mathbb{R}^{m \times d_q}, \quad V = x_2 W_v \in \mathbb{R}^{m \times d_v}
+\]</span></p></li>
+<li><p>Compute <strong>similarity scores</strong> between each query and all keys: <span class="math display">\[
+Q K^T \in \mathbb{R}^{n \times m}
+\]</span></p></li>
+<li><p>Scale the scores by <span class="math inline">\(\sqrt{d_k}\)</span> and apply <strong>softmax</strong> to get the attention weights: <span class="math display">\[
+A = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times m}
+\]</span></p></li>
+<li><p>Compute the weighted sum over the <strong>values</strong> to get the updated decoder representations: <span class="math display">\[
+Z = A V \in \mathbb{R}^{n \times d_v}
+\]</span></p></li>
+</ol>
+<p>This mechanism enables each decoder token to attend over the entire encoder output sequence, selecting the most relevant source tokens for prediction at each step.</p>
 <hr>
+</section>
 </section>
 </section>
 <section id="training-tips" class="level2" data-number="6">

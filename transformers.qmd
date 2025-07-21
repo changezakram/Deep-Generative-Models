@@ -454,8 +454,50 @@ The figure below illustrates how the attention mask is applied to $QK^\top$, blo
 
 ---
 
-### Encoder–Decoder Attention
+### Cross-Attention in the Decoder
 
+After the decoder’s **self-attention** step, the transformer uses a **cross-attention layer** (sometimes called encoder-decoder attention) to incorporate information from the encoder’s output into each decoder token representation.
+
+In this layer:
+
+- The **queries ($x_1$)** come from the *decoder hidden states* at the current layer.
+- The **keys ($x_2$)** and **values ($x_2$)** come from the *encoder output*.
+
+This allows the decoder to attend to the entire input sequence (from the encoder) for each token it generates.
+
+The figure below shows the computation flow of the cross-attention mechanism, including the dimensions of each variable at every stage:
+
+![Figure: Cross-attention mechanism in the decoder. Queries ($x_1$) come from the decoder, while keys and values ($x_2$) come from the encoder output. The attention weights determine how much each encoder token contributes to each decoder token.](images/cross-attention.png)
+
+
+#### Step-by-step
+
+1. The decoder hidden states $x_1 \in \mathbb{R}^{n \times d_e}$ (where $n$ is the number of decoder tokens) are projected into **queries**:
+$$
+Q = x_1 W_q \in \mathbb{R}^{n \times d_q}
+$$
+
+2. The encoder output $x_2 \in \mathbb{R}^{m \times d_e}$ (where $m$ is the number of encoder tokens) is projected into **keys** and **values**:
+$$
+K = x_2 W_k \in \mathbb{R}^{m \times d_q}, \quad V = x_2 W_v \in \mathbb{R}^{m \times d_v}
+$$
+
+3. Compute **similarity scores** between each query and all keys:
+$$
+Q K^T \in \mathbb{R}^{n \times m}
+$$
+
+4. Scale the scores by $\sqrt{d_k}$ and apply **softmax** to get the attention weights:
+$$
+A = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times m}
+$$
+
+5. Compute the weighted sum over the **values** to get the updated decoder representations:
+$$
+Z = A V \in \mathbb{R}^{n \times d_v}
+$$
+
+This mechanism enables each decoder token to attend over the entire encoder output sequence, selecting the most relevant source tokens for prediction at each step.
 
 ---
 
