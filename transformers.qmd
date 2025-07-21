@@ -386,11 +386,10 @@ where:
 In conventional neural networks, such as convolutional neural networks (CNNs), it is common to use **Batch Normalization** to stabilize training.  
 However, in sequence models like Transformers, **Layer Normalization** is preferred because it normalizes each token independently of the batch and sequence length — making it more suitable for NLP tasks and small batches.
 
-The figure below shows the difference between **Layer Normalization** and **Batch Normalization**, highlighting which dimensions they operate over.
+The figure and the table below shows the difference between **Layer Normalization** and **Batch Normalization**, highlighting which dimensions they operate over.
 
 ![Figure: Comparison of Layer Normalization and Batch Normalization. ](images/layer-norm.png){fig-align="center"}
 
-Table: Comparison of Layer Norm and Batch Norm.
 
 | **Aspect**                | **Layer Normalization**                                         | **Batch Normalization**                             |
 |---------------------------|-----------------------------------------------------------------|-----------------------------------------------------|
