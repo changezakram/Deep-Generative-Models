@@ -380,6 +380,7 @@ $$
 $$
 
 where:
+
 - $\gamma \in \mathbb{R}^d$, $\beta \in \mathbb{R}^d$ are learnable gain and bias parameters.
 - $\epsilon$ is a small constant for numerical stability.
 

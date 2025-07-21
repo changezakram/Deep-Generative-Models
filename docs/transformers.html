@@ -577,7 +577,11 @@ It normalizes each token embedding to have zero mean and unit variance <strong>w
 <p><span class="math display">\[
 \text{output} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta
 \]</span></p>
-<p>where: - <span class="math inline">\(\gamma \in \mathbb{R}^d\)</span>, <span class="math inline">\(\beta \in \mathbb{R}^d\)</span> are learnable gain and bias parameters. - <span class="math inline">\(\epsilon\)</span> is a small constant for numerical stability.</p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\gamma \in \mathbb{R}^d\)</span>, <span class="math inline">\(\beta \in \mathbb{R}^d\)</span> are learnable gain and bias parameters.</li>
+<li><span class="math inline">\(\epsilon\)</span> is a small constant for numerical stability.</li>
+</ul>
 <p>In conventional neural networks, such as convolutional neural networks (CNNs), it is common to use <strong>Batch Normalization</strong> to stabilize training.<br>
 However, in sequence models like Transformers, <strong>Layer Normalization</strong> is preferred because it normalizes each token independently of the batch and sequence length — making it more suitable for NLP tasks and small batches.</p>
 <p>The figure and the table below shows the difference between <strong>Layer Normalization</strong> and <strong>Batch Normalization</strong>, highlighting which dimensions they operate over.</p>
