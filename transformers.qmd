@@ -112,7 +112,7 @@ where:
 
 The figure below illustrates this process:
 
-![Figure: Token and positional embeddings are summed element-wise to produce the final input embeddings fed into the transformer encoder.](images/embedding.png){fig-align="center"}
+![Token and positional embeddings are summed element-wise to produce the input fed into the encoder.](images/embedding.png){fig-align="center"}
 
 
 Following are two approaches to Positional Encoding:
@@ -128,6 +128,13 @@ p_i =
 \cos\big(i / 10000^{\frac{2j}{d_e}}\big)
 \end{pmatrix}
 $$
+
+Why do trigonometric functions work?
+
+- Sine and cosine provide unique, smooth, and continuous encodings for each position.
+- Using different frequencies helps the model notice both small and large position differences.
+- Using patterns made by sine and cosine waves helps the model notice how far apart words are from each other, not just where they are in the sentence.
+- No learnable parameters — generalizes better to unseen sequence lengths.
 
 - **Pros:**
   - Does not introduce additional parameters.

@@ -353,7 +353,7 @@ To address this, we add a <strong>position vector</strong> <span class="math inl
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/embedding.png" class="img-fluid figure-img"></p>
-<figcaption>Figure: Token and positional embeddings are summed element-wise to produce the final input embeddings fed into the transformer encoder.</figcaption>
+<figcaption>Token and positional embeddings are summed element-wise to produce the input fed into the encoder.</figcaption>
 </figure>
 </div>
 <p>Following are two approaches to Positional Encoding:</p>
@@ -366,13 +366,18 @@ p_i =
 \cos\big(i / 10000^{\frac{2j}{d_e}}\big)
 \end{pmatrix}
 \]</span></p>
+<p>Why do trigonometric functions work?</p>
 <ul>
-<li><strong>Pros:</strong>
+<li><p>Sine and cosine provide unique, smooth, and continuous encodings for each position.</p></li>
+<li><p>Using different frequencies helps the model notice both small and large position differences.</p></li>
+<li><p>Using patterns made by sine and cosine waves helps the model notice how far apart words are from each other, not just where they are in the sentence.</p></li>
+<li><p>No learnable parameters — generalizes better to unseen sequence lengths.</p></li>
+<li><p><strong>Pros:</strong></p>
 <ul>
 <li>Does not introduce additional parameters.</li>
 <li>Periodicity allows some generalization to longer sequences.</li>
 </ul></li>
-<li><strong>Cons:</strong>
+<li><p><strong>Cons:</strong></p>
 <ul>
 <li>Not learnable — fixed at initialization.</li>
 <li>Limited extrapolation in practice.</li>
