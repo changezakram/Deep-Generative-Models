@@ -578,9 +578,13 @@ Transformers have revolutionized sequence modeling by replacing recurrence with 
 
 ## References & Further Reading
 
-- *Attention is All You Need* — [arXiv:1706.03762](https://arxiv.org/abs/1706.03762)  
-- BERT — [arXiv:1810.04805](https://arxiv.org/abs/1810.04805)  
-- GPT-3 — [arXiv:2005.14165](https://arxiv.org/abs/2005.14165)  
-- Vision Transformer — [arXiv:2010.11929](https://arxiv.org/abs/2010.11929)
+
+[1] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). *Attention is All You Need*. Retrieved from https://arxiv.org/abs/1706.03762  
+
+[2] Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2019). *BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding*. Retrieved from https://arxiv.org/abs/1810.04805  
+
+[3] Brown, T. B., Mann, B., Ryder, N., Subbiah, M., Kaplan, J., Dhariwal, P., … Amodei, D. (2020). *Language Models are Few-Shot Learners (GPT-3)*. Retrieved from https://arxiv.org/abs/2005.14165  
+
+[4] Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., … Houlsby, N. (2021). *An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Vision Transformer)*. Retrieved from https://arxiv.org/abs/2010.11929  
 
 
