@@ -14,10 +14,7 @@ The architecture consists of an encoder and decoder, as illustrated below.
 
 ## Limitations of Recurrent Neural Networks (RNNs)
 
-Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state $h_t$ at time $t$ is computed based on the current input $x_t$ and the previous hidden state $h_{t-1}$.  
-This allows RNNs to process sequences by carrying information forward over time.
-
-The hidden state at time t can be computed recursively as:
+While transformers have become the standard for sequence modeling, they were developed to overcome key challenges in earlier architectures such as Recurrent Neural Networks (RNNs). Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely used. In an RNN, the hidden state $h_t$ at time $t$ is computed based on the current input $x_t$ and the previous hidden state $h_{t-1}$. This allows RNNs to process sequences by carrying information forward over time. The hidden state at time t can be computed recursively as:
 
 $$
 h_t = \tanh(W_h h_{t-1} + W_x x_t + b)

@@ -260,9 +260,7 @@ window.Quarto = {
 </section>
 <section id="limitations-of-recurrent-neural-networks-rnns" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="limitations-of-recurrent-neural-networks-rnns"><span class="header-section-number">2</span> Limitations of Recurrent Neural Networks (RNNs)</h2>
-<p>Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely adopted. In an RNN, the hidden state <span class="math inline">\(h_t\)</span> at time <span class="math inline">\(t\)</span> is computed based on the current input <span class="math inline">\(x_t\)</span> and the previous hidden state <span class="math inline">\(h_{t-1}\)</span>.<br>
-This allows RNNs to process sequences by carrying information forward over time.</p>
-<p>The hidden state at time t can be computed recursively as:</p>
+<p>While transformers have become the standard for sequence modeling, they were developed to overcome key challenges in earlier architectures such as Recurrent Neural Networks (RNNs). Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely used. In an RNN, the hidden state <span class="math inline">\(h_t\)</span> at time <span class="math inline">\(t\)</span> is computed based on the current input <span class="math inline">\(x_t\)</span> and the previous hidden state <span class="math inline">\(h_{t-1}\)</span>. This allows RNNs to process sequences by carrying information forward over time. The hidden state at time t can be computed recursively as:</p>
 <p><span class="math display">\[
 h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 \]</span></p>
