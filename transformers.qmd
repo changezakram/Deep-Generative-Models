@@ -133,7 +133,6 @@ Why do trigonometric functions work?
 
 - Sine and cosine provide unique, smooth, and continuous encodings for each position.
 - Using different frequencies helps the model notice both small and large position differences.
-- Using patterns made by sine and cosine waves helps the model notice how far apart words are from each other, not just where they are in the sentence.
 - No learnable parameters — generalizes better to unseen sequence lengths.
 
 - **Pros:**
@@ -297,6 +296,11 @@ $$
 $$
 
 where $W_o$ is a learnable weight matrix of shape $[h \cdot d_v \times d_e]$.
+
+The figure below shows an example of how multi-head self-attention captures relationships between tokens. Here, the word “making” attends strongly to itself as well as to the words “more” and “difficult”. Different colors correspond to different attention heads, each learning distinct relationships in the input sequence. Thicker lines represent stronger attention weights, showing which tokens are most relevant for the given token.
+
+![Figure: Visualization of multi-head self-attention weights for the word “making”. Different colors correspond to different heads. Best viewed in color.](images/attention-visualization.png)  
+
 
 **Why Multi-Head Attention?**
 

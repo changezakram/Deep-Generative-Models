@@ -370,7 +370,6 @@ p_i =
 <ul>
 <li><p>Sine and cosine provide unique, smooth, and continuous encodings for each position.</p></li>
 <li><p>Using different frequencies helps the model notice both small and large position differences.</p></li>
-<li><p>Using patterns made by sine and cosine waves helps the model notice how far apart words are from each other, not just where they are in the sentence.</p></li>
 <li><p>No learnable parameters — generalizes better to unseen sequence lengths.</p></li>
 <li><p><strong>Pros:</strong></p>
 <ul>
@@ -507,6 +506,13 @@ Q K^T
 \text{Concat}(\text{head}_1, \dots, \text{head}_h) W_o
 \]</span></p>
 <p>where <span class="math inline">\(W_o\)</span> is a learnable weight matrix of shape <span class="math inline">\([h \cdot d_v \times d_e]\)</span>.</p>
+<p>The figure below shows an example of how multi-head self-attention captures relationships between tokens. Here, the word “making” attends strongly to itself as well as to the words “more” and “difficult”. Different colors correspond to different attention heads, each learning distinct relationships in the input sequence. Thicker lines represent stronger attention weights, showing which tokens are most relevant for the given token.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/attention-visualization.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Visualization of multi-head self-attention weights for the word “making”. Different colors correspond to different heads. Best viewed in color.</figcaption>
+</figure>
+</div>
 <p><strong>Why Multi-Head Attention?</strong></p>
 <ul>
 <li>Allows the model to jointly attend to information from different representation subspaces.<br>
