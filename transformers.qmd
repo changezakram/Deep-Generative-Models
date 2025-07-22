@@ -317,7 +317,7 @@ After computing the attention outputs, each token passes through a feedforward n
 
 ### Feedforward Network
 
-After the self-attention layer, the transformer applies a position-wise feedforward network (FFN) to each token embedding independently. This introduces nonlinearities into the model and allows it to transform the attended information further.
+After self-attention, the transformer applies a position-wise feedforward network (FFN) to each token independently — adding non-linearity and transforming the attended information further.
 
 **Why is this needed?**
 
@@ -349,11 +349,11 @@ This is done independently for each position.
 
 ### Residual Connections & Layer Normalization
 
-The transformer uses two additional techniques — residual connections and layer normalization — to stabilize training and improve convergence. These are often written together as *Add & Norm* in most diagrams.
+To further improve optimization and stability, transformers also incorporate two additional techniques: residual connections and layer normalization. These are often written together as *Add & Norm* in most diagrams.
 
 **Why use these techniques?**
 
-- Residual connections make the optimization landscape smoother and help gradients flow better.  
+- Residual connections make the optimization smoother and help gradients flow better.  
 - Layer normalization stabilizes training and helps each layer produce consistent, normalized outputs.
 
 
@@ -412,6 +412,7 @@ The figure and the table below shows the difference between Layer Normalization 
 
 In summary, Layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks. Batch Normalization normalizes each feature across the batch, which is less suitable for NLP. Layer normalization’s independence from batch size and sequence structure makes it ideal for NLP and sequence models.
 
+With these components — self-attention, feedforward networks, residual connections, and layer normalization — the encoder stack is complete. We now turn to the decoder, which builds on the encoder’s output to generate predictions.
 
 ---
 

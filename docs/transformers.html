@@ -528,7 +528,7 @@ Q K^T
 </section>
 <section id="feedforward-network" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="feedforward-network"><span class="header-section-number">4.4</span> Feedforward Network</h3>
-<p>After the self-attention layer, the transformer applies a position-wise feedforward network (FFN) to each token embedding independently. This introduces nonlinearities into the model and allows it to transform the attended information further.</p>
+<p>After self-attention, the transformer applies a position-wise feedforward network (FFN) to each token independently — adding non-linearity and transforming the attended information further.</p>
 <p><strong>Why is this needed?</strong></p>
 <ul>
 <li>Self-attention by itself is a linear operation — it just computes weighted sums of the value vectors.</li>
@@ -557,10 +557,10 @@ m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
 </section>
 <section id="residual-connections-layer-normalization" class="level3" data-number="4.5">
 <h3 data-number="4.5" class="anchored" data-anchor-id="residual-connections-layer-normalization"><span class="header-section-number">4.5</span> Residual Connections &amp; Layer Normalization</h3>
-<p>The transformer uses two additional techniques — residual connections and layer normalization — to stabilize training and improve convergence. These are often written together as <em>Add &amp; Norm</em> in most diagrams.</p>
+<p>To further improve optimization and stability, transformers also incorporate two additional techniques: residual connections and layer normalization. These are often written together as <em>Add &amp; Norm</em> in most diagrams.</p>
 <p><strong>Why use these techniques?</strong></p>
 <ul>
-<li>Residual connections make the optimization landscape smoother and help gradients flow better.<br>
+<li>Residual connections make the optimization smoother and help gradients flow better.<br>
 </li>
 <li>Layer normalization stabilizes training and helps each layer produce consistent, normalized outputs.</li>
 </ul>
@@ -638,6 +638,7 @@ X^{(i)} = X^{(i-1)} + \text{Layer}(X^{(i-1)})
 </tbody>
 </table>
 <p>In summary, Layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks. Batch Normalization normalizes each feature across the batch, which is less suitable for NLP. Layer normalization’s independence from batch size and sequence structure makes it ideal for NLP and sequence models.</p>
+<p>With these components — self-attention, feedforward networks, residual connections, and layer normalization — the encoder stack is complete. We now turn to the decoder, which builds on the encoder’s output to generate predictions.</p>
 <hr>
 </section>
 </section>
