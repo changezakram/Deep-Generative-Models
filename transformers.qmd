@@ -110,7 +110,7 @@ where:
 
 The figure below illustrates this process:
 
-![Token and positional embeddings are summed element-wise to produce the final input representation passed to the encoder.](images/embedding.png){fig-align="center"}
+![Figure: Token and positional embeddings are summed element-wise to produce the final input representation passed to the encoder.](images/embedding.png){fig-align="center"}
 
 
 There are two common methods for generating positional embeddings, detailed below.
