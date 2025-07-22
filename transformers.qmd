@@ -555,6 +555,10 @@ This mechanism enables each decoder token to attend over the entire encoder outp
 
 ---
 
+Transformers have revolutionized sequence modeling by replacing recurrence with parallelizable self-attention. Their ability to capture long-range dependencies and scale to large data has made them the foundation of modern NLP and beyond.
+
+---
+
 ## References & Further Reading
 
 - *Attention is All You Need* — [arXiv:1706.03762](https://arxiv.org/abs/1706.03762)  
