@@ -1,5 +1,5 @@
 ---
-title: "Transformers — A Deep Dive"
+title: "Understanding Transformers, Step by Step"
 format: html
 ---
 
