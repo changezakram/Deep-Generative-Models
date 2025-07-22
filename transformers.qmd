@@ -253,7 +253,9 @@ $$
 
 - Captures long-range dependencies.  
 - Learns which tokens are most relevant to each other.   
-- Fully parallelizable since it operates on the entire sequence at once.  
+- Fully parallelizable since it operates on the entire sequence at once. 
+
+While single-head attention is effective, it can focus only on one type of relationship at a time. Multi-Head Attention extends this idea by allowing the model to attend to information from multiple representation subspaces in parallel. 
 
 ---
 
