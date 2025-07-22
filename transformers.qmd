@@ -98,7 +98,7 @@ However, the meaning of a sentence depends on the order of its words.
 > *“The cat chased the dog” ≠ “The dog chased the cat”*
 
 Without positional information, self-attention would treat these sentences as identical.  
-To address this, we add a **position vector** $p_i$ to each token embedding $x_i$, producing a position-aware representation:  
+To address this, we add a position vector $p_i$ to each token embedding $x_i$, producing a position-aware representation:  
 
 $$
 \tilde{x}_i = x_i + p_i
@@ -159,7 +159,7 @@ $$
   - Cannot extrapolate to sequences longer than seen in training.
 
 
-In practice, most architectures today use **learned positional encodings** because of their flexibility and performance.
+In practice, most architectures today use learned positional encodings because of their flexibility and performance.
 
 
 **Summary**
@@ -236,7 +236,7 @@ $$
 
 This stabilizes gradients during training.
 
-**5: Softmax to get Attention Weights:** The scaled scores are passed through a softmax function to convert them into probabilities that sum to 1. These are the **attention weights** $A$, indicating how much focus to put on each token:
+**5: Softmax to get Attention Weights:** The scaled scores are passed through a softmax function to convert them into probabilities that sum to 1. These are the attention weights $A$, indicating how much focus to put on each token:
 
 $$
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right)
@@ -299,7 +299,7 @@ where $W_o$ is a learnable weight matrix of shape $[h \cdot d_v \times d_e]$.
 
 The figure below shows an example of how multi-head self-attention captures relationships between tokens. Here, the word “making” attends strongly to itself as well as to the words “more” and “difficult”. Different colors correspond to different attention heads, each learning distinct relationships in the input sequence. Thicker lines represent stronger attention weights, showing which tokens are most relevant for the given token.
 
-![Figure: Visualization of multi-head self-attention weights for the word “making”. Different colors correspond to different heads. Best viewed in color.](images/attention-visualization.png)  
+![Figure: Visualization of the attention mechanism showing long-range dependencies in encoder self-attention, from Vaswani et al., 2017](images/attention-visualization.png)  
 
 
 **Why Multi-Head Attention?**
@@ -314,14 +314,13 @@ The figure below shows an example of how multi-head self-attention captures rela
 
 ### Feedforward Network
 
-After the self-attention layer, the transformer applies a **position-wise feedforward network (FFN)** to each token embedding independently.  
-This introduces **nonlinearities** into the model and allows it to transform the attended information further.
+After the self-attention layer, the transformer applies a position-wise feedforward network (FFN) to each token embedding independently. This introduces nonlinearities into the model and allows it to transform the attended information further.
 
 **Why is this needed?**
 
 - Self-attention by itself is a linear operation — it just computes weighted sums of the value vectors.
 - Stacking more self-attention layers without nonlinearity simply re-averages the values, limiting expressiveness.
-- To address this, each output vector of the self-attention layer is passed through a **multi-layer perceptron (MLP)**.
+- To address this, each output vector of the self-attention layer is passed through a multi-layer perceptron (MLP).
 
 **Computation**
 For each token output vector $output_i$ from the self-attention:
@@ -347,7 +346,7 @@ This is done independently for each position.
 
 ### Residual Connections & Layer Normalization
 
-The transformer uses two additional techniques — **residual connections** and **layer normalization** — to stabilize training and improve convergence. These are often written together as *Add & Norm* in most diagrams.
+The transformer uses two additional techniques — residual connections and layer normalization — to stabilize training and improve convergence. These are often written together as *Add & Norm* in most diagrams.
 
 **Why use these techniques?**
 
@@ -394,10 +393,9 @@ where:
 - $\gamma \in \mathbb{R}^d$, $\beta \in \mathbb{R}^d$ are learnable gain and bias parameters.
 - $\epsilon$ is a small constant for numerical stability.
 
-In conventional neural networks, such as convolutional neural networks (CNNs), it is common to use **Batch Normalization** to stabilize training.  
-However, in sequence models like Transformers, **Layer Normalization** is preferred because it normalizes each token independently of the batch and sequence length — making it more suitable for NLP tasks and small batches.
+In conventional neural networks, such as convolutional neural networks (CNNs), it is common to use Batch Normalization to stabilize training. However, in sequence models like Transformers, Layer Normalization is preferred because it normalizes each token independently of the batch and sequence length — making it more suitable for NLP tasks and small batches.
 
-The figure and the table below shows the difference between **Layer Normalization** and **Batch Normalization**, highlighting which dimensions they operate over.
+The figure and the table below shows the difference between Layer Normalization and Batch Normalization, highlighting which dimensions they operate over.
 
 ![Figure: Layer Norm normalizes each token’s features (independently of other tokens and samples), while Batch Norm normalizes each feature across the batch.](images/layer-norm.png){fig-align="center"}
 
@@ -416,7 +414,7 @@ In summary, Layer Normalization normalizes each token’s features independently
 
 ## Decoder
 
-The **decoder** is used for sequence generation.  
+The decoder is used for sequence generation.  
 It also consists of stacked layers with three components:
 
 - **Masked Multi-Head Self-Attention** — only attends to past tokens.  
@@ -427,13 +425,13 @@ It also consists of stacked layers with three components:
 
 ### Attention Mask for Decoder
 
-When using self-attention in **decoders**, it is critical to prevent the model from "looking into the future," i.e., accessing tokens that come later in the sequence. This ensures proper **causal** sequence generation (left-to-right).
+When using self-attention in decoders, it is critical to prevent the model from "looking into the future," i.e., accessing tokens that come later in the sequence. This ensures proper causal sequence generation (left-to-right).
 
 **Why do we need masking?**
 
-- In sequence prediction tasks (like **machine translation** or **language modeling**), the model should predict the next token based **only** on past and current tokens — not on future tokens.
+- In sequence prediction tasks (like machine translation or language modeling), the model should predict the next token based only on past and current tokens — not on future tokens.
 - Without masking, the self-attention mechanism would compute attention over all tokens in the sequence, violating the causal order.
-- We solve this by **masking out** the attention to future tokens.
+- We solve this by masking out the attention to future tokens.
 
 **How does masking work?**
 
@@ -467,7 +465,7 @@ The figure below illustrates how the attention mask is applied to $QK^\top$, blo
 
 ### Cross-Attention in the Decoder
 
-After the decoder’s **self-attention** step, the transformer uses a **cross-attention layer** (sometimes called encoder-decoder attention) to incorporate information from the encoder’s output into each decoder token representation.
+After the decoder’s self-attention step, the transformer uses a cross-attention layer (sometimes called encoder-decoder attention) to incorporate information from the encoder’s output into each decoder token representation.
 
 In this layer:
 
@@ -483,27 +481,27 @@ The figure below shows the computation flow of the cross-attention mechanism, in
 
 #### Step-by-step
 
-1. The decoder hidden states $x_1 \in \mathbb{R}^{n \times d_e}$ (where $n$ is the number of decoder tokens) are projected into **queries**:
+1. The decoder hidden states $x_1 \in \mathbb{R}^{n \times d_e}$ (where $n$ is the number of decoder tokens) are projected into queries:
 $$
 Q = x_1 W_q \in \mathbb{R}^{n \times d_q}
 $$
 
-2. The encoder output $x_2 \in \mathbb{R}^{m \times d_e}$ (where $m$ is the number of encoder tokens) is projected into **keys** and **values**:
+2. The encoder output $x_2 \in \mathbb{R}^{m \times d_e}$ (where $m$ is the number of encoder tokens) is projected into keys and values:
 $$
 K = x_2 W_k \in \mathbb{R}^{m \times d_q}, \quad V = x_2 W_v \in \mathbb{R}^{m \times d_v}
 $$
 
-3. Compute **similarity scores** between each query and all keys:
+3. Compute similarity scores between each query and all keys:
 $$
 Q K^T \in \mathbb{R}^{n \times m}
 $$
 
-4. Scale the scores by $\sqrt{d_k}$ and apply **softmax** to get the attention weights:
+4. Scale the scores by $\sqrt{d_k}$ and apply softmax to get the attention weights:
 $$
 A = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times m}
 $$
 
-5. Compute the weighted sum over the **values** to get the updated decoder representations:
+5. Compute the weighted sum over the values to get the updated decoder representations:
 $$
 Z = A V \in \mathbb{R}^{n \times d_v}
 $$
@@ -514,10 +512,10 @@ This mechanism enables each decoder token to attend over the entire encoder outp
 
 ## Training Tips
 
-- Large batches & data.
-- Learning rate warm-up.
-- Label smoothing.
-- Gradient clipping.
+- **Large batches & data:** Helps stabilize gradients and improve generalization by providing more diverse examples.
+- **Learning rate warm-up:** Gradually increases the learning rate at the start of training to avoid unstable updates.
+- **Label smoothing:** Prevents the model from becoming overconfident by softening the target labels.
+- **Gradient clipping:** Limits the magnitude of gradients to avoid exploding gradients and stabilize training.
 
 ---
 

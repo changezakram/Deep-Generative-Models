@@ -339,7 +339,7 @@ However, the meaning of a sentence depends on the order of its words.</p>
 <p><em>“The cat chased the dog” ≠ “The dog chased the cat”</em></p>
 </blockquote>
 <p>Without positional information, self-attention would treat these sentences as identical.<br>
-To address this, we add a <strong>position vector</strong> <span class="math inline">\(p_i\)</span> to each token embedding <span class="math inline">\(x_i\)</span>, producing a position-aware representation:</p>
+To address this, we add a position vector <span class="math inline">\(p_i\)</span> to each token embedding <span class="math inline">\(x_i\)</span>, producing a position-aware representation:</p>
 <p><span class="math display">\[
 \tilde{x}_i = x_i + p_i
 \]</span></p>
@@ -399,7 +399,7 @@ P = [p_1, p_2, \dots, p_n], \quad P \in \mathbb{R}^{d_e \times n}
 <li>Cannot extrapolate to sequences longer than seen in training.</li>
 </ul></li>
 </ul>
-<p>In practice, most architectures today use <strong>learned positional encodings</strong> because of their flexibility and performance.</p>
+<p>In practice, most architectures today use learned positional encodings because of their flexibility and performance.</p>
 <p><strong>Summary</strong></p>
 <ul>
 <li>Positional encoding ensures the model is aware of token order.<br>
@@ -460,7 +460,7 @@ Q K^T
 \frac{Q K^T}{\sqrt{d_k}}
 \]</span></p>
 <p>This stabilizes gradients during training.</p>
-<p><strong>5: Softmax to get Attention Weights:</strong> The scaled scores are passed through a softmax function to convert them into probabilities that sum to 1. These are the <strong>attention weights</strong> <span class="math inline">\(A\)</span>, indicating how much focus to put on each token:</p>
+<p><strong>5: Softmax to get Attention Weights:</strong> The scaled scores are passed through a softmax function to convert them into probabilities that sum to 1. These are the attention weights <span class="math inline">\(A\)</span>, indicating how much focus to put on each token:</p>
 <p><span class="math display">\[
 \text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right)
 \]</span></p>
@@ -510,7 +510,7 @@ Q K^T
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/attention-visualization.png" class="img-fluid figure-img"></p>
-<figcaption>Figure: Visualization of multi-head self-attention weights for the word “making”. Different colors correspond to different heads. Best viewed in color.</figcaption>
+<figcaption>Figure: Visualization of the attention mechanism showing long-range dependencies in encoder self-attention, from Vaswani et al., 2017</figcaption>
 </figure>
 </div>
 <p><strong>Why Multi-Head Attention?</strong></p>
@@ -526,13 +526,12 @@ Q K^T
 </section>
 <section id="feedforward-network" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="feedforward-network"><span class="header-section-number">4.3</span> Feedforward Network</h3>
-<p>After the self-attention layer, the transformer applies a <strong>position-wise feedforward network (FFN)</strong> to each token embedding independently.<br>
-This introduces <strong>nonlinearities</strong> into the model and allows it to transform the attended information further.</p>
+<p>After the self-attention layer, the transformer applies a position-wise feedforward network (FFN) to each token embedding independently. This introduces nonlinearities into the model and allows it to transform the attended information further.</p>
 <p><strong>Why is this needed?</strong></p>
 <ul>
 <li>Self-attention by itself is a linear operation — it just computes weighted sums of the value vectors.</li>
 <li>Stacking more self-attention layers without nonlinearity simply re-averages the values, limiting expressiveness.</li>
-<li>To address this, each output vector of the self-attention layer is passed through a <strong>multi-layer perceptron (MLP)</strong>.</li>
+<li>To address this, each output vector of the self-attention layer is passed through a multi-layer perceptron (MLP).</li>
 </ul>
 <p><strong>Computation</strong> For each token output vector <span class="math inline">\(output_i\)</span> from the self-attention: <span class="math display">\[
 m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
@@ -556,7 +555,7 @@ m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
 </section>
 <section id="residual-connections-layer-normalization" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="residual-connections-layer-normalization"><span class="header-section-number">4.4</span> Residual Connections &amp; Layer Normalization</h3>
-<p>The transformer uses two additional techniques — <strong>residual connections</strong> and <strong>layer normalization</strong> — to stabilize training and improve convergence. These are often written together as <em>Add &amp; Norm</em> in most diagrams.</p>
+<p>The transformer uses two additional techniques — residual connections and layer normalization — to stabilize training and improve convergence. These are often written together as <em>Add &amp; Norm</em> in most diagrams.</p>
 <p><strong>Why use these techniques?</strong></p>
 <ul>
 <li>Residual connections make the optimization landscape smoother and help gradients flow better.<br>
@@ -592,9 +591,8 @@ X^{(i)} = X^{(i-1)} + \text{Layer}(X^{(i-1)})
 <li><span class="math inline">\(\gamma \in \mathbb{R}^d\)</span>, <span class="math inline">\(\beta \in \mathbb{R}^d\)</span> are learnable gain and bias parameters.</li>
 <li><span class="math inline">\(\epsilon\)</span> is a small constant for numerical stability.</li>
 </ul>
-<p>In conventional neural networks, such as convolutional neural networks (CNNs), it is common to use <strong>Batch Normalization</strong> to stabilize training.<br>
-However, in sequence models like Transformers, <strong>Layer Normalization</strong> is preferred because it normalizes each token independently of the batch and sequence length — making it more suitable for NLP tasks and small batches.</p>
-<p>The figure and the table below shows the difference between <strong>Layer Normalization</strong> and <strong>Batch Normalization</strong>, highlighting which dimensions they operate over.</p>
+<p>In conventional neural networks, such as convolutional neural networks (CNNs), it is common to use Batch Normalization to stabilize training. However, in sequence models like Transformers, Layer Normalization is preferred because it normalizes each token independently of the batch and sequence length — making it more suitable for NLP tasks and small batches.</p>
+<p>The figure and the table below shows the difference between Layer Normalization and Batch Normalization, highlighting which dimensions they operate over.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/layer-norm.png" class="img-fluid figure-img"></p>
@@ -644,7 +642,7 @@ However, in sequence models like Transformers, <strong>Layer Normalization</stro
 </section>
 <section id="decoder" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="decoder"><span class="header-section-number">5</span> Decoder</h2>
-<p>The <strong>decoder</strong> is used for sequence generation.<br>
+<p>The decoder is used for sequence generation.<br>
 It also consists of stacked layers with three components:</p>
 <ul>
 <li><strong>Masked Multi-Head Self-Attention</strong> — only attends to past tokens.<br>
@@ -656,12 +654,12 @@ It also consists of stacked layers with three components:</p>
 <hr>
 <section id="attention-mask-for-decoder" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="attention-mask-for-decoder"><span class="header-section-number">5.1</span> Attention Mask for Decoder</h3>
-<p>When using self-attention in <strong>decoders</strong>, it is critical to prevent the model from “looking into the future,” i.e., accessing tokens that come later in the sequence. This ensures proper <strong>causal</strong> sequence generation (left-to-right).</p>
+<p>When using self-attention in decoders, it is critical to prevent the model from “looking into the future,” i.e., accessing tokens that come later in the sequence. This ensures proper causal sequence generation (left-to-right).</p>
 <p><strong>Why do we need masking?</strong></p>
 <ul>
-<li>In sequence prediction tasks (like <strong>machine translation</strong> or <strong>language modeling</strong>), the model should predict the next token based <strong>only</strong> on past and current tokens — not on future tokens.</li>
+<li>In sequence prediction tasks (like machine translation or language modeling), the model should predict the next token based only on past and current tokens — not on future tokens.</li>
 <li>Without masking, the self-attention mechanism would compute attention over all tokens in the sequence, violating the causal order.</li>
-<li>We solve this by <strong>masking out</strong> the attention to future tokens.</li>
+<li>We solve this by masking out the attention to future tokens.</li>
 </ul>
 <p><strong>How does masking work?</strong></p>
 <p>At each position <span class="math inline">\(i\)</span>, we: - Keep attention scores for tokens at <span class="math inline">\(j \leq i\)</span> (past &amp; current positions). - Set attention scores to <span class="math inline">\(-\infty\)</span> (or equivalently, weights to 0 after softmax) for <span class="math inline">\(j &gt; i\)</span> (future positions).</p>
@@ -693,7 +691,7 @@ q_i^\top k_j, &amp; j \leq i \\\\
 </section>
 <section id="cross-attention-in-the-decoder" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="cross-attention-in-the-decoder"><span class="header-section-number">5.2</span> Cross-Attention in the Decoder</h3>
-<p>After the decoder’s <strong>self-attention</strong> step, the transformer uses a <strong>cross-attention layer</strong> (sometimes called encoder-decoder attention) to incorporate information from the encoder’s output into each decoder token representation.</p>
+<p>After the decoder’s self-attention step, the transformer uses a cross-attention layer (sometimes called encoder-decoder attention) to incorporate information from the encoder’s output into each decoder token representation.</p>
 <p>In this layer:</p>
 <ul>
 <li>The <strong>queries (<span class="math inline">\(x_1\)</span>)</strong> come from the <em>decoder hidden states</em> at the current layer.</li>
@@ -710,19 +708,19 @@ q_i^\top k_j, &amp; j \leq i \\\\
 <section id="step-by-step" class="level4" data-number="5.2.1">
 <h4 data-number="5.2.1" class="anchored" data-anchor-id="step-by-step"><span class="header-section-number">5.2.1</span> Step-by-step</h4>
 <ol type="1">
-<li><p>The decoder hidden states <span class="math inline">\(x_1 \in \mathbb{R}^{n \times d_e}\)</span> (where <span class="math inline">\(n\)</span> is the number of decoder tokens) are projected into <strong>queries</strong>: <span class="math display">\[
+<li><p>The decoder hidden states <span class="math inline">\(x_1 \in \mathbb{R}^{n \times d_e}\)</span> (where <span class="math inline">\(n\)</span> is the number of decoder tokens) are projected into queries: <span class="math display">\[
 Q = x_1 W_q \in \mathbb{R}^{n \times d_q}
 \]</span></p></li>
-<li><p>The encoder output <span class="math inline">\(x_2 \in \mathbb{R}^{m \times d_e}\)</span> (where <span class="math inline">\(m\)</span> is the number of encoder tokens) is projected into <strong>keys</strong> and <strong>values</strong>: <span class="math display">\[
+<li><p>The encoder output <span class="math inline">\(x_2 \in \mathbb{R}^{m \times d_e}\)</span> (where <span class="math inline">\(m\)</span> is the number of encoder tokens) is projected into keys and values: <span class="math display">\[
 K = x_2 W_k \in \mathbb{R}^{m \times d_q}, \quad V = x_2 W_v \in \mathbb{R}^{m \times d_v}
 \]</span></p></li>
-<li><p>Compute <strong>similarity scores</strong> between each query and all keys: <span class="math display">\[
+<li><p>Compute similarity scores between each query and all keys: <span class="math display">\[
 Q K^T \in \mathbb{R}^{n \times m}
 \]</span></p></li>
-<li><p>Scale the scores by <span class="math inline">\(\sqrt{d_k}\)</span> and apply <strong>softmax</strong> to get the attention weights: <span class="math display">\[
+<li><p>Scale the scores by <span class="math inline">\(\sqrt{d_k}\)</span> and apply softmax to get the attention weights: <span class="math display">\[
 A = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times m}
 \]</span></p></li>
-<li><p>Compute the weighted sum over the <strong>values</strong> to get the updated decoder representations: <span class="math display">\[
+<li><p>Compute the weighted sum over the values to get the updated decoder representations: <span class="math display">\[
 Z = A V \in \mathbb{R}^{n \times d_v}
 \]</span></p></li>
 </ol>
@@ -734,10 +732,10 @@ Z = A V \in \mathbb{R}^{n \times d_v}
 <section id="training-tips" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="training-tips"><span class="header-section-number">6</span> Training Tips</h2>
 <ul>
-<li>Large batches &amp; data.</li>
-<li>Learning rate warm-up.</li>
-<li>Label smoothing.</li>
-<li>Gradient clipping.</li>
+<li><strong>Large batches &amp; data:</strong> Helps stabilize gradients and improve generalization by providing more diverse examples.</li>
+<li><strong>Learning rate warm-up:</strong> Gradually increases the learning rate at the start of training to avoid unstable updates.</li>
+<li><strong>Label smoothing:</strong> Prevents the model from becoming overconfident by softening the target labels.</li>
+<li><strong>Gradient clipping:</strong> Limits the magnitude of gradients to avoid exploding gradients and stabilize training.</li>
 </ul>
 <hr>
 </section>
