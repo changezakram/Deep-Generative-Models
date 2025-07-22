@@ -259,7 +259,7 @@ While single-head attention is effective, it can focus only on one type of relat
 
 ---
 
-#### Multi-Head Attention
+### Multi-Head Attention
 
 While a single attention head can focus on certain aspects of the input sequence, it may miss other patterns. The multi-head attention (MHA) mechanism allows the model to attend to information from multiple representation subspaces at different positions simultaneously. This helps the transformer to capture more nuanced patterns in the input sequence.
 
