@@ -338,8 +338,7 @@ However, the meaning of a sentence depends on the order of its words.</p>
 <blockquote class="blockquote">
 <p><em>“The cat chased the dog” ≠ “The dog chased the cat”</em></p>
 </blockquote>
-<p>Without positional information, self-attention would treat these sentences as identical.<br>
-To address this, we add a position vector <span class="math inline">\(p_i\)</span> to each token embedding <span class="math inline">\(x_i\)</span>, producing a position-aware representation:</p>
+<p>Without positional information, self-attention would treat these sentences as identical because it has no notion of token order. To address this, we add a position vector <span class="math inline">\(p_i\)</span> to each token embedding <span class="math inline">\(x_i\)</span>, producing a position-aware representation:</p>
 <p><span class="math display">\[
 \tilde{x}_i = x_i + p_i
 \]</span></p>
@@ -353,10 +352,10 @@ To address this, we add a position vector <span class="math inline">\(p_i\)</spa
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/embedding.png" class="img-fluid figure-img"></p>
-<figcaption>Token and positional embeddings are summed element-wise to produce the input fed into the encoder.</figcaption>
+<figcaption>Token and positional embeddings are summed element-wise to produce the final input representation passed to the encoder.</figcaption>
 </figure>
 </div>
-<p>Following are two approaches to Positional Encoding:</p>
+<p>There are two common methods for generating positional embeddings, detailed below.</p>
 <p><strong>(A) Sinusoidal Positional Encoding</strong></p>
 <p>In the original Transformer paper, <span class="math inline">\(p_i\)</span> is defined using sinusoidal functions of varying frequencies:</p>
 <p><span class="math display">\[
@@ -369,7 +368,7 @@ p_i =
 <p>Why do trigonometric functions work?</p>
 <ul>
 <li><p>Sine and cosine provide unique, smooth, and continuous encodings for each position.</p></li>
-<li><p>Using different frequencies helps the model notice both small and large position differences.</p></li>
+<li><p>Different frequencies let the model capture both short- and long-range position relationships.</p></li>
 <li><p>No learnable parameters — generalizes better to unseen sequence lengths.</p></li>
 <li><p><strong>Pros:</strong></p>
 <ul>
@@ -408,6 +407,7 @@ P = [p_1, p_2, \dots, p_n], \quad P \in \mathbb{R}^{d_e \times n}
 </li>
 <li>Learned encodings are flexible &amp; widely used today.</li>
 </ul>
+<p>With the input representation enriched by positional information, the transformer encoder can now apply self-attention and feedforward layers to process the sequence effectively.</p>
 <hr>
 </section>
 <section id="attention-mechanism" class="level3" data-number="4.2">

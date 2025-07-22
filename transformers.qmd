@@ -96,8 +96,7 @@ However, the meaning of a sentence depends on the order of its words.
 
 > *“The cat chased the dog” ≠ “The dog chased the cat”*
 
-Without positional information, self-attention would treat these sentences as identical.  
-To address this, we add a position vector $p_i$ to each token embedding $x_i$, producing a position-aware representation:  
+Without positional information, self-attention would treat these sentences as identical because it has no notion of token order. To address this, we add a position vector $p_i$ to each token embedding $x_i$, producing a position-aware representation:  
 
 $$
 \tilde{x}_i = x_i + p_i
@@ -111,10 +110,10 @@ where:
 
 The figure below illustrates this process:
 
-![Token and positional embeddings are summed element-wise to produce the input fed into the encoder.](images/embedding.png){fig-align="center"}
+![Token and positional embeddings are summed element-wise to produce the final input representation passed to the encoder.](images/embedding.png){fig-align="center"}
 
 
-Following are two approaches to Positional Encoding:
+There are two common methods for generating positional embeddings, detailed below.
 
 **(A) Sinusoidal Positional Encoding**
 
@@ -131,7 +130,7 @@ $$
 Why do trigonometric functions work?
 
 - Sine and cosine provide unique, smooth, and continuous encodings for each position.
-- Using different frequencies helps the model notice both small and large position differences.
+- Different frequencies let the model capture both short- and long-range position relationships.
 - No learnable parameters — generalizes better to unseen sequence lengths.
 
 - **Pros:**
@@ -166,6 +165,8 @@ In practice, most architectures today use learned positional encodings because o
 - Positional encoding ensures the model is aware of token order.  
 - Sinusoidal encodings are fixed & periodic.  
 - Learned encodings are flexible & widely used today.  
+
+With the input representation enriched by positional information, the transformer encoder can now apply self-attention and feedforward layers to process the sequence effectively.
 
 ---
 
