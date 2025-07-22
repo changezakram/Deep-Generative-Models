@@ -728,6 +728,19 @@ Z = A V \in \mathbb{R}^{n \times d_v}
 <hr>
 </section>
 </section>
+<section id="putting-it-all-together" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">5.3</span> Putting it All Together</h3>
+<p>We’ve seen how the encoder and decoder each work internally — but how do they interact in a complete Transformer model?</p>
+<p>In a sequence-to-sequence task, the <strong>encoder</strong> processes the entire input sequence (the source sentence) and produces a sequence of hidden states — a rich, contextual representation of the source.</p>
+<p>These encoder outputs are then used by the <strong>decoder</strong>, which generates the output sequence (the target sentence) one token at a time.<br>
+At each decoding step:</p>
+<ul>
+<li>The decoder attends to its previously generated tokens through <strong>masked self-attention</strong>, ensuring it doesn’t peek at future tokens.</li>
+<li>It also attends to the encoder’s outputs through <strong>cross-attention</strong>, allowing it to focus on relevant parts of the source sequence.</li>
+</ul>
+<p>This interaction enables the decoder to condition each output token on both the source sequence and the already generated target sequence — making the model powerful for tasks like machine translation, summarization, and question answering.</p>
+<hr>
+</section>
 </section>
 <section id="training-tips" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="training-tips"><span class="header-section-number">6</span> Training Tips</h2>
