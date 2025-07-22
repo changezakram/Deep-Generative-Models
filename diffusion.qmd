@@ -1183,14 +1183,14 @@ These methods let us trade off between **speed** and **quality**, enabling pract
 
 ## 📘 Further Reading
 
-[1] Song, Y. (2021). *Score-Based Generative Modeling: A Primer*. Retrieved from https://yang-song.net/blog/2021/score/
+[1] Song, Y. (2021). *Score-Based Generative Modeling: A Primer*. https://yang-song.net/blog/2021/score/
 
-[2] Ho, J., Jain, A., & Abbeel, P. (2020). *Denoising Diffusion Probabilistic Models*. Retrieved from https://arxiv.org/pdf/2006.11239
+[2] Ho, J., Jain, A., & Abbeel, P. (2020). *Denoising Diffusion Probabilistic Models*. https://arxiv.org/pdf/2006.11239
 
-[3] Vincent, P. (2011). *A Connection Between Score Matching and Denoising Autoencoders*. Retrieved from https://arxiv.org/pdf/2010.02502
+[3] Vincent, P. (2011). *A Connection Between Score Matching and Denoising Autoencoders*. https://arxiv.org/pdf/2010.02502
 
-[4] Sohl-Dickstein, J., Weiss, E., Maheswaranathan, N., & Ganguli, S. (2015). *Deep Unsupervised Learning using Nonequilibrium Thermodynamics*. Retrieved from https://arxiv.org/pdf/1503.03585
+[4] Sohl-Dickstein, J., Weiss, E., Maheswaranathan, N., & Ganguli, S. (2015). *Deep Unsupervised Learning using Nonequilibrium Thermodynamics*. https://arxiv.org/pdf/1503.03585
 
-[5] Hoogeboom, E., Satorras, V. G., Berg, R. v. d., & Welling, M. (2022). *Equivariant Diffusion for Molecule Generation in 3D*. Retrieved from https://arxiv.org/pdf/2209.00796
+[5] Hoogeboom, E., Satorras, V. G., Berg, R. v. d., & Welling, M. (2022). *Equivariant Diffusion for Molecule Generation in 3D*. https://arxiv.org/pdf/2209.00796
 
-[6] Harvard University. (n.d.). *Foundation of Diffusion Generative Models – Harvard ML Course Notes*. Retrieved from https://scholar.harvard.edu/binxuw/classes/machine-learning-scratch/materials/foundation-diffusion-generative-models
+[6] Harvard University. (n.d.). *Foundation of Diffusion Generative Models – Harvard ML Course Notes*. https://scholar.harvard.edu/binxuw/classes/machine-learning-scratch/materials/foundation-diffusion-generative-models
