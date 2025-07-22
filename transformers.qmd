@@ -418,8 +418,7 @@ With these components — self-attention, feedforward networks, residual connect
 
 ## Decoder
 
-The decoder is used for sequence generation.  
-It also consists of stacked layers with three components:
+Like the encoder, the decoder is composed of stacked layers, but with three key components:
 
 - **Masked Multi-Head Self-Attention** — only attends to past tokens.  
 - **Encoder–Decoder Attention** — attends to the encoder output.  
