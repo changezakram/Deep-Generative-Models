@@ -535,7 +535,8 @@ Q K^T
 <li>Stacking more self-attention layers without nonlinearity simply re-averages the values, limiting expressiveness.</li>
 <li>To address this, each output vector of the self-attention layer is passed through a multi-layer perceptron (MLP).</li>
 </ul>
-<p><strong>Computation</strong> For each token output vector <span class="math inline">\(output_i\)</span> from the self-attention: <span class="math display">\[
+<p><strong>Computation</strong></p>
+<p>For each token output vector <span class="math inline">\(output_i\)</span> from the self-attention: <span class="math display">\[
 m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
 \]</span></p>
 <p>where:</p>
@@ -656,12 +657,12 @@ X^{(i)} = X^{(i-1)} + \text{Layer}(X^{(i-1)})
 <hr>
 <section id="attention-mask-for-decoder" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="attention-mask-for-decoder"><span class="header-section-number">5.1</span> Attention Mask for Decoder</h3>
-<p>When using self-attention in decoders, it is critical to prevent the model from “looking into the future,” i.e., accessing tokens that come later in the sequence. This ensures proper causal sequence generation (left-to-right).</p>
+<p>In the decoder’s self-attention, it is critical to prevent the model from “looking into the future” — attending to tokens that come later in the sequence. This ensures proper causal sequence generation (left-to-right).</p>
 <p><strong>Why do we need masking?</strong></p>
 <ul>
 <li>In sequence prediction tasks (like machine translation or language modeling), the model should predict the next token based only on past and current tokens — not on future tokens.</li>
 <li>Without masking, the self-attention mechanism would compute attention over all tokens in the sequence, violating the causal order.</li>
-<li>We solve this by masking out the attention to future tokens.</li>
+<li>This is solved by masking out the attention to future tokens.</li>
 </ul>
 <p><strong>How does masking work?</strong></p>
 <p>At each position <span class="math inline">\(i\)</span>, we: - Keep attention scores for tokens at <span class="math inline">\(j \leq i\)</span> (past &amp; current positions). - Set attention scores to <span class="math inline">\(-\infty\)</span> (or equivalently, weights to 0 after softmax) for <span class="math inline">\(j &gt; i\)</span> (future positions).</p>
@@ -673,12 +674,12 @@ q_i^\top k_j, &amp; j \leq i \\\\
 -\infty, &amp; j &gt; i
 \end{cases}
 \]</span></p>
-<p>After applying softmax, this ensures the model attends only to the allowed tokens up to position <span class="math inline">\(i\)</span>.</p>
+<p>After applying the softmax, the model assigns non-zero attention only to tokens at positions ≤ <span class="math inline">\(i\)</span>.</p>
 <p>The figure below illustrates how the attention mask is applied to <span class="math inline">\(QK^\top\)</span>, blocking future tokens by assigning them <span class="math inline">\(-\infty\)</span>, and producing the masked attention matrix.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/masked-attention.png" class="img-fluid figure-img"></p>
-<figcaption>Figure: Masked Attention Visualization</figcaption>
+<figcaption>Figure: Visualization of the attention mask applied to <span class="math inline">\(QK^\top\)</span>, setting future positions to <span class="math inline">\(-\infty\)</span>, and producing the masked attention matrix.</figcaption>
 </figure>
 </div>
 <p><strong>Benefits:</strong></p>

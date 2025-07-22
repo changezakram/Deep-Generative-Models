@@ -326,6 +326,7 @@ After self-attention, the transformer applies a position-wise feedforward networ
 - To address this, each output vector of the self-attention layer is passed through a multi-layer perceptron (MLP).
 
 **Computation**
+
 For each token output vector $output_i$ from the self-attention:
 $$
 m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
@@ -428,13 +429,14 @@ Like the encoder, the decoder is composed of stacked layers, but with three key 
 
 ### Attention Mask for Decoder
 
-When using self-attention in decoders, it is critical to prevent the model from "looking into the future," i.e., accessing tokens that come later in the sequence. This ensures proper causal sequence generation (left-to-right).
+In the decoder’s self-attention, it is critical to prevent the model from “looking into the future” — attending to tokens that come later in the sequence. This ensures proper causal sequence generation (left-to-right).
+
 
 **Why do we need masking?**
 
 - In sequence prediction tasks (like machine translation or language modeling), the model should predict the next token based only on past and current tokens — not on future tokens.
 - Without masking, the self-attention mechanism would compute attention over all tokens in the sequence, violating the causal order.
-- We solve this by masking out the attention to future tokens.
+- This is solved by masking out the attention to future tokens.
 
 **How does masking work?**
 
@@ -452,11 +454,13 @@ q_i^\top k_j, & j \leq i \\\\
 \end{cases}
 $$
 
-After applying softmax, this ensures the model attends only to the allowed tokens up to position $i$.
+After applying the softmax, the model assigns non-zero attention only to tokens at positions ≤ $i$.
+
 
 The figure below illustrates how the attention mask is applied to $QK^\top$, blocking future tokens by assigning them $-\infty$, and producing the masked attention matrix.
 
-![Figure: Masked Attention Visualization](images/masked-attention.png){fig-align="center"}
+![Figure: Visualization of the attention mask applied to $QK^\top$, setting future positions to $-\infty$, and producing the masked attention matrix.](images/masked-attention.png){fig-align="center"}
+
 
 **Benefits:**
 
