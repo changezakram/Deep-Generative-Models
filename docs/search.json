@@ -592,14 +592,14 @@
     "href": "transformers.html",
     "title": "Understanding Transformers, Step by Step",
     "section": "",
-    "text": "Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper Attention is All You Need, transformers replaced recurrent and convolutional architectures in many NLP tasks. They leverage a novel mechanism called self-attention, which enables better parallelization and more effective handling of long-range dependencies.\n\n\n\nFigure: High-level schematic of the Transformer architecture (Vaswani et al., 2017, Attention Is All You Need)."
+    "text": "Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper Attention is All You Need, transformers replaced recurrent and convolutional architectures in many NLP tasks. They leverage a novel mechanism called self-attention, which allows for parallel computation and effectively models long-range dependencies. The architecture consists of an encoder and decoder, as illustrated below.\n\n\n\nFigure: Figure: High-level schematic of the Transformer architecture, showing the encoder and decoder with self-attention and masked attention mechanisms (Vaswani et al., 2017, Attention Is All You Need)."
   },
   {
     "objectID": "transformers.html#introduction",
     "href": "transformers.html#introduction",
     "title": "Understanding Transformers, Step by Step",
     "section": "",
-    "text": "Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper Attention is All You Need, transformers replaced recurrent and convolutional architectures in many NLP tasks. They leverage a novel mechanism called self-attention, which enables better parallelization and more effective handling of long-range dependencies.\n\n\n\nFigure: High-level schematic of the Transformer architecture (Vaswani et al., 2017, Attention Is All You Need)."
+    "text": "Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper Attention is All You Need, transformers replaced recurrent and convolutional architectures in many NLP tasks. They leverage a novel mechanism called self-attention, which allows for parallel computation and effectively models long-range dependencies. The architecture consists of an encoder and decoder, as illustrated below.\n\n\n\nFigure: Figure: High-level schematic of the Transformer architecture, showing the encoder and decoder with self-attention and masked attention mechanisms (Vaswani et al., 2017, Attention Is All You Need)."
   },
   {
     "objectID": "transformers.html#limitations-of-recurrent-neural-networks-rnns",
