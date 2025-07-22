@@ -748,7 +748,7 @@ Z = A V \in \mathbb{R}^{n \times d_v}
 <section id="training-tips" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="training-tips"><span class="header-section-number">7</span> Training Tips</h2>
 <ul>
-<li><strong>Large batches &amp; data:</strong> Helps stabilize gradients and improve generalization by providing more diverse examples.</li>
+<li><strong>Large batches &amp; data:</strong> Helps stabilize gradients and improve generalization by exposing the model to more diverse examples.</li>
 <li><strong>Learning rate warm-up:</strong> Gradually increases the learning rate at the start of training to avoid unstable updates.</li>
 <li><strong>Label smoothing:</strong> Prevents the model from becoming overconfident by softening the target labels.</li>
 <li><strong>Gradient clipping:</strong> Limits the magnitude of gradients to avoid exploding gradients and stabilize training.</li>
@@ -782,6 +782,11 @@ Z = A V \in \mathbb{R}^{n \times d_v}
 <td>Translation, summarization</td>
 </tr>
 <tr class="even">
+<td><strong>BART</strong></td>
+<td>Encoder–Decoder</td>
+<td>Summarization, text generation</td>
+</tr>
+<tr class="odd">
 <td><strong>ViT</strong></td>
 <td>Encoder-only</td>
 <td>Image classification</td>
@@ -793,10 +798,10 @@ Z = A V \in \mathbb{R}^{n \times d_v}
 <section id="applications" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="applications"><span class="header-section-number">9</span> Applications</h2>
 <ul>
-<li>NLP: translation, summarization, question answering.</li>
-<li>Vision: Vision Transformers (ViTs).</li>
-<li>Multimodal: CLIP (image-text), Flamingo.</li>
-<li>Other: Protein folding (AlphaFold).</li>
+<li><strong>NLP:</strong> translation, summarization, question answering.</li>
+<li><strong>Vision:</strong> Vision Transformers (ViTs).</li>
+<li><strong>Multimodal:</strong> CLIP (image-text), Flamingo.</li>
+<li><strong>Other:</strong> Protein folding (AlphaFold).</li>
 </ul>
 <hr>
 </section>
@@ -804,18 +809,18 @@ Z = A V \in \mathbb{R}^{n \times d_v}
 <h2 data-number="10" class="anchored" data-anchor-id="strengths-and-limitations"><span class="header-section-number">10</span> Strengths and Limitations</h2>
 <p><strong>Pros</strong>:</p>
 <ul>
-<li>Captures long dependencies.</li>
-<li>Parallelizable.</li>
-<li>State-of-the-art results.</li>
+<li>Captures long dependencies</li>
+<li>Parallelizable</li>
+<li>State-of-the-art results</li>
 </ul>
 <p><strong>Cons</strong>:</p>
 <ul>
-<li>Requires huge compute resources.</li>
-<li>Data-hungry.</li>
-<li>Less interpretable.</li>
+<li>Requires huge compute resources</li>
+<li>Data-hungry</li>
+<li>Less interpretable</li>
 </ul>
 <hr>
-<p>Transformers have revolutionized sequence modeling by replacing recurrence with parallelizable self-attention. Their ability to capture long-range dependencies and scale to large data has made them the foundation of modern NLP and beyond.</p>
+<p>Transformers have revolutionized sequence modeling by replacing recurrence with parallelizable self-attention. Their ability to capture long-range dependencies and scale to large data has established them as the foundation of modern NLP and beyond.</p>
 <hr>
 </section>
 <section id="references-further-reading" class="level2" data-number="11">

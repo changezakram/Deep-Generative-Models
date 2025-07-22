@@ -641,14 +641,14 @@
     "href": "transformers.html#training-tips",
     "title": "Understanding Transformers, Step by Step",
     "section": "7 Training Tips",
-    "text": "7 Training Tips\n\nLarge batches & data: Helps stabilize gradients and improve generalization by providing more diverse examples.\nLearning rate warm-up: Gradually increases the learning rate at the start of training to avoid unstable updates.\nLabel smoothing: Prevents the model from becoming overconfident by softening the target labels.\nGradient clipping: Limits the magnitude of gradients to avoid exploding gradients and stabilize training."
+    "text": "7 Training Tips\n\nLarge batches & data: Helps stabilize gradients and improve generalization by exposing the model to more diverse examples.\nLearning rate warm-up: Gradually increases the learning rate at the start of training to avoid unstable updates.\nLabel smoothing: Prevents the model from becoming overconfident by softening the target labels.\nGradient clipping: Limits the magnitude of gradients to avoid exploding gradients and stabilize training."
   },
   {
     "objectID": "transformers.html#variants-and-evolutions",
     "href": "transformers.html#variants-and-evolutions",
     "title": "Understanding Transformers, Step by Step",
     "section": "8 Variants and Evolutions",
-    "text": "8 Variants and Evolutions\n\n\n\nModel\nType\nUse Case\n\n\n\n\nBERT\nEncoder-only\nClassification, QA\n\n\nGPT\nDecoder-only\nText generation\n\n\nT5\nEncoder–Decoder\nTranslation, summarization\n\n\nViT\nEncoder-only\nImage classification"
+    "text": "8 Variants and Evolutions\n\n\n\nModel\nType\nUse Case\n\n\n\n\nBERT\nEncoder-only\nClassification, QA\n\n\nGPT\nDecoder-only\nText generation\n\n\nT5\nEncoder–Decoder\nTranslation, summarization\n\n\nBART\nEncoder–Decoder\nSummarization, text generation\n\n\nViT\nEncoder-only\nImage classification"
   },
   {
     "objectID": "transformers.html#applications",
@@ -662,7 +662,7 @@
     "href": "transformers.html#strengths-and-limitations",
     "title": "Understanding Transformers, Step by Step",
     "section": "10 Strengths and Limitations",
-    "text": "10 Strengths and Limitations\nPros:\n\nCaptures long dependencies.\nParallelizable.\nState-of-the-art results.\n\nCons:\n\nRequires huge compute resources.\nData-hungry.\nLess interpretable.\n\n\nTransformers have revolutionized sequence modeling by replacing recurrence with parallelizable self-attention. Their ability to capture long-range dependencies and scale to large data has made them the foundation of modern NLP and beyond."
+    "text": "10 Strengths and Limitations\nPros:\n\nCaptures long dependencies\nParallelizable\nState-of-the-art results\n\nCons:\n\nRequires huge compute resources\nData-hungry\nLess interpretable\n\n\nTransformers have revolutionized sequence modeling by replacing recurrence with parallelizable self-attention. Their ability to capture long-range dependencies and scale to large data has established them as the foundation of modern NLP and beyond."
   },
   {
     "objectID": "transformers.html#references-further-reading",

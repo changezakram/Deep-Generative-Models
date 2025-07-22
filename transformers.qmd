@@ -537,7 +537,7 @@ This interaction allows the decoder to generate each token based on both the sou
 
 ## Training Tips
 
-- **Large batches & data:** Helps stabilize gradients and improve generalization by providing more diverse examples.
+- **Large batches & data:** Helps stabilize gradients and improve generalization by exposing the model to more diverse examples.
 - **Learning rate warm-up:** Gradually increases the learning rate at the start of training to avoid unstable updates.
 - **Label smoothing:** Prevents the model from becoming overconfident by softening the target labels.
 - **Gradient clipping:** Limits the magnitude of gradients to avoid exploding gradients and stabilize training.
@@ -546,21 +546,22 @@ This interaction allows the decoder to generate each token based on both the sou
 
 ## Variants and Evolutions
 
-| Model   | Type           | Use Case                   |
-|---------|----------------|-----------------------------|
-| **BERT**| Encoder-only   | Classification, QA         |
-| **GPT** | Decoder-only   | Text generation            |
-| **T5**  | Encoder–Decoder| Translation, summarization |
-| **ViT** | Encoder-only   | Image classification       |
+| Model       | Type             | Use Case                         |
+|-------------|------------------|----------------------------------|
+| **BERT**    | Encoder-only     | Classification, QA              |
+| **GPT**     | Decoder-only     | Text generation                  |
+| **T5**      | Encoder–Decoder  | Translation, summarization      |
+| **BART**    | Encoder–Decoder  | Summarization, text generation  |
+| **ViT**     | Encoder-only     | Image classification            |
 
 ---
 
 ## Applications
 
-- NLP: translation, summarization, question answering.
-- Vision: Vision Transformers (ViTs).
-- Multimodal: CLIP (image-text), Flamingo.
-- Other: Protein folding (AlphaFold).
+- **NLP:** translation, summarization, question answering.
+- **Vision:** Vision Transformers (ViTs).
+- **Multimodal:** CLIP (image-text), Flamingo.
+- **Other:** Protein folding (AlphaFold).
 
 ---
 
@@ -568,19 +569,19 @@ This interaction allows the decoder to generate each token based on both the sou
 
 **Pros**:
 
-- Captures long dependencies.
-- Parallelizable.
-- State-of-the-art results.
+- Captures long dependencies
+- Parallelizable
+- State-of-the-art results
 
 **Cons**:
 
-- Requires huge compute resources.
-- Data-hungry.
-- Less interpretable.
+- Requires huge compute resources
+- Data-hungry
+- Less interpretable
 
 ---
 
-Transformers have revolutionized sequence modeling by replacing recurrence with parallelizable self-attention. Their ability to capture long-range dependencies and scale to large data has made them the foundation of modern NLP and beyond.
+Transformers have revolutionized sequence modeling by replacing recurrence with parallelizable self-attention. Their ability to capture long-range dependencies and scale to large data has established them as the foundation of modern NLP and beyond.
 
 ---
 
