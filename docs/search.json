@@ -487,7 +487,7 @@
     "href": "diffusion.html#references",
     "title": "Diffusion Models",
     "section": "8 📚 References",
-    "text": "8 📚 References\n[1] Ho, J., Jain, A., & Abbeel, P. (2020). Denoising Diffusion Probabilistic Models. arXiv. Retrieved from https://arxiv.org/pdf/2006.11239\n[2] Stanford University. (2023). CS236: Deep Generative Models – Winter 2023 Course Materials. Retrieved from https://deepgenerativemodels.github.io/\n[3] Vahdat, A. (2023). CVPR 2023 Tutorial on Diffusion Models. Retrieved from https://cvpr2023-tutorial-diffusion-models.github.io/\n[4] Nichol, A., & Dhariwal, P. (2021). Improved Denoising Diffusion Probabilistic Models. arXiv:2102.09672.\n[5] Akram, C. (2024). Variational Autoencoders (VAEs). Available at changezakram.github.io/Deep-Generative-Models/vae.html"
+    "text": "8 📚 References\n[1] Ho, J., Jain, A., & Abbeel, P. (2020). Denoising Diffusion Probabilistic Models. arXiv. https://arxiv.org/pdf/2006.11239\n[2] Stanford University. (2023). CS236: Deep Generative Models – Winter 2023 Course Materials. https://deepgenerativemodels.github.io/\n[3] Vahdat, A. (2023). CVPR 2023 Tutorial on Diffusion Models. https://cvpr2023-tutorial-diffusion-models.github.io/\n[4] Nichol, A., & Dhariwal, P. (2021). Improved Denoising Diffusion Probabilistic Models. arXiv:2102.09672.\n[5] Akram, C. (2024). Variational Autoencoders (VAEs). changezakram.github.io/Deep-Generative-Models/vae.html"
   },
   {
     "objectID": "diffusion.html#further-reading",

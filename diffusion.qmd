@@ -1170,15 +1170,15 @@ These methods let us trade off between **speed** and **quality**, enabling pract
 
 ## 📚 References
 
-[1] Ho, J., Jain, A., & Abbeel, P. (2020). *Denoising Diffusion Probabilistic Models*. arXiv. Retrieved from https://arxiv.org/pdf/2006.11239
+[1] Ho, J., Jain, A., & Abbeel, P. (2020). *Denoising Diffusion Probabilistic Models*. arXiv. https://arxiv.org/pdf/2006.11239
 
-[2] Stanford University. (2023). *CS236: Deep Generative Models – Winter 2023 Course Materials*. Retrieved from https://deepgenerativemodels.github.io/
+[2] Stanford University. (2023). *CS236: Deep Generative Models – Winter 2023 Course Materials*. https://deepgenerativemodels.github.io/
 
-[3] Vahdat, A. (2023). *CVPR 2023 Tutorial on Diffusion Models*. Retrieved from https://cvpr2023-tutorial-diffusion-models.github.io/
+[3] Vahdat, A. (2023). *CVPR 2023 Tutorial on Diffusion Models*. https://cvpr2023-tutorial-diffusion-models.github.io/
 
 [4] Nichol, A., & Dhariwal, P. (2021). *Improved Denoising Diffusion Probabilistic Models*. arXiv:2102.09672.
 
-[5] Akram, C. (2024). *Variational Autoencoders (VAEs)*. Available at changezakram.github.io/Deep-Generative-Models/vae.html
+[5] Akram, C. (2024). *Variational Autoencoders (VAEs)*. changezakram.github.io/Deep-Generative-Models/vae.html
 
 
 ## 📘 Further Reading
