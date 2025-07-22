@@ -723,11 +723,11 @@ Q K^T \in \mathbb{R}^{n \times m}
 <li><p>Scale the scores by <span class="math inline">\(\sqrt{d_k}\)</span> and apply softmax to get the attention weights: <span class="math display">\[
 A = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times m}
 \]</span></p></li>
-<li><p>Compute the weighted sum over the values to get the updated decoder representations: <span class="math display">\[
+<li><p>Compute the weighted sum over the values to get the Cross-Attention Output <span class="math inline">\(Z\)</span>: <span class="math display">\[
 Z = A V \in \mathbb{R}^{n \times d_v}
 \]</span></p></li>
 </ol>
-<p>This mechanism enables each decoder token to attend over the entire encoder output sequence, selecting the most relevant source tokens for prediction at each step.</p>
+<p>This mechanism allows each decoder token to attend over the entire encoder output sequence and incorporate the most relevant source information into its prediction.</p>
 <hr>
 </section>
 </section>

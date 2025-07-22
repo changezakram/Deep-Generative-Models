@@ -508,12 +508,12 @@ $$
 A = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times m}
 $$
 
-5. Compute the weighted sum over the values to get the updated decoder representations:
+5. Compute the weighted sum over the values to get the Cross-Attention Output $Z$:
 $$
 Z = A V \in \mathbb{R}^{n \times d_v}
 $$
 
-This mechanism enables each decoder token to attend over the entire encoder output sequence, selecting the most relevant source tokens for prediction at each step.
+This mechanism allows each decoder token to attend over the entire encoder output sequence and incorporate the most relevant source information into its prediction.
 
 ---
 
