@@ -508,11 +508,11 @@ Q K^T
 \text{Concat}(\text{head}_1, \dots, \text{head}_h) W_o
 \]</span></p>
 <p>where <span class="math inline">\(W_o\)</span> is a learnable weight matrix of shape <span class="math inline">\([h \cdot d_v \times d_e]\)</span>.</p>
-<p>The figure below shows an example of how multi-head self-attention captures relationships between tokens. Here, the word “making” attends strongly to itself as well as to the words “more” and “difficult”. Different colors correspond to different attention heads, each learning distinct relationships in the input sequence. Thicker lines represent stronger attention weights, showing which tokens are most relevant for the given token.</p>
+<p>The figure below illustrates how multi-head self-attention captures relationships between tokens. The word “making” attends strongly to itself, as well as to the distant tokens “more” and “difficult”. Different colors represent different attention heads, each learning distinct patterns, while thicker lines indicate stronger attention weights, showing which tokens are most relevant for the given token.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/attention-visualization.png" class="img-fluid figure-img"></p>
-<figcaption>Figure: Visualization of the attention mechanism showing long-range dependencies in encoder self-attention, from Vaswani et al., 2017</figcaption>
+<figcaption>Figure: Visualization of the attention mechanism showing long-range dependencies from Vaswani et al., 2017</figcaption>
 </figure>
 </div>
 <p><strong>Why Multi-Head Attention?</strong></p>
@@ -523,6 +523,7 @@ Q K^T
 </li>
 <li>Empirically improves performance compared to a single head.</li>
 </ul>
+<p>After computing the attention outputs, each token passes through a feedforward network to introduce non-linear transformations.</p>
 <hr>
 </section>
 <section id="feedforward-network" class="level3" data-number="4.4">

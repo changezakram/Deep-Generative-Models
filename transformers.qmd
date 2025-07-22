@@ -299,9 +299,10 @@ $$
 
 where $W_o$ is a learnable weight matrix of shape $[h \cdot d_v \times d_e]$.
 
-The figure below shows an example of how multi-head self-attention captures relationships between tokens. Here, the word “making” attends strongly to itself as well as to the words “more” and “difficult”. Different colors correspond to different attention heads, each learning distinct relationships in the input sequence. Thicker lines represent stronger attention weights, showing which tokens are most relevant for the given token.
+The figure below illustrates how multi-head self-attention captures relationships between tokens. The word “making” attends strongly to itself, as well as to the distant tokens “more” and “difficult”. Different colors represent different attention heads, each learning distinct patterns, while thicker lines indicate stronger attention weights, showing which tokens are most relevant for the given token.
 
-![Figure: Visualization of the attention mechanism showing long-range dependencies in encoder self-attention, from Vaswani et al., 2017](images/attention-visualization.png)  
+
+![Figure: Visualization of the attention mechanism showing long-range dependencies from Vaswani et al., 2017](images/attention-visualization.png)  
 
 
 **Why Multi-Head Attention?**
@@ -310,7 +311,7 @@ The figure below shows an example of how multi-head self-attention captures rela
 - Provides richer and more diverse attention patterns.  
 - Empirically improves performance compared to a single head.
 
-
+After computing the attention outputs, each token passes through a feedforward network to introduce non-linear transformations.
 
 ---
 
