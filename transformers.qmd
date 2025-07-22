@@ -510,7 +510,7 @@ This mechanism enables each decoder token to attend over the entire encoder outp
 
 ---
 
-### Putting it All Together
+## Putting it All Together
 
 We’ve seen how the encoder and decoder each work internally — but how do they interact in a complete Transformer model?
 
