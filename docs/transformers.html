@@ -213,7 +213,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#limitations-of-recurrent-neural-networks-rnns" id="toc-limitations-of-recurrent-neural-networks-rnns" class="nav-link" data-scroll-target="#limitations-of-recurrent-neural-networks-rnns"><span class="header-section-number">2</span> Limitations of Recurrent Neural Networks (RNNs)</a></li>
-  <li><a href="#architecture-overview" id="toc-architecture-overview" class="nav-link" data-scroll-target="#architecture-overview"><span class="header-section-number">3</span> Architecture Overview</a></li>
+  <li><a href="#transformer-architecture-overview" id="toc-transformer-architecture-overview" class="nav-link" data-scroll-target="#transformer-architecture-overview"><span class="header-section-number">3</span> Transformer Architecture Overview</a></li>
   <li><a href="#encoder" id="toc-encoder" class="nav-link" data-scroll-target="#encoder"><span class="header-section-number">4</span> Encoder</a></li>
   <li><a href="#decoder" id="toc-decoder" class="nav-link" data-scroll-target="#decoder"><span class="header-section-number">5</span> Decoder</a></li>
   <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">6</span> Putting it All Together</a></li>
@@ -285,16 +285,16 @@ h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
 </ul>
 <hr>
 </section>
-<section id="architecture-overview" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="architecture-overview"><span class="header-section-number">3</span> Architecture Overview</h2>
-<p>At a high level:</p>
+<section id="transformer-architecture-overview" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="transformer-architecture-overview"><span class="header-section-number">3</span> Transformer Architecture Overview</h2>
+<p>The Transformer architecture can be configured in different ways depending on the application. At a high level, there are three common variants:</p>
 <ul>
 <li><strong>Encoder–Decoder</strong> (original transformer) — used in translation.</li>
 <li><strong>Encoder-only</strong> (e.g., BERT) — for classification, masked language modeling.</li>
 <li><strong>Decoder-only</strong> (e.g., GPT) — for autoregressive text generation.</li>
 </ul>
 <p>At the heart of these architectures is the <em>self-attention mechanism</em>, which enables each token to attend to all others in the sequence — a key innovation that we’ll explain shortly.</p>
-<p>We’ll break down the encoder and decoder below.</p>
+<p>In the following sections, we’ll break down the encoder and decoder architectures in detail.</p>
 <section id="key-variables" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="key-variables"><span class="header-section-number">3.1</span> Key Variables</h3>
 <p>The following table summarizes the notations, shapes, and meanings of the variables that will appear throughout the Encoder and Attention sections.</p>

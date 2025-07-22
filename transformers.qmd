@@ -38,9 +38,9 @@ However, RNNs suffer from:
 
 ---
 
-## Architecture Overview
+## Transformer Architecture Overview
 
-At a high level:
+The Transformer architecture can be configured in different ways depending on the application. At a high level, there are three common variants:
 
 - **Encoder–Decoder** (original transformer) — used in translation.
 - **Encoder-only** (e.g., BERT) — for classification, masked language modeling.
@@ -48,7 +48,7 @@ At a high level:
 
 At the heart of these architectures is the *self-attention mechanism*, which enables each token to attend to all others in the sequence — a key innovation that we’ll explain shortly.
 
-We’ll break down the encoder and decoder below.
+In the following sections, we’ll break down the encoder and decoder architectures in detail.
 
 
 ### Key Variables
