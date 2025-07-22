@@ -521,15 +521,16 @@ This mechanism allows each decoder token to attend over the entire encoder outpu
 
 We’ve seen how the encoder and decoder each work internally — but how do they interact in a complete Transformer model?
 
-In a sequence-to-sequence task, the **encoder** processes the entire input sequence (the source sentence) and produces a sequence of hidden states — a rich, contextual representation of the source.  
+In a sequence-to-sequence task, the encoder processes the entire input sequence (the source sentence) and produces a sequence of hidden states — a rich, contextual representation of the source.  
 
-These encoder outputs are then used by the **decoder**, which generates the output sequence (the target sentence) one token at a time.  
-At each decoding step:
+The decoder then uses these encoder outputs to generate the target sequence one token at a time.
 
-- The decoder attends to its previously generated tokens through **masked self-attention**, ensuring it doesn’t peek at future tokens.
-- It also attends to the encoder’s outputs through **cross-attention**, allowing it to focus on relevant parts of the source sequence.
+At each decoding step, the decoder:
 
-This interaction enables the decoder to condition each output token on both the source sequence and the already generated target sequence — making the model powerful for tasks like machine translation, summarization, and question answering.
+- Attends to its own previously generated tokens through masked self-attention, ensuring predictions depend only on known context and not future tokens.
+- Attends to the encoder’s hidden states through cross-attention, incorporating relevant information from the source sequence.
+
+This interaction allows the decoder to generate each token based on both the source sequence (via the encoder) and the target sequence generated so far, making the Transformer effective for tasks like translation, summarization, and question answering.
 
 ---
 
