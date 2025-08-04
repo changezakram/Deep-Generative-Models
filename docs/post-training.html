@@ -319,8 +319,62 @@ Instruction finetuning is a supervised post-training technique where LLMs are tr
 <tr class="odd">
 <td>Instruction Finetuning</td>
 <td>Train LLMs to follow diverse instructions such as summarization, classification, QA, and creative writing. Enables zero-/few-shot generalization across task types.</td>
-<td>Improves generalization and alignment<br>Makes outputs more helpful and controllable</td>
-<td>Requires large, curated datasets<br>Open-ended tasks are hard to evaluate<br>Can reflect human bias</td>
+<td>Improves generalization and alignment. Makes outputs more helpful and controllable.</td>
+<td>Requires large, curated datasets. Open-ended tasks are hard to evaluate. Can reflect human bias.</td>
+</tr>
+<tr class="even">
+<td>Dialogue Finetuning</td>
+<td>Enable coherent multi-turn interactions for conversational agents like chatbots and digital assistants.</td>
+<td>Improves coherence, context tracking, and user experience in dialogue systems.</td>
+<td>Can overfit to chatty behavior. Needs large high-quality dialogue corpora.</td>
+</tr>
+<tr class="odd">
+<td>Chain-of-Thought (CoT)</td>
+<td>Encourage step-by-step reasoning in tasks like math problems, logic puzzles, and commonsense QA.</td>
+<td>Improves multi-step reasoning and interpretability.</td>
+<td>Requires structured traces. Limited to reasoning-style tasks.</td>
+</tr>
+<tr class="even">
+<td>Tool-Augmented Finetuning</td>
+<td>Teach the model to invoke external tools (e.g., calculators, search engines) and use their outputs.</td>
+<td>Enables use of external capabilities, improving performance on complex or tool-supported tasks.</td>
+<td>Depends on reliable tool integration. Tool failures or latency affect output.</td>
+</tr>
+<tr class="odd">
+<td>RAG Finetuning</td>
+<td>Combine retrieval with generation to improve factual accuracy in knowledge-intensive tasks.</td>
+<td>Improves factual grounding and reduces hallucination.</td>
+<td>Sensitive to retrieval quality. Risk of context injection errors.</td>
+</tr>
+<tr class="even">
+<td>Alignment-Oriented Finetuning</td>
+<td>Align model behavior with human values before reinforcement learning stages; improve safety and helpfulness.</td>
+<td>Promotes helpfulness and safety. Complements downstream RLHF.</td>
+<td>Limited by scope of value-alignment data. May encode narrow definitions of safety.</td>
+</tr>
+<tr class="odd">
+<td>Long-Context Finetuning</td>
+<td>Extend model capacity to process and recall long documents, dialogues, or multi-part instructions.</td>
+<td>Enhances memory and consistency across longer input contexts.</td>
+<td>Training is expensive. Long-context data is difficult to source.</td>
+</tr>
+<tr class="even">
+<td>Mixture-of-Experts (MoE)</td>
+<td>Train models to use expert subnetworks selectively for efficiency and specialization.</td>
+<td>Improves scalability and efficiency. Reduces compute by activating only parts of the model.</td>
+<td>Training instability and routing issues. May lead to expert collapse.</td>
+</tr>
+<tr class="odd">
+<td>PEFT (e.g., LoRA, Adapters)</td>
+<td>Allow efficient domain-specific tuning without updating the full model (e.g., via LoRA or adapters).</td>
+<td>Resource-efficient. Enables fast adaptation with fewer parameters.</td>
+<td>May underperform full finetuning. Sensitive to hyperparameters.</td>
+</tr>
+<tr class="even">
+<td>Multi-Objective Finetuning</td>
+<td>Jointly optimize for multiple goals (e.g., accuracy, safety, diversity) in the finetuning phase.</td>
+<td>Balances competing priorities. Supports general-purpose tuning.</td>
+<td>Complex to design and evaluate. Hard to tune trade-offs across objectives.</td>
 </tr>
 </tbody>
 </table>
