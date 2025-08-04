@@ -364,60 +364,53 @@
     "text": "Large language models like GPT-4 and Claude have demonstrated impressive capabilities across a wide range of tasks, including writing, summarization, problem solving, and open-ended reasoning. These are examples of foundation models—large, general-purpose models trained on broad data at scale, designed to serve as flexible building blocks for many downstream applications. But their raw, pre-trained form is not sufficient for safe, reliable deployment.\nThe core limitation lies in how LLMs are initially trained. They don’t follow strict rules or formal logic. Instead, they learn from statistical patterns in massive text corpora. This makes them flexible and creative—but also means their reasoning can be inconsistent, misleading, or untrustworthy.\nThese models are typically optimized to predict the next word in a sentence—not to follow instructions, act ethically, or meet human expectations. This initial phase is called pre-training, and it focuses on token-level quality—generating the most likely next word given the prior context. But users care more about the quality of the entire response than just the next token.\nThis is where post-training comes in. It refines the model’s behavior to be helpful, safe, and aligned with human intent. Some compare pre-training to reading a vast amount of text, and post-training to learning how to apply that knowledge in a useful, trustworthy way.\nPost-training typically involves two key stages:\n\nSupervised fine-tuning (SFT): teaching the model to follow instructions and carry out tasks\nPreference optimization: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF\n\nThese techniques not only improve factual accuracy and safety, but also enhance the model’s ability to reason. And surprisingly, they require relatively little compute—InstructGPT, for example, used only 2% of its total compute budget for post-training.\nWhile supervised and preference tuning are the core of post-training, it’s also important to consider prompting techniques. These methods—such as zero-shot, few-shot, and chain-of-thought prompting—don’t change the model’s weights but can steer its behavior at inference time. Prompting often delivers strong results without additional training, making it an essential part of real-world LLM deployment.\nIn the sections that follow, we’ll explore both post-training techniques and prompting strategies, and how they work together to transform general-purpose LLMs into dependable, aligned assistants."
   },
   {
-    "objectID": "post-training.html#prompting-zero-shot-and-few-shot-in-context-learning",
-    "href": "post-training.html#prompting-zero-shot-and-few-shot-in-context-learning",
+    "objectID": "post-training.html#prompting",
+    "href": "post-training.html#prompting",
     "title": "Post-Training for Foundation Models",
-    "section": "2 Prompting: Zero-Shot and Few-Shot In-Context Learning",
-    "text": "2 Prompting: Zero-Shot and Few-Shot In-Context Learning\nConcept: Use prompts to guide pretrained models without any gradient updates or finetuning.\n\nZero-shot prompting: Ask a question or issue a command without examples.\nExample: “Translate this sentence into French.”\nFew-shot prompting: Provide a few (input → output) examples to demonstrate the task.\nExample: showing multiple sentiment labels before asking for one more.\nIn-context learning: The model uses these patterns to perform the task, thanks to its massive training data and scale.\n\nKey Insight: These capabilities emerge only in large-scale models (e.g., GPT-3 with 175B parameters). Creative prompting (e.g., “TL;DR”) can yield surprisingly strong performance."
-  },
-  {
-    "objectID": "post-training.html#chain-of-thought-cot-prompting",
-    "href": "post-training.html#chain-of-thought-cot-prompting",
-    "title": "Post-Training for Foundation Models",
-    "section": "3 Chain-of-Thought (CoT) Prompting",
-    "text": "3 Chain-of-Thought (CoT) Prompting\nConcept: Improve model reasoning by encouraging step-by-step answers.\nExample: “Let’s think step by step.”\n\nEnhances performance on arithmetic, logic puzzles, and commonsense reasoning tasks\nWorks in both few-shot and zero-shot settings with the right phrasing\n\nWhy it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales."
+    "section": "2 Prompting",
+    "text": "2 Prompting\n\n2.1 Zero-Shot and Few-Shot In-Context Learning\nConcept: Use prompts to guide pretrained models without any gradient updates or finetuning.\n\nZero-shot prompting: Ask a question or issue a command without examples.\nExample: “Translate this sentence into French.”\nFew-shot prompting: Provide a few (input → output) examples to demonstrate the task.\nExample: showing multiple sentiment labels before asking for one more.\nIn-context learning: The model uses these patterns to perform the task, thanks to its massive training data and scale.\n\nKey Insight: These capabilities emerge only in large-scale models (e.g., GPT-3 with 175B parameters). Creative prompting (e.g., “TL;DR”) can yield surprisingly strong performance.\n\n\n2.2 Chain-of-Thought (CoT) Prompting\nConcept: Improve model reasoning by encouraging step-by-step answers.\nExample: “Let’s think step by step.”\n\nEnhances performance on arithmetic, logic puzzles, and commonsense reasoning tasks\nWorks in both few-shot and zero-shot settings with the right phrasing\n\nWhy it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales."
   },
   {
     "objectID": "post-training.html#instruction-finetuning",
     "href": "post-training.html#instruction-finetuning",
     "title": "Post-Training for Foundation Models",
-    "section": "4 Instruction Finetuning",
-    "text": "4 Instruction Finetuning\nConcept: Supervised training on a wide variety of (instruction, response) pairs to make models better follow instructions.\n\nModels: FLAN-T5, InstructGPT, Alpaca\nDatasets: Super-NaturalInstructions, Self-Instruct, FLAN Collection\nBenchmarks: MMLU, BIG-Bench\n\nAdvantages: - Improves generalization to unseen instructions - Makes model outputs more helpful and consistent\nLimitations: - High cost of collecting labeled data - Open-ended tasks lack clear ground truth - Human-written instructions may be noisy or inconsistent"
+    "section": "3 Instruction Finetuning",
+    "text": "3 Instruction Finetuning\nConcept: Supervised training on a wide variety of (instruction, response) pairs to make models better follow instructions.\n\nModels: FLAN-T5, InstructGPT, Alpaca\nDatasets: Super-NaturalInstructions, Self-Instruct, FLAN Collection\nBenchmarks: MMLU, BIG-Bench\n\nAdvantages: - Improves generalization to unseen instructions - Makes model outputs more helpful and consistent\nLimitations: - High cost of collecting labeled data - Open-ended tasks lack clear ground truth - Human-written instructions may be noisy or inconsistent"
   },
   {
     "objectID": "post-training.html#reinforcement-learning-from-human-feedback-rlhf",
     "href": "post-training.html#reinforcement-learning-from-human-feedback-rlhf",
     "title": "Post-Training for Foundation Models",
-    "section": "5 Reinforcement Learning from Human Feedback (RLHF)",
-    "text": "5 Reinforcement Learning from Human Feedback (RLHF)\nConcept: Use reinforcement learning to align model behavior with human preferences.\n\n5.1 RLHF Pipeline:\n\nStart with an instruction-tuned model\n\nCollect human preference comparisons (A &gt; B)\n\nTrain a reward model\n\nUse RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model\n\nRLHF Objective:\n\\[\n\\mathbb{E}_{\\hat{y} \\sim p_{\\theta}^{\\text{RL}}} \\left[ R(x, \\hat{y}) - \\beta \\log \\frac{p_{\\theta}^{\\text{RL}}(\\hat{y}|x)}{p_{\\text{PT}}(\\hat{y}|x)} \\right]\n\\]\nChallenges: - Expensive and tricky to tune - Can lead to overfitting the reward model (reward hacking) - Still dependent on noisy human preferences"
+    "section": "4 Reinforcement Learning from Human Feedback (RLHF)",
+    "text": "4 Reinforcement Learning from Human Feedback (RLHF)\nConcept: Use reinforcement learning to align model behavior with human preferences.\n\n4.1 RLHF Pipeline:\n\nStart with an instruction-tuned model\n\nCollect human preference comparisons (A &gt; B)\n\nTrain a reward model\n\nUse RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model\n\nRLHF Objective:\n\\[\n\\mathbb{E}_{\\hat{y} \\sim p_{\\theta}^{\\text{RL}}} \\left[ R(x, \\hat{y}) - \\beta \\log \\frac{p_{\\theta}^{\\text{RL}}(\\hat{y}|x)}{p_{\\text{PT}}(\\hat{y}|x)} \\right]\n\\]\nChallenges: - Expensive and tricky to tune - Can lead to overfitting the reward model (reward hacking) - Still dependent on noisy human preferences"
   },
   {
     "objectID": "post-training.html#direct-preference-optimization-dpo",
     "href": "post-training.html#direct-preference-optimization-dpo",
     "title": "Post-Training for Foundation Models",
-    "section": "6 Direct Preference Optimization (DPO)",
-    "text": "6 Direct Preference Optimization (DPO)\nConcept: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.\n\n6.1 DPO Loss:\n\\[\nJ_{\\text{DPO}}(\\theta) = -\\mathbb{E}_{(x, y_w, y_l)} \\log \\sigma \\left( R_{\\theta}(x, y_w) - R_{\\theta}(x, y_l) \\right)\n\\]\n\nNo need for a separate reward model or PPO\nNo online sampling\nVery stable and scalable\n\nAdoption: - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO"
+    "section": "5 Direct Preference Optimization (DPO)",
+    "text": "5 Direct Preference Optimization (DPO)\nConcept: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.\n\n5.1 DPO Loss:\n\\[\nJ_{\\text{DPO}}(\\theta) = -\\mathbb{E}_{(x, y_w, y_l)} \\log \\sigma \\left( R_{\\theta}(x, y_w) - R_{\\theta}(x, y_l) \\right)\n\\]\n\nNo need for a separate reward model or PPO\nNo online sampling\nVery stable and scalable\n\nAdoption: - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO"
   },
   {
     "objectID": "post-training.html#limitations-and-whats-next",
     "href": "post-training.html#limitations-and-whats-next",
     "title": "Post-Training for Foundation Models",
-    "section": "7 Limitations and What’s Next",
-    "text": "7 Limitations and What’s Next\n\n7.1 Challenges with RLHF and DPO:\n\nHuman feedback is noisy, inconsistent, and often biased\nReward models are imperfect and can be overoptimized\nRisk of hallucination remains\nHuman labelers may not reflect the preferences or safety standards of all users\n\n\n\n7.2 Emerging Techniques:\n\nRL from AI Feedback (RLAIF): Replace human labelers with AI critics\nSelf-Taught Reasoning (STaR): Train on the model’s own reasoning traces\nConstitutional AI: Models self-critique and revise responses using ethical rules\nPersonalization: Tailor outputs to user-specific preferences"
+    "section": "6 Limitations and What’s Next",
+    "text": "6 Limitations and What’s Next\n\n6.1 Challenges with RLHF and DPO:\n\nHuman feedback is noisy, inconsistent, and often biased\nReward models are imperfect and can be overoptimized\nRisk of hallucination remains\nHuman labelers may not reflect the preferences or safety standards of all users\n\n\n\n6.2 Emerging Techniques:\n\nRL from AI Feedback (RLAIF): Replace human labelers with AI critics\nSelf-Taught Reasoning (STaR): Train on the model’s own reasoning traces\nConstitutional AI: Models self-critique and revise responses using ethical rules\nPersonalization: Tailor outputs to user-specific preferences"
   },
   {
     "objectID": "post-training.html#summary-table",
     "href": "post-training.html#summary-table",
     "title": "Post-Training for Foundation Models",
-    "section": "8 Summary Table",
-    "text": "8 Summary Table\n\n\n\n\n\n\n\n\n\nMethod\nDescription\nPros\nCons\n\n\n\n\nPrompting\nIn-context use of base LMs\nSimple, no training\nLimited context window\n\n\nChain-of-Thought\nAdds step-by-step reasoning\nImproves reasoning\nRequires phrasing and scale\n\n\nInstruction Tuning\nSupervised finetuning on instructions\nStrong generalization\nNeeds labeled data\n\n\nRLHF\nOptimize using human preferences\nAligned, helpful output\nComplex, expensive\n\n\nDPO\nDirect optimization via comparisons\nSimple, effective, scalable\nStill approximates human intent"
+    "section": "7 Summary Table",
+    "text": "7 Summary Table\n\n\n\n\n\n\n\n\n\nMethod\nDescription\nPros\nCons\n\n\n\n\nPrompting\nIn-context use of base LMs\nSimple, no training\nLimited context window\n\n\nChain-of-Thought\nAdds step-by-step reasoning\nImproves reasoning\nRequires phrasing and scale\n\n\nInstruction Tuning\nSupervised finetuning on instructions\nStrong generalization\nNeeds labeled data\n\n\nRLHF\nOptimize using human preferences\nAligned, helpful output\nComplex, expensive\n\n\nDPO\nDirect optimization via comparisons\nSimple, effective, scalable\nStill approximates human intent"
   },
   {
     "objectID": "post-training.html#final-thoughts",
     "href": "post-training.html#final-thoughts",
     "title": "Post-Training for Foundation Models",
-    "section": "9 Final Thoughts",
-    "text": "9 Final Thoughts\nPost-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable.\nThe field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned."
+    "section": "8 Final Thoughts",
+    "text": "8 Final Thoughts\nPost-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable.\nThe field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned."
   },
   {
     "objectID": "vae.html",

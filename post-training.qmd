@@ -28,7 +28,9 @@ In the sections that follow, we’ll explore both post-training techniques and p
 
 
 
-## Prompting: Zero-Shot and Few-Shot In-Context Learning
+## Prompting
+
+### Zero-Shot and Few-Shot In-Context Learning
 
 **Concept**: Use prompts to guide pretrained models without any gradient updates or finetuning.
 
@@ -42,7 +44,7 @@ In the sections that follow, we’ll explore both post-training techniques and p
 
 **Key Insight**: These capabilities emerge only in large-scale models (e.g., GPT-3 with 175B parameters). Creative prompting (e.g., “TL;DR”) can yield surprisingly strong performance.
 
-## Chain-of-Thought (CoT) Prompting
+### Chain-of-Thought (CoT) Prompting
 
 **Concept**: Improve model reasoning by encouraging step-by-step answers.
 
