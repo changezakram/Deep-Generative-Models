@@ -8,6 +8,7 @@ website:
       - icon: house
       - text: "Changez Akram"
         href: https://changezakram.github.io/
+
       - text: Generative AI
         menu:
           - text: Variational Autoencoders (VAEs)
