@@ -5,22 +5,26 @@ format: html
 
 ## Introduction: Why Post-Training Matters for Reasoning
 
-Large language models like GPT-4 and Claude have demonstrated impressive capabilities across a wide range of tasks — from writing and summarization to problem solving and open-ended reasoning. These are examples of **foundation models**: large, general-purpose models trained on broad data at scale, designed to serve as the base for a wide range of downstream applications. But their raw, pre-trained form is not enough for safe, reliable deployment.
+Large language models like GPT-4 and Claude have demonstrated impressive capabilities across a wide range of tasks, including writing, summarization, problem solving, and open-ended reasoning. These are examples of **foundation models**—large, general-purpose models trained on broad data at scale, designed to serve as flexible building blocks for many downstream applications. But their raw, pre-trained form is not sufficient for safe, reliable deployment.
 
-The root of this limitation lies in how LLMs are trained. They don’t follow strict rules or formal logic. Instead, they learn from statistical patterns in massive text corpora. This makes them flexible and creative, but also means their reasoning can be inconsistent or untrustworthy.
+The core limitation lies in how LLMs are initially trained. They don’t follow strict rules or formal logic. Instead, they learn from statistical patterns in massive text corpora. This makes them flexible and creative—but also means their reasoning can be inconsistent, unfaithful, or untrustworthy.
 
-These models are typically trained to predict the next word in a sentence—not to follow instructions, act ethically, or meet human expectations. This initial training phase is known as **pre-training**. It teaches the model general language patterns, but not how to reason carefully or respond in a helpful and safe way. That’s why we need a second phase: **post-training**, where the model is refined to align with human intent and practical use.
+These models are typically optimized to predict the next word in a sentence—not to follow instructions, act ethically, or meet human expectations. This initial phase is called **pre-training**, and it focuses on **token-level quality**—generating the most likely next word given the prior context. But users care more about the quality of the **entire response** than just the next token.
 
-To make these models genuinely helpful and trustworthy, we rely on post-training techniques such as:
+This is where **post-training** comes in. It refines the model’s behavior to be helpful, safe, and aligned with human intent. Some compare pre-training to reading a vast amount of text, and post-training to learning how to apply that knowledge in a useful, trustworthy way.
 
-- **Prompting strategies** that steer responses without modifying the model’s weights  
-- **Instruction fine-tuning** to explicitly teach task-following behavior  
-- **Feedback-based methods** like RLHF and DPO that align responses with human preferences  
+Post-training typically involves two key stages:
 
-These methods not only improve factual accuracy and alignment, but also enhance the model’s reasoning. That’s critical for real-world applications where correctness, safety, and clarity matter. In the sections that follow, we’ll explore the key post-training techniques that help transform general-purpose LLMs into dependable assistants.
+- **Supervised fine-tuning (SFT)**: teaching the model to follow instructions and carry out tasks
+- **Preference optimization**: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF
+
+These techniques not only improve factual accuracy and safety, but also enhance the model’s ability to reason. And surprisingly, they require relatively little compute—InstructGPT, for example, used only **2%** of its total compute budget for post-training.
+
+While supervised and preference tuning are the core of post-training, it’s also important to consider **prompting techniques**. These methods—such as **zero-shot**, **few-shot**, and **chain-of-thought** prompting—don’t change the model’s weights but can steer its behavior at inference time. Prompting often delivers strong results without additional training, making it an essential part of real-world LLM deployment.
+
+In the sections that follow, we’ll explore both **post-training techniques** and **prompting strategies**, and how they work together to transform general-purpose LLMs into dependable, aligned assistants.
 
 ---
-
 
 
 
