@@ -302,79 +302,61 @@ Instruction finetuning is a supervised post-training technique where LLMs are tr
 - Human-written prompts and responses may introduce bias, inconsistency, or noise</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 7%">
-<col style="width: 33%">
-<col style="width: 29%">
-<col style="width: 28%">
+<col style="width: 26%">
+<col style="width: 37%">
+<col style="width: 15%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Finetuning Type</strong></th>
-<th><strong>Goal &amp; Common Use Cases</strong></th>
-<th><strong>Benefits</strong></th>
-<th><strong>Limitations</strong></th>
+<th>Finetuning Type</th>
+<th>Goal &amp; Common Use Cases</th>
+<th>Benefits</th>
+<th>Limitations</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Instruction Finetuning</td>
-<td>Train LLMs to follow diverse instructions such as summarization, classification, QA, and creative writing. Enables zero-/few-shot generalization across task types.</td>
-<td>Improves generalization and alignment. Makes outputs more helpful and controllable.</td>
-<td>Requires large, curated datasets. Open-ended tasks are hard to evaluate. Can reflect human bias.</td>
+<td><strong>Instruction Finetuning</strong></td>
+<td>Train LLMs to follow diverse instructions (e.g., summarization, classification, QA, creative writing). Enables zero-/few-shot generalization across tasks.</td>
+<td>Improves generalization and alignment; makes outputs more helpful and controllable.</td>
+<td>Requires large, curated datasets; open-ended tasks are harder to evaluate; may reflect human bias.</td>
 </tr>
 <tr class="even">
-<td>Dialogue Finetuning</td>
-<td>Enable coherent multi-turn interactions for conversational agents like chatbots and digital assistants.</td>
-<td>Improves coherence, context tracking, and user experience in dialogue systems.</td>
-<td>Can overfit to chatty behavior. Needs large high-quality dialogue corpora.</td>
+<td><strong>Dialogue (Multi-turn) Finetuning</strong></td>
+<td>Enable coherent, context-aware multi-turn conversations for chatbots and digital assistants.</td>
+<td>Improves coherence, context tracking, and conversational experience.</td>
+<td>Can overfit to chattiness; needs large, high-quality multi-turn dialogue datasets.</td>
 </tr>
 <tr class="odd">
-<td>Chain-of-Thought (CoT)</td>
-<td>Encourage step-by-step reasoning in tasks like math problems, logic puzzles, and commonsense QA.</td>
-<td>Improves multi-step reasoning and interpretability.</td>
-<td>Requires structured traces. Limited to reasoning-style tasks.</td>
+<td><strong>Chain-of-Thought (CoT) Reasoning Finetuning</strong></td>
+<td>Encourage step-by-step reasoning in math, logic puzzles, multi-hop QA.</td>
+<td>Improves reasoning interpretability and multi-step accuracy.</td>
+<td>Requires structured reasoning traces; limited to reasoning-style tasks.</td>
 </tr>
 <tr class="even">
-<td>Tool-Augmented Finetuning</td>
-<td>Teach the model to invoke external tools (e.g., calculators, search engines) and use their outputs.</td>
-<td>Enables use of external capabilities, improving performance on complex or tool-supported tasks.</td>
-<td>Depends on reliable tool integration. Tool failures or latency affect output.</td>
+<td><strong>Domain-Specific Finetuning</strong></td>
+<td>Adapt models for specialized fields (e.g., biomedicine, finance, legal, climate, code).</td>
+<td>Improves accuracy and relevance in domain-specific applications.</td>
+<td>Needs high-quality, domain-specific corpora; risk of reduced generality.</td>
 </tr>
 <tr class="odd">
-<td>RAG Finetuning</td>
-<td>Combine retrieval with generation to improve factual accuracy in knowledge-intensive tasks.</td>
-<td>Improves factual grounding and reduces hallucination.</td>
-<td>Sensitive to retrieval quality. Risk of context injection errors.</td>
+<td><strong>Distillation-Based Finetuning</strong></td>
+<td>Transfer capabilities from a large “teacher” model to a smaller “student” model.</td>
+<td>Produces smaller, faster models with high performance; reduces compute cost.</td>
+<td>May lose nuance or performance compared to teacher; quality depends on teacher data.</td>
 </tr>
 <tr class="even">
-<td>Alignment-Oriented Finetuning</td>
-<td>Align model behavior with human values before reinforcement learning stages; improve safety and helpfulness.</td>
-<td>Promotes helpfulness and safety. Complements downstream RLHF.</td>
-<td>Limited by scope of value-alignment data. May encode narrow definitions of safety.</td>
+<td><strong>Preference/Alignment SFT</strong></td>
+<td>Train models on labeled or ranked preference data before RLHF or DPO stages.</td>
+<td>Improves alignment with human values; reduces harmful or irrelevant outputs.</td>
+<td>Limited by scope and quality of preference data; definitions of “desirable” can vary.</td>
 </tr>
 <tr class="odd">
-<td>Long-Context Finetuning</td>
-<td>Extend model capacity to process and recall long documents, dialogues, or multi-part instructions.</td>
-<td>Enhances memory and consistency across longer input contexts.</td>
-<td>Training is expensive. Long-context data is difficult to source.</td>
-</tr>
-<tr class="even">
-<td>Mixture-of-Experts (MoE)</td>
-<td>Train models to use expert subnetworks selectively for efficiency and specialization.</td>
-<td>Improves scalability and efficiency. Reduces compute by activating only parts of the model.</td>
-<td>Training instability and routing issues. May lead to expert collapse.</td>
-</tr>
-<tr class="odd">
-<td>PEFT (e.g., LoRA, Adapters)</td>
-<td>Allow efficient domain-specific tuning without updating the full model (e.g., via LoRA or adapters).</td>
-<td>Resource-efficient. Enables fast adaptation with fewer parameters.</td>
-<td>May underperform full finetuning. Sensitive to hyperparameters.</td>
-</tr>
-<tr class="even">
-<td>Multi-Objective Finetuning</td>
-<td>Jointly optimize for multiple goals (e.g., accuracy, safety, diversity) in the finetuning phase.</td>
-<td>Balances competing priorities. Supports general-purpose tuning.</td>
-<td>Complex to design and evaluate. Hard to tune trade-offs across objectives.</td>
+<td><strong>Parameter-Efficient Finetuning (PEFT)</strong></td>
+<td>Efficiently adapt models without updating all weights (e.g., LoRA, adapters, prefix tuning).</td>
+<td>Resource-efficient; enables adaptation on limited hardware.</td>
+<td>May underperform full finetuning; sensitive to hyperparameter choices.</td>
 </tr>
 </tbody>
 </table>
