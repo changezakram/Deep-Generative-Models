@@ -7,7 +7,7 @@ format: html
 
 This post explores how large pretrained language models (foundation models) can be adapted into useful assistants through post-training techniques, including prompting, instruction finetuning, and human feedback alignment. These steps are critical in transforming general-purpose models like GPT into trustworthy and effective AI tools.
 
-## 1. Prompting: Zero-Shot and Few-Shot In-Context Learning
+## Prompting: Zero-Shot and Few-Shot In-Context Learning
 
 **Concept**: Use prompts to guide pretrained models without any gradient updates or finetuning.
 
@@ -21,7 +21,7 @@ This post explores how large pretrained language models (foundation models) can 
 
 **Key Insight**: These capabilities emerge only in large-scale models (e.g., GPT-3 with 175B parameters). Creative prompting (e.g., “TL;DR”) can yield surprisingly strong performance.
 
-## 2. Chain-of-Thought (CoT) Prompting
+## Chain-of-Thought (CoT) Prompting
 
 **Concept**: Improve model reasoning by encouraging step-by-step answers.
 
@@ -32,7 +32,7 @@ Example: “Let’s think step by step.”
 
 Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.
 
-## 3. Instruction Finetuning
+## Instruction Finetuning
 
 **Concept**: Supervised training on a wide variety of (instruction, response) pairs to make models better follow instructions.
 
@@ -49,7 +49,7 @@ Why it works: CoT helps the model break complex reasoning into interpretable ste
 - Open-ended tasks lack clear ground truth
 - Human-written instructions may be noisy or inconsistent
 
-## 4. Reinforcement Learning from Human Feedback (RLHF)
+## Reinforcement Learning from Human Feedback (RLHF)
 
 **Concept**: Use reinforcement learning to align model behavior with human preferences.
 
@@ -70,7 +70,7 @@ $$
 - Can lead to overfitting the reward model (reward hacking)
 - Still dependent on noisy human preferences
 
-## 5. Direct Preference Optimization (DPO)
+## Direct Preference Optimization (DPO)
 
 **Concept**: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.
 
@@ -87,7 +87,7 @@ $$
 **Adoption**:
 - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO
 
-## 6. Limitations and What’s Next
+## Limitations and What’s Next
 
 ### Challenges with RLHF and DPO:
 - Human feedback is noisy, inconsistent, and often biased

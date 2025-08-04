@@ -212,12 +212,12 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#overview-from-language-models-to-assistants" id="toc-overview-from-language-models-to-assistants" class="nav-link active" data-scroll-target="#overview-from-language-models-to-assistants"><span class="header-section-number">1</span> Overview: From Language Models to Assistants</a></li>
-  <li><a href="#prompting-zero-shot-and-few-shot-in-context-learning" id="toc-prompting-zero-shot-and-few-shot-in-context-learning" class="nav-link" data-scroll-target="#prompting-zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2</span> 1. Prompting: Zero-Shot and Few-Shot In-Context Learning</a></li>
-  <li><a href="#chain-of-thought-cot-prompting" id="toc-chain-of-thought-cot-prompting" class="nav-link" data-scroll-target="#chain-of-thought-cot-prompting"><span class="header-section-number">3</span> 2. Chain-of-Thought (CoT) Prompting</a></li>
-  <li><a href="#instruction-finetuning" id="toc-instruction-finetuning" class="nav-link" data-scroll-target="#instruction-finetuning"><span class="header-section-number">4</span> 3. Instruction Finetuning</a></li>
-  <li><a href="#reinforcement-learning-from-human-feedback-rlhf" id="toc-reinforcement-learning-from-human-feedback-rlhf" class="nav-link" data-scroll-target="#reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5</span> 4. Reinforcement Learning from Human Feedback (RLHF)</a></li>
-  <li><a href="#direct-preference-optimization-dpo" id="toc-direct-preference-optimization-dpo" class="nav-link" data-scroll-target="#direct-preference-optimization-dpo"><span class="header-section-number">6</span> 5. Direct Preference Optimization (DPO)</a></li>
-  <li><a href="#limitations-and-whats-next" id="toc-limitations-and-whats-next" class="nav-link" data-scroll-target="#limitations-and-whats-next"><span class="header-section-number">7</span> 6. Limitations and What’s Next</a></li>
+  <li><a href="#prompting-zero-shot-and-few-shot-in-context-learning" id="toc-prompting-zero-shot-and-few-shot-in-context-learning" class="nav-link" data-scroll-target="#prompting-zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2</span> Prompting: Zero-Shot and Few-Shot In-Context Learning</a></li>
+  <li><a href="#chain-of-thought-cot-prompting" id="toc-chain-of-thought-cot-prompting" class="nav-link" data-scroll-target="#chain-of-thought-cot-prompting"><span class="header-section-number">3</span> Chain-of-Thought (CoT) Prompting</a></li>
+  <li><a href="#instruction-finetuning" id="toc-instruction-finetuning" class="nav-link" data-scroll-target="#instruction-finetuning"><span class="header-section-number">4</span> Instruction Finetuning</a></li>
+  <li><a href="#reinforcement-learning-from-human-feedback-rlhf" id="toc-reinforcement-learning-from-human-feedback-rlhf" class="nav-link" data-scroll-target="#reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5</span> Reinforcement Learning from Human Feedback (RLHF)</a></li>
+  <li><a href="#direct-preference-optimization-dpo" id="toc-direct-preference-optimization-dpo" class="nav-link" data-scroll-target="#direct-preference-optimization-dpo"><span class="header-section-number">6</span> Direct Preference Optimization (DPO)</a></li>
+  <li><a href="#limitations-and-whats-next" id="toc-limitations-and-whats-next" class="nav-link" data-scroll-target="#limitations-and-whats-next"><span class="header-section-number">7</span> Limitations and What’s Next</a></li>
   <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">8</span> Summary Table</a></li>
   <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">9</span> Final Thoughts</a></li>
   </ul>
@@ -250,7 +250,7 @@ window.Quarto = {
 <p>This post explores how large pretrained language models (foundation models) can be adapted into useful assistants through post-training techniques, including prompting, instruction finetuning, and human feedback alignment. These steps are critical in transforming general-purpose models like GPT into trustworthy and effective AI tools.</p>
 </section>
 <section id="prompting-zero-shot-and-few-shot-in-context-learning" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="prompting-zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2</span> 1. Prompting: Zero-Shot and Few-Shot In-Context Learning</h2>
+<h2 data-number="2" class="anchored" data-anchor-id="prompting-zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2</span> Prompting: Zero-Shot and Few-Shot In-Context Learning</h2>
 <p><strong>Concept</strong>: Use prompts to guide pretrained models without any gradient updates or finetuning.</p>
 <ul>
 <li><p><strong>Zero-shot prompting</strong>: Ask a question or issue a command without examples.<br>
@@ -262,7 +262,7 @@ Example: showing multiple sentiment labels before asking for one more.</p></li>
 <p><strong>Key Insight</strong>: These capabilities emerge only in large-scale models (e.g., GPT-3 with 175B parameters). Creative prompting (e.g., “TL;DR”) can yield surprisingly strong performance.</p>
 </section>
 <section id="chain-of-thought-cot-prompting" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="chain-of-thought-cot-prompting"><span class="header-section-number">3</span> 2. Chain-of-Thought (CoT) Prompting</h2>
+<h2 data-number="3" class="anchored" data-anchor-id="chain-of-thought-cot-prompting"><span class="header-section-number">3</span> Chain-of-Thought (CoT) Prompting</h2>
 <p><strong>Concept</strong>: Improve model reasoning by encouraging step-by-step answers.</p>
 <p>Example: “Let’s think step by step.”</p>
 <ul>
@@ -272,7 +272,7 @@ Example: showing multiple sentiment labels before asking for one more.</p></li>
 <p>Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.</p>
 </section>
 <section id="instruction-finetuning" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="instruction-finetuning"><span class="header-section-number">4</span> 3. Instruction Finetuning</h2>
+<h2 data-number="4" class="anchored" data-anchor-id="instruction-finetuning"><span class="header-section-number">4</span> Instruction Finetuning</h2>
 <p><strong>Concept</strong>: Supervised training on a wide variety of (instruction, response) pairs to make models better follow instructions.</p>
 <ul>
 <li>Models: FLAN-T5, InstructGPT, Alpaca</li>
@@ -283,7 +283,7 @@ Example: showing multiple sentiment labels before asking for one more.</p></li>
 <p><strong>Limitations</strong>: - High cost of collecting labeled data - Open-ended tasks lack clear ground truth - Human-written instructions may be noisy or inconsistent</p>
 </section>
 <section id="reinforcement-learning-from-human-feedback-rlhf" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5</span> 4. Reinforcement Learning from Human Feedback (RLHF)</h2>
+<h2 data-number="5" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5</span> Reinforcement Learning from Human Feedback (RLHF)</h2>
 <p><strong>Concept</strong>: Use reinforcement learning to align model behavior with human preferences.</p>
 <section id="rlhf-pipeline" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="rlhf-pipeline"><span class="header-section-number">5.1</span> RLHF Pipeline:</h3>
@@ -304,7 +304,7 @@ Example: showing multiple sentiment labels before asking for one more.</p></li>
 </section>
 </section>
 <section id="direct-preference-optimization-dpo" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">6</span> 5. Direct Preference Optimization (DPO)</h2>
+<h2 data-number="6" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">6</span> Direct Preference Optimization (DPO)</h2>
 <p><strong>Concept</strong>: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.</p>
 <section id="dpo-loss" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="dpo-loss"><span class="header-section-number">6.1</span> DPO Loss:</h3>
@@ -320,7 +320,7 @@ J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\thet
 </section>
 </section>
 <section id="limitations-and-whats-next" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="limitations-and-whats-next"><span class="header-section-number">7</span> 6. Limitations and What’s Next</h2>
+<h2 data-number="7" class="anchored" data-anchor-id="limitations-and-whats-next"><span class="header-section-number">7</span> Limitations and What’s Next</h2>
 <section id="challenges-with-rlhf-and-dpo" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="challenges-with-rlhf-and-dpo"><span class="header-section-number">7.1</span> Challenges with RLHF and DPO:</h3>
 <ul>
