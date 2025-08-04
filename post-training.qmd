@@ -57,20 +57,29 @@ Why it works: CoT helps the model break complex reasoning into interpretable ste
 
 ## Instruction Finetuning
 
-**Concept**: Supervised training on a wide variety of (instruction, response) pairs to make models better follow instructions.
+**Concept:**  
+Instruction finetuning is a supervised post-training technique where LLMs are trained on a curated set of (instruction, response) pairs. The goal is to help the model better understand and follow natural language instructions across a wide range of tasks — even those it hasn’t seen before. This approach builds the foundation for improved alignment, generalization, and usability in real-world applications.
 
-- Models: FLAN-T5, InstructGPT, Alpaca
-- Datasets: Super-NaturalInstructions, Self-Instruct, FLAN Collection
-- Benchmarks: MMLU, BIG-Bench
+**General Advantages:**
+- Encourages robust task generalization in zero- and few-shot settings  
+- Improves user alignment and consistency across prompt styles  
+- Makes LLMs more helpful, structured, and controllable  
 
-**Advantages**:
-- Improves generalization to unseen instructions
-- Makes model outputs more helpful and consistent
+**General Limitations:**
+- Requires significant effort to create high-quality, diverse instruction datasets  
+- Open-ended instructions may lack objective evaluation criteria  
+- Human-written prompts and responses may introduce bias, inconsistency, or noise  
 
-**Limitations**:
-- High cost of collecting labeled data
-- Open-ended tasks lack clear ground truth
-- Human-written instructions may be noisy or inconsistent
+| **Aspect**        | **Details**                                                                                   |
+|-------------------|-----------------------------------------------------------------------------------------------|
+| **Goal & Use Cases** | Teach the model to follow diverse instructions such as summarization, classification, QA, and creative writing. Supports zero-/few-shot generalization across task types. |
+| **Models**        | FLAN-T5, InstructGPT, Alpaca                                                                  |
+| **Datasets**      | Super-NaturalInstructions, Self-Instruct, FLAN Collection                                     |
+| **Benchmarks**    | MMLU, BIG-Bench                                                                               |
+| **Benefits**      | - Improves generalization to unseen tasks<br>- Produces more helpful and consistent responses |
+| **Limitations**   | - High cost of collecting quality labeled data<br>- Open-ended instructions lack clear ground truth<br>- Human-written prompts may be noisy or inconsistent |
+
+
 
 ## Reinforcement Learning from Human Feedback (RLHF)
 
