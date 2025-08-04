@@ -55,20 +55,26 @@ Example: “Let’s think step by step.”
 
 Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.
 
-## 3 Instruction Finetuning
+## Instruction Finetuning
 
 **Concept:**  
-Instruction finetuning is a supervised post-training technique where LLMs are trained on a curated set of (instruction, response) pairs. The goal is to help the model better understand and follow natural language instructions across a wide range of tasks — even those it hasn’t seen before. This approach builds the foundation for improved alignment, generalization, and usability in real-world applications.
+Instruction finetuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. This process can also be targeted toward specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.  
 
-**Advantages:**
-- Encourages robust task generalization in zero- and few-shot settings  
-- Improves user alignment and consistency across prompt styles  
-- Makes LLMs more helpful, structured, and controllable  
+While instruction finetuning improves task performance and alignment, it poses challenges including **overfitting**, **high computational costs**, and **sensitivity to dataset biases**. Parameter-efficient variants such as **LoRA** and **adapters** address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.
 
-**Limitations:**
+**Advantages:**  
+- Improves zero- and few-shot task generalization  
+- Increases consistency and alignment across varied prompts  
+- Produces more helpful, structured, and controllable responses  
+- Can be tailored for domain-specific performance gains  
+- Parameter-efficient methods (e.g., LoRA, adapters) enable faster, cheaper adaptation
+
+**Limitations:**  
 - Requires significant effort to create high-quality, diverse instruction datasets  
-- Open-ended instructions may lack objective evaluation criteria  
-- Human-written prompts and responses may introduce bias, inconsistency, or noise  
+- Evaluating open-ended instructions can be subjective  
+- Human-generated data may introduce bias, inconsistency, or noise  
+- Risk of overfitting to narrow domains  
+- May reduce generalization to out-of-domain scenarios  
 
 
 | Finetuning Type | Goal & Common Use Cases | Benefits | Limitations |

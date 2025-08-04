@@ -218,7 +218,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#introduction-why-post-training-matters-for-reasoning" id="toc-introduction-why-post-training-matters-for-reasoning" class="nav-link active" data-scroll-target="#introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</a></li>
   <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">2</span> Prompting</a></li>
-  <li><a href="#instruction-finetuning" id="toc-instruction-finetuning" class="nav-link" data-scroll-target="#instruction-finetuning"><span class="header-section-number">3</span> 3 Instruction Finetuning</a></li>
+  <li><a href="#instruction-finetuning" id="toc-instruction-finetuning" class="nav-link" data-scroll-target="#instruction-finetuning"><span class="header-section-number">3</span> Instruction Finetuning</a></li>
   <li><a href="#reinforcement-learning-from-human-feedback-rlhf" id="toc-reinforcement-learning-from-human-feedback-rlhf" class="nav-link" data-scroll-target="#reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4</span> Reinforcement Learning from Human Feedback (RLHF)</a></li>
   <li><a href="#direct-preference-optimization-dpo" id="toc-direct-preference-optimization-dpo" class="nav-link" data-scroll-target="#direct-preference-optimization-dpo"><span class="header-section-number">5</span> Direct Preference Optimization (DPO)</a></li>
   <li><a href="#limitations-and-whats-next" id="toc-limitations-and-whats-next" class="nav-link" data-scroll-target="#limitations-and-whats-next"><span class="header-section-number">6</span> Limitations and What’s Next</a></li>
@@ -291,15 +291,22 @@ Example: showing multiple sentiment labels before asking for one more.</p></li>
 </section>
 </section>
 <section id="instruction-finetuning" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="instruction-finetuning"><span class="header-section-number">3</span> 3 Instruction Finetuning</h2>
+<h2 data-number="3" class="anchored" data-anchor-id="instruction-finetuning"><span class="header-section-number">3</span> Instruction Finetuning</h2>
 <p><strong>Concept:</strong><br>
-Instruction finetuning is a supervised post-training technique where LLMs are trained on a curated set of (instruction, response) pairs. The goal is to help the model better understand and follow natural language instructions across a wide range of tasks — even those it hasn’t seen before. This approach builds the foundation for improved alignment, generalization, and usability in real-world applications.</p>
-<p><strong>Advantages:</strong> - Encourages robust task generalization in zero- and few-shot settings<br>
-- Improves user alignment and consistency across prompt styles<br>
-- Makes LLMs more helpful, structured, and controllable</p>
-<p><strong>Limitations:</strong> - Requires significant effort to create high-quality, diverse instruction datasets<br>
-- Open-ended instructions may lack objective evaluation criteria<br>
-- Human-written prompts and responses may introduce bias, inconsistency, or noise</p>
+Instruction finetuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. This process can also be targeted toward specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
+<p>While instruction finetuning improves task performance and alignment, it poses challenges including <strong>overfitting</strong>, <strong>high computational costs</strong>, and <strong>sensitivity to dataset biases</strong>. Parameter-efficient variants such as <strong>LoRA</strong> and <strong>adapters</strong> address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.</p>
+<p><strong>Advantages:</strong><br>
+- Improves zero- and few-shot task generalization<br>
+- Increases consistency and alignment across varied prompts<br>
+- Produces more helpful, structured, and controllable responses<br>
+- Can be tailored for domain-specific performance gains<br>
+- Parameter-efficient methods (e.g., LoRA, adapters) enable faster, cheaper adaptation</p>
+<p><strong>Limitations:</strong><br>
+- Requires significant effort to create high-quality, diverse instruction datasets<br>
+- Evaluating open-ended instructions can be subjective<br>
+- Human-generated data may introduce bias, inconsistency, or noise<br>
+- Risk of overfitting to narrow domains<br>
+- May reduce generalization to out-of-domain scenarios</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
