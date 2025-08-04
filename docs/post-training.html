@@ -216,7 +216,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#overview-from-language-models-to-assistants" id="toc-overview-from-language-models-to-assistants" class="nav-link active" data-scroll-target="#overview-from-language-models-to-assistants"><span class="header-section-number">1</span> Overview: From Language Models to Assistants</a></li>
+  <li><a href="#introduction-why-post-training-matters-for-reasoning" id="toc-introduction-why-post-training-matters-for-reasoning" class="nav-link active" data-scroll-target="#introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</a></li>
   <li><a href="#prompting-zero-shot-and-few-shot-in-context-learning" id="toc-prompting-zero-shot-and-few-shot-in-context-learning" class="nav-link" data-scroll-target="#prompting-zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2</span> Prompting: Zero-Shot and Few-Shot In-Context Learning</a></li>
   <li><a href="#chain-of-thought-cot-prompting" id="toc-chain-of-thought-cot-prompting" class="nav-link" data-scroll-target="#chain-of-thought-cot-prompting"><span class="header-section-number">3</span> Chain-of-Thought (CoT) Prompting</a></li>
   <li><a href="#instruction-finetuning" id="toc-instruction-finetuning" class="nav-link" data-scroll-target="#instruction-finetuning"><span class="header-section-number">4</span> Instruction Finetuning</a></li>
@@ -250,9 +250,21 @@ window.Quarto = {
 </header>
 
 
-<section id="overview-from-language-models-to-assistants" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="overview-from-language-models-to-assistants"><span class="header-section-number">1</span> Overview: From Language Models to Assistants</h2>
-<p>This post explores how large pretrained language models (foundation models) can be adapted into useful assistants through post-training techniques, including prompting, instruction finetuning, and human feedback alignment. These steps are critical in transforming general-purpose models like GPT into trustworthy and effective AI tools.</p>
+<section id="introduction-why-post-training-matters-for-reasoning" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</h2>
+<p>Large language models like GPT-4 and Claude have demonstrated impressive capabilities across a wide range of tasks — from writing and summarization to problem solving and open-ended reasoning. But their raw, pre-trained form is not enough for safe, reliable deployment.</p>
+<p>The root of this limitation lies in how LLMs are trained. They don’t follow strict rules or formal logic. Instead, they learn from statistical patterns in massive text corpora. This makes them flexible and creative, but also means their reasoning can be inconsistent or untrustworthy.</p>
+<p>These models are typically trained to predict the next word in a sentence—not to follow instructions, act ethically, or meet human expectations. This initial training phase is known as <strong>pre-training</strong>. It teaches the model general language patterns, but not how to reason carefully or respond in a helpful and safe way. That’s why we need a second phase: <strong>post-training</strong>, where the model is refined to align with human intent and practical use.</p>
+<p>To make these models genuinely helpful and trustworthy, we rely on post-training techniques such as:</p>
+<ul>
+<li><strong>Prompting strategies</strong> that steer responses without modifying the model’s weights<br>
+</li>
+<li><strong>Instruction fine-tuning</strong> to explicitly teach task-following behavior<br>
+</li>
+<li><strong>Feedback-based methods</strong> like RLHF and DPO that align responses with human preferences</li>
+</ul>
+<p>These methods not only improve factual accuracy and alignment, but also enhance the model’s reasoning. That’s critical for real-world applications where correctness, safety, and clarity matter. In the sections that follow, we’ll explore the key post-training techniques that help transform general-purpose LLMs into dependable assistants.</p>
+<hr>
 </section>
 <section id="prompting-zero-shot-and-few-shot-in-context-learning" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="prompting-zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2</span> Prompting: Zero-Shot and Few-Shot In-Context Learning</h2>

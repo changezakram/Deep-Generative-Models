@@ -3,9 +3,26 @@ title: "Post-Training Techniques for Foundation Models"
 format: html
 ---
 
-## Overview: From Language Models to Assistants
+## Introduction: Why Post-Training Matters for Reasoning
 
-This post explores how large pretrained language models (foundation models) can be adapted into useful assistants through post-training techniques, including prompting, instruction finetuning, and human feedback alignment. These steps are critical in transforming general-purpose models like GPT into trustworthy and effective AI tools.
+Large language models like GPT-4 and Claude have demonstrated impressive capabilities across a wide range of tasks — from writing and summarization to problem solving and open-ended reasoning. But their raw, pre-trained form is not enough for safe, reliable deployment.
+
+The root of this limitation lies in how LLMs are trained. They don’t follow strict rules or formal logic. Instead, they learn from statistical patterns in massive text corpora. This makes them flexible and creative, but also means their reasoning can be inconsistent or untrustworthy.
+
+These models are typically trained to predict the next word in a sentence—not to follow instructions, act ethically, or meet human expectations. This initial training phase is known as **pre-training**. It teaches the model general language patterns, but not how to reason carefully or respond in a helpful and safe way. That’s why we need a second phase: **post-training**, where the model is refined to align with human intent and practical use.
+
+To make these models genuinely helpful and trustworthy, we rely on post-training techniques such as:
+
+- **Prompting strategies** that steer responses without modifying the model’s weights  
+- **Instruction fine-tuning** to explicitly teach task-following behavior  
+- **Feedback-based methods** like RLHF and DPO that align responses with human preferences  
+
+These methods not only improve factual accuracy and alignment, but also enhance the model’s reasoning. That’s critical for real-world applications where correctness, safety, and clarity matter. In the sections that follow, we’ll explore the key post-training techniques that help transform general-purpose LLMs into dependable assistants.
+
+---
+
+
+
 
 ## Prompting: Zero-Shot and Few-Shot In-Context Learning
 
