@@ -24,6 +24,8 @@ website:
         menu:
           - text: Transformers
             href: https://changezakram.github.io/Deep-Generative-Models/transformers.html
+          - text: Post Training
+            href: https://changezakram.github.io/Deep-Generative-Models/post-training.html
 
       - text: Agentic AI
         menu:
