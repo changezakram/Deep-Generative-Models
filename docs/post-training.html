@@ -218,7 +218,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#introduction-why-post-training-matters-for-reasoning" id="toc-introduction-why-post-training-matters-for-reasoning" class="nav-link active" data-scroll-target="#introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</a></li>
   <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">2</span> Prompting</a></li>
-  <li><a href="#instruction-finetuning" id="toc-instruction-finetuning" class="nav-link" data-scroll-target="#instruction-finetuning"><span class="header-section-number">3</span> Instruction Finetuning</a></li>
+  <li><a href="#instruction-finetuning" id="toc-instruction-finetuning" class="nav-link" data-scroll-target="#instruction-finetuning"><span class="header-section-number">3</span> 3 Instruction Finetuning</a></li>
   <li><a href="#reinforcement-learning-from-human-feedback-rlhf" id="toc-reinforcement-learning-from-human-feedback-rlhf" class="nav-link" data-scroll-target="#reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4</span> Reinforcement Learning from Human Feedback (RLHF)</a></li>
   <li><a href="#direct-preference-optimization-dpo" id="toc-direct-preference-optimization-dpo" class="nav-link" data-scroll-target="#direct-preference-optimization-dpo"><span class="header-section-number">5</span> Direct Preference Optimization (DPO)</a></li>
   <li><a href="#limitations-and-whats-next" id="toc-limitations-and-whats-next" class="nav-link" data-scroll-target="#limitations-and-whats-next"><span class="header-section-number">6</span> Limitations and What’s Next</a></li>
@@ -291,50 +291,36 @@ Example: showing multiple sentiment labels before asking for one more.</p></li>
 </section>
 </section>
 <section id="instruction-finetuning" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="instruction-finetuning"><span class="header-section-number">3</span> Instruction Finetuning</h2>
+<h2 data-number="3" class="anchored" data-anchor-id="instruction-finetuning"><span class="header-section-number">3</span> 3 Instruction Finetuning</h2>
 <p><strong>Concept:</strong><br>
 Instruction finetuning is a supervised post-training technique where LLMs are trained on a curated set of (instruction, response) pairs. The goal is to help the model better understand and follow natural language instructions across a wide range of tasks — even those it hasn’t seen before. This approach builds the foundation for improved alignment, generalization, and usability in real-world applications.</p>
-<p><strong>General Advantages:</strong> - Encourages robust task generalization in zero- and few-shot settings<br>
+<p><strong>Advantages:</strong> - Encourages robust task generalization in zero- and few-shot settings<br>
 - Improves user alignment and consistency across prompt styles<br>
 - Makes LLMs more helpful, structured, and controllable</p>
-<p><strong>General Limitations:</strong> - Requires significant effort to create high-quality, diverse instruction datasets<br>
+<p><strong>Limitations:</strong> - Requires significant effort to create high-quality, diverse instruction datasets<br>
 - Open-ended instructions may lack objective evaluation criteria<br>
 - Human-written prompts and responses may introduce bias, inconsistency, or noise</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 83%">
+<col style="width: 7%">
+<col style="width: 33%">
+<col style="width: 29%">
+<col style="width: 28%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Aspect</strong></th>
-<th><strong>Details</strong></th>
+<th><strong>Finetuning Type</strong></th>
+<th><strong>Goal &amp; Common Use Cases</strong></th>
+<th><strong>Benefits</strong></th>
+<th><strong>Limitations</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Goal &amp; Use Cases</strong></td>
-<td>Teach the model to follow diverse instructions such as summarization, classification, QA, and creative writing. Supports zero-/few-shot generalization across task types.</td>
-</tr>
-<tr class="even">
-<td><strong>Models</strong></td>
-<td>FLAN-T5, InstructGPT, Alpaca</td>
-</tr>
-<tr class="odd">
-<td><strong>Datasets</strong></td>
-<td>Super-NaturalInstructions, Self-Instruct, FLAN Collection</td>
-</tr>
-<tr class="even">
-<td><strong>Benchmarks</strong></td>
-<td>MMLU, BIG-Bench</td>
-</tr>
-<tr class="odd">
-<td><strong>Benefits</strong></td>
-<td>- Improves generalization to unseen tasks<br>- Produces more helpful and consistent responses</td>
-</tr>
-<tr class="even">
-<td><strong>Limitations</strong></td>
-<td>- High cost of collecting quality labeled data<br>- Open-ended instructions lack clear ground truth<br>- Human-written prompts may be noisy or inconsistent</td>
+<td>Instruction Finetuning</td>
+<td>Train LLMs to follow diverse instructions such as summarization, classification, QA, and creative writing. Enables zero-/few-shot generalization across task types.</td>
+<td>Improves generalization and alignment<br>Makes outputs more helpful and controllable</td>
+<td>Requires large, curated datasets<br>Open-ended tasks are hard to evaluate<br>Can reflect human bias</td>
 </tr>
 </tbody>
 </table>

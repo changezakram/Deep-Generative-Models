@@ -55,30 +55,24 @@ Example: “Let’s think step by step.”
 
 Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.
 
-## Instruction Finetuning
+## 3 Instruction Finetuning
 
 **Concept:**  
 Instruction finetuning is a supervised post-training technique where LLMs are trained on a curated set of (instruction, response) pairs. The goal is to help the model better understand and follow natural language instructions across a wide range of tasks — even those it hasn’t seen before. This approach builds the foundation for improved alignment, generalization, and usability in real-world applications.
 
-**General Advantages:**
+**Advantages:**
 - Encourages robust task generalization in zero- and few-shot settings  
 - Improves user alignment and consistency across prompt styles  
 - Makes LLMs more helpful, structured, and controllable  
 
-**General Limitations:**
+**Limitations:**
 - Requires significant effort to create high-quality, diverse instruction datasets  
 - Open-ended instructions may lack objective evaluation criteria  
 - Human-written prompts and responses may introduce bias, inconsistency, or noise  
 
-| **Aspect**        | **Details**                                                                                   |
-|-------------------|-----------------------------------------------------------------------------------------------|
-| **Goal & Use Cases** | Teach the model to follow diverse instructions such as summarization, classification, QA, and creative writing. Supports zero-/few-shot generalization across task types. |
-| **Models**        | FLAN-T5, InstructGPT, Alpaca                                                                  |
-| **Datasets**      | Super-NaturalInstructions, Self-Instruct, FLAN Collection                                     |
-| **Benchmarks**    | MMLU, BIG-Bench                                                                               |
-| **Benefits**      | - Improves generalization to unseen tasks<br>- Produces more helpful and consistent responses |
-| **Limitations**   | - High cost of collecting quality labeled data<br>- Open-ended instructions lack clear ground truth<br>- Human-written prompts may be noisy or inconsistent |
-
+| **Finetuning Type**     | **Goal & Common Use Cases**                                                                                      | **Benefits**                                                                                       | **Limitations**                                                                                  |
+|--------------------------|------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| Instruction Finetuning   | Train LLMs to follow diverse instructions such as summarization, classification, QA, and creative writing. Enables zero-/few-shot generalization across task types. | Improves generalization and alignment<br>Makes outputs more helpful and controllable               | Requires large, curated datasets<br>Open-ended tasks are hard to evaluate<br>Can reflect human bias |
 
 
 ## Reinforcement Learning from Human Feedback (RLHF)
