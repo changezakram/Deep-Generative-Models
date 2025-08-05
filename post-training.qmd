@@ -92,13 +92,13 @@ The following table summarizes supervised finetuning methods described in *LLM P
 
 **Concept**: Use reinforcement learning to align model behavior with human preferences.
 
-### RLHF Pipeline:
+**RLHF Pipeline:**
 1. Start with an instruction-tuned model  
 2. Collect human preference comparisons (A > B)  
 3. Train a reward model  
 4. Use RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model
 
-**RLHF Objective**:
+**RLHF Objective:**
 
 $$
 \mathbb{E}_{\hat{y} \sim p_{\theta}^{\text{RL}}} \left[ R(x, \hat{y}) - \beta \log \frac{p_{\theta}^{\text{RL}}(\hat{y}|x)}{p_{\text{PT}}(\hat{y}|x)} \right]
@@ -113,7 +113,7 @@ $$
 
 **Concept**: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.
 
-### DPO Loss:
+**DPO Loss:**
 
 $$
 J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\theta}(x, y_w) - R_{\theta}(x, y_l) \right)
@@ -123,7 +123,7 @@ $$
 - No online sampling
 - Very stable and scalable
 
-**Adoption**:
+**Adoption:**
 - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO
 
 ## Limitations and What’s Next

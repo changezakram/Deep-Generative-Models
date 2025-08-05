@@ -382,14 +382,14 @@
     "href": "post-training.html#reinforcement-learning-from-human-feedback-rlhf",
     "title": "Post-Training for Foundation Models",
     "section": "4 Reinforcement Learning from Human Feedback (RLHF)",
-    "text": "4 Reinforcement Learning from Human Feedback (RLHF)\nConcept: Use reinforcement learning to align model behavior with human preferences.\n\n4.1 RLHF Pipeline:\n\nStart with an instruction-tuned model\n\nCollect human preference comparisons (A &gt; B)\n\nTrain a reward model\n\nUse RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model\n\nRLHF Objective:\n\\[\n\\mathbb{E}_{\\hat{y} \\sim p_{\\theta}^{\\text{RL}}} \\left[ R(x, \\hat{y}) - \\beta \\log \\frac{p_{\\theta}^{\\text{RL}}(\\hat{y}|x)}{p_{\\text{PT}}(\\hat{y}|x)} \\right]\n\\]\nChallenges: - Expensive and tricky to tune - Can lead to overfitting the reward model (reward hacking) - Still dependent on noisy human preferences"
+    "text": "4 Reinforcement Learning from Human Feedback (RLHF)\nConcept: Use reinforcement learning to align model behavior with human preferences.\nRLHF Pipeline: 1. Start with an instruction-tuned model\n2. Collect human preference comparisons (A &gt; B)\n3. Train a reward model\n4. Use RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model\nRLHF Objective:\n\\[\n\\mathbb{E}_{\\hat{y} \\sim p_{\\theta}^{\\text{RL}}} \\left[ R(x, \\hat{y}) - \\beta \\log \\frac{p_{\\theta}^{\\text{RL}}(\\hat{y}|x)}{p_{\\text{PT}}(\\hat{y}|x)} \\right]\n\\]\nChallenges: - Expensive and tricky to tune - Can lead to overfitting the reward model (reward hacking) - Still dependent on noisy human preferences"
   },
   {
     "objectID": "post-training.html#direct-preference-optimization-dpo",
     "href": "post-training.html#direct-preference-optimization-dpo",
     "title": "Post-Training for Foundation Models",
     "section": "5 Direct Preference Optimization (DPO)",
-    "text": "5 Direct Preference Optimization (DPO)\nConcept: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.\n\n5.1 DPO Loss:\n\\[\nJ_{\\text{DPO}}(\\theta) = -\\mathbb{E}_{(x, y_w, y_l)} \\log \\sigma \\left( R_{\\theta}(x, y_w) - R_{\\theta}(x, y_l) \\right)\n\\]\n\nNo need for a separate reward model or PPO\nNo online sampling\nVery stable and scalable\n\nAdoption: - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO"
+    "text": "5 Direct Preference Optimization (DPO)\nConcept: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.\nDPO Loss:\n\\[\nJ_{\\text{DPO}}(\\theta) = -\\mathbb{E}_{(x, y_w, y_l)} \\log \\sigma \\left( R_{\\theta}(x, y_w) - R_{\\theta}(x, y_l) \\right)\n\\]\n\nNo need for a separate reward model or PPO\nNo online sampling\nVery stable and scalable\n\nAdoption: - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO"
   },
   {
     "objectID": "post-training.html#limitations-and-whats-next",

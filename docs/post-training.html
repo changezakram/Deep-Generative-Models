@@ -384,29 +384,20 @@ Instruction finetuning is a supervised post-training technique that trains LLMs 
 <section id="reinforcement-learning-from-human-feedback-rlhf" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4</span> Reinforcement Learning from Human Feedback (RLHF)</h2>
 <p><strong>Concept</strong>: Use reinforcement learning to align model behavior with human preferences.</p>
-<section id="rlhf-pipeline" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="rlhf-pipeline"><span class="header-section-number">4.1</span> RLHF Pipeline:</h3>
-<ol type="1">
-<li>Start with an instruction-tuned model<br>
-</li>
-<li>Collect human preference comparisons (A &gt; B)<br>
-</li>
-<li>Train a reward model<br>
-</li>
-<li>Use RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model</li>
-</ol>
-<p><strong>RLHF Objective</strong>:</p>
+<p><strong>RLHF Pipeline:</strong> 1. Start with an instruction-tuned model<br>
+2. Collect human preference comparisons (A &gt; B)<br>
+3. Train a reward model<br>
+4. Use RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model</p>
+<p><strong>RLHF Objective:</strong></p>
 <p><span class="math display">\[
 \mathbb{E}_{\hat{y} \sim p_{\theta}^{\text{RL}}} \left[ R(x, \hat{y}) - \beta \log \frac{p_{\theta}^{\text{RL}}(\hat{y}|x)}{p_{\text{PT}}(\hat{y}|x)} \right]
 \]</span></p>
 <p><strong>Challenges</strong>: - Expensive and tricky to tune - Can lead to overfitting the reward model (reward hacking) - Still dependent on noisy human preferences</p>
 </section>
-</section>
 <section id="direct-preference-optimization-dpo" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5</span> Direct Preference Optimization (DPO)</h2>
 <p><strong>Concept</strong>: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.</p>
-<section id="dpo-loss" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="dpo-loss"><span class="header-section-number">5.1</span> DPO Loss:</h3>
+<p><strong>DPO Loss:</strong></p>
 <p><span class="math display">\[
 J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\theta}(x, y_w) - R_{\theta}(x, y_l) \right)
 \]</span></p>
@@ -415,8 +406,7 @@ J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\thet
 <li>No online sampling</li>
 <li>Very stable and scalable</li>
 </ul>
-<p><strong>Adoption</strong>: - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO</p>
-</section>
+<p><strong>Adoption:</strong> - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO</p>
 </section>
 <section id="limitations-and-whats-next" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="limitations-and-whats-next"><span class="header-section-number">6</span> Limitations and What’s Next</h2>
