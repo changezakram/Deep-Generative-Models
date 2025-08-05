@@ -34,10 +34,8 @@ In the sections that follow, we’ll explore both post-training techniques and p
 
 - **Zero-shot prompting**: Ask a question or issue a command without examples.  
   Example: “Translate this sentence into French.”
-
 - **Few-shot prompting**: Provide a few (input → output) examples to demonstrate the task.  
   Example: showing multiple sentiment labels before asking for one more.
-
 - **In-context learning**: The model uses these patterns to perform the task, thanks to its massive training data and scale.
 
 **Key Insight**: These capabilities emerge only in large-scale models (e.g., GPT-3 with 175B parameters). Creative prompting (e.g., “TL;DR”) can yield surprisingly strong performance.
@@ -60,7 +58,8 @@ Instruction finetuning is a supervised post-training technique that trains LLMs 
 
 While instruction finetuning improves task performance and alignment, it poses challenges including **overfitting**, **high computational costs**, and **sensitivity to dataset biases**. Parameter-efficient variants such as **LoRA** and **adapters** address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.
 
-**Advantages:**  
+**Advantages:** 
+ 
 - Improves zero- and few-shot task generalization  
 - Increases consistency and alignment across varied prompts  
 - Produces more helpful, structured, and controllable responses  
@@ -68,6 +67,7 @@ While instruction finetuning improves task performance and alignment, it poses c
 - Parameter-efficient methods (e.g., LoRA, adapters) enable faster, cheaper adaptation
 
 **Limitations:**  
+
 - Requires significant effort to create high-quality, diverse instruction datasets  
 - Evaluating open-ended instructions can be subjective  
 - Human-generated data may introduce bias, inconsistency, or noise  
@@ -76,7 +76,7 @@ While instruction finetuning improves task performance and alignment, it poses c
 
 The following table summarizes supervised finetuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
 
-| Finetuning Type | Goal & Common Use Cases | Benefits | Limitations |
+| Fine-tuning Type | Goal & Common Use Cases | Benefits | Limitations |
 |-----------------|------------------------|----------|-------------|
 | **Instruction Finetuning** | Train LLMs to follow diverse instructions (e.g., summarization, classification, QA, creative writing). Enables zero-/few-shot generalization across tasks. | Improves generalization and alignment; makes outputs more helpful and controllable. | Requires large, curated datasets; open-ended tasks are harder to evaluate; may reflect human bias. |
 | **Dialogue (Multi-turn) Finetuning** | Enable coherent, context-aware multi-turn conversations for chatbots and digital assistants. | Improves coherence, context tracking, and conversational experience. | Can overfit to chattiness; needs large, high-quality multi-turn dialogue datasets. |
