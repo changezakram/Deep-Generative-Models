@@ -287,6 +287,53 @@ Test‑time scaling (TTS) is the practice of improving model performance and rea
 </li>
 <li>May yield diminishing returns if scaling is excessive for a given task</li>
 </ul>
+<p>While many approaches exist for test‑time scaling, a few have emerged as especially influential in practical LLM applications. The sections below explore some of these methods in greater detail, including their mechanics, strengths, and trade‑offs.</p>
+<section id="best-of-n-search-rejection-sampling" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="best-of-n-search-rejection-sampling"><span class="header-section-number">3.1</span> Best-of-N Search (Rejection Sampling)</h3>
+<p><strong>Concept:</strong><br>
+Best-of-N (BoN) search enhances model performance at inference by generating <em>N</em> candidate outputs (often via sampling) and selecting the one that scores highest according to a chosen criterion — such as a reward model, likelihood score, or rule-based evaluator. This approach systematically explores multiple solution paths and prunes all but the top-rated result. Compared to Beam Search, BoN treats each candidate independently, which can increase diversity but may also be more computationally expensive.</p>
+<p>In reinforcement learning contexts, BoN can be integrated with a learned reward model to pick the best candidate from multiple rollouts, yielding strong performance in reasoning-heavy tasks. It is a popular choice in applications like question answering, code generation, and reasoning benchmarks.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Can significantly boost task performance, especially with a robust reward model</li>
+<li>Flexible — works with both rule-based and learned scoring functions</li>
+<li>Simple to implement; requires only control over <em>N</em> and the selection criterion</li>
+<li>Competitive with post-training methods like RLHF and DPO when paired with strong evaluators</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Higher computational cost as <em>N</em> increases<br>
+</li>
+<li>Performance depends heavily on the quality of the scoring function or reward model<br>
+</li>
+<li>May select lower-probability solutions if scoring is imperfect (reward hacking risk)<br>
+</li>
+<li>Instability can occur if the <em>N</em> parameter is too large or too small for the task</li>
+</ul>
+</section>
+<section id="self-consistency-decoding" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="self-consistency-decoding"><span class="header-section-number">3.2</span> Self-Consistency Decoding</h3>
+<p><strong>Concept:</strong><br>
+Self-Consistency is a decoding strategy designed to improve reasoning by aggregating answers from multiple reasoning paths. Instead of following a single chain of thought, the model samples diverse reasoning chains (using techniques like prompt engineering to encourage diversity, temperature sampling, or stochastic decoding) and then outputs the final answer that is most consistent across them.</p>
+<p>The underlying intuition is that if a complex question has a unique correct answer, different valid reasoning paths should converge on the same result. This <em>majority vote</em> or <em>highest probability after marginalization</em> approach reduces the likelihood of errors from flawed single reasoning chains and is especially effective in reasoning tasks.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Improves correctness in complex reasoning scenarios<br>
+</li>
+<li>Works well for arithmetic, commonsense reasoning, and multi-step problem-solving<br>
+</li>
+<li>Reduces reliance on any single, potentially flawed reasoning path<br>
+</li>
+<li>Can be combined with Chain-of-Thought prompting for greater gains</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Higher inference cost due to multiple reasoning path generations<br>
+</li>
+<li>Gains diminish for simpler tasks where a single reasoning path is sufficient<br>
+</li>
+<li>Effectiveness depends on diversity and quality of sampled reasoning paths</li>
+</ul>
 <p>The following table summarizes key test‑time scaling methods described in <em>LLM Post‑Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
 <colgroup>
@@ -372,53 +419,6 @@ Test‑time scaling (TTS) is the practice of improving model performance and rea
 </tr>
 </tbody>
 </table>
-<p>While many approaches exist for test‑time scaling, a few have emerged as especially influential in practical LLM applications. The sections below explore some of these methods in greater detail, including their mechanics, strengths, and trade‑offs.</p>
-<section id="best-of-n-search-rejection-sampling" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="best-of-n-search-rejection-sampling"><span class="header-section-number">3.1</span> Best-of-N Search (Rejection Sampling)</h3>
-<p><strong>Concept:</strong><br>
-Best-of-N (BoN) search enhances model performance at inference by generating <em>N</em> candidate outputs (often via sampling) and selecting the one that scores highest according to a chosen criterion — such as a reward model, likelihood score, or rule-based evaluator. This approach systematically explores multiple solution paths and prunes all but the top-rated result. Compared to Beam Search, BoN treats each candidate independently, which can increase diversity but may also be more computationally expensive.</p>
-<p>In reinforcement learning contexts, BoN can be integrated with a learned reward model to pick the best candidate from multiple rollouts, yielding strong performance in reasoning-heavy tasks. It is a popular choice in applications like question answering, code generation, and reasoning benchmarks.</p>
-<p><strong>Advantages:</strong></p>
-<ul>
-<li>Can significantly boost task performance, especially with a robust reward model</li>
-<li>Flexible — works with both rule-based and learned scoring functions</li>
-<li>Simple to implement; requires only control over <em>N</em> and the selection criterion</li>
-<li>Competitive with post-training methods like RLHF and DPO when paired with strong evaluators</li>
-</ul>
-<p><strong>Limitations:</strong></p>
-<ul>
-<li>Higher computational cost as <em>N</em> increases<br>
-</li>
-<li>Performance depends heavily on the quality of the scoring function or reward model<br>
-</li>
-<li>May select lower-probability solutions if scoring is imperfect (reward hacking risk)<br>
-</li>
-<li>Instability can occur if the <em>N</em> parameter is too large or too small for the task</li>
-</ul>
-</section>
-<section id="self-consistency-decoding" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="self-consistency-decoding"><span class="header-section-number">3.2</span> Self-Consistency Decoding</h3>
-<p><strong>Concept:</strong><br>
-Self-Consistency is a decoding strategy designed to improve reasoning by aggregating answers from multiple reasoning paths. Instead of following a single chain of thought, the model samples diverse reasoning chains (using techniques like prompt engineering to encourage diversity, temperature sampling, or stochastic decoding) and then outputs the final answer that is most consistent across them.</p>
-<p>The underlying intuition is that if a complex question has a unique correct answer, different valid reasoning paths should converge on the same result. This <em>majority vote</em> or <em>highest probability after marginalization</em> approach reduces the likelihood of errors from flawed single reasoning chains and is especially effective in reasoning tasks.</p>
-<p><strong>Advantages:</strong></p>
-<ul>
-<li>Improves correctness in complex reasoning scenarios<br>
-</li>
-<li>Works well for arithmetic, commonsense reasoning, and multi-step problem-solving<br>
-</li>
-<li>Reduces reliance on any single, potentially flawed reasoning path<br>
-</li>
-<li>Can be combined with Chain-of-Thought prompting for greater gains</li>
-</ul>
-<p><strong>Limitations:</strong></p>
-<ul>
-<li>Higher inference cost due to multiple reasoning path generations<br>
-</li>
-<li>Gains diminish for simpler tasks where a single reasoning path is sufficient<br>
-</li>
-<li>Effectiveness depends on diversity and quality of sampled reasoning paths</li>
-</ul>
 </section>
 </section>
 <section id="supervised-fine-tuning-sft" class="level2" data-number="4">
@@ -450,6 +450,53 @@ Self-Consistency is a decoding strategy designed to improve reasoning by aggrega
 </li>
 <li>May reduce generalization to out-of-domain scenarios</li>
 </ul>
+<p>While many approaches exist for supervised fine‑tuning, <strong>Instruction Fine‑Tuning</strong> and <strong>Domain‑Specific Fine‑Tuning</strong> are among the most prevalent in modern LLM post‑training pipelines. The sections below explore these methods in greater detail.</p>
+<section id="instruction-fine-tuning" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="instruction-fine-tuning"><span class="header-section-number">4.1</span> Instruction Fine-Tuning</h3>
+<p><strong>Concept:</strong><br>
+Instruction Fine‑Tuning is the most widely used form of supervised fine‑tuning in LLM post‑training. It involves training a pre‑trained model on curated datasets of instruction–response pairs covering a wide variety of tasks, such as summarization, question answering, classification, and creative writing. The goal is to make the model follow natural language instructions reliably, even for tasks it hasn’t seen before.<br>
+This process adjusts the model’s internal weights so it produces outputs that align with the intent of the instruction rather than simply predicting the next word. Instruction fine‑tuning is often the <strong>first post‑training step</strong> in modern LLM pipelines and serves as a foundation for subsequent alignment stages like RLHF or DPO.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Improves generalization to unseen tasks in zero‑shot and few‑shot settings.<br>
+</li>
+<li>Produces more helpful, controllable, and structured outputs.<br>
+</li>
+<li>Increases consistency across varied prompt styles.<br>
+</li>
+<li>Provides a strong baseline for further preference optimization.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Requires large, high‑quality, and diverse instruction datasets.<br>
+</li>
+<li>Open‑ended instructions can be difficult to evaluate objectively.<br>
+</li>
+<li>Human‑generated data may introduce bias, inconsistency, or noise.<br>
+</li>
+<li>Can overfit to dataset style if training data lacks diversity.</li>
+</ul>
+</section>
+<section id="domain-specific-fine-tuning" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="domain-specific-fine-tuning"><span class="header-section-number">4.2</span> Domain-Specific Fine-Tuning</h3>
+<p><strong>Concept:</strong></p>
+<p>Domain‑Specific Fine‑Tuning adapts a general‑purpose LLM to excel in a specialized field, such as biomedicine, finance, legal, climate science, or software engineering. The process uses curated domain‑specific datasets to teach the model the terminology, style, and knowledge relevant to that field.<br>
+By focusing on specialized corpora, the model can deliver more accurate, relevant, and trustworthy outputs for domain‑specific use cases, making it valuable for enterprise and industry applications.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Improves accuracy, factual grounding, and relevance in the target domain.<br>
+</li>
+<li>Enhances user trust for high‑stakes applications.<br>
+</li>
+<li>Supports compliance with domain‑specific standards or regulations.<br>
+</li>
+<li>Can reduce hallucinations by anchoring the model in verified domain content.</li>
+</ul>
+<p><strong>Limitations:</strong><br>
+- Requires high‑quality, domain‑specific datasets that can be costly or difficult to obtain.<br>
+- Risk of reduced generalization to tasks outside the target domain.<br>
+- May inherit biases or gaps present in domain data.<br>
+- Can lead to over‑specialization if fine‑tuning data is too narrow.</p>
 <p>The following table summarizes supervised fine-tuning methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
 <colgroup>
@@ -511,53 +558,6 @@ Self-Consistency is a decoding strategy designed to improve reasoning by aggrega
 </tr>
 </tbody>
 </table>
-<p>While many approaches exist for supervised fine‑tuning, <strong>Instruction Fine‑Tuning</strong> and <strong>Domain‑Specific Fine‑Tuning</strong> are among the most prevalent in modern LLM post‑training pipelines. The sections below explore these methods in greater detail.</p>
-<section id="instruction-fine-tuning" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="instruction-fine-tuning"><span class="header-section-number">4.1</span> Instruction Fine-Tuning</h3>
-<p><strong>Concept:</strong><br>
-Instruction Fine‑Tuning is the most widely used form of supervised fine‑tuning in LLM post‑training. It involves training a pre‑trained model on curated datasets of instruction–response pairs covering a wide variety of tasks, such as summarization, question answering, classification, and creative writing. The goal is to make the model follow natural language instructions reliably, even for tasks it hasn’t seen before.<br>
-This process adjusts the model’s internal weights so it produces outputs that align with the intent of the instruction rather than simply predicting the next word. Instruction fine‑tuning is often the <strong>first post‑training step</strong> in modern LLM pipelines and serves as a foundation for subsequent alignment stages like RLHF or DPO.</p>
-<p><strong>Advantages:</strong></p>
-<ul>
-<li>Improves generalization to unseen tasks in zero‑shot and few‑shot settings.<br>
-</li>
-<li>Produces more helpful, controllable, and structured outputs.<br>
-</li>
-<li>Increases consistency across varied prompt styles.<br>
-</li>
-<li>Provides a strong baseline for further preference optimization.</li>
-</ul>
-<p><strong>Limitations:</strong></p>
-<ul>
-<li>Requires large, high‑quality, and diverse instruction datasets.<br>
-</li>
-<li>Open‑ended instructions can be difficult to evaluate objectively.<br>
-</li>
-<li>Human‑generated data may introduce bias, inconsistency, or noise.<br>
-</li>
-<li>Can overfit to dataset style if training data lacks diversity.</li>
-</ul>
-</section>
-<section id="domain-specific-fine-tuning" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="domain-specific-fine-tuning"><span class="header-section-number">4.2</span> Domain-Specific Fine-Tuning</h3>
-<p><strong>Concept:</strong></p>
-<p>Domain‑Specific Fine‑Tuning adapts a general‑purpose LLM to excel in a specialized field, such as biomedicine, finance, legal, climate science, or software engineering. The process uses curated domain‑specific datasets to teach the model the terminology, style, and knowledge relevant to that field.<br>
-By focusing on specialized corpora, the model can deliver more accurate, relevant, and trustworthy outputs for domain‑specific use cases, making it valuable for enterprise and industry applications.</p>
-<p><strong>Advantages:</strong></p>
-<ul>
-<li>Improves accuracy, factual grounding, and relevance in the target domain.<br>
-</li>
-<li>Enhances user trust for high‑stakes applications.<br>
-</li>
-<li>Supports compliance with domain‑specific standards or regulations.<br>
-</li>
-<li>Can reduce hallucinations by anchoring the model in verified domain content.</li>
-</ul>
-<p><strong>Limitations:</strong><br>
-- Requires high‑quality, domain‑specific datasets that can be costly or difficult to obtain.<br>
-- Risk of reduced generalization to tasks outside the target domain.<br>
-- May inherit biases or gaps present in domain data.<br>
-- Can lead to over‑specialization if fine‑tuning data is too narrow.</p>
 </section>
 </section>
 <section id="preference-optimization" class="level2" data-number="5">
@@ -589,6 +589,56 @@ The overarching goal is to make models behave according to human preferences —
 <li>Bias and fairness risks — preferences used in training may embed societal biases.<br>
 </li>
 <li>Deployment trade‑offs — excessive filtering can reduce engagement, while insufficient filtering can create reputational and safety risks.</li>
+</ul>
+<p>While many approaches exist for preference optimization, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and <strong>Direct Preference Optimization (DPO)</strong> are two of the most prominent in modern LLM alignment pipelines. The sections below explore these methods in greater detail.</p>
+<section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
+<p><strong>Concept:</strong><br>
+RLHF aligns LLMs with human preferences by collecting feedback from human annotators and using it to guide reinforcement learning. The process typically involves:<br>
+1. Supervised Fine‑Tuning (SFT) on high‑quality instruction‑response pairs to create a baseline model.<br>
+2. Preference data collection — human annotators rank multiple model outputs for the same prompt.<br>
+3. Reward model training — a separate model learns to predict these rankings.<br>
+4. Reinforcement learning optimization — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Produces highly aligned and safe responses.<br>
+</li>
+<li>Can optimize for complex, nuanced objectives beyond accuracy.<br>
+</li>
+<li>Allows fine‑grained control through reward model design.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Very expensive and labor‑intensive to gather preference data.<br>
+</li>
+<li>Quality depends heavily on the consistency and skill of annotators.<br>
+</li>
+<li>Reward models can be exploited (reward hacking).<br>
+</li>
+<li>Sensitive to bias in the collected preferences.</li>
+</ul>
+</section>
+<section id="direct-preference-optimization-dpo" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5.2</span> Direct Preference Optimization (DPO)</h3>
+<p><strong>Concept:</strong><br>
+DPO is a simpler alternative to RLHF that removes the need for a separate reward model and online reinforcement learning. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log‑likelihood ratio to make preferred responses more probable. This approach “bakes in” the user’s preferences directly into the model parameters, avoiding the complexity of the RL loop.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Simpler and more stable than RLHF.<br>
+</li>
+<li>No need for online sampling or PPO training.<br>
+</li>
+<li>Scales well to large datasets.<br>
+</li>
+<li>Increasingly popular in open‑source models like LLaMA and OpenChat.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>No per‑step credit assignment — treats whole responses as a unit.<br>
+</li>
+<li>May underperform RLHF for multi‑step reasoning tasks.<br>
+</li>
+<li>Dependent on high‑quality preference pairs; poor data reduces effectiveness.</li>
 </ul>
 <p>The following table summarizes supervised Preference Optimization methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
@@ -645,56 +695,6 @@ The overarching goal is to make models behave according to human preferences —
 </tr>
 </tbody>
 </table>
-<p>While many approaches exist for preference optimization, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and <strong>Direct Preference Optimization (DPO)</strong> are two of the most prominent in modern LLM alignment pipelines. The sections below explore these methods in greater detail.</p>
-<section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
-<p><strong>Concept:</strong><br>
-RLHF aligns LLMs with human preferences by collecting feedback from human annotators and using it to guide reinforcement learning. The process typically involves:<br>
-1. Supervised Fine‑Tuning (SFT) on high‑quality instruction‑response pairs to create a baseline model.<br>
-2. Preference data collection — human annotators rank multiple model outputs for the same prompt.<br>
-3. Reward model training — a separate model learns to predict these rankings.<br>
-4. Reinforcement learning optimization — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.</p>
-<p><strong>Advantages:</strong></p>
-<ul>
-<li>Produces highly aligned and safe responses.<br>
-</li>
-<li>Can optimize for complex, nuanced objectives beyond accuracy.<br>
-</li>
-<li>Allows fine‑grained control through reward model design.</li>
-</ul>
-<p><strong>Limitations:</strong></p>
-<ul>
-<li>Very expensive and labor‑intensive to gather preference data.<br>
-</li>
-<li>Quality depends heavily on the consistency and skill of annotators.<br>
-</li>
-<li>Reward models can be exploited (reward hacking).<br>
-</li>
-<li>Sensitive to bias in the collected preferences.</li>
-</ul>
-</section>
-<section id="direct-preference-optimization-dpo" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5.2</span> Direct Preference Optimization (DPO)</h3>
-<p><strong>Concept:</strong><br>
-DPO is a simpler alternative to RLHF that removes the need for a separate reward model and online reinforcement learning. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log‑likelihood ratio to make preferred responses more probable. This approach “bakes in” the user’s preferences directly into the model parameters, avoiding the complexity of the RL loop.</p>
-<p><strong>Advantages:</strong></p>
-<ul>
-<li>Simpler and more stable than RLHF.<br>
-</li>
-<li>No need for online sampling or PPO training.<br>
-</li>
-<li>Scales well to large datasets.<br>
-</li>
-<li>Increasingly popular in open‑source models like LLaMA and OpenChat.</li>
-</ul>
-<p><strong>Limitations:</strong></p>
-<ul>
-<li>No per‑step credit assignment — treats whole responses as a unit.<br>
-</li>
-<li>May underperform RLHF for multi‑step reasoning tasks.<br>
-</li>
-<li>Dependent on high‑quality preference pairs; poor data reduces effectiveness.</li>
-</ul>
 </section>
 </section>
 <section id="final-thoughts" class="level2" data-number="6">
