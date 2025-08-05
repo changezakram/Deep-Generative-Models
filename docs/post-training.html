@@ -189,9 +189,10 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#introduction-why-post-training-matters-for-reasoning" id="toc-introduction-why-post-training-matters-for-reasoning" class="nav-link active" data-scroll-target="#introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</a></li>
   <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">2</span> Prompting</a></li>
-  <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised Fine-Tuning (SFT)</a></li>
-  <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">4</span> Preference Optimization</a></li>
-  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">5</span> Final Thoughts</a></li>
+  <li><a href="#testtime-scaling-methods" id="toc-testtime-scaling-methods" class="nav-link" data-scroll-target="#testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</a></li>
+  <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</a></li>
+  <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">5</span> Preference Optimization</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">6</span> Final Thoughts</a></li>
   </ul>
 </nav>
     </div>
@@ -258,8 +259,110 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 <p>Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.</p>
 </section>
 </section>
-<section id="supervised-fine-tuning-sft" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised Fine-Tuning (SFT)</h2>
+<section id="testtime-scaling-methods" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</h2>
+<p><strong>Concept:</strong><br>
+Test‑time scaling (TTS) enhances LLM performance during inference without modifying the base model’s parameters. Instead of retraining, TTS allocates more compute at inference — for example, by generating multiple candidate outputs, exploring reasoning paths, or dynamically adjusting computational resources based on task complexity. These methods can significantly improve reasoning, factual accuracy, and robustness while keeping the underlying model architecture unchanged.</p>
+<p>TTS is particularly valuable for scenarios where retraining is costly or infeasible, when inference budgets can be flexibly allocated, or when a base model already has sufficient competence but needs more careful reasoning or verification. From a cost perspective, TTS can achieve results comparable to much larger models on certain tasks (e.g., up to 14× improvement on intermediate‑difficulty benchmarks) while requiring only a fraction of the training compute.</p>
+<p><strong>Advantages:</strong> - Improves performance without retraining or additional data collection<br>
+- Flexible — can be applied to any pre-trained model<br>
+- Adaptable to task difficulty through dynamic compute allocation<br>
+- Enhances multi‑step reasoning and factual accuracy via exploration and verification<br>
+- Allows lightweight experimentation with different strategies</p>
+<p><strong>Limitations:</strong> - Increases inference cost due to multiple generations or search steps<br>
+- Benefits vary by task; may show diminishing returns on simple problems<br>
+- Requires robust scoring or selection mechanisms (e.g., reward models, verifiers)<br>
+- May add latency, especially for interactive applications<br>
+- Performance gains depend on the quality of underlying base model</p>
+<p><strong>The following table summarizes key test‑time scaling methods described in <em>LLM Post‑Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Goal &amp; Common Use Cases</th>
+<th>Benefits</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Beam Search</strong></td>
+<td>Maintain top‑N highest‑probability reasoning paths at each step; used in structured reasoning, planning, and Tree‑of‑Thought search.</td>
+<td>Improves coherence and accuracy by systematically exploring multiple reasoning chains.</td>
+<td>Computationally expensive; beam width must be tuned; may still miss rare but correct paths.</td>
+</tr>
+<tr class="even">
+<td><strong>Best‑of‑N (Rejection Sampling)</strong></td>
+<td>Generate N candidate outputs (via sampling) and select the best using a criterion (e.g., reward model, model likelihood).</td>
+<td>Improves answer quality for easier tasks; straightforward to implement; flexible budget.</td>
+<td>High cost if N is large; requires effective selection criteria; may miss diversity benefits.</td>
+</tr>
+<tr class="odd">
+<td><strong>Compute‑Optimal Scaling (COS)</strong></td>
+<td>Dynamically allocate compute based on task difficulty; use more search for hard cases, less for easy ones.</td>
+<td>Balances accuracy and efficiency; can achieve large efficiency gains over uniform sampling.</td>
+<td>Requires reliable difficulty estimation; complex to implement in production.</td>
+</tr>
+<tr class="even">
+<td><strong>Self‑Consistency Decoding</strong></td>
+<td>Sample multiple reasoning chains, then select the most common final answer.</td>
+<td>Improves multi‑step reasoning accuracy; simple and model‑agnostic.</td>
+<td>Higher inference cost; relies on majority vote, which may fail if most outputs are wrong.</td>
+</tr>
+<tr class="odd">
+<td><strong>Tree of Thoughts (ToT)</strong></td>
+<td>Expand multiple reasoning paths as a search tree, evaluating and pruning branches.</td>
+<td>Enhances complex problem solving and planning; allows backtracking.</td>
+<td>High computational cost; requires good heuristics to prune effectively.</td>
+</tr>
+<tr class="even">
+<td><strong>Graph of Thoughts (GoT)</strong></td>
+<td>Represent reasoning steps as a graph with flexible dependencies; enables merging and dynamic exploration.</td>
+<td>More adaptable than ToT; reduces redundant computation; efficient for complex reasoning.</td>
+<td>Implementation complexity; less studied than ToT.</td>
+</tr>
+<tr class="odd">
+<td><strong>Confidence‑Based Sampling</strong></td>
+<td>Select expansions or answers based on model confidence scores.</td>
+<td>Reduces wasted exploration on low‑probability paths; can improve efficiency.</td>
+<td>Confidence scores may not correlate with correctness; risk of overconfidence.</td>
+</tr>
+<tr class="even">
+<td><strong>Search‑Augmented Verification</strong></td>
+<td>Use external verifiers to evaluate and rank candidate answers or reasoning steps.</td>
+<td>Increases correctness in binary decision tasks; modular and flexible.</td>
+<td>Dependent on verifier quality; additional inference steps add latency.</td>
+</tr>
+<tr class="odd">
+<td><strong>Self‑Improvement via Refinements</strong></td>
+<td>Model iteratively critiques and revises its own answers until acceptable.</td>
+<td>Can improve accuracy across varied tasks; useful for open‑ended reasoning.</td>
+<td>Risk of over‑editing or drifting from initial intent; higher inference cost.</td>
+</tr>
+<tr class="even">
+<td><strong>Monte Carlo Tree Search (MCTS)</strong></td>
+<td>Explore possible reasoning paths via random simulations, guided by heuristics and rewards.</td>
+<td>Effective for planning and reasoning under uncertainty; supports large search spaces.</td>
+<td>High computational cost; requires effective reward design.</td>
+</tr>
+<tr class="odd">
+<td><strong>Chain‑of‑Action‑Thought Reasoning</strong></td>
+<td>Integrate action planning with reasoning steps for complex tasks.</td>
+<td>Handles multi‑agent, tool‑augmented reasoning; improves adaptability.</td>
+<td>Complex to implement; requires specialized training or prompting.</td>
+</tr>
+</tbody>
+</table>
+<p>While many approaches exist for test‑time scaling, a few have emerged as especially influential in practical LLM applications. The sections below explore some of these methods in greater detail, including their mechanics, strengths, and trade‑offs.</p>
+</section>
+<section id="supervised-fine-tuning-sft" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</h2>
 <p><strong>Concept:</strong></p>
 <p>Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
 <p>While instruction fine-tuning improves task performance and alignment, it poses challenges including <strong>overfitting</strong>, <strong>high computational costs</strong>, and <strong>sensitivity to dataset biases</strong>. Parameter-efficient variants such as <strong>LoRA</strong> and <strong>adapters</strong> address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.</p>
@@ -349,8 +452,8 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 </tbody>
 </table>
 <p>While many approaches exist for supervised fine‑tuning, <strong>Instruction Fine‑Tuning</strong> and <strong>Domain‑Specific Fine‑Tuning</strong> are among the most prevalent in modern LLM post‑training pipelines. The sections below explore these methods in greater detail.</p>
-<section id="instruction-fine-tuning" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="instruction-fine-tuning"><span class="header-section-number">3.1</span> Instruction Fine-Tuning</h3>
+<section id="instruction-fine-tuning" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="instruction-fine-tuning"><span class="header-section-number">4.1</span> Instruction Fine-Tuning</h3>
 <p><strong>Concept:</strong><br>
 Instruction Fine‑Tuning is the most widely used form of supervised fine‑tuning in LLM post‑training. It involves training a pre‑trained model on curated datasets of instruction–response pairs covering a wide variety of tasks, such as summarization, question answering, classification, and creative writing. The goal is to make the model follow natural language instructions reliably, even for tasks it hasn’t seen before.<br>
 This process adjusts the model’s internal weights so it produces outputs that align with the intent of the instruction rather than simply predicting the next word. Instruction fine‑tuning is often the <strong>first post‑training step</strong> in modern LLM pipelines and serves as a foundation for subsequent alignment stages like RLHF or DPO.</p>
@@ -375,8 +478,8 @@ This process adjusts the model’s internal weights so it produces outputs that 
 <li>Can overfit to dataset style if training data lacks diversity.</li>
 </ul>
 </section>
-<section id="domain-specific-fine-tuning" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="domain-specific-fine-tuning"><span class="header-section-number">3.2</span> Domain-Specific Fine-Tuning</h3>
+<section id="domain-specific-fine-tuning" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="domain-specific-fine-tuning"><span class="header-section-number">4.2</span> Domain-Specific Fine-Tuning</h3>
 <p><strong>Concept:</strong></p>
 <p>Domain‑Specific Fine‑Tuning adapts a general‑purpose LLM to excel in a specialized field, such as biomedicine, finance, legal, climate science, or software engineering. The process uses curated domain‑specific datasets to teach the model the terminology, style, and knowledge relevant to that field.<br>
 By focusing on specialized corpora, the model can deliver more accurate, relevant, and trustworthy outputs for domain‑specific use cases, making it valuable for enterprise and industry applications.</p>
@@ -397,8 +500,8 @@ By focusing on specialized corpora, the model can deliver more accurate, relevan
 - Can lead to over‑specialization if fine‑tuning data is too narrow.</p>
 </section>
 </section>
-<section id="preference-optimization" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="preference-optimization"><span class="header-section-number">4</span> Preference Optimization</h2>
+<section id="preference-optimization" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="preference-optimization"><span class="header-section-number">5</span> Preference Optimization</h2>
 <p><strong>Concept:</strong></p>
 <p>Preference optimization is the process of aligning a model’s outputs with human preferences using feedback signals, rather than solely optimizing for task performance. In large language models (LLMs), this often involves training the model to produce responses that are not only factually correct but also safe, contextually relevant, and consistent with user expectations.<br>
 Unlike conventional reinforcement learning, which operates in small, well‑defined action spaces with clear objectives, preference optimization in LLMs must navigate a <strong>vast vocabulary action space</strong>, delayed and subjective rewards, and multiple, sometimes conflicting, objectives. Feedback is often based on human or AI‑generated preference comparisons and can involve both outcome‑based metrics (e.g., correctness) and process‑based evaluations (e.g., reasoning quality).<br>
@@ -483,8 +586,8 @@ The overarching goal is to make models behave according to human preferences —
 </tbody>
 </table>
 <p>While many approaches exist for preference optimization, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and <strong>Direct Preference Optimization (DPO)</strong> are two of the most prominent in modern LLM alignment pipelines. The sections below explore these methods in greater detail.</p>
-<section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
+<section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
 <p><strong>Concept:</strong><br>
 RLHF aligns LLMs with human preferences by collecting feedback from human annotators and using it to guide reinforcement learning. The process typically involves:<br>
 1. Supervised Fine‑Tuning (SFT) on high‑quality instruction‑response pairs to create a baseline model.<br>
@@ -510,8 +613,8 @@ RLHF aligns LLMs with human preferences by collecting feedback from human annota
 <li>Sensitive to bias in the collected preferences.</li>
 </ul>
 </section>
-<section id="direct-preference-optimization-dpo" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">4.2</span> Direct Preference Optimization (DPO)</h3>
+<section id="direct-preference-optimization-dpo" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5.2</span> Direct Preference Optimization (DPO)</h3>
 <p><strong>Concept:</strong><br>
 DPO is a simpler alternative to RLHF that removes the need for a separate reward model and online reinforcement learning. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log‑likelihood ratio to make preferred responses more probable. This approach “bakes in” the user’s preferences directly into the model parameters, avoiding the complexity of the RL loop.</p>
 <p><strong>Advantages:</strong></p>
@@ -534,8 +637,8 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 </ul>
 </section>
 </section>
-<section id="final-thoughts" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">5</span> Final Thoughts</h2>
+<section id="final-thoughts" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">6</span> Final Thoughts</h2>
 <p>Post-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable. The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned.</p>
 
 
