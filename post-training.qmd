@@ -97,13 +97,15 @@ While many approaches exist for supervised fine‑tuning, **Instruction Fine‑T
 Instruction Fine‑Tuning is the most widely used form of supervised fine‑tuning in LLM post‑training. It involves training a pre‑trained model on curated datasets of instruction–response pairs covering a wide variety of tasks, such as summarization, question answering, classification, and creative writing. The goal is to make the model follow natural language instructions reliably, even for tasks it hasn’t seen before.  
 This process adjusts the model’s internal weights so it produces outputs that align with the intent of the instruction rather than simply predicting the next word. Instruction fine‑tuning is often the **first post‑training step** in modern LLM pipelines and serves as a foundation for subsequent alignment stages like RLHF or DPO.
 
-**Advantages:**  
+**Advantages:** 
+ 
 - Improves generalization to unseen tasks in zero‑shot and few‑shot settings.  
 - Produces more helpful, controllable, and structured outputs.  
 - Increases consistency across varied prompt styles.  
 - Provides a strong baseline for further preference optimization.
 
 **Limitations:**  
+
 - Requires large, high‑quality, and diverse instruction datasets.  
 - Open‑ended instructions can be difficult to evaluate objectively.  
 - Human‑generated data may introduce bias, inconsistency, or noise.  
@@ -113,10 +115,12 @@ This process adjusts the model’s internal weights so it produces outputs that 
 ### Domain-Specific Fine-Tuning
 
 **Concept:**  
+
 Domain‑Specific Fine‑Tuning adapts a general‑purpose LLM to excel in a specialized field, such as biomedicine, finance, legal, climate science, or software engineering. The process uses curated domain‑specific datasets to teach the model the terminology, style, and knowledge relevant to that field.  
 By focusing on specialized corpora, the model can deliver more accurate, relevant, and trustworthy outputs for domain‑specific use cases, making it valuable for enterprise and industry applications.
 
 **Advantages:**  
+
 - Improves accuracy, factual grounding, and relevance in the target domain.  
 - Enhances user trust for high‑stakes applications.  
 - Supports compliance with domain‑specific standards or regulations.  
