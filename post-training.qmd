@@ -57,27 +57,29 @@ Why it works: CoT helps the model break complex reasoning into interpretable ste
 ## Test‑Time Scaling Methods
 
 **Concept:**  
-Test‑time scaling (TTS) enhances LLM performance during inference without modifying the base model’s parameters. Instead of retraining, TTS allocates more compute at inference — for example, by generating multiple candidate outputs, exploring reasoning paths, or dynamically adjusting computational resources based on task complexity. These methods can significantly improve reasoning, factual accuracy, and robustness while keeping the underlying model architecture unchanged.  
+Test‑time scaling (TTS) is the practice of improving model performance and reasoning **during inference** without modifying the model’s parameters. Unlike pretraining, which enhances capabilities through large‑scale training, TTS dynamically allocates computational resources—such as iterative refinement, search‑based decoding, or adaptive sampling—based on task complexity.  
 
-TTS is particularly valuable for scenarios where retraining is costly or infeasible, when inference budgets can be flexibly allocated, or when a base model already has sufficient competence but needs more careful reasoning or verification. From a cost perspective, TTS can achieve results comparable to much larger models on certain tasks (e.g., up to 14× improvement on intermediate‑difficulty benchmarks) while requiring only a fraction of the training compute.  
+TTS can achieve results comparable to a model **up to 14× larger** on easy to intermediate tasks, while using **up to 4× less compute**. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—**pretraining remains superior**, as larger pretrained models inherently encode deeper reasoning ability.  
 
+In practice, TTS and pretraining are **complementary**: pretraining builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a **hybrid approach**, combining a pretrained base model with TTS to achieve cost‑efficient scaling and adaptability.
 
 **Advantages:**
-- Improves performance without retraining or additional data collection  
-- Flexible — can be applied to any pre-trained model  
-- Adaptable to task difficulty through dynamic compute allocation  
-- Enhances multi‑step reasoning and factual accuracy via exploration and verification  
-- Allows lightweight experimentation with different strategies
+
+- Improves performance without retraining or altering model parameters  
+- Can match or exceed much larger models on certain tasks at a fraction of the compute cost  
+- Flexible allocation of compute based on input complexity  
+- Enables on‑demand scaling in resource‑constrained settings  
+- Works well as part of a hybrid strategy with pretraining  
 
 **Limitations:**
-- Increases inference cost due to multiple generations or search steps  
-- Benefits vary by task; may show diminishing returns on simple problems  
-- Requires robust scoring or selection mechanisms (e.g., reward models, verifiers)  
-- May add latency, especially for interactive applications  
-- Performance gains depend on the quality of underlying base model
+
+- Gains are often smaller on tasks requiring novel skills not present in the base model  
+- Additional inference compute can increase latency and operational costs  
+- Requires effective task‑complexity estimation to allocate resources efficiently  
+- May yield diminishing returns if scaling is excessive for a given task  
 
 
-**The following table summarizes key test‑time scaling methods described in *LLM Post‑Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.**
+The following table summarizes key test‑time scaling methods described in *LLM Post‑Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
 
 | Method | Goal & Common Use Cases | Benefits | Limitations |
 |--------|------------------------|----------|-------------|

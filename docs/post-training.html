@@ -262,19 +262,32 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 <section id="testtime-scaling-methods" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</h2>
 <p><strong>Concept:</strong><br>
-Test‑time scaling (TTS) enhances LLM performance during inference without modifying the base model’s parameters. Instead of retraining, TTS allocates more compute at inference — for example, by generating multiple candidate outputs, exploring reasoning paths, or dynamically adjusting computational resources based on task complexity. These methods can significantly improve reasoning, factual accuracy, and robustness while keeping the underlying model architecture unchanged.</p>
-<p>TTS is particularly valuable for scenarios where retraining is costly or infeasible, when inference budgets can be flexibly allocated, or when a base model already has sufficient competence but needs more careful reasoning or verification. From a cost perspective, TTS can achieve results comparable to much larger models on certain tasks (e.g., up to 14× improvement on intermediate‑difficulty benchmarks) while requiring only a fraction of the training compute.</p>
-<p><strong>Advantages:</strong> - Improves performance without retraining or additional data collection<br>
-- Flexible — can be applied to any pre-trained model<br>
-- Adaptable to task difficulty through dynamic compute allocation<br>
-- Enhances multi‑step reasoning and factual accuracy via exploration and verification<br>
-- Allows lightweight experimentation with different strategies</p>
-<p><strong>Limitations:</strong> - Increases inference cost due to multiple generations or search steps<br>
-- Benefits vary by task; may show diminishing returns on simple problems<br>
-- Requires robust scoring or selection mechanisms (e.g., reward models, verifiers)<br>
-- May add latency, especially for interactive applications<br>
-- Performance gains depend on the quality of underlying base model</p>
-<p><strong>The following table summarizes key test‑time scaling methods described in <em>LLM Post‑Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</strong></p>
+Test‑time scaling (TTS) is the practice of improving model performance and reasoning <strong>during inference</strong> without modifying the model’s parameters. Unlike pretraining, which enhances capabilities through large‑scale training, TTS dynamically allocates computational resources—such as iterative refinement, search‑based decoding, or adaptive sampling—based on task complexity.</p>
+<p>TTS can achieve results comparable to a model <strong>up to 14× larger</strong> on easy to intermediate tasks, while using <strong>up to 4× less compute</strong>. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—<strong>pretraining remains superior</strong>, as larger pretrained models inherently encode deeper reasoning ability.</p>
+<p>In practice, TTS and pretraining are <strong>complementary</strong>: pretraining builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a <strong>hybrid approach</strong>, combining a pretrained base model with TTS to achieve cost‑efficient scaling and adaptability.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Improves performance without retraining or altering model parameters<br>
+</li>
+<li>Can match or exceed much larger models on certain tasks at a fraction of the compute cost<br>
+</li>
+<li>Flexible allocation of compute based on input complexity<br>
+</li>
+<li>Enables on‑demand scaling in resource‑constrained settings<br>
+</li>
+<li>Works well as part of a hybrid strategy with pretraining</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Gains are often smaller on tasks requiring novel skills not present in the base model<br>
+</li>
+<li>Additional inference compute can increase latency and operational costs<br>
+</li>
+<li>Requires effective task‑complexity estimation to allocate resources efficiently<br>
+</li>
+<li>May yield diminishing returns if scaling is excessive for a given task</li>
+</ul>
+<p>The following table summarizes key test‑time scaling methods described in <em>LLM Post‑Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
