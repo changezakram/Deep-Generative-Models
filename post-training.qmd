@@ -106,11 +106,11 @@ The overarching goal is to make models behave according to human preferences —
 
 **Limitations:**  
 
-- **Subjectivity of preferences** — what’s “helpful” or “appropriate” can vary across cultures, contexts, and individuals.  
-- **Controversial topics** — responses risk alienating some users regardless of stance; overly cautious models may seem bland or evasive.  
-- **Technical complexity** — high‑dimensional action space, delayed rewards, and balancing multiple objectives make optimization challenging.  
-- **Bias and fairness risks** — preferences used in training may embed societal biases.  
-- **Deployment trade‑offs** — excessive filtering can reduce engagement, while insufficient filtering can create reputational and safety risks.  
+- Subjectivity of preferences — what’s “helpful” or “appropriate” can vary across cultures, contexts, and individuals.  
+- Controversial topics — responses risk alienating some users regardless of stance; overly cautious models may seem bland or evasive.  
+- Technical complexity — high‑dimensional action space, delayed rewards, and balancing multiple objectives make optimization challenging.  
+- Bias and fairness risks — preferences used in training may embed societal biases.  
+- Deployment trade‑offs — excessive filtering can reduce engagement, while insufficient filtering can create reputational and safety risks.  
 
 
 
