@@ -291,21 +291,33 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 </section>
 <section id="supervised-fine-tuning-sft" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised Fine-Tuning (SFT)</h2>
-<p><strong>Concept:</strong><br>
-Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
+<p><strong>Concept:</strong></p>
+<p>Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
 <p>While instruction fine-tuning improves task performance and alignment, it poses challenges including <strong>overfitting</strong>, <strong>high computational costs</strong>, and <strong>sensitivity to dataset biases</strong>. Parameter-efficient variants such as <strong>LoRA</strong> and <strong>adapters</strong> address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.</p>
-<p><strong>Advantages:</strong><br>
-- Improves zero- and few-shot task generalization<br>
-- Increases consistency and alignment across varied prompts<br>
-- Produces more helpful, structured, and controllable responses<br>
-- Can be tailored for domain-specific performance gains<br>
-- Parameter-efficient methods (e.g., LoRA, adapters) enable faster, cheaper adaptation</p>
-<p><strong>Limitations:</strong><br>
-- Requires significant effort to create high-quality, diverse instruction datasets<br>
-- Evaluating open-ended instructions can be subjective<br>
-- Human-generated data may introduce bias, inconsistency, or noise<br>
-- Risk of overfitting to narrow domains<br>
-- May reduce generalization to out-of-domain scenarios</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Improves zero- and few-shot task generalization<br>
+</li>
+<li>Increases consistency and alignment across varied prompts<br>
+</li>
+<li>Produces more helpful, structured, and controllable responses<br>
+</li>
+<li>Can be tailored for domain-specific performance gains<br>
+</li>
+<li>Parameter-efficient methods (e.g., LoRA, adapters) enable faster, cheaper adaptation</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Requires significant effort to create high-quality, diverse instruction datasets<br>
+</li>
+<li>Evaluating open-ended instructions can be subjective<br>
+</li>
+<li>Human-generated data may introduce bias, inconsistency, or noise<br>
+</li>
+<li>Risk of overfitting to narrow domains<br>
+</li>
+<li>May reduce generalization to out-of-domain scenarios</li>
+</ul>
 <p>The following table summarizes supervised finetuning methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
 <colgroup>
