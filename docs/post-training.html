@@ -318,7 +318,7 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 </li>
 <li>May reduce generalization to out-of-domain scenarios</li>
 </ul>
-<p>The following table summarizes supervised finetuning methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
+<p>The following table summarizes supervised fine-tuning methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
@@ -410,6 +410,61 @@ The overarching goal is to make models behave according to human preferences —
 </li>
 <li>Deployment trade‑offs — excessive filtering can reduce engagement, while insufficient filtering can create reputational and safety risks.</li>
 </ul>
+<p>The following table summarizes supervised Preference Optimization methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Goal &amp; Common Use Cases</th>
+<th>Benefits</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>RLHF (Reinforcement Learning from Human Feedback)</strong></td>
+<td>Align model outputs with human expectations using preference comparisons from human annotators to train a reward model, then optimize with RL (e.g., PPO).</td>
+<td>Produces helpful, safe, and human-aligned responses; can optimize for nuanced objectives; widely adopted in practice.</td>
+<td>Expensive and time‑consuming to collect human preference data; reward models can be overfit or gamed; dependent on noisy human judgments.</td>
+</tr>
+<tr class="even">
+<td><strong>RLAIF (Reinforcement Learning from AI Feedback)</strong></td>
+<td>Replace human annotation with AI‑generated feedback to create preference labels for training the reward model.</td>
+<td>Reduces cost and time; scalable to large datasets; avoids bottleneck of human labeling.</td>
+<td>Quality depends on feedback model; risk of propagating biases or errors from the AI judge; less diversity than human feedback.</td>
+</tr>
+<tr class="odd">
+<td><strong>DPO (Direct Preference Optimization)</strong></td>
+<td>Learn directly from preference pairs without training a separate reward model or running PPO, by optimizing likelihood ratios to favor preferred responses.</td>
+<td>Simpler and more stable than RLHF; no online sampling; scalable; increasingly popular in open‑source LLMs.</td>
+<td>Lacks per‑step credit assignment; may underperform RLHF for complex reasoning tasks; dependent on high‑quality preference data.</td>
+</tr>
+<tr class="even">
+<td><strong>OREO (Online Reasoning Optimization)</strong></td>
+<td>RL method to improve multi‑step reasoning by refining policies based on reasoning‑step evaluations rather than just final answers.</td>
+<td>Fine‑grained feedback at reasoning step level; boosts reasoning accuracy and interpretability.</td>
+<td>Computationally intensive; domain‑specific; requires curated reasoning traces.</td>
+</tr>
+<tr class="odd">
+<td><strong>GRPO (Group Relative Policy Optimization)</strong></td>
+<td>RL variant that scores multiple outputs for the same query relative to each other, eliminating the need for a critic model.</td>
+<td>Reduces memory usage; stabilizes training; enables fine‑grained rewards for complex reasoning tasks.</td>
+<td>Requires large groups of candidate responses; effectiveness depends on diversity and quality of generated outputs.</td>
+</tr>
+<tr class="even">
+<td><strong>Pure RL‑Based LLM Refinement</strong></td>
+<td>Multi‑stage RL pipelines (e.g., DeepSeek-R1) that refine models without or with minimal SFT, often incorporating distillation and curated reasoning traces.</td>
+<td>Can achieve high performance without large SFT datasets; distillation improves efficiency; robust reasoning capabilities.</td>
+<td>Complex to implement; computationally expensive; requires large curated datasets for stability and quality.</td>
+</tr>
+</tbody>
+</table>
 <section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
 <p><strong>Concept</strong>: Use reinforcement learning to align model behavior with human preferences.</p>

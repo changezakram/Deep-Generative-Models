@@ -75,7 +75,7 @@ While instruction fine-tuning improves task performance and alignment, it poses 
 - Risk of overfitting to narrow domains  
 - May reduce generalization to out-of-domain scenarios  
 
-The following table summarizes supervised finetuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
+The following table summarizes supervised fine-tuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
 
 | Fine-tuning Type | Goal & Common Use Cases | Benefits | Limitations |
 |-----------------|------------------------|----------|-------------|
@@ -112,7 +112,16 @@ The overarching goal is to make models behave according to human preferences —
 - Bias and fairness risks — preferences used in training may embed societal biases.  
 - Deployment trade‑offs — excessive filtering can reduce engagement, while insufficient filtering can create reputational and safety risks.  
 
+The following table summarizes supervised Preference Optimization methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
 
+| Method | Goal & Common Use Cases | Benefits | Limitations |
+|--------|------------------------|----------|-------------|
+| **RLHF (Reinforcement Learning from Human Feedback)** | Align model outputs with human expectations using preference comparisons from human annotators to train a reward model, then optimize with RL (e.g., PPO). | Produces helpful, safe, and human-aligned responses; can optimize for nuanced objectives; widely adopted in practice. | Expensive and time‑consuming to collect human preference data; reward models can be overfit or gamed; dependent on noisy human judgments. |
+| **RLAIF (Reinforcement Learning from AI Feedback)** | Replace human annotation with AI‑generated feedback to create preference labels for training the reward model. | Reduces cost and time; scalable to large datasets; avoids bottleneck of human labeling. | Quality depends on feedback model; risk of propagating biases or errors from the AI judge; less diversity than human feedback. |
+| **DPO (Direct Preference Optimization)** | Learn directly from preference pairs without training a separate reward model or running PPO, by optimizing likelihood ratios to favor preferred responses. | Simpler and more stable than RLHF; no online sampling; scalable; increasingly popular in open‑source LLMs. | Lacks per‑step credit assignment; may underperform RLHF for complex reasoning tasks; dependent on high‑quality preference data. |
+| **OREO (Online Reasoning Optimization)** | RL method to improve multi‑step reasoning by refining policies based on reasoning‑step evaluations rather than just final answers. | Fine‑grained feedback at reasoning step level; boosts reasoning accuracy and interpretability. | Computationally intensive; domain‑specific; requires curated reasoning traces. |
+| **GRPO (Group Relative Policy Optimization)** | RL variant that scores multiple outputs for the same query relative to each other, eliminating the need for a critic model. | Reduces memory usage; stabilizes training; enables fine‑grained rewards for complex reasoning tasks. | Requires large groups of candidate responses; effectiveness depends on diversity and quality of generated outputs. |
+| **Pure RL‑Based LLM Refinement** | Multi‑stage RL pipelines (e.g., DeepSeek-R1) that refine models without or with minimal SFT, often incorporating distillation and curated reasoning traces. | Can achieve high performance without large SFT datasets; distillation improves efficiency; robust reasoning capabilities. | Complex to implement; computationally expensive; requires large curated datasets for stability and quality. |
 
 
 ### Reinforcement Learning from Human Feedback (RLHF)
