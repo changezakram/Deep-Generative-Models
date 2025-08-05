@@ -15,8 +15,8 @@ This is where **post-training** comes in. It refines the model’s behavior to b
 
 Post-training typically involves two key stages:
 
-- **Supervised fine-tuning (SFT)**: teaching the model to follow instructions and carry out tasks
-- **Preference optimization**: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF
+- **Supervised Fine-Tuning (SFT)**: teaching the model to follow instructions and carry out tasks
+- **Preference Optimization**: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF
 
 These techniques not only improve factual accuracy and safety, but also enhance the model’s ability to reason. And surprisingly, they require relatively little compute—InstructGPT, for example, used only 2% of its total compute budget for post-training.
 
@@ -51,12 +51,12 @@ Example: “Let’s think step by step.”
 
 Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.
 
-## Supervised fine-tuning (SFT)
+## Supervised Fine-Tuning (SFT)
 
 **Concept:**  
-Instruction finetuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.
+Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.
 
-While instruction finetuning improves task performance and alignment, it poses challenges including **overfitting**, **high computational costs**, and **sensitivity to dataset biases**. Parameter-efficient variants such as **LoRA** and **adapters** address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.
+While instruction fine-tuning improves task performance and alignment, it poses challenges including **overfitting**, **high computational costs**, and **sensitivity to dataset biases**. Parameter-efficient variants such as **LoRA** and **adapters** address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.
 
 **Advantages:** 
  
@@ -87,7 +87,7 @@ The following table summarizes supervised finetuning methods described in *LLM P
 | **Parameter-Efficient Finetuning (PEFT)** | Efficiently adapt models without updating all weights (e.g., LoRA, adapters, prefix tuning). | Resource-efficient; enables adaptation on limited hardware. | May underperform full finetuning; sensitive to hyperparameter choices. |
 
 
-## Preference optimization
+## Preference Optimization
 
 ### Reinforcement Learning from Human Feedback (RLHF)
 

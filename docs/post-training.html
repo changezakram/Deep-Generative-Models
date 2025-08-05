@@ -218,8 +218,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#introduction-why-post-training-matters-for-reasoning" id="toc-introduction-why-post-training-matters-for-reasoning" class="nav-link active" data-scroll-target="#introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</a></li>
   <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">2</span> Prompting</a></li>
-  <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised fine-tuning (SFT)</a></li>
-  <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">4</span> Preference optimization</a></li>
+  <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised Fine-Tuning (SFT)</a></li>
+  <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">4</span> Preference Optimization</a></li>
   <li><a href="#limitations-and-whats-next" id="toc-limitations-and-whats-next" class="nav-link" data-scroll-target="#limitations-and-whats-next"><span class="header-section-number">5</span> Limitations and What’s Next</a></li>
   <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">6</span> Summary Table</a></li>
   <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">7</span> Final Thoughts</a></li>
@@ -256,8 +256,8 @@ window.Quarto = {
 <p>This is where <strong>post-training</strong> comes in. It refines the model’s behavior to be helpful, safe, and aligned with human intent. Some compare pre-training to reading a vast amount of text, and post-training to learning how to apply that knowledge in a useful, trustworthy way.</p>
 <p>Post-training typically involves two key stages:</p>
 <ul>
-<li><strong>Supervised fine-tuning (SFT)</strong>: teaching the model to follow instructions and carry out tasks</li>
-<li><strong>Preference optimization</strong>: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF</li>
+<li><strong>Supervised Fine-Tuning (SFT)</strong>: teaching the model to follow instructions and carry out tasks</li>
+<li><strong>Preference Optimization</strong>: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF</li>
 </ul>
 <p>These techniques not only improve factual accuracy and safety, but also enhance the model’s ability to reason. And surprisingly, they require relatively little compute—InstructGPT, for example, used only 2% of its total compute budget for post-training.</p>
 <p>While supervised and preference tuning are the core of post-training, it’s also important to consider <strong>prompting techniques</strong>. These methods—such as <strong>zero-shot</strong>, <strong>few-shot</strong>, and <strong>chain-of-thought</strong> prompting—don’t change the model’s weights but can steer its behavior at inference time. Prompting often delivers strong results without additional training, making it an essential part of real-world LLM deployment.</p>
@@ -290,10 +290,10 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 </section>
 </section>
 <section id="supervised-fine-tuning-sft" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised fine-tuning (SFT)</h2>
+<h2 data-number="3" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised Fine-Tuning (SFT)</h2>
 <p><strong>Concept:</strong><br>
-Instruction finetuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
-<p>While instruction finetuning improves task performance and alignment, it poses challenges including <strong>overfitting</strong>, <strong>high computational costs</strong>, and <strong>sensitivity to dataset biases</strong>. Parameter-efficient variants such as <strong>LoRA</strong> and <strong>adapters</strong> address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.</p>
+Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
+<p>While instruction fine-tuning improves task performance and alignment, it poses challenges including <strong>overfitting</strong>, <strong>high computational costs</strong>, and <strong>sensitivity to dataset biases</strong>. Parameter-efficient variants such as <strong>LoRA</strong> and <strong>adapters</strong> address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
 <li>Improves zero- and few-shot task generalization<br>
@@ -381,7 +381,7 @@ Instruction finetuning is a supervised post-training technique that trains LLMs 
 </table>
 </section>
 <section id="preference-optimization" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="preference-optimization"><span class="header-section-number">4</span> Preference optimization</h2>
+<h2 data-number="4" class="anchored" data-anchor-id="preference-optimization"><span class="header-section-number">4</span> Preference Optimization</h2>
 <section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
 <p><strong>Concept</strong>: Use reinforcement learning to align model behavior with human preferences.</p>
