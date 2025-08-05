@@ -218,12 +218,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#introduction-why-post-training-matters-for-reasoning" id="toc-introduction-why-post-training-matters-for-reasoning" class="nav-link active" data-scroll-target="#introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</a></li>
   <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">2</span> Prompting</a></li>
-  <li><a href="#instruction-finetuning" id="toc-instruction-finetuning" class="nav-link" data-scroll-target="#instruction-finetuning"><span class="header-section-number">3</span> Instruction Finetuning</a></li>
-  <li><a href="#reinforcement-learning-from-human-feedback-rlhf" id="toc-reinforcement-learning-from-human-feedback-rlhf" class="nav-link" data-scroll-target="#reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4</span> Reinforcement Learning from Human Feedback (RLHF)</a></li>
-  <li><a href="#direct-preference-optimization-dpo" id="toc-direct-preference-optimization-dpo" class="nav-link" data-scroll-target="#direct-preference-optimization-dpo"><span class="header-section-number">5</span> Direct Preference Optimization (DPO)</a></li>
-  <li><a href="#limitations-and-whats-next" id="toc-limitations-and-whats-next" class="nav-link" data-scroll-target="#limitations-and-whats-next"><span class="header-section-number">6</span> Limitations and What’s Next</a></li>
-  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">7</span> Summary Table</a></li>
-  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">8</span> Final Thoughts</a></li>
+  <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised fine-tuning (SFT)</a></li>
+  <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">4</span> Preference optimization</a></li>
+  <li><a href="#limitations-and-whats-next" id="toc-limitations-and-whats-next" class="nav-link" data-scroll-target="#limitations-and-whats-next"><span class="header-section-number">5</span> Limitations and What’s Next</a></li>
+  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">6</span> Summary Table</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">7</span> Final Thoughts</a></li>
   </ul>
 </nav>
     </div>
@@ -290,8 +289,8 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 <p>Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.</p>
 </section>
 </section>
-<section id="instruction-finetuning" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="instruction-finetuning"><span class="header-section-number">3</span> Instruction Finetuning</h2>
+<section id="supervised-fine-tuning-sft" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised fine-tuning (SFT)</h2>
 <p><strong>Concept:</strong><br>
 Instruction finetuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
 <p>While instruction finetuning improves task performance and alignment, it poses challenges including <strong>overfitting</strong>, <strong>high computational costs</strong>, and <strong>sensitivity to dataset biases</strong>. Parameter-efficient variants such as <strong>LoRA</strong> and <strong>adapters</strong> address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.</p>
@@ -381,8 +380,10 @@ Instruction finetuning is a supervised post-training technique that trains LLMs 
 </tbody>
 </table>
 </section>
-<section id="reinforcement-learning-from-human-feedback-rlhf" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4</span> Reinforcement Learning from Human Feedback (RLHF)</h2>
+<section id="preference-optimization" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="preference-optimization"><span class="header-section-number">4</span> Preference optimization</h2>
+<section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
 <p><strong>Concept</strong>: Use reinforcement learning to align model behavior with human preferences.</p>
 <p><strong>RLHF Pipeline:</strong> 1. Start with an instruction-tuned model<br>
 2. Collect human preference comparisons (A &gt; B)<br>
@@ -394,8 +395,8 @@ Instruction finetuning is a supervised post-training technique that trains LLMs 
 \]</span></p>
 <p><strong>Challenges</strong>: - Expensive and tricky to tune - Can lead to overfitting the reward model (reward hacking) - Still dependent on noisy human preferences</p>
 </section>
-<section id="direct-preference-optimization-dpo" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5</span> Direct Preference Optimization (DPO)</h2>
+<section id="direct-preference-optimization-dpo" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">4.2</span> Direct Preference Optimization (DPO)</h3>
 <p><strong>Concept</strong>: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.</p>
 <p><strong>DPO Loss:</strong></p>
 <p><span class="math display">\[
@@ -408,10 +409,11 @@ J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\thet
 </ul>
 <p><strong>Adoption:</strong> - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO</p>
 </section>
-<section id="limitations-and-whats-next" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="limitations-and-whats-next"><span class="header-section-number">6</span> Limitations and What’s Next</h2>
-<section id="challenges-with-rlhf-and-dpo" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="challenges-with-rlhf-and-dpo"><span class="header-section-number">6.1</span> Challenges with RLHF and DPO:</h3>
+</section>
+<section id="limitations-and-whats-next" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="limitations-and-whats-next"><span class="header-section-number">5</span> Limitations and What’s Next</h2>
+<section id="challenges-with-rlhf-and-dpo" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="challenges-with-rlhf-and-dpo"><span class="header-section-number">5.1</span> Challenges with RLHF and DPO:</h3>
 <ul>
 <li>Human feedback is noisy, inconsistent, and often biased</li>
 <li>Reward models are imperfect and can be overoptimized</li>
@@ -419,8 +421,8 @@ J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\thet
 <li>Human labelers may not reflect the preferences or safety standards of all users</li>
 </ul>
 </section>
-<section id="emerging-techniques" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="emerging-techniques"><span class="header-section-number">6.2</span> Emerging Techniques:</h3>
+<section id="emerging-techniques" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="emerging-techniques"><span class="header-section-number">5.2</span> Emerging Techniques:</h3>
 <ul>
 <li>RL from AI Feedback (RLAIF): Replace human labelers with AI critics</li>
 <li>Self-Taught Reasoning (STaR): Train on the model’s own reasoning traces</li>
@@ -429,8 +431,8 @@ J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\thet
 </ul>
 </section>
 </section>
-<section id="summary-table" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">7</span> Summary Table</h2>
+<section id="summary-table" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">6</span> Summary Table</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
@@ -480,8 +482,8 @@ J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\thet
 </tbody>
 </table>
 </section>
-<section id="final-thoughts" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">8</span> Final Thoughts</h2>
+<section id="final-thoughts" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">7</span> Final Thoughts</h2>
 <p>Post-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable.</p>
 <p>The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned.</p>
 

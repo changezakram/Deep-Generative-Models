@@ -51,7 +51,7 @@ Example: “Let’s think step by step.”
 
 Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.
 
-## Instruction Finetuning
+## Supervised fine-tuning (SFT)
 
 **Concept:**  
 Instruction finetuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.
@@ -87,8 +87,9 @@ The following table summarizes supervised finetuning methods described in *LLM P
 | **Parameter-Efficient Finetuning (PEFT)** | Efficiently adapt models without updating all weights (e.g., LoRA, adapters, prefix tuning). | Resource-efficient; enables adaptation on limited hardware. | May underperform full finetuning; sensitive to hyperparameter choices. |
 
 
+## Preference optimization
 
-## Reinforcement Learning from Human Feedback (RLHF)
+### Reinforcement Learning from Human Feedback (RLHF)
 
 **Concept**: Use reinforcement learning to align model behavior with human preferences.
 
@@ -109,7 +110,7 @@ $$
 - Can lead to overfitting the reward model (reward hacking)
 - Still dependent on noisy human preferences
 
-## Direct Preference Optimization (DPO)
+### Direct Preference Optimization (DPO)
 
 **Concept**: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.
 
