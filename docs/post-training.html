@@ -373,6 +373,53 @@ Test‑time scaling (TTS) is the practice of improving model performance and rea
 </tbody>
 </table>
 <p>While many approaches exist for test‑time scaling, a few have emerged as especially influential in practical LLM applications. The sections below explore some of these methods in greater detail, including their mechanics, strengths, and trade‑offs.</p>
+<section id="best-of-n-search-rejection-sampling" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="best-of-n-search-rejection-sampling"><span class="header-section-number">3.1</span> Best-of-N Search (Rejection Sampling)</h3>
+<p><strong>Concept:</strong><br>
+Best-of-N (BoN) search enhances model performance at inference by generating <em>N</em> candidate outputs (often via sampling) and selecting the one that scores highest according to a chosen criterion — such as a reward model, likelihood score, or rule-based evaluator. This approach systematically explores multiple solution paths and prunes all but the top-rated result. Compared to Beam Search, BoN treats each candidate independently, which can increase diversity but may also be more computationally expensive.</p>
+<p>In reinforcement learning contexts, BoN can be integrated with a learned reward model to pick the best candidate from multiple rollouts, yielding strong performance in reasoning-heavy tasks. It is a popular choice in applications like question answering, code generation, and reasoning benchmarks.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Can significantly boost task performance, especially with a robust reward model</li>
+<li>Flexible — works with both rule-based and learned scoring functions</li>
+<li>Simple to implement; requires only control over <em>N</em> and the selection criterion</li>
+<li>Competitive with post-training methods like RLHF and DPO when paired with strong evaluators</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Higher computational cost as <em>N</em> increases<br>
+</li>
+<li>Performance depends heavily on the quality of the scoring function or reward model<br>
+</li>
+<li>May select lower-probability solutions if scoring is imperfect (reward hacking risk)<br>
+</li>
+<li>Instability can occur if the <em>N</em> parameter is too large or too small for the task</li>
+</ul>
+</section>
+<section id="self-consistency-decoding" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="self-consistency-decoding"><span class="header-section-number">3.2</span> Self-Consistency Decoding</h3>
+<p><strong>Concept:</strong><br>
+Self-Consistency is a decoding strategy designed to improve reasoning by aggregating answers from multiple reasoning paths. Instead of following a single chain of thought, the model samples diverse reasoning chains (using techniques like prompt engineering to encourage diversity, temperature sampling, or stochastic decoding) and then outputs the final answer that is most consistent across them.</p>
+<p>The underlying intuition is that if a complex question has a unique correct answer, different valid reasoning paths should converge on the same result. This <em>majority vote</em> or <em>highest probability after marginalization</em> approach reduces the likelihood of errors from flawed single reasoning chains and is especially effective in reasoning tasks.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Improves correctness in complex reasoning scenarios<br>
+</li>
+<li>Works well for arithmetic, commonsense reasoning, and multi-step problem-solving<br>
+</li>
+<li>Reduces reliance on any single, potentially flawed reasoning path<br>
+</li>
+<li>Can be combined with Chain-of-Thought prompting for greater gains</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Higher inference cost due to multiple reasoning path generations<br>
+</li>
+<li>Gains diminish for simpler tasks where a single reasoning path is sufficient<br>
+</li>
+<li>Effectiveness depends on diversity and quality of sampled reasoning paths</li>
+</ul>
+</section>
 </section>
 <section id="supervised-fine-tuning-sft" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</h2>
