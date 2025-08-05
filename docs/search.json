@@ -389,7 +389,7 @@
     "href": "post-training.html#final-thoughts",
     "title": "Post-Training for Foundation Models",
     "section": "5 Final Thoughts",
-    "text": "5 Final Thoughts\nPost-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable.\nThe field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned."
+    "text": "5 Final Thoughts\nPost-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable. The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned."
   },
   {
     "objectID": "vae.html",

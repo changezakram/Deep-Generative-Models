@@ -170,6 +170,4 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 
 ## Final Thoughts
 
-Post-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable.
-
-The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned.
+Post-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable. The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned.
