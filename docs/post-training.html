@@ -68,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -220,9 +191,8 @@ window.Quarto = {
   <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">2</span> Prompting</a></li>
   <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised Fine-Tuning (SFT)</a></li>
   <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">4</span> Preference Optimization</a></li>
-  <li><a href="#limitations-and-whats-next" id="toc-limitations-and-whats-next" class="nav-link" data-scroll-target="#limitations-and-whats-next"><span class="header-section-number">5</span> Limitations and What’s Next</a></li>
-  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">6</span> Summary Table</a></li>
-  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">7</span> Final Thoughts</a></li>
+  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">5</span> Summary Table</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">6</span> Final Thoughts</a></li>
   </ul>
 </nav>
     </div>
@@ -465,57 +435,42 @@ The overarching goal is to make models behave according to human preferences —
 </tr>
 </tbody>
 </table>
+<p>While many approaches exist for preference optimization, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and <strong>Direct Preference Optimization (DPO)</strong> are two of the most prominent in modern LLM alignment pipelines. The sections below explore these methods in greater detail.</p>
 <section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
-<p><strong>Concept</strong>: Use reinforcement learning to align model behavior with human preferences.</p>
-<p><strong>RLHF Pipeline:</strong> 1. Start with an instruction-tuned model<br>
-2. Collect human preference comparisons (A &gt; B)<br>
-3. Train a reward model<br>
-4. Use RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model</p>
-<p><strong>RLHF Objective:</strong></p>
-<p><span class="math display">\[
-\mathbb{E}_{\hat{y} \sim p_{\theta}^{\text{RL}}} \left[ R(x, \hat{y}) - \beta \log \frac{p_{\theta}^{\text{RL}}(\hat{y}|x)}{p_{\text{PT}}(\hat{y}|x)} \right]
-\]</span></p>
-<p><strong>Challenges</strong>: - Expensive and tricky to tune - Can lead to overfitting the reward model (reward hacking) - Still dependent on noisy human preferences</p>
+<p><strong>Concept:</strong><br>
+RLHF aligns LLMs with human preferences by collecting feedback from human annotators and using it to guide reinforcement learning. The process typically involves:<br>
+1. <strong>Supervised Fine‑Tuning (SFT)</strong> on high‑quality instruction‑response pairs to create a baseline model.<br>
+2. <strong>Preference data collection</strong> — human annotators rank multiple model outputs for the same prompt.<br>
+3. <strong>Reward model training</strong> — a separate model learns to predict these rankings.<br>
+4. <strong>Reinforcement learning optimization</strong> — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.</p>
+<p><strong>Advantages:</strong><br>
+- Produces highly aligned and safe responses.<br>
+- Can optimize for complex, nuanced objectives beyond accuracy.<br>
+- Allows fine‑grained control through reward model design.</p>
+<p><strong>Limitations:</strong><br>
+- Very expensive and labor‑intensive to gather preference data.<br>
+- Quality depends heavily on the consistency and skill of annotators.<br>
+- Reward models can be exploited (reward hacking).<br>
+- Sensitive to bias in the collected preferences.</p>
 </section>
 <section id="direct-preference-optimization-dpo" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">4.2</span> Direct Preference Optimization (DPO)</h3>
-<p><strong>Concept</strong>: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.</p>
-<p><strong>DPO Loss:</strong></p>
-<p><span class="math display">\[
-J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\theta}(x, y_w) - R_{\theta}(x, y_l) \right)
-\]</span></p>
-<ul>
-<li>No need for a separate reward model or PPO</li>
-<li>No online sampling</li>
-<li>Very stable and scalable</li>
-</ul>
-<p><strong>Adoption:</strong> - Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO</p>
+<p><strong>Concept:</strong><br>
+DPO is a simpler alternative to RLHF that removes the need for a separate reward model and online reinforcement learning. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log‑likelihood ratio to make preferred responses more probable. This approach “bakes in” the user’s preferences directly into the model parameters, avoiding the complexity of the RL loop.</p>
+<p><strong>Advantages:</strong><br>
+- Simpler and more stable than RLHF.<br>
+- No need for online sampling or PPO training.<br>
+- Scales well to large datasets.<br>
+- Increasingly popular in open‑source models like LLaMA and OpenChat.</p>
+<p><strong>Limitations:</strong><br>
+- No per‑step credit assignment — treats whole responses as a unit.<br>
+- May underperform RLHF for multi‑step reasoning tasks.<br>
+- Dependent on high‑quality preference pairs; poor data reduces effectiveness.</p>
 </section>
 </section>
-<section id="limitations-and-whats-next" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="limitations-and-whats-next"><span class="header-section-number">5</span> Limitations and What’s Next</h2>
-<section id="challenges-with-rlhf-and-dpo" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="challenges-with-rlhf-and-dpo"><span class="header-section-number">5.1</span> Challenges with RLHF and DPO:</h3>
-<ul>
-<li>Human feedback is noisy, inconsistent, and often biased</li>
-<li>Reward models are imperfect and can be overoptimized</li>
-<li>Risk of hallucination remains</li>
-<li>Human labelers may not reflect the preferences or safety standards of all users</li>
-</ul>
-</section>
-<section id="emerging-techniques" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="emerging-techniques"><span class="header-section-number">5.2</span> Emerging Techniques:</h3>
-<ul>
-<li>RL from AI Feedback (RLAIF): Replace human labelers with AI critics</li>
-<li>Self-Taught Reasoning (STaR): Train on the model’s own reasoning traces</li>
-<li>Constitutional AI: Models self-critique and revise responses using ethical rules</li>
-<li>Personalization: Tailor outputs to user-specific preferences</li>
-</ul>
-</section>
-</section>
-<section id="summary-table" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">6</span> Summary Table</h2>
+<section id="summary-table" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">5</span> Summary Table</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
@@ -565,8 +520,8 @@ J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\thet
 </tbody>
 </table>
 </section>
-<section id="final-thoughts" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">7</span> Final Thoughts</h2>
+<section id="final-thoughts" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">6</span> Final Thoughts</h2>
 <p>Post-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable.</p>
 <p>The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned.</p>
 

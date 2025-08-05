@@ -123,58 +123,45 @@ The following table summarizes supervised Preference Optimization methods descri
 | **GRPO (Group Relative Policy Optimization)** | RL variant that scores multiple outputs for the same query relative to each other, eliminating the need for a critic model. | Reduces memory usage; stabilizes training; enables fine‑grained rewards for complex reasoning tasks. | Requires large groups of candidate responses; effectiveness depends on diversity and quality of generated outputs. |
 | **Pure RL‑Based LLM Refinement** | Multi‑stage RL pipelines (e.g., DeepSeek-R1) that refine models without or with minimal SFT, often incorporating distillation and curated reasoning traces. | Can achieve high performance without large SFT datasets; distillation improves efficiency; robust reasoning capabilities. | Complex to implement; computationally expensive; requires large curated datasets for stability and quality. |
 
+While many approaches exist for preference optimization, **Reinforcement Learning from Human Feedback (RLHF)** and **Direct Preference Optimization (DPO)** are two of the most prominent in modern LLM alignment pipelines. The sections below explore these methods in greater detail.
+
 
 ### Reinforcement Learning from Human Feedback (RLHF)
 
-**Concept**: Use reinforcement learning to align model behavior with human preferences.
+**Concept:**  
+RLHF aligns LLMs with human preferences by collecting feedback from human annotators and using it to guide reinforcement learning. The process typically involves:  
+1. **Supervised Fine‑Tuning (SFT)** on high‑quality instruction‑response pairs to create a baseline model.  
+2. **Preference data collection** — human annotators rank multiple model outputs for the same prompt.  
+3. **Reward model training** — a separate model learns to predict these rankings.  
+4. **Reinforcement learning optimization** — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.
 
-**RLHF Pipeline:**
-1. Start with an instruction-tuned model  
-2. Collect human preference comparisons (A > B)  
-3. Train a reward model  
-4. Use RL (e.g., PPO) to maximize reward while applying KL penalty to stay close to the base model
+**Advantages:**  
+- Produces highly aligned and safe responses.  
+- Can optimize for complex, nuanced objectives beyond accuracy.  
+- Allows fine‑grained control through reward model design.
 
-**RLHF Objective:**
+**Limitations:**  
+- Very expensive and labor‑intensive to gather preference data.  
+- Quality depends heavily on the consistency and skill of annotators.  
+- Reward models can be exploited (reward hacking).  
+- Sensitive to bias in the collected preferences.
 
-$$
-\mathbb{E}_{\hat{y} \sim p_{\theta}^{\text{RL}}} \left[ R(x, \hat{y}) - \beta \log \frac{p_{\theta}^{\text{RL}}(\hat{y}|x)}{p_{\text{PT}}(\hat{y}|x)} \right]
-$$
-
-**Challenges**:
-- Expensive and tricky to tune
-- Can lead to overfitting the reward model (reward hacking)
-- Still dependent on noisy human preferences
 
 ### Direct Preference Optimization (DPO)
 
-**Concept**: Simplified alternative to RLHF using only likelihood ratios to encode preferences directly into the model.
+**Concept:**  
+DPO is a simpler alternative to RLHF that removes the need for a separate reward model and online reinforcement learning. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs. rejected outputs) by optimizing the log‑likelihood ratio to make preferred responses more probable. This approach “bakes in” the user’s preferences directly into the model parameters, avoiding the complexity of the RL loop.
 
-**DPO Loss:**
+**Advantages:**  
+- Simpler and more stable than RLHF.  
+- No need for online sampling or PPO training.  
+- Scales well to large datasets.  
+- Increasingly popular in open‑source models like LLaMA and OpenChat.
 
-$$
-J_{\text{DPO}}(\theta) = -\mathbb{E}_{(x, y_w, y_l)} \log \sigma \left( R_{\theta}(x, y_w) - R_{\theta}(x, y_l) \right)
-$$
-
-- No need for a separate reward model or PPO
-- No online sampling
-- Very stable and scalable
-
-**Adoption:**
-- Open-source LLMs like OpenChat and LLaMA variants now commonly use DPO
-
-## Limitations and What’s Next
-
-### Challenges with RLHF and DPO:
-- Human feedback is noisy, inconsistent, and often biased
-- Reward models are imperfect and can be overoptimized
-- Risk of hallucination remains
-- Human labelers may not reflect the preferences or safety standards of all users
-
-### Emerging Techniques:
-- RL from AI Feedback (RLAIF): Replace human labelers with AI critics
-- Self-Taught Reasoning (STaR): Train on the model’s own reasoning traces
-- Constitutional AI: Models self-critique and revise responses using ethical rules
-- Personalization: Tailor outputs to user-specific preferences
+**Limitations:**  
+- No per‑step credit assignment — treats whole responses as a unit.  
+- May underperform RLHF for multi‑step reasoning tasks.  
+- Dependent on high‑quality preference pairs; poor data reduces effectiveness.
 
 ## Summary Table
 
