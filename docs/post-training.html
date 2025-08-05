@@ -192,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#testtime-scaling-methods" id="toc-testtime-scaling-methods" class="nav-link" data-scroll-target="#testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</a></li>
   <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</a></li>
   <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">5</span> Preference Optimization</a></li>
-  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">6</span> Final Thoughts</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -238,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="2" class="anchored" data-anchor-id="prompting"><span class="header-section-number">2</span> Prompting</h2>
 <section id="zero-shot-and-few-shot-in-context-learning" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2.1</span> Zero-Shot and Few-Shot In-Context Learning</h3>
-<p><strong>Concept</strong>: Use prompts to guide pretrained models without any gradient updates or finetuning.</p>
+<p><strong>Concept</strong>: Use prompts to guide pre-trained models without any gradient updates or fine-tuning.</p>
 <ul>
 <li><strong>Zero-shot prompting</strong>: Ask a question or issue a command without examples.<br>
 Example: “Translate this sentence into French.”</li>
@@ -257,14 +257,15 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 <li>Works in both few-shot and zero-shot settings with the right phrasing</li>
 </ul>
 <p>Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.</p>
+<p>Beyond prompt engineering, another way to improve model performance without modifying its weights is through Test‑Time Scaling Methods, which allocate more computation at inference to enhance accuracy and reasoning.</p>
 </section>
 </section>
 <section id="testtime-scaling-methods" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</h2>
 <p><strong>Concept:</strong><br>
-Test‑time scaling (TTS) is the practice of improving model performance and reasoning <strong>during inference</strong> without modifying the model’s parameters. Unlike pretraining, which enhances capabilities through large‑scale training, TTS dynamically allocates computational resources—such as iterative refinement, search‑based decoding, or adaptive sampling—based on task complexity.</p>
-<p>TTS can achieve results comparable to a model <strong>up to 14× larger</strong> on easy to intermediate tasks, while using <strong>up to 4× less compute</strong>. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—<strong>pretraining remains superior</strong>, as larger pretrained models inherently encode deeper reasoning ability.</p>
-<p>In practice, TTS and pretraining are <strong>complementary</strong>: pretraining builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a <strong>hybrid approach</strong>, combining a pretrained base model with TTS to achieve cost‑efficient scaling and adaptability.</p>
+Test‑time scaling (TTS) is the practice of improving model performance and reasoning <strong>during inference</strong> without modifying the model’s parameters. Unlike pre-training, which enhances capabilities through large‑scale training, TTS dynamically allocates computational resources—such as iterative refinement, search‑based decoding, or adaptive sampling—based on task complexity.</p>
+<p>TTS can achieve results comparable to a model <strong>up to 14× larger</strong> on easy to intermediate tasks, while using <strong>up to 4× less compute</strong>. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—<strong>pre-training remains superior</strong>, as larger pre-trained models inherently encode deeper reasoning ability.</p>
+<p>In practice, TTS and pre-training are <strong>complementary</strong>: pre-training builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a <strong>hybrid approach</strong>, combining a pre-trained base model with TTS to achieve cost‑efficient scaling and adaptability.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
 <li>Improves performance without retraining or altering model parameters<br>
@@ -275,7 +276,7 @@ Test‑time scaling (TTS) is the practice of improving model performance and rea
 </li>
 <li>Enables on‑demand scaling in resource‑constrained settings<br>
 </li>
-<li>Works well as part of a hybrid strategy with pretraining</li>
+<li>Works well as part of a hybrid strategy with pre-training</li>
 </ul>
 <p><strong>Limitations:</strong></p>
 <ul>
@@ -697,9 +698,11 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 </table>
 </section>
 </section>
-<section id="final-thoughts" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">6</span> Final Thoughts</h2>
-<p>Post-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable. The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned.</p>
+<section id="conclusion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
+<p>Post‑training for foundation models is not a single method, but a toolbox of strategies that work best in combination. Prompting and test‑time scaling methods can produce immediate gains without changing model weights, making them ideal for rapid experimentation and deployment. Supervised fine‑tuning adapts models for broad instruction‑following or specialized domains, while preference optimization aligns model behavior with human values and expectations.</p>
+<p>In practice, high‑performing LLM systems often blend these techniques: using prompting for quick control, test‑time scaling for reasoning‑heavy queries, supervised fine‑tuning for skill building, and preference optimization for safety and alignment. As the field evolves, we can expect tighter integration between these approaches, along with emerging trends like agentic AI, retrieval‑augmented generation, and continuous self‑improvement loops.</p>
+<p>The key takeaway: effective post‑training is about matching the method to the goal. Understanding the trade‑offs of each category enables practitioners to build LLM solutions that are not only more capable, but also safer, more reliable, and better aligned with human intent.</p>
 
 
 </section>

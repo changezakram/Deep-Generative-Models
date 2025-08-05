@@ -30,7 +30,7 @@ In the sections that follow, we’ll explore both post-training techniques and p
 
 ### Zero-Shot and Few-Shot In-Context Learning
 
-**Concept**: Use prompts to guide pretrained models without any gradient updates or finetuning.
+**Concept**: Use prompts to guide pre-trained models without any gradient updates or fine-tuning.
 
 - **Zero-shot prompting**: Ask a question or issue a command without examples.  
   Example: “Translate this sentence into French.”
@@ -52,16 +52,17 @@ Example: “Let’s think step by step.”
 Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.
 
 
+Beyond prompt engineering, another way to improve model performance without modifying its weights is through Test‑Time Scaling Methods, which allocate more computation at inference to enhance accuracy and reasoning.
 
 
 ## Test‑Time Scaling Methods
 
 **Concept:**  
-Test‑time scaling (TTS) is the practice of improving model performance and reasoning **during inference** without modifying the model’s parameters. Unlike pretraining, which enhances capabilities through large‑scale training, TTS dynamically allocates computational resources—such as iterative refinement, search‑based decoding, or adaptive sampling—based on task complexity.  
+Test‑time scaling (TTS) is the practice of improving model performance and reasoning **during inference** without modifying the model’s parameters. Unlike pre-training, which enhances capabilities through large‑scale training, TTS dynamically allocates computational resources—such as iterative refinement, search‑based decoding, or adaptive sampling—based on task complexity.  
 
-TTS can achieve results comparable to a model **up to 14× larger** on easy to intermediate tasks, while using **up to 4× less compute**. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—**pretraining remains superior**, as larger pretrained models inherently encode deeper reasoning ability.  
+TTS can achieve results comparable to a model **up to 14× larger** on easy to intermediate tasks, while using **up to 4× less compute**. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—**pre-training remains superior**, as larger pre-trained models inherently encode deeper reasoning ability.  
 
-In practice, TTS and pretraining are **complementary**: pretraining builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a **hybrid approach**, combining a pretrained base model with TTS to achieve cost‑efficient scaling and adaptability.
+In practice, TTS and pre-training are **complementary**: pre-training builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a **hybrid approach**, combining a pre-trained base model with TTS to achieve cost‑efficient scaling and adaptability.
 
 **Advantages:**
 
@@ -69,7 +70,7 @@ In practice, TTS and pretraining are **complementary**: pretraining builds broad
 - Can match or exceed much larger models on certain tasks at a fraction of the compute cost  
 - Flexible allocation of compute based on input complexity  
 - Enables on‑demand scaling in resource‑constrained settings  
-- Works well as part of a hybrid strategy with pretraining  
+- Works well as part of a hybrid strategy with pre-training  
 
 **Limitations:**
 
@@ -309,6 +310,10 @@ The following table summarizes supervised Preference Optimization methods descri
 
 
 
-## Final Thoughts
+## Conclusion
 
-Post-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable. The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned.
+Post‑training for foundation models is not a single method, but a toolbox of strategies that work best in combination. Prompting and test‑time scaling methods can produce immediate gains without changing model weights, making them ideal for rapid experimentation and deployment. Supervised fine‑tuning adapts models for broad instruction‑following or specialized domains, while preference optimization aligns model behavior with human values and expectations.
+
+In practice, high‑performing LLM systems often blend these techniques: using prompting for quick control, test‑time scaling for reasoning‑heavy queries, supervised fine‑tuning for skill building, and preference optimization for safety and alignment. As the field evolves, we can expect tighter integration between these approaches, along with emerging trends like agentic AI, retrieval‑augmented generation, and continuous self‑improvement loops.
+
+The key takeaway: effective post‑training is about matching the method to the goal. Understanding the trade‑offs of each category enables practitioners to build LLM solutions that are not only more capable, but also safer, more reliable, and better aligned with human intent.
