@@ -193,6 +193,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</a></li>
   <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">5</span> Preference Optimization</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
+  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">7</span> References &amp; Further Reading</a></li>
   </ul>
 </nav>
     </div>
@@ -420,6 +421,7 @@ Self-Consistency is a decoding strategy designed to improve reasoning by aggrega
 </tr>
 </tbody>
 </table>
+<p>While prompting and test-time scaling adjust model behavior without altering weights, supervised fine-tuning directly updates model parameters to improve performance on specific tasks.</p>
 </section>
 </section>
 <section id="supervised-fine-tuning-sft" class="level2" data-number="4">
@@ -559,6 +561,7 @@ By focusing on specialized corpora, the model can deliver more accurate, relevan
 </tr>
 </tbody>
 </table>
+<p>Once the model has been trained to follow instructions, the next step is often to align it more closely with human preferences through preference optimization.</p>
 </section>
 </section>
 <section id="preference-optimization" class="level2" data-number="5">
@@ -703,6 +706,12 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 <p>Post‑training for foundation models is not a single method, but a toolbox of strategies that work best in combination. Prompting and test‑time scaling methods can produce immediate gains without changing model weights, making them ideal for rapid experimentation and deployment. Supervised fine‑tuning adapts models for broad instruction‑following or specialized domains, while preference optimization aligns model behavior with human values and expectations.</p>
 <p>In practice, high‑performing LLM systems often blend these techniques: using prompting for quick control, test‑time scaling for reasoning‑heavy queries, supervised fine‑tuning for skill building, and preference optimization for safety and alignment. As the field evolves, we can expect tighter integration between these approaches, along with emerging trends like agentic AI, retrieval‑augmented generation, and continuous self‑improvement loops.</p>
 <p>The key takeaway: effective post‑training is about matching the method to the goal. Understanding the trade‑offs of each category enables practitioners to build LLM solutions that are not only more capable, but also safer, more reliable, and better aligned with human intent.</p>
+</section>
+<section id="references-further-reading" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">7</span> References &amp; Further Reading</h2>
+<p>[1] Kumar, K., Ashraf, T., Thawakar, O., Anwer, R. M., Cholakkal, H., Shah, M., Yang, M., Torr, P. H. S., Khan, F. S., &amp; Khan, S. (2024). <em>LLM Post-Training: A Deep Dive into Reasoning Large Language Models</em>. https://arxiv.org/abs/2407.10671</p>
+<p>[2] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media. https://www.oreilly.com/library/view/ai-engineering/9781098158822/</p>
+<p>[3] Alammar, J., &amp; Grootendorst, M. (2023). <em>Hands-On Large Language Models: Language Understanding and Generation</em>. O’Reilly Media. https://www.oreilly.com/library/view/hands-on-large-language/9781098136790/</p>
 
 
 </section>

@@ -140,6 +140,7 @@ The following table summarizes key test‑time scaling methods described in *LLM
 | **Monte Carlo Tree Search (MCTS)** | Explore possible reasoning paths via random simulations, guided by heuristics and rewards. | Effective for planning and reasoning under uncertainty; supports large search spaces. | High computational cost; requires effective reward design. |
 | **Chain‑of‑Action‑Thought Reasoning** | Integrate action planning with reasoning steps for complex tasks. | Handles multi‑agent, tool‑augmented reasoning; improves adaptability. | Complex to implement; requires specialized training or prompting. |
 
+While prompting and test-time scaling adjust model behavior without altering weights, supervised fine-tuning directly updates model parameters to improve performance on specific tasks.
 
 
 ## Supervised Fine-Tuning (SFT)
@@ -225,7 +226,7 @@ The following table summarizes supervised fine-tuning methods described in *LLM 
 | **Preference/Alignment SFT** | Train models on labeled or ranked preference data before RLHF or DPO stages. | Improves alignment with human values; reduces harmful or irrelevant outputs. | Limited by scope and quality of preference data; definitions of “desirable” can vary. |
 | **Parameter-Efficient Fine-Tuning (PEFT)** | Efficiently adapt models without updating all weights (e.g., LoRA, adapters, prefix tuning). | Resource-efficient; enables adaptation on limited hardware. | May underperform full fine-tuning; sensitive to hyperparameter choices. |
 
-
+Once the model has been trained to follow instructions, the next step is often to align it more closely with human preferences through preference optimization.
 
 
 ## Preference Optimization
@@ -317,3 +318,13 @@ Post‑training for foundation models is not a single method, but a toolbox of s
 In practice, high‑performing LLM systems often blend these techniques: using prompting for quick control, test‑time scaling for reasoning‑heavy queries, supervised fine‑tuning for skill building, and preference optimization for safety and alignment. As the field evolves, we can expect tighter integration between these approaches, along with emerging trends like agentic AI, retrieval‑augmented generation, and continuous self‑improvement loops.
 
 The key takeaway: effective post‑training is about matching the method to the goal. Understanding the trade‑offs of each category enables practitioners to build LLM solutions that are not only more capable, but also safer, more reliable, and better aligned with human intent.
+
+
+
+## References & Further Reading
+
+[1] Kumar, K., Ashraf, T., Thawakar, O., Anwer, R. M., Cholakkal, H., Shah, M., Yang, M., Torr, P. H. S., Khan, F. S., & Khan, S. (2024). *LLM Post-Training: A Deep Dive into Reasoning Large Language Models*. https://arxiv.org/abs/2407.10671  
+
+[2] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media. https://www.oreilly.com/library/view/ai-engineering/9781098158822/  
+
+[3] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. https://www.oreilly.com/library/view/hands-on-large-language/9781098136790/  
