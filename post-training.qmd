@@ -26,8 +26,6 @@ In the sections that follow, we’ll explore both post-training techniques and p
 
 ---
 
-
-
 ## Prompting
 
 ### Zero-Shot and Few-Shot In-Context Learning
@@ -76,7 +74,7 @@ While instruction finetuning improves task performance and alignment, it poses c
 - Risk of overfitting to narrow domains  
 - May reduce generalization to out-of-domain scenarios  
 
-The following table summarizes supervised finetuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar∗, Tajamul Ashraf∗, Omkar Thawakar, Rao Muhammad Anwer, Hisham Cholakkal, Mubarak Shah, Ming-Hsuan Yang, Phillip H.S. Torr, Fahad Shahbaz Khan, and Salman Khan.
+The following table summarizes supervised finetuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
 
 | Finetuning Type | Goal & Common Use Cases | Benefits | Limitations |
 |-----------------|------------------------|----------|-------------|
