@@ -130,17 +130,19 @@ While many approaches exist for preference optimization, **Reinforcement Learnin
 
 **Concept:**  
 RLHF aligns LLMs with human preferences by collecting feedback from human annotators and using it to guide reinforcement learning. The process typically involves:  
-1. **Supervised Fine‑Tuning (SFT)** on high‑quality instruction‑response pairs to create a baseline model.  
-2. **Preference data collection** — human annotators rank multiple model outputs for the same prompt.  
-3. **Reward model training** — a separate model learns to predict these rankings.  
-4. **Reinforcement learning optimization** — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.
+1. Supervised Fine‑Tuning (SFT) on high‑quality instruction‑response pairs to create a baseline model.  
+2. Preference data collection — human annotators rank multiple model outputs for the same prompt.  
+3. Reward model training — a separate model learns to predict these rankings.  
+4. Reinforcement learning optimization — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.
 
 **Advantages:**  
+
 - Produces highly aligned and safe responses.  
 - Can optimize for complex, nuanced objectives beyond accuracy.  
 - Allows fine‑grained control through reward model design.
 
-**Limitations:**  
+**Limitations:** 
+ 
 - Very expensive and labor‑intensive to gather preference data.  
 - Quality depends heavily on the consistency and skill of annotators.  
 - Reward models can be exploited (reward hacking).  
@@ -153,25 +155,18 @@ RLHF aligns LLMs with human preferences by collecting feedback from human annota
 DPO is a simpler alternative to RLHF that removes the need for a separate reward model and online reinforcement learning. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs. rejected outputs) by optimizing the log‑likelihood ratio to make preferred responses more probable. This approach “bakes in” the user’s preferences directly into the model parameters, avoiding the complexity of the RL loop.
 
 **Advantages:**  
+
 - Simpler and more stable than RLHF.  
 - No need for online sampling or PPO training.  
 - Scales well to large datasets.  
 - Increasingly popular in open‑source models like LLaMA and OpenChat.
 
 **Limitations:**  
+
 - No per‑step credit assignment — treats whole responses as a unit.  
 - May underperform RLHF for multi‑step reasoning tasks.  
 - Dependent on high‑quality preference pairs; poor data reduces effectiveness.
 
-## Summary Table
-
-| Method              | Description                           | Pros                           | Cons                             |
-|---------------------|----------------------------------------|---------------------------------|----------------------------------|
-| Prompting           | In-context use of base LMs             | Simple, no training             | Limited context window           |
-| Chain-of-Thought    | Adds step-by-step reasoning            | Improves reasoning              | Requires phrasing and scale      |
-| Instruction Tuning  | Supervised finetuning on instructions  | Strong generalization           | Needs labeled data               |
-| RLHF                | Optimize using human preferences       | Aligned, helpful output         | Complex, expensive               |
-| DPO                 | Direct optimization via comparisons    | Simple, effective, scalable     | Still approximates human intent  |
 
 ## Final Thoughts
 

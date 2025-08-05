@@ -191,8 +191,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">2</span> Prompting</a></li>
   <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised Fine-Tuning (SFT)</a></li>
   <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">4</span> Preference Optimization</a></li>
-  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">5</span> Summary Table</a></li>
-  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">6</span> Final Thoughts</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">5</span> Final Thoughts</a></li>
   </ul>
 </nav>
     </div>
@@ -440,88 +439,55 @@ The overarching goal is to make models behave according to human preferences —
 <h3 data-number="4.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
 <p><strong>Concept:</strong><br>
 RLHF aligns LLMs with human preferences by collecting feedback from human annotators and using it to guide reinforcement learning. The process typically involves:<br>
-1. <strong>Supervised Fine‑Tuning (SFT)</strong> on high‑quality instruction‑response pairs to create a baseline model.<br>
-2. <strong>Preference data collection</strong> — human annotators rank multiple model outputs for the same prompt.<br>
-3. <strong>Reward model training</strong> — a separate model learns to predict these rankings.<br>
-4. <strong>Reinforcement learning optimization</strong> — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.</p>
-<p><strong>Advantages:</strong><br>
-- Produces highly aligned and safe responses.<br>
-- Can optimize for complex, nuanced objectives beyond accuracy.<br>
-- Allows fine‑grained control through reward model design.</p>
-<p><strong>Limitations:</strong><br>
-- Very expensive and labor‑intensive to gather preference data.<br>
-- Quality depends heavily on the consistency and skill of annotators.<br>
-- Reward models can be exploited (reward hacking).<br>
-- Sensitive to bias in the collected preferences.</p>
+1. Supervised Fine‑Tuning (SFT) on high‑quality instruction‑response pairs to create a baseline model.<br>
+2. Preference data collection — human annotators rank multiple model outputs for the same prompt.<br>
+3. Reward model training — a separate model learns to predict these rankings.<br>
+4. Reinforcement learning optimization — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Produces highly aligned and safe responses.<br>
+</li>
+<li>Can optimize for complex, nuanced objectives beyond accuracy.<br>
+</li>
+<li>Allows fine‑grained control through reward model design.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Very expensive and labor‑intensive to gather preference data.<br>
+</li>
+<li>Quality depends heavily on the consistency and skill of annotators.<br>
+</li>
+<li>Reward models can be exploited (reward hacking).<br>
+</li>
+<li>Sensitive to bias in the collected preferences.</li>
+</ul>
 </section>
 <section id="direct-preference-optimization-dpo" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">4.2</span> Direct Preference Optimization (DPO)</h3>
 <p><strong>Concept:</strong><br>
 DPO is a simpler alternative to RLHF that removes the need for a separate reward model and online reinforcement learning. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log‑likelihood ratio to make preferred responses more probable. This approach “bakes in” the user’s preferences directly into the model parameters, avoiding the complexity of the RL loop.</p>
-<p><strong>Advantages:</strong><br>
-- Simpler and more stable than RLHF.<br>
-- No need for online sampling or PPO training.<br>
-- Scales well to large datasets.<br>
-- Increasingly popular in open‑source models like LLaMA and OpenChat.</p>
-<p><strong>Limitations:</strong><br>
-- No per‑step credit assignment — treats whole responses as a unit.<br>
-- May underperform RLHF for multi‑step reasoning tasks.<br>
-- Dependent on high‑quality preference pairs; poor data reduces effectiveness.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Simpler and more stable than RLHF.<br>
+</li>
+<li>No need for online sampling or PPO training.<br>
+</li>
+<li>Scales well to large datasets.<br>
+</li>
+<li>Increasingly popular in open‑source models like LLaMA and OpenChat.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>No per‑step credit assignment — treats whole responses as a unit.<br>
+</li>
+<li>May underperform RLHF for multi‑step reasoning tasks.<br>
+</li>
+<li>Dependent on high‑quality preference pairs; poor data reduces effectiveness.</li>
+</ul>
 </section>
 </section>
-<section id="summary-table" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">5</span> Summary Table</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 31%">
-<col style="width: 25%">
-<col style="width: 26%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Method</th>
-<th>Description</th>
-<th>Pros</th>
-<th>Cons</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Prompting</td>
-<td>In-context use of base LMs</td>
-<td>Simple, no training</td>
-<td>Limited context window</td>
-</tr>
-<tr class="even">
-<td>Chain-of-Thought</td>
-<td>Adds step-by-step reasoning</td>
-<td>Improves reasoning</td>
-<td>Requires phrasing and scale</td>
-</tr>
-<tr class="odd">
-<td>Instruction Tuning</td>
-<td>Supervised finetuning on instructions</td>
-<td>Strong generalization</td>
-<td>Needs labeled data</td>
-</tr>
-<tr class="even">
-<td>RLHF</td>
-<td>Optimize using human preferences</td>
-<td>Aligned, helpful output</td>
-<td>Complex, expensive</td>
-</tr>
-<tr class="odd">
-<td>DPO</td>
-<td>Direct optimization via comparisons</td>
-<td>Simple, effective, scalable</td>
-<td>Still approximates human intent</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="final-thoughts" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">6</span> Final Thoughts</h2>
+<section id="final-thoughts" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">5</span> Final Thoughts</h2>
 <p>Post-training techniques are the critical bridge between general-purpose language models and real-world applications. Prompting and instruction tuning help guide behavior, while alignment methods like RLHF and DPO aim to make models more helpful, safe, and controllable.</p>
 <p>The field is evolving rapidly, with new work aiming to make alignment faster, cheaper, and more robust. Stay tuned.</p>
 
