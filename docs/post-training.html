@@ -291,8 +291,8 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 </section>
 <section id="supervised-fine-tuning-sft" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">3</span> Supervised Fine-Tuning (SFT)</h2>
-<p><strong>Concept:</strong><br>
-Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
+<p><strong>Concept:</strong></p>
+<p>Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.</p>
 <p>While instruction fine-tuning improves task performance and alignment, it poses challenges including <strong>overfitting</strong>, <strong>high computational costs</strong>, and <strong>sensitivity to dataset biases</strong>. Parameter-efficient variants such as <strong>LoRA</strong> and <strong>adapters</strong> address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
@@ -382,6 +382,34 @@ Supervised fine-tuning is a supervised post-training technique that trains LLMs 
 </section>
 <section id="preference-optimization" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="preference-optimization"><span class="header-section-number">4</span> Preference Optimization</h2>
+<p><strong>Concept:</strong></p>
+<p>Preference optimization is the process of aligning a model’s outputs with human preferences using feedback signals, rather than solely optimizing for task performance. In large language models (LLMs), this often involves training the model to produce responses that are not only factually correct but also safe, contextually relevant, and consistent with user expectations.<br>
+Unlike conventional reinforcement learning, which operates in small, well‑defined action spaces with clear objectives, preference optimization in LLMs must navigate a <strong>vast vocabulary action space</strong>, delayed and subjective rewards, and multiple, sometimes conflicting, objectives. Feedback is often based on human or AI‑generated preference comparisons and can involve both outcome‑based metrics (e.g., correctness) and process‑based evaluations (e.g., reasoning quality).<br>
+The overarching goal is to make models behave according to human preferences — an ambitious aim given that universal human values do not exist, and perceptions of “desirable” behavior vary widely across cultures, political views, and personal beliefs.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Aligns model outputs with user expectations and ethical guidelines.<br>
+</li>
+<li>Improves perceived helpfulness and safety in real‑world use.<br>
+</li>
+<li>Can reduce harmful, offensive, or irrelevant outputs.<br>
+</li>
+<li>Allows optimization for nuanced objectives (e.g., tone, reasoning quality, factuality).<br>
+</li>
+<li>Supports personalization to match specific user or organizational preferences.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li><strong>Subjectivity of preferences</strong> — what’s “helpful” or “appropriate” can vary across cultures, contexts, and individuals.<br>
+</li>
+<li><strong>Controversial topics</strong> — responses risk alienating some users regardless of stance; overly cautious models may seem bland or evasive.<br>
+</li>
+<li><strong>Technical complexity</strong> — high‑dimensional action space, delayed rewards, and balancing multiple objectives make optimization challenging.<br>
+</li>
+<li><strong>Bias and fairness risks</strong> — preferences used in training may embed societal biases.<br>
+</li>
+<li><strong>Deployment trade‑offs</strong> — excessive filtering can reduce engagement, while insufficient filtering can create reputational and safety risks.</li>
+</ul>
 <section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">4.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
 <p><strong>Concept</strong>: Use reinforcement learning to align model behavior with human preferences.</p>

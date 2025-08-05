@@ -54,6 +54,7 @@ Why it works: CoT helps the model break complex reasoning into interpretable ste
 ## Supervised Fine-Tuning (SFT)
 
 **Concept:**  
+
 Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Instruction finetuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.
 
 While instruction fine-tuning improves task performance and alignment, it poses challenges including **overfitting**, **high computational costs**, and **sensitivity to dataset biases**. Parameter-efficient variants such as **LoRA** and **adapters** address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.
@@ -88,6 +89,31 @@ The following table summarizes supervised finetuning methods described in *LLM P
 
 
 ## Preference Optimization
+
+**Concept:**  
+
+Preference optimization is the process of aligning a model’s outputs with human preferences using feedback signals, rather than solely optimizing for task performance. In large language models (LLMs), this often involves training the model to produce responses that are not only factually correct but also safe, contextually relevant, and consistent with user expectations.  
+Unlike conventional reinforcement learning, which operates in small, well‑defined action spaces with clear objectives, preference optimization in LLMs must navigate a **vast vocabulary action space**, delayed and subjective rewards, and multiple, sometimes conflicting, objectives. Feedback is often based on human or AI‑generated preference comparisons and can involve both outcome‑based metrics (e.g., correctness) and process‑based evaluations (e.g., reasoning quality).  
+The overarching goal is to make models behave according to human preferences — an ambitious aim given that universal human values do not exist, and perceptions of “desirable” behavior vary widely across cultures, political views, and personal beliefs.
+
+**Advantages:**  
+
+- Aligns model outputs with user expectations and ethical guidelines.  
+- Improves perceived helpfulness and safety in real‑world use.  
+- Can reduce harmful, offensive, or irrelevant outputs.  
+- Allows optimization for nuanced objectives (e.g., tone, reasoning quality, factuality).  
+- Supports personalization to match specific user or organizational preferences.
+
+**Limitations:**  
+
+- **Subjectivity of preferences** — what’s “helpful” or “appropriate” can vary across cultures, contexts, and individuals.  
+- **Controversial topics** — responses risk alienating some users regardless of stance; overly cautious models may seem bland or evasive.  
+- **Technical complexity** — high‑dimensional action space, delayed rewards, and balancing multiple objectives make optimization challenging.  
+- **Bias and fairness risks** — preferences used in training may embed societal biases.  
+- **Deployment trade‑offs** — excessive filtering can reduce engagement, while insufficient filtering can create reputational and safety risks.  
+
+
+
 
 ### Reinforcement Learning from Human Feedback (RLHF)
 
