@@ -291,10 +291,15 @@ Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <str
 <li>The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.</li>
 </ul>
 <p><strong>Why It Helps:</strong></p>
-<p>CoT prompting addresses several ICL weaknesses: 1. <strong>Improved Multi-Step Reasoning:</strong><br>
-By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic. 2. <strong>Interpretability:</strong><br>
-Produces intermediate steps that allow humans to verify and debug reasoning. 3. <strong>Error Reduction:</strong><br>
-Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.</p>
+<p>CoT prompting addresses several ICL weaknesses:</p>
+<ol type="1">
+<li><strong>Improved Multi-Step Reasoning:</strong><br>
+By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic.</li>
+<li><strong>Interpretability:</strong><br>
+Produces intermediate steps that allow humans to verify and debug reasoning.</li>
+<li><strong>Error Reduction:</strong><br>
+Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.</li>
+</ol>
 <p><strong>Empirical Evidence (Wei et al., 2022):</strong></p>
 <ul>
 <li>On the <strong>GSM8K math word problem benchmark</strong>, CoT prompting boosted accuracy from <strong>17.7%</strong> (standard ICL) to <strong>57.1%</strong> in GPT-3 175B.<br>
