@@ -237,8 +237,83 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="prompting" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="prompting"><span class="header-section-number">2</span> Prompting</h2>
-<section id="zero-shot-and-few-shot-in-context-learning" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2.1</span> Zero-Shot and Few-Shot In-Context Learning</h3>
+<hr>
+<section id="in-context-learning-zero-shot-and-few-shot" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="in-context-learning-zero-shot-and-few-shot"><span class="header-section-number">2.1</span> In-Context Learning: Zero-Shot and Few-Shot</h3>
+<p><strong>Concept:</strong><br>
+In-Context Learning (ICL) refers to the ability of large language models (LLMs) to perform tasks by conditioning on examples provided in the input prompt, without any gradient updates or fine-tuning. This capability emerged prominently with GPT-3, as shown in Brown et al.&nbsp;(2020), <em>Language Models are Few-Shot Learners</em>.</p>
+<p>Traditionally, models learn behavior during training stages such as pre-training, post-training, and fine-tuning—processes that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the <em>context</em> in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.</p>
+</section>
+<section id="how-it-works" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">2.2</span> How It Works</h3>
+<ul>
+<li>The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.</li>
+<li>These patterns are applied to new examples within the same prompt context.</li>
+<li>This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.</li>
+</ul>
+</section>
+<section id="key-variants" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="key-variants"><span class="header-section-number">2.3</span> Key Variants</h3>
+<ul>
+<li><p><strong>Zero-Shot Prompting:</strong><br>
+Ask a question or issue a command without providing any examples.<br>
+Example: <em>“Translate this sentence into French.”</em></p></li>
+<li><p><strong>Few-Shot Prompting:</strong><br>
+Provide a small number of (input → output) examples before asking for a new prediction.<br>
+Example: Showing labeled sentiment examples before asking for classification of a new sentence.</p>
+<ul>
+<li>One example = one “shot” (e.g., 5 examples = 5-shot learning).</li>
+<li>More examples generally improve performance, but are limited by the model’s maximum context length.</li>
+</ul></li>
+</ul>
+</section>
+<section id="advantages" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="advantages"><span class="header-section-number">2.4</span> Advantages</h3>
+<ul>
+<li><strong>Flexibility:</strong> The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.</li>
+<li><strong>No Retraining Needed:</strong> Eliminates the need to re-train for minor domain or task changes.</li>
+<li><strong>Emergent Performance:</strong> Works surprisingly well in very large models (e.g., GPT-3 with 175B parameters) for diverse tasks like translation, reading comprehension, arithmetic, SAT questions, and commonsense reasoning.</li>
+</ul>
+</section>
+<section id="limitations" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="limitations"><span class="header-section-number">2.5</span> Limitations</h3>
+<ul>
+<li><strong>Context Length Constraints:</strong> The number of examples is limited by the model’s maximum input size.</li>
+<li><strong>Performance Sensitivity:</strong> Output quality can vary significantly depending on prompt wording, ordering, and example selection.</li>
+<li><strong>Not True Learning:</strong> The model doesn’t update weights; adaptation is temporary and disappears when the context changes.</li>
+<li><strong>Weak Multi-Step Reasoning:</strong> Standard ICL often fails at tasks requiring reasoning across multiple logical or arithmetic steps.</li>
+<li><strong>Limited Interpretability:</strong> Final answers lack an explicit reasoning trail, making it difficult to verify or debug model outputs.</li>
+</ul>
+<p><strong>Key Insight:</strong><br>
+ICL effectively turns prompting into a form of <em>temporary fine-tuning</em>, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.</p>
+<hr>
+</section>
+<section id="addressing-icls-reasoning-limitations-chain-of-thought-prompting" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="addressing-icls-reasoning-limitations-chain-of-thought-prompting"><span class="header-section-number">2.6</span> Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting</h3>
+<p><strong>Definition (Wei et al., 2022):</strong><br>
+Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <strong>natural language reasoning steps</strong> between the input and the final output. Instead of going directly from problem → answer, the model is encouraged to generate a sequence of intermediate steps — a “reasoning chain” — before producing its final answer.</p>
+<p><strong>How It Works:</strong><br>
+- The prompt explicitly demonstrates step-by-step reasoning for a few training examples in the context.<br>
+- The model learns to emulate this reasoning pattern when solving new tasks in the same prompt.<br>
+- The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.</p>
+<p><strong>Why It Helps:</strong><br>
+CoT prompting addresses several ICL weaknesses: 1. <strong>Improved Multi-Step Reasoning:</strong><br>
+By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic. 2. <strong>Interpretability:</strong><br>
+Produces intermediate steps that allow humans to verify and debug reasoning. 3. <strong>Error Reduction:</strong><br>
+Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.</p>
+<p><strong>Empirical Evidence (Wei et al., 2022):</strong><br>
+- On the <strong>GSM8K math word problem benchmark</strong>, CoT prompting boosted accuracy from <strong>17.7%</strong> (standard ICL) to <strong>57.1%</strong> in GPT-3 175B.<br>
+- On <strong>MultiArith</strong>, accuracy jumped from <strong>78.7%</strong> to <strong>92.0%</strong>.<br>
+- Gains were consistent across arithmetic, symbolic, and commonsense reasoning tasks, but minimal for tasks solvable without multi-step reasoning (e.g., fact retrieval).</p>
+<p><strong>When It Works Best:</strong><br>
+- Tasks with compositional structure where intermediate reasoning steps are natural.<br>
+- Models with sufficient scale (CoT’s benefits appear more strongly in models &gt;100B parameters).<br>
+- Prompts that clearly format and separate reasoning from final answers.</p>
+<p><strong>Example Prompt (Few-Shot CoT):</strong></p>
+<hr>
+</section>
+<section id="zero-shot-and-few-shot-in-context-learning" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="zero-shot-and-few-shot-in-context-learning"><span class="header-section-number">2.7</span> Zero-Shot and Few-Shot In-Context Learning</h3>
 <p><strong>Concept</strong>: Use prompts to guide pre-trained models without any gradient updates or fine-tuning.</p>
 <ul>
 <li><strong>Zero-shot prompting</strong>: Ask a question or issue a command without examples.<br>
@@ -249,8 +324,8 @@ Example: showing multiple sentiment labels before asking for one more.</li>
 </ul>
 <p><strong>Key Insight</strong>: These capabilities emerge only in large-scale models (e.g., GPT-3 with 175B parameters). Creative prompting (e.g., “TL;DR”) can yield surprisingly strong performance.</p>
 </section>
-<section id="chain-of-thought-cot-prompting" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="chain-of-thought-cot-prompting"><span class="header-section-number">2.2</span> Chain-of-Thought (CoT) Prompting</h3>
+<section id="chain-of-thought-cot-prompting" class="level3" data-number="2.8">
+<h3 data-number="2.8" class="anchored" data-anchor-id="chain-of-thought-cot-prompting"><span class="header-section-number">2.8</span> Chain-of-Thought (CoT) Prompting</h3>
 <p><strong>Concept</strong>: Improve model reasoning by encouraging step-by-step answers.</p>
 <p>Example: “Let’s think step by step.”</p>
 <ul>
