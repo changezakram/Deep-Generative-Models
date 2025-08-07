@@ -458,7 +458,7 @@ Self-Consistency is a decoding strategy designed to improve reasoning by aggrega
 <h3 data-number="4.1" class="anchored" data-anchor-id="instruction-fine-tuning"><span class="header-section-number">4.1</span> Instruction Fine-Tuning</h3>
 <p><strong>Concept:</strong><br>
 Instruction Fine‑Tuning is the most widely used form of supervised fine‑tuning in LLM post‑training. It involves training a pre‑trained model on curated datasets of instruction–response pairs covering a wide variety of tasks, such as summarization, question answering, classification, and creative writing. The goal is to make the model follow natural language instructions reliably, even for tasks it hasn’t seen before.<br>
-This process adjusts the model’s internal weights so it produces outputs that align with the intent of the instruction rather than simply predicting the next word. Instruction fine‑tuning is often the <strong>first post‑training step</strong> in modern LLM pipelines and serves as a foundation for subsequent alignment stages like RLHF or DPO.</p>
+This process adjusts the model’s internal weights so it produces outputs that align with the intent of the instruction rather than simply predicting the next word. Instruction fine‑tuning is often the <strong>first post‑training step</strong> in modern LLM pipelines and serves as a foundation for subsequent preference optimization stages like RLHF or DPO.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
 <li>Improves generalization to unseen tasks in zero‑shot and few‑shot settings.<br>
@@ -719,6 +719,11 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 <p>[8] Wang, X., Wei, J., Schuurmans, D., et al.&nbsp;(2022). <em>Self-Consistency Improves Chain of Thought Reasoning in Language Models</em>. https://arxiv.org/abs/2203.11171</p>
 <p>[9] Yao, S., Yu, D., Zhao, J., et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. https://arxiv.org/abs/2305.10601</p>
 <p>[10] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al.&nbsp;(2019). <em>Parameter-Efficient Transfer Learning for NLP</em>. https://arxiv.org/abs/1902.00751</p>
+<p>[11] Radford, A., Wu, J., Child, R., et al.&nbsp;(2019). <em>Language Models are Unsupervised Multitask Learners</em>. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</p>
+<p>[12] Brown, T., Mann, B., Ryder, N., et al.&nbsp;(2020). <em>Language Models are Few-Shot Learners (GPT-3)</em>. https://arxiv.org/abs/2005.14165</p>
+<p>[13] Kojima, T., Gu, S. S., Reid, M., et al.&nbsp;(2022). <em>Large Language Models are Zero-Shot Reasoners</em>. https://arxiv.org/abs/2205.11916</p>
+<p>[14] Zhou, X., Santurkar, S., Bau, D., et al.&nbsp;(2022). <em>Large Language Models Are Human-Level Prompt Engineers</em>. https://arxiv.org/abs/2211.01910</p>
+<p>[15] Wei, J., Wang, X., Schuurmans, D., et al.&nbsp;(2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. https://arxiv.org/abs/2201.11903</p>
 
 
 </section>
