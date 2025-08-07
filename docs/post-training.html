@@ -250,8 +250,11 @@ In-Context Learning (ICL) refers to the ability of large language models (LLMs) 
 </ul>
 <p><strong>Key Variants</strong></p>
 <p><strong>1. Zero-Shot Prompting:</strong><br>
-Ask a question or issue a command without providing any examples.<br>
-Example: <em>“Translate this sentence into French.”</em></p>
+Ask the model to perform a task using only an instruction or question — <strong>without providing any explicit examples</strong> of how the task should be done.<br>
+- The model relies solely on its pre-trained knowledge and its understanding of the instruction to produce the output.<br>
+- Even without examples, the instruction itself acts as a minimal form of <em>context</em> that the model conditions on.<br>
+Example: <em>Instruction:</em> “Translate the following sentence into French: The weather is beautiful today.”<br>
+No translations are shown beforehand — the model generates the French sentence using patterns it learned during training.</p>
 <p><strong>2. Few-Shot Prompting:</strong> Provide a small number of (input → output) examples before asking for a new prediction.<br>
 Example: Showing labeled sentiment examples before asking for classification of a new sentence.<br>
 - One example = one “shot” (e.g., 5 examples = 5-shot learning). - More examples generally improve performance, but are limited by the model’s maximum context length.</p>

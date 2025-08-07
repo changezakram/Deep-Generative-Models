@@ -44,8 +44,11 @@ Traditionally, models learn behavior during training stages such as pre-training
 **Key Variants**
 
 **1. Zero-Shot Prompting:**  
-  Ask a question or issue a command without providing any examples.  
-  Example: *"Translate this sentence into French."*
+  Ask the model to perform a task using only an instruction or question — **without providing any explicit examples** of how the task should be done.  
+  - The model relies solely on its pre-trained knowledge and its understanding of the instruction to produce the output.  
+  - Even without examples, the instruction itself acts as a minimal form of *context* that the model conditions on.     
+  Example: *Instruction:* “Translate the following sentence into French: The weather is beautiful today.”  
+  No translations are shown beforehand — the model generates the French sentence using patterns it learned during training.
 
 **2. Few-Shot Prompting:** 
   Provide a small number of (input → output) examples before asking for a new prediction.  
