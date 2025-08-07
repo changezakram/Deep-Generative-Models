@@ -38,7 +38,7 @@ In the sections that follow, we’ll explore both post-training techniques and p
 **Concept:**  
 In-Context Learning (ICL) refers to the ability of large language models (LLMs) to perform tasks by conditioning on examples provided in the input prompt, without any gradient updates or fine-tuning. This capability emerged prominently with GPT-3, as shown in Brown et al. (2020), *Language Models are Few-Shot Learners*.
 
-Traditionally, models learn behavior during training stages such as pre-training, post-training, and fine-tuning—processes that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the *context* in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.
+Traditionally, models learn behavior during training stages such as pre-training and post-training that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the *context* in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.
 
 ### How It Works
 - The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.
@@ -102,10 +102,23 @@ CoT prompting addresses several ICL weaknesses:
 - Models with sufficient scale (CoT’s benefits appear more strongly in models >100B parameters).  
 - Prompts that clearly format and separate reasoning from final answers.
 
+**Advantages**
+- **Enhanced Multi-Step Reasoning:** Significant gains on benchmarks like GSM8K and MultiArith.
+- **Interpretability:** Step-by-step outputs help in auditing and debugging.
+- **Prompt-Only Method:** No fine-tuning required; works within ICL framework.
+- **Emergent Capability:** Reasoning skills become apparent in large-scale models.
+
+**Limitations**
+- **Model Size Dependency:** Large performance gains appear mainly in models >100B parameters; smaller models often produce incoherent chains.
+- **Increased Output Length:** More tokens may affect latency and cost.
+- **Limited Benefit for Simple Tasks:** Minimal improvement for factual recall or single-step reasoning.
+- **Error Propagation:** Early mistakes in reasoning can cascade to incorrect final answers.
+- **Hallucinated Logic:** Reasoning may be coherent but factually wrong.
+
 **Example Prompt (Few-Shot CoT):**  
 
 
-
+---
 
 
 

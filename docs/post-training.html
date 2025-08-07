@@ -242,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="2.1" class="anchored" data-anchor-id="in-context-learning-zero-shot-and-few-shot"><span class="header-section-number">2.1</span> In-Context Learning: Zero-Shot and Few-Shot</h3>
 <p><strong>Concept:</strong><br>
 In-Context Learning (ICL) refers to the ability of large language models (LLMs) to perform tasks by conditioning on examples provided in the input prompt, without any gradient updates or fine-tuning. This capability emerged prominently with GPT-3, as shown in Brown et al.&nbsp;(2020), <em>Language Models are Few-Shot Learners</em>.</p>
-<p>Traditionally, models learn behavior during training stages such as pre-training, post-training, and fine-tuning—processes that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the <em>context</em> in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.</p>
+<p>Traditionally, models learn behavior during training stages such as pre-training and post-training that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the <em>context</em> in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.</p>
 </section>
 <section id="how-it-works" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">2.2</span> How It Works</h3>
@@ -309,7 +309,10 @@ Reduces the likelihood of “shortcut” or guess-based answers by forcing the m
 - Tasks with compositional structure where intermediate reasoning steps are natural.<br>
 - Models with sufficient scale (CoT’s benefits appear more strongly in models &gt;100B parameters).<br>
 - Prompts that clearly format and separate reasoning from final answers.</p>
+<p><strong>Advantages</strong> - <strong>Enhanced Multi-Step Reasoning:</strong> Significant gains on benchmarks like GSM8K and MultiArith. - <strong>Interpretability:</strong> Step-by-step outputs help in auditing and debugging. - <strong>Prompt-Only Method:</strong> No fine-tuning required; works within ICL framework. - <strong>Emergent Capability:</strong> Reasoning skills become apparent in large-scale models.</p>
+<p><strong>Limitations</strong> - <strong>Model Size Dependency:</strong> Large performance gains appear mainly in models &gt;100B parameters; smaller models often produce incoherent chains. - <strong>Increased Output Length:</strong> More tokens may affect latency and cost. - <strong>Limited Benefit for Simple Tasks:</strong> Minimal improvement for factual recall or single-step reasoning. - <strong>Error Propagation:</strong> Early mistakes in reasoning can cascade to incorrect final answers. - <strong>Hallucinated Logic:</strong> Reasoning may be coherent but factually wrong.</p>
 <p><strong>Example Prompt (Few-Shot CoT):</strong></p>
+<hr>
 <hr>
 </section>
 <section id="zero-shot-and-few-shot-in-context-learning" class="level3" data-number="2.7">
