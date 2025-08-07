@@ -43,11 +43,11 @@ Traditionally, models learn behavior during training stages such as pre-training
 
 **Key Variants**
 
-- Zero-Shot Prompting:  
+**1. Zero-Shot Prompting:**  
   Ask a question or issue a command without providing any examples.  
   Example: *"Translate this sentence into French."*
 
-- Few-Shot Prompting:  
+**2. Few-Shot Prompting:** 
   Provide a small number of (input → output) examples before asking for a new prediction.  
   Example: Showing labeled sentiment examples before asking for classification of a new sentence.  
   - One example = one “shot” (e.g., 5 examples = 5-shot learning).
@@ -87,11 +87,11 @@ Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding **na
 
 CoT prompting addresses several ICL weaknesses:
 
-1. **Improved Multi-Step Reasoning:**  
+**1. Improved Multi-Step Reasoning:**  
    By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic.
-2. **Interpretability:**  
+**2. Interpretability:**  
    Produces intermediate steps that allow humans to verify and debug reasoning.
-3. **Error Reduction:**  
+**3. **Error Reduction:**  
    Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.
 
 **Empirical Evidence (Wei et al., 2022):**  

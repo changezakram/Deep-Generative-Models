@@ -249,18 +249,12 @@ In-Context Learning (ICL) refers to the ability of large language models (LLMs) 
 <li>This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.</li>
 </ul>
 <p><strong>Key Variants</strong></p>
-<ul>
-<li><p>Zero-Shot Prompting:<br>
+<p><strong>1. Zero-Shot Prompting:</strong><br>
 Ask a question or issue a command without providing any examples.<br>
-Example: <em>“Translate this sentence into French.”</em></p></li>
-<li><p>Few-Shot Prompting:<br>
-Provide a small number of (input → output) examples before asking for a new prediction.<br>
-Example: Showing labeled sentiment examples before asking for classification of a new sentence.</p>
-<ul>
-<li>One example = one “shot” (e.g., 5 examples = 5-shot learning).</li>
-<li>More examples generally improve performance, but are limited by the model’s maximum context length.</li>
-</ul></li>
-</ul>
+Example: <em>“Translate this sentence into French.”</em></p>
+<p><strong>2. Few-Shot Prompting:</strong> Provide a small number of (input → output) examples before asking for a new prediction.<br>
+Example: Showing labeled sentiment examples before asking for classification of a new sentence.<br>
+- One example = one “shot” (e.g., 5 examples = 5-shot learning). - More examples generally improve performance, but are limited by the model’s maximum context length.</p>
 <p><strong>Advantages</strong></p>
 <ul>
 <li><strong>Flexibility:</strong> The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.</li>
@@ -292,14 +286,10 @@ Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <str
 </ul>
 <p><strong>Why It Helps:</strong></p>
 <p>CoT prompting addresses several ICL weaknesses:</p>
-<ol type="1">
-<li><strong>Improved Multi-Step Reasoning:</strong><br>
-By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic.</li>
-<li><strong>Interpretability:</strong><br>
-Produces intermediate steps that allow humans to verify and debug reasoning.</li>
-<li><strong>Error Reduction:</strong><br>
-Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.</li>
-</ol>
+<p><strong>1. Improved Multi-Step Reasoning:</strong><br>
+By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic. <strong>2. Interpretability:</strong><br>
+Produces intermediate steps that allow humans to verify and debug reasoning. <strong>3. </strong>Error Reduction:**<br>
+Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.</p>
 <p><strong>Empirical Evidence (Wei et al., 2022):</strong></p>
 <ul>
 <li>On the <strong>GSM8K math word problem benchmark</strong>, CoT prompting boosted accuracy from <strong>17.7%</strong> (standard ICL) to <strong>57.1%</strong> in GPT-3 175B.<br>
