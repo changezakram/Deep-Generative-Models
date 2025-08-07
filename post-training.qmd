@@ -28,11 +28,6 @@ In the sections that follow, we’ll explore both post-training techniques and p
 
 ## Prompting
 
-
-
-
----
-
 ### In-Context Learning: Zero-Shot and Few-Shot
 
 **Concept:**  
@@ -40,28 +35,32 @@ In-Context Learning (ICL) refers to the ability of large language models (LLMs) 
 
 Traditionally, models learn behavior during training stages such as pre-training and post-training that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the *context* in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.
 
-### How It Works
+**How It Works**
+
 - The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.
 - These patterns are applied to new examples within the same prompt context.
 - This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.
 
-### Key Variants
-- **Zero-Shot Prompting:**  
+**Key Variants**
+
+- Zero-Shot Prompting:  
   Ask a question or issue a command without providing any examples.  
   Example: *"Translate this sentence into French."*
 
-- **Few-Shot Prompting:**  
+- Few-Shot Prompting:  
   Provide a small number of (input → output) examples before asking for a new prediction.  
   Example: Showing labeled sentiment examples before asking for classification of a new sentence.  
   - One example = one “shot” (e.g., 5 examples = 5-shot learning).
   - More examples generally improve performance, but are limited by the model’s maximum context length.
 
-### Advantages
+**Advantages**
+
 - **Flexibility:** The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.
 - **No Retraining Needed:** Eliminates the need to re-train for minor domain or task changes.
 - **Emergent Performance:** Works surprisingly well in very large models (e.g., GPT-3 with 175B parameters) for diverse tasks like translation, reading comprehension, arithmetic, SAT questions, and commonsense reasoning.
 
-### Limitations
+**Limitations**
+
 - **Context Length Constraints:** The number of examples is limited by the model’s maximum input size.
 - **Performance Sensitivity:** Output quality can vary significantly depending on prompt wording, ordering, and example selection.
 - **Not True Learning:** The model doesn’t update weights; adaptation is temporary and disappears when the context changes.
@@ -69,21 +68,23 @@ Traditionally, models learn behavior during training stages such as pre-training
 - **Limited Interpretability:** Final answers lack an explicit reasoning trail, making it difficult to verify or debug model outputs.
 
 **Key Insight:**  
+
 ICL effectively turns prompting into a form of *temporary fine-tuning*, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.
 
----
 
 ### Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting
 
-**Definition (Wei et al., 2022):**  
+**Concept:**  
 Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding **natural language reasoning steps** between the input and the final output. Instead of going directly from problem → answer, the model is encouraged to generate a sequence of intermediate steps — a “reasoning chain” — before producing its final answer.
 
 **How It Works:**  
+
 - The prompt explicitly demonstrates step-by-step reasoning for a few training examples in the context.  
 - The model learns to emulate this reasoning pattern when solving new tasks in the same prompt.  
 - The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.
 
 **Why It Helps:**  
+
 CoT prompting addresses several ICL weaknesses:
 1. **Improved Multi-Step Reasoning:**  
    By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic.
@@ -93,22 +94,26 @@ CoT prompting addresses several ICL weaknesses:
    Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.
 
 **Empirical Evidence (Wei et al., 2022):**  
+
 - On the **GSM8K math word problem benchmark**, CoT prompting boosted accuracy from **17.7%** (standard ICL) to **57.1%** in GPT-3 175B.  
 - On **MultiArith**, accuracy jumped from **78.7%** to **92.0%**.  
 - Gains were consistent across arithmetic, symbolic, and commonsense reasoning tasks, but minimal for tasks solvable without multi-step reasoning (e.g., fact retrieval).
 
 **When It Works Best:**  
+
 - Tasks with compositional structure where intermediate reasoning steps are natural.  
 - Models with sufficient scale (CoT’s benefits appear more strongly in models >100B parameters).  
 - Prompts that clearly format and separate reasoning from final answers.
 
 **Advantages**
+
 - **Enhanced Multi-Step Reasoning:** Significant gains on benchmarks like GSM8K and MultiArith.
 - **Interpretability:** Step-by-step outputs help in auditing and debugging.
 - **Prompt-Only Method:** No fine-tuning required; works within ICL framework.
 - **Emergent Capability:** Reasoning skills become apparent in large-scale models.
 
 **Limitations**
+
 - **Model Size Dependency:** Large performance gains appear mainly in models >100B parameters; smaller models often produce incoherent chains.
 - **Increased Output Length:** More tokens may affect latency and cost.
 - **Limited Benefit for Simple Tasks:** Minimal improvement for factual recall or single-step reasoning.
@@ -117,38 +122,6 @@ CoT prompting addresses several ICL weaknesses:
 
 **Example Prompt (Few-Shot CoT):**  
 
-
----
-
-
-
-
-
----
-
-
-### Zero-Shot and Few-Shot In-Context Learning
-
-**Concept**: Use prompts to guide pre-trained models without any gradient updates or fine-tuning.
-
-- **Zero-shot prompting**: Ask a question or issue a command without examples.  
-  Example: “Translate this sentence into French.”
-- **Few-shot prompting**: Provide a few (input → output) examples to demonstrate the task.  
-  Example: showing multiple sentiment labels before asking for one more.
-- **In-context learning**: The model uses these patterns to perform the task, thanks to its massive training data and scale.
-
-**Key Insight**: These capabilities emerge only in large-scale models (e.g., GPT-3 with 175B parameters). Creative prompting (e.g., “TL;DR”) can yield surprisingly strong performance.
-
-### Chain-of-Thought (CoT) Prompting
-
-**Concept**: Improve model reasoning by encouraging step-by-step answers.
-
-Example: “Let’s think step by step.”
-
-- Enhances performance on arithmetic, logic puzzles, and commonsense reasoning tasks
-- Works in both few-shot and zero-shot settings with the right phrasing
-
-Why it works: CoT helps the model break complex reasoning into interpretable steps—an emergent behavior at larger model scales.
 
 
 Beyond prompt engineering, another way to improve model performance without modifying its weights is through Test‑Time Scaling Methods, which allocate more computation at inference to enhance accuracy and reasoning.
