@@ -170,6 +170,10 @@ TTS can match the performance of a model up to 14× larger on easy to intermedia
 
 In practice, TTS and pre-training are **complementary**: pre-training builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a **hybrid approach**, combining a pre-trained base model with TTS to achieve cost‑efficient scaling and adaptability.
 
+**Why It Matters:**
+
+Bigger isn’t always better—or necessary. Test-time scaling lets you squeeze more performance out of your current models by simply working them harder at inference. Instead of paying the price (in time, data, and money) to train a larger model, you can unlock competitive—or even superior—results by exploring multiple reasoning paths and smartly combining answers. The payoff? Stronger performance, lower costs, and faster innovation without the heavyweight upgrades.
+
 **Advantages:**
 
 - Improves performance without retraining or altering model parameters  
