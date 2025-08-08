@@ -63,7 +63,9 @@ Traditionally, models learn behavior during training stages such as pre-training
 
 ![**Figure:** Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*](images/eval_strategies.png)  
 
-![**Figure:** SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. **Left:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. **Right:** For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*](images/superglue_analysis.png)
+![**Figure:** SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, showing the effect of model size (left) and number of in-context examples (right).  
+**Left:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot prompting delivering the largest gains — the jump from the smallest (~0.1B) to the largest (175B) model is over 20 points in few-shot mode. **Right:** For GPT-3 (175B parameters), zero-shot starts at **68.0**, one-shot improves to **69.8**, and 8-shot reaches **72.5**, matching Fine-Tuned BERT++. At 32-shot, performance climbs to **75.5**, surpassing Fine-Tuned BERT++ without any parameter updates.*](images/superglue_analysis.png)
+
 
 
 ::: {.callout-tip title="Performance Summary"}

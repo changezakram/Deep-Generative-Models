@@ -278,7 +278,8 @@ No translations are shown beforehand — the model generates the French sentence
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/superglue_analysis.png" class="img-fluid figure-img"></p>
-<figcaption><strong>Figure:</strong> SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. <strong>Left:</strong> Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. <strong>Right:</strong> For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. <em>(Source: Brown et al., 2020, Language Models are Few-Shot Learners)</em></figcaption>
+<figcaption><strong>Figure:</strong> SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, showing the effect of model size (left) and number of in-context examples (right).<br>
+<strong>Left:</strong> Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot prompting delivering the largest gains — the jump from the smallest (~0.1B) to the largest (175B) model is over 20 points in few-shot mode. <strong>Right:</strong> For GPT-3 (175B parameters), zero-shot starts at <strong>68.0</strong>, one-shot improves to <strong>69.8</strong>, and 8-shot reaches <strong>72.5</strong>, matching Fine-Tuned BERT++. At 32-shot, performance climbs to <strong>75.5</strong>, surpassing Fine-Tuned BERT++ without any parameter updates.*</figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Performance Summary">
