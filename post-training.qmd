@@ -24,6 +24,8 @@ While supervised and preference tuning are the core of post-training, it’s als
 
 In the sections that follow, we’ll explore both post-training techniques and prompting strategies, and how they work together to transform general-purpose LLMs into dependable, aligned assistants.
 
+![**Figure:** High-level taxonomy of large language model (LLM) post-training strategies, showing where scaling methods (bottom right) fit alongside reinforcement, tuning, and alignment approaches. *(Source: Kumar et al., 2023)*](images/post-training-methods.png){fig-align="center" width="800"}
+
 ---
 
 ## Prompting
