@@ -116,6 +116,8 @@ CoT prompting addresses several ICL weaknesses:
 
 **Empirical Evidence (Wei et al., 2022):**  
 
+The chart below is arranged **by benchmark in rows** (Row 1 = GSM8K, Row 2 = SVAMP, Row 3 = MAWPS) and **by model family in columns** (Column 1 = LaMDA, Column 2 = GPT, Column 3 = PaLM).  
+
 - **On the GSM8K math word problem benchmark** (Row 1), CoT prompting with **GPT-3 175B** improved solve rate from **17.7%** (standard prompting) to **57.1%**, a gain of nearly **40 percentage points**.  
 - **On the SVAMP benchmark** (Row 2), CoT prompting with **GPT-3 175B** increased performance from about **44%** to **72%**, surpassing the prior supervised best.  
 - **On the MAWPS benchmark** (Row 3), CoT prompting with **PaLM 540B** boosted accuracy from roughly **78%** to **92%**, matching or exceeding the prior supervised best.  
