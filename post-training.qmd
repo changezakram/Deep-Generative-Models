@@ -194,6 +194,7 @@ The diagram below organizes TTS techniques into categories, showing typical inte
 ![**Figure:** An overview of Test-Time Scaling methods, organized into categories such as parallel scaling, sequential scaling, and search-based methods. Arrows indicate common integration flows—e.g., Chain-of-Thought Prompting feeding into Tree-of-Thoughts for deeper reasoning. This structure helps practitioners select the right combination of strategies based on task complexity. *(Source: Kumar et al., 2023)*](images/test-time-scaling.png)
 
 **Category Overview:**  
+
 - **Scaling Strategies** – Methods that expand search breadth or depth, exploring multiple reasoning paths to increase accuracy (e.g., Beam Search, Monte Carlo Tree Search, Best-of-N Search).  
 - **Advanced Sampling** – Techniques that selectively sample outputs based on confidence or external verification to improve efficiency and quality (e.g., Confidence-Based Sampling, Search Against Verifiers).  
 - **Improved Reasoning** – Approaches that structure thinking into multi-step processes for complex problem-solving (e.g., Chain-of-Thought Prompting, Tree-of-Thoughts, Self-Consistency Decoding).  
