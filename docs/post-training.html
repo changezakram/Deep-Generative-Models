@@ -381,13 +381,14 @@ Reduces the likelihood of “shortcut” or guess-based answers by forcing the m
 <li><strong>Hallucinated Logic:</strong> Reasoning may be coherent but factually wrong.</li>
 </ul>
 <p>Beyond prompt engineering, another way to improve model performance without modifying its weights is through Test‑Time Scaling Methods, which allocate more computation at inference to enhance accuracy and reasoning.</p>
+<hr>
 </section>
 </section>
 <section id="testtime-scaling-methods" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</h2>
 <p><strong>Concept:</strong><br>
 Test‑time scaling (TTS) is the practice of improving model performance and reasoning <strong>during inference</strong> without modifying the model’s parameters. Unlike pre-training, which enhances capabilities through large‑scale training, TTS dynamically allocates computational resources—such as iterative refinement, search‑based decoding, or adaptive sampling—based on task complexity.</p>
-<p>TTS can match the performance of a model up to 14× larger on easy to intermediate tasks, while using up to 4× lower compute cost. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—<strong>pre-training remains superior</strong>, as larger pre-trained models inherently encode deeper reasoning ability.</p>
+<p>TTS can match the performance of a model up to 14× larger on easy to intermediate tasks, while using up to 4× lower compute cost<sup>[1]</sup>. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—<strong>pre-training remains superior</strong>, as larger pre-trained models inherently encode deeper reasoning ability.</p>
 <p>In practice, TTS and pre-training are <strong>complementary</strong>: pre-training builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a <strong>hybrid approach</strong>, combining a pre-trained base model with TTS to achieve cost‑efficient scaling and adaptability.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
