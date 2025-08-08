@@ -126,6 +126,8 @@ CoT prompting addresses several ICL weaknesses:
 ![](images/cot-performance.png)
 **Figure:** Performance comparison between standard prompting and Chain-of-Thought prompting across GSM8K, SVAMP, and MAWPS benchmarks for different model families (LaMDA, GPT, PaLM). CoT delivers large gains, particularly for larger models. *(Source: Wei et al., 2022)*
 
+![Performance comparison between standard prompting and Chain-of-Thought prompting across GSM8K, SVAMP, and MAWPS benchmarks for different model families (LaMDA, GPT, PaLM). CoT delivers large gains, particularly for larger models. *(Source: Wei et al., 2022)*](images/cot-performance.png)
+
 **When It Works Best:**  
 
 - Tasks with compositional structure where intermediate reasoning steps are natural.  
