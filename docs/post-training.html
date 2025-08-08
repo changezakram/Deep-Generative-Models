@@ -471,6 +471,11 @@ Test-time scaling (TTS) improves a model’s performance and reasoning during in
 <figcaption><strong>Figure:</strong> An overview of Test-Time Scaling methods, organized into categories such as parallel scaling, sequential scaling, and search-based methods. Arrows indicate common integration flows—e.g., Chain-of-Thought Prompting feeding into Tree-of-Thoughts for deeper reasoning. This structure helps practitioners select the right combination of strategies based on task complexity. <em>(Source: Kumar et al., 2023)</em></figcaption>
 </figure>
 </div>
+<p><strong>Category Overview:</strong><br>
+- <strong>Scaling Strategies</strong> – Methods that expand search breadth or depth, exploring multiple reasoning paths to increase accuracy (e.g., Beam Search, Monte Carlo Tree Search, Best-of-N Search).<br>
+- <strong>Advanced Sampling</strong> – Techniques that selectively sample outputs based on confidence or external verification to improve efficiency and quality (e.g., Confidence-Based Sampling, Search Against Verifiers).<br>
+- <strong>Improved Reasoning</strong> – Approaches that structure thinking into multi-step processes for complex problem-solving (e.g., Chain-of-Thought Prompting, Tree-of-Thoughts, Self-Consistency Decoding).<br>
+- <strong>Sequential Revision</strong> – Iterative refinement strategies that repeatedly improve answers until they meet quality criteria (e.g., Self-Improvement via Refinements).</p>
 <p>While many approaches exist for test‑time scaling, a few have emerged as especially influential in practical LLM applications. The sections below explore some of these methods in greater detail, including their mechanics, strengths, and trade‑offs.</p>
 <section id="best-of-n-search-rejection-sampling" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="best-of-n-search-rejection-sampling"><span class="header-section-number">3.1</span> Best-of-N Search (Rejection Sampling)</h3>
