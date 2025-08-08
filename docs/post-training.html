@@ -539,9 +539,9 @@ Key Difference: Best-of-N vs.&nbsp;Self-Consistency
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p><strong>Best-of-N Search (Rejection Sampling)</strong> → Goal is to find the <em>highest-quality</em> single output.<br>
+<li><p><strong>Best-of-N Search (Rejection Sampling):</strong> Goal is to find the <em>highest-quality</em> single output.<br>
 The model is run multiple times with the same prompt, and each output is scored or filtered using a heuristic, probability, or verifier. The output with the best score is selected.</p></li>
-<li><p><strong>Self-Consistency Decoding</strong> → Goal is to find the answer most reasoning paths agree on.<br>
+<li><p><strong>Self-Consistency Decoding:</strong> Goal is to find the answer most reasoning paths agree on.<br>
 The model is run multiple times, encouraging different step-by-step reasoning chains. The final answer from each chain is collected, and the one appearing most often (majority vote) is chosen.</p></li>
 </ul>
 <p><strong>In short:</strong> Best-of-N picks the <em>best-rated</em> answer. Self-Consistency picks the <em>most common</em> answer.</p>

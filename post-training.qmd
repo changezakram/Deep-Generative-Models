@@ -249,10 +249,10 @@ The underlying intuition is that if a complex question has a unique correct answ
 ::: callout-note
 ## Key Difference: Best-of-N vs. Self-Consistency
 
-- **Best-of-N Search (Rejection Sampling)** → Goal is to find the *highest-quality* single output.  
+- **Best-of-N Search (Rejection Sampling):** Goal is to find the *highest-quality* single output.  
   The model is run multiple times with the same prompt, and each output is scored or filtered using a heuristic, probability, or verifier. The output with the best score is selected.
 
-- **Self-Consistency Decoding** → Goal is to find the answer most reasoning paths agree on.  
+- **Self-Consistency Decoding:** Goal is to find the answer most reasoning paths agree on.  
   The model is run multiple times, encouraging different step-by-step reasoning chains. The final answer from each chain is collected, and the one appearing most often (majority vote) is chosen.
 
 **In short:** Best-of-N picks the *best-rated* answer. Self-Consistency picks the *most common* answer.
