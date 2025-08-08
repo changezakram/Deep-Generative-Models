@@ -287,11 +287,11 @@ Performance Summary
 </ul>
 <p><strong>Limitations</strong></p>
 <ul>
-<li><strong>Context Length Constraints</strong>: The number of examples is limited by the model’s maximum input size.</li>
-<li><strong>Performance Sensitivity</strong>: Output quality can vary significantly depending on prompt wording, ordering, and example selection.</li>
-<li><strong>Not True Learning</strong>: The model doesn’t update weights; adaptation is temporary and disappears when the context changes.</li>
-<li><strong>Weak Multi-Step Reasoning</strong>: Standard ICL often fails at tasks requiring reasoning across multiple logical or arithmetic steps. Some of these reasoning limitations can be alleviated by techniques like <em>Chain-of-Thought prompting</em>.</li>
-<li><strong>Limited Interpretability</strong>: Final answers lack an explicit reasoning trail, making it difficult to verify or debug model outputs.</li>
+<li><strong>Context Length Constraints</strong>: Limited by the model’s maximum input size, restricting the number of examples that can be provided.</li>
+<li><strong>Performance Sensitivity</strong>: Output quality varies depending on prompt wording, ordering, and example selection.</li>
+<li><strong>Lack of True Learning</strong>: The model’s weights are not updated; adaptation is temporary and disappears when the context changes.</li>
+<li><strong>Weak Multi-Step Reasoning</strong>: Struggles with tasks requiring reasoning across multiple logical or arithmetic steps.</li>
+<li><strong>Limited Interpretability</strong>: Produces final answers without an explicit reasoning trail, making verification and debugging difficult.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled" title="Key Insight">
 <div class="callout-header d-flex align-content-center">
@@ -306,6 +306,7 @@ Key Insight
 <p>ICL effectively turns prompting into a form of <em>temporary fine-tuning</em>, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.</p>
 </div>
 </div>
+<p>Some of these reasoning limitations — particularly weak multi-step reasoning — can be addressed with <strong>Chain-of-Thought prompting</strong> (Wei et al., 2022), which guides the model to generate intermediate steps before producing the final answer.</p>
 </section>
 <section id="addressing-icls-reasoning-limitations-chain-of-thought-prompting" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="addressing-icls-reasoning-limitations-chain-of-thought-prompting"><span class="header-section-number">2.2</span> Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting</h3>

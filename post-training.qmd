@@ -76,15 +76,17 @@ Across all prompting types, performance consistently improves as model size incr
 
 **Limitations**
 
-- **Context Length Constraints**: The number of examples is limited by the model’s maximum input size.
-- **Performance Sensitivity**: Output quality can vary significantly depending on prompt wording, ordering, and example selection.
-- **Not True Learning**: The model doesn’t update weights; adaptation is temporary and disappears when the context changes.
-- **Weak Multi-Step Reasoning**: Standard ICL often fails at tasks requiring reasoning across multiple logical or arithmetic steps. Some of these reasoning limitations can be alleviated by techniques like *Chain-of-Thought prompting*.
-- **Limited Interpretability**: Final answers lack an explicit reasoning trail, making it difficult to verify or debug model outputs.
+- **Context Length Constraints**: Limited by the model’s maximum input size, restricting the number of examples that can be provided.
+- **Performance Sensitivity**: Output quality varies depending on prompt wording, ordering, and example selection.
+- **Lack of True Learning**: The model’s weights are not updated; adaptation is temporary and disappears when the context changes.
+- **Weak Multi-Step Reasoning**: Struggles with tasks requiring reasoning across multiple logical or arithmetic steps.
+- **Limited Interpretability**: Produces final answers without an explicit reasoning trail, making verification and debugging difficult.
 
 ::: {.callout-note title="Key Insight"}
 ICL effectively turns prompting into a form of *temporary fine-tuning*, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.
 :::
+
+Some of these reasoning limitations — particularly weak multi-step reasoning — can be addressed with **Chain-of-Thought prompting** (Wei et al., 2022), which guides the model to generate intermediate steps before producing the final answer.
 
 
 ### Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting
