@@ -528,6 +528,25 @@ Self-Consistency is a decoding strategy designed to improve reasoning by aggrega
 </li>
 <li>Effectiveness depends on diversity and quality of sampled reasoning paths</li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Difference: Best-of-N vs.&nbsp;Self-Consistency
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Best-of-N Search (Rejection Sampling)</strong> → Goal is to find the <em>highest-quality</em> single output.<br>
+The model is run multiple times with the same prompt, and each output is scored or filtered using a heuristic, probability, or verifier. The output with the best score is selected.</p></li>
+<li><p><strong>Self-Consistency Decoding</strong> → Goal is to find the answer most reasoning paths agree on.<br>
+The model is run multiple times, encouraging different step-by-step reasoning chains. The final answer from each chain is collected, and the one appearing most often (majority vote) is chosen.</p></li>
+</ul>
+<p><strong>In short:</strong> Best-of-N picks the <em>best-rated</em> answer. Self-Consistency picks the <em>most common</em> answer.</p>
+</div>
+</div>
 <p>The following table summarizes key test‑time scaling methods described in <em>LLM Post‑Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
 <colgroup>
