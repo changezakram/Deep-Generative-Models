@@ -266,7 +266,19 @@ No translations are shown beforehand — the model generates the French sentence
 <p><img src="images/eval_strategies.png" class="img-fluid"><br>
 <strong>Figure:</strong> Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. <em>(Source: Brown et al., 2020, Language Models are Few-Shot Learners)</em></p>
 <p><img src="images/superglue_analysis.png" class="img-fluid"> <strong>Figure:</strong> SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. <strong>Left:</strong> Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. <strong>Right:</strong> For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. <em>(Source: Brown et al., 2020, Language Models are Few-Shot Learners)</em></p>
-<p><strong>Performance Summary:</strong> Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Performance Summary">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Performance Summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.</p>
+</div>
+</div>
 <p><strong>Advantages</strong></p>
 <ul>
 <li><strong>Flexibility:</strong> The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.</li>
