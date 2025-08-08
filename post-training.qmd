@@ -116,10 +116,11 @@ CoT prompting addresses several ICL weaknesses:
 
 **Empirical Evidence (Wei et al., 2022):**  
 
-- On the **GSM8K math word problem benchmark**, CoT prompting boosted accuracy from **17.7%** (standard ICL) to **57.1%** in GPT-3 175B.  
-- On **MultiArith**, accuracy jumped from **78.7%** to **92.0%**.  
-- Gains were consistent across arithmetic, symbolic, and commonsense reasoning tasks, but minimal for tasks solvable without multi-step reasoning (e.g., fact retrieval).
+- **On the GSM8K math word problem benchmark** (Row 1), CoT prompting with **GPT-3 175B** improved solve rate from **17.7%** (standard prompting) to **57.1%**, a gain of nearly **40 percentage points**.  
+- **On the SVAMP benchmark** (Row 2), CoT prompting with **GPT-3 175B** increased performance from about **44%** to **72%**, surpassing the prior supervised best.  
+- **On the MAWPS benchmark** (Row 3), CoT prompting with **PaLM 540B** boosted accuracy from roughly **78%** to **92%**, matching or exceeding the prior supervised best.  
 
+Across all benchmarks and model families (LaMDA, GPT, PaLM), **larger models consistently show greater gains** from CoT prompting, with the blue curves sitting above the black curves, especially at the largest scales.
 
 ![**Figure:** Performance comparison between standard prompting and Chain-of-Thought prompting across GSM8K, SVAMP, and MAWPS benchmarks for different model families (LaMDA, GPT, PaLM). CoT delivers large gains, particularly for larger models. *(Source: Wei et al., 2022)*](images/cot-performance.png)
 
@@ -417,11 +418,9 @@ The key takeaway: effective post‑training is about matching the method to the 
 
 [1] Kumar, K., Ashraf, T., Thawakar, O., et al. (2024). *LLM Post-Training: A Deep Dive into Reasoning Large Language Models*. https://arxiv.org/abs/2502.21321 
 
-[12] Brown, T., Mann, B., Ryder, N., et al. (2020). *Language Models are Few-Shot Learners (GPT-3)*. https://arxiv.org/abs/2005.14165  
+[2] Brown, T., Mann, B., Ryder, N., et al. (2020). *Language Models are Few-Shot Learners (GPT-3)*. https://arxiv.org/abs/2005.14165 
 
-[2] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
-
-[3] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
+[3] Wei, J., Wang, X., Schuurmans, D., et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models*. https://arxiv.org/abs/2201.11903  
 
 [4] Ouyang, L., Wu, J., Jiang, X., et al. (2022). *Training Language Models to Follow Instructions with Human Feedback (InstructGPT)*. https://arxiv.org/abs/2203.02155  
 
@@ -439,10 +438,13 @@ The key takeaway: effective post‑training is about matching the method to the 
 
 [11] Radford, A., Wu, J., Child, R., et al. (2019). *Language Models are Unsupervised Multitask Learners*. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf  
 
-[13] Kojima, T., Gu, S. S., Reid, M., et al. (2022). *Large Language Models are Zero-Shot Reasoners*. https://arxiv.org/abs/2205.11916  
+[12] Kojima, T., Gu, S. S., Reid, M., et al. (2022). *Large Language Models are Zero-Shot Reasoners*. https://arxiv.org/abs/2205.11916  
 
-[14] Zhou, X., Santurkar, S., Bau, D., et al. (2022). *Large Language Models Are Human-Level Prompt Engineers*. https://arxiv.org/abs/2211.01910  
+[13] Zhou, X., Santurkar, S., Bau, D., et al. (2022). *Large Language Models Are Human-Level Prompt Engineers*. https://arxiv.org/abs/2211.01910  
 
-[15] Wei, J., Wang, X., Schuurmans, D., et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models*. https://arxiv.org/abs/2201.11903  
+[14] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+
+[15] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
+
 
  
