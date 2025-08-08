@@ -64,9 +64,7 @@ Traditionally, models learn behavior during training stages such as pre-training
 
 ![](images/superglue_analysis.png){fig-cap="SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. **Left:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. **Right:** For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*"}
 
-::: {.callout-tip title="Performance Summary"}
-Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.
-:::
+**Performance Summary:** Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.
 
 **Advantages**
 
@@ -414,6 +412,8 @@ The key takeaway: effective post‑training is about matching the method to the 
 
 [1] Kumar, K., Ashraf, T., Thawakar, O., et al. (2024). *LLM Post-Training: A Deep Dive into Reasoning Large Language Models*. https://arxiv.org/abs/2502.21321 
 
+[12] Brown, T., Mann, B., Ryder, N., et al. (2020). *Language Models are Few-Shot Learners (GPT-3)*. https://arxiv.org/abs/2005.14165  
+
 [2] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
 
 [3] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
@@ -433,8 +433,6 @@ The key takeaway: effective post‑training is about matching the method to the 
 [10] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al. (2019). *Parameter-Efficient Transfer Learning for NLP*. https://arxiv.org/abs/1902.00751 
 
 [11] Radford, A., Wu, J., Child, R., et al. (2019). *Language Models are Unsupervised Multitask Learners*. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf  
-
-[12] Brown, T., Mann, B., Ryder, N., et al. (2020). *Language Models are Few-Shot Learners (GPT-3)*. https://arxiv.org/abs/2005.14165  
 
 [13] Kojima, T., Gu, S. S., Reid, M., et al. (2022). *Large Language Models are Zero-Shot Reasoners*. https://arxiv.org/abs/2205.11916  
 

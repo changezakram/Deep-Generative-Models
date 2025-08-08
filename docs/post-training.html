@@ -266,19 +266,7 @@ No translations are shown beforehand — the model generates the French sentence
 <p><img src="images/eval_strategies.png" class="img-fluid"><br>
 <strong>Figure:</strong> Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. <em>(Source: Brown et al., 2020, Language Models are Few-Shot Learners)</em></p>
 <p><img src="images/superglue_analysis.png" class="img-fluid" data-fig-cap="SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. **Left:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. **Right:** For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*"></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Performance Summary">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Performance Summary
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.</p>
-</div>
-</div>
+<p><strong>Performance Summary:</strong> Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.</p>
 <p><strong>Advantages</strong></p>
 <ul>
 <li><strong>Flexibility:</strong> The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.</li>
@@ -810,6 +798,7 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 <section id="references-further-reading" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">7</span> References &amp; Further Reading</h2>
 <p>[1] Kumar, K., Ashraf, T., Thawakar, O., et al.&nbsp;(2024). <em>LLM Post-Training: A Deep Dive into Reasoning Large Language Models</em>. https://arxiv.org/abs/2502.21321</p>
+<p>[12] Brown, T., Mann, B., Ryder, N., et al.&nbsp;(2020). <em>Language Models are Few-Shot Learners (GPT-3)</em>. https://arxiv.org/abs/2005.14165</p>
 <p>[2] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media.</p>
 <p>[3] Alammar, J., &amp; Grootendorst, M. (2023). <em>Hands-On Large Language Models: Language Understanding and Generation</em>. O’Reilly Media.</p>
 <p>[4] Ouyang, L., Wu, J., Jiang, X., et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback (InstructGPT)</em>. https://arxiv.org/abs/2203.02155</p>
@@ -820,7 +809,6 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 <p>[9] Yao, S., Yu, D., Zhao, J., et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. https://arxiv.org/abs/2305.10601</p>
 <p>[10] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al.&nbsp;(2019). <em>Parameter-Efficient Transfer Learning for NLP</em>. https://arxiv.org/abs/1902.00751</p>
 <p>[11] Radford, A., Wu, J., Child, R., et al.&nbsp;(2019). <em>Language Models are Unsupervised Multitask Learners</em>. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</p>
-<p>[12] Brown, T., Mann, B., Ryder, N., et al.&nbsp;(2020). <em>Language Models are Few-Shot Learners (GPT-3)</em>. https://arxiv.org/abs/2005.14165</p>
 <p>[13] Kojima, T., Gu, S. S., Reid, M., et al.&nbsp;(2022). <em>Large Language Models are Zero-Shot Reasoners</em>. https://arxiv.org/abs/2205.11916</p>
 <p>[14] Zhou, X., Santurkar, S., Bau, D., et al.&nbsp;(2022). <em>Large Language Models Are Human-Level Prompt Engineers</em>. https://arxiv.org/abs/2211.01910</p>
 <p>[15] Wei, J., Wang, X., Schuurmans, D., et al.&nbsp;(2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. https://arxiv.org/abs/2201.11903</p>
