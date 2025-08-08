@@ -144,8 +144,18 @@ Across all benchmarks and model families (LaMDA, GPT, PaLM), **larger models con
 - **Error Propagation:** Early mistakes in reasoning can cascade to incorrect final answers.
 - **Hallucinated Logic:** Reasoning may be coherent but factually wrong.
 
+Beyond prompt engineering, another way to boost model performance without changing its weights is through **Test-Time Scaling (TTS)**.  
+While both prompting and TTS work without retraining the model, they target *different levers* for improvement:
 
-Beyond prompt engineering, another way to improve model performance without modifying its weights is through Test‑Time Scaling Methods, which allocate more computation at inference to enhance accuracy and reasoning.
+| Feature | Prompting | Test-Time Scaling (TTS) |
+|---------|-----------|-------------------------|
+| **When applied** | Before inference | During inference |
+| **What changes** | The *input prompt* to guide the model’s output | The *inference process* — computation allocation, search, sampling |
+| **Core mechanism** | Better instructions, examples, or formatting | Iterative refinement, search-based decoding, adaptive sampling |
+| **Goal** | Steer the model toward a better answer | Improve accuracy/reasoning by giving the model more “thinking” time or attempts |
+| **Analogy** | Asking a student a well-phrased question | Giving the student more scratch paper and extra tries |
+
+This distinction is important: **prompting** focuses on *how you ask*, while **TTS** focuses on *how the model thinks and searches for answers once asked*.
 
 ---
 

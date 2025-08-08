@@ -381,7 +381,50 @@ Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <str
 <li><strong>Error Propagation:</strong> Early mistakes in reasoning can cascade to incorrect final answers.</li>
 <li><strong>Hallucinated Logic:</strong> Reasoning may be coherent but factually wrong.</li>
 </ul>
-<p>Beyond prompt engineering, another way to improve model performance without modifying its weights is through Test‑Time Scaling Methods, which allocate more computation at inference to enhance accuracy and reasoning.</p>
+<p>Beyond prompt engineering, another way to boost model performance without changing its weights is through <strong>Test-Time Scaling (TTS)</strong>.<br>
+While both prompting and TTS work without retraining the model, they target <em>different levers</em> for improvement:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 24%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Prompting</th>
+<th>Test-Time Scaling (TTS)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>When applied</strong></td>
+<td>Before inference</td>
+<td>During inference</td>
+</tr>
+<tr class="even">
+<td><strong>What changes</strong></td>
+<td>The <em>input prompt</em> to guide the model’s output</td>
+<td>The <em>inference process</em> — computation allocation, search, sampling</td>
+</tr>
+<tr class="odd">
+<td><strong>Core mechanism</strong></td>
+<td>Better instructions, examples, or formatting</td>
+<td>Iterative refinement, search-based decoding, adaptive sampling</td>
+</tr>
+<tr class="even">
+<td><strong>Goal</strong></td>
+<td>Steer the model toward a better answer</td>
+<td>Improve accuracy/reasoning by giving the model more “thinking” time or attempts</td>
+</tr>
+<tr class="odd">
+<td><strong>Analogy</strong></td>
+<td>Asking a student a well-phrased question</td>
+<td>Giving the student more scratch paper and extra tries</td>
+</tr>
+</tbody>
+</table>
+<p>This distinction is important: <strong>prompting</strong> focuses on <em>how you ask</em>, while <strong>TTS</strong> focuses on <em>how the model thinks and searches for answers once asked</em>.</p>
 <hr>
 </section>
 </section>
