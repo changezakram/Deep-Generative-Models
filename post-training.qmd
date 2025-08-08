@@ -48,7 +48,7 @@ Traditionally, models learn behavior during training stages such as pre-training
   - The model relies solely on its pre-trained knowledge and its understanding of the instruction to produce the output.  
   - Even without examples, the instruction itself acts as a minimal form of *context* that the model conditions on.  
    
-  Example: *Instruction:* “Translate the following sentence into French: The weather is beautiful today.”  
+  Example: Translate the following sentence into French: The weather is beautiful today.  
   No translations are shown beforehand — the model generates the French sentence using patterns it learned during training.
 
 **2. Few-Shot Prompting:** Provide a small number of (input → output) examples before asking for a new prediction. 
