@@ -172,7 +172,7 @@ In practice, TTS and pre-training are **complementary**: pre-training builds bro
 
 **Why It Matters:**
 
-Bigger isn’t always better—or necessary. Test-time scaling lets you squeeze more performance out of your current models by simply working them harder at inference. Instead of paying the price (in time, data, and money) to train a larger model, you can unlock competitive—or even superior—results by exploring multiple reasoning paths and smartly combining answers. The payoff? Stronger performance, lower costs, and faster innovation without the heavyweight upgrades.
+Test-time scaling lets you squeeze more performance out of your current models by simply working them harder at inference. Instead of paying the price (in time, data, and money) to train a larger model, you can unlock competitive or even superior results by exploring multiple reasoning paths and smartly combining answers. This translates into stronger performance, lower costs, and faster innovation—without the need for heavy, expensive upgrades.
 
 **Advantages:**
 
