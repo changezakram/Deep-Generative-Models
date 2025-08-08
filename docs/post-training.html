@@ -250,14 +250,20 @@ In-Context Learning (ICL) refers to the ability of large language models (LLMs) 
 </ul>
 <p><strong>Key Variants</strong></p>
 <p><strong>1. Zero-Shot Prompting:</strong><br>
-Ask the model to perform a task using only an instruction or question — <strong>without providing any explicit examples</strong> of how the task should be done.<br>
-- The model relies solely on its pre-trained knowledge and its understanding of the instruction to produce the output.<br>
-- Even without examples, the instruction itself acts as a minimal form of <em>context</em> that the model conditions on.<br>
-Example: <em>Instruction:</em> “Translate the following sentence into French: The weather is beautiful today.”<br>
+Ask the model to perform a task using only an instruction or question — without providing any explicit examples of how the task should be done.</p>
+<ul>
+<li>The model relies solely on its pre-trained knowledge and its understanding of the instruction to produce the output.<br>
+</li>
+<li>Even without examples, the instruction itself acts as a minimal form of <em>context</em> that the model conditions on.</li>
+</ul>
+<p>Example: <em>Instruction:</em> “Translate the following sentence into French: The weather is beautiful today.”<br>
 No translations are shown beforehand — the model generates the French sentence using patterns it learned during training.</p>
-<p><strong>2. Few-Shot Prompting:</strong> Provide a small number of (input → output) examples before asking for a new prediction.<br>
-Example: Showing labeled sentiment examples before asking for classification of a new sentence.<br>
-- One example = one “shot” (e.g., 5 examples = 5-shot learning). - More examples generally improve performance, but are limited by the model’s maximum context length.</p>
+<p><strong>2. Few-Shot Prompting:</strong> Provide a small number of (input → output) examples before asking for a new prediction.</p>
+<ul>
+<li>One example = one “shot” (e.g., 5 examples = 5-shot learning).</li>
+<li>More examples generally improve performance, but are limited by the model’s maximum context length.</li>
+</ul>
+<p>Example: Showing labeled sentiment examples before asking for classification of a new sentence.</p>
 <p><strong>Advantages</strong></p>
 <ul>
 <li><strong>Flexibility:</strong> The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.</li>

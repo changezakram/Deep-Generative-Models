@@ -44,17 +44,22 @@ Traditionally, models learn behavior during training stages such as pre-training
 **Key Variants**
 
 **1. Zero-Shot Prompting:**  
-  Ask the model to perform a task using only an instruction or question — **without providing any explicit examples** of how the task should be done.  
+  Ask the model to perform a task using only an instruction or question — without providing any explicit examples of how the task should be done. 
+ 
   - The model relies solely on its pre-trained knowledge and its understanding of the instruction to produce the output.  
-  - Even without examples, the instruction itself acts as a minimal form of *context* that the model conditions on.     
+  - Even without examples, the instruction itself acts as a minimal form of *context* that the model conditions on.  
+   
   Example: *Instruction:* “Translate the following sentence into French: The weather is beautiful today.”  
   No translations are shown beforehand — the model generates the French sentence using patterns it learned during training.
 
 **2. Few-Shot Prompting:** 
-  Provide a small number of (input → output) examples before asking for a new prediction.  
-  Example: Showing labeled sentiment examples before asking for classification of a new sentence.  
+  Provide a small number of (input → output) examples before asking for a new prediction. 
+ 
   - One example = one “shot” (e.g., 5 examples = 5-shot learning).
   - More examples generally improve performance, but are limited by the model’s maximum context length.
+
+  Example: Showing labeled sentiment examples before asking for classification of a new sentence.  
+
 
 **Advantages**
 
