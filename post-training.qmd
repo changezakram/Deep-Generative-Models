@@ -64,6 +64,10 @@ Traditionally, models learn behavior during training stages such as pre-training
 
 ![](images/superglue_analysis.png){fig-cap="SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. **Left:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. **Right:** For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*"}
 
+::: {.callout-tip title="Performance Summary"}
+Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.
+:::
+
 **Advantages**
 
 - **Flexibility:** The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.
@@ -72,15 +76,15 @@ Traditionally, models learn behavior during training stages such as pre-training
 
 **Limitations**
 
-- **Context Length Constraints:** The number of examples is limited by the model’s maximum input size.
-- **Performance Sensitivity:** Output quality can vary significantly depending on prompt wording, ordering, and example selection.
-- **Not True Learning:** The model doesn’t update weights; adaptation is temporary and disappears when the context changes.
-- **Weak Multi-Step Reasoning:** Standard ICL often fails at tasks requiring reasoning across multiple logical or arithmetic steps.
-- **Limited Interpretability:** Final answers lack an explicit reasoning trail, making it difficult to verify or debug model outputs.
+- **Context Length Constraints**: The number of examples is limited by the model’s maximum input size.
+- **Performance Sensitivity**: Output quality can vary significantly depending on prompt wording, ordering, and example selection.
+- **Not True Learning**: The model doesn’t update weights; adaptation is temporary and disappears when the context changes.
+- **Weak Multi-Step Reasoning**: Standard ICL often fails at tasks requiring reasoning across multiple logical or arithmetic steps. Some of these reasoning limitations can be alleviated by techniques like *Chain-of-Thought prompting*.
+- **Limited Interpretability**: Final answers lack an explicit reasoning trail, making it difficult to verify or debug model outputs.
 
-**Key Insight:**  
-
+::: {.callout-note title="Key Insight"}
 ICL effectively turns prompting into a form of *temporary fine-tuning*, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.
+:::
 
 
 ### Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting

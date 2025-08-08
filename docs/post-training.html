@@ -266,6 +266,19 @@ No translations are shown beforehand — the model generates the French sentence
 <p><img src="images/eval_strategies.png" class="img-fluid"><br>
 <strong>Figure:</strong> Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. <em>(Source: Brown et al., 2020, Language Models are Few-Shot Learners)</em></p>
 <p><img src="images/superglue_analysis.png" class="img-fluid" data-fig-cap="SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. **Left:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. **Right:** For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*"></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Performance Summary">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Performance Summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.</p>
+</div>
+</div>
 <p><strong>Advantages</strong></p>
 <ul>
 <li><strong>Flexibility:</strong> The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.</li>
@@ -274,14 +287,25 @@ No translations are shown beforehand — the model generates the French sentence
 </ul>
 <p><strong>Limitations</strong></p>
 <ul>
-<li><strong>Context Length Constraints:</strong> The number of examples is limited by the model’s maximum input size.</li>
-<li><strong>Performance Sensitivity:</strong> Output quality can vary significantly depending on prompt wording, ordering, and example selection.</li>
-<li><strong>Not True Learning:</strong> The model doesn’t update weights; adaptation is temporary and disappears when the context changes.</li>
-<li><strong>Weak Multi-Step Reasoning:</strong> Standard ICL often fails at tasks requiring reasoning across multiple logical or arithmetic steps.</li>
-<li><strong>Limited Interpretability:</strong> Final answers lack an explicit reasoning trail, making it difficult to verify or debug model outputs.</li>
+<li><strong>Context Length Constraints</strong>: The number of examples is limited by the model’s maximum input size.</li>
+<li><strong>Performance Sensitivity</strong>: Output quality can vary significantly depending on prompt wording, ordering, and example selection.</li>
+<li><strong>Not True Learning</strong>: The model doesn’t update weights; adaptation is temporary and disappears when the context changes.</li>
+<li><strong>Weak Multi-Step Reasoning</strong>: Standard ICL often fails at tasks requiring reasoning across multiple logical or arithmetic steps. Some of these reasoning limitations can be alleviated by techniques like <em>Chain-of-Thought prompting</em>.</li>
+<li><strong>Limited Interpretability</strong>: Final answers lack an explicit reasoning trail, making it difficult to verify or debug model outputs.</li>
 </ul>
-<p><strong>Key Insight:</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Insight">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Insight
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>ICL effectively turns prompting into a form of <em>temporary fine-tuning</em>, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.</p>
+</div>
+</div>
 </section>
 <section id="addressing-icls-reasoning-limitations-chain-of-thought-prompting" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="addressing-icls-reasoning-limitations-chain-of-thought-prompting"><span class="header-section-number">2.2</span> Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting</h3>
