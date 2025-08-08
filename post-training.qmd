@@ -164,7 +164,7 @@ This distinction is important: **prompting** focuses on *how you ask*, while **T
 ## Test‑Time Scaling Methods
 
 **Concept:**  
-Test‑time scaling (TTS) is the practice of improving model performance and reasoning **during inference** without modifying the model’s parameters. Unlike pre-training, which enhances capabilities through large‑scale training, TTS dynamically allocates computational resources—such as iterative refinement, search‑based decoding, or adaptive sampling—based on task complexity.  
+Test-time scaling (TTS) improves a model’s performance and reasoning during inference—without changing its parameters. While prompting guides the model by adjusting the input text, TTS works by giving the model more “thinking time.” It runs extra computations, explores multiple reasoning paths, and often blends the best results from several runs. Unlike pre-training, which teaches the model new skills through large-scale learning, TTS makes smarter use of existing skills by allocating more resources—like iterative refinement, search-based decoding, or adaptive sampling—based on complexity of the task.
 
 TTS can match the performance of a model up to 14× larger on easy to intermediate tasks, while using up to 4× lower compute cost<sup>[1]</sup>. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—**pre-training remains superior**, as larger pre-trained models inherently encode deeper reasoning ability.  
 
