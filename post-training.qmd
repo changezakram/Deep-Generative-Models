@@ -107,12 +107,9 @@ Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding **na
 
 CoT prompting addresses several ICL weaknesses:
 
-**1. Improved Multi-Step Reasoning:**  
-   By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic.
-**2. Interpretability:**  
-   Produces intermediate steps that allow humans to verify and debug reasoning.
-**3. **Error Reduction:**  
-   Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.
+- **Improved Multi-Step Reasoning:** By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic.
+- **Interpretability:** Produces intermediate steps that allow humans to verify and debug reasoning.
+- **Error Reduction:** Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.
 
 **Empirical Evidence (Wei et al., 2022):**  
 
