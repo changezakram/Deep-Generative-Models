@@ -41,6 +41,11 @@ Traditionally, models learn behavior during training stages such as pre-training
 - These patterns are applied to new examples within the same prompt context.
 - This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.
 
+![](images/eval_strategies.png)  
+**Figure**: Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. *(Source: Brown et al., 2020)*
+
+### Key Variants
+
 **Key Variants**
 
 **1. Zero-Shot Prompting:** Ask the model to perform a task using only an instruction or question — without providing any explicit examples of how the task should be done. 

@@ -248,6 +248,11 @@ In-Context Learning (ICL) refers to the ability of large language models (LLMs) 
 <li>These patterns are applied to new examples within the same prompt context.</li>
 <li>This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.</li>
 </ul>
+<p><img src="images/eval_strategies.png" class="img-fluid"><br>
+<strong>Figure</strong>: Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. <em>(Source: Brown et al., 2020)</em></p>
+</section>
+<section id="key-variants" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="key-variants"><span class="header-section-number">2.2</span> Key Variants</h3>
 <p><strong>Key Variants</strong></p>
 <p><strong>1. Zero-Shot Prompting:</strong> Ask the model to perform a task using only an instruction or question — without providing any explicit examples of how the task should be done.</p>
 <ul>
@@ -280,8 +285,8 @@ No translations are shown beforehand — the model generates the French sentence
 <p><strong>Key Insight:</strong></p>
 <p>ICL effectively turns prompting into a form of <em>temporary fine-tuning</em>, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.</p>
 </section>
-<section id="addressing-icls-reasoning-limitations-chain-of-thought-prompting" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="addressing-icls-reasoning-limitations-chain-of-thought-prompting"><span class="header-section-number">2.2</span> Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting</h3>
+<section id="addressing-icls-reasoning-limitations-chain-of-thought-prompting" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="addressing-icls-reasoning-limitations-chain-of-thought-prompting"><span class="header-section-number">2.3</span> Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting</h3>
 <p><strong>Concept:</strong><br>
 Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <strong>natural language reasoning steps</strong> between the input and the final output. Instead of going directly from problem → answer, the model is encouraged to generate a sequence of intermediate steps — a “reasoning chain” — before producing its final answer.</p>
 <p><strong>How It Works:</strong></p>
