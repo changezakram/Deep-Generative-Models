@@ -175,6 +175,8 @@ In practice, TTS and pre-training are **complementary**: pre-training builds bro
 - Requires effective task‑complexity estimation to allocate resources efficiently  
 - May yield diminishing returns if scaling is excessive for a given task  
 
+![**Figure:** An overview of Test-Time Scaling methods: parallel scaling, sequential scaling, and search-based methods. It also shows how they integrate into a compute-optimal strategy. *(Source: Kumar et al., 2023)*](images/test-time-scaling.png)
+
 While many approaches exist for test‑time scaling, a few have emerged as especially influential in practical LLM applications. The sections below explore some of these methods in greater detail, including their mechanics, strengths, and trade‑offs.
 
 ### Best-of-N Search (Rejection Sampling)
