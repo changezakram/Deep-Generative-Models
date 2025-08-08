@@ -320,7 +320,7 @@ Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <str
 </li>
 <li>The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.</li>
 </ul>
-<p><img src="images/CoT-reasoning.png" class="img-fluid"> <strong>Figure:</strong> Comparison of standard prompting and Chain-of-Thought prompting on arithmetic reasoning tasks. CoT provides explicit step-by-step reasoning, enabling the model to correctly solve problems that standard prompting fails. <em>(Source: Wei et al., 2022)</em></p>
+<p><img src="images/cot-reasoning.png" class="img-fluid"> <strong>Figure:</strong> Comparison of standard prompting and Chain-of-Thought prompting on arithmetic reasoning tasks. CoT provides explicit step-by-step reasoning, enabling the model to correctly solve problems that standard prompting fails. <em>(Source: Wei et al., 2022)</em></p>
 <p><strong>Why It Helps:</strong></p>
 <p>CoT prompting addresses several ICL weaknesses:</p>
 <p><strong>1. Improved Multi-Step Reasoning:</strong><br>
@@ -335,7 +335,7 @@ Reduces the likelihood of “shortcut” or guess-based answers by forcing the m
 </li>
 <li>Gains were consistent across arithmetic, symbolic, and commonsense reasoning tasks, but minimal for tasks solvable without multi-step reasoning (e.g., fact retrieval).</li>
 </ul>
-<p><img src="images/CoT-performance.png" class="img-fluid"> <strong>Figure:</strong> Performance comparison between standard prompting and Chain-of-Thought prompting across GSM8K, SVAMP, and MAWPS benchmarks for different model families (LaMDA, GPT, PaLM). CoT delivers large gains, particularly for larger models. <em>(Source: Wei et al., 2022)</em></p>
+<p><img src="images/cot-performance.png" class="img-fluid"> <strong>Figure:</strong> Performance comparison between standard prompting and Chain-of-Thought prompting across GSM8K, SVAMP, and MAWPS benchmarks for different model families (LaMDA, GPT, PaLM). CoT delivers large gains, particularly for larger models. <em>(Source: Wei et al., 2022)</em></p>
 <p><strong>When It Works Best:</strong></p>
 <ul>
 <li>Tasks with compositional structure where intermediate reasoning steps are natural.<br>

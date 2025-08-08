@@ -102,7 +102,7 @@ Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding **na
 - The model learns to emulate this reasoning pattern when solving new tasks in the same prompt.  
 - The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.
 
-![](images/CoT-reasoning.png)
+![](images/cot-reasoning.png)
 **Figure:** Comparison of standard prompting and Chain-of-Thought prompting on arithmetic reasoning tasks. CoT provides explicit step-by-step reasoning, enabling the model to correctly solve problems that standard prompting fails. *(Source: Wei et al., 2022)*
 
 
@@ -123,7 +123,7 @@ CoT prompting addresses several ICL weaknesses:
 - On **MultiArith**, accuracy jumped from **78.7%** to **92.0%**.  
 - Gains were consistent across arithmetic, symbolic, and commonsense reasoning tasks, but minimal for tasks solvable without multi-step reasoning (e.g., fact retrieval).
 
-![](images/CoT-performance.png)
+![](images/cot-performance.png)
 **Figure:** Performance comparison between standard prompting and Chain-of-Thought prompting across GSM8K, SVAMP, and MAWPS benchmarks for different model families (LaMDA, GPT, PaLM). CoT delivers large gains, particularly for larger models. *(Source: Wei et al., 2022)*
 
 **When It Works Best:**  
