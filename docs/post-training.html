@@ -264,16 +264,9 @@ No translations are shown beforehand — the model generates the French sentence
 </ul>
 <p>Example: Showing labeled sentiment examples before asking for classification of a new sentence.</p>
 <p><img src="images/eval_strategies.png" class="img-fluid"><br>
-<strong>Figure</strong>: Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. <em>(Source: Brown et al., 2020)</em></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="superglue_analysis.png" class="img-fluid figure-img"></p>
-<figcaption>SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples.<br>
-<strong>Left:</strong> Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains.<br>
-<strong>Right:</strong> For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus.<br>
-(Source: Brown et al., 2020, <em>Language Models are Few-Shot Learners</em>)</figcaption>
-</figure>
-</div>
+<strong>Figure:</strong> Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. <em>(Source: Brown et al., 2020, Language Models are Few-Shot Learners)</em></p>
+<p><img src="superglue_analysis.png" class="img-fluid" alt="SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. Left: Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. Right: For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. (Source: Brown et al., 2020, Language Models are Few-Shot Learners)"><br>
+<strong>Figure:</strong> SuperGLUE performance results for different prompting strategies and model sizes. The left plot shows consistent gains with larger models, while the right plot shows diminishing returns after a few examples in context.</p>
 <p><strong>Advantages</strong></p>
 <ul>
 <li><strong>Flexibility:</strong> The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.</li>

@@ -60,12 +60,10 @@ Traditionally, models learn behavior during training stages such as pre-training
   Example: Showing labeled sentiment examples before asking for classification of a new sentence.  
 
 ![](images/eval_strategies.png)  
-**Figure**: Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. *(Source: Brown et al., 2020)*
+**Figure:** Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*
 
-![SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples.  
-**Left:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains.  
-**Right:** For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus.  
-(Source: Brown et al., 2020, *Language Models are Few-Shot Learners*)](superglue_analysis.png)
+![SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, and the effect of model size and number of in-context examples. **Left:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot showing the largest gains. **Right:** For GPT-3 (175B parameters), performance improves rapidly with just a few in-context examples, then plateaus. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*](superglue_analysis.png)  
+**Figure:** SuperGLUE performance results for different prompting strategies and model sizes. The left plot shows consistent gains with larger models, while the right plot shows diminishing returns after a few examples in context.
 
 **Advantages**
 
