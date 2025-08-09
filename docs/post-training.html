@@ -669,6 +669,24 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <li>Human-generated data may bring bias, inconsistency, or noise.</li>
 <li>Risk of overfitting to dataset style if diversity is lacking.</li>
 </ul>
+<p>The table below reports results from the <strong>Flan (Wei et al., 2022)</strong> study, which evaluated the impact of supervised fine-tuning (SFT) — specifically <em>instruction fine-tuning</em> — on multiple pre-trained language models of different sizes (ranging from 80M to 540B parameters). Performance is measured across four benchmarks:</p>
+<ul>
+<li><strong>MMLU</strong> – a multi-task test covering 57 diverse subjects.<br>
+</li>
+<li><strong>BBH</strong> – the Big-Bench Hard set of reasoning tasks.<br>
+</li>
+<li><strong>TyDiQA</strong> – a multilingual question-answering benchmark.<br>
+</li>
+<li><strong>MGSM</strong> – multilingual grade school math problems.</li>
+</ul>
+<p>The “Norm. avg.” column is the unweighted normalized average score across all benchmarks, while “Direct” and “CoT” show performance under direct prompting and chain-of-thought prompting. Gains in parentheses represent improvement in normalized average from adding SFT.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="flan_performance_table.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Performance of instruction-fine-tuned models (FLAN, FLAN-PaLM) compared to their base models on a mix of unseen task categories. Results show consistent improvements across model sizes, with gains of up to 9–10 points in average accuracy after instruction fine-tuning. <em>(Source: Wei et al., 2022, “Fine-tuned Language Models are Zero-Shot Learners”)</em></figcaption>
+</figure>
+</div>
+<p>Instruction fine-tuning yields clear and consistent performance gains across a wide range of model sizes. For example, within the Flan-T5 family, gains tend to grow with model size — the 80M Flan-T5 improves by +6.1 points in normalized average score, while the 11B model improves by +26.6, illustrating the general trend that <em>bigger models benefit more from fine-tuning</em>. For PaLM models, the 62B version’s normalized average score jumps from <strong>28.4</strong> (no fine-tuning) to <strong>38.8</strong> (+10.4) after Flan instruction tuning — with notable improvements on MMLU (from 55.1 to 59.6) and MGSM (from 18.2 to 28.5). The largest 540B model also shows substantial gains, increasing from <strong>49.1</strong> to <strong>58.4</strong> (+9.3) in normalized average and boosting TyDiQA accuracy from 52.9 to 67.8. While the +9.3 improvement is smaller in absolute terms than for some smaller models, this is largely because the 540B PaLM started from a much higher baseline, leaving less headroom for improvement. Overall, these results demonstrate that instruction fine-tuning can significantly enhance zero-shot and few-shot performance, even for very large pre-trained models.</p>
 </section>
 <section id="domain-specific-fine-tuning" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="domain-specific-fine-tuning"><span class="header-section-number">4.2</span> Domain-Specific Fine-Tuning</h3>
