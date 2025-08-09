@@ -286,73 +286,63 @@ While prompting and test-time scaling adjust model behavior without altering wei
 
 ## Supervised Fine-Tuning (SFT)
 
-**Concept:** 
+**Concept:**  
+
+Supervised Fine-Tuning (SFT) is a post-training method where a pre-trained foundation model is further trained on labeled examples (input–output pairs) to better align it with desired behaviors or domain needs. While pre-training learns broad language patterns, SFT narrows the focus—adapting the model for specific goals by adjusting its internal weights on high-quality datasets. In contrast to prompting or test-time scaling, which only influence outputs at inference time, SFT changes the model’s parameters directly, so the improvements stay in the model even after the training.
+
+
+SFT can be applied in two main ways:  
+
+- **General-purpose instruction tuning** – teaching the model to follow diverse natural language instructions across many tasks.  
+- **Domain-specific tuning** – adapting the model for specialized fields such as legal, medical, or financial applications.  
+
+**Why it matters:**  
+
+SFT is one of the most effective ways to improve task performance, consistency, and controllability in large language models. It also serves as the foundation for later optimization steps such as preference alignment (e.g., RLHF or DPO).
  
-Supervised fine-tuning is a supervised post-training technique that trains LLMs on curated (instruction, response) pairs. It adapts a pre-trained foundation model to follow natural language instructions across a broad range of tasks — even ones it hasn’t seen before. In doing so, it adjusts the model’s internal weights to better handle the target task or domain. Fine-tuning can also be applied to specific domains or tasks, such as sentiment analysis, question answering, or medical diagnosis, by updating model parameters on high-quality datasets.
-
-While fine-tuning improves task performance and alignment, it poses challenges including **overfitting**, **high computational costs**, and **sensitivity to dataset biases**. Parameter-efficient variants such as **LoRA** and **adapters** address these issues by updating only a small subset of parameters, reducing compute and storage requirements. However, increased specialization may reduce generalization to out-of-domain tasks, creating a trade-off between specificity and versatility.
-
-**Advantages:**  
-
-- Improves zero- and few-shot task generalization  
-- Increases consistency and alignment across varied prompts  
-- Produces more helpful, structured, and controllable responses  
-- Can be tailored for domain-specific performance gains  
-- Parameter-efficient methods (e.g., LoRA, adapters) enable faster, cheaper adaptation
-
-**Limitations:**   
-
-- Requires significant effort to create high-quality, diverse instruction datasets  
-- Evaluating open-ended instructions can be subjective  
-- Human-generated data may introduce bias, inconsistency, or noise  
-- Risk of overfitting to narrow domains  
-- May reduce generalization to out-of-domain scenarios  
-
-
 While many approaches exist for supervised fine‑tuning, **Instruction Fine‑Tuning** and **Domain‑Specific Fine‑Tuning** are among the most prevalent in modern LLM post‑training pipelines. The sections below explore these methods in greater detail.
 
 
 ### Instruction Fine-Tuning
 
 **Concept:**  
-Instruction Fine‑Tuning is the most widely used form of supervised fine‑tuning in LLM post‑training. It involves training a pre‑trained model on curated datasets of instruction–response pairs covering a wide variety of tasks, such as summarization, question answering, classification, and creative writing. The goal is to make the model follow natural language instructions reliably, even for tasks it hasn’t seen before.  
-This process adjusts the model’s internal weights so it produces outputs that align with the intent of the instruction rather than simply predicting the next word. Instruction fine‑tuning is often the **first post‑training step** in modern LLM pipelines and serves as a foundation for subsequent preference optimization stages like RLHF or DPO.
+
+Instruction Fine-Tuning is the most common form of SFT, focusing on training a pre-trained model with a broad range of instruction–response examples across tasks like summarization, question answering, classification, and creative writing. The aim is to help the model reliably follow natural language instructions — even for tasks it hasn’t explicitly seen — by aligning outputs with the user’s intent rather than just predicting the next word. It is typically the first step in many modern LLM post-training pipelines and sets a strong foundation for later preference optimization (e.g., RLHF, DPO).
 
 **Advantages:** 
  
-- Improves generalization to unseen tasks in zero‑shot and few‑shot settings.  
-- Produces more helpful, controllable, and structured outputs.  
-- Increases consistency across varied prompt styles.  
-- Provides a strong baseline for further preference optimization.
+- Strong generalization to unseen tasks in zero-shot and few-shot settings.
+- Produces more helpful, consistent, and structured outputs.
+- Improves controllability across varied prompt styles.
+- Provides a solid baseline for later optimization.
 
 **Limitations:**  
 
-- Requires large, high‑quality, and diverse instruction datasets.  
-- Open‑ended instructions can be difficult to evaluate objectively.  
-- Human‑generated data may introduce bias, inconsistency, or noise.  
-- Can overfit to dataset style if training data lacks diversity.
+- Needs large, diverse, and high-quality instruction datasets.
+- Open-ended tasks can be hard to evaluate objectively.
+- Human-generated data may bring bias, inconsistency, or noise.
+- Risk of overfitting to dataset style if diversity is lacking.
 
 
 ### Domain-Specific Fine-Tuning
 
 **Concept:**  
 
-Domain‑Specific Fine‑Tuning adapts a general‑purpose LLM to excel in a specialized field, such as biomedicine, finance, legal, climate science, or software engineering. The process uses curated domain‑specific datasets to teach the model the terminology, style, and knowledge relevant to that field.  
-By focusing on specialized corpora, the model can deliver more accurate, relevant, and trustworthy outputs for domain‑specific use cases, making it valuable for enterprise and industry applications.
+Domain-Specific Fine-Tuning narrows the model’s focus to excel in a specialized area — such as finance, healthcare, law, climate science, or software engineering — by training it on carefully selected domain-relevant datasets. This targeted approach strengthens the model’s command of the terminology, style, and knowledge specific to the field, enabling more precise, trustworthy, and context-aware outputs for professional or high-stakes use.
 
 **Advantages:**  
 
-- Improves accuracy, factual grounding, and relevance in the target domain.  
-- Enhances user trust for high‑stakes applications.  
-- Supports compliance with domain‑specific standards or regulations.  
-- Can reduce hallucinations by anchoring the model in verified domain content.
+- Boosts accuracy, factual grounding, and relevance in the chosen domain.
+- Builds user trust in sensitive or regulated applications.
+- Supports compliance with industry standards.
+- Can reduce hallucinations by anchoring responses in vetted domain content.
 
 **Limitations:**  
-- Requires high‑quality, domain‑specific datasets that can be costly or difficult to obtain.  
-- Risk of reduced generalization to tasks outside the target domain.  
-- May inherit biases or gaps present in domain data.  
-- Can lead to over‑specialization if fine‑tuning data is too narrow.
 
+- Requires high-quality domain datasets, which may be expensive or hard to source.
+- May lose versatility on out-of-domain tasks.
+- Inherits biases or blind spots from domain data.
+- Risk of over-specialization if coverage is too narrow.
 
 
 The following table summarizes supervised fine-tuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
