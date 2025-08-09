@@ -722,7 +722,7 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <figcaption><strong>Figure:</strong> Accuracy of Flan-PaLM 540B after domain-specific fine-tuning compared to previous state-of-the-art models on three biomedical QA benchmarks. <em>(Source: Singhal et al., 2022, “Large Language Models Encode Clinical Knowledge”)</em></figcaption>
 </figure>
 </div>
-<p>Domain-specific fine-tuning delivers <strong>substantial accuracy gains</strong> across all three benchmarks. On <strong>MedQA (USMLE)</strong>, Flan-PaLM 540B achieves <strong>67.6%</strong>, exceeding the previous best (PubMedGPT) by over <strong>17 points</strong>. On <strong>MedMCQA</strong>, performance rises to <strong>57.6%</strong> from the prior best of <strong>52.9%</strong>, while on <strong>PubMedQA</strong> it reaches <strong>79.0%</strong>, slightly surpassing the earlier record of <strong>78.2%</strong>. These results demonstrate that aligning a large language model with specialized biomedical knowledge can yield meaningful improvements, especially for complex, domain-specific reasoning tasks, even when starting from an already strong general-purpose model.</p>
+<p>Domain-specific fine-tuning delivers <strong>substantial accuracy gains</strong> across all three benchmarks. On <strong>MedQA (USMLE)</strong>, Flan-PaLM 540B achieves <strong>67.6%</strong>, exceeding the previous best (PubMedGPT) by over <strong>17 points</strong>. On <strong>MedMCQA</strong>, performance rises to <strong>57.6%</strong> from the prior best of <strong>52.9%</strong>, while on <strong>PubMedQA</strong> it reaches <strong>79.0%</strong>, slightly surpassing the earlier record of <strong>78.2%</strong>. These results demonstrate that aligning a large language model with specialized biomedical knowledge can yield meaningful improvements, especially for complex, domain-specific reasoning tasks, even when starting from an already strong general-purpose model<sup>[6]</sup>.</p>
 <p>The following table summarizes supervised fine-tuning methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
 <colgroup>
@@ -937,16 +937,17 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 <p>[3] Wei, J., Wang, X., Schuurmans, D., et al.&nbsp;(2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. https://arxiv.org/abs/2201.11903</p>
 <p>[4] Ouyang, L., Wu, J., Jiang, X., et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback (InstructGPT)</em>. https://arxiv.org/abs/2203.02155</p>
 <p>[5] Chung, H. W., Hou, L., Longpre, S., et al.&nbsp;(2022). <em>Scaling Instruction-Finetuned Language Models (Flan)</em>. https://arxiv.org/abs/2210.11416</p>
-<p>[6] Rafailov, R., Sharma, A., Mitchell, E., et al.&nbsp;(2023). <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</em>. https://arxiv.org/abs/2305.18290</p>
-<p>[7] Wei, J., Wang, X., Schuurmans, D., et al.&nbsp;(2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. https://arxiv.org/abs/2201.11903</p>
-<p>[8] Wang, X., Wei, J., Schuurmans, D., et al.&nbsp;(2022). <em>Self-Consistency Improves Chain of Thought Reasoning in Language Models</em>. https://arxiv.org/abs/2203.11171</p>
-<p>[9] Yao, S., Yu, D., Zhao, J., et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. https://arxiv.org/abs/2305.10601</p>
-<p>[10] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al.&nbsp;(2019). <em>Parameter-Efficient Transfer Learning for NLP</em>. https://arxiv.org/abs/1902.00751</p>
-<p>[11] Radford, A., Wu, J., Child, R., et al.&nbsp;(2019). <em>Language Models are Unsupervised Multitask Learners</em>. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</p>
-<p>[12] Kojima, T., Gu, S. S., Reid, M., et al.&nbsp;(2022). <em>Large Language Models are Zero-Shot Reasoners</em>. https://arxiv.org/abs/2205.11916</p>
-<p>[13] Zhou, X., Santurkar, S., Bau, D., et al.&nbsp;(2022). <em>Large Language Models Are Human-Level Prompt Engineers</em>. https://arxiv.org/abs/2211.01910</p>
-<p>[14] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media.</p>
-<p>[15] Alammar, J., &amp; Grootendorst, M. (2023). <em>Hands-On Large Language Models: Language Understanding and Generation</em>. O’Reilly Media.</p>
+<p>[6] Singhal, K., Azizi, S., Tu, T., et al.&nbsp;(2022). <em>Large Language Models Encode Clinical Knowledge</em>. https://arxiv.org/abs/2212.13138</p>
+<p>[7] Rafailov, R., Sharma, A., Mitchell, E., et al.&nbsp;(2023). <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</em>. https://arxiv.org/abs/2305.18290</p>
+<p>[8] Wei, J., Wang, X., Schuurmans, D., et al.&nbsp;(2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. https://arxiv.org/abs/2201.11903</p>
+<p>[9] Wang, X., Wei, J., Schuurmans, D., et al.&nbsp;(2022). <em>Self-Consistency Improves Chain of Thought Reasoning in Language Models</em>. https://arxiv.org/abs/2203.11171</p>
+<p>[10] Yao, S., Yu, D., Zhao, J., et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. https://arxiv.org/abs/2305.10601</p>
+<p>[11] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al.&nbsp;(2019). <em>Parameter-Efficient Transfer Learning for NLP</em>. https://arxiv.org/abs/1902.00751</p>
+<p>[12] Radford, A., Wu, J., Child, R., et al.&nbsp;(2019). <em>Language Models are Unsupervised Multitask Learners</em>. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</p>
+<p>[13] Kojima, T., Gu, S. S., Reid, M., et al.&nbsp;(2022). <em>Large Language Models are Zero-Shot Reasoners</em>. https://arxiv.org/abs/2205.11916</p>
+<p>[14] Zhou, X., Santurkar, S., Bau, D., et al.&nbsp;(2022). <em>Large Language Models Are Human-Level Prompt Engineers</em>. https://arxiv.org/abs/2211.01910</p>
+<p>[15] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media.</p>
+<p>[16] Alammar, J., &amp; Grootendorst, M. (2023). <em>Hands-On Large Language Models: Language Understanding and Generation</em>. O’Reilly Media.</p>
 
 
 </section>

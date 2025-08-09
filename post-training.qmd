@@ -370,7 +370,7 @@ Accuracy (%) is shown for the previous state-of-the-art (SOTA) and for the domai
 
 ![**Figure:** Accuracy of Flan-PaLM 540B after domain-specific fine-tuning compared to previous state-of-the-art models on three biomedical QA benchmarks. *(Source: Singhal et al., 2022, “Large Language Models Encode Clinical Knowledge”)*  ](images/domain_specific_performance.png)  
 
-Domain-specific fine-tuning delivers **substantial accuracy gains** across all three benchmarks. On **MedQA (USMLE)**, Flan-PaLM 540B achieves **67.6%**, exceeding the previous best (PubMedGPT) by over **17 points**. On **MedMCQA**, performance rises to **57.6%** from the prior best of **52.9%**, while on **PubMedQA** it reaches **79.0%**, slightly surpassing the earlier record of **78.2%**. These results demonstrate that aligning a large language model with specialized biomedical knowledge can yield meaningful improvements, especially for complex, domain-specific reasoning tasks, even when starting from an already strong general-purpose model.
+Domain-specific fine-tuning delivers **substantial accuracy gains** across all three benchmarks. On **MedQA (USMLE)**, Flan-PaLM 540B achieves **67.6%**, exceeding the previous best (PubMedGPT) by over **17 points**. On **MedMCQA**, performance rises to **57.6%** from the prior best of **52.9%**, while on **PubMedQA** it reaches **79.0%**, slightly surpassing the earlier record of **78.2%**. These results demonstrate that aligning a large language model with specialized biomedical knowledge can yield meaningful improvements, especially for complex, domain-specific reasoning tasks, even when starting from an already strong general-purpose model<sup>[6]</sup>.
 
 
 
@@ -492,25 +492,27 @@ The key takeaway: effective post‑training is about matching the method to the 
 
 [5] Chung, H. W., Hou, L., Longpre, S., et al. (2022). *Scaling Instruction-Finetuned Language Models (Flan)*. https://arxiv.org/abs/2210.11416  
 
-[6] Rafailov, R., Sharma, A., Mitchell, E., et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model*. https://arxiv.org/abs/2305.18290  
+[6] Singhal, K., Azizi, S., Tu, T., et al. (2022). *Large Language Models Encode Clinical Knowledge*. https://arxiv.org/abs/2212.13138
 
-[7] Wei, J., Wang, X., Schuurmans, D., et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models*. https://arxiv.org/abs/2201.11903  
+[7] Rafailov, R., Sharma, A., Mitchell, E., et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model*. https://arxiv.org/abs/2305.18290  
 
-[8] Wang, X., Wei, J., Schuurmans, D., et al. (2022). *Self-Consistency Improves Chain of Thought Reasoning in Language Models*. https://arxiv.org/abs/2203.11171  
+[8] Wei, J., Wang, X., Schuurmans, D., et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models*. https://arxiv.org/abs/2201.11903  
 
-[9] Yao, S., Yu, D., Zhao, J., et al. (2023). *Tree of Thoughts: Deliberate Problem Solving with Large Language Models*. https://arxiv.org/abs/2305.10601  
+[9] Wang, X., Wei, J., Schuurmans, D., et al. (2022). *Self-Consistency Improves Chain of Thought Reasoning in Language Models*. https://arxiv.org/abs/2203.11171  
 
-[10] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al. (2019). *Parameter-Efficient Transfer Learning for NLP*. https://arxiv.org/abs/1902.00751 
+[10] Yao, S., Yu, D., Zhao, J., et al. (2023). *Tree of Thoughts: Deliberate Problem Solving with Large Language Models*. https://arxiv.org/abs/2305.10601  
 
-[11] Radford, A., Wu, J., Child, R., et al. (2019). *Language Models are Unsupervised Multitask Learners*. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf  
+[11] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al. (2019). *Parameter-Efficient Transfer Learning for NLP*. https://arxiv.org/abs/1902.00751 
 
-[12] Kojima, T., Gu, S. S., Reid, M., et al. (2022). *Large Language Models are Zero-Shot Reasoners*. https://arxiv.org/abs/2205.11916  
+[12] Radford, A., Wu, J., Child, R., et al. (2019). *Language Models are Unsupervised Multitask Learners*. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf  
 
-[13] Zhou, X., Santurkar, S., Bau, D., et al. (2022). *Large Language Models Are Human-Level Prompt Engineers*. https://arxiv.org/abs/2211.01910  
+[13] Kojima, T., Gu, S. S., Reid, M., et al. (2022). *Large Language Models are Zero-Shot Reasoners*. https://arxiv.org/abs/2205.11916  
 
-[14] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+[14] Zhou, X., Santurkar, S., Bau, D., et al. (2022). *Large Language Models Are Human-Level Prompt Engineers*. https://arxiv.org/abs/2211.01910  
 
-[15] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
+[15] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+
+[16] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
 
 
  
