@@ -264,7 +264,7 @@ The underlying intuition is that if a complex question has a unique correct answ
 :::
 
 
-The following table summarizes key test‑time scaling methods described in *LLM Post‑Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
+The following table summarizes key test‑time scaling methods described in *LLM Post‑Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.
 
 | Method | Goal & Common Use Cases | Benefits | Limitations |
 |--------|------------------------|----------|-------------|
@@ -374,7 +374,7 @@ Domain-specific fine-tuning delivers **substantial accuracy gains** across all t
 
 
 
-The following table summarizes supervised fine-tuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
+The following table summarizes supervised fine-tuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.
 
 | Fine-tuning Type | Goal & Common Use Cases | Benefits | Limitations |
 |-----------------|------------------------|----------|-------------|
@@ -458,7 +458,7 @@ DPO is a simpler alternative to RLHF that removes the need for a separate reward
 - Dependent on high‑quality preference pairs; poor data reduces effectiveness.
 
 
-The following table summarizes supervised Preference Optimization methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
+The following table summarizes supervised Preference Optimization methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.
 
 | Method | Goal & Common Use Cases | Benefits | Limitations |
 |--------|------------------------|----------|-------------|
