@@ -360,6 +360,20 @@ Domain-Specific Fine-Tuning narrows the model’s focus to excel in a specialize
 - Risk of over-specialization if coverage is too narrow.
 
 
+The chart below reports results from the *BioMedLM* study (Singhal et al., 2022), which applied **domain-specific fine-tuning** to a large pre-trained model (Flan-PaLM 540B) using biomedical and clinical datasets from the MultiMedQA benchmark. Performance is compared against the best previously published models across three key datasets:  
+
+- **MedMCQA** – general medical knowledge in Indian medical entrance exams.  
+- **MedQA (USMLE)** – general medical knowledge in US medical licensing exams.  
+- **PubMedQA** – biomedical literature question answering.  
+
+Accuracy (%) is shown for the previous state-of-the-art (SOTA) and for the domain-tuned Flan-PaLM 540B model.  
+
+![**Figure:** Accuracy of Flan-PaLM 540B after domain-specific fine-tuning compared to previous state-of-the-art models on three biomedical QA benchmarks. *(Source: Singhal et al., 2022, “Large Language Models Encode Clinical Knowledge”)*  ](images/domain_specific_performance.png)  
+
+Domain-specific fine-tuning delivers **substantial accuracy gains** across all three benchmarks. On **MedQA (USMLE)**, Flan-PaLM 540B achieves **67.6%**, exceeding the previous best (PubMedGPT) by over **17 points**. On **MedMCQA**, performance rises to **57.6%** from the prior best of **52.9%**, while on **PubMedQA** it reaches **79.0%**, slightly surpassing the earlier record of **78.2%**. These results demonstrate that aligning a large language model with specialized biomedical knowledge can yield meaningful improvements, especially for complex, domain-specific reasoning tasks, even when starting from an already strong general-purpose model.
+
+
+
 The following table summarizes supervised fine-tuning methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al.
 
 | Fine-tuning Type | Goal & Common Use Cases | Benefits | Limitations |

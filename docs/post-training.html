@@ -707,6 +707,22 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <li>Inherits biases or blind spots from domain data.</li>
 <li>Risk of over-specialization if coverage is too narrow.</li>
 </ul>
+<p>The chart below reports results from the <em>BioMedLM</em> study (Singhal et al., 2022), which applied <strong>domain-specific fine-tuning</strong> to a large pre-trained model (Flan-PaLM 540B) using biomedical and clinical datasets from the MultiMedQA benchmark. Performance is compared against the best previously published models across three key datasets:</p>
+<ul>
+<li><strong>MedMCQA</strong> – general medical knowledge in Indian medical entrance exams.<br>
+</li>
+<li><strong>MedQA (USMLE)</strong> – general medical knowledge in US medical licensing exams.<br>
+</li>
+<li><strong>PubMedQA</strong> – biomedical literature question answering.</li>
+</ul>
+<p>Accuracy (%) is shown for the previous state-of-the-art (SOTA) and for the domain-tuned Flan-PaLM 540B model.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/domain_specific_performance.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Accuracy of Flan-PaLM 540B after domain-specific fine-tuning compared to previous state-of-the-art models on three biomedical QA benchmarks. <em>(Source: Singhal et al., 2022, “Large Language Models Encode Clinical Knowledge”)</em></figcaption>
+</figure>
+</div>
+<p>Domain-specific fine-tuning delivers <strong>substantial accuracy gains</strong> across all three benchmarks. On <strong>MedQA (USMLE)</strong>, Flan-PaLM 540B achieves <strong>67.6%</strong>, exceeding the previous best (PubMedGPT) by over <strong>17 points</strong>. On <strong>MedMCQA</strong>, performance rises to <strong>57.6%</strong> from the prior best of <strong>52.9%</strong>, while on <strong>PubMedQA</strong> it reaches <strong>79.0%</strong>, slightly surpassing the earlier record of <strong>78.2%</strong>. These results demonstrate that aligning a large language model with specialized biomedical knowledge can yield meaningful improvements, especially for complex, domain-specific reasoning tasks, even when starting from an already strong general-purpose model.</p>
 <p>The following table summarizes supervised fine-tuning methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al.</p>
 <table class="caption-top table">
 <colgroup>
