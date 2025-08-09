@@ -307,7 +307,7 @@ While many approaches exist for supervised fine‑tuning, **Instruction Fine‑T
 
 **Concept:**  
 
-Instruction Fine-Tuning is the most common form of SFT, focusing on training a pre-trained model with a broad range of instruction–response examples across tasks like summarization, question answering, classification, and creative writing. The aim is to help the model reliably follow natural language instructions — even for tasks it hasn’t explicitly seen — by aligning outputs with the user’s intent rather than just predicting the next word. 
+Instruction Fine-Tuning is the most common form of SFT, focusing on training a pre-trained model with a broad range of instruction–response examples across tasks like summarization, question answering, classification, and creative writing. The aim is to help the model reliably follow natural language instructions — even for tasks it hasn’t explicitly seen — by aligning outputs with the user’s intent rather than simply predicting the next word. 
 
 **Advantages:** 
  
@@ -321,7 +321,7 @@ Instruction Fine-Tuning is the most common form of SFT, focusing on training a p
 - Needs large, diverse, and high-quality instruction datasets.
 - Open-ended tasks can be hard to evaluate objectively.
 - Human-generated data may bring bias, inconsistency, or noise.
-- Risk of overfitting to dataset style if diversity is lacking.
+- Risk of overfitting to the style of the fine-tuning dataset if it lacks diversity.
 
 
 The table below reports results from the **Flan (Wei et al., 2022)** study, which evaluated the impact of supervised fine-tuning (SFT) — specifically *instruction fine-tuning* — on multiple pre-trained language models of different sizes (ranging from 80M to 540B parameters). 
@@ -337,7 +337,7 @@ The “Norm. avg.” column is the unweighted normalized average score across al
 
 ![**Figure:** Performance of instruction-fine-tuned models (FLAN, FLAN-PaLM) compared to their base models on a mix of unseen task categories. Results show consistent improvements across model sizes, with gains of up to 9–10 points in average accuracy after instruction fine-tuning. *(Source: Wei et al., 2022, “Fine-tuned Language Models are Zero-Shot Learners”)*](images/flan_performance_table.png)
 
-Instruction fine-tuning consistently improves performance across model sizes. In the Flan-T5 family, gains grow with scale — from +6.1 for the 80M model to +26.6 for the 11B model. For PaLM, the 62B model’s normalized average score rises from **28.4** to **38.8** (+10.4), with notable boosts on MMLU and MGSM. Even the 540B model, starting from a high baseline, gains +9.3 points and significantly improves TyDiQA accuracy (52.9 → 67.8). Overall, instruction fine-tuning enhances zero-shot and few-shot performance, even for very large pre-trained models.
+Instruction fine-tuning consistently improves performance across model sizes. In the Flan-T5 family, gains tend to grow with model size — from +6.1 for the 80M model to +26.6 for the 11B model. For PaLM, the 62B version’s normalized average jumps from 28.4 to 38.8 (+10.4), with notable gains on MMLU (55.1 → 59.6) and MGSM (18.2 → 28.5). The largest 540B model also improves from 49.1 to 58.4 (+9.3) and boosts TyDiQA accuracy from 52.9 to 67.8. While the improvement is smaller in absolute terms for the 540B model, this is because it starts from a much higher baseline, leaving less headroom for improvement.
 
 ### Domain-Specific Fine-Tuning
 
