@@ -386,8 +386,7 @@ The following table summarizes supervised fine-tuning methods described in *LLM 
 | **Preference/Alignment SFT** | Train models on labeled or ranked preference data before RLHF or DPO stages. | Improves alignment with human values; reduces harmful or irrelevant outputs. | Limited by scope and quality of preference data; definitions of “desirable” can vary. |
 | **Parameter-Efficient Fine-Tuning (PEFT)** | Efficiently adapt models without updating all weights (e.g., LoRA, adapters, prefix tuning). | Resource-efficient; enables adaptation on limited hardware. | May underperform full fine-tuning; sensitive to hyperparameter choices. |
 
-Once the model has been trained to follow instructions, the next step is often to align it more closely with human preferences through preference optimization.
-
+While SFT equips models to follow a wide range of tasks, it has inherent limitations — from the cost of collecting high-quality datasets, to challenges with subjective or open-ended tasks that have no single “right” answer, to mismatches between language modeling objectives and human expectations. For example, language modeling penalizes all token-level mistakes equally, even though some errors are more serious than others. These issues can lead SFT-trained models to produce factually correct but unsatisfying outputs, or to mirror suboptimal human-generated answers. To overcome these gaps, the next step is often **preference optimization** — aligning the model more directly with human values, judgments, and desired behaviors.
 
 ## Preference Optimization
 
