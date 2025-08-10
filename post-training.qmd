@@ -490,6 +490,22 @@ Beyond its architectural simplicity, DPO has demonstrated strong empirical perfo
 
 Overall, DPO offers a practical trade-off — delivering much of RLHF’s alignment benefits with significantly lower complexity and cost, making it a compelling choice for many modern LLM training pipelines, especially when rapid iteration is important.
 
+::: callout-note
+## RLHF vs DPO: Key Differences
+
+**Reinforcement Learning from Human Feedback (RLHF)**
+- Trains an **explicit reward model** on comparison data to predict a score for a given completion.
+- Optimizes the LM to **maximize the predicted score** under a KL-constraint.
+- Very effective when tuned well, but **computationally expensive** and tricky to get right.
+- Requires multiple steps: supervised fine-tuning → reward model training → policy optimization (e.g., PPO).
+
+**Direct Preference Optimization (DPO)**
+- Optimizes LM parameters **directly on preference data** by solving a binary classification problem.
+- Avoids reward model training and reinforcement learning loops entirely.
+- **Simpler and more efficient** than RLHF while maintaining similar alignment benefits.
+- Does not leverage online data; operates purely on static preference pairs.
+:::
+
 The following table summarizes supervised Preference Optimization methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.
 
 | Method | Goal & Common Use Cases | Benefits | Limitations |
@@ -501,16 +517,20 @@ The following table summarizes supervised Preference Optimization methods descri
 | **GRPO (Group Relative Policy Optimization)** | RL variant that scores multiple outputs for the same query relative to each other, eliminating the need for a critic model. | Reduces memory usage; stabilizes training; enables fine‑grained rewards for complex reasoning tasks. | Requires large groups of candidate responses; effectiveness depends on diversity and quality of generated outputs. |
 | **Pure RL‑Based LLM Refinement** | Multi‑stage RL pipelines (e.g., DeepSeek-R1) that refine models without or with minimal SFT, often incorporating distillation and curated reasoning traces. | Can achieve high performance without large SFT datasets; distillation improves efficiency; robust reasoning capabilities. | Complex to implement; computationally expensive; requires large curated datasets for stability and quality. |
 
-
+---
 
 ## Conclusion
 
-Post‑training for foundation models is not a single method, but a toolbox of strategies that work best in combination. Prompting and test‑time scaling methods can produce immediate gains without changing model weights, making them ideal for rapid experimentation and deployment. Supervised fine‑tuning adapts models for broad instruction‑following or specialized domains, while preference optimization aligns model behavior with human values and expectations.
+Post-training for foundation models is not a single technique, but a **toolbox of complementary strategies**. Prompting and test-time scaling deliver immediate gains without altering model weights, making them ideal for rapid experimentation and deployment. Supervised fine-tuning adapts models for broad instruction-following or specialized domains, while preference optimization aligns outputs with human values and expectations.
 
-In practice, high‑performing LLM systems often blend these techniques: using prompting for quick control, test‑time scaling for reasoning‑heavy queries, supervised fine‑tuning for skill building, and preference optimization for safety and alignment. As the field evolves, we can expect tighter integration between these approaches, along with emerging trends like agentic AI, retrieval‑augmented generation, and continuous self‑improvement loops.
+In real-world systems, the most capable LLMs often **combine these methods**: prompting for quick control, test-time scaling for reasoning-heavy queries, supervised fine-tuning for skill building, and preference optimization for safety and alignment. Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as **agentic AI, retrieval-augmented generation, and continuous self-improvement loops**.
 
-The key takeaway: effective post‑training is about matching the method to the goal. Understanding the trade‑offs of each category enables practitioners to build LLM solutions that are not only more capable, but also safer, more reliable, and better aligned with human intent.
+::: {.callout-note}
+#### Key takeaway
+Effective post-training is about matching the method to the goal. Understanding the trade-offs of each approach empowers practitioners to build LLMs that are not only more capable, but also **safer, more reliable, and better aligned with human intent**.
+:::
 
+---
 
 ## References & Further Reading
 

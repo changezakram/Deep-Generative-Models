@@ -896,6 +896,20 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <li>Dependent on high-quality preference pairs; poor data reduces effectiveness.</li>
 </ul>
 <p>Overall, DPO offers a practical trade-off — delivering much of RLHF’s alignment benefits with significantly lower complexity and cost, making it a compelling choice for many modern LLM training pipelines, especially when rapid iteration is important.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+RLHF vs DPO: Key Differences
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Reinforcement Learning from Human Feedback (RLHF)</strong> - Trains an <strong>explicit reward model</strong> on comparison data to predict a score for a given completion. - Optimizes the LM to <strong>maximize the predicted score</strong> under a KL-constraint. - Very effective when tuned well, but <strong>computationally expensive</strong> and tricky to get right. - Requires multiple steps: supervised fine-tuning → reward model training → policy optimization (e.g., PPO).</p>
+<p><strong>Direct Preference Optimization (DPO)</strong> - Optimizes LM parameters <strong>directly on preference data</strong> by solving a binary classification problem. - Avoids reward model training and reinforcement learning loops entirely. - <strong>Simpler and more efficient</strong> than RLHF while maintaining similar alignment benefits. - Does not leverage online data; operates purely on static preference pairs.</p>
+</div>
+</div>
 <p>The following table summarizes supervised Preference Optimization methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.</p>
 <table class="caption-top table">
 <colgroup>
@@ -951,13 +965,27 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
 </section>
 <section id="conclusion" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
-<p>Post‑training for foundation models is not a single method, but a toolbox of strategies that work best in combination. Prompting and test‑time scaling methods can produce immediate gains without changing model weights, making them ideal for rapid experimentation and deployment. Supervised fine‑tuning adapts models for broad instruction‑following or specialized domains, while preference optimization aligns model behavior with human values and expectations.</p>
-<p>In practice, high‑performing LLM systems often blend these techniques: using prompting for quick control, test‑time scaling for reasoning‑heavy queries, supervised fine‑tuning for skill building, and preference optimization for safety and alignment. As the field evolves, we can expect tighter integration between these approaches, along with emerging trends like agentic AI, retrieval‑augmented generation, and continuous self‑improvement loops.</p>
-<p>The key takeaway: effective post‑training is about matching the method to the goal. Understanding the trade‑offs of each category enables practitioners to build LLM solutions that are not only more capable, but also safer, more reliable, and better aligned with human intent.</p>
+<p>Post-training for foundation models is not a single technique, but a <strong>toolbox of complementary strategies</strong>. Prompting and test-time scaling deliver immediate gains without altering model weights, making them ideal for rapid experimentation and deployment. Supervised fine-tuning adapts models for broad instruction-following or specialized domains, while preference optimization aligns outputs with human values and expectations.</p>
+<p>In real-world systems, the most capable LLMs often <strong>combine these methods</strong>: prompting for quick control, test-time scaling for reasoning-heavy queries, supervised fine-tuning for skill building, and preference optimization for safety and alignment. Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as <strong>agentic AI, retrieval-augmented generation, and continuous self-improvement loops</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Effective post-training is about matching the method to the goal. Understanding the trade-offs of each approach empowers practitioners to build LLMs that are not only more capable, but also <strong>safer, more reliable, and better aligned with human intent</strong>.</p>
+</div>
+</div>
+<hr>
 </section>
 <section id="references-further-reading" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">7</span> References &amp; Further Reading</h2>
