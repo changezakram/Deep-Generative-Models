@@ -457,6 +457,7 @@ RLHF has been shown to produce higher-quality outputs than models trained only w
 - Reward models can be exploited (*reward hacking*).  
 - Sensitive to bias in collected preferences. 
 
+While RLHF delivers strong alignment and quality improvements, its reliance on reinforcement learning introduces significant complexity and cost. Training requires fitting a value function, performing online sampling, and carefully tuning hyperparameters — processes that are computationally expensive, time-consuming, and sensitive to setup. These challenges have prompted the search for simpler, more efficient alternatives. Direct Preference Optimization (DPO) is one such method, offering a streamlined approach to preference optimization without the heavy reinforcement learning overhead.
 
 ### Direct Preference Optimization (DPO)
 
