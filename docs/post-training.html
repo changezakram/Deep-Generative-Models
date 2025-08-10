@@ -791,34 +791,25 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <section id="preference-optimization" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="preference-optimization"><span class="header-section-number">5</span> Preference Optimization</h2>
 <p><strong>Concept:</strong></p>
-<p>Preference optimization is the process of aligning a model’s outputs with human preferences using feedback signals, rather than solely optimizing for task performance. In large language models (LLMs), this often involves training the model to produce responses that are not only factually correct but also safe, contextually relevant, and consistent with user expectations.<br>
-Unlike conventional reinforcement learning, which operates in small, well‑defined action spaces with clear objectives, preference optimization in LLMs must navigate a <strong>vast vocabulary action space</strong>, delayed and subjective rewards, and multiple, sometimes conflicting, objectives. Feedback is often based on human or AI‑generated preference comparisons and can involve both outcome‑based metrics (e.g., correctness) and process‑based evaluations (e.g., reasoning quality).<br>
-The overarching goal is to make models behave according to human preferences — an ambitious aim given that universal human values do not exist, and perceptions of “desirable” behavior vary widely across cultures, political views, and personal beliefs.</p>
+<p>Preference optimization is the process of training a language model so that its outputs align with human preferences — not just to complete a task correctly, but to respond in ways that are safe, contextually relevant, and consistent with user expectations. This is achieved by providing the model with feedback signals, often referred to as rewards, that indicate which responses are better. Unlike standard task accuracy metrics, these rewards are based on human or AI-generated judgments. Feedback can come from humans (e.g., ranking or rating responses) or from AI-generated comparisons, and can evaluate both outcomes (such as factual correctness) and process quality (such as clarity, reasoning, and coherence).</p>
+<p>However, large language models make preference optimization more complex than traditional reinforcement learning. They operate in a vast vocabulary action space, where there are millions of possible token sequences. Rewards are often delayed until an entire output is produced, and models must balance multiple — sometimes conflicting — objectives. Unlike small, well-defined RL environments, there are no universal “right” answers, and perceptions of what is “desirable” vary across cultures, topics, and personal beliefs. The ultimate goal is to guide the model’s behavior toward human values and expectations, producing responses that are not only correct but also helpful, safe, and aligned with the intended use.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
-<li>Aligns model outputs with user expectations and ethical guidelines.<br>
-</li>
-<li>Improves perceived helpfulness and safety in real‑world use.<br>
-</li>
-<li>Can reduce harmful, offensive, or irrelevant outputs.<br>
-</li>
-<li>Allows optimization for nuanced objectives (e.g., tone, reasoning quality, factuality).<br>
-</li>
-<li>Supports personalization to match specific user or organizational preferences.</li>
+<li><strong>Aligns outputs with expectations</strong> — Matches user needs and ethical guidelines.</li>
+<li><strong>Improves perceived helpfulness and safety</strong> in real-world applications.</li>
+<li><strong>Reduces harmful, offensive, or irrelevant outputs.</strong></li>
+<li><strong>Optimizes for nuanced objectives</strong> such as tone, reasoning quality, and factuality.</li>
+<li><strong>Supports personalization</strong> to match specific user or organizational needs.</li>
 </ul>
 <p><strong>Limitations:</strong></p>
 <ul>
-<li>Subjectivity of preferences — what’s “helpful” or “appropriate” can vary across cultures, contexts, and individuals.<br>
-</li>
-<li>Controversial topics — responses risk alienating some users regardless of stance; overly cautious models may seem bland or evasive.<br>
-</li>
-<li>Technical complexity — high‑dimensional action space, delayed rewards, and balancing multiple objectives make optimization challenging.<br>
-</li>
-<li>Bias and fairness risks — preferences used in training may embed societal biases.<br>
-</li>
-<li>Deployment trade‑offs — excessive filtering can reduce engagement, while insufficient filtering can create reputational and safety risks.</li>
+<li><strong>Subjectivity of preferences</strong> — What is “helpful” or “appropriate” can vary across individuals, contexts, and cultures.</li>
+<li><strong>Controversial topics</strong> — Risk of alienating some users; overly cautious models may appear bland or evasive.</li>
+<li><strong>Technical complexity</strong> — Large action spaces, delayed rewards, and balancing multiple objectives make optimization challenging.</li>
+<li><strong>Bias and fairness risks</strong> — Preferences used in training may embed societal biases.</li>
+<li><strong>Deployment trade-offs</strong> — Overly strict filtering can reduce engagement; insufficient filtering can create reputational and safety risks.</li>
 </ul>
-<p>While many approaches exist for preference optimization, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and <strong>Direct Preference Optimization (DPO)</strong> are two of the most prominent in modern LLM alignment pipelines. The sections below explore these methods in greater detail.</p>
+<p>While many approaches exist for preference optimization, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and <strong>Direct Preference Optimization (DPO)</strong> are two of the most widely used in modern LLM alignment pipelines. The next sections explore these methods in greater detail.</p>
 <section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
 <p><strong>Concept:</strong><br>
