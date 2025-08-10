@@ -465,6 +465,12 @@ While RLHF delivers strong alignment and quality improvements, its reliance on r
 
 Direct Preference Optimization (DPO) is a simpler, more efficient alternative to RLHF that eliminates the need for a separate reward model and reinforcement learning loop. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs. rejected outputs) by optimizing the log-likelihood ratio to favor preferred responses. This “bakes in” human preferences directly into the model parameters, avoiding costly online sampling, PPO training, and hyperparameter sensitive RL steps.
 
+The key difference between RLHF and Direct Preference Optimization (DPO) lies in how they use preference data. The figure below contrasts the two pipelines, highlighting how DPO streamlines the process compared to RLHF.
+
+![High-level comparison of RLHF and DPO pipelines. RLHF trains a separate reward model and uses reinforcement learning to optimize the policy, while DPO bypasses the reward model and RL loop, directly fine-tuning the model on preference pairs. (Source: Rafailov, 2023)](images/RLHF-vs-DPO.png)
+
+As shown in the figure, RLHF follows a three-stage process: supervised fine-tuning, training a separate reward model using preference data, and then applying reinforcement learning (often PPO) to update the policy. In contrast, DPO eliminates the reward model and the reinforcement learning step entirely. Instead, it directly fine-tunes the model on preference pairs, using a mathematically derived objective that encourages the preferred response to be more likely than the rejected one. This simplification reduces complexity and resource requirements while still leveraging human preference data for alignment.
+
 **Advantages:**  
 
 - Much simpler and more stable than RLHF.  
