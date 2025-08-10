@@ -61,11 +61,11 @@ Traditionally, models learn behavior during training stages such as pre-training
 
   Example: Showing labeled sentiment examples before asking for classification of a new sentence.  
 
-![**Figure:** Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. *(Source: Brown et al., 2020, Language Models are Few-Shot Learners)*](images/eval_strategies.png)  
+![**Figure:** Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. *(Source: Brown et al., 2020)*](images/eval_strategies.png)  
 
 These prompting strategies differ in how much context the model receives before making a prediction. The charts below reveal how both model size and the number of in-context examples impact benchmark accuracy.
 
-![**Figure:** SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, showing the effect of model size (left) and number of in-context examples (right). (Source: Brown et al., 2020, Language Models are Few-Shot Learners)](images/superglue_analysis.png)
+![**Figure:** SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, showing the effect of model size (left) and number of in-context examples (right). (Source: Brown et al., 2020)](images/superglue_analysis.png)
 
 **Left chart:** Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot prompting delivering the largest gains — the jump from the smallest (~0.1B) to the largest (175B) model is over 20 points in few-shot mode. 
 **Right chart:** For GPT-3 (175B parameters), zero-shot starts at 68.0, one-shot improves to 69.8, and 8-shot reaches 72.5, matching Fine-Tuned BERT++. At 32-shot, performance climbs to 75.5, surpassing Fine-Tuned BERT++ without any parameter updates.
@@ -335,7 +335,7 @@ Performance is measured across four benchmarks:
 
 The “Norm. avg.” column is the unweighted normalized average score across all benchmarks, while “Direct” and “CoT” show performance under direct prompting and chain-of-thought prompting. Gains in parentheses represent improvement in normalized average from adding SFT.  
 
-![**Figure:** Performance of instruction-fine-tuned models (FLAN, FLAN-PaLM) compared to their base models on a mix of unseen task categories. Results show consistent improvements across model sizes, with gains of up to 9–10 points in average accuracy after instruction fine-tuning. *(Source: Wei et al., 2022, “Fine-tuned Language Models are Zero-Shot Learners”)*](images/flan_performance_table.png)
+![**Figure:** Performance of instruction-fine-tuned models (FLAN, FLAN-PaLM) compared to their base models on a mix of unseen task categories. Results show consistent improvements across model sizes, with gains of up to 9–10 points in average accuracy after instruction fine-tuning. *(Source: Wei et al., 2022)*](images/flan_performance_table.png)
 
 Instruction fine-tuning consistently improves performance across model sizes. In the Flan-T5 family, gains tend to grow with model size — from +6.1 for the 80M model to +26.6 for the 11B model. For PaLM, the 62B version’s normalized average jumps from 28.4 to 38.8 (+10.4), with notable gains on MMLU (55.1 → 59.6) and MGSM (18.2 → 28.5). The largest 540B model also improves from 49.1 to 58.4 (+9.3) and boosts TyDiQA accuracy from 52.9 to 67.8. While the improvement is smaller in absolute terms for the 540B model, this is because it starts from a much higher baseline, leaving less headroom for improvement<sup>[5]</sup>.
 
@@ -368,7 +368,7 @@ The chart below reports results from the *BioMedLM* study (Singhal et al., 2022)
 
 Accuracy (%) is shown for the previous state-of-the-art (SOTA) and for the domain-tuned Flan-PaLM 540B model.  
 
-![**Figure:** Accuracy of Flan-PaLM 540B after domain-specific fine-tuning compared to previous state-of-the-art models on three biomedical QA benchmarks. *(Source: Singhal et al., 2022, “Large Language Models Encode Clinical Knowledge”)*  ](images/domain_specific_performance.png)  
+![**Figure:** Accuracy of Flan-PaLM 540B after domain-specific fine-tuning compared to previous state-of-the-art models on three biomedical QA benchmarks. *(Source: Singhal et al., 2022)*  ](images/domain_specific_performance.png)  
 
 Domain-specific fine-tuning delivers **substantial accuracy gains** across all three benchmarks. On **MedQA (USMLE)**, Flan-PaLM 540B achieves **67.6%**, exceeding the previous best (PubMedGPT) by over **17 points**. On **MedMCQA**, performance rises to **57.6%** from the prior best of **52.9%**, while on **PubMedQA** it reaches **79.0%**, slightly surpassing the earlier record of **78.2%**. These results demonstrate that aligning a large language model with specialized biomedical knowledge can yield meaningful improvements, especially for complex, domain-specific reasoning tasks, even when starting from an already strong general-purpose model<sup>[6]</sup>.
 
@@ -431,7 +431,7 @@ The process involves three main stages:
 
 The figure below illustrates this process from start to finish, showing how RLHF moves from human demonstrations to ranking comparisons and finally to policy optimization.
 
-![**Figure 1:** RLHF pipeline showing three stages — (1) supervised fine-tuning from demonstrations, (2) preference ranking to train a reward model, and (3) policy optimization using reinforcement learning. *(Source: Ouyang et al., 2022, “Training language models to follow instructions with human feedback” (OpenAI).)*](images/rlhf_process.png)  
+![**Figure 1:** RLHF pipeline showing three stages — (1) supervised fine-tuning from demonstrations, (2) preference ranking to train a reward model, and (3) policy optimization using reinforcement learning. *(Source: Ouyang et al., 2022)*](images/rlhf_process.png)  
 
 In **Step 1**, a prompt is sampled from a dataset, and a human labeler writes the ideal response. These demonstration pairs are used to fine-tune the base LLM with supervised learning, creating the starting policy.  
 
@@ -444,7 +444,7 @@ In **Step 3**, the LLM generates outputs for new prompts, and the reward model a
 
 RLHF has been shown to improve output quality compared to models trained only with pre-training or supervised fine-tuning. Figure below shows that across various model sizes, RLHF-trained models are preferred by humans over both reference summaries and outputs from models trained without RLHF. This improvement is consistent and grows with model size.
 
-![**Figure:** Human preference ratings for model-generated summaries on the TL;DR dataset. RLHF significantly outperforms both pre-training and supervised fine-tuning across all model sizes. *(Source: Stiennon et al., 2020.)*](images/rlhf_performance.png)  
+![**Figure:** Human preference ratings for model-generated summaries on the TL;DR dataset. RLHF significantly outperforms both pre-training and supervised fine-tuning across all model sizes. *(Source: Stiennon et al., 2020)*](images/rlhf_performance.png)  
 
 **Advantages:**  
 
@@ -515,25 +515,27 @@ The key takeaway: effective post‑training is about matching the method to the 
 
 [6] Singhal, K., Azizi, S., Tu, T., et al. (2022). *Large Language Models Encode Clinical Knowledge*. https://arxiv.org/abs/2212.13138
 
-[7] Rafailov, R., Sharma, A., Mitchell, E., et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model*. https://arxiv.org/abs/2305.18290  
+[7] Stiennon, N., Ouyang, L., Wu, J., et al. (2020). Learning to Summarize with Human Feedback. https://arxiv.org/abs/2009.01325
 
-[8] Wei, J., Wang, X., Schuurmans, D., et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models*. https://arxiv.org/abs/2201.11903  
+[8] Rafailov, R., Sharma, A., Mitchell, E., et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model*. https://arxiv.org/abs/2305.18290  
 
-[9] Wang, X., Wei, J., Schuurmans, D., et al. (2022). *Self-Consistency Improves Chain of Thought Reasoning in Language Models*. https://arxiv.org/abs/2203.11171  
+[9] Wei, J., Wang, X., Schuurmans, D., et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models*. https://arxiv.org/abs/2201.11903  
 
-[10] Yao, S., Yu, D., Zhao, J., et al. (2023). *Tree of Thoughts: Deliberate Problem Solving with Large Language Models*. https://arxiv.org/abs/2305.10601  
+[10] Wang, X., Wei, J., Schuurmans, D., et al. (2022). *Self-Consistency Improves Chain of Thought Reasoning in Language Models*. https://arxiv.org/abs/2203.11171  
 
-[11] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al. (2019). *Parameter-Efficient Transfer Learning for NLP*. https://arxiv.org/abs/1902.00751 
+[11] Yao, S., Yu, D., Zhao, J., et al. (2023). *Tree of Thoughts: Deliberate Problem Solving with Large Language Models*. https://arxiv.org/abs/2305.10601  
 
-[12] Radford, A., Wu, J., Child, R., et al. (2019). *Language Models are Unsupervised Multitask Learners*. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf  
+[12] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al. (2019). *Parameter-Efficient Transfer Learning for NLP*. https://arxiv.org/abs/1902.00751 
 
-[13] Kojima, T., Gu, S. S., Reid, M., et al. (2022). *Large Language Models are Zero-Shot Reasoners*. https://arxiv.org/abs/2205.11916  
+[13] Radford, A., Wu, J., Child, R., et al. (2019). *Language Models are Unsupervised Multitask Learners*. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf  
 
-[14] Zhou, X., Santurkar, S., Bau, D., et al. (2022). *Large Language Models Are Human-Level Prompt Engineers*. https://arxiv.org/abs/2211.01910  
+[14] Kojima, T., Gu, S. S., Reid, M., et al. (2022). *Large Language Models are Zero-Shot Reasoners*. https://arxiv.org/abs/2205.11916  
 
-[15] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+[15] Zhou, X., Santurkar, S., Bau, D., et al. (2022). *Large Language Models Are Human-Level Prompt Engineers*. https://arxiv.org/abs/2211.01910  
 
-[16] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
+[16] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+
+[17] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
 
 
  
