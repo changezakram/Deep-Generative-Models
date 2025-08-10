@@ -467,9 +467,13 @@ Direct Preference Optimization (DPO) is a simpler, more efficient alternative to
 
 The main difference between RLHF and DPO lies in how they use preference data. The figure below shows how DPO streamlines the process by removing the reward model and RL loop.
 
-![High-level comparison of RLHF and DPO pipelines. RLHF trains a separate reward model and uses reinforcement learning to optimize the policy, while DPO bypasses the reward model and RL loop, directly fine-tuning the model on preference pairs. (Source: Rafailov, 2023)](images/RLHF-vs-DPO.png)
+![**Figure:** High-level comparison of RLHF and DPO pipelines. RLHF trains a separate reward model and uses reinforcement learning to optimize the policy, while DPO bypasses the reward model and RL loop, directly fine-tuning the model on preference pairs. (Source: Rafailov, 2023)](images/RLHF-vs-DPO.png)
 
 As shown in the figure, RLHF involves three stages: (1) supervised fine-tuning, (2) training a separate reward model, and (3) applying reinforcement learning (often PPO) to update the policy. In contrast, DPO eliminates the reward model and the reinforcement learning step entirely. Instead, it directly fine-tunes the model on preference pairs, using a mathematically derived objective that encourages the preferred response to be more likely than the rejected one. This simplification reduces complexity and resource requirements while still leveraging human preference data for alignment.
+
+Beyond its architectural simplicity, DPO has demonstrated strong empirical performance across summarization and dialogue tasks. Figure below reports GPT-4-evaluated “helpfulness” win rates against ground truth for multiple models and baselines. DPO consistently outperforms PPO, SFT, and other methods, achieving results on par with or better than the “Best of 128” baseline across both tasks.
+
+![**Figure:** Summarization and dialogue helpfulness win rates vs. ground truth, showing DPO outperforming other methods. (Source: Stanford CS224N, 2024, based on Rafailov et al., 2023)](images/dpo-performance.png)
 
 **Advantages:**  
 

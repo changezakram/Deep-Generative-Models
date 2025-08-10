@@ -867,10 +867,17 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/RLHF-vs-DPO.png" class="img-fluid figure-img"></p>
-<figcaption>High-level comparison of RLHF and DPO pipelines. RLHF trains a separate reward model and uses reinforcement learning to optimize the policy, while DPO bypasses the reward model and RL loop, directly fine-tuning the model on preference pairs. (Source: Rafailov, 2023)</figcaption>
+<figcaption><strong>Figure:</strong> High-level comparison of RLHF and DPO pipelines. RLHF trains a separate reward model and uses reinforcement learning to optimize the policy, while DPO bypasses the reward model and RL loop, directly fine-tuning the model on preference pairs. (Source: Rafailov, 2023)</figcaption>
 </figure>
 </div>
 <p>As shown in the figure, RLHF involves three stages: (1) supervised fine-tuning, (2) training a separate reward model, and (3) applying reinforcement learning (often PPO) to update the policy. In contrast, DPO eliminates the reward model and the reinforcement learning step entirely. Instead, it directly fine-tunes the model on preference pairs, using a mathematically derived objective that encourages the preferred response to be more likely than the rejected one. This simplification reduces complexity and resource requirements while still leveraging human preference data for alignment.</p>
+<p>Beyond its architectural simplicity, DPO has demonstrated strong empirical performance across summarization and dialogue tasks. Figure below reports GPT-4-evaluated “helpfulness” win rates against ground truth for multiple models and baselines. DPO consistently outperforms PPO, SFT, and other methods, achieving results on par with or better than the “Best of 128” baseline across both tasks.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/dpo-performance.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Summarization and dialogue helpfulness win rates vs.&nbsp;ground truth, showing DPO outperforming other methods. (Source: Stanford CS224N, 2024, based on Rafailov et al., 2023)</figcaption>
+</figure>
+</div>
 <p><strong>Advantages:</strong></p>
 <ul>
 <li>Much simpler and more stable than RLHF.<br>
