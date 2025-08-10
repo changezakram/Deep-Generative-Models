@@ -812,29 +812,51 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <p>While many approaches exist for preference optimization, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and <strong>Direct Preference Optimization (DPO)</strong> are two of the most widely used in modern LLM alignment pipelines. The next sections explore these methods in greater detail.</p>
 <section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
-<p><strong>Concept:</strong><br>
-RLHF aligns LLMs with human preferences by collecting feedback from human annotators and using it to guide reinforcement learning. The process typically involves:<br>
-1. Supervised Fine‑Tuning (SFT) on high‑quality instruction‑response pairs to create a baseline model.<br>
-2. Preference data collection — human annotators rank multiple model outputs for the same prompt.<br>
-3. Reward model training — a separate model learns to predict these rankings.<br>
-4. Reinforcement learning optimization — the LLM is fine‑tuned using algorithms like PPO to maximize the reward model score while staying close to the baseline model.</p>
+<p><strong>Concept:</strong></p>
+<p>RLHF is a widely used method for aligning large language models (LLMs) with human preferences by collecting human feedback and using it to guide reinforcement learning. Instead of simply optimizing for accuracy on a fixed dataset, RLHF incorporates judgments about which outputs are more helpful, safe, or aligned with user expectations.</p>
+<p>The process involves three main stages:</p>
+<ol type="1">
+<li><strong>Supervised Fine-Tuning (SFT):</strong> Train a baseline model on high-quality instruction–response pairs so it learns the basics of following human instructions.<br>
+</li>
+<li><strong>Preference Data Collection:</strong> Gather human feedback by having annotators rank multiple model responses for the same prompt from best to worst.<br>
+</li>
+<li><strong>Reinforcement Learning Optimization:</strong> Fine-tune the model with reinforcement learning (often using PPO) so that it produces outputs that maximize a learned <em>reward model</em> based on the collected preferences.</li>
+</ol>
+<p>The figure below illustrates this process from start to finish, showing how RLHF moves from human demonstrations to ranking comparisons and finally to policy optimization.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rlhf_process.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 1:</strong> RLHF pipeline showing three stages — (1) supervised fine-tuning from demonstrations, (2) preference ranking to train a reward model, and (3) policy optimization using reinforcement learning. <em>(Source: Ouyang et al., 2022, “Training language models to follow instructions with human feedback” (OpenAI).)</em></figcaption>
+</figure>
+</div>
+<p>In <strong>Step 1</strong>, a prompt is sampled from a dataset, and a human labeler writes the ideal response. These demonstration pairs are used to fine-tune the base LLM with supervised learning, creating the starting policy.</p>
+<p>In <strong>Step 2</strong>, the model generates several responses to a prompt. A human labeler ranks these from best to worst. These rankings are used to train a separate <em>reward model</em> that can predict human preference without direct human input for every example.</p>
+<p>In <strong>Step 3</strong>, the LLM generates outputs for new prompts, and the reward model assigns scores. Using an algorithm such as Proximal Policy Optimization (PPO), the policy is updated to maximize this reward while staying close to the original SFT model to avoid catastrophic changes.</p>
+<p><strong>RLHF Performance Gains:</strong></p>
+<p>RLHF has been shown to improve output quality compared to models trained only with pre-training or supervised fine-tuning. Figure below shows that across various model sizes, RLHF-trained models are preferred by humans over both reference summaries and outputs from models trained without RLHF. This improvement is consistent and grows with model size.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="path/to/rlhf_performance.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Human preference ratings for model-generated summaries on the TL;DR dataset. RLHF significantly outperforms both pre-training and supervised fine-tuning across all model sizes. <em>(Source: Stiennon et al., 2020.)</em></figcaption>
+</figure>
+</div>
 <p><strong>Advantages:</strong></p>
 <ul>
 <li>Produces highly aligned and safe responses.<br>
 </li>
-<li>Can optimize for complex, nuanced objectives beyond accuracy.<br>
+<li>Can optimize for complex, nuanced objectives beyond raw accuracy.<br>
 </li>
-<li>Allows fine‑grained control through reward model design.</li>
+<li>Allows fine-grained control through reward model design.</li>
 </ul>
 <p><strong>Limitations:</strong></p>
 <ul>
-<li>Very expensive and labor‑intensive to gather preference data.<br>
+<li>Very expensive and labor-intensive to gather high-quality preference data.<br>
 </li>
-<li>Quality depends heavily on the consistency and skill of annotators.<br>
+<li>Quality depends heavily on annotator skill and consistency.<br>
 </li>
-<li>Reward models can be exploited (reward hacking).<br>
+<li>Reward models can be exploited (<em>reward hacking</em>).<br>
 </li>
-<li>Sensitive to bias in the collected preferences.</li>
+<li>Sensitive to bias in collected preferences.</li>
 </ul>
 </section>
 <section id="direct-preference-optimization-dpo" class="level3" data-number="5.2">
