@@ -861,26 +861,27 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 </section>
 <section id="direct-preference-optimization-dpo" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5.2</span> Direct Preference Optimization (DPO)</h3>
-<p><strong>Concept:</strong><br>
-DPO is a simpler alternative to RLHF that removes the need for a separate reward model and online reinforcement learning. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log‑likelihood ratio to make preferred responses more probable. This approach “bakes in” the user’s preferences directly into the model parameters, avoiding the complexity of the RL loop.</p>
+<p><strong>Concept:</strong></p>
+<p>Direct Preference Optimization (DPO) is a simpler, more efficient alternative to RLHF that eliminates the need for a separate reward model and reinforcement learning loop. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log-likelihood ratio to favor preferred responses. This “bakes in” human preferences directly into the model parameters, avoiding costly online sampling, PPO training, and hyperparameter sensitive RL steps.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
-<li>Simpler and more stable than RLHF.<br>
+<li>Much simpler and more stable than RLHF.<br>
 </li>
 <li>No need for online sampling or PPO training.<br>
 </li>
-<li>Scales well to large datasets.<br>
+<li>Easily scales to large datasets.<br>
 </li>
-<li>Increasingly popular in open‑source models like LLaMA and OpenChat.</li>
+<li>Well-suited for popular open-source models like LLaMA and OpenChat.</li>
 </ul>
 <p><strong>Limitations:</strong></p>
 <ul>
-<li>No per‑step credit assignment — treats whole responses as a unit.<br>
+<li>No per‑step credit assignment — evaluates the entire output as one unit rather than rewarding incremental progress.<br>
 </li>
-<li>May underperform RLHF for multi‑step reasoning tasks.<br>
+<li>May underperform RLHF on multi-step reasoning or complex, long-horizon tasks.<br>
 </li>
-<li>Dependent on high‑quality preference pairs; poor data reduces effectiveness.</li>
+<li>Relies heavily on high-quality, representative preference pairs; biased or noisy data can reduce effectiveness.</li>
 </ul>
+<p>Overall, DPO offers a practical trade-off — delivering much of RLHF’s alignment benefits with significantly lower complexity, making it a compelling choice for many modern LLM training pipelines.</p>
 <p>The following table summarizes supervised Preference Optimization methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.</p>
 <table class="caption-top table">
 <colgroup>
