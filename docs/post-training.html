@@ -875,13 +875,12 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 </ul>
 <p><strong>Limitations:</strong></p>
 <ul>
-<li>No per‑step credit assignment — evaluates the entire output as one unit rather than rewarding incremental progress.<br>
-</li>
+<li>No per‑step credit assignment — scores full outputs instead of incremental steps.</li>
 <li>May underperform RLHF on multi-step reasoning or complex, long-horizon tasks.<br>
 </li>
-<li>Relies heavily on high-quality, representative preference pairs; biased or noisy data can reduce effectiveness.</li>
+<li>Dependent on high-quality preference pairs; poor data reduces effectiveness.</li>
 </ul>
-<p>Overall, DPO offers a practical trade-off — delivering much of RLHF’s alignment benefits with significantly lower complexity, making it a compelling choice for many modern LLM training pipelines.</p>
+<p>Overall, DPO offers a practical trade-off — delivering much of RLHF’s alignment benefits with significantly lower complexity and cost, making it a compelling choice for many modern LLM training pipelines, especially when rapid iteration is important.</p>
 <p>The following table summarizes supervised Preference Optimization methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.</p>
 <table class="caption-top table">
 <colgroup>
