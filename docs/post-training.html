@@ -820,7 +820,7 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 </li>
 <li><strong>Preference Data Collection:</strong> Gather human feedback by having annotators rank multiple model responses for the same prompt from best to worst.<br>
 </li>
-<li><strong>Reinforcement Learning Optimization:</strong> Fine-tune the model with reinforcement learning (often using PPO) so that it produces outputs that maximize a learned <em>reward model</em> based on the collected preferences.</li>
+<li><strong>Reinforcement Learning Optimization:</strong> Fine-tune the model with reinforcement learning (often using Proximal Policy Optimization, PPO) so that it produces outputs that maximize a learned <em>reward model</em> based on collected preferences.</li>
 </ol>
 <p>The figure below illustrates this process from start to finish, showing how RLHF moves from human demonstrations to ranking comparisons and finally to policy optimization.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -829,9 +829,8 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <figcaption><strong>Figure 1:</strong> RLHF pipeline showing three stages — (1) supervised fine-tuning from demonstrations, (2) preference ranking to train a reward model, and (3) policy optimization using reinforcement learning. <em>(Source: Ouyang et al., 2022)</em></figcaption>
 </figure>
 </div>
-<p>In <strong>Step 1</strong>, a prompt is sampled from a dataset, and a human labeler writes the ideal response. These demonstration pairs are used to fine-tune the base LLM with supervised learning, creating the starting policy.</p>
-<p>In <strong>Step 2</strong>, the model generates several responses to a prompt. A human labeler ranks these from best to worst. These rankings are used to train a separate <em>reward model</em> that can predict human preference without direct human input for every example.</p>
-<p>In <strong>Step 3</strong>, the LLM generates outputs for new prompts, and the reward model assigns scores. Using an algorithm such as Proximal Policy Optimization (PPO), the policy is updated to maximize this reward while staying close to the original SFT model to avoid catastrophic changes.</p>
+<p><strong>How it works:</strong></p>
+<p>A prompt is sampled from a dataset, and a human labeler writes the ideal response. These examples teach the base model to follow instructions (SFT). Next, the model generates several responses for a prompt, and human labelers rank them, enabling the creation of a <em>reward model</em> that predicts human preference. Finally, the policy is optimized with reinforcement learning to produce outputs that maximize predicted reward while staying close to the SFT model, ensuring improvements in alignment without degrading core capabilities.</p>
 <p><strong>RLHF Performance Gains:</strong></p>
 <p>RLHF has been shown to improve output quality compared to models trained only with pre-training or supervised fine-tuning. Figure below shows that across various model sizes, RLHF-trained models are preferred by humans over both reference summaries and outputs from models trained without RLHF. This improvement is consistent and grows with model size.</p>
 <div class="quarto-figure quarto-figure-center">
