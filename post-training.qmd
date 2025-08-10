@@ -440,7 +440,7 @@ A prompt is sampled from a dataset, and a human labeler writes the ideal respons
 
 **RLHF Performance Gains:**
 
-RLHF has been shown to improve output quality compared to models trained only with pre-training or supervised fine-tuning. Figure below shows that across various model sizes, RLHF-trained models are preferred by humans over both reference summaries and outputs from models trained without RLHF. This improvement is consistent and grows with model size.
+RLHF has been shown to produce higher-quality outputs than models trained only with pre-training or supervised fine-tuning. In human evaluations on the TL;DR summarization dataset, RLHF-trained models not only outperform models trained without RLHF but also exceed the quality of the human-written reference summaries—baseline summaries created by people, shown as the dotted black line in the figure below. This performance advantage is consistent across model sizes and increases steadily as model capacity grows.
 
 ![**Figure:** Human preference ratings for model-generated summaries on the TL;DR dataset. RLHF significantly outperforms both pre-training and supervised fine-tuning across all model sizes. *(Source: Stiennon et al., 2020)*](images/rlhf_performance.png)  
 
