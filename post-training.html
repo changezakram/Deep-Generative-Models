@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Post-Training for Foundation Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://changezakram.github.io/"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./diffusion.html">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/transformers.html">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/post-training.html">
+ <span class="dropdown-text">Post Training</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-agentic-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Agentic AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-agentic-ai">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-ai.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-math-review" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Math Review</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-math-review">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/linear-algebra.html">
+ <span class="dropdown-text">Linear Algebra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/calculus.html">
+ <span class="dropdown-text">Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/probability.html">
+ <span class="dropdown-text">Probability</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-use-cases" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Use Cases</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-use-cases">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html">
+ <span class="dropdown-text">Banking</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html">
+ <span class="dropdown-text">Healthcare</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction-why-post-training-matters-for-reasoning" id="toc-introduction-why-post-training-matters-for-reasoning" class="nav-link active" data-scroll-target="#introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</a></li>
+  <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">2</span> Prompting</a></li>
+  <li><a href="#testtime-scaling-methods" id="toc-testtime-scaling-methods" class="nav-link" data-scroll-target="#testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</a></li>
+  <li><a href="#supervised-fine-tuning-sft" id="toc-supervised-fine-tuning-sft" class="nav-link" data-scroll-target="#supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</a></li>
+  <li><a href="#preference-optimization" id="toc-preference-optimization" class="nav-link" data-scroll-target="#preference-optimization"><span class="header-section-number">5</span> Preference Optimization</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
+  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">7</span> References &amp; Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Post-Training for Foundation Models</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-why-post-training-matters-for-reasoning" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</h2>
+<p>Large language models like GPT-4 and Claude have demonstrated impressive capabilities across a wide range of tasks, including writing, summarization, problem solving, and open-ended reasoning. These are examples of <strong>foundation models</strong>—large, general-purpose models trained on broad data at scale, designed to serve as flexible building blocks for many downstream applications. But their raw, pre-trained form is not sufficient for safe, reliable deployment.</p>
+<p>The core limitation lies in how LLMs are initially trained. They don’t follow strict rules or formal logic. Instead, they learn from statistical patterns in massive text corpora. This makes them flexible and creative—but also means their reasoning can be inconsistent, misleading, or untrustworthy.</p>
+<p>These models are typically optimized to predict the next word in a sentence—not to follow instructions, act ethically, or meet human expectations. This initial phase is called <strong>pre-training</strong>, and it focuses on token-level quality—generating the most likely next word given the prior context. But users care more about the quality of the entire response than just the next token.</p>
+<p>This is where <strong>post-training</strong> comes in. It refines the model’s behavior to be helpful, safe, and aligned with human intent. Some compare pre-training to reading a vast amount of text, and post-training to learning how to apply that knowledge in a useful, trustworthy way.</p>
+<p>Post-training typically involves two key stages:</p>
+<ul>
+<li><strong>Supervised Fine-Tuning (SFT)</strong>: teaching the model to follow instructions and carry out tasks</li>
+<li><strong>Preference Optimization</strong>: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF</li>
+</ul>
+<p>These techniques not only improve factual accuracy and safety, but also enhance the model’s ability to reason. And surprisingly, they require relatively little compute—InstructGPT, for example, used only 2% of its total compute budget for post-training.</p>
+<p>While supervised and preference tuning are the core of post-training, it’s also important to consider <strong>prompting techniques</strong>. These methods—such as <strong>zero-shot</strong>, <strong>few-shot</strong>, and <strong>chain-of-thought</strong> prompting—don’t change the model’s weights but can steer its behavior at inference time. Prompting often delivers strong results without additional training, making it an essential part of real-world LLM deployment.</p>
+<p>In the sections that follow, we’ll explore both post-training techniques and prompting strategies, and how they work together to transform general-purpose LLMs into dependable, aligned assistants.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/post-training-methods.png" class="img-fluid figure-img" width="800"></p>
+<figcaption><strong>Figure:</strong> High-level taxonomy of large language model (LLM) post-training strategies, showing where scaling methods (bottom right) fit alongside reinforcement, tuning, and alignment approaches. <em>(Source: Kumar et al., 2023)</em></figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="prompting" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="prompting"><span class="header-section-number">2</span> Prompting</h2>
+<section id="in-context-learning-zero-shot-and-few-shot" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="in-context-learning-zero-shot-and-few-shot"><span class="header-section-number">2.1</span> In-Context Learning: Zero-Shot and Few-Shot</h3>
+<p><strong>Concept:</strong><br>
+In-Context Learning (ICL) refers to the ability of large language models (LLMs) to perform tasks by conditioning on examples provided in the input prompt, without any gradient updates or fine-tuning. This capability emerged prominently with GPT-3, as shown in Brown et al.&nbsp;(2020), <em>Language Models are Few-Shot Learners</em>.</p>
+<p>Traditionally, models learn behavior during training stages such as pre-training and post-training that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the <em>context</em> in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.</p>
+<p><strong>How It Works</strong></p>
+<ul>
+<li>The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.</li>
+<li>These patterns are applied to new examples within the same prompt context.</li>
+<li>This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.</li>
+</ul>
+<p><strong>Key Variants</strong></p>
+<p><strong>1. Zero-Shot Prompting:</strong> Ask the model to perform a task using only an instruction or question — without providing any explicit examples of how the task should be done.</p>
+<ul>
+<li>The model relies solely on its pre-trained knowledge and its understanding of the instruction to produce the output.<br>
+</li>
+<li>Even without examples, the instruction itself acts as a minimal form of <em>context</em> that the model conditions on.</li>
+</ul>
+<p>Example: Translate the following sentence into French: The weather is beautiful today.<br>
+No translations are shown beforehand — the model generates the French sentence using patterns it learned during training.</p>
+<p><strong>2. Few-Shot Prompting:</strong> Provide a small number of (input → output) examples before asking for a new prediction.</p>
+<ul>
+<li>One example = one “shot” (e.g., 5 examples = 5-shot learning).</li>
+<li>More examples generally improve performance, but are limited by the model’s maximum context length.</li>
+</ul>
+<p>Example: Showing labeled sentiment examples before asking for classification of a new sentence.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/eval_strategies.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. <em>(Source: Brown et al., 2020)</em></figcaption>
+</figure>
+</div>
+<p>These prompting strategies differ in how much context the model receives before making a prediction. The charts below reveal how both model size and the number of in-context examples impact benchmark accuracy.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/superglue_analysis.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> SuperGLUE performance comparison between zero-shot, one-shot, and few-shot prompting, showing the effect of model size (left) and number of in-context examples (right). (Source: Brown et al., 2020)</figcaption>
+</figure>
+</div>
+<p><strong>Left chart:</strong> Larger models consistently improve SuperGLUE scores across all prompting types, with few-shot prompting delivering the largest gains — the jump from the smallest (~0.1B) to the largest (175B) model is over 20 points in few-shot mode. <strong>Right chart:</strong> For GPT-3 (175B parameters), zero-shot starts at 68.0, one-shot improves to 69.8, and 8-shot reaches 72.5, matching Fine-Tuned BERT++. At 32-shot, performance climbs to 75.5, surpassing Fine-Tuned BERT++ without any parameter updates.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Performance Summary">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Performance Summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Across all prompting types, performance consistently improves as model size increases. Few-shot prompting delivers the largest gains, with GPT-3 (175B) achieving scores close to fine-tuned models without any parameter updates.</p>
+</div>
+</div>
+<p><strong>Advantages</strong></p>
+<ul>
+<li><strong>Flexibility:</strong> The model can incorporate new information at inference time, enabling it to respond to queries beyond its original training cut-off date.</li>
+<li><strong>No Retraining Needed:</strong> Eliminates the need to re-train for minor domain or task changes.</li>
+<li><strong>Emergent Performance:</strong> Works surprisingly well in very large models (e.g., GPT-3 with 175B parameters) for diverse tasks like translation, reading comprehension, arithmetic, SAT questions, and commonsense reasoning.</li>
+</ul>
+<p><strong>Limitations</strong></p>
+<ul>
+<li><strong>Context Length Constraints</strong>: Limited by the model’s maximum input size, restricting the number of examples that can be provided.</li>
+<li><strong>Performance Sensitivity</strong>: Output quality varies depending on prompt wording, ordering, and example selection.</li>
+<li><strong>Lack of True Learning</strong>: The model’s weights are not updated; adaptation is temporary and disappears when the context changes.</li>
+<li><strong>Weak Multi-Step Reasoning</strong>: Struggles with tasks requiring reasoning across multiple logical or arithmetic steps.</li>
+<li><strong>Limited Interpretability</strong>: Produces final answers without an explicit reasoning trail, making verification and debugging difficult.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Insight">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Insight
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ICL effectively turns prompting into a form of <em>temporary fine-tuning</em>, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.</p>
+</div>
+</div>
+<p>Some of these reasoning limitations — particularly weak multi-step reasoning — can be addressed with <strong>Chain-of-Thought prompting</strong> (Wei et al., 2022), which guides the model to generate intermediate steps before producing the final answer.</p>
+</section>
+<section id="addressing-icls-reasoning-limitations-chain-of-thought-prompting" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="addressing-icls-reasoning-limitations-chain-of-thought-prompting"><span class="header-section-number">2.2</span> Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting</h3>
+<p><strong>Concept:</strong><br>
+Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <strong>natural language reasoning steps</strong> between the input and the final output. Instead of going directly from problem → answer, the model is encouraged to generate a sequence of intermediate steps — a “reasoning chain” — before producing its final answer.</p>
+<p><strong>How It Works:</strong></p>
+<ul>
+<li>The prompt explicitly demonstrates step-by-step reasoning for a few training examples in the context.<br>
+</li>
+<li>The model learns to emulate this reasoning pattern when solving new tasks in the same prompt.<br>
+</li>
+<li>The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cot-reasoning.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Comparison of standard prompting and Chain-of-Thought prompting on arithmetic reasoning tasks. CoT provides explicit step-by-step reasoning, enabling the model to correctly solve problems that standard prompting fails. <em>(Source: Wei et al., 2022)</em></figcaption>
+</figure>
+</div>
+<p><strong>Why It Helps:</strong></p>
+<p>CoT prompting addresses several ICL weaknesses:</p>
+<ul>
+<li><strong>Improved Multi-Step Reasoning:</strong> By breaking down problems into smaller sub-problems, the model performs better on tasks requiring arithmetic computation, symbolic reasoning, and commonsense logic.</li>
+<li><strong>Interpretability:</strong> Produces intermediate steps that allow humans to verify and debug reasoning.</li>
+<li><strong>Error Reduction:</strong> Reduces the likelihood of “shortcut” or guess-based answers by forcing the model to articulate the full solution path.</li>
+</ul>
+<p><strong>Empirical Evidence (Wei et al., 2022):</strong></p>
+<p>The chart below is arranged <strong>by benchmark in rows</strong> (Row 1 = GSM8K, Row 2 = SVAMP, Row 3 = MAWPS) and <strong>by model family in columns</strong> (Column 1 = LaMDA, Column 2 = GPT, Column 3 = PaLM).</p>
+<ul>
+<li><strong>On the GSM8K math word problem benchmark</strong> (Row 1), CoT prompting with <strong>GPT-3 175B</strong> improved solve rate from <strong>17.7%</strong> (standard prompting) to <strong>57.1%</strong>, a gain of nearly <strong>40 percentage points</strong>.<br>
+</li>
+<li><strong>On the SVAMP benchmark</strong> (Row 2), CoT prompting with <strong>GPT-3 175B</strong> increased performance from about <strong>44%</strong> to <strong>72%</strong>, surpassing the prior supervised best.<br>
+</li>
+<li><strong>On the MAWPS benchmark</strong> (Row 3), CoT prompting with <strong>PaLM 540B</strong> boosted accuracy from roughly <strong>78%</strong> to <strong>92%</strong>, matching or exceeding the prior supervised best.</li>
+</ul>
+<p>Across all benchmarks and model families (LaMDA, GPT, PaLM), <strong>larger models consistently show greater gains</strong> from CoT prompting, with the blue curves sitting above the black curves, especially at the largest scales.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cot-performance.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Performance comparison between standard prompting and Chain-of-Thought prompting across GSM8K, SVAMP, and MAWPS benchmarks for different model families (LaMDA, GPT, PaLM). CoT delivers large gains, particularly for larger models. <em>(Source: Wei et al., 2022)</em></figcaption>
+</figure>
+</div>
+<p><strong>When It Works Best:</strong></p>
+<ul>
+<li>Tasks with compositional structure where intermediate reasoning steps are natural.<br>
+</li>
+<li>Models with sufficient scale (CoT’s benefits appear more strongly in models &gt;100B parameters).<br>
+</li>
+<li>Prompts that clearly format and separate reasoning from final answers.</li>
+</ul>
+<p><strong>Advantages</strong></p>
+<ul>
+<li><strong>Enhanced Multi-Step Reasoning:</strong> Significant gains on benchmarks like GSM8K and MultiArith.</li>
+<li><strong>Interpretability:</strong> Step-by-step outputs help in auditing and debugging.</li>
+<li><strong>Prompt-Only Method:</strong> No fine-tuning required; works within ICL framework.</li>
+<li><strong>Emergent Capability:</strong> Reasoning skills become apparent in large-scale models.</li>
+</ul>
+<p><strong>Limitations</strong></p>
+<ul>
+<li><strong>Model Size Dependency:</strong> Large performance gains appear mainly in models &gt;100B parameters; smaller models often produce incoherent chains.</li>
+<li><strong>Increased Output Length:</strong> More tokens may affect latency and cost.</li>
+<li><strong>Limited Benefit for Simple Tasks:</strong> Minimal improvement for factual recall or single-step reasoning.</li>
+<li><strong>Error Propagation:</strong> Early mistakes in reasoning can cascade to incorrect final answers.</li>
+<li><strong>Hallucinated Logic:</strong> Reasoning may be coherent but factually wrong.</li>
+</ul>
+<p>Beyond prompt engineering, another way to boost model performance without changing its weights is through <strong>Test-Time Scaling (TTS)</strong>.<br>
+While both prompting and TTS work without retraining the model, they target <em>different levers</em> for improvement:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 24%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Prompting</th>
+<th>Test-Time Scaling (TTS)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>When applied</strong></td>
+<td>Before inference</td>
+<td>During inference</td>
+</tr>
+<tr class="even">
+<td><strong>What changes</strong></td>
+<td>The <em>input prompt</em> to guide the model’s output</td>
+<td>The <em>inference process</em> — computation allocation, search, sampling</td>
+</tr>
+<tr class="odd">
+<td><strong>Core mechanism</strong></td>
+<td>Better instructions, examples, or formatting</td>
+<td>Iterative refinement, search-based decoding, adaptive sampling</td>
+</tr>
+<tr class="even">
+<td><strong>Goal</strong></td>
+<td>Steer the model toward a better answer</td>
+<td>Improve accuracy/reasoning by giving the model more “thinking” time or attempts</td>
+</tr>
+<tr class="odd">
+<td><strong>Analogy</strong></td>
+<td>Asking a student a well-phrased question</td>
+<td>Giving the student more scratch paper and extra tries</td>
+</tr>
+</tbody>
+</table>
+<p>This distinction is important: <strong>prompting</strong> focuses on <em>how you ask</em>, while <strong>TTS</strong> focuses on <em>how the model thinks and searches for answers once asked</em>.</p>
+<hr>
+</section>
+</section>
+<section id="testtime-scaling-methods" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</h2>
+<p><strong>Concept:</strong><br>
+Test-time scaling (TTS) improves a model’s performance and reasoning during inference—without changing its parameters. While prompting guides the model by adjusting the input text, TTS works by giving the model more “thinking time.” It runs extra computations, explores multiple reasoning paths, and often blends the best results from several runs. Unlike pre-training, which teaches the model new skills through large-scale learning, TTS makes smarter use of existing skills by allocating more resources—like iterative refinement, search-based decoding, or adaptive sampling—based on complexity of the task.</p>
+<p>TTS can match the performance of a model up to 14× larger on easy to intermediate tasks, while using up to 4× lower compute cost<sup>[1]</sup>. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—<strong>pre-training remains superior</strong>, as larger pre-trained models inherently encode deeper reasoning ability.</p>
+<p>In practice, TTS and pre-training are <strong>complementary</strong>: pre-training builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a <strong>hybrid approach</strong>, combining a pre-trained base model with TTS to achieve cost‑efficient scaling and adaptability.</p>
+<p><strong>Why It Matters:</strong></p>
+<p>Test-time scaling lets you squeeze more performance out of your current models by simply working them harder at inference. Instead of paying the price (in time, data, and money) to train a larger model, you can unlock competitive or even superior results by exploring multiple reasoning paths and smartly combining answers. This translates into stronger performance, lower costs, and faster innovation—without the need for heavy, expensive upgrades.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Improves performance without retraining or altering model parameters<br>
+</li>
+<li>Can match or exceed much larger models on certain tasks at a fraction of the compute cost<br>
+</li>
+<li>Flexible allocation of compute based on input complexity<br>
+</li>
+<li>Enables on‑demand scaling in resource‑constrained settings<br>
+</li>
+<li>Works well as part of a hybrid strategy with pre-training</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Gains are often smaller on tasks requiring novel skills not present in the base model<br>
+</li>
+<li>Additional inference compute can increase latency and operational costs<br>
+</li>
+<li>Requires effective task‑complexity estimation to allocate resources efficiently<br>
+</li>
+<li>May yield diminishing returns if scaling is excessive for a given task</li>
+</ul>
+<p>The diagram below organizes TTS techniques into categories, showing typical integration flows between methods.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/test-time-scaling.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> An overview of Test-Time Scaling methods, organized into categories such as parallel scaling, sequential scaling, and search-based methods. Arrows indicate common integration flows—e.g., Chain-of-Thought Prompting feeding into Tree-of-Thoughts for deeper reasoning. This structure helps practitioners select the right combination of strategies based on task complexity. <em>(Source: Kumar et al., 2023)</em></figcaption>
+</figure>
+</div>
+<p><strong>Category Overview:</strong></p>
+<ul>
+<li><strong>Scaling Strategies</strong> – Methods that expand search breadth or depth, exploring multiple reasoning paths to increase accuracy (e.g., Beam Search, Monte Carlo Tree Search, Best-of-N Search).<br>
+</li>
+<li><strong>Advanced Sampling</strong> – Techniques that selectively sample outputs based on confidence or external verification to improve efficiency and quality (e.g., Confidence-Based Sampling, Search Against Verifiers).<br>
+</li>
+<li><strong>Improved Reasoning</strong> – Approaches that structure thinking into multi-step processes for complex problem-solving (e.g., Chain-of-Thought Prompting, Tree-of-Thoughts, Self-Consistency Decoding).<br>
+</li>
+<li><strong>Sequential Revision</strong> – Iterative refinement strategies that repeatedly improve answers until they meet quality criteria (e.g., Self-Improvement via Refinements).</li>
+</ul>
+<p>While many approaches exist for test‑time scaling, a few have emerged as especially influential in practical LLM applications. The sections below explore some of these methods in greater detail, including their mechanics, strengths, and trade‑offs.</p>
+<section id="best-of-n-search-rejection-sampling" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="best-of-n-search-rejection-sampling"><span class="header-section-number">3.1</span> Best-of-N Search (Rejection Sampling)</h3>
+<p><strong>Concept:</strong><br>
+Best-of-N (BoN) search enhances model performance at inference by generating <em>N</em> candidate outputs (often via sampling) and selecting the one that scores highest according to a chosen criterion — such as a reward model, likelihood score, or rule-based evaluator. This approach systematically explores multiple solution paths and prunes all but the top-rated result. Compared to Beam Search, BoN treats each candidate independently, which can increase diversity but may also be more computationally expensive.</p>
+<p>In reinforcement learning contexts, BoN can be integrated with a learned reward model to pick the best candidate from multiple rollouts, yielding strong performance in reasoning-heavy tasks. It is a popular choice in applications like question answering, code generation, and reasoning benchmarks.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Can significantly boost task performance, especially with a robust reward model</li>
+<li>Flexible — works with both rule-based and learned scoring functions</li>
+<li>Simple to implement; requires only control over <em>N</em> and the selection criterion</li>
+<li>Competitive with post-training methods like RLHF and DPO when paired with strong evaluators</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Higher computational cost as <em>N</em> increases<br>
+</li>
+<li>Performance depends heavily on the quality of the scoring function or reward model<br>
+</li>
+<li>May select lower-probability solutions if scoring is imperfect (reward hacking risk)<br>
+</li>
+<li>Instability can occur if the <em>N</em> parameter is too large or too small for the task</li>
+</ul>
+</section>
+<section id="self-consistency-decoding" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="self-consistency-decoding"><span class="header-section-number">3.2</span> Self-Consistency Decoding</h3>
+<p><strong>Concept:</strong><br>
+Self-Consistency is a decoding strategy designed to improve reasoning by aggregating answers from multiple reasoning paths. Instead of following a single chain of thought, the model samples diverse reasoning chains (using techniques like prompt engineering to encourage diversity, temperature sampling, or stochastic decoding) and then outputs the final answer that is most consistent across them.</p>
+<p>The underlying intuition is that if a complex question has a unique correct answer, different valid reasoning paths should converge on the same result. This <em>majority vote</em> or <em>highest probability after marginalization</em> approach reduces the likelihood of errors from flawed single reasoning chains and is especially effective in reasoning tasks.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Improves correctness in complex reasoning scenarios<br>
+</li>
+<li>Works well for arithmetic, commonsense reasoning, and multi-step problem-solving<br>
+</li>
+<li>Reduces reliance on any single, potentially flawed reasoning path<br>
+</li>
+<li>Can be combined with Chain-of-Thought prompting for greater gains</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Higher inference cost due to multiple reasoning path generations<br>
+</li>
+<li>Gains diminish for simpler tasks where a single reasoning path is sufficient<br>
+</li>
+<li>Effectiveness depends on diversity and quality of sampled reasoning paths</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Difference: Best-of-N vs.&nbsp;Self-Consistency
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Best-of-N Search (Rejection Sampling):</strong> Goal is to find the <em>highest-quality</em> single output.<br>
+The model is run multiple times with the same prompt, and each output is scored or filtered using a heuristic, probability, or verifier. The output with the best score is selected.</p></li>
+<li><p><strong>Self-Consistency Decoding:</strong> Goal is to find the answer most reasoning paths agree on.<br>
+The model is run multiple times, encouraging different step-by-step reasoning chains. The final answer from each chain is collected, and the one appearing most often (majority vote) is chosen.</p></li>
+</ul>
+<p><strong>In short:</strong> Best-of-N picks the <em>best-rated</em> answer. Self-Consistency picks the <em>most common</em> answer.</p>
+</div>
+</div>
+<p>The following table summarizes key test‑time scaling methods described in <em>LLM Post‑Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Goal &amp; Common Use Cases</th>
+<th>Benefits</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Beam Search</strong></td>
+<td>Maintain top‑N highest‑probability reasoning paths at each step; used in structured reasoning, planning, and Tree‑of‑Thought search.</td>
+<td>Improves coherence and accuracy by systematically exploring multiple reasoning chains.</td>
+<td>Computationally expensive; beam width must be tuned; may still miss rare but correct paths.</td>
+</tr>
+<tr class="even">
+<td><strong>Best‑of‑N (Rejection Sampling)</strong></td>
+<td>Generate N candidate outputs (via sampling) and select the best using a criterion (e.g., reward model, model likelihood).</td>
+<td>Improves answer quality for easier tasks; straightforward to implement; flexible budget.</td>
+<td>High cost if N is large; requires effective selection criteria; may miss diversity benefits.</td>
+</tr>
+<tr class="odd">
+<td><strong>Compute‑Optimal Scaling (COS)</strong></td>
+<td>Dynamically allocate compute based on task difficulty; use more search for hard cases, less for easy ones.</td>
+<td>Balances accuracy and efficiency; can achieve large efficiency gains over uniform sampling.</td>
+<td>Requires reliable difficulty estimation; complex to implement in production.</td>
+</tr>
+<tr class="even">
+<td><strong>Self‑Consistency Decoding</strong></td>
+<td>Sample multiple reasoning chains, then select the most common final answer.</td>
+<td>Improves multi‑step reasoning accuracy; simple and model‑agnostic.</td>
+<td>Higher inference cost; relies on majority vote, which may fail if most outputs are wrong.</td>
+</tr>
+<tr class="odd">
+<td><strong>Tree of Thoughts (ToT)</strong></td>
+<td>Expand multiple reasoning paths as a search tree, evaluating and pruning branches.</td>
+<td>Enhances complex problem solving and planning; allows backtracking.</td>
+<td>High computational cost; requires good heuristics to prune effectively.</td>
+</tr>
+<tr class="even">
+<td><strong>Graph of Thoughts (GoT)</strong></td>
+<td>Represent reasoning steps as a graph with flexible dependencies; enables merging and dynamic exploration.</td>
+<td>More adaptable than ToT; reduces redundant computation; efficient for complex reasoning.</td>
+<td>Implementation complexity; less studied than ToT.</td>
+</tr>
+<tr class="odd">
+<td><strong>Confidence‑Based Sampling</strong></td>
+<td>Select expansions or answers based on model confidence scores.</td>
+<td>Reduces wasted exploration on low‑probability paths; can improve efficiency.</td>
+<td>Confidence scores may not correlate with correctness; risk of overconfidence.</td>
+</tr>
+<tr class="even">
+<td><strong>Search‑Augmented Verification</strong></td>
+<td>Use external verifiers to evaluate and rank candidate answers or reasoning steps.</td>
+<td>Increases correctness in binary decision tasks; modular and flexible.</td>
+<td>Dependent on verifier quality; additional inference steps add latency.</td>
+</tr>
+<tr class="odd">
+<td><strong>Self‑Improvement via Refinements</strong></td>
+<td>Model iteratively critiques and revises its own answers until acceptable.</td>
+<td>Can improve accuracy across varied tasks; useful for open‑ended reasoning.</td>
+<td>Risk of over‑editing or drifting from initial intent; higher inference cost.</td>
+</tr>
+<tr class="even">
+<td><strong>Monte Carlo Tree Search (MCTS)</strong></td>
+<td>Explore possible reasoning paths via random simulations, guided by heuristics and rewards.</td>
+<td>Effective for planning and reasoning under uncertainty; supports large search spaces.</td>
+<td>High computational cost; requires effective reward design.</td>
+</tr>
+<tr class="odd">
+<td><strong>Chain‑of‑Action‑Thought Reasoning</strong></td>
+<td>Integrate action planning with reasoning steps for complex tasks.</td>
+<td>Handles multi‑agent, tool‑augmented reasoning; improves adaptability.</td>
+<td>Complex to implement; requires specialized training or prompting.</td>
+</tr>
+</tbody>
+</table>
+<p>While prompting and test-time scaling adjust model behavior without altering weights, supervised fine-tuning directly updates model parameters to improve performance on specific tasks.</p>
+<hr>
+</section>
+</section>
+<section id="supervised-fine-tuning-sft" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</h2>
+<p><strong>Concept:</strong></p>
+<p>Supervised Fine-Tuning (SFT) is a post-training method where a pre-trained foundation model is further trained on labeled examples (input–output pairs) to better align it with desired behaviors or domain needs. While pre-training learns broad language patterns, SFT narrows the focus—adapting the model for specific goals by adjusting its internal weights on high-quality datasets. In contrast to prompting or test-time scaling, which only influence outputs at inference time, SFT changes the model’s parameters directly, so the improvements stay in the model even after the training.</p>
+<p>SFT can be applied in two main ways:</p>
+<ul>
+<li><strong>General-purpose instruction tuning</strong> – teaching the model to follow diverse natural language instructions across many tasks.<br>
+</li>
+<li><strong>Domain-specific tuning</strong> – adapting the model for specialized fields such as legal, medical, or financial applications.</li>
+</ul>
+<p><strong>Why it matters:</strong></p>
+<p>SFT is one of the most effective ways to improve task performance, consistency, and controllability in large language models. It also serves as the foundation for later optimization steps such as preference alignment (e.g., RLHF or DPO).</p>
+<p>While many approaches exist for supervised fine‑tuning, <strong>Instruction Fine‑Tuning</strong> and <strong>Domain‑Specific Fine‑Tuning</strong> are among the most prevalent in modern LLM post‑training pipelines. The sections below explore these methods in greater detail.</p>
+<section id="instruction-fine-tuning" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="instruction-fine-tuning"><span class="header-section-number">4.1</span> Instruction Fine-Tuning</h3>
+<p><strong>Concept:</strong></p>
+<p>Instruction Fine-Tuning is the most common form of SFT, focusing on training a pre-trained model with a broad range of instruction–response examples across tasks like summarization, question answering, classification, and creative writing. The aim is to help the model reliably follow natural language instructions — even for tasks it hasn’t explicitly seen — by aligning outputs with the user’s intent rather than simply predicting the next word.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Strong generalization to unseen tasks in zero-shot and few-shot settings.</li>
+<li>Produces more helpful, consistent, and structured outputs.</li>
+<li>Improves controllability across varied prompt styles.</li>
+<li>Provides a solid baseline for later optimization.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Needs large, diverse, and high-quality instruction datasets.</li>
+<li>Open-ended tasks can be hard to evaluate objectively.</li>
+<li>Human-generated data may bring bias, inconsistency, or noise.</li>
+<li>Risk of overfitting to the style of the fine-tuning dataset if it lacks diversity.</li>
+</ul>
+<p>The table below reports results from the <strong>Flan (Wei et al., 2022)</strong> study, which evaluated the impact of supervised fine-tuning (SFT) — specifically <em>instruction fine-tuning</em> — on multiple pre-trained language models of different sizes (ranging from 80M to 540B parameters).</p>
+<p>Performance is measured across four benchmarks:</p>
+<ul>
+<li><strong>MMLU</strong> – a multi-task test covering 57 diverse subjects.<br>
+</li>
+<li><strong>BBH</strong> – the Big-Bench Hard set of reasoning tasks.<br>
+</li>
+<li><strong>TyDiQA</strong> – a multilingual question-answering benchmark.<br>
+</li>
+<li><strong>MGSM</strong> – multilingual grade school math problems.</li>
+</ul>
+<p>The “Norm. avg.” column is the unweighted normalized average score across all benchmarks, while “Direct” and “CoT” show performance under direct prompting and chain-of-thought prompting. Gains in parentheses represent improvement in normalized average from adding SFT.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/flan_performance_table.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Performance of instruction-fine-tuned models (FLAN, FLAN-PaLM) compared to their base models on a mix of unseen task categories. Results show consistent improvements across model sizes, with gains of up to 9–10 points in average accuracy after instruction fine-tuning. <em>(Source: Wei et al., 2022)</em></figcaption>
+</figure>
+</div>
+<p>Instruction fine-tuning consistently improves performance across model sizes. In the Flan-T5 family, gains tend to grow with model size — from +6.1 for the 80M model to +26.6 for the 11B model. For PaLM, the 62B version’s normalized average jumps from 28.4 to 38.8 (+10.4), with notable gains on MMLU (55.1 → 59.6) and MGSM (18.2 → 28.5). The largest 540B model also improves from 49.1 to 58.4 (+9.3) and boosts TyDiQA accuracy from 52.9 to 67.8. While the improvement is smaller in absolute terms for the 540B model, this is because it starts from a much higher baseline, leaving less headroom for improvement<sup>[5]</sup>.</p>
+</section>
+<section id="domain-specific-fine-tuning" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="domain-specific-fine-tuning"><span class="header-section-number">4.2</span> Domain-Specific Fine-Tuning</h3>
+<p><strong>Concept:</strong></p>
+<p>Domain-Specific Fine-Tuning narrows the model’s focus to excel in a specialized area — such as finance, healthcare, law, climate science, or software engineering — by training it on carefully selected domain-relevant datasets. This targeted approach strengthens the model’s command of the terminology, style, and knowledge specific to the field, enabling more precise, trustworthy, and context-aware outputs for professional or high-stakes use.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Boosts accuracy, factual grounding, and relevance in the chosen domain.</li>
+<li>Builds user trust in sensitive or regulated applications.</li>
+<li>Supports compliance with industry standards.</li>
+<li>Can reduce hallucinations by anchoring responses in vetted domain content.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Requires high-quality domain datasets, which may be expensive or hard to source.</li>
+<li>May lose versatility on out-of-domain tasks.</li>
+<li>Inherits biases or blind spots from domain data.</li>
+<li>Risk of over-specialization if coverage is too narrow.</li>
+</ul>
+<p>The chart below reports results from the <em>BioMedLM</em> study (Singhal et al., 2022), which applied <strong>domain-specific fine-tuning</strong> to a large pre-trained model (Flan-PaLM 540B) using biomedical and clinical datasets from the MultiMedQA benchmark. Performance is compared against the best previously published models across three key datasets:</p>
+<ul>
+<li><strong>MedMCQA</strong> – general medical knowledge in Indian medical entrance exams.<br>
+</li>
+<li><strong>MedQA (USMLE)</strong> – general medical knowledge in US medical licensing exams.<br>
+</li>
+<li><strong>PubMedQA</strong> – biomedical literature question answering.</li>
+</ul>
+<p>Accuracy (%) is shown for the previous state-of-the-art (SOTA) and for the domain-tuned Flan-PaLM 540B model.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/domain_specific_performance.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Accuracy of Flan-PaLM 540B after domain-specific fine-tuning compared to previous state-of-the-art models on three biomedical QA benchmarks. <em>(Source: Singhal et al., 2022)</em></figcaption>
+</figure>
+</div>
+<p>Domain-specific fine-tuning delivers <strong>substantial accuracy gains</strong> across all three benchmarks. On <strong>MedQA (USMLE)</strong>, Flan-PaLM 540B achieves <strong>67.6%</strong>, exceeding the previous best (PubMedGPT) by over <strong>17 points</strong>. On <strong>MedMCQA</strong>, performance rises to <strong>57.6%</strong> from the prior best of <strong>52.9%</strong>, while on <strong>PubMedQA</strong> it reaches <strong>79.0%</strong>, slightly surpassing the earlier record of <strong>78.2%</strong>. These results demonstrate that aligning a large language model with specialized biomedical knowledge can yield meaningful improvements, especially for complex, domain-specific reasoning tasks, even when starting from an already strong general-purpose model<sup>[6]</sup>.</p>
+<p>The following table summarizes supervised fine-tuning methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 37%">
+<col style="width: 15%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fine-tuning Type</th>
+<th>Goal &amp; Common Use Cases</th>
+<th>Benefits</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Instruction Fine-Tuning</strong></td>
+<td>Train LLMs to follow diverse instructions (e.g., summarization, classification, QA, creative writing). Enables zero-/few-shot generalization across tasks.</td>
+<td>Improves generalization and alignment; makes outputs more helpful and controllable.</td>
+<td>Requires large, curated datasets; open-ended tasks are harder to evaluate; may reflect human bias.</td>
+</tr>
+<tr class="even">
+<td><strong>Dialogue (Multi-turn) Fine-Tuning</strong></td>
+<td>Enable coherent, context-aware multi-turn conversations for chatbots and digital assistants.</td>
+<td>Improves coherence, context tracking, and conversational experience.</td>
+<td>Can overfit to chattiness; needs large, high-quality multi-turn dialogue datasets.</td>
+</tr>
+<tr class="odd">
+<td><strong>Chain-of-Thought (CoT) Reasoning Fine-Tuning</strong></td>
+<td>Encourage step-by-step reasoning in math, logic puzzles, multi-hop QA.</td>
+<td>Improves reasoning interpretability and multi-step accuracy.</td>
+<td>Requires structured reasoning traces; limited to reasoning-style tasks.</td>
+</tr>
+<tr class="even">
+<td><strong>Domain-Specific Fine-Tuning</strong></td>
+<td>Adapt models for specialized fields (e.g., biomedicine, finance, legal, climate, code).</td>
+<td>Improves accuracy and relevance in domain-specific applications.</td>
+<td>Needs high-quality, domain-specific corpora; risk of reduced generality.</td>
+</tr>
+<tr class="odd">
+<td><strong>Distillation-Based Fine-Tuning</strong></td>
+<td>Transfer capabilities from a large “teacher” model to a smaller “student” model.</td>
+<td>Produces smaller, faster models with high performance; reduces compute cost.</td>
+<td>May lose nuance or performance compared to teacher; quality depends on teacher data.</td>
+</tr>
+<tr class="even">
+<td><strong>Preference/Alignment SFT</strong></td>
+<td>Train models on labeled or ranked preference data before RLHF or DPO stages.</td>
+<td>Improves alignment with human values; reduces harmful or irrelevant outputs.</td>
+<td>Limited by scope and quality of preference data; definitions of “desirable” can vary.</td>
+</tr>
+<tr class="odd">
+<td><strong>Parameter-Efficient Fine-Tuning (PEFT)</strong></td>
+<td>Efficiently adapt models without updating all weights (e.g., LoRA, adapters, prefix tuning).</td>
+<td>Resource-efficient; enables adaptation on limited hardware.</td>
+<td>May underperform full fine-tuning; sensitive to hyperparameter choices.</td>
+</tr>
+</tbody>
+</table>
+<p>While SFT equips models to follow a wide range of tasks, it has inherent limitations — from the cost of collecting high-quality datasets, to challenges with subjective or open-ended tasks that have no single “right” answer, to mismatches between language modeling objectives and human expectations. For example, language modeling penalizes all token-level mistakes equally, even though some errors are more serious than others. These issues can lead SFT-trained models to produce factually correct but unsatisfying outputs, or to mirror suboptimal human-generated answers. To overcome these gaps, the next step is often <strong>preference optimization</strong> — aligning the model more directly with human values, judgments, and desired behaviors.</p>
+<hr>
+</section>
+</section>
+<section id="preference-optimization" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="preference-optimization"><span class="header-section-number">5</span> Preference Optimization</h2>
+<p><strong>Concept:</strong></p>
+<p>Preference optimization is the process of training a language model so that its outputs align with human preferences — not just to complete a task correctly, but to respond in ways that are safe, contextually relevant, and consistent with user expectations. This is achieved by providing the model with feedback signals, often referred to as rewards, that indicate which responses are better. Unlike standard task accuracy metrics, these rewards are based on human or AI-generated judgments. Feedback can come from humans (e.g., ranking or rating responses) or from AI-generated comparisons, and can evaluate factual correctness, reasoning, and coherence.</p>
+<p>However, large language models make preference optimization more complex than traditional reinforcement learning. They operate in a vast vocabulary action space, where there are millions of possible token sequences. Rewards are often delayed until an entire output is produced, and models must balance multiple — sometimes conflicting — objectives. Unlike small, well-defined RL environments, there are no universal “right” answers, and perceptions of what is “desirable” vary across cultures, topics, and personal beliefs. The ultimate goal is to guide the model’s behavior toward human values and expectations, producing responses that are not only correct but also helpful, safe, and aligned with the intended use.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Aligns outputs with expectations</strong> — Matches user needs and ethical guidelines.</li>
+<li><strong>Improves perceived helpfulness and safety</strong> in real-world applications.</li>
+<li><strong>Reduces harmful, offensive, or irrelevant outputs.</strong></li>
+<li><strong>Optimizes for nuanced objectives</strong> such as tone, reasoning quality, and factuality.</li>
+<li><strong>Supports personalization</strong> to match specific user or organizational needs.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li><strong>Subjectivity of preferences</strong> — What is “helpful” or “appropriate” can vary across individuals, contexts, and cultures.</li>
+<li><strong>Controversial topics</strong> — Risk of alienating some users; overly cautious models may appear bland or evasive.</li>
+<li><strong>Technical complexity</strong> — Large action spaces, delayed rewards, and balancing multiple objectives make optimization challenging.</li>
+<li><strong>Bias and fairness risks</strong> — Preferences used in training may embed societal biases.</li>
+<li><strong>Deployment trade-offs</strong> — Overly strict filtering can reduce engagement; insufficient filtering can create reputational and safety risks.</li>
+</ul>
+<p>While many approaches exist for preference optimization, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and <strong>Direct Preference Optimization (DPO)</strong> are two of the most widely used in modern LLM alignment pipelines. The next sections explore these methods in greater detail.</p>
+<section id="reinforcement-learning-from-human-feedback-rlhf" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="reinforcement-learning-from-human-feedback-rlhf"><span class="header-section-number">5.1</span> Reinforcement Learning from Human Feedback (RLHF)</h3>
+<p><strong>Concept:</strong></p>
+<p>RLHF is a widely used method for aligning large language models (LLMs) with human preferences by collecting human feedback and using it to guide reinforcement learning. Instead of simply optimizing for accuracy on a fixed dataset, RLHF incorporates judgments about which outputs are more helpful, safe, or aligned with user expectations.</p>
+<p>The process involves three main stages:</p>
+<ol type="1">
+<li><strong>Supervised Fine-Tuning (SFT):</strong> Train a baseline model on high-quality instruction–response pairs so it learns the basics of following human instructions.<br>
+</li>
+<li><strong>Preference Data Collection:</strong> Gather human feedback by having annotators rank multiple model responses for the same prompt from best to worst.<br>
+</li>
+<li><strong>Reinforcement Learning Optimization:</strong> Fine-tune the model with reinforcement learning (often using Proximal Policy Optimization, PPO) so that it produces outputs that maximize a learned <em>reward model</em> based on collected preferences.</li>
+</ol>
+<p>The figure below illustrates this process from start to finish, showing how RLHF moves from human demonstrations to ranking comparisons and finally to policy optimization.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rlhf_process.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 1:</strong> RLHF pipeline showing three stages — (1) supervised fine-tuning from demonstrations, (2) preference ranking to train a reward model, and (3) policy optimization using reinforcement learning. <em>(Source: Ouyang et al., 2022)</em></figcaption>
+</figure>
+</div>
+<p><strong>How it works:</strong></p>
+<p>A prompt is sampled from a dataset, and a human labeler writes the ideal response. These examples teach the base model to follow instructions (SFT). Next, the model generates several responses for a prompt, and human labelers rank them, enabling the creation of a <em>reward model</em> that predicts human preference. Finally, the policy is optimized with reinforcement learning to produce outputs that maximize predicted reward while staying close to the SFT model, ensuring improvements in alignment without degrading core capabilities.</p>
+<p><strong>RLHF Performance Gains:</strong></p>
+<p>RLHF has been shown to produce higher-quality outputs than models trained only with pre-training or supervised fine-tuning. In human evaluations on the TL;DR summarization dataset, RLHF-trained models not only outperform models trained without RLHF but also exceed the quality of the human-written reference summaries—baseline summaries created by people, shown as the dotted black line in the figure below. This performance advantage is consistent across model sizes and increases steadily as model capacity grows.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rlhf_performance.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Human preference ratings for model-generated summaries on the TL;DR dataset. RLHF significantly outperforms both pre-training and supervised fine-tuning across all model sizes. <em>(Source: Stiennon et al., 2020)</em></figcaption>
+</figure>
+</div>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Produces highly aligned and safe responses.<br>
+</li>
+<li>Can optimize for complex, nuanced objectives beyond raw accuracy.<br>
+</li>
+<li>Allows fine-grained control through reward model design.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Very expensive and labor-intensive to gather high-quality preference data.<br>
+</li>
+<li>Quality depends heavily on annotator skill and consistency.<br>
+</li>
+<li>Reward models can be exploited (<em>reward hacking</em>).<br>
+</li>
+<li>Sensitive to bias in collected preferences.</li>
+</ul>
+<p>While RLHF delivers strong alignment and quality improvements, its reliance on reinforcement learning introduces significant complexity and cost. Training requires fitting a value function, performing online sampling, and carefully tuning hyperparameters — processes that are computationally expensive, time-consuming, and sensitive to setup. These challenges have prompted the search for simpler, more efficient alternatives. Direct Preference Optimization (DPO) is one such method, offering a streamlined approach to preference optimization without the heavy reinforcement learning overhead.</p>
+</section>
+<section id="direct-preference-optimization-dpo" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5.2</span> Direct Preference Optimization (DPO)</h3>
+<p><strong>Concept:</strong></p>
+<p>Direct Preference Optimization (DPO) is a simpler, more efficient alternative to RLHF that eliminates the need for a separate reward model and reinforcement learning loop. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log-likelihood ratio to favor preferred responses. This “bakes in” human preferences directly into the model parameters, avoiding costly online sampling, PPO training, and hyperparameter sensitive RL steps.</p>
+<p>The main difference between RLHF and DPO lies in how they use preference data. The figure below shows how DPO streamlines the process by removing the reward model and RL loop.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/RLHF-vs-DPO.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> High-level comparison of RLHF and DPO pipelines. RLHF trains a separate reward model and uses reinforcement learning to optimize the policy, while DPO bypasses the reward model and RL loop, directly fine-tuning the model on preference pairs. (Source: Rafailov, 2023)</figcaption>
+</figure>
+</div>
+<p>As shown in the figure, RLHF involves three stages: (1) supervised fine-tuning, (2) training a separate reward model, and (3) applying reinforcement learning (often PPO) to update the policy. In contrast, DPO eliminates the reward model and the reinforcement learning step entirely. Instead, it directly fine-tunes the model on preference pairs, using a mathematically derived objective that encourages the preferred response to be more likely than the rejected one. This simplification reduces complexity and resource requirements while still leveraging human preference data for alignment.</p>
+<p>Beyond its architectural simplicity, DPO has demonstrated strong empirical performance across summarization and dialogue tasks. Figure below reports GPT-4-evaluated “helpfulness” win rates against ground truth for multiple models and baselines. DPO consistently outperforms PPO, SFT, and other methods, achieving results on par with or better than the “Best of 128” baseline across both tasks.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/dpo-performance.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure:</strong> Summarization and dialogue helpfulness win rates vs.&nbsp;ground truth, showing DPO outperforming other methods. (Source: Stanford CS224N, 2024, based on Rafailov et al., 2023)</figcaption>
+</figure>
+</div>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Much simpler and more stable than RLHF.<br>
+</li>
+<li>No need for online sampling or PPO training.<br>
+</li>
+<li>Easily scales to large datasets.<br>
+</li>
+<li>Well-suited for popular open-source models like LLaMA and OpenChat.</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>No per-step credit assignment — scores full outputs instead of incremental steps.</li>
+<li>May underperform RLHF on multi-step reasoning or complex, long-horizon tasks.<br>
+</li>
+<li>Dependent on high-quality preference pairs; poor data reduces effectiveness.</li>
+</ul>
+<p>Overall, DPO offers a practical trade-off — delivering much of RLHF’s alignment benefits with significantly lower complexity and cost, making it a compelling choice for many modern LLM training pipelines, especially when rapid iteration is important.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+RLHF vs DPO: Key Differences
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Reinforcement Learning from Human Feedback (RLHF)</strong> - Trains an <strong>explicit reward model</strong> on comparison data to predict a score for a given completion. - Optimizes the LM to <strong>maximize the predicted score</strong> under a KL-constraint. - Very effective when tuned well, but <strong>computationally expensive</strong> and tricky to get right. - Requires multiple steps: supervised fine-tuning → reward model training → policy optimization (e.g., PPO).</p>
+<p><strong>Direct Preference Optimization (DPO)</strong> - Optimizes LM parameters <strong>directly on preference data</strong> by solving a binary classification problem. - Avoids reward model training and reinforcement learning loops entirely. - <strong>Simpler and more efficient</strong> than RLHF while maintaining similar alignment benefits. - Does not leverage online data; operates purely on static preference pairs.</p>
+</div>
+</div>
+<p>The following table summarizes supervised Preference Optimization methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Goal &amp; Common Use Cases</th>
+<th>Benefits</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>RLHF (Reinforcement Learning from Human Feedback)</strong></td>
+<td>Align model outputs with human expectations using preference comparisons from human annotators to train a reward model, then optimize with RL (e.g., PPO).</td>
+<td>Produces helpful, safe, and human-aligned responses; can optimize for nuanced objectives; widely adopted in practice.</td>
+<td>Expensive and time‑consuming to collect human preference data; reward models can be overfit or gamed; dependent on noisy human judgments.</td>
+</tr>
+<tr class="even">
+<td><strong>RLAIF (Reinforcement Learning from AI Feedback)</strong></td>
+<td>Replace human annotation with AI‑generated feedback to create preference labels for training the reward model.</td>
+<td>Reduces cost and time; scalable to large datasets; avoids bottleneck of human labeling.</td>
+<td>Quality depends on feedback model; risk of propagating biases or errors from the AI judge; less diversity than human feedback.</td>
+</tr>
+<tr class="odd">
+<td><strong>DPO (Direct Preference Optimization)</strong></td>
+<td>Learn directly from preference pairs without training a separate reward model or running PPO, by optimizing likelihood ratios to favor preferred responses.</td>
+<td>Simpler and more stable than RLHF; no online sampling; scalable; increasingly popular in open‑source LLMs.</td>
+<td>Lacks per‑step credit assignment; may underperform RLHF for complex reasoning tasks; dependent on high‑quality preference data.</td>
+</tr>
+<tr class="even">
+<td><strong>OREO (Online Reasoning Optimization)</strong></td>
+<td>RL method to improve multi‑step reasoning by refining policies based on reasoning‑step evaluations rather than just final answers.</td>
+<td>Fine‑grained feedback at reasoning step level; boosts reasoning accuracy and interpretability.</td>
+<td>Computationally intensive; domain‑specific; requires curated reasoning traces.</td>
+</tr>
+<tr class="odd">
+<td><strong>GRPO (Group Relative Policy Optimization)</strong></td>
+<td>RL variant that scores multiple outputs for the same query relative to each other, eliminating the need for a critic model.</td>
+<td>Reduces memory usage; stabilizes training; enables fine‑grained rewards for complex reasoning tasks.</td>
+<td>Requires large groups of candidate responses; effectiveness depends on diversity and quality of generated outputs.</td>
+</tr>
+<tr class="even">
+<td><strong>Pure RL‑Based LLM Refinement</strong></td>
+<td>Multi‑stage RL pipelines (e.g., DeepSeek-R1) that refine models without or with minimal SFT, often incorporating distillation and curated reasoning traces.</td>
+<td>Can achieve high performance without large SFT datasets; distillation improves efficiency; robust reasoning capabilities.</td>
+<td>Complex to implement; computationally expensive; requires large curated datasets for stability and quality.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
+<p>Post-training for foundation models is not a single technique, but a <strong>toolbox of complementary strategies</strong>. Prompting and test-time scaling deliver immediate gains without altering model weights, making them ideal for rapid experimentation and deployment. Supervised fine-tuning adapts models for broad instruction-following or specialized domains, while preference optimization aligns outputs with human values and expectations.</p>
+<p>In real-world systems, the most capable LLMs often <strong>combine these methods</strong>: prompting for quick control, test-time scaling for reasoning-heavy queries, supervised fine-tuning for skill building, and preference optimization for safety and alignment. Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as <strong>agentic AI, retrieval-augmented generation, and continuous self-improvement loops</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Effective post-training is about matching the method to the goal. Understanding the trade-offs of each approach empowers practitioners to build LLMs that are not only more capable, but also <strong>safer, more reliable, and better aligned with human intent</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="references-further-reading" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">7</span> References &amp; Further Reading</h2>
+<p>[1] Kumar, K., Ashraf, T., Thawakar, O., et al.&nbsp;(2024). <em>LLM Post-Training: A Deep Dive into Reasoning Large Language Models</em>. https://arxiv.org/abs/2502.21321</p>
+<p>[2] Brown, T., Mann, B., Ryder, N., et al.&nbsp;(2020). <em>Language Models are Few-Shot Learners (GPT-3)</em>. https://arxiv.org/abs/2005.14165</p>
+<p>[3] Wei, J., Wang, X., Schuurmans, D., et al.&nbsp;(2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. https://arxiv.org/abs/2201.11903</p>
+<p>[4] Ouyang, L., Wu, J., Jiang, X., et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback (InstructGPT)</em>. https://arxiv.org/abs/2203.02155</p>
+<p>[5] Chung, H. W., Hou, L., Longpre, S., et al.&nbsp;(2022). <em>Scaling Instruction-Finetuned Language Models (Flan)</em>. https://arxiv.org/abs/2210.11416</p>
+<p>[6] Singhal, K., Azizi, S., Tu, T., et al.&nbsp;(2022). <em>Large Language Models Encode Clinical Knowledge</em>. https://arxiv.org/abs/2212.13138</p>
+<p>[7] Stiennon, N., Ouyang, L., Wu, J., et al.&nbsp;(2020). Learning to Summarize with Human Feedback. https://arxiv.org/abs/2009.01325</p>
+<p>[8] Rafailov, R., Sharma, A., Mitchell, E., et al.&nbsp;(2023). <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</em>. https://arxiv.org/abs/2305.18290</p>
+<p>[9] Wei, J., Wang, X., Schuurmans, D., et al.&nbsp;(2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. https://arxiv.org/abs/2201.11903</p>
+<p>[10] Wang, X., Wei, J., Schuurmans, D., et al.&nbsp;(2022). <em>Self-Consistency Improves Chain of Thought Reasoning in Language Models</em>. https://arxiv.org/abs/2203.11171</p>
+<p>[11] Yao, S., Yu, D., Zhao, J., et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. https://arxiv.org/abs/2305.10601</p>
+<p>[12] Houlsby, N., Giurgiu, A., Jastrzebski, S., et al.&nbsp;(2019). <em>Parameter-Efficient Transfer Learning for NLP</em>. https://arxiv.org/abs/1902.00751</p>
+<p>[13] Radford, A., Wu, J., Child, R., et al.&nbsp;(2019). <em>Language Models are Unsupervised Multitask Learners</em>. https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</p>
+<p>[14] Kojima, T., Gu, S. S., Reid, M., et al.&nbsp;(2022). <em>Large Language Models are Zero-Shot Reasoners</em>. https://arxiv.org/abs/2205.11916</p>
+<p>[15] Zhou, X., Santurkar, S., Bau, D., et al.&nbsp;(2022). <em>Large Language Models Are Human-Level Prompt Engineers</em>. https://arxiv.org/abs/2211.01910</p>
+<p>[16] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media.</p>
+<p>[17] Alammar, J., &amp; Grootendorst, M. (2023). <em>Hands-On Large Language Models: Language Understanding and Generation</em>. O’Reilly Media.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/changezakram\.github\.io\/Deep-Generative-Models\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Understanding Transformers, Step by Step</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://changezakram.github.io/"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./diffusion.html">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/transformers.html">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/post-training.html">
+ <span class="dropdown-text">Post Training</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-agentic-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Agentic AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-agentic-ai">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-ai.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-math-review" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Math Review</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-math-review">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/linear-algebra.html">
+ <span class="dropdown-text">Linear Algebra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/calculus.html">
+ <span class="dropdown-text">Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/probability.html">
+ <span class="dropdown-text">Probability</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-use-cases" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Use Cases</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-use-cases">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html">
+ <span class="dropdown-text">Banking</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html">
+ <span class="dropdown-text">Healthcare</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#limitations-of-recurrent-neural-networks-rnns" id="toc-limitations-of-recurrent-neural-networks-rnns" class="nav-link" data-scroll-target="#limitations-of-recurrent-neural-networks-rnns"><span class="header-section-number">2</span> Limitations of Recurrent Neural Networks (RNNs)</a></li>
+  <li><a href="#transformer-architecture-overview" id="toc-transformer-architecture-overview" class="nav-link" data-scroll-target="#transformer-architecture-overview"><span class="header-section-number">3</span> Transformer Architecture Overview</a></li>
+  <li><a href="#encoder" id="toc-encoder" class="nav-link" data-scroll-target="#encoder"><span class="header-section-number">4</span> Encoder</a></li>
+  <li><a href="#decoder" id="toc-decoder" class="nav-link" data-scroll-target="#decoder"><span class="header-section-number">5</span> Decoder</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">6</span> Putting it All Together</a></li>
+  <li><a href="#training-tips" id="toc-training-tips" class="nav-link" data-scroll-target="#training-tips"><span class="header-section-number">7</span> Training Tips</a></li>
+  <li><a href="#variants-and-evolutions" id="toc-variants-and-evolutions" class="nav-link" data-scroll-target="#variants-and-evolutions"><span class="header-section-number">8</span> Variants and Evolutions</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><span class="header-section-number">9</span> Applications</a></li>
+  <li><a href="#strengths-and-limitations" id="toc-strengths-and-limitations" class="nav-link" data-scroll-target="#strengths-and-limitations"><span class="header-section-number">10</span> Strengths and Limitations</a></li>
+  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">11</span> References &amp; Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Understanding Transformers, Step by Step</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>Transformers are a neural network architecture designed for processing sequential data. Introduced in the 2017 paper <em>Attention is All You Need</em>, transformers replaced recurrent and convolutional architectures in many NLP tasks. They leverage a novel mechanism called self-attention, which allows for parallel computation and effectively models long-range dependencies.</p>
+<p>The architecture consists of an encoder and decoder, as illustrated below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/transformer-architecture.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Figure: High-level schematic of the Transformer architecture, showing the encoder and decoder with self-attention and masked attention mechanisms (Vaswani et al., 2017, Attention Is All You Need).</figcaption>
+</figure>
+</div>
+</section>
+<section id="limitations-of-recurrent-neural-networks-rnns" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="limitations-of-recurrent-neural-networks-rnns"><span class="header-section-number">2</span> Limitations of Recurrent Neural Networks (RNNs)</h2>
+<p>While transformers have become the standard for sequence modeling, they were developed to overcome key challenges in earlier architectures such as Recurrent Neural Networks (RNNs). Before the advent of transformers, Recurrent Neural Networks (RNNs) were the dominant architecture for sequence modeling tasks. Their ability to process sequences of variable length and maintain a memory of past inputs made them widely used. In an RNN, the hidden state <span class="math inline">\(h_t\)</span> at time <span class="math inline">\(t\)</span> is computed based on the current input <span class="math inline">\(x_t\)</span> and the previous hidden state <span class="math inline">\(h_{t-1}\)</span>. This allows RNNs to process sequences by carrying information forward over time. The hidden state at time t can be computed recursively as:</p>
+<p><span class="math display">\[
+h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(W_h\)</span> — weight matrix for the hidden state</li>
+<li><span class="math inline">\(W_x\)</span> — weight matrix for the input</li>
+<li><span class="math inline">\(b\)</span> — bias term</li>
+<li><span class="math inline">\(\tanh\)</span> — activation function</li>
+</ul>
+<p>The figure below shows a single RNN cell (left) and the unrolled RNN over multiple time steps (right).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rnn.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: RNN unrolled over time, showing the recurrence of hidden states and outputs across time steps.</figcaption>
+</figure>
+</div>
+<p>However, RNNs suffer from:</p>
+<ul>
+<li><strong>Sequential computation</strong>: Cannot fully parallelize processing of sequences.</li>
+<li><strong>Vanishing/exploding gradients</strong>: Gradients through many time steps can vanish or blow up, making it difficult to learn long-term dependencies.</li>
+</ul>
+<hr>
+</section>
+<section id="transformer-architecture-overview" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="transformer-architecture-overview"><span class="header-section-number">3</span> Transformer Architecture Overview</h2>
+<p>The Transformer architecture can be configured in different ways depending on the application. At a high level, there are three common variants:</p>
+<ul>
+<li><strong>Encoder–Decoder</strong> (original transformer) — used in translation.</li>
+<li><strong>Encoder-only</strong> (e.g., BERT) — for classification, masked language modeling.</li>
+<li><strong>Decoder-only</strong> (e.g., GPT) — for autoregressive text generation.</li>
+</ul>
+<p>At the heart of these architectures is the <em>self-attention mechanism</em>, which enables each token to attend to all others in the sequence — a key innovation that we’ll explain shortly.</p>
+<p>In the following sections, we’ll break down the encoder and decoder architectures in detail.</p>
+<section id="key-variables" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="key-variables"><span class="header-section-number">3.1</span> Key Variables</h3>
+<p>Before we dive into the equations and diagrams, here is a quick reference table summarizing the commonly used variables, their shapes, and their meanings. This will make the subsequent sections easier to follow.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/notations.png" class="img-fluid figure-img"></p>
+<figcaption>Notation Table</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="encoder" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="encoder"><span class="header-section-number">4</span> Encoder</h2>
+<p>The <strong>encoder</strong> consists of a stack of identical layers, each containing:</p>
+<ul>
+<li>Self-Attention<br>
+</li>
+<li>Feedforward Network<br>
+</li>
+<li>Residual Connections + Layer Norm<br>
+</li>
+<li>Positional Encoding</li>
+</ul>
+<hr>
+<section id="input-representation" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="input-representation"><span class="header-section-number">4.1</span> Input Representation</h3>
+<p>Before the attention mechanism can work, each input token is mapped to a continuous vector representation and enriched with positional information.</p>
+<p><strong>Token Embedding</strong></p>
+<p>We start with a sequence of token indices:<br>
+<span class="math display">\[
+T \in \{1, \dots, V\}^n
+\]</span> where <span class="math inline">\(n\)</span> is the sequence length and <span class="math inline">\(V\)</span> is the vocabulary size.</p>
+<p>These indices are mapped to continuous vectors using a learnable embedding matrix <span class="math inline">\(E \in \mathbb{R}^{V \times d_e}\)</span>:<br>
+<span class="math display">\[
+X_\text{tokens} = E[T] \in \mathbb{R}^{n \times d_e}
+\]</span></p>
+<p><strong>Positional Encoding</strong></p>
+<p>The self-attention mechanism processes the input sequence as a set of vectors without any notion of order.<br>
+However, the meaning of a sentence depends on the order of its words.</p>
+<blockquote class="blockquote">
+<p><em>“The cat chased the dog” ≠ “The dog chased the cat”</em></p>
+</blockquote>
+<p>Without positional information, self-attention would treat these sentences as identical because it has no notion of token order. To address this, we add a position vector <span class="math inline">\(p_i\)</span> to each token embedding <span class="math inline">\(x_i\)</span>, producing a position-aware representation:</p>
+<p><span class="math display">\[
+\tilde{x}_i = x_i + p_i
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(x_i\)</span> — embedding of the token at position <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(p_i\)</span> — positional encoding vector</li>
+<li><span class="math inline">\(\tilde{x}_i\)</span> — position-aware embedding passed to the model</li>
+</ul>
+<p>The figure below illustrates this process:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/embedding.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Token and positional embeddings are summed element-wise to produce the final input representation passed to the encoder.</figcaption>
+</figure>
+</div>
+<p>There are two common methods for generating positional embeddings, detailed below.</p>
+<p><strong>(A) Sinusoidal Positional Encoding</strong></p>
+<p>In the original Transformer paper, <span class="math inline">\(p_i\)</span> is defined using sinusoidal functions of varying frequencies:</p>
+<p><span class="math display">\[
+p_i =
+\begin{pmatrix}
+\sin\big(i / 10000^{\frac{2j}{d_e}}\big) \\
+\cos\big(i / 10000^{\frac{2j}{d_e}}\big)
+\end{pmatrix}
+\]</span></p>
+<p>Why do trigonometric functions work?</p>
+<ul>
+<li><p>Sine and cosine provide unique, smooth, and continuous encodings for each position.</p></li>
+<li><p>Different frequencies let the model capture both short- and long-range position relationships.</p></li>
+<li><p>No learnable parameters — generalizes better to unseen sequence lengths.</p></li>
+<li><p><strong>Pros:</strong></p>
+<ul>
+<li>Does not introduce additional parameters.</li>
+<li>Periodicity allows some generalization to longer sequences.</li>
+</ul></li>
+<li><p><strong>Cons:</strong></p>
+<ul>
+<li>Not learnable — fixed at initialization.</li>
+<li>Limited extrapolation in practice.</li>
+</ul></li>
+</ul>
+<p><strong>(B) Learned Positional Encoding</strong></p>
+<p>An alternative is to treat <span class="math inline">\(p_i\)</span> as a learnable parameter:<br>
+We define a matrix <span class="math inline">\(P \in \mathbb{R}^{d_e \times n}\)</span>, where each <span class="math inline">\(p_i\)</span> is a column of <span class="math inline">\(P\)</span>.</p>
+<p><span class="math display">\[
+P = [p_1, p_2, \dots, p_n], \quad P \in \mathbb{R}^{d_e \times n}
+\]</span></p>
+<ul>
+<li><strong>Pros:</strong>
+<ul>
+<li>Fully learnable; each position can adapt to the data.</li>
+<li>Most modern systems (e.g., GPT) use this.</li>
+</ul></li>
+<li><strong>Cons:</strong>
+<ul>
+<li>Cannot extrapolate to sequences longer than seen in training.</li>
+</ul></li>
+</ul>
+<p>In practice, most architectures today use learned positional encodings because of their flexibility and performance.</p>
+<p><strong>Summary</strong></p>
+<ul>
+<li>Positional encoding ensures the model is aware of token order.<br>
+</li>
+<li>Sinusoidal encodings are fixed &amp; periodic.<br>
+</li>
+<li>Learned encodings are flexible &amp; widely used today.</li>
+</ul>
+<p>With the input representation enriched by positional information, the transformer encoder can now apply self-attention and feedforward layers to process the sequence effectively.</p>
+<hr>
+</section>
+<section id="attention-mechanism" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="attention-mechanism"><span class="header-section-number">4.2</span> Attention Mechanism</h3>
+<p>At the heart of the transformer is the scaled dot-product attention mechanism, which allows the model to weigh the relevance of each token in the sequence when processing a given token. This enables the model to capture relationships between tokens regardless of their distance in the sequence.</p>
+<p><strong>What is Attention?</strong></p>
+<p>Each token is projected into three vectors:</p>
+<ul>
+<li><strong>Query (<span class="math inline">\(Q\)</span>):</strong> represents the token we’re focusing on.</li>
+<li><strong>Key (<span class="math inline">\(K\)</span>):</strong> represents the tokens we compare against.</li>
+<li><strong>Value (<span class="math inline">\(V\)</span>):</strong> represents the information we retrieve if the key is relevant.</li>
+</ul>
+<p>For a given query <span class="math inline">\(Q\)</span>, the attention weights over all keys <span class="math inline">\(K\)</span> are computed by taking the dot product of <span class="math inline">\(Q\)</span> with <span class="math inline">\(K\)</span>, scaling, and passing through a softmax:</p>
+<p><span class="math display">\[
+\text{Attention}(Q, K, V) =
+\text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right) V
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(Q\)</span> is the matrix of query vectors, shape <span class="math inline">\([n \times d_k]\)</span></li>
+<li><span class="math inline">\(K\)</span> is the matrix of key vectors, shape <span class="math inline">\([n \times d_k]\)</span></li>
+<li><span class="math inline">\(V\)</span> is the matrix of value vectors, shape <span class="math inline">\([n \times d_v]\)</span></li>
+<li><span class="math inline">\(d_k\)</span> is the dimension of the keys (used for scaling)</li>
+</ul>
+<p><strong>Step-by-step Computation</strong></p>
+<p>The figure below illustrates the computation flow of scaled dot-product attention, including the dimensions of each variable at every stage:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/self-attention.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Attention — step-by-step computation, with variables, shapes, and operations.</figcaption>
+</figure>
+</div>
+<p><strong>Breakdown of the Steps</strong></p>
+<p><strong>1: Input Representation:</strong> The input tokens are embedded into a continuous vector space and positional encodings are added to inject sequence order information:</p>
+<p><span class="math display">\[
+X = \text{Embedding}(X_{\text{tokens}}) + \text{PositionalEncoding}
+\]</span></p>
+<p><strong>2: Linear Projections:</strong> The embedded input <span class="math inline">\(X\)</span> is projected into three different spaces to produce the query (Q), key (K), and value (V) matrices, using learnable weight matrices <span class="math inline">\(W_q\)</span>, <span class="math inline">\(W_k\)</span>, <span class="math inline">\(W_v\)</span>:</p>
+<p><span class="math display">\[
+Q = X W_q, \quad K = X W_k, \quad V = X W_v
+\]</span></p>
+<p>These projections allow the model to attend to different aspects of the input.</p>
+<p><strong>3: Compute Similarity Scores:</strong> We compute the dot product between the queries and the transposed keys to measure similarity (or relevance) between tokens:</p>
+<p><span class="math display">\[
+Q K^T
+\]</span></p>
+<p>This gives a matrix of raw attention scores.</p>
+<p><strong>4: Scale the Scores:</strong> To avoid extremely large values when the dimensionality <span class="math inline">\(d_k\)</span> is high, the similarity scores are scaled by <span class="math inline">\(\sqrt{d_k}\)</span>:</p>
+<p><span class="math display">\[
+\frac{Q K^T}{\sqrt{d_k}}
+\]</span></p>
+<p>This stabilizes gradients during training.</p>
+<p><strong>5: Softmax to get Attention Weights:</strong> The scaled scores are passed through a softmax function to convert them into probabilities that sum to 1. These are the attention weights <span class="math inline">\(A\)</span>, indicating how much focus to put on each token:</p>
+<p><span class="math display">\[
+\text{softmax} \left( \frac{Q K^T}{\sqrt{d_k}} \right)
+\]</span></p>
+<p><strong>6: Weighted Sum:</strong> Finally, the attention weights are multiplied with the value vectors <span class="math inline">\(V\)</span> to produce a weighted sum, which is the attention output:</p>
+<p><span class="math display">\[
+\text{Attention Weights} \cdot V
+\]</span></p>
+<p><strong>Why is Attention Powerful?</strong></p>
+<ul>
+<li>Captures long-range dependencies.<br>
+</li>
+<li>Learns which tokens are most relevant to each other.<br>
+</li>
+<li>Fully parallelizable since it operates on the entire sequence at once.</li>
+</ul>
+<p>While single-head attention is effective, it can focus only on one type of relationship at a time. Multi-Head Attention extends this idea by allowing the model to attend to information from multiple representation subspaces in parallel.</p>
+<hr>
+</section>
+<section id="multi-head-attention" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">4.3</span> Multi-Head Attention</h3>
+<p>While a single attention head can focus on certain aspects of the input sequence, it may miss other patterns. The multi-head attention (MHA) mechanism allows the model to attend to information from multiple representation subspaces at different positions simultaneously. This helps the transformer to capture more nuanced patterns in the input sequence.</p>
+<p>The figure below shows how multiple independent attention heads are computed in parallel, concatenated, and linearly transformed to produce the final output of the multi-head attention layer.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/multi-head-attention.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Multi-Head Attention — four parallel heads, concatenated and projected by <span class="math inline">\(W_o\)</span> to form the final output.</figcaption>
+</figure>
+</div>
+<p><strong>What is Multi-Head Attention?</strong></p>
+<p>Instead of computing a single set of <span class="math inline">\(Q\)</span>, <span class="math inline">\(K\)</span>, <span class="math inline">\(V\)</span>, the model projects the input into <span class="math inline">\(h\)</span> different sets of <span class="math inline">\(Q\)</span>, <span class="math inline">\(K\)</span>, <span class="math inline">\(V\)</span>, called <em>heads</em>. Each head performs scaled dot-product attention independently, and their outputs are concatenated and linearly transformed.</p>
+<p>For head <span class="math inline">\(i\)</span>: <span class="math display">\[
+\text{head}_i = \text{Attention}(Q_i, K_i, V_i) =
+\text{softmax} \left( \frac{Q_i K_i^T}{\sqrt{d_k}} \right) V_i
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(Q_i = X W_q^{(i)}\)</span></li>
+<li><span class="math inline">\(K_i = X W_k^{(i)}\)</span></li>
+<li><span class="math inline">\(V_i = X W_v^{(i)}\)</span></li>
+</ul>
+<p>Here, <span class="math inline">\(W_q^{(i)}, W_k^{(i)}, W_v^{(i)}\)</span> are separate learnable weights for each head.</p>
+<p><strong>Combining the Heads</strong></p>
+<p>The outputs of all <span class="math inline">\(h\)</span> heads are concatenated along the feature dimension and projected back into <span class="math inline">\(d_e\)</span> dimensions: <span class="math display">\[
+\text{MultiHead}(Q, K, V) =
+\text{Concat}(\text{head}_1, \dots, \text{head}_h) W_o
+\]</span></p>
+<p>where <span class="math inline">\(W_o\)</span> is a learnable weight matrix of shape <span class="math inline">\([h \cdot d_v \times d_e]\)</span>.</p>
+<p>The figure below illustrates how multi-head self-attention captures relationships between tokens. The word “making” attends strongly to itself, as well as to the distant tokens “more” and “difficult”. Different colors represent different attention heads, each learning distinct patterns, while thicker lines indicate stronger attention weights, showing which tokens are most relevant for the given token.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/attention-visualization.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Visualization of the attention mechanism showing long-range dependencies from Vaswani et al., 2017</figcaption>
+</figure>
+</div>
+<p><strong>Why Multi-Head Attention?</strong></p>
+<ul>
+<li>Allows the model to jointly attend to information from different representation subspaces.<br>
+</li>
+<li>Provides richer and more diverse attention patterns.<br>
+</li>
+<li>Empirically improves performance compared to a single head.</li>
+</ul>
+<p>After computing the attention outputs, each token passes through a feedforward network to introduce non-linear transformations.</p>
+<hr>
+</section>
+<section id="feedforward-network" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="feedforward-network"><span class="header-section-number">4.4</span> Feedforward Network</h3>
+<p>After self-attention, the transformer applies a position-wise feedforward network (FFN) to each token independently — adding non-linearity and transforming the attended information further.</p>
+<p><strong>Why is this needed?</strong></p>
+<ul>
+<li>Self-attention by itself is a linear operation — it just computes weighted sums of the value vectors.</li>
+<li>Stacking more self-attention layers without nonlinearity simply re-averages the values, limiting expressiveness.</li>
+<li>To address this, each output vector of the self-attention layer is passed through a multi-layer perceptron (MLP).</li>
+</ul>
+<p><strong>Computation</strong></p>
+<p>For each token output vector <span class="math inline">\(output_i\)</span> from the self-attention: <span class="math display">\[
+m_i = MLP(output_i) = W_2 \cdot ReLU(W_1 \cdot output_i + b_1) + b_2
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(W_1\)</span>, <span class="math inline">\(W_2\)</span> — learnable weight matrices.</li>
+<li><span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span> — learnable biases.</li>
+<li><span class="math inline">\(ReLU\)</span> — non-linear activation function applied element-wise.</li>
+</ul>
+<p>This is done independently for each position.</p>
+<p><strong>Summary:</strong></p>
+<ul>
+<li>Adds nonlinearity and expressiveness.<br>
+</li>
+<li>Processes each token independently after attention.<br>
+</li>
+<li>Helps the model learn complex transformations beyond weighted averages.</li>
+</ul>
+<hr>
+</section>
+<section id="residual-connections-layer-normalization" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="residual-connections-layer-normalization"><span class="header-section-number">4.5</span> Residual Connections &amp; Layer Normalization</h3>
+<p>To further improve optimization and stability, transformers also incorporate two additional techniques: residual connections and layer normalization. These are often written together as <em>Add &amp; Norm</em> in most diagrams.</p>
+<p><strong>Why use these techniques?</strong></p>
+<ul>
+<li>Residual connections make the optimization smoother and help gradients flow better.<br>
+</li>
+<li>Layer normalization stabilizes training and helps each layer produce consistent, normalized outputs.</li>
+</ul>
+<section id="residual-connections" class="level4" data-number="4.5.1">
+<h4 data-number="4.5.1" class="anchored" data-anchor-id="residual-connections"><span class="header-section-number">4.5.1</span> Residual Connections</h4>
+<p>Residual connections help the model learn better by allowing gradients to flow more easily through the network and biasing it towards the identity function.<br>
+Instead of simply applying a layer transformation:</p>
+<p><span class="math display">\[
+X^{(i)} = \text{Layer}(X^{(i-1)})
+\]</span></p>
+<p>we add the input back to the output of the layer:</p>
+<p><span class="math display">\[
+X^{(i)} = X^{(i-1)} + \text{Layer}(X^{(i-1)})
+\]</span></p>
+<p>This ensures that the model only needs to learn the <em>residual</em> (the difference from the input), which improves optimization.</p>
+</section>
+<section id="layer-normalization" class="level4" data-number="4.5.2">
+<h4 data-number="4.5.2" class="anchored" data-anchor-id="layer-normalization"><span class="header-section-number">4.5.2</span> Layer Normalization</h4>
+<p>Layer normalization helps by reducing uninformative variation in the hidden states of each layer. It normalizes each token embedding to have zero mean and unit variance within each layer, and within the feature dimension of a single token — independent of other tokens or samples in the batch.</p>
+<p>For a vector <span class="math inline">\(x \in \mathbb{R}^d\)</span>, layer norm is computed as:</p>
+<p><span class="math display">\[
+\mu = \frac{1}{d} \sum_{j=1}^{d} x_j, \quad \sigma = \sqrt{\frac{1}{d} \sum_{j=1}^{d} (x_j - \mu)^2}
+\]</span></p>
+<p>Then:</p>
+<p><span class="math display">\[
+\text{output} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\gamma \in \mathbb{R}^d\)</span>, <span class="math inline">\(\beta \in \mathbb{R}^d\)</span> are learnable gain and bias parameters.</li>
+<li><span class="math inline">\(\epsilon\)</span> is a small constant for numerical stability.</li>
+</ul>
+<p>In conventional neural networks, such as convolutional neural networks (CNNs), it is common to use Batch Normalization to stabilize training. However, in sequence models like Transformers, Layer Normalization is preferred because it normalizes each token independently of the batch and sequence length — making it more suitable for NLP tasks and small batches.</p>
+<p>The figure and the table below shows the difference between Layer Normalization and Batch Normalization, highlighting which dimensions they operate over.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/layer-norm.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Layer Norm normalizes each token’s features (independently of other tokens and samples), while Batch Norm normalizes each feature across the batch.</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 44%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect</strong></th>
+<th><strong>Layer Normalization</strong></th>
+<th><strong>Batch Normalization</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What it normalizes over</strong></td>
+<td>Feature dimension (per token)</td>
+<td>Feature dimension (across the batch)</td>
+</tr>
+<tr class="even">
+<td><strong>Suitable for</strong></td>
+<td>Sequence models, NLP, Transformers (small batch sizes)</td>
+<td>CNNs, vision tasks (large batch sizes)</td>
+</tr>
+<tr class="odd">
+<td><strong>Handles variable batch sizes?</strong></td>
+<td>Yes</td>
+<td>No (depends on batch size)</td>
+</tr>
+<tr class="even">
+<td><strong>Why in Transformers?</strong></td>
+<td>Stable for per-token operations &amp; small batches</td>
+<td>Unstable in small batches &amp; sequences</td>
+</tr>
+</tbody>
+</table>
+<p>In summary, Layer Normalization normalizes each token’s features independently of other tokens and samples, making it ideal for sequence-to-sequence and language tasks. Batch Normalization normalizes each feature across the batch, which is less suitable for NLP. Layer normalization’s independence from batch size and sequence structure makes it ideal for NLP and sequence models.</p>
+<p>With these components — self-attention, feedforward networks, residual connections, and layer normalization — the encoder stack is complete. We now turn to the decoder, which builds on the encoder’s output to generate predictions.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="decoder" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="decoder"><span class="header-section-number">5</span> Decoder</h2>
+<p>Like the encoder, the decoder is composed of stacked layers, but with three key components:</p>
+<ul>
+<li><strong>Masked Multi-Head Self-Attention</strong> — only attends to past tokens.<br>
+</li>
+<li><strong>Encoder–Decoder Attention</strong> — attends to the encoder output.<br>
+</li>
+<li><strong>Feedforward + normalization + residuals</strong></li>
+</ul>
+<hr>
+<section id="attention-mask-for-decoder" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="attention-mask-for-decoder"><span class="header-section-number">5.1</span> Attention Mask for Decoder</h3>
+<p>In the decoder’s self-attention, it is critical to prevent the model from “looking into the future” — attending to tokens that come later in the sequence. This ensures proper causal sequence generation (left-to-right).</p>
+<p><strong>Why do we need masking?</strong></p>
+<ul>
+<li>In sequence prediction tasks (like machine translation or language modeling), the model should predict the next token based only on past and current tokens — not on future tokens.</li>
+<li>Without masking, the self-attention mechanism would compute attention over all tokens in the sequence, violating the causal order.</li>
+<li>This is solved by masking out the attention to future tokens.</li>
+</ul>
+<p><strong>How does masking work?</strong></p>
+<p>At each position <span class="math inline">\(i\)</span>, we: - Keep attention scores for tokens at <span class="math inline">\(j \leq i\)</span> (past &amp; current positions). - Set attention scores to <span class="math inline">\(-\infty\)</span> (or equivalently, weights to 0 after softmax) for <span class="math inline">\(j &gt; i\)</span> (future positions).</p>
+<p>Mathematically, the masked attention score <span class="math inline">\(e_{ij}\)</span> is:</p>
+<p><span class="math display">\[
+e_{ij} =
+\begin{cases}
+q_i^\top k_j, &amp; j \leq i \\\\
+-\infty, &amp; j &gt; i
+\end{cases}
+\]</span></p>
+<p>After applying the softmax, the model assigns non-zero attention only to tokens at positions ≤ <span class="math inline">\(i\)</span>.</p>
+<p>The figure below illustrates how the attention mask is applied to <span class="math inline">\(QK^\top\)</span>, blocking future tokens by assigning them <span class="math inline">\(-\infty\)</span>, and producing the masked attention matrix.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/masked-attention.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Visualization of the attention mask applied to <span class="math inline">\(QK^\top\)</span>, setting future positions to <span class="math inline">\(-\infty\)</span>, and producing the masked attention matrix.</figcaption>
+</figure>
+</div>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Enables <strong>parallel computation</strong> — the mask is precomputed and applied during training.<br>
+</li>
+<li>Prevents <strong>information leakage</strong> from future tokens.<br>
+</li>
+<li>Allows the decoder to autoregressively predict tokens during inference.</li>
+</ul>
+<hr>
+</section>
+<section id="cross-attention-in-the-decoder" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="cross-attention-in-the-decoder"><span class="header-section-number">5.2</span> Cross-Attention in the Decoder</h3>
+<p>After the decoder’s self-attention step, the transformer uses a cross-attention layer (sometimes called encoder-decoder attention) to incorporate information from the encoder’s output into each decoder token representation.</p>
+<p>In this layer:</p>
+<ul>
+<li>The <strong>queries (<span class="math inline">\(x_1\)</span>)</strong> come from the <em>decoder hidden states</em> at the current layer.</li>
+<li>The <strong>keys (<span class="math inline">\(x_2\)</span>)</strong> and <strong>values (<span class="math inline">\(x_2\)</span>)</strong> come from the <em>encoder output</em>.</li>
+</ul>
+<p>This allows the decoder to attend to the entire input sequence (from the encoder) for each token it generates.</p>
+<p>The figure below shows the computation flow of the cross-attention mechanism, including the dimensions of each variable at every stage:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cross-attention.png" class="img-fluid figure-img"></p>
+<figcaption>Figure: Cross-attention mechanism in the decoder. Queries (<span class="math inline">\(x_1\)</span>) come from the decoder, while keys and values (<span class="math inline">\(x_2\)</span>) come from the encoder output. The attention weights determine how much each encoder token contributes to each decoder token.</figcaption>
+</figure>
+</div>
+<section id="step-by-step" class="level4" data-number="5.2.1">
+<h4 data-number="5.2.1" class="anchored" data-anchor-id="step-by-step"><span class="header-section-number">5.2.1</span> Step-by-step</h4>
+<ol type="1">
+<li><p>The decoder hidden states <span class="math inline">\(x_1 \in \mathbb{R}^{n \times d_e}\)</span> (where <span class="math inline">\(n\)</span> is the number of decoder tokens) are projected into queries: <span class="math display">\[
+Q = x_1 W_q \in \mathbb{R}^{n \times d_q}
+\]</span></p></li>
+<li><p>The encoder output <span class="math inline">\(x_2 \in \mathbb{R}^{m \times d_e}\)</span> (where <span class="math inline">\(m\)</span> is the number of encoder tokens) is projected into keys and values: <span class="math display">\[
+K = x_2 W_k \in \mathbb{R}^{m \times d_q}, \quad V = x_2 W_v \in \mathbb{R}^{m \times d_v}
+\]</span></p></li>
+<li><p>Compute similarity scores between each query and all keys: <span class="math display">\[
+Q K^T \in \mathbb{R}^{n \times m}
+\]</span></p></li>
+<li><p>Scale the scores by <span class="math inline">\(\sqrt{d_k}\)</span> and apply softmax to get the attention weights: <span class="math display">\[
+A = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times m}
+\]</span></p></li>
+<li><p>Compute the weighted sum over the values to get the Cross-Attention Output <span class="math inline">\(Z\)</span>: <span class="math display">\[
+Z = A V \in \mathbb{R}^{n \times d_v}
+\]</span></p></li>
+</ol>
+<p>This mechanism allows each decoder token to attend over the entire encoder output sequence and incorporate the most relevant source information into its prediction.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="putting-it-all-together" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">6</span> Putting it All Together</h2>
+<p>We’ve seen how the encoder and decoder each work internally — but how do they interact in a complete Transformer model?</p>
+<p>In a sequence-to-sequence task, the encoder processes the entire input sequence (the source sentence) and produces a sequence of hidden states — a rich, contextual representation of the source.</p>
+<p>The decoder then uses these encoder outputs to generate the target sequence one token at a time.</p>
+<p>At each decoding step, the decoder:</p>
+<ul>
+<li>Attends to its own previously generated tokens through masked self-attention, ensuring predictions depend only on known context and not future tokens.</li>
+<li>Attends to the encoder’s hidden states through cross-attention, incorporating relevant information from the source sequence.</li>
+</ul>
+<p>This interaction allows the decoder to generate each token based on both the source sequence (via the encoder) and the target sequence generated so far, making the Transformer effective for tasks like translation, summarization, and question answering.</p>
+<hr>
+</section>
+<section id="training-tips" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="training-tips"><span class="header-section-number">7</span> Training Tips</h2>
+<ul>
+<li><strong>Large batches &amp; data:</strong> Helps stabilize gradients and improve generalization by exposing the model to more diverse examples.</li>
+<li><strong>Learning rate warm-up:</strong> Gradually increases the learning rate at the start of training to avoid unstable updates.</li>
+<li><strong>Label smoothing:</strong> Prevents the model from becoming overconfident by softening the target labels.</li>
+<li><strong>Gradient clipping:</strong> Limits the magnitude of gradients to avoid exploding gradients and stabilize training.</li>
+</ul>
+<hr>
+</section>
+<section id="variants-and-evolutions" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="variants-and-evolutions"><span class="header-section-number">8</span> Variants and Evolutions</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>BERT</strong></td>
+<td>Encoder-only</td>
+<td>Classification, QA</td>
+</tr>
+<tr class="even">
+<td><strong>GPT</strong></td>
+<td>Decoder-only</td>
+<td>Text generation</td>
+</tr>
+<tr class="odd">
+<td><strong>T5</strong></td>
+<td>Encoder–Decoder</td>
+<td>Translation, summarization</td>
+</tr>
+<tr class="even">
+<td><strong>BART</strong></td>
+<td>Encoder–Decoder</td>
+<td>Summarization, text generation</td>
+</tr>
+<tr class="odd">
+<td><strong>ViT</strong></td>
+<td>Encoder-only</td>
+<td>Image classification</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="applications" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="applications"><span class="header-section-number">9</span> Applications</h2>
+<ul>
+<li><strong>NLP:</strong> translation, summarization, question answering.</li>
+<li><strong>Vision:</strong> Vision Transformers (ViTs).</li>
+<li><strong>Multimodal:</strong> CLIP (image-text), Flamingo.</li>
+<li><strong>Other:</strong> Protein folding (AlphaFold).</li>
+</ul>
+<hr>
+</section>
+<section id="strengths-and-limitations" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="strengths-and-limitations"><span class="header-section-number">10</span> Strengths and Limitations</h2>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Captures long dependencies</li>
+<li>Parallelizable</li>
+<li>State-of-the-art results</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>Requires huge compute resources</li>
+<li>Data-hungry</li>
+<li>Less interpretable</li>
+</ul>
+<hr>
+<p>Transformers have revolutionized sequence modeling by replacing recurrence with parallelizable self-attention. Their ability to capture long-range dependencies and scale to large data has established them as the foundation of modern NLP and beyond.</p>
+<hr>
+</section>
+<section id="references-further-reading" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">11</span> References &amp; Further Reading</h2>
+<p>[1] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). <em>Attention is All You Need</em>. https://arxiv.org/abs/1706.03762</p>
+<p>[2] Devlin, J., Chang, M. W., Lee, K., &amp; Toutanova, K. (2019). <em>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</em>. https://arxiv.org/abs/1810.04805</p>
+<p>[3] Brown, T. B., Mann, B., Ryder, N., Subbiah, M., Kaplan, J., Dhariwal, P., … Amodei, D. (2020). <em>Language Models are Few-Shot Learners (GPT-3)</em>. https://arxiv.org/abs/2005.14165</p>
+<p>[4] Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., … Houlsby, N. (2021). <em>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Vision Transformer)</em>. https://arxiv.org/abs/2010.11929</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/changezakram\.github\.io\/Deep-Generative-Models\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
