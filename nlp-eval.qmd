@@ -1,0 +1,113 @@
+---
+title: "NLP Model Evaluation: Closed-Ended Evaluation"
+format: html
+---
+
+## NLP Model Evaluation: Closed-Ended Evaluation
+
+Evaluating NLP models has always been difficult, but with the introduction of foundation models, it has become even more so. These models often perform open-ended tasks, making it hard to identify a single correct output. But even for **closed-ended tasks**, the evaluation challenges persist due to task ambiguity, weak label quality, and the need for robust and generalizable benchmarks.
+
+According to the *AI Engineering* book, the difficulty of evaluation increases with the model's intelligence. It's easy to identify flaws in a first-grader’s math solution or a poorly written summary, but evaluating the quality of a sophisticated model's output—especially if it appears coherent—is far more difficult. For example, determining whether a summary is factually correct may require reading and understanding the full source text.
+
+Moreover, traditional ML evaluation assumes access to the ground truth labels and relatively stable output spaces. Foundation models challenge this setup because they produce outputs in a much more open-ended, probabilistic way. While closed-ended tasks offer some insulation from these complexities, we must still consider:
+
+- **Evaluation scalability**: Automated metrics work well, but can overlook nuance  
+- **Annotation bias**: Even in classification tasks, human-created datasets often have spurious correlations  
+- **Benchmark saturation**: As models improve, they quickly saturate existing benchmarks, giving a false sense of progress  
+- **Undersupported evaluation infrastructure**: The book also highlights that evaluation lags behind in tooling and infrastructure compared to other parts of the AI pipeline like training, inference optimization, or orchestration
+
+Despite these challenges, closed-ended evaluation provides a practical starting point. These tasks are defined by their constrained answer spaces and allow us to use well-established metrics like accuracy, precision, recall, and F1-score to compare models and track progress systematically.
+
+---
+
+### Key Characteristics of Closed-Ended Tasks
+
+- **Limited number of potential answers**
+- **Often only one or a few correct answers**
+- **Enables automatic and scalable evaluation**, making them well-suited for benchmarking
+
+---
+
+### Common Closed-Ended Tasks & Benchmarks
+
+| Task Type                    | Description                                             | Popular Benchmarks             |
+|-----------------------------|---------------------------------------------------------|--------------------------------|
+| **Sentiment Analysis**       | Classify sentiment as Positive, Negative, Neutral       | SST, IMDB, Yelp                |
+| **Textual Entailment**       | Determine if a hypothesis logically follows from a premise | SNLI, RTE                    |
+| **Named Entity Recognition** | Identify named entities in text                         | CoNLL-2003                     |
+| **Part-of-Speech Tagging**   | Assign parts of speech to each word                     | PTB                            |
+| **Coreference Resolution**   | Determine if pronouns refer to the same entity          | WSC                            |
+| **Question Answering**       | Extract a plausible answer from a given passage         | SQuAD2                         |
+
+#### Example: Sentiment Analysis  
+- **Text**: “Read the book, forget the movie!”  
+- **Label**: Negative
+
+#### Example: Entailment  
+- **Premise**: “A soccer game with multiple males playing.”  
+- **Hypothesis**: “Some men are playing sport.”  
+- **Label**: Entailment
+
+---
+
+### Multi-Task Benchmark: **SuperGLUE**
+
+SuperGLUE is a widely used **closed-ended multi-task benchmark** designed to test **general language understanding**. It evaluates performance across diverse NLP tasks.
+
+#### Tasks in SuperGLUE:
+
+- **BoolQ, MultiRC**: Reading comprehension  
+- **CB, RTE**: Natural language inference (entailment)  
+- **COPA**: Causal reasoning (cause and effect)  
+- **ReCoRD**: Reading comprehension with commonsense reasoning  
+- **WiC**: Word meaning in context  
+- **WSC**: Coreference resolution
+
+#### Leaderboard Highlights (v2.0):
+
+- **Top models**: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5  
+- **Metrics used**: Accuracy, F1 score, Exact Match, Gender Parity, etc.
+
+---
+
+### Challenges in Closed-Ended Evaluation
+
+1. **Choosing the Right Metric**  
+
+   Choosing the right evaluation metric is not trivial. Different tasks and datasets require different performance measures. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.
+
+   ::: {.sidebar}
+   #### Common Evaluation Metrics
+   - **Accuracy**: The proportion of correct predictions out of all predictions. Suitable for balanced datasets.
+   - **Precision**: The proportion of true positives out of all predicted positives. High precision means fewer false positives.
+   - **Recall**: The proportion of true positives out of all actual positives. High recall means fewer false negatives.
+   - **F1-Score**: The harmonic mean of precision and recall. Useful when there is an uneven class distribution.
+   - **ROC AUC (Receiver Operating Characteristic - Area Under Curve)**: Measures the ability of the model to distinguish between classes across thresholds. Higher AUC indicates better performance.
+   :::
+
+2. **Aggregating Metrics**  
+   - How to combine across multiple tasks or sub-tasks
+
+3. **Label Quality**  
+   - Are the gold-standard labels always reliable?  
+   - Are there ambiguities in annotation?
+
+4. **Spurious Correlations**  
+   - Models might exploit dataset artifacts rather than genuinely learning the task  
+   - **Example** (SNLI):  
+     - Premise: “The economy could be still better.”  
+     - Hypothesis: “The economy has *never* been better.”  
+     - Model might infer contradiction simply due to the word *never* rather than actual reasoning
+
+---
+
+## References & Further Reading
+
+
+
+[16] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+
+[17] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
+
+
+ 
