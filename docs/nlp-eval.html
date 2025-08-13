@@ -192,7 +192,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction:</a></li>
-  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">2</span> References &amp; Further Reading</a></li>
+  <li><a href="#despite-these-challenges-closed-ended-evaluation-remains-a-valuable-starting-point.-its-well-constrained-answer-space-allows-use-of-established-metrics-like-accuracy-precision-recall-and-f1-score-to-measure-progress-systematically." id="toc-despite-these-challenges-closed-ended-evaluation-remains-a-valuable-starting-point.-its-well-constrained-answer-space-allows-use-of-established-metrics-like-accuracy-precision-recall-and-f1-score-to-measure-progress-systematically." class="nav-link" data-scroll-target="#despite-these-challenges-closed-ended-evaluation-remains-a-valuable-starting-point.-its-well-constrained-answer-space-allows-use-of-established-metrics-like-accuracy-precision-recall-and-f1-score-to-measure-progress-systematically."><span class="header-section-number">2</span> Despite these challenges, closed-ended evaluation remains a valuable starting point. Its well-constrained answer space allows use of established metrics like accuracy, precision, recall, and F1-score to measure progress systematically.</a></li>
+  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">3</span> References &amp; Further Reading</a></li>
   </ul>
 </nav>
     </div>
@@ -220,22 +221,24 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction:</h2>
-<p>Evaluating NLP models presents unique challenges, and these have grown significantly with the emergence of foundation models. These models often perform open-ended tasks, making it hard to identify a single correct output. But even for <strong>closed-ended tasks</strong>, the evaluation challenges persist due to task ambiguity, weak label quality, and the need for robust and generalizable benchmarks.</p>
-<p>According to the <em>AI Engineering</em> book, the difficulty of evaluation increases with the model’s intelligence. It’s easy to identify flaws in a first-grader’s math solution or a poorly written summary, but evaluating the quality of a sophisticated model’s output—especially if it appears coherent—is far more difficult. For example, determining whether a summary is factually correct may require reading and understanding the full source text.</p>
-<p>Moreover, traditional ML evaluation assumes access to the ground truth labels and relatively stable output spaces. Foundation models challenge this setup because they produce outputs in a much more open-ended, probabilistic way. While closed-ended tasks offer some insulation from these complexities, we must still consider:</p>
+<p>Evaluating NLP models presents distinct challenges for both <strong>closed-ended</strong> and <strong>open-ended</strong> tasks, and these have become more complex with the rise of foundation models.</p>
 <ul>
-<li><strong>Evaluation scalability</strong>: Automated metrics work well, but can overlook nuance<br>
-</li>
-<li><strong>Annotation bias</strong>: Even in classification tasks, human-created datasets often have spurious correlations<br>
-</li>
-<li><strong>Benchmark saturation</strong>: As models improve, they quickly saturate existing benchmarks, giving a false sense of progress<br>
-</li>
-<li><strong>Undersupported evaluation infrastructure</strong>: The book also highlights that evaluation lags behind in tooling and infrastructure compared to other parts of the AI pipeline like training, inference optimization, or orchestration</li>
+<li><strong>Closed-ended tasks</strong> (e.g., classification, named entity recognition) have clearly defined outputs and ground-truth labels. While traditional ML evaluation methods like accuracy, precision, recall, and F1-score are applicable here, they still face issues such as task ambiguity, annotation bias, and benchmark saturation.</li>
+<li><strong>Open-ended tasks</strong> (e.g., summarization, question answering, code generation, dialogue) are more difficult to evaluate because there is often no single correct output. The outputs are probabilistic and highly variable, which makes defining and applying evaluation metrics far more complex.</li>
 </ul>
-<p>Despite these challenges, closed-ended evaluation provides a practical starting point. These tasks are defined by their constrained answer spaces and allow us to use well-established metrics like accuracy, precision, recall, and F1-score to compare models and track progress systematically.</p>
-<hr>
-<section id="key-characteristics-of-closed-ended-tasks" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="key-characteristics-of-closed-ended-tasks"><span class="header-section-number">1.1</span> Key Characteristics of Closed-Ended Tasks</h3>
+<p>According to the <em>AI Engineering</em> book, evaluating the output of more intelligent models—especially open-ended ones—is especially difficult. A first-grader’s math mistake is easy to spot, but determining whether an AI-generated summary is factually accurate often requires reading and understanding the full source text.</p>
+<p>Traditional ML evaluation assumes relatively stable output spaces and ground truth labels. However, foundation models produce diverse and nuanced outputs that challenge this assumption. As a result, even closed-ended tasks must now contend with emerging evaluation issues such as:</p>
+<ul>
+<li><strong>Evaluation scalability</strong>: Automated metrics work well, but can overlook nuance.</li>
+<li><strong>Annotation bias</strong>: Even in classification tasks, human-created datasets often have spurious correlations.</li>
+<li><strong>Benchmark saturation</strong>: As models improve, they quickly saturate existing benchmarks, giving a false sense of progress.</li>
+<li><strong>Undersupported evaluation infrastructure</strong>: The <em>AI Engineering</em> book notes that evaluation lags behind other areas like model training, optimization, and deployment tooling.</li>
+</ul>
+</section>
+<section id="despite-these-challenges-closed-ended-evaluation-remains-a-valuable-starting-point.-its-well-constrained-answer-space-allows-use-of-established-metrics-like-accuracy-precision-recall-and-f1-score-to-measure-progress-systematically." class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="despite-these-challenges-closed-ended-evaluation-remains-a-valuable-starting-point.-its-well-constrained-answer-space-allows-use-of-established-metrics-like-accuracy-precision-recall-and-f1-score-to-measure-progress-systematically."><span class="header-section-number">2</span> Despite these challenges, closed-ended evaluation remains a valuable starting point. Its well-constrained answer space allows use of established metrics like accuracy, precision, recall, and F1-score to measure progress systematically.</h2>
+<section id="key-characteristics-of-closed-ended-tasks" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="key-characteristics-of-closed-ended-tasks"><span class="header-section-number">2.1</span> Key Characteristics of Closed-Ended Tasks</h3>
 <ul>
 <li>Limited number of potential answers</li>
 <li>Often only one or a few correct answers</li>
@@ -243,8 +246,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <hr>
 </section>
-<section id="common-closed-ended-tasks-benchmarks" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="common-closed-ended-tasks-benchmarks"><span class="header-section-number">1.2</span> Common Closed-Ended Tasks &amp; Benchmarks</h3>
+<section id="common-closed-ended-tasks-benchmarks" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="common-closed-ended-tasks-benchmarks"><span class="header-section-number">2.2</span> Common Closed-Ended Tasks &amp; Benchmarks</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 24%">
@@ -291,16 +294,16 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="example-sentiment-analysis" class="level4" data-number="1.2.1">
-<h4 data-number="1.2.1" class="anchored" data-anchor-id="example-sentiment-analysis"><span class="header-section-number">1.2.1</span> Example: Sentiment Analysis</h4>
+<section id="example-sentiment-analysis" class="level4" data-number="2.2.1">
+<h4 data-number="2.2.1" class="anchored" data-anchor-id="example-sentiment-analysis"><span class="header-section-number">2.2.1</span> Example: Sentiment Analysis</h4>
 <ul>
 <li><strong>Text</strong>: “Read the book, forget the movie!”<br>
 </li>
 <li><strong>Label</strong>: Negative</li>
 </ul>
 </section>
-<section id="example-entailment" class="level4" data-number="1.2.2">
-<h4 data-number="1.2.2" class="anchored" data-anchor-id="example-entailment"><span class="header-section-number">1.2.2</span> Example: Entailment</h4>
+<section id="example-entailment" class="level4" data-number="2.2.2">
+<h4 data-number="2.2.2" class="anchored" data-anchor-id="example-entailment"><span class="header-section-number">2.2.2</span> Example: Entailment</h4>
 <ul>
 <li><strong>Premise</strong>: “A soccer game with multiple males playing.”<br>
 </li>
@@ -311,11 +314,11 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="multi-task-benchmark-superglue" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">1.3</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
+<section id="multi-task-benchmark-superglue" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.3</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
 <p>SuperGLUE is a widely used <strong>closed-ended multi-task benchmark</strong> designed to test <strong>general language understanding</strong>. It evaluates performance across diverse NLP tasks.</p>
-<section id="tasks-in-superglue" class="level4" data-number="1.3.1">
-<h4 data-number="1.3.1" class="anchored" data-anchor-id="tasks-in-superglue"><span class="header-section-number">1.3.1</span> Tasks in SuperGLUE:</h4>
+<section id="tasks-in-superglue" class="level4" data-number="2.3.1">
+<h4 data-number="2.3.1" class="anchored" data-anchor-id="tasks-in-superglue"><span class="header-section-number">2.3.1</span> Tasks in SuperGLUE:</h4>
 <ul>
 <li><strong>BoolQ, MultiRC</strong>: Reading comprehension<br>
 </li>
@@ -330,8 +333,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>WSC</strong>: Coreference resolution</li>
 </ul>
 </section>
-<section id="leaderboard-highlights-v2.0" class="level4" data-number="1.3.2">
-<h4 data-number="1.3.2" class="anchored" data-anchor-id="leaderboard-highlights-v2.0"><span class="header-section-number">1.3.2</span> Leaderboard Highlights (v2.0):</h4>
+<section id="leaderboard-highlights-v2.0" class="level4" data-number="2.3.2">
+<h4 data-number="2.3.2" class="anchored" data-anchor-id="leaderboard-highlights-v2.0"><span class="header-section-number">2.3.2</span> Leaderboard Highlights (v2.0):</h4>
 <ul>
 <li><strong>Top models</strong>: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5<br>
 </li>
@@ -340,13 +343,13 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">1.4</span> Challenges in Closed-Ended Evaluation</h3>
+<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.4</span> Challenges in Closed-Ended Evaluation</h3>
 <ol type="1">
 <li><p><strong>Choosing the Right Metric</strong></p>
 <p>Choosing the right evaluation metric is not trivial. Different tasks and datasets require different performance measures. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.</p>
 <div class="sidebar">
-<h4 id="common-evaluation-metrics" data-number="1.4.1" class="anchored"><span class="header-section-number">1.4.1</span> Common Evaluation Metrics</h4>
+<h4 id="common-evaluation-metrics" data-number="2.4.1" class="anchored"><span class="header-section-number">2.4.1</span> Common Evaluation Metrics</h4>
 <ul>
 <li><strong>Accuracy</strong>: The proportion of correct predictions out of all predictions. Suitable for balanced datasets.</li>
 <li><strong>Precision</strong>: The proportion of true positives out of all predicted positives. High precision means fewer false positives.</li>
@@ -382,8 +385,8 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="references-further-reading" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">2</span> References &amp; Further Reading</h2>
+<section id="references-further-reading" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">3</span> References &amp; Further Reading</h2>
 <p>[16] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media.</p>
 <p>[17] Alammar, J., &amp; Grootendorst, M. (2023). <em>Hands-On Large Language Models: Language Understanding and Generation</em>. O’Reilly Media.</p>
 

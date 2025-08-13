@@ -5,19 +5,21 @@ format: html
 
 ## Introduction:
 
-Evaluating NLP models presents unique challenges, and these have grown significantly with the emergence of foundation models. These models often perform open-ended tasks, making it hard to identify a single correct output. But even for **closed-ended tasks**, the evaluation challenges persist due to task ambiguity, weak label quality, and the need for robust and generalizable benchmarks.
+Evaluating NLP models presents distinct challenges for both **closed-ended** and **open-ended** tasks, and these have become more complex with the rise of foundation models.
 
-According to the *AI Engineering* book, the difficulty of evaluation increases with the model's intelligence. It's easy to identify flaws in a first-grader’s math solution or a poorly written summary, but evaluating the quality of a sophisticated model's output—especially if it appears coherent—is far more difficult. For example, determining whether a summary is factually correct may require reading and understanding the full source text.
+- **Closed-ended tasks** (e.g., classification, named entity recognition) have clearly defined outputs and ground-truth labels. While traditional ML evaluation methods like accuracy, precision, recall, and F1-score are applicable here, they still face issues such as task ambiguity, annotation bias, and benchmark saturation.
+- **Open-ended tasks** (e.g., summarization, question answering, code generation, dialogue) are more difficult to evaluate because there is often no single correct output. The outputs are probabilistic and highly variable, which makes defining and applying evaluation metrics far more complex.
 
-Moreover, traditional ML evaluation assumes access to the ground truth labels and relatively stable output spaces. Foundation models challenge this setup because they produce outputs in a much more open-ended, probabilistic way. While closed-ended tasks offer some insulation from these complexities, we must still consider:
+According to the *AI Engineering* book, evaluating the output of more intelligent models—especially open-ended ones—is especially difficult. A first-grader’s math mistake is easy to spot, but determining whether an AI-generated summary is factually accurate often requires reading and understanding the full source text.
 
-- **Evaluation scalability**: Automated metrics work well, but can overlook nuance  
-- **Annotation bias**: Even in classification tasks, human-created datasets often have spurious correlations  
-- **Benchmark saturation**: As models improve, they quickly saturate existing benchmarks, giving a false sense of progress  
-- **Undersupported evaluation infrastructure**: The book also highlights that evaluation lags behind in tooling and infrastructure compared to other parts of the AI pipeline like training, inference optimization, or orchestration
+Traditional ML evaluation assumes relatively stable output spaces and ground truth labels. However, foundation models produce diverse and nuanced outputs that challenge this assumption. As a result, even closed-ended tasks must now contend with emerging evaluation issues such as:
 
-Despite these challenges, closed-ended evaluation provides a practical starting point. These tasks are defined by their constrained answer spaces and allow us to use well-established metrics like accuracy, precision, recall, and F1-score to compare models and track progress systematically.
+- **Evaluation scalability**: Automated metrics work well, but can overlook nuance.
+- **Annotation bias**: Even in classification tasks, human-created datasets often have spurious correlations.
+- **Benchmark saturation**: As models improve, they quickly saturate existing benchmarks, giving a false sense of progress.
+- **Undersupported evaluation infrastructure**: The *AI Engineering* book notes that evaluation lags behind other areas like model training, optimization, and deployment tooling.
 
+Despite these challenges, closed-ended evaluation remains a valuable starting point. Its well-constrained answer space allows use of established metrics like accuracy, precision, recall, and F1-score to measure progress systematically.
 ---
 
 ### Key Characteristics of Closed-Ended Tasks
