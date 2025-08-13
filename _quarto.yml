@@ -27,6 +27,8 @@ website:
             href: https://changezakram.github.io/Deep-Generative-Models/transformers.html
           - text: Post Training
             href: https://changezakram.github.io/Deep-Generative-Models/post-training.html
+          - text: NLP Evaluation
+            href: https://changezakram.github.io/Deep-Generative-Models/nlp-eval.html
 
       - text: Agentic AI
         menu:
