@@ -226,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Closed-ended tasks</strong> (e.g., classification, named entity recognition) have clearly defined outputs and ground-truth labels. While traditional ML evaluation methods like accuracy, precision, recall, and F1-score are applicable here, they still face issues such as task ambiguity, annotation bias, and benchmark saturation.</li>
 <li><strong>Open-ended tasks</strong> (e.g., summarization, question answering, code generation, dialogue) are more difficult to evaluate because there is often no single correct output. The outputs are probabilistic and highly variable, which makes defining and applying evaluation metrics far more complex.</li>
 </ul>
-<p>According to the <em>AI Engineering</em> book, evaluating the output of more intelligent models—especially open-ended ones—is especially difficult. A first-grader’s math mistake is easy to spot, but determining whether an AI-generated summary is factually accurate often requires reading and understanding the full source text.</p>
+<p>Assessing the output of more intelligent models—especially on open-ended tasks—is particularly difficult. While it’s easy to spot a math error in a first-grader’s homework, judging whether an AI-generated summary is factually accurate may require reading and understanding the entire source text.</p>
 <p>Traditional ML evaluation assumes relatively stable output spaces and ground truth labels. However, foundation models produce diverse and nuanced outputs that challenge this assumption. As a result, even closed-ended tasks must now contend with emerging evaluation issues such as:</p>
 <ul>
 <li><strong>Evaluation scalability</strong>: Automated metrics work well, but can overlook nuance.</li>
