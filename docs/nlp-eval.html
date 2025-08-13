@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NLP Model Evaluation: Closed-Ended Evaluation</title>
+<title>NLP Model Evaluation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -187,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#nlp-model-evaluation-closed-ended-evaluation" id="toc-nlp-model-evaluation-closed-ended-evaluation" class="nav-link active" data-scroll-target="#nlp-model-evaluation-closed-ended-evaluation"><span class="header-section-number">1</span> NLP Model Evaluation: Closed-Ended Evaluation</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">2</span> References &amp; Further Reading</a></li>
   </ul>
 </nav>
@@ -197,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">NLP Model Evaluation: Closed-Ended Evaluation</h1>
+<h1 class="title">NLP Model Evaluation</h1>
 </div>
 
 
@@ -214,8 +214,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="nlp-model-evaluation-closed-ended-evaluation" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="nlp-model-evaluation-closed-ended-evaluation"><span class="header-section-number">1</span> NLP Model Evaluation: Closed-Ended Evaluation</h2>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>Evaluating NLP models presents unique challenges, and these have grown significantly with the emergence of foundation models. These models often perform open-ended tasks, making it hard to identify a single correct output. But even for <strong>closed-ended tasks</strong>, the evaluation challenges persist due to task ambiguity, weak label quality, and the need for robust and generalizable benchmarks.</p>
 <p>According to the <em>AI Engineering</em> book, the difficulty of evaluation increases with the model’s intelligence. It’s easy to identify flaws in a first-grader’s math solution or a poorly written summary, but evaluating the quality of a sophisticated model’s output—especially if it appears coherent—is far more difficult. For example, determining whether a summary is factually correct may require reading and understanding the full source text.</p>
 <p>Moreover, traditional ML evaluation assumes access to the ground truth labels and relatively stable output spaces. Foundation models challenge this setup because they produce outputs in a much more open-ended, probabilistic way. While closed-ended tasks offer some insulation from these complexities, we must still consider:</p>
