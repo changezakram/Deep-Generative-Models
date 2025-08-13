@@ -5,7 +5,7 @@ format: html
 
 ## NLP Model Evaluation: Closed-Ended Evaluation
 
-Evaluating NLP models has always been difficult, but with the introduction of foundation models, it has become even more so. These models often perform open-ended tasks, making it hard to identify a single correct output. But even for **closed-ended tasks**, the evaluation challenges persist due to task ambiguity, weak label quality, and the need for robust and generalizable benchmarks.
+Evaluating NLP models presents unique challenges, and these have grown significantly with the emergence of foundation models. These models often perform open-ended tasks, making it hard to identify a single correct output. But even for **closed-ended tasks**, the evaluation challenges persist due to task ambiguity, weak label quality, and the need for robust and generalizable benchmarks.
 
 According to the *AI Engineering* book, the difficulty of evaluation increases with the model's intelligence. It's easy to identify flaws in a first-grader’s math solution or a poorly written summary, but evaluating the quality of a sophisticated model's output—especially if it appears coherent—is far more difficult. For example, determining whether a summary is factually correct may require reading and understanding the full source text.
 
@@ -22,9 +22,9 @@ Despite these challenges, closed-ended evaluation provides a practical starting 
 
 ### Key Characteristics of Closed-Ended Tasks
 
-- **Limited number of potential answers**
-- **Often only one or a few correct answers**
-- **Enables automatic and scalable evaluation**, making them well-suited for benchmarking
+- Limited number of potential answers
+- Often only one or a few correct answers
+- Enables automatic and scalable evaluation, making them well-suited for benchmarking
 
 ---
 
