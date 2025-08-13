@@ -3,7 +3,7 @@ title: "NLP Model Evaluation"
 format: html
 ---
 
-## Introduction
+## Introduction:
 
 Evaluating NLP models presents unique challenges, and these have grown significantly with the emergence of foundation models. These models often perform open-ended tasks, making it hard to identify a single correct output. But even for **closed-ended tasks**, the evaluation challenges persist due to task ambiguity, weak label quality, and the need for robust and generalizable benchmarks.
 
