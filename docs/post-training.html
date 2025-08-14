@@ -583,58 +583,28 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <td>High cost if N is large; requires effective selection criteria; may miss diversity benefits.</td>
 </tr>
 <tr class="odd">
-<td><strong>Compute‑Optimal Scaling (COS)</strong></td>
-<td>Dynamically allocate compute based on task difficulty; use more search for hard cases, less for easy ones.</td>
-<td>Balances accuracy and efficiency; can achieve large efficiency gains over uniform sampling.</td>
-<td>Requires reliable difficulty estimation; complex to implement in production.</td>
-</tr>
-<tr class="even">
 <td><strong>Self‑Consistency Decoding</strong></td>
 <td>Sample multiple reasoning chains, then select the most common final answer.</td>
 <td>Improves multi‑step reasoning accuracy; simple and model‑agnostic.</td>
 <td>Higher inference cost; relies on majority vote, which may fail if most outputs are wrong.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Tree of Thoughts (ToT)</strong></td>
 <td>Expand multiple reasoning paths as a search tree, evaluating and pruning branches.</td>
 <td>Enhances complex problem solving and planning; allows backtracking.</td>
 <td>High computational cost; requires good heuristics to prune effectively.</td>
 </tr>
-<tr class="even">
-<td><strong>Graph of Thoughts (GoT)</strong></td>
-<td>Represent reasoning steps as a graph with flexible dependencies; enables merging and dynamic exploration.</td>
-<td>More adaptable than ToT; reduces redundant computation; efficient for complex reasoning.</td>
-<td>Implementation complexity; less studied than ToT.</td>
-</tr>
 <tr class="odd">
-<td><strong>Confidence‑Based Sampling</strong></td>
-<td>Select expansions or answers based on model confidence scores.</td>
-<td>Reduces wasted exploration on low‑probability paths; can improve efficiency.</td>
-<td>Confidence scores may not correlate with correctness; risk of overconfidence.</td>
-</tr>
-<tr class="even">
 <td><strong>Search‑Augmented Verification</strong></td>
 <td>Use external verifiers to evaluate and rank candidate answers or reasoning steps.</td>
 <td>Increases correctness in binary decision tasks; modular and flexible.</td>
 <td>Dependent on verifier quality; additional inference steps add latency.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Self‑Improvement via Refinements</strong></td>
 <td>Model iteratively critiques and revises its own answers until acceptable.</td>
 <td>Can improve accuracy across varied tasks; useful for open‑ended reasoning.</td>
 <td>Risk of over‑editing or drifting from initial intent; higher inference cost.</td>
-</tr>
-<tr class="even">
-<td><strong>Monte Carlo Tree Search (MCTS)</strong></td>
-<td>Explore possible reasoning paths via random simulations, guided by heuristics and rewards.</td>
-<td>Effective for planning and reasoning under uncertainty; supports large search spaces.</td>
-<td>High computational cost; requires effective reward design.</td>
-</tr>
-<tr class="odd">
-<td><strong>Chain‑of‑Action‑Thought Reasoning</strong></td>
-<td>Integrate action planning with reasoning steps for complex tasks.</td>
-<td>Handles multi‑agent, tool‑augmented reasoning; improves adaptability.</td>
-<td>Complex to implement; requires specialized training or prompting.</td>
 </tr>
 </tbody>
 </table>
