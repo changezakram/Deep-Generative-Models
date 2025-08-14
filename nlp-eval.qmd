@@ -20,6 +20,7 @@ Traditional ML evaluation assumes relatively stable output spaces and ground tru
 - **Undersupported evaluation infrastructure**: The *AI Engineering* book notes that evaluation lags behind other areas like model training, optimization, and deployment tooling.
 
 Despite these challenges, closed-ended evaluation remains a valuable starting point. Its well-constrained answer space allows use of established metrics like accuracy, precision, recall, and F1-score to measure progress systematically.
+
 ---
 
 ### Key Characteristics of Closed-Ended Tasks
