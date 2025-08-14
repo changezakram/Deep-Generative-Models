@@ -83,7 +83,7 @@ Choosing the right evaluation metric is not trivial. Different tasks and dataset
 - **Precision**: The proportion of true positives out of all predicted positives. High precision means fewer false positives.
 - **Recall**: The proportion of true positives out of all actual positives. High recall means fewer false negatives.
 - **F1-Score**: The harmonic mean of precision and recall. Useful when there is an uneven class distribution.
-- **ROC AUC (Receiver Operating Characteristic - Area Under Curve)**: Measures the ability of the model to distinguish between classes across thresholds. Higher AUC indicates better performance.
+- **ROC AUC**: Measures the ability of the model to distinguish between classes across thresholds. Higher AUC indicates better performance.
 
 :::
 
