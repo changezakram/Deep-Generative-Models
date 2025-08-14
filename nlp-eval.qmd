@@ -78,11 +78,13 @@ SuperGLUE is a widely used **closed-ended multi-task benchmark** designed to tes
 Choosing the right evaluation metric is not trivial. Different tasks and datasets require different performance measures. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.
 
 ::: {.callout-tip title=Common Evaluation Metrics}
+
 - **Accuracy**: The proportion of correct predictions out of all predictions. Suitable for balanced datasets.
 - **Precision**: The proportion of true positives out of all predicted positives. High precision means fewer false positives.
 - **Recall**: The proportion of true positives out of all actual positives. High recall means fewer false negatives.
 - **F1-Score**: The harmonic mean of precision and recall. Useful when there is an uneven class distribution.
 - **ROC AUC (Receiver Operating Characteristic - Area Under Curve)**: Measures the ability of the model to distinguish between classes across thresholds. Higher AUC indicates better performance.
+
 :::
 
 2. **Aggregating Metrics** 
