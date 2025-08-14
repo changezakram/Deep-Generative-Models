@@ -172,10 +172,6 @@ This distinction is important: **prompting** focuses on *how you ask*, while **T
 
 **Concept:**  
 
-### 3 Test-Time Scaling Methods
-
-**Concept:**  
-
 Test-time scaling (TTS) boosts a model’s reasoning and performance during inference—without changing its parameters by allocating more “thinking time.” It does this by running extra compute, exploring multiple reasoning paths, and blending the best results. Unlike pre-training — which adds new capabilities via large scale learning — TTS makes smarter use of existing skills through methods like search-based decoding, self-consistency, or adaptive sampling.
 
 Empirical results show strong efficiency: with an optimal inference-compute strategy, TTS can match the performance of models up to **14× larger** while using **up to 4× less compute**<sup>[1]</sup>. Techniques such as *Self-Consistency*—sampling multiple chain-of-thought paths and taking a majority vote—improve reasoning accuracy by **+17.9% on GSM8K**, **+11.0% on SVAMP**, and **+12.2% on AQuA**<sup>[9]</sup>. This makes TTS especially valuable when inference budgets are tight or the base model already has strong core competence. For tasks that require fundamentally new capabilities, pre-training remains essential.
