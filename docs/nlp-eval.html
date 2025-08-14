@@ -337,7 +337,16 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Choosing the Right Metric</strong></li>
 </ol>
 <p>Choosing the right evaluation metric is not trivial. Different tasks and datasets require different performance measures. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.</p>
-<p>::: {.callout-tip title=Common Evaluation Metrics}</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Common Evaluation Metrics">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Common Evaluation Metrics
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li><strong>Accuracy</strong>: The proportion of correct predictions out of all predictions. Suitable for balanced datasets.</li>
 <li><strong>Precision</strong>: The proportion of true positives out of all predicted positives. High precision means fewer false positives.</li>
@@ -345,7 +354,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>F1-Score</strong>: The harmonic mean of precision and recall. Useful when there is an uneven class distribution.</li>
 <li><strong>ROC AUC (Receiver Operating Characteristic - Area Under Curve)</strong>: Measures the ability of the model to distinguish between classes across thresholds. Higher AUC indicates better performance.</li>
 </ul>
-<p>:::</p>
+</div>
+</div>
 <ol start="2" type="1">
 <li><p><strong>Aggregating Metrics</strong></p>
 <ul>
