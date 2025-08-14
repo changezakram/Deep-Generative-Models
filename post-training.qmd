@@ -26,7 +26,7 @@ In the sections that follow, we’ll explore both post-training techniques and p
 
 These techniques explain why ChatGPT felt so different from GPT-3, why Claude is helpful rather than just predictive, and why modern AI assistants can follow complex instructions reliably.
 
-![**Figure:** High-level taxonomy of large language model (LLM) post-training strategies, showing where scaling methods (bottom right) fit alongside reinforcement, tuning, and alignment approaches. *(Source: Kumar et al., 2023)*](images/post-training-methods.png){fig-align="center" width="800"}
+![**Figure:** High-level taxonomy of large language model (LLM) post-training strategies, showing where scaling methods (bottom right) fit alongside reinforcement, tuning, and alignment approaches. *(Source: Kumar, K., Ashraf, T., Thawakar, O., et al., 2025)*](images/post-training-methods.png){fig-align="center" width="800"}
 
 ---
 
@@ -536,7 +536,7 @@ Effective post-training is about matching the method to the goal. Understanding 
 
 ## References & Further Reading
 
-[1] Kumar, K., Ashraf, T., Thawakar, O., et al. (2024). *LLM Post-Training: A Deep Dive into Reasoning Large Language Models*. https://arxiv.org/abs/2502.21321 
+[1] Kumar, K., Ashraf, T., Thawakar, O., et al. (2025). *LLM Post-Training: A Deep Dive into Reasoning Large Language Models*. https://arxiv.org/abs/2502.21321 
 
 [2] Brown, T., Mann, B., Ryder, N., et al. (2020). *Language Models are Few-Shot Learners (GPT-3)*. https://arxiv.org/abs/2005.14165 
 
