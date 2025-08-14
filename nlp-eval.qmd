@@ -23,7 +23,7 @@ Despite these challenges, closed-ended evaluation remains a valuable starting po
 
 ---
 
-### Key Characteristics of Closed-Ended Tasks
+## Closed-Ended Tasks
 
 - Limited number of potential answers
 - Often only one or a few correct answers
