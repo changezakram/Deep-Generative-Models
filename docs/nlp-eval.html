@@ -193,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction:</a></li>
   <li><a href="#closed-ended-tasks" id="toc-closed-ended-tasks" class="nav-link" data-scroll-target="#closed-ended-tasks"><span class="header-section-number">2</span> Closed-Ended Tasks</a></li>
-  <li><a href="#evaluating-open-ended-text-generation" id="toc-evaluating-open-ended-text-generation" class="nav-link" data-scroll-target="#evaluating-open-ended-text-generation"><span class="header-section-number">3</span> Evaluating Open-Ended Text Generation</a></li>
+  <li><a href="#open-ended-text-generation" id="toc-open-ended-text-generation" class="nav-link" data-scroll-target="#open-ended-text-generation"><span class="header-section-number">3</span> Open-Ended Text Generation</a></li>
   <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">4</span> References &amp; Further Reading</a></li>
   </ul>
 </nav>
@@ -385,12 +385,11 @@ Common Evaluation Metrics
 <hr>
 </section>
 </section>
-<section id="evaluating-open-ended-text-generation" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="evaluating-open-ended-text-generation"><span class="header-section-number">3</span> Evaluating Open-Ended Text Generation</h2>
+<section id="open-ended-text-generation" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="open-ended-text-generation"><span class="header-section-number">3</span> Open-Ended Text Generation</h2>
 <p>Open-ended generation models, such as large language models (LLMs), are capable of producing free-form outputs like summaries, translations, stories, or answers to instructions. Unlike traditional models that produce a fixed label or number, these models generate entire sequences of text—often with multiple plausible responses for a single input.</p>
 <p>This flexibility makes them powerful but also difficult to evaluate. There is rarely a single “correct” output, and even seemingly unrelated completions may still be valid. For example, a user prompt like <em>“Tell me something interesting about the moon”</em> could lead to many diverse, accurate, and coherent answers. Evaluating such outputs requires more than checking against a reference—it demands assessing coherence, fluency, relevance, factual accuracy, and semantic alignment.</p>
 <p>As a result, evaluation of open-ended generation must go beyond traditional metrics and adopt a more nuanced, multi-faceted approach.</p>
-<hr>
 <section id="types-of-evaluation-methods" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="types-of-evaluation-methods"><span class="header-section-number">3.1</span> Types of Evaluation Methods</h3>
 <p>There are three broad classes of evaluation methods for text generation:</p>
@@ -399,10 +398,7 @@ Common Evaluation Metrics
 <li><strong>Model-Based Metrics</strong> – assess semantic similarity using pretrained embedding models (e.g., BERTScore, BLEURT).</li>
 <li><strong>Human Evaluations</strong> – involve direct human judgment of qualities such as fluency, coherence, and factual correctness.</li>
 </ul>
-<hr>
-</section>
-<section id="content-overlap-metrics" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="content-overlap-metrics"><span class="header-section-number">3.2</span> Content Overlap Metrics</h3>
+<p><strong>Content Overlap Metrics:</strong></p>
 <p>These methods compute similarity based on surface-level word overlap between the generated text and a reference.</p>
 <ul>
 <li>Fast and widely used but limited in capturing meaning.</li>
@@ -412,36 +408,26 @@ Common Evaluation Metrics
 <blockquote class="blockquote">
 <p>🔍 <em>n-gram metrics have no concept of meaning—they fail when different words express the same idea.</em></p>
 </blockquote>
-<hr>
-</section>
-<section id="model-based-metrics" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="model-based-metrics"><span class="header-section-number">3.3</span> Model-Based Metrics</h3>
-<p>These metrics leverage learned representations from pretrained language models to evaluate semantic similarity:</p>
+<p><strong>Model-Based Metrics</strong></p>
+<p>These metrics leverage learned representations from pre-trained language models to evaluate semantic similarity:</p>
 <ul>
 <li>Compute similarity in embedding space between reference and generated outputs.</li>
 <li>More robust to paraphrasing and lexical variation.</li>
 </ul>
 <p>Two popular types:</p>
-<section id="bertscore" class="level4" data-number="3.3.1">
-<h4 data-number="3.3.1" class="anchored" data-anchor-id="bertscore"><span class="header-section-number">3.3.1</span> BERTScore</h4>
+<p><strong>BERTScore</strong></p>
 <ul>
 <li>Uses contextual embeddings from BERT and cosine similarity to compare word pairs.</li>
 <li>Captures semantic relationships between words.<br>
 <em>(Zhang et al., 2020)</em></li>
 </ul>
-</section>
-<section id="bleurt" class="level4" data-number="3.3.2">
-<h4 data-number="3.3.2" class="anchored" data-anchor-id="bleurt"><span class="header-section-number">3.3.2</span> BLEURT</h4>
+<p><strong>BLEURT</strong></p>
 <ul>
 <li>Fine-tuned regression model based on BERT.</li>
 <li>Outputs a score indicating grammar and meaning similarity with reference text.<br>
 <em>(Sellam et al., 2020)</em></li>
 </ul>
-<hr>
-</section>
-</section>
-<section id="reference-quality-matters" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="reference-quality-matters"><span class="header-section-number">3.4</span> Reference Quality Matters</h3>
+<p><strong>Reference Quality Matters</strong></p>
 <p>Evaluation scores are only as good as the reference they compare against.</p>
 <ul>
 <li>A flawed reference can mislead metrics like ROUGE.</li>

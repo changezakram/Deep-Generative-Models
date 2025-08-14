@@ -107,7 +107,7 @@ Choosing the right evaluation metric is not trivial. Different tasks and dataset
 ---
 
 
-## Evaluating Open-Ended Text Generation
+## Open-Ended Text Generation
 
 Open-ended generation models, such as large language models (LLMs), are capable of producing free-form outputs like summaries, translations, stories, or answers to instructions. Unlike traditional models that produce a fixed label or number, these models generate entire sequences of text—often with multiple plausible responses for a single input.
 
@@ -115,7 +115,6 @@ This flexibility makes them powerful but also difficult to evaluate. There is ra
 
 As a result, evaluation of open-ended generation must go beyond traditional metrics and adopt a more nuanced, multi-faceted approach.
 
----
 
 ### Types of Evaluation Methods
 
@@ -125,9 +124,7 @@ There are three broad classes of evaluation methods for text generation:
 - **Model-Based Metrics** – assess semantic similarity using pretrained embedding models (e.g., BERTScore, BLEURT).
 - **Human Evaluations** – involve direct human judgment of qualities such as fluency, coherence, and factual correctness.
 
----
-
-### Content Overlap Metrics
+**Content Overlap Metrics:**
 
 These methods compute similarity based on surface-level word overlap between the generated text and a reference.
 
@@ -137,30 +134,29 @@ These methods compute similarity based on surface-level word overlap between the
 
 > 🔍 *n-gram metrics have no concept of meaning—they fail when different words express the same idea.*
 
----
 
-### Model-Based Metrics
+**Model-Based Metrics**
 
-These metrics leverage learned representations from pretrained language models to evaluate semantic similarity:
+These metrics leverage learned representations from pre-trained language models to evaluate semantic similarity:
 
 - Compute similarity in embedding space between reference and generated outputs.
 - More robust to paraphrasing and lexical variation.
 
 Two popular types:
 
-#### BERTScore  
+**BERTScore**
+ 
 - Uses contextual embeddings from BERT and cosine similarity to compare word pairs.
 - Captures semantic relationships between words.  
 *(Zhang et al., 2020)*
 
-#### BLEURT  
+**BLEURT** 
+ 
 - Fine-tuned regression model based on BERT.
 - Outputs a score indicating grammar and meaning similarity with reference text.  
 *(Sellam et al., 2020)*
 
----
-
-### Reference Quality Matters
+**Reference Quality Matters**
 
 Evaluation scores are only as good as the reference they compare against.
 
