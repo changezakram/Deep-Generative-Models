@@ -488,19 +488,23 @@ Beyond its architectural simplicity, DPO has demonstrated strong empirical perfo
 Overall, DPO offers a practical trade-off — delivering much of RLHF’s alignment benefits with significantly lower complexity and cost, making it a compelling choice for many modern LLM training pipelines, especially when rapid iteration is important.
 
 ::: callout-note
+
 ## RLHF vs DPO: Key Differences
 
 **Reinforcement Learning from Human Feedback (RLHF)**
+
 - Trains an **explicit reward model** on comparison data to predict a score for a given completion.
 - Optimizes the LM to **maximize the predicted score** under a KL-constraint.
 - Very effective when tuned well, but **computationally expensive** and tricky to get right.
 - Requires multiple steps: supervised fine-tuning → reward model training → policy optimization (e.g., PPO).
 
 **Direct Preference Optimization (DPO)**
+
 - Optimizes LM parameters **directly on preference data** by solving a binary classification problem.
 - Avoids reward model training and reinforcement learning loops entirely.
 - **Simpler and more efficient** than RLHF while maintaining similar alignment benefits.
 - Does not leverage online data; operates purely on static preference pairs.
+
 :::
 
 The following table summarizes supervised Preference Optimization methods described in *LLM Post-Training: A Deep Dive into Reasoning* by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.
