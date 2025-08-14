@@ -1,5 +1,5 @@
 ---
-title: "Post-Training for Foundation Models"
+title: "Post-Training LLMs"
 format: html
 ---
 
