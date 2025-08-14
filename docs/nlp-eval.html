@@ -244,9 +244,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Often only one or a few correct answers</li>
 <li>Enables automatic and scalable evaluation, making them well-suited for benchmarking</li>
 </ul>
-<hr>
 <section id="common-closed-ended-tasks-benchmarks" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="common-closed-ended-tasks-benchmarks"><span class="header-section-number">2.1</span> Common Closed-Ended Tasks &amp; Benchmarks</h3>
+<h3 data-number="2.1" class="anchored" data-anchor-id="common-closed-ended-tasks-benchmarks"><span class="header-section-number">2.1</span> Common Closed-Ended Tasks &amp; Benchmarks**</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 24%">
@@ -293,16 +292,13 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="example-sentiment-analysis" class="level4" data-number="2.1.1">
-<h4 data-number="2.1.1" class="anchored" data-anchor-id="example-sentiment-analysis"><span class="header-section-number">2.1.1</span> Example: Sentiment Analysis</h4>
+<p><strong>Example: Sentiment Analysis:</strong></p>
 <ul>
 <li><strong>Text</strong>: “Read the book, forget the movie!”<br>
 </li>
 <li><strong>Label</strong>: Negative</li>
 </ul>
-</section>
-<section id="example-entailment" class="level4" data-number="2.1.2">
-<h4 data-number="2.1.2" class="anchored" data-anchor-id="example-entailment"><span class="header-section-number">2.1.2</span> Example: Entailment</h4>
+<p><strong>Example: Entailment:</strong></p>
 <ul>
 <li><strong>Premise</strong>: “A soccer game with multiple males playing.”<br>
 </li>
@@ -310,14 +306,11 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li><strong>Label</strong>: Entailment</li>
 </ul>
-<hr>
-</section>
 </section>
 <section id="multi-task-benchmark-superglue" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.2</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
 <p>SuperGLUE is a widely used <strong>closed-ended multi-task benchmark</strong> designed to test <strong>general language understanding</strong>. It evaluates performance across diverse NLP tasks.</p>
-<section id="tasks-in-superglue" class="level4" data-number="2.2.1">
-<h4 data-number="2.2.1" class="anchored" data-anchor-id="tasks-in-superglue"><span class="header-section-number">2.2.1</span> Tasks in SuperGLUE:</h4>
+<p><strong>Tasks in SuperGLUE:</strong></p>
 <ul>
 <li><strong>BoolQ, MultiRC</strong>: Reading comprehension<br>
 </li>
@@ -331,24 +324,21 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li><strong>WSC</strong>: Coreference resolution</li>
 </ul>
-</section>
-<section id="leaderboard-highlights-v2.0" class="level4" data-number="2.2.2">
-<h4 data-number="2.2.2" class="anchored" data-anchor-id="leaderboard-highlights-v2.0"><span class="header-section-number">2.2.2</span> Leaderboard Highlights (v2.0):</h4>
+<p><strong>Leaderboard Highlights (v2.0):</strong></p>
 <ul>
 <li><strong>Top models</strong>: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5<br>
 </li>
 <li><strong>Metrics used</strong>: Accuracy, F1 score, Exact Match, Gender Parity, etc.</li>
 </ul>
-<hr>
-</section>
 </section>
 <section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.3</span> Challenges in Closed-Ended Evaluation</h3>
 <ol type="1">
-<li><p><strong>Choosing the Right Metric</strong></p>
+<li><strong>Choosing the Right Metric</strong></li>
+</ol>
 <p>Choosing the right evaluation metric is not trivial. Different tasks and datasets require different performance measures. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.</p>
 <div class="sidebar">
-<h4 id="common-evaluation-metrics" data-number="2.3.1" class="anchored"><span class="header-section-number">2.3.1</span> Common Evaluation Metrics</h4>
+<p><strong>Common Evaluation Metrics:</strong></p>
 <ul>
 <li><strong>Accuracy</strong>: The proportion of correct predictions out of all predictions. Suitable for balanced datasets.</li>
 <li><strong>Precision</strong>: The proportion of true positives out of all predicted positives. High precision means fewer false positives.</li>
@@ -356,7 +346,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>F1-Score</strong>: The harmonic mean of precision and recall. Useful when there is an uneven class distribution.</li>
 <li><strong>ROC AUC (Receiver Operating Characteristic - Area Under Curve)</strong>: Measures the ability of the model to distinguish between classes across thresholds. Higher AUC indicates better performance.</li>
 </ul>
-</div></li>
+</div>
+<ol start="2" type="1">
 <li><p><strong>Aggregating Metrics</strong></p>
 <ul>
 <li>How to combine across multiple tasks or sub-tasks</li>
