@@ -793,7 +793,7 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <ol type="1">
 <li><strong>Supervised Fine-Tuning (SFT):</strong> Train a baseline model on high-quality instruction–response pairs so it learns the basics of following human instructions.<br>
 </li>
-<li><strong>Preference Data Collection:</strong> Gather human feedback by having annotators rank multiple model responses for the same prompt from best to worst.<br>
+<li><strong>Preference Data Collection:</strong> Gather human feedback by having annotators rank multiple model responses for the same prompt from best to worst. For example, if a model gives a technically correct but rude response, human annotators would rank a polite version higher, teaching the reward model to value helpfulness.<br>
 </li>
 <li><strong>Reinforcement Learning Optimization:</strong> Fine-tune the model with reinforcement learning (often using Proximal Policy Optimization, PPO) so that it produces outputs that maximize a learned <em>reward model</em> based on collected preferences.</li>
 </ol>
@@ -837,7 +837,7 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <section id="direct-preference-optimization-dpo" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5.2</span> Direct Preference Optimization (DPO)</h3>
 <p><strong>Concept:</strong></p>
-<p>Direct Preference Optimization (DPO) is a simpler, more efficient alternative to RLHF that eliminates the need for a separate reward model and reinforcement learning loop. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log-likelihood ratio to favor preferred responses. This “bakes in” human preferences directly into the model parameters, avoiding costly online sampling, PPO training, and hyperparameter sensitive RL steps.</p>
+<p>Direct Preference Optimization (DPO) is a simpler, more efficient alternative to RLHF that eliminates the need for a separate reward model and reinforcement learning loop. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log-likelihood ratio to favor preferred responses. For example, DPO directly learns that “Here’s a step-by-step solution…” is better than “I think the answer is…” for math problems, without needing a separate reward model. This “bakes in” human preferences directly into the model parameters, avoiding costly online sampling, PPO training, and hyperparameter sensitive RL steps.</p>
 <p>The main difference between RLHF and DPO lies in how they use preference data. The figure below shows how DPO streamlines the process by removing the reward model and RL loop.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
