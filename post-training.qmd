@@ -24,6 +24,8 @@ While supervised and preference tuning are the core of post-training, it’s als
 
 In the sections that follow, we’ll explore both post-training techniques and prompting strategies, and how they work together to transform general-purpose LLMs into dependable, aligned assistants.
 
+These techniques explain why ChatGPT felt so different from GPT-4, why Claude is helpful rather than just predictive, and why modern AI assistants can follow complex instructions reliably.
+
 ![**Figure:** High-level taxonomy of large language model (LLM) post-training strategies, showing where scaling methods (bottom right) fit alongside reinforcement, tuning, and alignment approaches. *(Source: Kumar et al., 2023)*](images/post-training-methods.png){fig-align="center" width="800"}
 
 ---
@@ -275,7 +277,7 @@ The following table summarizes key test‑time scaling methods described in *LLM
 | **Search‑Augmented Verification** | Use external verifiers to evaluate and rank candidate answers or reasoning steps. | Increases correctness in binary decision tasks; modular and flexible. | Dependent on verifier quality; additional inference steps add latency. |
 | **Self‑Improvement via Refinements** | Model iteratively critiques and revises its own answers until acceptable. | Can improve accuracy across varied tasks; useful for open‑ended reasoning. | Risk of over‑editing or drifting from initial intent; higher inference cost. |
 
-While prompting and test-time scaling adjust model behavior without altering weights, supervised fine-tuning directly updates model parameters to improve performance on specific tasks.
+While prompting and test-time scaling work well, they have limits—sometimes you need to actually change how the model thinks, which requires updating its weights through supervised fine-tuning.
 
 ---
 
