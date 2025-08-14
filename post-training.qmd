@@ -172,11 +172,15 @@ This distinction is important: **prompting** focuses on *how you ask*, while **T
 
 **Concept:**  
 
-Test-time scaling (TTS) enhances a model’s reasoning and performance during inference—without modifying its parameters. While prompting steers the model by adjusting the input prompt, TTS gives the model more “thinking time” by deploying extra compute, exploring multiple reasoning paths, and blending the best results across runs. Unlike pre-training, which teaches new capabilities through large-scale learning, TTS makes smarter use of existing skills via strategies like search-based decoding, self-consistency, or adaptive sampling.
+### 3 Test-Time Scaling Methods
 
-Empirical evidence underscores its efficiency: with an optimal inference compute strategy, TTS can match the performance of a model up to **14× larger** while using **up to 4× less compute**<sup>[1]</sup>; and techniques like *Self-Consistency*—sampling multiple chain-of-thought paths and taking a majority vote—can improve reasoning accuracy by **+17.9 % on GSM8K**, **+11.0 % on SVAMP**, and **+12.2 % on AQuA**<sup>[9]</sup>. This makes TTS especially powerful when inference budgets are constrained or when the base model already has strong core capability. However, for tasks requiring fundamentally new reasoning abilities, pre-training remains essential, as larger models inherently encode deeper knowledge and generalization.
+**Concept:**  
 
-In practice, TTS and pre-training are **complementary**: pre-training builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a **hybrid approach**, combining a pre-trained base model with TTS to achieve cost‑efficient scaling and adaptability.
+Test-time scaling (TTS) boosts a model’s reasoning and performance during inference—without changing its parameters by allocating more “thinking time.” It does this by running extra compute, exploring multiple reasoning paths, and blending the best results. Unlike pre-training — which adds new capabilities via large scale learning — TTS makes smarter use of existing skills through methods like search-based decoding, self-consistency, or adaptive sampling.
+
+Empirical results show strong efficiency: with an optimal inference-compute strategy, TTS can match the performance of models up to **14× larger** while using **up to 4× less compute**<sup>[1]</sup>. Techniques such as *Self-Consistency*—sampling multiple chain-of-thought paths and taking a majority vote—improve reasoning accuracy by **+17.9% on GSM8K**, **+11.0% on SVAMP**, and **+12.2% on AQuA**<sup>[9]</sup>. This makes TTS especially valuable when inference budgets are tight or the base model already has strong core competence. For tasks that require fundamentally new capabilities, pre-training remains essential.
+
+TTS and pre-training are **complementary**: pre-training builds broad, general competence, while TTS provides targeted, on-demand optimization at inference. Many deployments use a **hybrid approach**, pairing a pre-trained base model with TTS for cost-efficient scaling and adaptability.
 
 **Why It Matters:**
 
