@@ -25,20 +25,23 @@ Despite these challenges, closed-ended evaluation remains a valuable starting po
 
 ## Closed-Ended Tasks
 
-- Limited number of potential answers
-- Often only one or a few correct answers
-- Enables automatic and scalable evaluation, making them well-suited for benchmarking
+Closed-ended tasks are those with a **limited number of possible answers**, often constrained to a **single correct response**. These tasks are well-defined and bounded, making them ideal for **standardized evaluation**, **automation**, and **benchmarking**. They serve as the foundation for much of classical NLP evaluation and are especially useful for training and validating models in structured environments.
+
+While they are more straightforward than open-ended tasks, closed-ended tasks still involve meaningful challenges in evaluation design, metric selection, and dataset construction. The clarity in output space allows for objective comparison, but can sometimes mask nuanced weaknesses in model behavior.
+
+
 
 ### Common Closed-Ended Tasks & Benchmarks
 
-| Task Type                    | Description                                             | Popular Benchmarks             |
-|-----------------------------|---------------------------------------------------------|--------------------------------|
-| **Sentiment Analysis**       | Classify sentiment as Positive, Negative, Neutral       | SST, IMDB, Yelp                |
-| **Textual Entailment**       | Determine if a hypothesis logically follows from a premise | SNLI, RTE                    |
-| **Named Entity Recognition** | Identify named entities in text                         | CoNLL-2003                     |
-| **Part-of-Speech Tagging**   | Assign parts of speech to each word                     | PTB                            |
-| **Coreference Resolution**   | Determine if pronouns refer to the same entity          | WSC                            |
-| **Question Answering**       | Extract a plausible answer from a given passage         | SQuAD2                         |
+| Task Type               | Description                                                | Popular Benchmarks          |
+|-------------------------|------------------------------------------------------------|-----------------------------|
+| Sentiment Analysis      | Classify sentiment as Positive, Negative, Neutral          | SST, IMDB, Yelp             |
+| Textual Entailment      | Determine if a hypothesis logically follows from a premise | SNLI, RTE                   |
+| Named Entity Recognition| Identify named entities in text                            | CoNLL-2003                  |
+| Part-of-Speech Tagging  | Assign parts of speech to each word                        | PTB                         |
+| Coreference Resolution  | Determine if pronouns refer to the same entity             | WSC                         |
+| Question Answering      | Extract a plausible answer from a given passage            | SQuAD2                      |
+
 
 **Example: Sentiment Analysis:**  
 
@@ -54,7 +57,7 @@ Despite these challenges, closed-ended evaluation remains a valuable starting po
 
 ### Multi-Task Benchmark: **SuperGLUE**
 
-SuperGLUE is a widely used **closed-ended multi-task benchmark** designed to test **general language understanding**. It evaluates performance across diverse NLP tasks.
+SuperGLUE is a comprehensive **closed-ended multi-task benchmark** designed to evaluate general language understanding. It combines multiple tasks that test various aspects of comprehension and reasoning in language models.
 
 **Tasks in SuperGLUE:**
 
@@ -73,36 +76,32 @@ SuperGLUE is a widely used **closed-ended multi-task benchmark** designed to tes
 
 ### Challenges in Closed-Ended Evaluation
 
-1. **Choosing the Right Metric**  
+1. **Choosing the Right Metric:** Choosing the right evaluation metric is not trivial. Different tasks and datasets require different evaluation metrics. A model may appear strong on one metric but perform poorly on another depending on task setup and class imbalance. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.
 
-Choosing the right evaluation metric is not trivial. Different tasks and datasets require different performance measures. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.
+**Common Evaluation Metrics**:
 
-::: {.callout-tip title="Common Evaluation Metrics"}
+- **Accuracy**: Proportion of correct predictions; suitable for balanced datasets.
+- **Precision**: Proportion of true positives out of all predicted positives.
+- **Recall**: Proportion of true positives out of all actual positives.
+- **F1-Score**: Harmonic mean of precision and recall; ideal for class imbalance.
+- **ROC AUC**: Measures ability to distinguish between classes across thresholds.
 
-- **Accuracy**: The proportion of correct predictions out of all predictions. Suitable for balanced datasets.
-- **Precision**: The proportion of true positives out of all predicted positives. High precision means fewer false positives.
-- **Recall**: The proportion of true positives out of all actual positives. High recall means fewer false negatives.
-- **F1-Score**: The harmonic mean of precision and recall. Useful when there is an uneven class distribution.
-- **ROC AUC**: Measures the ability of the model to distinguish between classes across thresholds. Higher AUC indicates better performance.
 
-:::
-
-2. **Aggregating Metrics** 
- 
-   - How to combine across multiple tasks or sub-tasks
+2. **Aggregating Metrics:** In multi-task or multi-subtask setups (e.g., SuperGLUE), it’s important to combine metrics effectively. Simply averaging can underrepresent harder tasks or those with imbalanced label distributions.
 
 3. **Label Quality**  
 
-   - Are the gold-standard labels always reliable?  
-   - Are there ambiguities in annotation?
+- Are the ground-truth labels reliable and consistent?
+- Is there ambiguity in annotations due to vague definitions or task subjectivity?
 
-4. **Spurious Correlations**  
+4. **Spurious Correlations:** Models often latch onto dataset artifacts or heuristics rather than true understanding. 
 
-   - Models might exploit dataset artifacts rather than genuinely learning the task  
    - **Example** (SNLI):  
      - Premise: “The economy could be still better.”  
      - Hypothesis: “The economy has *never* been better.”  
      - Model might infer contradiction simply due to the word *never* rather than actual reasoning
+
+This reveals how even in closed-ended tasks, evaluation must consider model behavior beyond raw accuracy to ensure generalization and robustness.
 
 ---
 
