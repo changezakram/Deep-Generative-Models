@@ -7,9 +7,7 @@ format: html
 
 Large language models like GPT-4 and Claude have demonstrated impressive capabilities across a wide range of tasks, including writing, summarization, problem solving, and open-ended reasoning. These are examples of **foundation models**—large, general-purpose models trained on broad data at scale, designed to serve as flexible building blocks for many downstream applications. But their raw, pre-trained form is not sufficient for safe, reliable deployment.
 
-The core limitation lies in how LLMs are initially trained. They don’t follow strict rules or formal logic. Instead, they learn from statistical patterns in massive text corpora. This makes them flexible and creative—but also means their reasoning can be inconsistent, misleading, or untrustworthy.
-
-These models are typically optimized to predict the next word in a sentence—not to follow instructions, act ethically, or meet human expectations. This initial phase is called **pre-training**, and it focuses on token-level quality—generating the most likely next word given the prior context. But users care more about the quality of the entire response than just the next token.
+Large language models are trained on massive text corpora to predict the next word given prior context, learning statistical patterns rather than strict rules or formal logic. This makes them flexible and creative, but also means their reasoning can be inconsistent, misleading, or untrustworthy. Because they are optimized for token-level prediction—not for following instructions, acting ethically, or meeting human expectations—their raw, pre-trained form often falls short of what users need in real-world applications.
 
 This is where **post-training** comes in. It refines the model’s behavior to be helpful, safe, and aligned with human intent. Some compare pre-training to reading a vast amount of text, and post-training to learning how to apply that knowledge in a useful, trustworthy way.
 
