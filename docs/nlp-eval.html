@@ -370,7 +370,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="open-ended-text-generation" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="open-ended-text-generation"><span class="header-section-number">3</span> Open-Ended Text Generation</h2>
 <p>Open-ended generation models, such as large language models (LLMs), are capable of producing free-form outputs like summaries, translations, stories, or answers to instructions. Unlike traditional models that produce a fixed label or number, these models generate entire sequences of text—often with multiple plausible responses for a single input.</p>
-<p>This flexibility makes them powerful but also difficult to evaluate. There is rarely a single “correct” output, and even seemingly unrelated completions may still be valid. For example, a user prompt like <em>“Tell me something interesting about the moon”</em> could lead to many diverse, accurate, and coherent answers. Evaluating such outputs requires more than checking against a reference—it demands assessing coherence, fluency, relevance, factual accuracy, and semantic alignment.</p>
+<p>This flexibility makes them powerful but also difficult to evaluate. There is rarely a single “correct” output, and even seemingly unrelated completions may still be valid. For example, a user prompt like <em>“Tell me something interesting about the moon”</em> could lead to many diverse, accurate, and coherent answers.</p>
+<p>Evaluating such outputs requires more than checking against a reference—it demands assessing coherence, fluency, relevance, factual accuracy, and semantic alignment.</p>
 <p>As a result, evaluation of open-ended generation must go beyond traditional metrics and adopt a more nuanced, multi-faceted approach.</p>
 <section id="types-of-evaluation-methods" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="types-of-evaluation-methods"><span class="header-section-number">3.1</span> Types of Evaluation Methods</h3>
@@ -388,33 +389,52 @@ ul.task-list li input[type="checkbox"] {
 <li>Often reported for tasks like summarization and translation, despite known limitations.</li>
 </ul>
 <blockquote class="blockquote">
-<p>🔍 <em>n-gram metrics have no concept of meaning—they fail when different words express the same idea.</em></p>
+<p><em>n-gram metrics have no concept of meaning—they fail when different words express the same idea.</em></p>
 </blockquote>
 <p><strong>Model-Based Metrics</strong></p>
-<p>These metrics leverage learned representations from pre-trained language models to evaluate semantic similarity:</p>
+<p>These metrics leverage learned representations from pre-trained language models to evaluate <strong>semantic similarity</strong>.</p>
 <ul>
 <li>Compute similarity in embedding space between reference and generated outputs.</li>
 <li>More robust to paraphrasing and lexical variation.</li>
 </ul>
 <p>Two popular types:</p>
-<p><strong>BERTScore</strong></p>
 <ul>
-<li>Uses contextual embeddings from BERT and cosine similarity to compare word pairs.</li>
+<li><strong>BERTScore</strong>
+<ul>
+<li>Uses contextual embeddings from BERT and cosine similarity to compare word pairs.<br>
+</li>
 <li>Captures semantic relationships between words.<br>
-<em>(Zhang et al., 2020)</em></li>
-</ul>
-<p><strong>BLEURT</strong></p>
+</li>
+<li><em>(Zhang et al., 2020)</em></li>
+</ul></li>
+<li><strong>BLEURT</strong>
 <ul>
-<li>Fine-tuned regression model based on BERT.</li>
+<li>Fine-tuned regression model based on BERT.<br>
+</li>
 <li>Outputs a score indicating grammar and meaning similarity with reference text.<br>
-<em>(Sellam et al., 2020)</em></li>
+</li>
+<li><em>(Sellam et al., 2020)</em></li>
+</ul></li>
 </ul>
+<p><strong>Human Evaluations</strong></p>
+<p>Human evaluation remains the gold standard—especially for open-ended tasks.</p>
+<ul>
+<li>Captures subjective qualities like <strong>fluency</strong>, <strong>coherence</strong>, <strong>factual accuracy</strong>, and <strong>harmlessness</strong>.</li>
+<li>Can use Likert scales, pairwise comparisons, or ranking approaches.</li>
+<li>Important to run multiple annotators and test inter-annotator agreement.</li>
+</ul>
+<p>Evaluation of factuality is particularly difficult. As the lecture notes emphasize, a model can produce highly fluent and confident outputs that are factually wrong. In tasks like summarization, this means comparing to source documents—not just a reference summary.</p>
 <p><strong>Reference Quality Matters</strong></p>
 <p>Evaluation scores are only as good as the reference they compare against.</p>
 <ul>
-<li>A flawed reference can mislead metrics like ROUGE.</li>
+<li>A flawed reference can mislead metrics like ROUGE or BLEU.</li>
 <li>Expert-written references lead to better correlation with human judgments of faithfulness.</li>
+<li>When references are missing, metrics break down—making human evaluation essential.</li>
 </ul>
+<hr>
+<blockquote class="blockquote">
+<p>“We need to rethink evaluation for open-ended tasks. The answer space is huge, and automated scores don’t always capture what humans care about.”</p>
+</blockquote>
 <hr>
 </section>
 </section>

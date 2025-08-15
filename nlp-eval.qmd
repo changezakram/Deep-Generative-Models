@@ -110,7 +110,9 @@ This reveals how even in closed-ended tasks, evaluation must consider model beha
 
 Open-ended generation models, such as large language models (LLMs), are capable of producing free-form outputs like summaries, translations, stories, or answers to instructions. Unlike traditional models that produce a fixed label or number, these models generate entire sequences of text—often with multiple plausible responses for a single input.
 
-This flexibility makes them powerful but also difficult to evaluate. There is rarely a single "correct" output, and even seemingly unrelated completions may still be valid. For example, a user prompt like *"Tell me something interesting about the moon"* could lead to many diverse, accurate, and coherent answers. Evaluating such outputs requires more than checking against a reference—it demands assessing coherence, fluency, relevance, factual accuracy, and semantic alignment.
+This flexibility makes them powerful but also difficult to evaluate. There is rarely a single “correct” output, and even seemingly unrelated completions may still be valid. For example, a user prompt like *“Tell me something interesting about the moon”* could lead to many diverse, accurate, and coherent answers.
+
+Evaluating such outputs requires more than checking against a reference—it demands assessing coherence, fluency, relevance, factual accuracy, and semantic alignment.
 
 As a result, evaluation of open-ended generation must go beyond traditional metrics and adopt a more nuanced, multi-faceted approach.
 
@@ -123,6 +125,7 @@ There are three broad classes of evaluation methods for text generation:
 - **Model-Based Metrics** – assess semantic similarity using pretrained embedding models (e.g., BERTScore, BLEURT).
 - **Human Evaluations** – involve direct human judgment of qualities such as fluency, coherence, and factual correctness.
 
+
 **Content Overlap Metrics:**
 
 These methods compute similarity based on surface-level word overlap between the generated text and a reference.
@@ -131,37 +134,51 @@ These methods compute similarity based on surface-level word overlap between the
 - Common metrics include **BLEU**, **ROUGE**, **METEOR**, **CIDEr**.
 - Often reported for tasks like summarization and translation, despite known limitations.
 
-> 🔍 *n-gram metrics have no concept of meaning—they fail when different words express the same idea.*
+> *n-gram metrics have no concept of meaning—they fail when different words express the same idea.*
 
 
 **Model-Based Metrics**
 
-These metrics leverage learned representations from pre-trained language models to evaluate semantic similarity:
+These metrics leverage learned representations from pre-trained language models to evaluate **semantic similarity**.
 
 - Compute similarity in embedding space between reference and generated outputs.
 - More robust to paraphrasing and lexical variation.
 
 Two popular types:
 
-**BERTScore**
- 
-- Uses contextual embeddings from BERT and cosine similarity to compare word pairs.
-- Captures semantic relationships between words.  
-*(Zhang et al., 2020)*
+- **BERTScore**  
+  - Uses contextual embeddings from BERT and cosine similarity to compare word pairs.  
+  - Captures semantic relationships between words.  
+  - *(Zhang et al., 2020)*
 
-**BLEURT** 
- 
-- Fine-tuned regression model based on BERT.
-- Outputs a score indicating grammar and meaning similarity with reference text.  
-*(Sellam et al., 2020)*
+- **BLEURT**  
+  - Fine-tuned regression model based on BERT.  
+  - Outputs a score indicating grammar and meaning similarity with reference text.  
+  - *(Sellam et al., 2020)*
+
+
+**Human Evaluations**
+
+Human evaluation remains the gold standard—especially for open-ended tasks.
+
+- Captures subjective qualities like **fluency**, **coherence**, **factual accuracy**, and **harmlessness**.
+- Can use Likert scales, pairwise comparisons, or ranking approaches.
+- Important to run multiple annotators and test inter-annotator agreement.
+
+Evaluation of factuality is particularly difficult. As the lecture notes emphasize, a model can produce highly fluent and confident outputs that are factually wrong. In tasks like summarization, this means comparing to source documents—not just a reference summary.
+
 
 **Reference Quality Matters**
 
 Evaluation scores are only as good as the reference they compare against.
 
-- A flawed reference can mislead metrics like ROUGE.
+- A flawed reference can mislead metrics like ROUGE or BLEU.
 - Expert-written references lead to better correlation with human judgments of faithfulness.
+- When references are missing, metrics break down—making human evaluation essential.
 
+---
+
+> “We need to rethink evaluation for open-ended tasks. The answer space is huge, and automated scores don't always capture what humans care about.”
 
 ---
 
