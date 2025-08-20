@@ -249,14 +249,12 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="2" class="anchored" data-anchor-id="prompting"><span class="header-section-number">2</span> Prompting</h2>
 <section id="in-context-learning-zero-shot-and-few-shot" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="in-context-learning-zero-shot-and-few-shot"><span class="header-section-number">2.1</span> In-Context Learning: Zero-Shot and Few-Shot</h3>
-<p><strong>Concept:</strong><br>
-In-Context Learning (ICL) refers to the ability of large language models (LLMs) to perform tasks by conditioning on examples provided in the input prompt, without any gradient updates or fine-tuning. This capability emerged prominently with GPT-3, as shown in Brown et al.&nbsp;(2020), <em>Language Models are Few-Shot Learners</em>.</p>
-<p>Traditionally, models learn behavior during training stages such as pre-training and post-training that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the <em>context</em> in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.</p>
+<p><strong>Concept:</strong></p>
+<p>In-Context Learning (ICL) enables large language models to perform new tasks simply by providing examples in the prompt—without any parameter updates or fine-tuning. This emerged as a breakthrough capability with GPT-3 (Brown et al., 2020), where models could adapt their behavior on-the-fly by recognizing patterns in the provided context.</p>
 <p><strong>How It Works</strong></p>
 <ul>
 <li>The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.</li>
-<li>These patterns are applied to new examples within the same prompt context.</li>
-<li>This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.</li>
+<li>These patterns are then applied to new examples within the same prompt context.</li>
 </ul>
 <p><strong>Key Variants</strong></p>
 <p><strong>1. Zero-Shot Prompting:</strong> Ask the model to perform a task using only an instruction or question — without providing any explicit examples of how the task should be done.</p>

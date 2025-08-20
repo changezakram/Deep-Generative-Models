@@ -33,16 +33,13 @@ These techniques explain why ChatGPT felt so different from GPT-3, why Claude is
 ### In-Context Learning: Zero-Shot and Few-Shot
 
 **Concept:**  
-In-Context Learning (ICL) refers to the ability of large language models (LLMs) to perform tasks by conditioning on examples provided in the input prompt, without any gradient updates or fine-tuning. This capability emerged prominently with GPT-3, as shown in Brown et al. (2020), *Language Models are Few-Shot Learners*.
 
-Traditionally, models learn behavior during training stages such as pre-training and post-training that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the *context* in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.
+In-Context Learning (ICL) enables large language models to perform new tasks simply by providing examples in the prompt—without any parameter updates or fine-tuning. This emerged as a breakthrough capability with GPT-3 (Brown et al., 2020), where models could adapt their behavior on-the-fly by recognizing patterns in the provided context.
 
 **How It Works**
 
 - The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.
-- These patterns are applied to new examples within the same prompt context.
-- This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.
-
+- These patterns are then applied to new examples within the same prompt context.
 
 **Key Variants**
 
