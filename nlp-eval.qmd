@@ -5,21 +5,23 @@ format: html
 
 ## Introduction:
 
-Evaluating NLP models presents distinct challenges for both **closed-ended** and **open-ended** tasks, and these have become more complex with the rise of foundation models.
+**What is NLP Evaluation?**
 
-- **Closed-ended tasks** (e.g., classification, named entity recognition) have clearly defined outputs and ground-truth labels. While traditional ML evaluation methods like accuracy, precision, recall, and F1-score are applicable here, they still face issues such as task ambiguity, annotation bias, and benchmark saturation.
-- **Open-ended tasks** (e.g., summarization, question answering, code generation, dialogue) are more difficult to evaluate because there is often no single correct output. The outputs are probabilistic and highly variable, which makes defining and applying evaluation metrics far more complex.
+NLP evaluation measures how well language models actually work. It answers basic questions: Is this model good enough? Can we trust it with real users?
+But here's the challenge—testing language models isn't like testing regular software. When code breaks, it's obvious. When a language model fails, it might write something that sounds perfect but is completely wrong. A model might be 92% accurate overall but fail every time it sees sarcasm. This is what makes NLP evaluation so tricky: we're measuring how well computers understand the messy, complex world of human language.
 
-Assessing the output of more intelligent models—especially on open-ended tasks—is particularly difficult. While it’s easy to spot a math error in a first-grader’s homework, judging whether an AI-generated summary is factually accurate may require reading and understanding the entire source text.
+**Why It Matters Now More Than Ever**
 
-Traditional ML evaluation assumes relatively stable output spaces and ground truth labels. However, foundation models produce diverse and nuanced outputs that challenge this assumption. As a result, even closed-ended tasks must now contend with emerging evaluation issues such as:
+In 2023 alone, we saw an AI chatbot fail to recognize suicide warning signs (leading to a death), lawyers submit fake AI-generated cases to courts, and Air Canada forced to honor a refund policy its bot invented. As Chip Huyen warns: "The more AI is used, the more opportunity there is for catastrophic failure."
 
-- **Evaluation scalability**: Automated metrics work well, but can overlook nuance.
-- **Annotation bias**: Even in classification tasks, human-created datasets often have spurious correlations.
-- **Benchmark saturation**: As models improve, they quickly saturate existing benchmarks, giving a false sense of progress.
-- **Undersupported evaluation infrastructure**: The *AI Engineering* book notes that evaluation lags behind other areas like model training, optimization, and deployment tooling.
+The paradox? The smarter our models get, the harder they become to evaluate. It's easy to check a kid's math homework, but verifying if an AI's medical advice is accurate requires medical expertise. We need good evaluation to build better models, but we need expertise to do good evaluation.
 
-Despite these challenges, closed-ended evaluation remains a valuable starting point. Its well-constrained answer space allows use of established metrics like accuracy, precision, recall, and F1-score to measure progress systematically.
+**Two Types of Tasks, Two Different Challenges**
+
+**Closed-ended tasks** have clear right answers (Is this email spam? What's the sentiment?). We can use traditional metrics like accuracy and precision, but even these "simple" tasks suffer from shortcuts, dataset problems, and human labeling errors.
+
+**Open-ended tasks** have no single right answer (Write a summary, translate this text, answer this question). Traditional metrics completely fail here. Word-matching might say "Heck no!" is similar to "Heck yes!" because they share words.
+
 
 ---
 
