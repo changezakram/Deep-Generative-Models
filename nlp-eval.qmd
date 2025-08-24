@@ -89,11 +89,7 @@ While SuperGLUE focuses on general linguistic reasoning, **Massive Multitask Lan
 - **Balanced question design** that mimics real academic tests and professional licensing exams  
 - **Closed-book evaluation** (no retrieval), testing what the model has internalized from pretraining  
 
-**Why It Matters:**
-
-- MMLU has emerged as a **standardized yardstick** for evaluating foundational knowledge across domains  
-- It supports **direct accuracy-based comparisons** between models of different sizes and architectures  
-- Performance gains have been dramatic—rising from **~25% (random guessing)** to over **90% accuracy** in just four years  
+MMLU has emerged as a **standardized benchmark** for evaluating foundational knowledge across domains. It allows for **direct accuracy-based comparisons** between models of different sizes and architectures. Performance gains have been dramatic—rising from ~**25% (random guessing)** to over **90% accuracy** in just four years.
 
 > **Note**: While MMLU is often used as shorthand for “general intelligence,” this framing can be misleading. MMLU captures **factual recall and pattern recognition**, not necessarily reasoning or abstraction. These limitations will be discussed in later sections.
 
@@ -101,6 +97,18 @@ While SuperGLUE focuses on general linguistic reasoning, **Massive Multitask Lan
 
 Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely report MMLU scores as a primary metric. As with SuperGLUE, MMLU supports **multi-subject generalization**, but with a stronger emphasis on **world knowledge** rather than linguistic nuance.
 
+
+**SuperGLUE vs MMLU: A Comparison**
+
+| Aspect | **SuperGLUE** | **MMLU** |
+|--------|----------------|----------|
+| **Focus** | Language reasoning | Factual subject knowledge |
+| **Format** | Varied NLP tasks | Multiple choice |
+| **Tasks / Subjects** | 8 tasks | 57 subjects |
+| **Primary Skill Tested** | Inference, disambiguation, coreference | Retained domain knowledge |
+| **Metric** | Accuracy, F1, etc. | Accuracy only |
+
+> While both are multi-task benchmarks, they evaluate very different capabilities—SuperGLUE emphasizes reasoning and understanding, whereas MMLU stresses factual recall across disciplines.
 
 
 ### Challenges in Closed-Ended Evaluation

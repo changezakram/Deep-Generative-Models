@@ -381,19 +381,57 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li><strong>Closed-book evaluation</strong> (no retrieval), testing what the model has internalized from pretraining</li>
 </ul>
-<p><strong>Why It Matters:</strong></p>
-<ul>
-<li>MMLU has emerged as a <strong>standardized yardstick</strong> for evaluating foundational knowledge across domains<br>
-</li>
-<li>It supports <strong>direct accuracy-based comparisons</strong> between models of different sizes and architectures<br>
-</li>
-<li>Performance gains have been dramatic—rising from <strong>~25% (random guessing)</strong> to over <strong>90% accuracy</strong> in just four years</li>
-</ul>
+<p>MMLU has emerged as a <strong>standardized benchmark</strong> for evaluating foundational knowledge across domains. It allows for <strong>direct accuracy-based comparisons</strong> between models of different sizes and architectures. Performance gains have been dramatic—rising from ~<strong>25% (random guessing)</strong> to over <strong>90% accuracy</strong> in just four years.</p>
 <blockquote class="blockquote">
 <p><strong>Note</strong>: While MMLU is often used as shorthand for “general intelligence,” this framing can be misleading. MMLU captures <strong>factual recall and pattern recognition</strong>, not necessarily reasoning or abstraction. These limitations will be discussed in later sections.</p>
 </blockquote>
 <p><strong>Leaderboard Context:</strong></p>
 <p>Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely report MMLU scores as a primary metric. As with SuperGLUE, MMLU supports <strong>multi-subject generalization</strong>, but with a stronger emphasis on <strong>world knowledge</strong> rather than linguistic nuance.</p>
+<p><strong>SuperGLUE vs MMLU: A Comparison</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 47%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th><strong>SuperGLUE</strong></th>
+<th><strong>MMLU</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Focus</strong></td>
+<td>Language reasoning</td>
+<td>Factual subject knowledge</td>
+</tr>
+<tr class="even">
+<td><strong>Format</strong></td>
+<td>Varied NLP tasks</td>
+<td>Multiple choice</td>
+</tr>
+<tr class="odd">
+<td><strong>Tasks / Subjects</strong></td>
+<td>8 tasks</td>
+<td>57 subjects</td>
+</tr>
+<tr class="even">
+<td><strong>Primary Skill Tested</strong></td>
+<td>Inference, disambiguation, coreference</td>
+<td>Retained domain knowledge</td>
+</tr>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td>Accuracy, F1, etc.</td>
+<td>Accuracy only</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>While both are multi-task benchmarks, they evaluate very different capabilities—SuperGLUE emphasizes reasoning and understanding, whereas MMLU stresses factual recall across disciplines.</p>
+</blockquote>
 </section>
 <section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.3</span> Challenges in Closed-Ended Evaluation</h3>
