@@ -24,6 +24,7 @@ In 2023 alone, we saw an AI chatbot fail to recognize suicide warning signs (lea
 - **Open-ended tasks** have no single right answer (Write a summary, translate this text, answer this question). Traditional metrics completely fail here. Word-matching might say "Heck no!" is similar to "Heck yes!" because they share words.
 
 **What's Ahead**
+
 This overview covers how to evaluate both closed and open-ended tasks, why current methods fail and what's replacing them, major problems like contamination and bias, and practical solutions for real-world applications.
 
 ---
