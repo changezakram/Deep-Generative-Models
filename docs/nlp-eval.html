@@ -309,21 +309,55 @@ ul.task-list li input[type="checkbox"] {
 <p>These individual tasks can also be grouped into multi-task benchmarks that evaluate general language understanding across a range of closed-ended challenges. <strong>SuperGLUE</strong> is one of the most prominent such benchmarks.</p>
 <section id="multi-task-benchmark-superglue" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.1</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
-<p>SuperGLUE is a comprehensive <strong>closed-ended multi-task benchmark</strong> designed to evaluate general language understanding. It combines multiple tasks that test various aspects of comprehension and reasoning in language models.</p>
+<p>While the previous section outlined individual closed-ended tasks, real-world model evaluation often requires a unified benchmark that spans multiple task types. <strong>SuperGLUE</strong> is a widely adopted <strong>closed-ended multi-task benchmark</strong> designed to test broad general language understanding.</p>
+<p>It combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning—making it a strong indicator of a model’s linguistic and reasoning capabilities.</p>
 <p><strong>Tasks in SuperGLUE:</strong></p>
-<ul>
-<li><strong>BoolQ, MultiRC</strong>: Reading comprehension<br>
-</li>
-<li><strong>CB, RTE</strong>: Natural language inference (entailment)<br>
-</li>
-<li><strong>COPA</strong>: Causal reasoning (cause and effect)<br>
-</li>
-<li><strong>ReCoRD</strong>: Reading comprehension with commonsense reasoning<br>
-</li>
-<li><strong>WiC</strong>: Word meaning in context<br>
-</li>
-<li><strong>WSC</strong>: Coreference resolution</li>
-</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 52%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>BoolQ</strong>, <strong>MultiRC</strong></td>
+<td>Reading comprehension</td>
+<td>QA / Inference</td>
+</tr>
+<tr class="even">
+<td><strong>CB</strong>, <strong>RTE</strong></td>
+<td>Natural language inference</td>
+<td>Entailment</td>
+</tr>
+<tr class="odd">
+<td><strong>COPA</strong></td>
+<td>Causal reasoning (cause/effect)</td>
+<td>Reasoning</td>
+</tr>
+<tr class="even">
+<td><strong>ReCoRD</strong></td>
+<td>Reading comprehension with commonsense reasoning</td>
+<td>QA / Commonsense</td>
+</tr>
+<tr class="odd">
+<td><strong>WiC</strong></td>
+<td>Word meaning in context</td>
+<td>Word Sense Disambiguation</td>
+</tr>
+<tr class="even">
+<td><strong>WSC</strong></td>
+<td>Coreference resolution</td>
+<td>Coreference</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Leaderboard Highlights (v2.0):</strong></p>
 <ul>
 <li><strong>Top models</strong>: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5<br>

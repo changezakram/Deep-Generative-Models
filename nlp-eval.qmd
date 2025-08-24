@@ -51,16 +51,23 @@ These individual tasks can also be grouped into multi-task benchmarks that evalu
 
 ### Multi-Task Benchmark: **SuperGLUE**
 
-SuperGLUE is a comprehensive **closed-ended multi-task benchmark** designed to evaluate general language understanding. It combines multiple tasks that test various aspects of comprehension and reasoning in language models.
+
+While the previous section outlined individual closed-ended tasks, real-world model evaluation often requires a unified benchmark that spans multiple task types. **SuperGLUE** is a widely adopted **closed-ended multi-task benchmark** designed to test broad general language understanding.
+
+It combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning—making it a strong indicator of a model’s linguistic and reasoning capabilities.
+
 
 **Tasks in SuperGLUE:**
 
-- **BoolQ, MultiRC**: Reading comprehension  
-- **CB, RTE**: Natural language inference (entailment)  
-- **COPA**: Causal reasoning (cause and effect)  
-- **ReCoRD**: Reading comprehension with commonsense reasoning  
-- **WiC**: Word meaning in context  
-- **WSC**: Coreference resolution
+| Task | Description | Type |
+|------|-------------|------|
+| **BoolQ**, **MultiRC** | Reading comprehension | QA / Inference |
+| **CB**, **RTE** | Natural language inference | Entailment |
+| **COPA** | Causal reasoning (cause/effect) | Reasoning |
+| **ReCoRD** | Reading comprehension with commonsense reasoning | QA / Commonsense |
+| **WiC** | Word meaning in context | Word Sense Disambiguation |
+| **WSC** | Coreference resolution | Coreference |
+
 
 **Leaderboard Highlights (v2.0):**
 
