@@ -93,7 +93,7 @@ MMLU has emerged as a **standardized benchmark** for evaluating foundational kno
 
 > **Note**: While MMLU is often used as shorthand for “general intelligence,” this framing can be misleading. MMLU captures **factual recall and pattern recognition**, not necessarily reasoning or abstraction. These limitations will be discussed in later sections.
 
-**Leaderboard Context:**
+**MMLU in Modern LLM Leaderboards**
 
 Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely report MMLU scores as a primary metric. As with SuperGLUE, MMLU supports **multi-subject generalization**, but with a stronger emphasis on **world knowledge** rather than linguistic nuance.
 
