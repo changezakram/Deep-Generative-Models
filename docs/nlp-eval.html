@@ -240,6 +240,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="closed-ended-tasks" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="closed-ended-tasks"><span class="header-section-number">2</span> Closed-Ended Tasks</h2>
 <p>Closed-ended tasks are characterized by a limited set of correct answers—often just one. This constraint enables automatic, objective evaluation and makes these tasks ideal for benchmarking.</p>
+<p>While closed-ended tasks offer clear and objective evaluation metrics, they still present meaningful challenges in dataset construction, evaluation design, and metric selection. Their well-defined output space enables direct comparison across models, but can also obscure subtle model weaknesses—such as shortcut learning or reliance on spurious correlations.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
@@ -305,74 +306,8 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>💡 <em>These tasks often serve as building blocks for more complex NLP pipelines.</em></p>
 </blockquote>
-<hr>
-<p>Closed-ended tasks are those with a <strong>limited number of possible answers</strong>, often constrained to a <strong>single correct response</strong>. These tasks are well-defined and bounded, making them ideal for <strong>standardized evaluation</strong>, <strong>automation</strong>, and <strong>benchmarking</strong>. They serve as the foundation for much of classical NLP evaluation and are especially useful for training and validating models in structured environments.</p>
-<p>While they are more straightforward than open-ended tasks, closed-ended tasks still involve meaningful challenges in evaluation design, metric selection, and dataset construction. The clarity in output space allows for objective comparison, but can sometimes mask nuanced weaknesses in model behavior.</p>
-<section id="common-closed-ended-tasks-benchmarks" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="common-closed-ended-tasks-benchmarks"><span class="header-section-number">2.1</span> Common Closed-Ended Tasks &amp; Benchmarks</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 21%">
-<col style="width: 52%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Task Type</th>
-<th>Description</th>
-<th>Popular Benchmarks</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Sentiment Analysis</td>
-<td>Classify sentiment as Positive, Negative, Neutral</td>
-<td>SST, IMDB, Yelp</td>
-</tr>
-<tr class="even">
-<td>Textual Entailment</td>
-<td>Determine if a hypothesis logically follows from a premise</td>
-<td>SNLI, RTE</td>
-</tr>
-<tr class="odd">
-<td>Named Entity Recognition</td>
-<td>Identify named entities in text</td>
-<td>CoNLL-2003</td>
-</tr>
-<tr class="even">
-<td>Part-of-Speech Tagging</td>
-<td>Assign parts of speech to each word</td>
-<td>PTB</td>
-</tr>
-<tr class="odd">
-<td>Coreference Resolution</td>
-<td>Determine if pronouns refer to the same entity</td>
-<td>WSC</td>
-</tr>
-<tr class="even">
-<td>Question Answering</td>
-<td>Extract a plausible answer from a given passage</td>
-<td>SQuAD2</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example: Sentiment Analysis:</strong></p>
-<ul>
-<li><strong>Text</strong>: “Read the book, forget the movie!”<br>
-</li>
-<li><strong>Label</strong>: Negative</li>
-</ul>
-<p><strong>Example: Entailment:</strong></p>
-<ul>
-<li><strong>Premise</strong>: “A soccer game with multiple males playing.”<br>
-</li>
-<li><strong>Hypothesis</strong>: “Some men are playing sport.”<br>
-</li>
-<li><strong>Label</strong>: Entailment</li>
-</ul>
-</section>
-<section id="multi-task-benchmark-superglue" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.2</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
+<section id="multi-task-benchmark-superglue" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.1</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
 <p>SuperGLUE is a comprehensive <strong>closed-ended multi-task benchmark</strong> designed to evaluate general language understanding. It combines multiple tasks that test various aspects of comprehension and reasoning in language models.</p>
 <p><strong>Tasks in SuperGLUE:</strong></p>
 <ul>
@@ -395,8 +330,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Metrics used</strong>: Accuracy, F1 score, Exact Match, Gender Parity, etc.</li>
 </ul>
 </section>
-<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.3</span> Challenges in Closed-Ended Evaluation</h3>
+<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.2</span> Challenges in Closed-Ended Evaluation</h3>
 <ol type="1">
 <li><strong>Choosing the Right Metric:</strong> Choosing the right evaluation metric is not trivial. Different tasks and datasets require different evaluation metrics. A model may appear strong on one metric but perform poorly on another depending on task setup and class imbalance. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.</li>
 </ol>

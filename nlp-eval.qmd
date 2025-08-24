@@ -33,6 +33,9 @@ This overview covers how to evaluate both closed and open-ended tasks, why curre
 
 Closed-ended tasks are characterized by a limited set of correct answers—often just one. This constraint enables automatic, objective evaluation and makes these tasks ideal for benchmarking.
 
+While closed-ended tasks offer clear and objective evaluation metrics, they still present meaningful challenges in dataset construction, evaluation design, and metric selection. Their well-defined output space enables direct comparison across models, but can also obscure subtle model weaknesses—such as shortcut learning or reliance on spurious correlations.
+
+
 | **Task Type**             | **Description**                                           | **Example**                                                                                                                                     | **Popular Benchmarks**     | **Common Pitfalls**                                        |
 |---------------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|-------------------------------------------------------------|
 | **Sentiment Analysis**    | Classify emotional tone (positive/negative/neutral)       | "Read the book, forget the movie!" → **Negative**                                                                                               | SST, IMDB, Yelp             | Fails on sarcasm, irony, cultural context                  |
@@ -43,40 +46,6 @@ Closed-ended tasks are characterized by a limited set of correct answers—often
 | **Question Answering**    | Extract answers from passage                              | *Context:* "The ESA was passed in 1973."<br>*Q:* "When was it passed?" → **1973**                                                                | SQuAD, SQuAD 2.0            | Models memorize patterns or position, not true reasoning   |
 
 > 💡 *These tasks often serve as building blocks for more complex NLP pipelines.*
-
----
-
-
-
-
-Closed-ended tasks are those with a **limited number of possible answers**, often constrained to a **single correct response**. These tasks are well-defined and bounded, making them ideal for **standardized evaluation**, **automation**, and **benchmarking**. They serve as the foundation for much of classical NLP evaluation and are especially useful for training and validating models in structured environments.
-
-While they are more straightforward than open-ended tasks, closed-ended tasks still involve meaningful challenges in evaluation design, metric selection, and dataset construction. The clarity in output space allows for objective comparison, but can sometimes mask nuanced weaknesses in model behavior.
-
-
-
-### Common Closed-Ended Tasks & Benchmarks
-
-| Task Type               | Description                                                | Popular Benchmarks          |
-|-------------------------|------------------------------------------------------------|-----------------------------|
-| Sentiment Analysis      | Classify sentiment as Positive, Negative, Neutral          | SST, IMDB, Yelp             |
-| Textual Entailment      | Determine if a hypothesis logically follows from a premise | SNLI, RTE                   |
-| Named Entity Recognition| Identify named entities in text                            | CoNLL-2003                  |
-| Part-of-Speech Tagging  | Assign parts of speech to each word                        | PTB                         |
-| Coreference Resolution  | Determine if pronouns refer to the same entity             | WSC                         |
-| Question Answering      | Extract a plausible answer from a given passage            | SQuAD2                      |
-
-
-**Example: Sentiment Analysis:**  
-
-- **Text**: “Read the book, forget the movie!”  
-- **Label**: Negative
-
-**Example: Entailment:**  
-
-- **Premise**: “A soccer game with multiple males playing.”  
-- **Hypothesis**: “Some men are playing sport.”  
-- **Label**: Entailment
 
 
 ### Multi-Task Benchmark: **SuperGLUE**
