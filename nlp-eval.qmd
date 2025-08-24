@@ -31,6 +31,24 @@ This overview covers how to evaluate both closed and open-ended tasks, why curre
 
 ## Closed-Ended Tasks
 
+Closed-ended tasks are characterized by a limited set of correct answers—often just one. This constraint enables automatic, objective evaluation and makes these tasks ideal for benchmarking.
+
+| **Task Type**             | **Description**                                           | **Example**                                                                                                                                     | **Popular Benchmarks**     | **Common Pitfalls**                                        |
+|---------------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|-------------------------------------------------------------|
+| **Sentiment Analysis**    | Classify emotional tone (positive/negative/neutral)       | "Read the book, forget the movie!" → **Negative**                                                                                               | SST, IMDB, Yelp             | Fails on sarcasm, irony, cultural context                  |
+| **Textual Entailment**    | Does sentence B logically follow from sentence A?         | *Premise:* "A soccer game with multiple males playing"<br>*Hypothesis:* "Some men are playing sport" → **Entailment**                            | SNLI, MultiNLI, RTE         | Shortcut learning (e.g., keyword overlap); see SNLI issues |
+| **Named Entity Recognition (NER)** | Identify and classify proper nouns                     | "Apple released the iPhone." → **[Apple–ORG]**, **[iPhone–PRODUCT]**                                                                             | CoNLL-2003                  | Ambiguity: Apple (fruit vs company)                        |
+| **Part-of-Speech Tagging**| Assign grammatical categories to words                    | "The quick brown fox" → **[The–DET]**, **[quick–ADJ]**, **[brown–ADJ]**, **[fox–NOUN]**                                                           | Penn Treebank (PTB)         | Often used as foundation for parsing & other tasks         |
+| **Coreference Resolution**| Determine pronoun references                              | "Mark told Pete lies about himself. He should have been more truthful." → **"He" = Mark**                                                        | WSC, OntoNotes              | Requires deep context or world knowledge                   |
+| **Question Answering**    | Extract answers from passage                              | *Context:* "The ESA was passed in 1973."<br>*Q:* "When was it passed?" → **1973**                                                                | SQuAD, SQuAD 2.0            | Models memorize patterns or position, not true reasoning   |
+
+> 💡 *These tasks often serve as building blocks for more complex NLP pipelines.*
+
+---
+
+
+
+
 Closed-ended tasks are those with a **limited number of possible answers**, often constrained to a **single correct response**. These tasks are well-defined and bounded, making them ideal for **standardized evaluation**, **automation**, and **benchmarking**. They serve as the foundation for much of classical NLP evaluation and are especially useful for training and validating models in structured environments.
 
 While they are more straightforward than open-ended tasks, closed-ended tasks still involve meaningful challenges in evaluation design, metric selection, and dataset construction. The clarity in output space allows for objective comparison, but can sometimes mask nuanced weaknesses in model behavior.

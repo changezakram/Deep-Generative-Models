@@ -239,6 +239,73 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="closed-ended-tasks" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="closed-ended-tasks"><span class="header-section-number">2</span> Closed-Ended Tasks</h2>
+<p>Closed-ended tasks are characterized by a limited set of correct answers—often just one. This constraint enables automatic, objective evaluation and makes these tasks ideal for benchmarking.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 18%">
+<col style="width: 45%">
+<col style="width: 9%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Task Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Popular Benchmarks</strong></th>
+<th><strong>Common Pitfalls</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sentiment Analysis</strong></td>
+<td>Classify emotional tone (positive/negative/neutral)</td>
+<td>“Read the book, forget the movie!” → <strong>Negative</strong></td>
+<td>SST, IMDB, Yelp</td>
+<td>Fails on sarcasm, irony, cultural context</td>
+</tr>
+<tr class="even">
+<td><strong>Textual Entailment</strong></td>
+<td>Does sentence B logically follow from sentence A?</td>
+<td><em>Premise:</em> “A soccer game with multiple males playing”<br><em>Hypothesis:</em> “Some men are playing sport” → <strong>Entailment</strong></td>
+<td>SNLI, MultiNLI, RTE</td>
+<td>Shortcut learning (e.g., keyword overlap); see SNLI issues</td>
+</tr>
+<tr class="odd">
+<td><strong>Named Entity Recognition (NER)</strong></td>
+<td>Identify and classify proper nouns</td>
+<td>“Apple released the iPhone.” → <strong>[Apple–ORG]</strong>, <strong>[iPhone–PRODUCT]</strong></td>
+<td>CoNLL-2003</td>
+<td>Ambiguity: Apple (fruit vs company)</td>
+</tr>
+<tr class="even">
+<td><strong>Part-of-Speech Tagging</strong></td>
+<td>Assign grammatical categories to words</td>
+<td>“The quick brown fox” → <strong>[The–DET]</strong>, <strong>[quick–ADJ]</strong>, <strong>[brown–ADJ]</strong>, <strong>[fox–NOUN]</strong></td>
+<td>Penn Treebank (PTB)</td>
+<td>Often used as foundation for parsing &amp; other tasks</td>
+</tr>
+<tr class="odd">
+<td><strong>Coreference Resolution</strong></td>
+<td>Determine pronoun references</td>
+<td>“Mark told Pete lies about himself. He should have been more truthful.” → <strong>“He” = Mark</strong></td>
+<td>WSC, OntoNotes</td>
+<td>Requires deep context or world knowledge</td>
+</tr>
+<tr class="even">
+<td><strong>Question Answering</strong></td>
+<td>Extract answers from passage</td>
+<td><em>Context:</em> “The ESA was passed in 1973.”<br><em>Q:</em> “When was it passed?” → <strong>1973</strong></td>
+<td>SQuAD, SQuAD 2.0</td>
+<td>Models memorize patterns or position, not true reasoning</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>💡 <em>These tasks often serve as building blocks for more complex NLP pipelines.</em></p>
+</blockquote>
+<hr>
 <p>Closed-ended tasks are those with a <strong>limited number of possible answers</strong>, often constrained to a <strong>single correct response</strong>. These tasks are well-defined and bounded, making them ideal for <strong>standardized evaluation</strong>, <strong>automation</strong>, and <strong>benchmarking</strong>. They serve as the foundation for much of classical NLP evaluation and are especially useful for training and validating models in structured environments.</p>
 <p>While they are more straightforward than open-ended tasks, closed-ended tasks still involve meaningful challenges in evaluation design, metric selection, and dataset construction. The clarity in output space allows for objective comparison, but can sometimes mask nuanced weaknesses in model behavior.</p>
 <section id="common-closed-ended-tasks-benchmarks" class="level3" data-number="2.1">
