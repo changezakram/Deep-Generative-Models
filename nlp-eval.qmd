@@ -51,10 +51,9 @@ These individual tasks can also be grouped into multi-task benchmarks that evalu
 
 ### Multi-Task Benchmark: **SuperGLUE**
 
+While the previous section outlined individual closed-ended tasks, real-world evaluation often demands a unified benchmark that spans multiple task types. **SuperGLUE** is a widely adopted **closed-ended multi-task benchmark** created to evaluate broad general language understanding. It builds on its predecessor (GLUE) with harder tasks, more robust metrics, and an emphasis on reasoning.
 
-While the previous section outlined individual closed-ended tasks, real-world model evaluation often requires a unified benchmark that spans multiple task types. **SuperGLUE** is a widely adopted **closed-ended multi-task benchmark** designed to test broad general language understanding.
-
-It combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning—making it a strong indicator of a model’s linguistic and reasoning capabilities.
+SuperGLUE combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning and word sense disambiguation—designed to holistically assess a model’s linguistic and reasoning capabilities across multiple dimensions.
 
 
 **Tasks in SuperGLUE:**
@@ -68,12 +67,16 @@ It combines a diverse set of tasks—ranging from entailment and coreference res
 | **WiC** | Word meaning in context | Word Sense Disambiguation |
 | **WSC** | Coreference resolution | Coreference |
 
+Together, these tasks evaluate not just accuracy in language prediction, but also a model’s ability to perform logical reasoning, apply commonsense knowledge, resolve ambiguous references, and understand context-dependent meanings—skills essential for robust language understanding.
 
 **Leaderboard Highlights (v2.0):**
+
+To measure and compare model performance on SuperGLUE, an official leaderboard tracks results across all tasks using standardized metrics. The v2.0 leaderboard showcases today’s most advanced models—from parameter-efficient Mixture of Experts (MoE) systems to massive transformer-based models—offering a clear snapshot of the current state-of-the-art in general language understanding.
 
 - **Top models**: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5  
 - **Metrics used**: Accuracy, F1 score, Exact Match, Gender Parity, etc.
 
+The leaderboard emphasizes **balanced generalization**, rewarding models that perform consistently well across diverse task types (not just a few). This makes it a reliable benchmark for tracking progress toward broadly capable language models.
 
 ### Challenges in Closed-Ended Evaluation
 

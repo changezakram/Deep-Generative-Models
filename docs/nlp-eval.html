@@ -309,8 +309,8 @@ ul.task-list li input[type="checkbox"] {
 <p>These individual tasks can also be grouped into multi-task benchmarks that evaluate general language understanding across a range of closed-ended challenges. <strong>SuperGLUE</strong> is one of the most prominent such benchmarks.</p>
 <section id="multi-task-benchmark-superglue" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.1</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
-<p>While the previous section outlined individual closed-ended tasks, real-world model evaluation often requires a unified benchmark that spans multiple task types. <strong>SuperGLUE</strong> is a widely adopted <strong>closed-ended multi-task benchmark</strong> designed to test broad general language understanding.</p>
-<p>It combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning—making it a strong indicator of a model’s linguistic and reasoning capabilities.</p>
+<p>While the previous section outlined individual closed-ended tasks, real-world evaluation often demands a unified benchmark that spans multiple task types. <strong>SuperGLUE</strong> is a widely adopted <strong>closed-ended multi-task benchmark</strong> created to evaluate broad general language understanding. It builds on its predecessor (GLUE) with harder tasks, more robust metrics, and an emphasis on reasoning.</p>
+<p>SuperGLUE combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning and word sense disambiguation—designed to holistically assess a model’s linguistic and reasoning capabilities across multiple dimensions.</p>
 <p><strong>Tasks in SuperGLUE:</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -358,12 +358,15 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<p>Together, these tasks evaluate not just accuracy in language prediction, but also a model’s ability to perform logical reasoning, apply commonsense knowledge, resolve ambiguous references, and understand context-dependent meanings—skills essential for robust language understanding.</p>
 <p><strong>Leaderboard Highlights (v2.0):</strong></p>
+<p>To measure and compare model performance on SuperGLUE, an official leaderboard tracks results across all tasks using standardized metrics. The v2.0 leaderboard showcases today’s most advanced models—from parameter-efficient Mixture of Experts (MoE) systems to massive transformer-based models—offering a clear snapshot of the current state-of-the-art in general language understanding.</p>
 <ul>
 <li><strong>Top models</strong>: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5<br>
 </li>
 <li><strong>Metrics used</strong>: Accuracy, F1 score, Exact Match, Gender Parity, etc.</li>
 </ul>
+<p>The leaderboard emphasizes <strong>balanced generalization</strong>, rewarding models that perform consistently well across diverse task types (not just a few). This makes it a reliable benchmark for tracking progress toward broadly capable language models.</p>
 </section>
 <section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.2</span> Challenges in Closed-Ended Evaluation</h3>
