@@ -91,7 +91,7 @@ While SuperGLUE focuses on general linguistic reasoning, **Massive Multitask Lan
 
 MMLU has emerged as a **standardized benchmark** for evaluating foundational knowledge across domains. It allows for **direct accuracy-based comparisons** between models of different sizes and architectures. Performance gains have been dramatic—rising from ~**25% (random guessing)** to over **90% accuracy** in just four years.
 
-> **Note**: While MMLU is often used as shorthand for “general intelligence,” this framing can be misleading. MMLU captures **factual recall and pattern recognition**, not necessarily reasoning or abstraction. These limitations will be discussed in later sections.
+> **Note**: MMLU is often treated as a shortcut for measuring "general intelligence," but that can be misleading. What it really tests is how well a model can recall facts and recognize patterns—not necessarily how well it can reason or think abstractly. We’ll explore these limitations later.
 
 **MMLU in Modern LLM Leaderboards**
 
