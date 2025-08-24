@@ -223,13 +223,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction:</h2>
 <p><strong>What is NLP Evaluation?</strong></p>
-<p>NLP evaluation measures how well language models actually work. It answers basic questions: Is this model good enough? Can we trust it with real users? But here’s the challenge—testing language models isn’t like testing regular software. When code breaks, it’s obvious. When a language model fails, it might write something that sounds perfect but is completely wrong. A model might be 92% accurate overall but fail every time it sees sarcasm. This is what makes NLP evaluation so tricky: we’re measuring how well computers understand the messy, complex world of human language.</p>
+<p>NLP evaluation measures how well language models actually work. It answers basic questions: Is this model good enough? Can we trust it with real users?</p>
+<p>But here’s the challenge—testing language models isn’t like testing regular software. When code breaks, it’s obvious. When a language model fails, it might write something that sounds perfect but is completely wrong. A model might be 92% accurate overall but fail every time it sees sarcasm. This is what makes NLP evaluation so tricky: we’re measuring how well computers understand the messy, complex world of human language.</p>
 <p><strong>Why It Matters Now More Than Ever</strong></p>
 <p>In 2023 alone, we saw an AI chatbot fail to recognize suicide warning signs (leading to a death), lawyers submit fake AI-generated cases to courts, and Air Canada forced to honor a refund policy its bot invented. As Chip Huyen warns: “The more AI is used, the more opportunity there is for catastrophic failure.”</p>
 <p>The paradox? The smarter our models get, the harder they become to evaluate. It’s easy to check a kid’s math homework, but verifying if an AI’s medical advice is accurate requires medical expertise. We need good evaluation to build better models, but we need expertise to do good evaluation.</p>
 <p><strong>Two Types of Tasks, Two Different Challenges</strong></p>
-<p><strong>Closed-ended tasks</strong> have clear right answers (Is this email spam? What’s the sentiment?). We can use traditional metrics like accuracy and precision, but even these “simple” tasks suffer from shortcuts, dataset problems, and human labeling errors.</p>
-<p><strong>Open-ended tasks</strong> have no single right answer (Write a summary, translate this text, answer this question). Traditional metrics completely fail here. Word-matching might say “Heck no!” is similar to “Heck yes!” because they share words.</p>
+<ul>
+<li><p><strong>Closed-ended tasks</strong> have clear right answers (Is this email spam? What’s the sentiment?). We can use traditional metrics like accuracy and precision, but even these “simple” tasks suffer from shortcuts, dataset problems, and human labeling errors.</p></li>
+<li><p><strong>Open-ended tasks</strong> have no single right answer (Write a summary, translate this text, answer this question). Traditional metrics completely fail here. Word-matching might say “Heck no!” is similar to “Heck yes!” because they share words.</p></li>
+</ul>
 <hr>
 </section>
 <section id="closed-ended-tasks" class="level2" data-number="2">
