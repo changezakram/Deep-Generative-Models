@@ -70,12 +70,37 @@ Together, these tasks go beyond surface-level prediction—testing abilities lik
 
 **Leaderboard Highlights (v2.0):**
 
-To measure and compare model performance on SuperGLUE, an official leaderboard tracks results across all tasks using standardized metrics. The **v2.0 leaderboard** showcases today’s most advanced models—ranging from parameter-efficient **Mixture of Experts (MoE)** systems to massive transformer-based architectures—offering a clear snapshot of the current state of the art in general language understanding.
+To measure and compare model performance on SuperGLUE, an official leaderboard tracks results across all tasks using standardized metrics. The **v2.0 leaderboard** showcases today’s most advanced models—ranging from parameter-efficient **Mixture of Experts (MoE)** systems to massive transformer-based architectures—offering a clear snapshot of the state of the art in general language understanding.
 
 - **Top models**: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5  
 - **Metrics used**: Accuracy, F1 score, Exact Match, Gender Parity, etc.
 
 The leaderboard emphasizes **balanced generalization**, rewarding models that perform consistently well across diverse task types—not just a few. This makes it a reliable benchmark for tracking progress toward broadly capable language models.
+
+
+### Domain-Rich Multi-Task Benchmark: MMLU
+
+While SuperGLUE focuses on general linguistic reasoning, **Massive Multitask Language Understanding (MMLU)** shifts the spotlight to **domain knowledge**. It has rapidly become the *de facto* benchmark for evaluating a model’s grasp of academic and professional subjects—effectively acting as a proxy for general intelligence in many LLM leaderboards.
+
+**What is MMLU?**
+
+- **57 subjects** spanning elementary math, anatomy, law, philosophy, computer science, US history, and more  
+- **Multiple-choice format** (A, B, C, D), with ~100 questions per subject  
+- **Balanced question design** that mimics real academic tests and professional licensing exams  
+- **Closed-book evaluation** (no retrieval), testing what the model has internalized from pretraining  
+
+**Why It Matters:**
+
+- MMLU has emerged as a **standardized yardstick** for evaluating foundational knowledge across domains  
+- It supports **direct accuracy-based comparisons** between models of different sizes and architectures  
+- Performance gains have been dramatic—rising from **~25% (random guessing)** to over **90% accuracy** in just four years  
+
+> **Note**: While MMLU is often used as shorthand for “general intelligence,” this framing can be misleading. MMLU captures **factual recall and pattern recognition**, not necessarily reasoning or abstraction. These limitations will be discussed in later sections.
+
+**Leaderboard Context:**
+
+Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely report MMLU scores as a primary metric. As with SuperGLUE, MMLU supports **multi-subject generalization**, but with a stronger emphasis on **world knowledge** rather than linguistic nuance.
+
 
 
 ### Challenges in Closed-Ended Evaluation

@@ -360,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p>Together, these tasks go beyond surface-level prediction—testing abilities like logical reasoning, commonsense application, coreference tracking, and contextual understanding.</p>
 <p><strong>Leaderboard Highlights (v2.0):</strong></p>
-<p>To measure and compare model performance on SuperGLUE, an official leaderboard tracks results across all tasks using standardized metrics. The <strong>v2.0 leaderboard</strong> showcases today’s most advanced models—ranging from parameter-efficient <strong>Mixture of Experts (MoE)</strong> systems to massive transformer-based architectures—offering a clear snapshot of the current state of the art in general language understanding.</p>
+<p>To measure and compare model performance on SuperGLUE, an official leaderboard tracks results across all tasks using standardized metrics. The <strong>v2.0 leaderboard</strong> showcases today’s most advanced models—ranging from parameter-efficient <strong>Mixture of Experts (MoE)</strong> systems to massive transformer-based architectures—offering a clear snapshot of the state of the art in general language understanding.</p>
 <ul>
 <li><strong>Top models</strong>: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5<br>
 </li>
@@ -368,8 +368,35 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>The leaderboard emphasizes <strong>balanced generalization</strong>, rewarding models that perform consistently well across diverse task types—not just a few. This makes it a reliable benchmark for tracking progress toward broadly capable language models.</p>
 </section>
-<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.2</span> Challenges in Closed-Ended Evaluation</h3>
+<section id="domain-rich-multi-task-benchmark-mmlu" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="domain-rich-multi-task-benchmark-mmlu"><span class="header-section-number">2.2</span> Domain-Rich Multi-Task Benchmark: MMLU</h3>
+<p>While SuperGLUE focuses on general linguistic reasoning, <strong>Massive Multitask Language Understanding (MMLU)</strong> shifts the spotlight to <strong>domain knowledge</strong>. It has rapidly become the <em>de facto</em> benchmark for evaluating a model’s grasp of academic and professional subjects—effectively acting as a proxy for general intelligence in many LLM leaderboards.</p>
+<p><strong>What is MMLU?</strong></p>
+<ul>
+<li><strong>57 subjects</strong> spanning elementary math, anatomy, law, philosophy, computer science, US history, and more<br>
+</li>
+<li><strong>Multiple-choice format</strong> (A, B, C, D), with ~100 questions per subject<br>
+</li>
+<li><strong>Balanced question design</strong> that mimics real academic tests and professional licensing exams<br>
+</li>
+<li><strong>Closed-book evaluation</strong> (no retrieval), testing what the model has internalized from pretraining</li>
+</ul>
+<p><strong>Why It Matters:</strong></p>
+<ul>
+<li>MMLU has emerged as a <strong>standardized yardstick</strong> for evaluating foundational knowledge across domains<br>
+</li>
+<li>It supports <strong>direct accuracy-based comparisons</strong> between models of different sizes and architectures<br>
+</li>
+<li>Performance gains have been dramatic—rising from <strong>~25% (random guessing)</strong> to over <strong>90% accuracy</strong> in just four years</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Note</strong>: While MMLU is often used as shorthand for “general intelligence,” this framing can be misleading. MMLU captures <strong>factual recall and pattern recognition</strong>, not necessarily reasoning or abstraction. These limitations will be discussed in later sections.</p>
+</blockquote>
+<p><strong>Leaderboard Context:</strong></p>
+<p>Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely report MMLU scores as a primary metric. As with SuperGLUE, MMLU supports <strong>multi-subject generalization</strong>, but with a stronger emphasis on <strong>world knowledge</strong> rather than linguistic nuance.</p>
+</section>
+<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.3</span> Challenges in Closed-Ended Evaluation</h3>
 <ol type="1">
 <li><strong>Choosing the Right Metric:</strong> Choosing the right evaluation metric is not trivial. Different tasks and datasets require different evaluation metrics. A model may appear strong on one metric but perform poorly on another depending on task setup and class imbalance. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.</li>
 </ol>
