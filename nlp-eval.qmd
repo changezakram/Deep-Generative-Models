@@ -15,7 +15,7 @@ But here's the challenge—testing language models isn't like testing regular so
 
 In 2023 alone, we saw an AI chatbot fail to recognize suicide warning signs (leading to a death), lawyers submit fake AI-generated cases to courts, and Air Canada forced to honor a refund policy its bot invented. As Chip Huyen warns: "The more AI is used, the more opportunity there is for catastrophic failure."
 
-The paradox? The smarter our models get, the harder they become to evaluate. It's easy to check a kid's math homework, but verifying if an AI's medical advice is accurate requires medical expertise. We need good evaluation to build better models, but we need expertise to do good evaluation.
+**The paradox:** The smarter our models get, the harder they become to evaluate. It's easy to check a kid's math homework, but verifying if an AI's medical advice is accurate requires medical expertise. We need good evaluation to build better models, but we need expertise to do good evaluation.
 
 **Two Types of Tasks, Two Different Challenges**
 
