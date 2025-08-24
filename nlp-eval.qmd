@@ -55,28 +55,28 @@ While the previous section outlined individual closed-ended tasks, real-world ev
 
 SuperGLUE combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning and word sense disambiguation—designed to holistically assess a model’s linguistic and reasoning capabilities across multiple dimensions.
 
-
 **Tasks in SuperGLUE:**
 
-| Task | Description | Type |
-|------|-------------|------|
-| **BoolQ**, **MultiRC** | Reading comprehension | QA / Inference |
-| **CB**, **RTE** | Natural language inference | Entailment |
-| **COPA** | Causal reasoning (cause/effect) | Reasoning |
-| **ReCoRD** | Reading comprehension with commonsense reasoning | QA / Commonsense |
-| **WiC** | Word meaning in context | Word Sense Disambiguation |
-| **WSC** | Coreference resolution | Coreference |
+| Task          | Description                                               | Type                        |
+|---------------|-----------------------------------------------------------|-----------------------------|
+| **BoolQ**, **MultiRC** | Reading comprehension                              | QA / Inference              |
+| **CB**, **RTE**        | Natural language inference                         | Entailment                  |
+| **COPA**              | Causal reasoning (cause/effect)                    | Reasoning                   |
+| **ReCoRD**            | Reading comprehension with commonsense reasoning  | QA / Commonsense            |
+| **WiC**               | Word meaning in context                            | Word Sense Disambiguation   |
+| **WSC**               | Coreference resolution                             | Coreference                 |
 
-Together, these tasks evaluate not just accuracy in language prediction, but also a model’s ability to perform logical reasoning, apply commonsense knowledge, resolve ambiguous references, and understand context-dependent meanings—skills essential for robust language understanding.
+Together, these tasks go beyond surface-level prediction—testing abilities like logical reasoning, commonsense application, coreference tracking, and contextual understanding.
 
 **Leaderboard Highlights (v2.0):**
 
-To measure and compare model performance on SuperGLUE, an official leaderboard tracks results across all tasks using standardized metrics. The v2.0 leaderboard showcases today’s most advanced models—from parameter-efficient Mixture of Experts (MoE) systems to massive transformer-based models—offering a clear snapshot of the current state-of-the-art in general language understanding.
+To measure and compare model performance on SuperGLUE, an official leaderboard tracks results across all tasks using standardized metrics. The **v2.0 leaderboard** showcases today’s most advanced models—ranging from parameter-efficient **Mixture of Experts (MoE)** systems to massive transformer-based architectures—offering a clear snapshot of the current state of the art in general language understanding.
 
 - **Top models**: Vega v2, ST-MoE-32B, ERNIE, PaLM 540B, T5  
 - **Metrics used**: Accuracy, F1 score, Exact Match, Gender Parity, etc.
 
-The leaderboard emphasizes **balanced generalization**, rewarding models that perform consistently well across diverse task types (not just a few). This makes it a reliable benchmark for tracking progress toward broadly capable language models.
+The leaderboard emphasizes **balanced generalization**, rewarding models that perform consistently well across diverse task types—not just a few. This makes it a reliable benchmark for tracking progress toward broadly capable language models.
+
 
 ### Challenges in Closed-Ended Evaluation
 
