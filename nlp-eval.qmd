@@ -47,6 +47,7 @@ While closed-ended tasks offer clear and objective evaluation metrics, they stil
 
 > 💡 *These tasks often serve as building blocks for more complex NLP pipelines.*
 
+These individual tasks can also be grouped into multi-task benchmarks that evaluate general language understanding across a range of closed-ended challenges. **SuperGLUE** is one of the most prominent such benchmarks.
 
 ### Multi-Task Benchmark: **SuperGLUE**
 
