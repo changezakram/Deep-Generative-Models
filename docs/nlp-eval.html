@@ -497,13 +497,7 @@ Great for binary classification tasks.</p></li>
 </div>
 <ol start="2" type="1">
 <li><p><strong>Aggregating Metrics:</strong> In multi-task setups like SuperGLUE, metrics must be combined carefully. Simple averaging can hide poor performance on harder tasks or tasks with imbalanced label distributions.</p></li>
-<li><p><strong>Label Quality</strong></p></li>
-</ol>
-<ul>
-<li>Are the ground-truth labels consistent and accurate?</li>
-<li>Could vague definitions or subjective task setups introduce ambiguity in the annotations?</li>
-</ul>
-<ol start="4" type="1">
+<li><p><strong>Label Quality:</strong> Evaluation reliability depends on the consistency and accuracy of ground-truth labels. Poorly defined labels or subjective task setups can introduce ambiguity, reducing the quality of both training and evaluation signals.</p></li>
 <li><p><strong>Spurious Correlations:</strong> Models sometimes rely on patterns or artifacts in the data that don’t reflect real understanding. This can lead to seemingly correct answers based on shortcuts, not reasoning.</p>
 <ul>
 <li><strong>Example</strong> (SNLI):
