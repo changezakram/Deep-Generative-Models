@@ -68,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -438,22 +467,38 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><strong>Choosing the Right Metric:</strong> Choosing the right evaluation metric is not trivial. Different tasks and datasets require different evaluation metrics. A model may appear strong on one metric but perform poorly on another depending on task setup and class imbalance. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.</li>
 </ol>
-<blockquote class="blockquote">
-<p><strong>Quick Reference: Common Evaluation Metrics</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Quick Reference: Common Evaluation Metrics">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quick Reference: Common Evaluation Metrics
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li><p><strong>Accuracy</strong>: Proportion of correct predictions out of total predictions.<br>
+<li><p><strong>Accuracy</strong><br>
+<span class="math display">\[\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}\]</span><br>
 Best for balanced datasets with equal class distribution.</p></li>
-<li><p><strong>Precision</strong>: Of the predicted positives, how many were actually correct?<br>
+<li><p><strong>Precision</strong><br>
+<span class="math display">\[\text{Precision} = \frac{TP}{TP + FP}\]</span><br>
 High precision means fewer false positives.</p></li>
-<li><p><strong>Recall</strong>: Of the actual positives, how many did the model catch?<br>
+<li><p><strong>Recall</strong><br>
+<span class="math display">\[\text{Recall} = \frac{TP}{TP + FN}\]</span><br>
 High recall means fewer false negatives.</p></li>
-<li><p><strong>F1 Score</strong>: Harmonic mean of precision and recall.<br>
+<li><p><strong>F1 Score</strong><br>
+<span class="math display">\[\text{F1} = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}\]</span><br>
 Useful when you need a balance between precision and recall.</p></li>
-<li><p><strong>Exact Match (EM)</strong>: Binary metric—was the predicted output <em>exactly</em> the same as the reference answer?</p></li>
-<li><p><strong>AUC-ROC</strong>: Measures ability to distinguish between classes across thresholds.<br>
+<li><p><strong>Exact Match (EM)</strong><br>
+Binary metric—was the predicted output exactly the same as the reference answer?<br>
+Particularly useful for closed-ended QA and structured prediction tasks.</p></li>
+<li><p><strong>AUC-ROC</strong><br>
+Measures ability to distinguish between classes across thresholds.<br>
 Particularly useful for binary classification problems.</p></li>
 </ul>
-</blockquote>
+</div>
+</div>
 <ol start="2" type="1">
 <li><p><strong>Aggregating Metrics:</strong> In multi-task or multi-subtask setups (e.g., SuperGLUE), it’s important to combine metrics effectively. Simply averaging can underrepresent harder tasks or those with imbalanced label distributions.</p></li>
 <li><p><strong>Label Quality</strong></p></li>
