@@ -165,76 +165,152 @@ This highlights that even well-defined tasks require evaluation beyond raw accur
 
 ## Open-Ended Text Generation
 
-Open-ended generation models, such as large language models (LLMs), are capable of producing free-form outputs like summaries, translations, stories, or answers to instructions. Unlike traditional models that produce a fixed label or number, these models generate entire sequences of text—often with multiple plausible responses for a single input.
+Open-ended generation models, such as large language models (LLMs), can produce diverse free-form outputs like summaries, translations, stories, or answers to instructions. Unlike classification models that generate a fixed label or number, open-ended models return entire sequences of text—often with many valid responses for the same input.
 
-This flexibility makes them powerful but also difficult to evaluate. There is rarely a single “correct” output, and even seemingly unrelated completions may still be valid. For example, a user prompt like *“Tell me something interesting about the moon”* could lead to many diverse, accurate, and coherent answers.
+This flexibility makes them powerful but difficult to evaluate. There's rarely a single “correct” output, and even seemingly unrelated completions may still be valid. For example, the prompt _“Tell me something interesting about the moon”_ could yield many accurate and fluent yet different answers.
 
-Evaluating such outputs requires more than checking against a reference—it demands assessing coherence, fluency, relevance, factual accuracy, and semantic alignment.
+Evaluating such responses goes beyond simple reference matching—it requires assessing coherence, fluency, relevance, factual accuracy, style, and semantic alignment. As a result, evaluation of open-ended generation must adopt a more nuanced, multi-faceted approach.
 
-As a result, evaluation of open-ended generation must go beyond traditional metrics and adopt a more nuanced, multi-faceted approach.
-
-There are three broad classes of evaluation methods for text generation:
-
-- **Content Overlap Metrics** – compare model outputs against human-written references based on lexical or n-gram overlap. Examples include BLEU, ROUGE, and METEOR. These metrics are easy to compute and widely used, but they may penalize valid rephrasings or diverse outputs that differ from the reference wording.
-- **Model-Based Metrics** – assess semantic similarity between model outputs and references using contextual embeddings from pretrained language models (e.g., BERTScore, BLEURT). These metrics go beyond exact word matching to capture meaning, making them better suited for evaluating paraphrased or diverse outputs.
-- **Human Evaluations** – involve direct human judgment of response quality across dimensions such as fluency, coherence, relevance, and factual accuracy. Human evaluations are considered the gold standard, especially for open-ended tasks, but they can be expensive, time-consuming, and subject to variability unless inter-rater reliability is carefully managed.
+The following sections outline key evaluation methods and challenges.
 
 
 ### Content Overlap Metrics
 
-These methods compute similarity based on surface-level word overlap between the generated text and a reference.
+These methods compute similarity based on surface-level word overlap between the generated text and a human-written reference. They are fast and widely used but fail to capture meaning or paraphrased content.
 
-- Fast and widely used but limited in capturing meaning.
-- Common metrics include **BLEU**, **ROUGE**, **METEOR**, **CIDEr**.
-- Often reported for tasks like summarization and translation, despite known limitations.
+- **Common metrics:** `BLEU`, `ROUGE`, `METEOR`, `CIDEr`.
+- BLEU emphasizes precision; ROUGE emphasizes recall.
+- Often used in summarization and translation tasks.
 
-> *n-gram metrics have no concept of meaning—they fail when different words express the same idea.*
+> **Limitation:** N-gram metrics have no concept of meaning—they fail when different words express the same idea.
+
+**Illustrative Example:**
+
+Reference: _"Heck yes!"_  
+Generated → BLEU score:
+- _"Yes!"_ → 67%
+- _"You know it!"_ → low
+- _"Yup"_ → 0% (but semantically correct!)
+- _"Heck no!"_ → 67% (opposite meaning!)
+
+These metrics penalize valid rephrasings and may reward word overlap even when meaning is incorrect.
 
 
 ### Model-Based Metrics
 
-These metrics leverage learned representations from pre-trained language models to evaluate **semantic similarity**.
+These metrics use learned representations from pre-trained language models to compute **semantic similarity** in embedding space—making them more robust to lexical variation.
 
-- Compute similarity in embedding space between reference and generated outputs.
-- More robust to paraphrasing and lexical variation.
+**Why they matter:**
+They go beyond word matching and better capture meaning between generated and reference texts.
 
-Two popular types:
-
+**Popular approaches:**
 - **BERTScore**  
-  - Uses contextual embeddings from BERT and cosine similarity to compare word pairs.  
-  - Captures semantic relationships between words.  
-  - *(Zhang et al., 2020)*
-
+  - Compares contextual embeddings from BERT using cosine similarity.  
+  - Captures pairwise semantic relations.  
+  - *Zhang et al., 2020*
 - **BLEURT**  
-  - Fine-tuned regression model based on BERT.  
-  - Outputs a score indicating grammar and meaning similarity with reference text.  
-  - *(Sellam et al., 2020)*
+  - Fine-tuned BERT on human rating datasets.  
+  - Outputs a single score reflecting grammar, fluency, and semantic accuracy.  
+  - *Sellam et al., 2020*
+
+These metrics have become popular in evaluating paraphrased or abstractive generation tasks.
 
 
 ### Human Evaluations
 
-Human evaluation remains the gold standard—especially for open-ended tasks.
+Human evaluation remains the **gold standard**, especially for open-ended tasks.
 
-- Captures subjective qualities like **fluency**, **coherence**, **factual accuracy**, and **harmlessness**.
-- Can use Likert scales, pairwise comparisons, or ranking approaches.
-- Important to run multiple annotators and test inter-annotator agreement.
+**What they measure:**
 
-Evaluation of factuality is particularly difficult. As the lecture notes emphasize, a model can produce highly fluent and confident outputs that are factually wrong. In tasks like summarization, this means comparing to source documents—not just a reference summary.
+- **Fluency**
+- **Coherence**
+- **Factual Accuracy**
+- **Commonsense**
+- **Harmlessness**
+- **Style and grammar**
+- **Redundancy**
+
+**Methods:**
+- Likert-scale ratings  
+- Pairwise comparisons  
+- Ranking systems  
+- Multi-annotator voting (for inter-rater reliability)
+
+> **Note:** Never compare scores across studies—evaluation methods, prompts, and annotators vary.
+
+**Challenges:**
+- **Expensive** and **time-consuming**
+- **Inter-annotator disagreement**: Even simple tasks had only 67% agreement.
+- **Intra-annotator inconsistency**
+- **Crowdworker incentives**: Speed over care, favoring longer outputs.
+- **Precision-only**: Humans can't judge what _could_ have been generated, only what _was_.
+- **Reproducibility crisis**: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.
 
 
-**Reference Quality Matters**
+### Reference-Free Evaluation
 
-Evaluation scores are only as good as the reference they compare against.
+Instead of comparing to human-written references, these approaches judge quality **without a gold standard**.
 
-- A flawed reference can mislead metrics like ROUGE or BLEU.
-- Expert-written references lead to better correlation with human judgments of faithfulness.
-- When references are missing, metrics break down—making human evaluation essential.
+**Approaches:**
+- **Traditional:** Fine-tune BERT to predict quality scores.
+- **Modern (LLM-based):** Use GPT-4 to evaluate generated outputs.
+  - Benchmarks: `AlpacaEval`, `MT-Bench`, `Chatbot Arena`
+  - Surprisingly strong alignment with human judgments
+  - Fast and scalable—100× cheaper than human eval
 
----
+> GPT-4 shows **higher agreement with humans than humans show with each other** due to low variance.
 
-> “We need to rethink evaluation for open-ended tasks. The answer space is huge, and automated scores don't always capture what humans care about.”
 
----
+### Side-by-Side Comparison (Arena-style)
+
+Used to compare models directly, especially for chatbots or instruction-following tasks.
+
+**Example:**
+- Ask the same question to two models.
+- Let humans (or GPT-4) choose the better output.
+- Use **Elo ratings** (like chess) to build a leaderboard.
+
+**Tools:**
+- **Chatbot Arena**: Crowdsourced, ongoing, 200K+ votes
+- **HELM**, **Open LLM Leaderboard**, **VLLM Eval Leaderboard**
+
+**Limitations:**
+- User-generated prompts may not be representative.
+- Early-stage models don't get enough votes.
+- Not usable for training or development, only end-product evaluation.
+
+
+### Evaluation Pitfalls and Biases
+
+**Reference Quality Matters:**
+- Bad references = bad evaluation.
+- Studies show ROUGE is uncorrelated with human scores unless references are written by experts.
+
+**Spurious Correlations:**
+- **Length bias**: ~70% preference for longer outputs
+- **List bias**: Preference for bullet-style responses
+- **Position bias**: Left vs right positioning in comparison
+- **Self-bias**: GPT-4 mildly favors its own outputs
+
+
+### Broader Challenges
+
+- **Consistency Issues**: Different prompt styles or decoding methods yield very different results (e.g., MMLU scores varied by 15%).
+- **Contamination**: Models trained on test data (e.g., GPT-4 aces pre-2021 Codeforces, flunks post-2021).
+- **Overfitting**: Datasets saturate quickly; benchmark usefulness decays.
+- **Monoculture**: 70% of ACL 2021 papers were English-only; many ignore bias or efficiency.
+- **Single Metric Fallacy**: Oversimplifies model performance. E.g., accuracy alone misses bias, latency, and fairness tradeoffs.
+
+
+### Key Takeaways
+
+- Open-ended evaluation is **complex**—no one-size-fits-all.
+- Traditional metrics (BLEU, ROUGE) are useful but **insufficient**.
+- Model-based metrics and human evals are better but expensive or slow.
+- LLM-based eval is promising—**fast**, **scalable**, **well-correlated**.
+- Always **manually inspect outputs**—numbers alone can be misleading.
+
+
 
 ## References & Further Reading
 
