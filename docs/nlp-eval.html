@@ -509,6 +509,8 @@ Great for binary classification tasks.</p></li>
 <li>Model might infer contradiction simply due to the word <em>never</em> rather than actual reasoning</li>
 </ul></li>
 </ul></li>
+<li><p><strong>Annotation Artifacts and Dataset Bias</strong>: Evaluation can be skewed by patterns unintentionally introduced during dataset construction. For example, in some QA datasets, answers are often placed in the first few sentences of the context. Models may learn to exploit this structural bias rather than understanding the full passage. Similarly, crowd-sourced datasets like SNLI may contain stylistic cues that correlate with specific labels (e.g., longer or more formal sentences labeled as “entailment”). These artifacts can inflate evaluation scores without reflecting true model understanding.</p></li>
+<li><p><strong>Adversarial Robustness</strong>: Small input changes—such as adding, removing, or rephrasing a few words—can cause models to make incorrect predictions, even when the meaning stays the same. This sensitivity to minor perturbations highlights a weakness in model generalization and exposes brittle behavior. Robust evaluation must test whether models maintain performance under such adversarial or paraphrased variations.</p></li>
 </ol>
 <p>This highlights that even well-defined tasks require evaluation beyond raw accuracy to capture true model behavior and ensure robustness.</p>
 <hr>
