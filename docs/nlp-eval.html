@@ -438,14 +438,22 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><strong>Choosing the Right Metric:</strong> Choosing the right evaluation metric is not trivial. Different tasks and datasets require different evaluation metrics. A model may appear strong on one metric but perform poorly on another depending on task setup and class imbalance. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.</li>
 </ol>
-<p><strong>Common Evaluation Metrics</strong>:</p>
+<blockquote class="blockquote">
+<p><strong>Quick Reference: Common Evaluation Metrics</strong></p>
 <ul>
-<li><strong>Accuracy</strong>: Proportion of correct predictions; suitable for balanced datasets.</li>
-<li><strong>Precision</strong>: Proportion of true positives out of all predicted positives.</li>
-<li><strong>Recall</strong>: Proportion of true positives out of all actual positives.</li>
-<li><strong>F1-Score</strong>: Harmonic mean of precision and recall; ideal for class imbalance.</li>
-<li><strong>ROC AUC</strong>: Measures ability to distinguish between classes across thresholds.</li>
+<li><p><strong>Accuracy</strong>: Proportion of correct predictions out of total predictions.<br>
+Best for balanced datasets with equal class distribution.</p></li>
+<li><p><strong>Precision</strong>: Of the predicted positives, how many were actually correct?<br>
+High precision means fewer false positives.</p></li>
+<li><p><strong>Recall</strong>: Of the actual positives, how many did the model catch?<br>
+High recall means fewer false negatives.</p></li>
+<li><p><strong>F1 Score</strong>: Harmonic mean of precision and recall.<br>
+Useful when you need a balance between precision and recall.</p></li>
+<li><p><strong>Exact Match (EM)</strong>: Binary metric—was the predicted output <em>exactly</em> the same as the reference answer?</p></li>
+<li><p><strong>AUC-ROC</strong>: Measures ability to distinguish between classes across thresholds.<br>
+Particularly useful for binary classification problems.</p></li>
 </ul>
+</blockquote>
 <ol start="2" type="1">
 <li><p><strong>Aggregating Metrics:</strong> In multi-task or multi-subtask setups (e.g., SuperGLUE), it’s important to combine metrics effectively. Simply averaging can underrepresent harder tasks or those with imbalanced label distributions.</p></li>
 <li><p><strong>Label Quality</strong></p></li>
