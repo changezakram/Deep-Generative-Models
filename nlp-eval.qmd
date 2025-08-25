@@ -141,7 +141,7 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
 :::
 
-2. **Metric Aggregation:** In multi-task setups like SuperGLUE, metrics must be combined carefully. Simple averaging can hide poor performance on harder tasks or tasks with imbalanced label distributions.
+2. **Metric Aggregation:** In multi-task benchmarks like SuperGLUE, aggregating scores across tasks is not as simple as averaging. Different tasks often use different metrics (e.g., accuracy, F1 score, correlation), each with its own scale and interpretation. Some metrics reward lower values (e.g., loss), while others reward higher ones (e.g., accuracy). Averaging without normalization or weighting can obscure true performance—especially on harder tasks or those with imbalanced label distributions.
 
 3. **Label Quality:** Evaluation reliability depends on the consistency and accuracy of ground-truth labels. Poorly defined labels or subjective task setups can introduce ambiguity, reducing the quality of both training and evaluation signals.
 

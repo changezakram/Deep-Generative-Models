@@ -496,7 +496,7 @@ Great for binary classification tasks.</p></li>
 </div>
 </div>
 <ol start="2" type="1">
-<li><p><strong>Metric Aggregation:</strong> In multi-task setups like SuperGLUE, metrics must be combined carefully. Simple averaging can hide poor performance on harder tasks or tasks with imbalanced label distributions.</p></li>
+<li><p><strong>Metric Aggregation:</strong> In multi-task benchmarks like SuperGLUE, aggregating scores across tasks is not as simple as averaging. Different tasks often use different metrics (e.g., accuracy, F1 score, correlation), each with its own scale and interpretation. Some metrics reward lower values (e.g., loss), while others reward higher ones (e.g., accuracy). Averaging without normalization or weighting can obscure true performance—especially on harder tasks or those with imbalanced label distributions.</p></li>
 <li><p><strong>Label Quality:</strong> Evaluation reliability depends on the consistency and accuracy of ground-truth labels. Poorly defined labels or subjective task setups can introduce ambiguity, reducing the quality of both training and evaluation signals.</p></li>
 <li><p><strong>Spurious Correlations:</strong> Models sometimes rely on patterns or artifacts in the data that don’t reflect real understanding. This can lead to seemingly correct answers based on shortcuts, not reasoning.</p>
 <ul>
