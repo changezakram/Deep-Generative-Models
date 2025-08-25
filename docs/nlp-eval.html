@@ -536,20 +536,36 @@ Great for binary classification tasks.</p></li>
 </blockquote>
 <p><strong>Illustrative Example:</strong></p>
 <p>Reference: <em>“Heck yes!”</em><br>
-Generated → BLEU score: - <em>“Yes!”</em> → 67% - <em>“You know it!”</em> → low - <em>“Yup”</em> → 0% (but semantically correct!) - <em>“Heck no!”</em> → 67% (opposite meaning!)</p>
+Generated → BLEU score:</p>
+<pre><code>- _"Yes!"_ → 67%
+- _"You know it!"_ → low
+- _"Yup"_ → 0% (but semantically correct!)
+- _"Heck no!"_ → 67% (opposite meaning!)</code></pre>
 <p>These metrics penalize valid rephrasings and may reward word overlap even when meaning is incorrect.</p>
 </section>
 <section id="model-based-metrics" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="model-based-metrics"><span class="header-section-number">3.2</span> Model-Based Metrics</h3>
 <p>These metrics use learned representations from pre-trained language models to compute <strong>semantic similarity</strong> in embedding space—making them more robust to lexical variation.</p>
 <p><strong>Why they matter:</strong> They go beyond word matching and better capture meaning between generated and reference texts.</p>
-<p><strong>Popular approaches:</strong> - <strong>BERTScore</strong><br>
-- Compares contextual embeddings from BERT using cosine similarity.<br>
-- Captures pairwise semantic relations.<br>
-- <em>Zhang et al., 2020</em> - <strong>BLEURT</strong><br>
-- Fine-tuned BERT on human rating datasets.<br>
-- Outputs a single score reflecting grammar, fluency, and semantic accuracy.<br>
-- <em>Sellam et al., 2020</em></p>
+<p><strong>Popular approaches:</strong></p>
+<ul>
+<li><strong>BERTScore</strong>
+<ul>
+<li>Compares contextual embeddings from BERT using cosine similarity.<br>
+</li>
+<li>Captures pairwise semantic relations.<br>
+</li>
+<li><em>Zhang et al., 2020</em></li>
+</ul></li>
+<li><strong>BLEURT</strong>
+<ul>
+<li>Fine-tuned BERT on human rating datasets.<br>
+</li>
+<li>Outputs a single score reflecting grammar, fluency, and semantic accuracy.<br>
+</li>
+<li><em>Sellam et al., 2020</em></li>
+</ul></li>
+</ul>
 <p>These metrics have become popular in evaluating paraphrased or abstractive generation tasks.</p>
 </section>
 <section id="human-evaluations" class="level3" data-number="3.3">
@@ -557,27 +573,50 @@ Generated → BLEU score: - <em>“Yes!”</em> → 67% - <em>“You know it!”
 <p>Human evaluation remains the <strong>gold standard</strong>, especially for open-ended tasks.</p>
 <p><strong>What they measure:</strong></p>
 <ul>
-<li><strong>Fluency</strong></li>
-<li><strong>Coherence</strong></li>
-<li><strong>Factual Accuracy</strong></li>
-<li><strong>Commonsense</strong></li>
-<li><strong>Harmlessness</strong></li>
-<li><strong>Style and grammar</strong></li>
-<li><strong>Redundancy</strong></li>
+<li>Fluency</li>
+<li>Coherence</li>
+<li>Factual Accuracy</li>
+<li>Commonsense</li>
+<li>Harmlessness</li>
+<li>Style and grammar</li>
+<li>Redundancy</li>
 </ul>
-<p><strong>Methods:</strong> - Likert-scale ratings<br>
-- Pairwise comparisons<br>
-- Ranking systems<br>
-- Multi-annotator voting (for inter-rater reliability)</p>
+<p><strong>Methods:</strong></p>
+<ul>
+<li>Likert-scale ratings<br>
+</li>
+<li>Pairwise comparisons<br>
+</li>
+<li>Ranking systems<br>
+</li>
+<li>Multi-annotator voting (for inter-rater reliability)</li>
+</ul>
 <blockquote class="blockquote">
 <p><strong>Note:</strong> Never compare scores across studies—evaluation methods, prompts, and annotators vary.</p>
 </blockquote>
-<p><strong>Challenges:</strong> - <strong>Expensive</strong> and <strong>time-consuming</strong> - <strong>Inter-annotator disagreement</strong>: Even simple tasks had only 67% agreement. - <strong>Intra-annotator inconsistency</strong> - <strong>Crowdworker incentives</strong>: Speed over care, favoring longer outputs. - <strong>Precision-only</strong>: Humans can’t judge what <em>could</em> have been generated, only what <em>was</em>. - <strong>Reproducibility crisis</strong>: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.</p>
+<p><strong>Challenges:</strong></p>
+<ul>
+<li><strong>Expensive</strong> and <strong>time-consuming</strong></li>
+<li><strong>Inter-annotator disagreement</strong>: Even simple tasks had only 67% agreement.</li>
+<li><strong>Intra-annotator inconsistency</strong></li>
+<li><strong>Crowdworker incentives</strong>: Speed over care, favoring longer outputs.</li>
+<li><strong>Precision-only</strong>: Humans can’t judge what <em>could</em> have been generated, only what <em>was</em>.</li>
+<li><strong>Reproducibility crisis</strong>: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.</li>
+</ul>
 </section>
 <section id="reference-free-evaluation" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="reference-free-evaluation"><span class="header-section-number">3.4</span> Reference-Free Evaluation</h3>
 <p>Instead of comparing to human-written references, these approaches judge quality <strong>without a gold standard</strong>.</p>
-<p><strong>Approaches:</strong> - <strong>Traditional:</strong> Fine-tune BERT to predict quality scores. - <strong>Modern (LLM-based):</strong> Use GPT-4 to evaluate generated outputs. - Benchmarks: <code>AlpacaEval</code>, <code>MT-Bench</code>, <code>Chatbot Arena</code> - Surprisingly strong alignment with human judgments - Fast and scalable—100× cheaper than human eval</p>
+<p><strong>Approaches:</strong></p>
+<ul>
+<li><strong>Traditional:</strong> Fine-tune BERT to predict quality scores.</li>
+<li><strong>Modern (LLM-based):</strong> Use GPT-4 to evaluate generated outputs.
+<ul>
+<li>Benchmarks: <code>AlpacaEval</code>, <code>MT-Bench</code>, <code>Chatbot Arena</code></li>
+<li>Surprisingly strong alignment with human judgments</li>
+<li>Fast and scalable—100× cheaper than human eval</li>
+</ul></li>
+</ul>
 <blockquote class="blockquote">
 <p>GPT-4 shows <strong>higher agreement with humans than humans show with each other</strong> due to low variance.</p>
 </blockquote>
@@ -585,14 +624,38 @@ Generated → BLEU score: - <em>“Yes!”</em> → 67% - <em>“You know it!”
 <section id="side-by-side-comparison-arena-style" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="side-by-side-comparison-arena-style"><span class="header-section-number">3.5</span> Side-by-Side Comparison (Arena-style)</h3>
 <p>Used to compare models directly, especially for chatbots or instruction-following tasks.</p>
-<p><strong>Example:</strong> - Ask the same question to two models. - Let humans (or GPT-4) choose the better output. - Use <strong>Elo ratings</strong> (like chess) to build a leaderboard.</p>
-<p><strong>Tools:</strong> - <strong>Chatbot Arena</strong>: Crowdsourced, ongoing, 200K+ votes - <strong>HELM</strong>, <strong>Open LLM Leaderboard</strong>, <strong>VLLM Eval Leaderboard</strong></p>
-<p><strong>Limitations:</strong> - User-generated prompts may not be representative. - Early-stage models don’t get enough votes. - Not usable for training or development, only end-product evaluation.</p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Ask the same question to two models.</li>
+<li>Let humans (or GPT-4) choose the better output.</li>
+<li>Use <strong>Elo ratings</strong> (like chess) to build a leaderboard.</li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><strong>Chatbot Arena</strong>: Crowdsourced, ongoing, 200K+ votes</li>
+<li><strong>HELM</strong>, <strong>Open LLM Leaderboard</strong>, <strong>VLLM Eval Leaderboard</strong></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>User-generated prompts may not be representative.</li>
+<li>Early-stage models don’t get enough votes.</li>
+<li>Not usable for training or development, only end-product evaluation.</li>
+</ul>
 </section>
 <section id="evaluation-pitfalls-and-biases" class="level3" data-number="3.6">
 <h3 data-number="3.6" class="anchored" data-anchor-id="evaluation-pitfalls-and-biases"><span class="header-section-number">3.6</span> Evaluation Pitfalls and Biases</h3>
-<p><strong>Reference Quality Matters:</strong> - Bad references = bad evaluation. - Studies show ROUGE is uncorrelated with human scores unless references are written by experts.</p>
-<p><strong>Spurious Correlations:</strong> - <strong>Length bias</strong>: ~70% preference for longer outputs - <strong>List bias</strong>: Preference for bullet-style responses - <strong>Position bias</strong>: Left vs right positioning in comparison - <strong>Self-bias</strong>: GPT-4 mildly favors its own outputs</p>
+<p><strong>Reference Quality Matters:</strong></p>
+<ul>
+<li>Bad references = bad evaluation.</li>
+<li>Studies show ROUGE is uncorrelated with human scores unless references are written by experts.</li>
+</ul>
+<p><strong>Spurious Correlations:</strong></p>
+<ul>
+<li><strong>Length bias</strong>: ~70% preference for longer outputs</li>
+<li><strong>List bias</strong>: Preference for bullet-style responses</li>
+<li><strong>Position bias</strong>: Left vs right positioning in comparison</li>
+<li><strong>Self-bias</strong>: GPT-4 mildly favors its own outputs</li>
+</ul>
 </section>
 <section id="broader-challenges" class="level3" data-number="3.7">
 <h3 data-number="3.7" class="anchored" data-anchor-id="broader-challenges"><span class="header-section-number">3.7</span> Broader Challenges</h3>

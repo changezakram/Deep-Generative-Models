@@ -188,10 +188,11 @@ These methods compute similarity based on surface-level word overlap between the
 
 Reference: _"Heck yes!"_  
 Generated → BLEU score:
-- _"Yes!"_ → 67%
-- _"You know it!"_ → low
-- _"Yup"_ → 0% (but semantically correct!)
-- _"Heck no!"_ → 67% (opposite meaning!)
+
+	- _"Yes!"_ → 67%
+	- _"You know it!"_ → low
+	- _"Yup"_ → 0% (but semantically correct!)
+	- _"Heck no!"_ → 67% (opposite meaning!)
 
 These metrics penalize valid rephrasings and may reward word overlap even when meaning is incorrect.
 
@@ -204,6 +205,7 @@ These metrics use learned representations from pre-trained language models to co
 They go beyond word matching and better capture meaning between generated and reference texts.
 
 **Popular approaches:**
+
 - **BERTScore**  
   - Compares contextual embeddings from BERT using cosine similarity.  
   - Captures pairwise semantic relations.  
@@ -215,22 +217,22 @@ They go beyond word matching and better capture meaning between generated and re
 
 These metrics have become popular in evaluating paraphrased or abstractive generation tasks.
 
-
 ### Human Evaluations
 
 Human evaluation remains the **gold standard**, especially for open-ended tasks.
 
 **What they measure:**
 
-- **Fluency**
-- **Coherence**
-- **Factual Accuracy**
-- **Commonsense**
-- **Harmlessness**
-- **Style and grammar**
-- **Redundancy**
+- Fluency
+- Coherence
+- Factual Accuracy
+- Commonsense
+- Harmlessness
+- Style and grammar
+- Redundancy
 
 **Methods:**
+
 - Likert-scale ratings  
 - Pairwise comparisons  
 - Ranking systems  
@@ -239,6 +241,7 @@ Human evaluation remains the **gold standard**, especially for open-ended tasks.
 > **Note:** Never compare scores across studies—evaluation methods, prompts, and annotators vary.
 
 **Challenges:**
+
 - **Expensive** and **time-consuming**
 - **Inter-annotator disagreement**: Even simple tasks had only 67% agreement.
 - **Intra-annotator inconsistency**
@@ -252,6 +255,7 @@ Human evaluation remains the **gold standard**, especially for open-ended tasks.
 Instead of comparing to human-written references, these approaches judge quality **without a gold standard**.
 
 **Approaches:**
+
 - **Traditional:** Fine-tune BERT to predict quality scores.
 - **Modern (LLM-based):** Use GPT-4 to evaluate generated outputs.
   - Benchmarks: `AlpacaEval`, `MT-Bench`, `Chatbot Arena`
@@ -266,15 +270,18 @@ Instead of comparing to human-written references, these approaches judge quality
 Used to compare models directly, especially for chatbots or instruction-following tasks.
 
 **Example:**
+
 - Ask the same question to two models.
 - Let humans (or GPT-4) choose the better output.
 - Use **Elo ratings** (like chess) to build a leaderboard.
 
 **Tools:**
+
 - **Chatbot Arena**: Crowdsourced, ongoing, 200K+ votes
 - **HELM**, **Open LLM Leaderboard**, **VLLM Eval Leaderboard**
 
 **Limitations:**
+
 - User-generated prompts may not be representative.
 - Early-stage models don't get enough votes.
 - Not usable for training or development, only end-product evaluation.
@@ -283,10 +290,12 @@ Used to compare models directly, especially for chatbots or instruction-followin
 ### Evaluation Pitfalls and Biases
 
 **Reference Quality Matters:**
+
 - Bad references = bad evaluation.
 - Studies show ROUGE is uncorrelated with human scores unless references are written by experts.
 
 **Spurious Correlations:**
+
 - **Length bias**: ~70% preference for longer outputs
 - **List bias**: Preference for bullet-style responses
 - **Position bias**: Left vs right positioning in comparison
