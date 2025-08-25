@@ -178,9 +178,9 @@ As a result, evaluation of open-ended generation must go beyond traditional metr
 
 There are three broad classes of evaluation methods for text generation:
 
-- **Content Overlap Metrics** – compare model outputs against human-written references based on lexical or n-gram overlap.
-- **Model-Based Metrics** – assess semantic similarity using pretrained embedding models (e.g., BERTScore, BLEURT).
-- **Human Evaluations** – involve direct human judgment of qualities such as fluency, coherence, and factual correctness.
+- **Content Overlap Metrics** – compare model outputs against human-written references based on lexical or n-gram overlap. Examples include BLEU, ROUGE, and METEOR. These metrics are easy to compute and widely used, but they may penalize valid rephrasings or diverse outputs that differ from the reference wording.
+- **Model-Based Metrics** – assess semantic similarity between model outputs and references using contextual embeddings from pretrained language models (e.g., BERTScore, BLEURT). These metrics go beyond exact word matching to capture meaning, making them better suited for evaluating paraphrased or diverse outputs.
+- **Human Evaluations** – involve direct human judgment of response quality across dimensions such as fluency, coherence, relevance, and factual accuracy. Human evaluations are considered the gold standard, especially for open-ended tasks, but they can be expensive, time-consuming, and subject to variability unless inter-rater reliability is carefully managed.
 
 
 **Content Overlap Metrics:**
