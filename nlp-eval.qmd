@@ -113,7 +113,11 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
 ### Challenges in Closed-Ended Evaluation
 
-1. **Choosing the Right Metric:** Choosing the right evaluation metric is not trivial. Different tasks and datasets require different evaluation metrics. A model may appear strong on one metric but perform poorly on another depending on task setup and class imbalance. For instance, accuracy may seem intuitive but can be misleading on imbalanced datasets. A model might achieve high accuracy simply by predicting the majority class. On the other hand, recall and precision offer complementary perspectives: one focusing on completeness (recall) and the other on correctness (precision). The choice of metric directly impacts how model performance is interpreted, compared, and optimized. In multi-class or skewed-distribution scenarios, using a single metric without understanding its limitations can mask critical weaknesses.
+1. **Choosing the Right Metric:** Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.
+
+Instead, precision and recall offer complementary views: precision focuses on correctness (fewer false positives), while recall emphasizes completeness (fewer false negatives).
+
+The choice of metric shapes how performance is interpreted, compared, and optimized. In multi-class or skewed settings, relying on a single metric may obscure weaknesses.
 
 ::: {.callout-note title="Quick Reference: Common Evaluation Metrics"}
 
