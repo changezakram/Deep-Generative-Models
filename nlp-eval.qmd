@@ -117,29 +117,23 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
 ::: {.callout-note title="Quick Reference: Common Evaluation Metrics"}
 
-- **Accuracy**  
-  $$\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$$  
+- **Accuracy**: $begin:math:text$(TP + TN) / (TP + TN + FP + FN)$end:math:text$  
   Best for balanced datasets with equal class distribution.
 
-- **Precision**  
-  $$\text{Precision} = \frac{TP}{TP + FP}$$  
+- **Precision**: $begin:math:text$TP / (TP + FP)$end:math:text$  
   High precision means fewer false positives.
 
-- **Recall**  
-  $$\text{Recall} = \frac{TP}{TP + FN}$$  
+- **Recall**: $begin:math:text$TP / (TP + FN)$end:math:text$  
   High recall means fewer false negatives.
 
-- **F1 Score**  
-  $$\text{F1} = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$$  
+- **F1 Score**: $begin:math:text$2 \\cdot (Precision \\cdot Recall) / (Precision + Recall)$end:math:text$  
   Useful when you need a balance between precision and recall.
 
-- **Exact Match (EM)**  
-  Binary metric—was the predicted output exactly the same as the reference answer?  
-  Particularly useful for closed-ended QA and structured prediction tasks.
+- **Exact Match (EM)**: Binary match with reference output.  
+  Best for QA and structured prediction.
 
-- **AUC-ROC**  
-  Measures ability to distinguish between classes across thresholds.  
-  Particularly useful for binary classification problems.
+- **AUC-ROC**: Measures discrimination across thresholds.  
+  Great for binary classification tasks.
 
 :::
 

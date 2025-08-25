@@ -478,24 +478,18 @@ Quick Reference: Common Evaluation Metrics
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p><strong>Accuracy</strong><br>
-<span class="math display">\[\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}\]</span><br>
+<li><p><strong>Accuracy</strong>: <span class="math inline">\(begin:math:text\)</span>(TP + TN) / (TP + TN + FP + FN)<span class="math inline">\(end:math:text\)</span><br>
 Best for balanced datasets with equal class distribution.</p></li>
-<li><p><strong>Precision</strong><br>
-<span class="math display">\[\text{Precision} = \frac{TP}{TP + FP}\]</span><br>
+<li><p><strong>Precision</strong>: <span class="math inline">\(begin:math:text\)</span>TP / (TP + FP)<span class="math inline">\(end:math:text\)</span><br>
 High precision means fewer false positives.</p></li>
-<li><p><strong>Recall</strong><br>
-<span class="math display">\[\text{Recall} = \frac{TP}{TP + FN}\]</span><br>
+<li><p><strong>Recall</strong>: <span class="math inline">\(begin:math:text\)</span>TP / (TP + FN)<span class="math inline">\(end:math:text\)</span><br>
 High recall means fewer false negatives.</p></li>
-<li><p><strong>F1 Score</strong><br>
-<span class="math display">\[\text{F1} = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}\]</span><br>
+<li><p><strong>F1 Score</strong>: $begin:math:text<span class="math inline">\(2 \\cdot (Precision \\cdot Recall) / (Precision + Recall)\)</span>end:math:text$<br>
 Useful when you need a balance between precision and recall.</p></li>
-<li><p><strong>Exact Match (EM)</strong><br>
-Binary metric—was the predicted output exactly the same as the reference answer?<br>
-Particularly useful for closed-ended QA and structured prediction tasks.</p></li>
-<li><p><strong>AUC-ROC</strong><br>
-Measures ability to distinguish between classes across thresholds.<br>
-Particularly useful for binary classification problems.</p></li>
+<li><p><strong>Exact Match (EM)</strong>: Binary match with reference output.<br>
+Best for QA and structured prediction.</p></li>
+<li><p><strong>AUC-ROC</strong>: Measures discrimination across thresholds.<br>
+Great for binary classification tasks.</p></li>
 </ul>
 </div>
 </div>
