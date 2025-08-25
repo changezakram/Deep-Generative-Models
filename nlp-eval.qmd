@@ -152,7 +152,7 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
      - Hypothesis: “The economy has *never* been better.”  
      - Model might infer contradiction simply due to the word *never* rather than actual reasoning
 
-This reveals how even in closed-ended tasks, evaluation must consider model behavior beyond raw accuracy to ensure generalization and robustness.
+This shows that even in closed-ended tasks, evaluation must account for model behavior—not just raw accuracy—to ensure generalization and robustness.
 
 ---
 
