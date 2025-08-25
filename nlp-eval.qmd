@@ -113,7 +113,7 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
 ### Challenges in Closed-Ended Evaluation
 
-1. **Choosing the Right Metric:** Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.
+1. **Metric Selection:** Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.
 
     Instead, precision and recall offer complementary views: precision focuses on correctness (fewer false positives), while recall emphasizes completeness (fewer false negatives).
 
@@ -141,7 +141,7 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
 :::
 
-2. **Aggregating Metrics:** In multi-task setups like SuperGLUE, metrics must be combined carefully. Simple averaging can hide poor performance on harder tasks or tasks with imbalanced label distributions.
+2. **Metric Aggregation:** In multi-task setups like SuperGLUE, metrics must be combined carefully. Simple averaging can hide poor performance on harder tasks or tasks with imbalanced label distributions.
 
 3. **Label Quality:** Evaluation reliability depends on the consistency and accuracy of ground-truth labels. Poorly defined labels or subjective task setups can introduce ambiguity, reducing the quality of both training and evaluation signals.
 
@@ -152,7 +152,7 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
      - Hypothesis: “The economy has *never* been better.”  
      - Model might infer contradiction simply due to the word *never* rather than actual reasoning
 
-This shows that even in closed-ended tasks, evaluation must account for model behavior—not just raw accuracy—to ensure generalization and robustness.
+This highlights that even well-defined tasks require evaluation beyond raw accuracy to capture true model behavior and ensure robustness.
 
 ---
 

@@ -465,7 +465,7 @@ window.Quarto = {
 <section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.3</span> Challenges in Closed-Ended Evaluation</h3>
 <ol type="1">
-<li><p><strong>Choosing the Right Metric:</strong> Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.</p>
+<li><p><strong>Metric Selection:</strong> Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.</p>
 <p>Instead, precision and recall offer complementary views: precision focuses on correctness (fewer false positives), while recall emphasizes completeness (fewer false negatives).</p>
 <p>The choice of metric shapes how performance is interpreted, compared, and optimized. In multi-class or skewed settings, relying on a single metric may obscure weaknesses.</p></li>
 </ol>
@@ -496,7 +496,7 @@ Great for binary classification tasks.</p></li>
 </div>
 </div>
 <ol start="2" type="1">
-<li><p><strong>Aggregating Metrics:</strong> In multi-task setups like SuperGLUE, metrics must be combined carefully. Simple averaging can hide poor performance on harder tasks or tasks with imbalanced label distributions.</p></li>
+<li><p><strong>Metric Aggregation:</strong> In multi-task setups like SuperGLUE, metrics must be combined carefully. Simple averaging can hide poor performance on harder tasks or tasks with imbalanced label distributions.</p></li>
 <li><p><strong>Label Quality:</strong> Evaluation reliability depends on the consistency and accuracy of ground-truth labels. Poorly defined labels or subjective task setups can introduce ambiguity, reducing the quality of both training and evaluation signals.</p></li>
 <li><p><strong>Spurious Correlations:</strong> Models sometimes rely on patterns or artifacts in the data that don’t reflect real understanding. This can lead to seemingly correct answers based on shortcuts, not reasoning.</p>
 <ul>
@@ -510,7 +510,7 @@ Great for binary classification tasks.</p></li>
 </ul></li>
 </ul></li>
 </ol>
-<p>This shows that even in closed-ended tasks, evaluation must account for model behavior—not just raw accuracy—to ensure generalization and robustness.</p>
+<p>This highlights that even well-defined tasks require evaluation beyond raw accuracy to capture true model behavior and ensure robustness.</p>
 <hr>
 </section>
 </section>
