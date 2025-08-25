@@ -141,14 +141,14 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
 :::
 
-2. **Aggregating Metrics:** In multi-task or multi-subtask setups (e.g., SuperGLUE), it’s important to combine metrics effectively. Simply averaging can underrepresent harder tasks or those with imbalanced label distributions.
+2. **Aggregating Metrics:** In multi-task setups like SuperGLUE, metrics must be combined carefully. Simple averaging can hide poor performance on harder tasks or tasks with imbalanced label distributions.
 
 3. **Label Quality**  
 
-- Are the ground-truth labels reliable and consistent?
-- Is there ambiguity in annotations due to vague definitions or task subjectivity?
+- Are the ground-truth labels consistent and accurate?
+- Could vague definitions or subjective task setups introduce ambiguity in the annotations?
 
-4. **Spurious Correlations:** Models often latch onto dataset artifacts or heuristics rather than true understanding. 
+4. **Spurious Correlations:** Models sometimes rely on patterns or artifacts in the data that don’t reflect real understanding. This can lead to seemingly correct answers based on shortcuts, not reasoning.
 
    - **Example** (SNLI):  
      - Premise: “The economy could be still better.”  
