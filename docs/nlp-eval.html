@@ -523,15 +523,14 @@ Great for binary classification tasks.</p></li>
 <p>This flexibility makes them powerful but also difficult to evaluate. There is rarely a single “correct” output, and even seemingly unrelated completions may still be valid. For example, a user prompt like <em>“Tell me something interesting about the moon”</em> could lead to many diverse, accurate, and coherent answers.</p>
 <p>Evaluating such outputs requires more than checking against a reference—it demands assessing coherence, fluency, relevance, factual accuracy, and semantic alignment.</p>
 <p>As a result, evaluation of open-ended generation must go beyond traditional metrics and adopt a more nuanced, multi-faceted approach.</p>
-<section id="types-of-evaluation-methods" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="types-of-evaluation-methods"><span class="header-section-number">3.1</span> Types of Evaluation Methods</h3>
 <p>There are three broad classes of evaluation methods for text generation:</p>
 <ul>
 <li><strong>Content Overlap Metrics</strong> – compare model outputs against human-written references based on lexical or n-gram overlap. Examples include BLEU, ROUGE, and METEOR. These metrics are easy to compute and widely used, but they may penalize valid rephrasings or diverse outputs that differ from the reference wording.</li>
 <li><strong>Model-Based Metrics</strong> – assess semantic similarity between model outputs and references using contextual embeddings from pretrained language models (e.g., BERTScore, BLEURT). These metrics go beyond exact word matching to capture meaning, making them better suited for evaluating paraphrased or diverse outputs.</li>
 <li><strong>Human Evaluations</strong> – involve direct human judgment of response quality across dimensions such as fluency, coherence, relevance, and factual accuracy. Human evaluations are considered the gold standard, especially for open-ended tasks, but they can be expensive, time-consuming, and subject to variability unless inter-rater reliability is carefully managed.</li>
 </ul>
-<p><strong>Content Overlap Metrics:</strong></p>
+<section id="content-overlap-metrics" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="content-overlap-metrics"><span class="header-section-number">3.1</span> Content Overlap Metrics</h3>
 <p>These methods compute similarity based on surface-level word overlap between the generated text and a reference.</p>
 <ul>
 <li>Fast and widely used but limited in capturing meaning.</li>
@@ -541,7 +540,9 @@ Great for binary classification tasks.</p></li>
 <blockquote class="blockquote">
 <p><em>n-gram metrics have no concept of meaning—they fail when different words express the same idea.</em></p>
 </blockquote>
-<p><strong>Model-Based Metrics</strong></p>
+</section>
+<section id="model-based-metrics" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="model-based-metrics"><span class="header-section-number">3.2</span> Model-Based Metrics</h3>
 <p>These metrics leverage learned representations from pre-trained language models to evaluate <strong>semantic similarity</strong>.</p>
 <ul>
 <li>Compute similarity in embedding space between reference and generated outputs.</li>
@@ -566,7 +567,9 @@ Great for binary classification tasks.</p></li>
 <li><em>(Sellam et al., 2020)</em></li>
 </ul></li>
 </ul>
-<p><strong>Human Evaluations</strong></p>
+</section>
+<section id="human-evaluations" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="human-evaluations"><span class="header-section-number">3.3</span> Human Evaluations</h3>
 <p>Human evaluation remains the gold standard—especially for open-ended tasks.</p>
 <ul>
 <li>Captures subjective qualities like <strong>fluency</strong>, <strong>coherence</strong>, <strong>factual accuracy</strong>, and <strong>harmlessness</strong>.</li>

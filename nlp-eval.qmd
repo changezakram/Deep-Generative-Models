@@ -173,9 +173,6 @@ Evaluating such outputs requires more than checking against a reference—it dem
 
 As a result, evaluation of open-ended generation must go beyond traditional metrics and adopt a more nuanced, multi-faceted approach.
 
-
-### Types of Evaluation Methods
-
 There are three broad classes of evaluation methods for text generation:
 
 - **Content Overlap Metrics** – compare model outputs against human-written references based on lexical or n-gram overlap. Examples include BLEU, ROUGE, and METEOR. These metrics are easy to compute and widely used, but they may penalize valid rephrasings or diverse outputs that differ from the reference wording.
@@ -183,7 +180,7 @@ There are three broad classes of evaluation methods for text generation:
 - **Human Evaluations** – involve direct human judgment of response quality across dimensions such as fluency, coherence, relevance, and factual accuracy. Human evaluations are considered the gold standard, especially for open-ended tasks, but they can be expensive, time-consuming, and subject to variability unless inter-rater reliability is carefully managed.
 
 
-**Content Overlap Metrics:**
+### Content Overlap Metrics
 
 These methods compute similarity based on surface-level word overlap between the generated text and a reference.
 
@@ -194,7 +191,7 @@ These methods compute similarity based on surface-level word overlap between the
 > *n-gram metrics have no concept of meaning—they fail when different words express the same idea.*
 
 
-**Model-Based Metrics**
+### Model-Based Metrics
 
 These metrics leverage learned representations from pre-trained language models to evaluate **semantic similarity**.
 
@@ -214,7 +211,7 @@ Two popular types:
   - *(Sellam et al., 2020)*
 
 
-**Human Evaluations**
+### Human Evaluations
 
 Human evaluation remains the gold standard—especially for open-ended tasks.
 
