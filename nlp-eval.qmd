@@ -115,9 +115,9 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
 1. **Choosing the Right Metric:** Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.
 
-Instead, precision and recall offer complementary views: precision focuses on correctness (fewer false positives), while recall emphasizes completeness (fewer false negatives).
+    Instead, precision and recall offer complementary views: precision focuses on correctness (fewer false positives), while recall emphasizes completeness (fewer false negatives).
 
-The choice of metric shapes how performance is interpreted, compared, and optimized. In multi-class or skewed settings, relying on a single metric may obscure weaknesses.
+    The choice of metric shapes how performance is interpreted, compared, and optimized. In multi-class or skewed settings, relying on a single metric may obscure weaknesses.
 
 ::: {.callout-note title="Quick Reference: Common Evaluation Metrics"}
 
