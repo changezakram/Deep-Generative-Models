@@ -535,12 +535,12 @@ Great for binary classification tasks.</p></li>
 <p><strong>Limitation:</strong> N-gram metrics have no concept of meaning—they fail when different words express the same idea.</p>
 </blockquote>
 <p><strong>Illustrative Example:</strong></p>
-<p>Reference: <em>“Heck yes!”</em><br>
+<p>Reference: “Heck yes!”<br>
 Generated → BLEU score:</p>
-<pre><code>- _"Yes!"_ → 67%
-- _"You know it!"_ → low
-- _"Yup"_ → 0% (but semantically correct!)
-- _"Heck no!"_ → 67% (opposite meaning!)</code></pre>
+<pre><code>- "Yes!" → 67%
+- "You know it!" → low
+- "Yup" → 0% (but semantically correct!)
+- "Heck no!" → 67% (opposite meaning!)</code></pre>
 <p>These metrics penalize valid rephrasings and may reward word overlap even when meaning is incorrect.</p>
 </section>
 <section id="model-based-metrics" class="level3" data-number="3.2">

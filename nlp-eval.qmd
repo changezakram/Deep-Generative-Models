@@ -186,13 +186,13 @@ These methods compute similarity based on surface-level word overlap between the
 
 **Illustrative Example:**
 
-Reference: _"Heck yes!"_  
+Reference: "Heck yes!"  
 Generated → BLEU score:
 
-	- _"Yes!"_ → 67%
-	- _"You know it!"_ → low
-	- _"Yup"_ → 0% (but semantically correct!)
-	- _"Heck no!"_ → 67% (opposite meaning!)
+	- "Yes!" → 67%
+	- "You know it!" → low
+	- "Yup" → 0% (but semantically correct!)
+	- "Heck no!" → 67% (opposite meaning!)
 
 These metrics penalize valid rephrasings and may reward word overlap even when meaning is incorrect.
 
