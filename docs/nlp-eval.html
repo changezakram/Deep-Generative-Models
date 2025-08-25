@@ -478,13 +478,13 @@ Quick Reference: Common Evaluation Metrics
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p><strong>Accuracy</strong>: <span class="math inline">\(begin:math:text\)</span>(TP + TN) / (TP + TN + FP + FN)<span class="math inline">\(end:math:text\)</span><br>
+<li><p><strong>Accuracy</strong>: <span class="math inline">\((TP + TN) / (TP + TN + FP + FN)\)</span><br>
 Best for balanced datasets with equal class distribution.</p></li>
-<li><p><strong>Precision</strong>: <span class="math inline">\(begin:math:text\)</span>TP / (TP + FP)<span class="math inline">\(end:math:text\)</span><br>
+<li><p><strong>Precision</strong>: <span class="math inline">\(TP / (TP + FP)\)</span><br>
 High precision means fewer false positives.</p></li>
-<li><p><strong>Recall</strong>: <span class="math inline">\(begin:math:text\)</span>TP / (TP + FN)<span class="math inline">\(end:math:text\)</span><br>
+<li><p><strong>Recall</strong>: <span class="math inline">\(TP / (TP + FN)\)</span><br>
 High recall means fewer false negatives.</p></li>
-<li><p><strong>F1 Score</strong>: $begin:math:text<span class="math inline">\(2 \\cdot (Precision \\cdot Recall) / (Precision + Recall)\)</span>end:math:text$<br>
+<li><p><strong>F1 Score</strong>: <span class="math inline">\(2 \cdot (Precision \cdot Recall) / (Precision + Recall)\)</span><br>
 Useful when you need a balance between precision and recall.</p></li>
 <li><p><strong>Exact Match (EM)</strong>: Binary match with reference output.<br>
 Best for QA and structured prediction.</p></li>

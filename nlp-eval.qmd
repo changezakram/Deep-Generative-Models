@@ -117,16 +117,16 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
 ::: {.callout-note title="Quick Reference: Common Evaluation Metrics"}
 
-- **Accuracy**: $begin:math:text$(TP + TN) / (TP + TN + FP + FN)$end:math:text$  
+- **Accuracy**: $(TP + TN) / (TP + TN + FP + FN)$  
   Best for balanced datasets with equal class distribution.
 
-- **Precision**: $begin:math:text$TP / (TP + FP)$end:math:text$  
+- **Precision**: $TP / (TP + FP)$  
   High precision means fewer false positives.
 
-- **Recall**: $begin:math:text$TP / (TP + FN)$end:math:text$  
+- **Recall**: $TP / (TP + FN)$  
   High recall means fewer false negatives.
 
-- **F1 Score**: $begin:math:text$2 \\cdot (Precision \\cdot Recall) / (Precision + Recall)$end:math:text$  
+- **F1 Score**: $2 \cdot (Precision \cdot Recall) / (Precision + Recall)$  
   Useful when you need a balance between precision and recall.
 
 - **Exact Match (EM)**: Binary match with reference output.  
