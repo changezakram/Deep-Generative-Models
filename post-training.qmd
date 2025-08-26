@@ -512,10 +512,10 @@ Post-training for foundation models is not a single technique, but a **toolbox o
 
 Choosing the right approach depends on your specific needs:
 
-- Prompting when you need quick results without model changes - ideal for experimentation and one-off tasks
-- Test-time scaling when you have compute budget and need better reasoning from existing models
-- Supervised fine-tuning when you need persistent behavior changes or domain expertise that will be used repeatedly
-- Preference optimization when safety, alignment, and human-like responses are critical for your application
+- **Prompting:** when you need quick results without model changes - ideal for experimentation and one-off tasks
+- **Test-time scaling:** when you have compute budget and need better reasoning from existing models
+- **Supervised fine-tuning:** when you need persistent behavior changes or domain expertise that will be used repeatedly
+- **Preference optimization:** when safety, alignment, and human-like responses are critical for your application
 
 In real-world systems, the most capable LLMs often **combine these methods**: prompting for quick control, test-time scaling for reasoning-heavy queries, supervised fine-tuning for skill building, and preference optimization for safety and alignment. Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as **agentic AI, retrieval-augmented generation, and continuous self-improvement loops**.
 
