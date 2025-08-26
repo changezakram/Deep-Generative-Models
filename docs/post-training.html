@@ -932,16 +932,14 @@ RLHF vs DPO: Key Differences
 </section>
 <section id="conclusion" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
-<p>Post-training for foundation models is not a single technique, but a <strong>toolbox of complementary strategies</strong>. Prompting and test-time scaling deliver immediate gains without altering model weights, making them ideal for rapid experimentation and deployment. Supervised fine-tuning adapts models for broad instruction-following or specialized domains, while preference optimization aligns outputs with human values and expectations.</p>
-<p>In practice, choosing the right approach depends on your specific needs:</p>
+<p>Post-training is a toolbox of strategies that, when combined, turn raw LLMs into capable assistants. Prompting and test-time scaling enable quick improvements without retraining, while supervised fine-tuning and preference optimization build deeper alignment. The key is to match the method to the goal—balancing speed, cost, and alignment needs.</p>
 <ul>
-<li><strong>Prompting:</strong> when you need quick results without model changes - ideal for experimentation and one-off tasks</li>
-<li><strong>Test-time scaling:</strong> when you have compute budget and need better reasoning from existing models</li>
-<li><strong>Supervised fine-tuning:</strong> when you need persistent behavior changes or domain expertise that will be used repeatedly</li>
-<li><strong>Preference optimization:</strong> when safety, alignment, and human-like responses are critical for your application</li>
+<li><strong>Prompting:</strong> quick results without model changes</li>
+<li><strong>Test-time scaling:</strong> boosts reasoning within compute budget</li>
+<li><strong>Supervised fine-tuning:</strong> persistent behavior/domain expertise</li>
+<li><strong>Preference optimization:</strong> safety, alignment, human-like responses</li>
 </ul>
-<p>In real-world systems, the most capable LLMs often <strong>combine these methods</strong>: prompting for quick control, test-time scaling for reasoning-heavy queries, supervised fine-tuning for skill building, and preference optimization for safety and alignment.</p>
-<p>Real-world deployments demonstrate the power of integrated approaches. OpenAI’s evolution from GPT-3 to ChatGPT layered instruction fine-tuning, RLHF, and chain-of-thought prompting to transform raw capability into reliable assistance. Similarly, Klarna’s AI customer service assistant combines instruction fine-tuning for task execution, preference optimization for customer satisfaction, and test-time scaling for complex queries—reportedly handling work equivalent to 700 human agents while maintaining quality standards. These examples show how strategic combination of post-training techniques can deliver both technical capability and measurable business impact.</p>
+<p>In practice, the strongest systems integrate these methods: prompting for fast control, test-time scaling for complex reasoning, fine-tuning for skills, and preference optimization for safety. OpenAI’s evolution from GPT-3 to ChatGPT layered tuning, RLHF, and CoT to transform raw capability into reliable assistance. Similarly, Klarna’s AI assistant blends fine-tuning, preference optimization, and TTS to achieve human-level workloads with consistent quality.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
