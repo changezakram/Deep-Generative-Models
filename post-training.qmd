@@ -517,9 +517,11 @@ In practice, choosing the right approach depends on your specific needs:
 - **Supervised fine-tuning:** when you need persistent behavior changes or domain expertise that will be used repeatedly
 - **Preference optimization:** when safety, alignment, and human-like responses are critical for your application
 
-In real-world systems, the most capable LLMs often **combine these methods**: prompting for quick control, test-time scaling for reasoning-heavy queries, supervised fine-tuning for skill building, and preference optimization for safety and alignment. Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as **agentic AI, retrieval-augmented generation, and continuous self-improvement loops**.
+In real-world systems, the most capable LLMs often **combine these methods**: prompting for quick control, test-time scaling for reasoning-heavy queries, supervised fine-tuning for skill building, and preference optimization for safety and alignment.
 
 The evolution of OpenAI's models illustrates this integrated approach: GPT-3 demonstrated raw capability through pre-training, but ChatGPT's breakthrough came from layering instruction fine-tuning (to follow user commands), RLHF (to align with human preferences for helpfulness and safety), and chain-of-thought prompting (to improve reasoning on complex queries). This combination transformed a powerful but unpredictable text generator into a reliable assistant that millions use daily.
+
+Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as **agentic AI, retrieval-augmented generation, and continuous self-improvement loops**.
 
 ::: {.callout-note}
 #### Key takeaway
