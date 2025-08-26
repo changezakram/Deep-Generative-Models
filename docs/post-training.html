@@ -247,12 +247,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="in-context-learning-zero-shot-and-few-shot" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="in-context-learning-zero-shot-and-few-shot"><span class="header-section-number">2.1</span> In-Context Learning: Zero-Shot and Few-Shot</h3>
 <p><strong>Concept:</strong></p>
-<p>In-Context Learning (ICL) enables large language models to perform new tasks simply by providing examples in the prompt—without any parameter updates or fine-tuning. This emerged as a breakthrough capability with GPT-3 (Brown et al., 2020), where models could adapt their behavior on-the-fly by recognizing patterns in the provided context.</p>
-<p><strong>How It Works</strong></p>
-<ul>
-<li>The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.</li>
-<li>These patterns are then applied to new examples within the same prompt context.</li>
-</ul>
+<p>In-Context Learning (ICL) lets models learn new tasks by using examples directly in the prompt—no parameter updates required. Zero-shot uses just an instruction, while few-shot provides labeled examples. In both cases, the model infers patterns from the prompt and applies them to new inputs.</p>
 <p><strong>Key Variants</strong></p>
 <p><strong>1. Zero-Shot Prompting:</strong> Ask the model to perform a task using only an instruction or question — without providing any explicit examples of how the task should be done.</p>
 <ul>
@@ -264,10 +259,11 @@ ul.task-list li input[type="checkbox"] {
 No translations are shown beforehand — the model generates the French sentence using patterns it learned during training.</p>
 <p><strong>2. Few-Shot Prompting:</strong> Provide a small number of (input → output) examples before asking for a new prediction.</p>
 <ul>
-<li>One example = one “shot” (e.g., 5 examples = 5-shot learning).</li>
+<li>One example = one “shot”, 5 examples = 5-shot.</li>
 <li>More examples generally improve performance, but are limited by the model’s maximum context length.</li>
 </ul>
 <p>Example: Showing labeled sentiment examples before asking for classification of a new sentence.</p>
+<p>The diagram below visualizes zero-shot, one-shot, and few-shot prompting, and contrasts them with fine-tuning for clarity.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/eval_strategies.png" class="img-fluid figure-img"></p>
@@ -326,16 +322,8 @@ Key Insight
 </section>
 <section id="addressing-icls-reasoning-limitations-chain-of-thought-prompting" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="addressing-icls-reasoning-limitations-chain-of-thought-prompting"><span class="header-section-number">2.2</span> Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting</h3>
-<p><strong>Concept:</strong><br>
-Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <strong>natural language reasoning steps</strong> between the input and the final output. Instead of going directly from problem → answer, the model is encouraged to generate a sequence of intermediate steps — a “reasoning chain” — before producing its final answer.</p>
-<p><strong>How It Works:</strong></p>
-<ul>
-<li>The prompt explicitly demonstrates step-by-step reasoning for a few training examples in the context.<br>
-</li>
-<li>The model learns to emulate this reasoning pattern when solving new tasks in the same prompt.<br>
-</li>
-<li>The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.</li>
-</ul>
+<p><strong>Concept:</strong></p>
+<p>Chain-of-Thought (CoT) prompting augments in-context learning by encouraging models to generate intermediate reasoning steps before the final answer. Instead of jumping directly from input → output, the prompt shows worked-out examples of step-by-step reasoning, which the model then imitates. This produces more transparent, accurate results, especially on arithmetic or multi-step problems.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/cot-reasoning.png" class="img-fluid figure-img"></p>

@@ -28,12 +28,7 @@ In the sections that follow, we’ll explore post-training techniques alongside 
 
 **Concept:**  
 
-In-Context Learning (ICL) enables large language models to perform new tasks simply by providing examples in the prompt—without any parameter updates or fine-tuning. This emerged as a breakthrough capability with GPT-3 (Brown et al., 2020), where models could adapt their behavior on-the-fly by recognizing patterns in the provided context.
-
-**How It Works**
-
-- The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.
-- These patterns are then applied to new examples within the same prompt context.
+In-Context Learning (ICL) lets models learn new tasks by using examples directly in the prompt—no parameter updates required. Zero-shot uses just an instruction, while few-shot provides labeled examples. In both cases, the model infers patterns from the prompt and applies them to new inputs.
 
 **Key Variants**
 
@@ -47,10 +42,12 @@ In-Context Learning (ICL) enables large language models to perform new tasks sim
 
 **2. Few-Shot Prompting:** Provide a small number of (input → output) examples before asking for a new prediction. 
  
-  - One example = one “shot” (e.g., 5 examples = 5-shot learning).
+  - One example = one “shot”, 5 examples = 5-shot.
   - More examples generally improve performance, but are limited by the model’s maximum context length.
 
-  Example: Showing labeled sentiment examples before asking for classification of a new sentence.  
+  Example: Showing labeled sentiment examples before asking for classification of a new sentence. 
+
+The diagram below visualizes zero-shot, one-shot, and few-shot prompting, and contrasts them with fine-tuning for clarity.
 
 ![**Figure:** Illustration of three In-Context Learning settings — Zero-Shot, One-Shot, and Few-Shot — compared with traditional fine-tuning. In ICL, the model adapts based on examples in the prompt without weight updates, while fine-tuning updates model parameters through repeated training. *(Source: Brown et al., 2020)*](images/eval_strategies.png)  
 
@@ -90,13 +87,9 @@ Some of these reasoning limitations — particularly weak multi-step reasoning �
 ### Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting
 
 **Concept:**  
-Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding **natural language reasoning steps** between the input and the final output. Instead of going directly from problem → answer, the model is encouraged to generate a sequence of intermediate steps — a “reasoning chain” — before producing its final answer.
 
-**How It Works:**  
+Chain-of-Thought (CoT) prompting augments in-context learning by encouraging models to generate intermediate reasoning steps before the final answer. Instead of jumping directly from input → output, the prompt shows worked-out examples of step-by-step reasoning, which the model then imitates. This produces more transparent, accurate results, especially on arithmetic or multi-step problems.
 
-- The prompt explicitly demonstrates step-by-step reasoning for a few training examples in the context.  
-- The model learns to emulate this reasoning pattern when solving new tasks in the same prompt.  
-- The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.
 
 ![**Figure:** Comparison of standard prompting and Chain-of-Thought prompting on arithmetic reasoning tasks. CoT provides explicit step-by-step reasoning, enabling the model to correctly solve problems that standard prompting fails. *(Source: Wei et al., 2022)*](images/cot-reasoning.png)
 
