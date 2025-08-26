@@ -71,11 +71,10 @@ Across all prompting types, performance consistently improves as model size incr
 
 **Limitations**
 
-- **Context Length Constraints**: Limited by the model’s maximum input size, restricting the number of examples that can be provided.
-- **Performance Sensitivity**: Output quality varies depending on prompt wording, ordering, and example selection.
-- **Lack of True Learning**: The model’s weights are not updated; adaptation is temporary and disappears when the context changes.
-- **Weak Multi-Step Reasoning**: Struggles with tasks requiring reasoning across multiple logical or arithmetic steps.
-- **Limited Interpretability**: Produces final answers without an explicit reasoning trail, making verification and debugging difficult.
+- **Context Limits**: Constrained by max input size; too many examples can’t fit.
+- **Variable Performance**: Output quality depends on prompt wording, ordering, and examples.
+- **No True Learning**: The model’s weights aren’t updated—adaptation disappears once context is gone.
+- **Reasoning Weaknesses**: Struggles with multi-step reasoning and provides little interpretability for debugging.
 
 ::: {.callout-note title="Key Insight"}
 ICL effectively turns prompting into a form of *temporary fine-tuning*, where the “training data” exists only within the prompt window. This makes it a powerful method for continual adaptation without persistent retraining.

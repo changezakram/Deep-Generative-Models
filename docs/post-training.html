@@ -299,11 +299,10 @@ Performance Summary
 </ul>
 <p><strong>Limitations</strong></p>
 <ul>
-<li><strong>Context Length Constraints</strong>: Limited by the model’s maximum input size, restricting the number of examples that can be provided.</li>
-<li><strong>Performance Sensitivity</strong>: Output quality varies depending on prompt wording, ordering, and example selection.</li>
-<li><strong>Lack of True Learning</strong>: The model’s weights are not updated; adaptation is temporary and disappears when the context changes.</li>
-<li><strong>Weak Multi-Step Reasoning</strong>: Struggles with tasks requiring reasoning across multiple logical or arithmetic steps.</li>
-<li><strong>Limited Interpretability</strong>: Produces final answers without an explicit reasoning trail, making verification and debugging difficult.</li>
+<li><strong>Context Limits</strong>: Constrained by max input size; too many examples can’t fit.</li>
+<li><strong>Variable Performance</strong>: Output quality depends on prompt wording, ordering, and examples.</li>
+<li><strong>No True Learning</strong>: The model’s weights aren’t updated—adaptation disappears once context is gone.</li>
+<li><strong>Reasoning Weaknesses</strong>: Struggles with multi-step reasoning and provides little interpretability for debugging.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled" title="Key Insight">
 <div class="callout-header d-flex align-content-center">
