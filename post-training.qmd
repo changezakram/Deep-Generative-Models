@@ -5,9 +5,9 @@ format: html
 
 ## Introduction: Why Post-Training Matters for Reasoning
 
-Foundation models like GPT-4, Claude, and Gemini are large neural networks trained on massive text corpora to predict the next word in a sequence. This pre-training gives models broad generality. They learn language patterns, knowledge, and correlations that can look like reasoning but aren’t always reliable. This flexibility allows them to adapt across many tasks.
+Foundation models like GPT-4, Claude, and Gemini are large neural networks trained on massive text corpora to predict the next word in a sequence. This stage of training — often called **pre-training** — gives models broad generality. They learn patterns of language, knowledge, and relationships in data. This flexibility allows them to adapt across many tasks.
 
-But in their raw form, these models are still optimized for next-token prediction rather than following instructions or aligning with human expectations. As a result, they can generate inconsistent reasoning, misleading statements, or unhelpful answers. This gap between raw capability and user needs is why **post-training** is essential: it adapts a foundation model into a safe, reliable, and instruction-following AI assistant. Some compare pre-training to reading a vast library, and post-training to learning how to apply that knowledge in useful, trustworthy ways.
+But in their raw form, these models are still optimized for next-token prediction rather than following instructions or aligning with human expectations. As a result, they can generate inconsistent reasoning, misleading statements, or unhelpful answers. This gap between raw capability and user needs is why **post-training** is essential— adapting a foundation model into a safe, reliable, instruction-following AI assistant, much like learning how to apply the knowledge from a vast library in useful, trustworthy ways.
 
 Post-training typically involves two key stages:
 
