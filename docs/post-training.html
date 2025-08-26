@@ -609,15 +609,13 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <section id="supervised-fine-tuning-sft" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</h2>
 <p><strong>Concept:</strong></p>
-<p>Supervised Fine-Tuning (SFT) is a post-training method where a pre-trained foundation model is further trained on labeled examples (input–output pairs) to better align it with desired behaviors or domain needs. While pre-training learns broad language patterns, SFT narrows the focus—adapting the model for specific goals by adjusting its internal weights on high-quality datasets. In contrast to prompting or test-time scaling, which only influence outputs at inference time, SFT changes the model’s parameters directly, so the improvements stay in the model even after the training.</p>
+<p>Supervised Fine-Tuning (SFT) is a post-training method where a pre-trained foundation model is further trained on labeled examples (input–output pairs) to better align it with desired behaviors or domain needs. While pre-training learns broad language patterns, SFT narrows the focus—adapting the model for specific goals by adjusting its internal weights on high-quality datasets. In contrast to prompting or test-time scaling, which only influence outputs at inference time, SFT changes the model’s parameters directly, so the improvements stay in the model even after the training. It also serves as the foundation for later optimization steps such as preference alignment (e.g., RLHF or DPO).</p>
 <p>SFT can be applied in two main ways:</p>
 <ul>
 <li><strong>General-purpose instruction tuning</strong> – teaching the model to follow diverse natural language instructions across many tasks.<br>
 </li>
 <li><strong>Domain-specific tuning</strong> – adapting the model for specialized fields such as legal, medical, or financial applications.</li>
 </ul>
-<p><strong>Why it matters:</strong></p>
-<p>SFT is one of the most effective ways to improve task performance, consistency, and controllability in large language models. It also serves as the foundation for later optimization steps such as preference alignment (e.g., RLHF or DPO).</p>
 <p>While many approaches exist for supervised fine‑tuning, <strong>Instruction Fine‑Tuning</strong> and <strong>Domain‑Specific Fine‑Tuning</strong> are among the most prevalent in modern LLM post‑training pipelines. The sections below explore these methods in greater detail.</p>
 <section id="instruction-fine-tuning" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="instruction-fine-tuning"><span class="header-section-number">4.1</span> Instruction Fine-Tuning</h3>

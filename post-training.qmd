@@ -274,7 +274,7 @@ While prompting and test-time scaling work well, they have limits—sometimes yo
 
 **Concept:**  
 
-Supervised Fine-Tuning (SFT) is a post-training method where a pre-trained foundation model is further trained on labeled examples (input–output pairs) to better align it with desired behaviors or domain needs. While pre-training learns broad language patterns, SFT narrows the focus—adapting the model for specific goals by adjusting its internal weights on high-quality datasets. In contrast to prompting or test-time scaling, which only influence outputs at inference time, SFT changes the model’s parameters directly, so the improvements stay in the model even after the training.
+Supervised Fine-Tuning (SFT) is a post-training method where a pre-trained foundation model is further trained on labeled examples (input–output pairs) to better align it with desired behaviors or domain needs. While pre-training learns broad language patterns, SFT narrows the focus—adapting the model for specific goals by adjusting its internal weights on high-quality datasets. In contrast to prompting or test-time scaling, which only influence outputs at inference time, SFT changes the model’s parameters directly, so the improvements stay in the model even after the training. It also serves as the foundation for later optimization steps such as preference alignment (e.g., RLHF or DPO).
 
 
 SFT can be applied in two main ways:  
@@ -282,10 +282,7 @@ SFT can be applied in two main ways:
 - **General-purpose instruction tuning** – teaching the model to follow diverse natural language instructions across many tasks.  
 - **Domain-specific tuning** – adapting the model for specialized fields such as legal, medical, or financial applications.  
 
-**Why it matters:**  
 
-SFT is one of the most effective ways to improve task performance, consistency, and controllability in large language models. It also serves as the foundation for later optimization steps such as preference alignment (e.g., RLHF or DPO).
- 
 While many approaches exist for supervised fine‑tuning, **Instruction Fine‑Tuning** and **Domain‑Specific Fine‑Tuning** are among the most prevalent in modern LLM post‑training pipelines. The sections below explore these methods in greater detail.
 
 
