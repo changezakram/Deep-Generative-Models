@@ -16,13 +16,9 @@ Post-training typically involves two key stages:
 - **Supervised Fine-Tuning (SFT)**: teaching the model to follow instructions and carry out tasks
 - **Preference Optimization**: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF
 
-These techniques not only improve factual accuracy and safety, but also enhance the model’s ability to reason. And surprisingly, they require relatively little compute—InstructGPT, for example, used only 2% of its total compute budget for post-training.
-
 While supervised and preference tuning are the core of post-training, it’s also important to consider **prompting techniques**. These methods—such as **zero-shot**, **few-shot**, and **chain-of-thought** prompting—don’t change the model’s weights but can steer its behavior at inference time. Prompting often delivers strong results without additional training, making it an essential part of real-world LLM deployment.
 
-In the sections that follow, we’ll explore both post-training techniques and prompting strategies, and how they work together to transform general-purpose LLMs into dependable, aligned assistants.
-
-These techniques explain why ChatGPT felt so different from GPT-3, why Claude is helpful rather than just predictive, and why modern AI assistants can follow complex instructions reliably.
+In the sections that follow, we'll explore both post-training techniques and prompting strategies, and how they work together to transform general-purpose LLMs into dependable, aligned assistants. This transformation explains why ChatGPT felt so different from GPT-3's raw text generation, why Claude can engage in helpful dialogue rather than just predicting text, and why modern AI systems reliably follow complex instructions while maintaining safety and alignment.
 
 ![**Figure:** High-level taxonomy of large language model (LLM) post-training strategies, showing where scaling methods (bottom right) fit alongside reinforcement, tuning, and alignment approaches. *(Source: Kumar, K., Ashraf, T., Thawakar, O., et al., 2025)*](images/post-training-methods.png){fig-align="center" width="800"}
 
@@ -521,7 +517,7 @@ In real-world systems, the most capable LLMs often **combine these methods**: pr
 
 The evolution of OpenAI's models illustrates this integrated approach: GPT-3 demonstrated raw capability through pre-training, but ChatGPT's breakthrough came from layering instruction fine-tuning (to follow user commands), RLHF (to align with human preferences for helpfulness and safety), and chain-of-thought prompting (to improve reasoning on complex queries). This combination transformed a powerful but unpredictable text generator into a reliable assistant that millions use daily.
 
-Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as **agentic AI, retrieval-augmented generation, and continuous self-improvement loops**.
+Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as agentic AI, retrieval-augmented generation, and continuous self-improvement loops.
 
 ::: {.callout-note}
 #### Key takeaway
