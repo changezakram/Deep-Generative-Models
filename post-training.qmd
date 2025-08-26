@@ -510,7 +510,7 @@ The following table summarizes supervised Preference Optimization methods descri
 
 Post-training for foundation models is not a single technique, but a **toolbox of complementary strategies**. Prompting and test-time scaling deliver immediate gains without altering model weights, making them ideal for rapid experimentation and deployment. Supervised fine-tuning adapts models for broad instruction-following or specialized domains, while preference optimization aligns outputs with human values and expectations.
 
-Choosing the right approach depends on your specific needs:
+In practice, choosing the right approach depends on your specific needs:
 
 - **Prompting:** when you need quick results without model changes - ideal for experimentation and one-off tasks
 - **Test-time scaling:** when you have compute budget and need better reasoning from existing models
