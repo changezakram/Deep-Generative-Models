@@ -494,14 +494,14 @@ The following table summarizes supervised Preference Optimization methods descri
 
 ## Conclusion
 
-Post-training is a toolbox of strategies that, when combined, turn raw LLMs into capable assistants. Prompting and test-time scaling enable quick improvements without retraining, while supervised fine-tuning and preference optimization build deeper alignment. The key is to match the method to the goal—balancing speed, cost, and alignment needs.
+Post-training combines complementary strategies that transform raw LLMs into capable assistants. Prompting and test-time scaling enable quick improvements without retraining, while supervised fine-tuning and preference optimization build deeper alignment. The key is to match the method to the goal—balancing speed, cost, and alignment needs.
 
 - **Prompting:** quick results without model changes
 - **Test-time scaling:** boosts reasoning within compute budget
 - **Supervised fine-tuning:** persistent behavior/domain expertise
 - **Preference optimization:** safety, alignment, human-like responses
 
-In practice, the strongest systems integrate these methods: prompting for fast control, test-time scaling for complex reasoning, fine-tuning for skills, and preference optimization for safety. OpenAI’s evolution from GPT-3 to ChatGPT layered tuning, RLHF, and CoT to transform raw capability into reliable assistance. Similarly, Klarna’s AI assistant blends fine-tuning, preference optimization, and TTS to achieve human-level workloads with consistent quality.
+The strongest systems integrate these methods—prompting for fast control, test-time scaling for complex reasoning, fine-tuning for skills, and preference optimization for safety. OpenAI’s evolution from GPT-3 to ChatGPT layered tuning, RLHF, and CoT to transform raw capability into reliable assistance. Similarly, Klarna’s AI assistant blends fine-tuning, preference optimization, and TTS to achieve human-level workloads with consistent quality.
 
 ::: {.callout-note}
 #### Key takeaway
