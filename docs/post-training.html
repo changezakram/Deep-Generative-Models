@@ -778,8 +778,6 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <figcaption><strong>Figure 1:</strong> RLHF pipeline showing three stages — (1) supervised fine-tuning from demonstrations, (2) preference ranking to train a reward model, and (3) policy optimization using reinforcement learning. <em>(Source: Ouyang et al., 2022)</em></figcaption>
 </figure>
 </div>
-<p><strong>How it works:</strong></p>
-<p>A prompt is sampled from a dataset, and a human labeler writes the ideal response. These examples teach the base model to follow instructions (SFT). Next, the model generates several responses for a prompt, and human labelers rank them, enabling the creation of a <em>reward model</em> that predicts human preference. Finally, the policy is optimized with reinforcement learning to produce outputs that maximize predicted reward while staying close to the SFT model, ensuring improvements in alignment without degrading core capabilities.</p>
 <p><strong>RLHF Performance Gains:</strong></p>
 <p>RLHF has been shown to produce higher-quality outputs than models trained only with pre-training or supervised fine-tuning. In human evaluations on the TL;DR summarization dataset, RLHF-trained models not only outperform models trained without RLHF but also exceed the quality of the human-written reference summaries—baseline summaries created by people, shown as the dotted black line in the figure below. This performance advantage is consistent across model sizes and increases steadily as model capacity grows.</p>
 <div class="quarto-figure quarto-figure-center">
