@@ -268,9 +268,13 @@ window.Quarto = {
 </section>
 <section id="closed-ended-tasks" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="closed-ended-tasks"><span class="header-section-number">2</span> Closed-Ended Tasks</h2>
-<p>Closed-ended tasks are characterized by a limited set of correct answers—often just one. This constraint enables automatic, objective evaluation and makes these tasks ideal for benchmarking.</p>
-<p>While closed-ended tasks offer clear and objective evaluation metrics, they still present meaningful challenges in dataset construction, evaluation design, and metric selection. Their well-defined output space enables direct comparison across models, but can also obscure subtle model weaknesses—such as shortcut learning or reliance on spurious correlations.</p>
-<p>Common metrics such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks (see Section 2.3 for a quick reference).</p>
+<p>Closed-ended tasks are important for testing NLP models because they have clear right and wrong answers. These tasks have only a few possible outputs—usually less than ten choices—making them easy to measure and compare systematically.</p>
+<p><strong>Bounded Output Space:</strong> Unlike text generation where models can produce any sequence of tokens, closed-ended tasks constrain outputs to predefined categories or structured formats. <strong>Objective Evaluation:</strong> Success can be measured automatically using established metrics from classical machine learning—accuracy, precision, recall, and F1-score. <strong>Reproducible Benchmarks:</strong> Standard datasets enable fair comparison across models and research groups over time. <strong>Systematic Progress Tracking:</strong> Clear metrics allow the field to monitor advancement and identify when models have genuinely improved.</p>
+<p>While this constraint makes evaluation more straightforward than open-ended generation, closed-ended tasks still present significant challenges that can mislead researchers and practitioners. Understanding these problems is important because closed-ended evaluation is often the first test of model quality, affecting research focus and decisions about which models to deploy.</p>
+<p>Common metrics such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.</p>
+<p>A benchmark is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
+<section id="types-of-closed-ended-tasks" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="types-of-closed-ended-tasks"><span class="header-section-number">2.1</span> Types of Closed-Ended Tasks</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
@@ -333,12 +337,10 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<blockquote class="blockquote">
-<p>💡 <em>These tasks often serve as building blocks for more complex NLP pipelines.</em></p>
-</blockquote>
 <p>These individual tasks can also be grouped into multi-task benchmarks that evaluate general language understanding across a range of closed-ended challenges. <strong>SuperGLUE</strong> is one of the most prominent such benchmarks.</p>
-<section id="multi-task-benchmark-superglue" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.1</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
+</section>
+<section id="multi-task-benchmark-superglue" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.2</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
 <p>While the previous section outlined individual closed-ended tasks, real-world evaluation often demands a unified benchmark that spans multiple task types. <strong>SuperGLUE</strong> is a widely adopted <strong>closed-ended multi-task benchmark</strong> created to evaluate broad general language understanding. It builds on its predecessor (GLUE) with harder tasks, more robust metrics, and an emphasis on reasoning.</p>
 <p>SuperGLUE combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning and word sense disambiguation—designed to holistically assess a model’s linguistic and reasoning capabilities across multiple dimensions.</p>
 <p><strong>Tasks in SuperGLUE:</strong></p>
@@ -398,8 +400,8 @@ window.Quarto = {
 </ul>
 <p>The leaderboard emphasizes <strong>balanced generalization</strong>, rewarding models that perform consistently well across diverse task types—not just a few. This makes it a reliable benchmark for tracking progress toward broadly capable language models.</p>
 </section>
-<section id="domain-rich-multi-task-benchmark-mmlu" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="domain-rich-multi-task-benchmark-mmlu"><span class="header-section-number">2.2</span> Domain-Rich Multi-Task Benchmark: MMLU</h3>
+<section id="domain-rich-multi-task-benchmark-mmlu" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="domain-rich-multi-task-benchmark-mmlu"><span class="header-section-number">2.3</span> Domain-Rich Multi-Task Benchmark: MMLU</h3>
 <p>While SuperGLUE focuses on general linguistic reasoning, <strong>Massive Multitask Language Understanding (MMLU)</strong> shifts the spotlight to <strong>domain knowledge</strong>. It has rapidly become the <em>de facto</em> benchmark for evaluating a model’s grasp of academic and professional subjects—effectively acting as a proxy for general intelligence in many LLM leaderboards.</p>
 <p><strong>What is MMLU?</strong></p>
 <ul>
@@ -463,8 +465,8 @@ window.Quarto = {
 <p>While both are multi-task benchmarks, they evaluate very different capabilities—SuperGLUE emphasizes reasoning and understanding, whereas MMLU stresses factual recall across disciplines.</p>
 </blockquote>
 </section>
-<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.3</span> Challenges in Closed-Ended Evaluation</h3>
+<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.4</span> Challenges in Closed-Ended Evaluation</h3>
 <ol type="1">
 <li><p><strong>Metric Selection:</strong> Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.</p>
 <p>Instead, precision and recall offer complementary views: precision focuses on correctness (fewer false positives), while recall emphasizes completeness (fewer false negatives).</p>
