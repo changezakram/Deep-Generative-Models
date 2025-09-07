@@ -40,9 +40,14 @@ Closed-ended tasks are important for testing NLP models because they have clear 
 
 While this constraint makes evaluation more straightforward than open-ended generation, closed-ended tasks still present significant challenges that can mislead researchers and practitioners. Understanding these problems is important because closed-ended evaluation is often the first test of model quality, affecting research focus and decisions about which models to deploy.
 
-Common metrics such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.
+**Common metrics** such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.
 
-A benchmark is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.
+Accuracy: Percentage of correct predictions (simple but can be misleading with imbalanced data).    
+Precision: Of all positive predictions, how many were actually correct? (important when false alarms are costly).    
+Recall: Of all actual positive cases, how many were found? (important when missing cases is costly).    
+F1-Score: Harmonic mean of precision and recall (balances both concerns).    
+
+**Benchmark** is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.
 
 ### Types of Closed-Ended Tasks
 
@@ -128,27 +133,6 @@ Modern LLMs—including GPT-4, Claude 3, Gemini, LLaMA 3, and PaLM—routinely r
 
     The choice of metric shapes how performance is interpreted, compared, and optimized. In multi-class or skewed settings, relying on a single metric may obscure weaknesses.
 
-::: {.callout-note title="Quick Reference: Common Evaluation Metrics"}
-
-- **Accuracy**: $(TP + TN) / (TP + TN + FP + FN)$  
-  Best for balanced datasets with equal class distribution.
-
-- **Precision**: $TP / (TP + FP)$  
-  High precision means fewer false positives.
-
-- **Recall**: $TP / (TP + FN)$  
-  High recall means fewer false negatives.
-
-- **F1 Score**: $2 \cdot (Precision \cdot Recall) / (Precision + Recall)$  
-  Useful when you need a balance between precision and recall.
-
-- **Exact Match (EM)**: Binary match with reference output.  
-  Best for QA and structured prediction.
-
-- **AUC-ROC**: Measures discrimination across thresholds.  
-  Great for binary classification tasks.
-
-:::
 
 2. **Metric Aggregation:** In multi-task benchmarks like SuperGLUE, aggregating scores across tasks is not as simple as averaging. Different tasks often use different metrics (e.g., accuracy, F1 score, correlation), each with its own scale and interpretation. Some metrics reward lower values (e.g., loss), while others reward higher ones (e.g., accuracy). Averaging without normalization or weighting can obscure true performance—especially on harder tasks or those with imbalanced label distributions.
 

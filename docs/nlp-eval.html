@@ -68,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -274,8 +245,12 @@ window.Quarto = {
 <strong>Reproducible Benchmarks:</strong> Standard datasets enable fair comparison across models and research groups over time.<br>
 <strong>Systematic Progress Tracking:</strong> Clear metrics allow the field to monitor advancement and identify when models have genuinely improved.</p>
 <p>While this constraint makes evaluation more straightforward than open-ended generation, closed-ended tasks still present significant challenges that can mislead researchers and practitioners. Understanding these problems is important because closed-ended evaluation is often the first test of model quality, affecting research focus and decisions about which models to deploy.</p>
-<p>Common metrics such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.</p>
-<p>A benchmark is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
+<p><strong>Common metrics</strong> such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.</p>
+<p>Accuracy: Percentage of correct predictions (simple but can be misleading with imbalanced data).<br>
+Precision: Of all positive predictions, how many were actually correct? (important when false alarms are costly).<br>
+Recall: Of all actual positive cases, how many were found? (important when missing cases is costly).<br>
+F1-Score: Harmonic mean of precision and recall (balances both concerns).</p>
+<p><strong>Benchmark</strong> is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
 <section id="types-of-closed-ended-tasks" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="types-of-closed-ended-tasks"><span class="header-section-number">2.1</span> Types of Closed-Ended Tasks</h3>
 <table class="caption-top table">
@@ -474,34 +449,6 @@ window.Quarto = {
 <li><p><strong>Metric Selection:</strong> Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.</p>
 <p>Instead, precision and recall offer complementary views: precision focuses on correctness (fewer false positives), while recall emphasizes completeness (fewer false negatives).</p>
 <p>The choice of metric shapes how performance is interpreted, compared, and optimized. In multi-class or skewed settings, relying on a single metric may obscure weaknesses.</p></li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled" title="Quick Reference: Common Evaluation Metrics">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Quick Reference: Common Evaluation Metrics
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><p><strong>Accuracy</strong>: <span class="math inline">\((TP + TN) / (TP + TN + FP + FN)\)</span><br>
-Best for balanced datasets with equal class distribution.</p></li>
-<li><p><strong>Precision</strong>: <span class="math inline">\(TP / (TP + FP)\)</span><br>
-High precision means fewer false positives.</p></li>
-<li><p><strong>Recall</strong>: <span class="math inline">\(TP / (TP + FN)\)</span><br>
-High recall means fewer false negatives.</p></li>
-<li><p><strong>F1 Score</strong>: <span class="math inline">\(2 \cdot (Precision \cdot Recall) / (Precision + Recall)\)</span><br>
-Useful when you need a balance between precision and recall.</p></li>
-<li><p><strong>Exact Match (EM)</strong>: Binary match with reference output.<br>
-Best for QA and structured prediction.</p></li>
-<li><p><strong>AUC-ROC</strong>: Measures discrimination across thresholds.<br>
-Great for binary classification tasks.</p></li>
-</ul>
-</div>
-</div>
-<ol start="2" type="1">
 <li><p><strong>Metric Aggregation:</strong> In multi-task benchmarks like SuperGLUE, aggregating scores across tasks is not as simple as averaging. Different tasks often use different metrics (e.g., accuracy, F1 score, correlation), each with its own scale and interpretation. Some metrics reward lower values (e.g., loss), while others reward higher ones (e.g., accuracy). Averaging without normalization or weighting can obscure true performance—especially on harder tasks or those with imbalanced label distributions.</p></li>
 <li><p><strong>Label Quality:</strong> Evaluation reliability depends on the consistency and accuracy of ground-truth labels. Poorly defined labels or subjective task setups can introduce ambiguity, reducing the quality of both training and evaluation signals.</p></li>
 <li><p><strong>Spurious Correlations:</strong> Models sometimes rely on patterns or artifacts in the data that don’t reflect real understanding. This can lead to seemingly correct answers based on shortcuts, not reasoning.</p>
