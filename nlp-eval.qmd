@@ -31,7 +31,7 @@ This overview covers how to evaluate both closed and open-ended tasks, why curre
 
 ## Closed-Ended Tasks
 
-Closed-ended tasks are important for testing NLP models because they have clear right and wrong answers. These tasks have only a few possible outputs—usually less than ten choices—making them easy to measure and compare systematically.
+Closed-ended tasks are widely used in NLP evaluation because they provide clear right or wrong answers. Since the model's output is limited to a small set of predefined choices—often fewer than ten—they make it easier to compare models using standard metrics like accuracy, precision, recall, and F1-score. This structure allows for objective evaluation, consistent benchmarking, and easier tracking of progress over time.
 
 **Bounded Output Space:** Unlike text generation where models can produce any sequence of tokens, closed-ended tasks constrain outputs to predefined categories or structured formats.    
 **Objective Evaluation:** Success can be measured automatically using established metrics from classical machine learning—accuracy, precision, recall, and F1-score.    
@@ -42,10 +42,10 @@ While this constraint makes evaluation more straightforward than open-ended gene
 
 **Common metrics** such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.
 
-Accuracy: Percentage of correct predictions (simple but can be misleading with imbalanced data).    
-Precision: Of all positive predictions, how many were actually correct? (important when false alarms are costly).    
-Recall: Of all actual positive cases, how many were found? (important when missing cases is costly).    
-F1-Score: Harmonic mean of precision and recall (balances both concerns).    
+**Accuracy:** Percentage of correct predictions (simple but can be misleading with imbalanced data).    
+**Precision:** Of all positive predictions, how many were actually correct? (important when false alarms are costly).    
+**Recall:** Of all actual positive cases, how many were found? (important when missing cases is costly).    
+**F1-Score:** Harmonic mean of precision and recall (balances both concerns).    
 
 **Benchmark** is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.
 

@@ -239,17 +239,17 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="closed-ended-tasks" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="closed-ended-tasks"><span class="header-section-number">2</span> Closed-Ended Tasks</h2>
-<p>Closed-ended tasks are important for testing NLP models because they have clear right and wrong answers. These tasks have only a few possible outputs—usually less than ten choices—making them easy to measure and compare systematically.</p>
+<p>Closed-ended tasks are widely used in NLP evaluation because they provide clear right or wrong answers. Since the model’s output is limited to a small set of predefined choices—often fewer than ten—they make it easier to compare models using standard metrics like accuracy, precision, recall, and F1-score. This structure allows for objective evaluation, consistent benchmarking, and easier tracking of progress over time.</p>
 <p><strong>Bounded Output Space:</strong> Unlike text generation where models can produce any sequence of tokens, closed-ended tasks constrain outputs to predefined categories or structured formats.<br>
 <strong>Objective Evaluation:</strong> Success can be measured automatically using established metrics from classical machine learning—accuracy, precision, recall, and F1-score.<br>
 <strong>Reproducible Benchmarks:</strong> Standard datasets enable fair comparison across models and research groups over time.<br>
 <strong>Systematic Progress Tracking:</strong> Clear metrics allow the field to monitor advancement and identify when models have genuinely improved.</p>
 <p>While this constraint makes evaluation more straightforward than open-ended generation, closed-ended tasks still present significant challenges that can mislead researchers and practitioners. Understanding these problems is important because closed-ended evaluation is often the first test of model quality, affecting research focus and decisions about which models to deploy.</p>
 <p><strong>Common metrics</strong> such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.</p>
-<p>Accuracy: Percentage of correct predictions (simple but can be misleading with imbalanced data).<br>
-Precision: Of all positive predictions, how many were actually correct? (important when false alarms are costly).<br>
-Recall: Of all actual positive cases, how many were found? (important when missing cases is costly).<br>
-F1-Score: Harmonic mean of precision and recall (balances both concerns).</p>
+<p><strong>Accuracy:</strong> Percentage of correct predictions (simple but can be misleading with imbalanced data).<br>
+<strong>Precision:</strong> Of all positive predictions, how many were actually correct? (important when false alarms are costly).<br>
+<strong>Recall:</strong> Of all actual positive cases, how many were found? (important when missing cases is costly).<br>
+<strong>F1-Score:</strong> Harmonic mean of precision and recall (balances both concerns).</p>
 <p><strong>Benchmark</strong> is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
 <section id="types-of-closed-ended-tasks" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="types-of-closed-ended-tasks"><span class="header-section-number">2.1</span> Types of Closed-Ended Tasks</h3>
