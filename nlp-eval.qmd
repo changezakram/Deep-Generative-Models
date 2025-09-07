@@ -34,8 +34,11 @@ This overview covers how to evaluate both closed and open-ended tasks, why curre
 Closed-ended tasks are important for testing NLP models because they have clear right and wrong answers. These tasks have only a few possible outputs—usually less than ten choices—making them easy to measure and compare systematically.
 
 **Bounded Output Space:** Unlike text generation where models can produce any sequence of tokens, closed-ended tasks constrain outputs to predefined categories or structured formats.
+
 **Objective Evaluation:** Success can be measured automatically using established metrics from classical machine learning—accuracy, precision, recall, and F1-score.
+
 **Reproducible Benchmarks:** Standard datasets enable fair comparison across models and research groups over time.
+
 **Systematic Progress Tracking:** Clear metrics allow the field to monitor advancement and identify when models have genuinely improved.
 
 While this constraint makes evaluation more straightforward than open-ended generation, closed-ended tasks still present significant challenges that can mislead researchers and practitioners. Understanding these problems is important because closed-ended evaluation is often the first test of model quality, affecting research focus and decisions about which models to deploy.
