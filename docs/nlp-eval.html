@@ -451,12 +451,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.4</span> Challenges in Closed-Ended Evaluation</h3>
 <ol type="1">
-<li><p><strong>Metric Selection:</strong> Selecting an appropriate evaluation metric is critical but non-trivial. Different tasks and dataset characteristics (e.g., class imbalance, label skew) demand different metrics. For instance, accuracy may look impressive but can be misleading in imbalanced datasets—it might just reflect majority-class predictions.</p>
-<p>Instead, precision and recall offer complementary views: precision focuses on correctness (fewer false positives), while recall emphasizes completeness (fewer false negatives).</p>
-<p>The choice of metric shapes how performance is interpreted, compared, and optimized. In multi-class or skewed settings, relying on a single metric may obscure weaknesses.</p></li>
-<li><p><strong>Metric Aggregation:</strong> In multi-task benchmarks like SuperGLUE, aggregating scores across tasks is not as simple as averaging. Different tasks often use different metrics (e.g., accuracy, F1 score, correlation), each with its own scale and interpretation. Some metrics reward lower values (e.g., loss), while others reward higher ones (e.g., accuracy). Averaging without normalization or weighting can obscure true performance—especially on harder tasks or those with imbalanced label distributions.</p></li>
-<li><p><strong>Label Quality:</strong> Evaluation reliability depends on the consistency and accuracy of ground-truth labels. Poorly defined labels or subjective task setups can introduce ambiguity, reducing the quality of both training and evaluation signals.</p></li>
-<li><p><strong>Spurious Correlations:</strong> Models sometimes rely on patterns or artifacts in the data that don’t reflect real understanding. This can lead to seemingly correct answers based on shortcuts, not reasoning.</p>
+<li><p><strong>Metric Selection:</strong> Different metrics highlight different aspects of model performance. For example: Accuracy can be misleading on imbalanced datasets—it may just reflect majority-class predictions. Precision measures correctness (fewer false positives), while Recall measures completeness (fewer false negatives). Using a single metric in isolation—especially on skewed tasks—can hide a model’s weaknesses.</p></li>
+<li><p><strong>Metric Aggregation:</strong> Benchmarks like SuperGLUE combine many tasks, each with its own metric (e.g., F1, accuracy, loss). Simply averaging scores can give an incomplete picture. Some tasks are easier than others, and their metrics scale differently. Without proper weighting or normalization, overall scores may not reflect true performance.</p></li>
+<li><p><strong>Label Quality:</strong> Poorly defined or inconsistent labels can introduce noise into both training and evaluation. This reduces reliability and makes it hard to tell if performance differences are meaningful or just due to annotation issues.</p></li>
+<li><p><strong>Spurious Correlations:</strong> Models may rely on patterns or keywords rather than real understanding.</p>
 <ul>
 <li><strong>Example</strong> (SNLI):
 <ul>
@@ -467,8 +465,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Model might infer contradiction simply due to the word <em>never</em> rather than actual reasoning</li>
 </ul></li>
 </ul></li>
-<li><p><strong>Annotation Artifacts and Dataset Bias</strong>: Evaluation can be skewed by patterns unintentionally introduced during dataset construction. For example, in some QA datasets, answers are often placed in the first few sentences of the context. Models may learn to exploit this structural bias rather than understanding the full passage. Similarly, crowd-sourced datasets like SNLI may contain stylistic cues that correlate with specific labels (e.g., longer or more formal sentences labeled as “entailment”). These artifacts can inflate evaluation scores without reflecting true model understanding.</p></li>
-<li><p><strong>Adversarial Robustness</strong>: Small input changes—such as adding, removing, or rephrasing a few words—can cause models to make incorrect predictions, even when the meaning stays the same. This sensitivity to minor perturbations highlights a weakness in model generalization and exposes brittle behavior. Robust evaluation must test whether models maintain performance under such adversarial or paraphrased variations.</p></li>
+<li><p><strong>Annotation Artifacts and Dataset Bias</strong>: Some datasets contain structural biases—for example, QA answers often appear at the start of a passage. Models may exploit these shortcuts without real comprehension. Stylistic cues (e.g., sentence length or formality) may also correlate with certain labels, inflating scores without reflecting true understanding.</p></li>
+<li><p><strong>Adversarial Robustness</strong>: Small tweaks—like changing a word or rephrasing a sentence—can confuse models even if the meaning stays the same. This shows a lack of generalization. Robust evaluation should test whether models maintain performance under such paraphrased or adversarial inputs.</p></li>
 </ol>
 <p>This highlights that even well-defined tasks require evaluation beyond raw accuracy to capture true model behavior and ensure robustness.</p>
 <hr>
