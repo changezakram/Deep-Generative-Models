@@ -36,9 +36,7 @@ While this constraint makes evaluation more straightforward than open-ended gene
 
 ### Evaluation Metrics for Closed-Ended Tasks
 
-Understanding how to measure performance is fundamental to closed-ended evaluation. Different metrics serve different purposes and can lead to very different conclusions about model quality
-
-**Task-Specific Metrics:** These metrics evaluate performance on individual labeled tasks and require ground-truth answers:
+Understanding how to measure performance is fundamental to closed-ended evaluation. Different metrics serve different purposes and can lead to very different conclusions about model quality. Following metrics evaluate performance on individual labeled tasks:
 
 - **Accuracy:** Percentage of correct predictions (simple but can be misleading with imbalanced data).    
 - **Precision:** Of all positive predictions, how many were correct? (important when false alarms are costly).    
@@ -46,15 +44,6 @@ Understanding how to measure performance is fundamental to closed-ended evaluati
 - **F1-Score:** Harmonic mean of precision and recall (balances both concerns).    
 
 These metrics are typically applied to standardized datasets called **benchmarks**, which we'll explore in the next section. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.
-
-**Language Modeling Metric (Perplexity):** Perplexity measures how "surprised" a model is by text. Lower perplexity is better for predicting next words. 
-
-$$
-\text{Perplexity} = 2^{-\frac{1}{N} \sum_{i=1}^{N} \log_2 p(x_i)}
-$$
-
-For each word in a text, the model predicts how likely that word is. Perplexity averages these predictions across all words. If the model consistently gives high probability to the correct words, perplexity is low. If the model is often surprised (gives low probability to correct words), perplexity is high.
-
 
 ### Types of Closed-Ended Tasks
 

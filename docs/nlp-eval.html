@@ -68,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -273,8 +244,7 @@ window.Quarto = {
 <p>While this constraint makes evaluation more straightforward than open-ended generation, closed-ended tasks still present significant challenges that can mislead researchers and practitioners. Understanding these problems is important because closed-ended evaluation is often the first test of model quality, affecting research focus and decisions about which models to deploy.</p>
 <section id="evaluation-metrics-for-closed-ended-tasks" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="evaluation-metrics-for-closed-ended-tasks"><span class="header-section-number">2.1</span> Evaluation Metrics for Closed-Ended Tasks</h3>
-<p>Understanding how to measure performance is fundamental to closed-ended evaluation. Different metrics serve different purposes and can lead to very different conclusions about model quality</p>
-<p><strong>Task-Specific Metrics:</strong> These metrics evaluate performance on individual labeled tasks and require ground-truth answers:</p>
+<p>Understanding how to measure performance is fundamental to closed-ended evaluation. Different metrics serve different purposes and can lead to very different conclusions about model quality. Following metrics evaluate performance on individual labeled tasks:</p>
 <ul>
 <li><strong>Accuracy:</strong> Percentage of correct predictions (simple but can be misleading with imbalanced data).<br>
 </li>
@@ -285,11 +255,6 @@ window.Quarto = {
 <li><strong>F1-Score:</strong> Harmonic mean of precision and recall (balances both concerns).</li>
 </ul>
 <p>These metrics are typically applied to standardized datasets called <strong>benchmarks</strong>, which we’ll explore in the next section. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
-<p><strong>Language Modeling Metric (Perplexity):</strong> Perplexity measures how “surprised” a model is by text. Lower perplexity is better for predicting next words.</p>
-<p><span class="math display">\[
-\text{Perplexity} = 2^{-\frac{1}{N} \sum_{i=1}^{N} \log_2 p(x_i)}
-\]</span></p>
-<p>For each word in a text, the model predicts how likely that word is. Perplexity averages these predictions across all words. If the model consistently gives high probability to the correct words, perplexity is low. If the model is often surprised (gives low probability to correct words), perplexity is high.</p>
 </section>
 <section id="types-of-closed-ended-tasks" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="types-of-closed-ended-tasks"><span class="header-section-number">2.2</span> Types of Closed-Ended Tasks</h3>
