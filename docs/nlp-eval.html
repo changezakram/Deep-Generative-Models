@@ -284,12 +284,12 @@ window.Quarto = {
 </li>
 <li><strong>F1-Score:</strong> Harmonic mean of precision and recall (balances both concerns).</li>
 </ul>
+<p>These metrics are typically applied to standardized datasets called <strong>benchmarks</strong>, which we’ll explore in the next section. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
 <p><strong>Language Modeling Metric (Perplexity):</strong> Perplexity measures how “surprised” a model is by text (lower = better at predicting next words).</p>
 <p><span class="math display">\[
 \text{Perplexity} = 2^{-\frac{1}{N} \sum_{i=1}^{N} \log_2 p(x_i)}
 \]</span></p>
 <p>For each word in a text, the model predicts how likely that word is. Perplexity averages these predictions across all words. If the model consistently gives high probability to the correct words, perplexity is low. If the model is often surprised (gives low probability to correct words), perplexity is high.</p>
-<p>These metrics are typically applied to standardized datasets called benchmarks, which we’ll explore in the next section. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
 </section>
 <section id="types-of-closed-ended-tasks" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="types-of-closed-ended-tasks"><span class="header-section-number">2.2</span> Types of Closed-Ended Tasks</h3>
