@@ -5,17 +5,13 @@ format: html
 
 ## Introduction:
 
-**What is NLP Evaluation?**
-
 NLP evaluation measures how well language models actually work. It answers basic questions: Is this model good enough? Can we trust it with real users?
 
 But here's the challenge—testing language models isn't like testing regular software. When code breaks, it's obvious. When a language model fails, it might write something that sounds perfect but is completely wrong. A model might be 92% accurate overall but fail every time it sees sarcasm. This is what makes NLP evaluation so tricky: we're measuring how well computers understand the messy, complex world of human language.
 
 **Why It Matters Now More Than Ever**
 
-In 2023 alone, we saw an AI chatbot fail to recognize suicide warning signs (leading to a death), lawyers submit fake AI-generated cases to courts, and Air Canada forced to honor a refund policy its bot invented. As Chip Huyen warns: "The more AI is used, the more opportunity there is for catastrophic failure."
-
-**The paradox** — The smarter our models get, the harder they become to evaluate. It's easy to check a kid's math homework, but verifying if an AI's medical advice is accurate requires medical expertise. We need good evaluation to build better models, but we need expertise to do good evaluation.
+In 2023 alone, we saw an AI chatbot fail to recognize suicide warning signs (leading to a death), lawyers submit fake AI-generated cases to courts, and Air Canada forced to honor a refund policy its bot invented. As Chip Huyen warns: "The more AI is used, the more opportunity there is for catastrophic failure." The smarter our models get, the harder they become to evaluate. It's easy to check a kid's math homework, but verifying if an AI's medical advice is accurate requires medical expertise. We need good evaluation to build better models, but we need expertise to do good evaluation.
 
 **Two Types of Tasks, Two Different Challenges**
 
@@ -40,14 +36,28 @@ Closed-ended tasks are widely used in NLP evaluation because they provide clear 
 
 While this constraint makes evaluation more straightforward than open-ended generation, closed-ended tasks still present significant challenges that can mislead researchers and practitioners. Understanding these problems is important because closed-ended evaluation is often the first test of model quality, affecting research focus and decisions about which models to deploy.
 
-**Common metrics** such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.
+### Evaluation Metrics for Closed-Ended Tasks
+
+Understanding how to measure performance is fundamental to closed-ended evaluation. Different metrics serve different purposes and can lead to very different conclusions about model quality
+
+**Task-Specific Metrics**
+
+These metrics evaluate performance on individual labeled tasks and require ground-truth answers:
 
 - **Accuracy:** Percentage of correct predictions (simple but can be misleading with imbalanced data).    
 - **Precision:** Of all positive predictions, how many were correct? (important when false alarms are costly).    
 - **Recall:** Of all actual positive cases, how many were found? (important when missing cases is costly).    
 - **F1-Score:** Harmonic mean of precision and recall (balances both concerns).    
 
-**Benchmark** is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.
+**Language Modeling Metric (Perplexity)**
+
+Perplexity measures how "surprised" a model is by text (lower = better at predicting next words). 
+
+Perplexity = 2^(average negative log probability)
+
+In simpler terms: for each word in a text, the model predicts how likely that word is. Perplexity averages these predictions across all words. If the model consistently gives high probability to the correct words, perplexity is low. If the model is often surprised (gives low probability to correct words), perplexity is high.
+
+These metrics are typically applied to standardized datasets called benchmarks, which we'll explore in the next section. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.
 
 ### Types of Closed-Ended Tasks
 

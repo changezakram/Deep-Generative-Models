@@ -222,12 +222,10 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction:</h2>
-<p><strong>What is NLP Evaluation?</strong></p>
 <p>NLP evaluation measures how well language models actually work. It answers basic questions: Is this model good enough? Can we trust it with real users?</p>
 <p>But here’s the challenge—testing language models isn’t like testing regular software. When code breaks, it’s obvious. When a language model fails, it might write something that sounds perfect but is completely wrong. A model might be 92% accurate overall but fail every time it sees sarcasm. This is what makes NLP evaluation so tricky: we’re measuring how well computers understand the messy, complex world of human language.</p>
 <p><strong>Why It Matters Now More Than Ever</strong></p>
-<p>In 2023 alone, we saw an AI chatbot fail to recognize suicide warning signs (leading to a death), lawyers submit fake AI-generated cases to courts, and Air Canada forced to honor a refund policy its bot invented. As Chip Huyen warns: “The more AI is used, the more opportunity there is for catastrophic failure.”</p>
-<p><strong>The paradox</strong> — The smarter our models get, the harder they become to evaluate. It’s easy to check a kid’s math homework, but verifying if an AI’s medical advice is accurate requires medical expertise. We need good evaluation to build better models, but we need expertise to do good evaluation.</p>
+<p>In 2023 alone, we saw an AI chatbot fail to recognize suicide warning signs (leading to a death), lawyers submit fake AI-generated cases to courts, and Air Canada forced to honor a refund policy its bot invented. As Chip Huyen warns: “The more AI is used, the more opportunity there is for catastrophic failure.” The smarter our models get, the harder they become to evaluate. It’s easy to check a kid’s math homework, but verifying if an AI’s medical advice is accurate requires medical expertise. We need good evaluation to build better models, but we need expertise to do good evaluation.</p>
 <p><strong>Two Types of Tasks, Two Different Challenges</strong></p>
 <ul>
 <li><p><strong>Closed-ended tasks</strong> have clear right answers (Is this email spam? What’s the sentiment?). We can use traditional metrics like accuracy and precision, but even these “simple” tasks suffer from shortcuts, dataset problems, and human labeling errors.</p></li>
@@ -245,7 +243,11 @@ ul.task-list li input[type="checkbox"] {
 <strong>Reproducible Benchmarks:</strong> Standard datasets enable fair comparison across models and over time.<br>
 <strong>Systematic Progress Tracking:</strong> Clear metrics allow the field to monitor advancement and identify when models have genuinely improved.</p>
 <p>While this constraint makes evaluation more straightforward than open-ended generation, closed-ended tasks still present significant challenges that can mislead researchers and practitioners. Understanding these problems is important because closed-ended evaluation is often the first test of model quality, affecting research focus and decisions about which models to deploy.</p>
-<p><strong>Common metrics</strong> such as accuracy, precision, recall, and F1 score are frequently used to evaluate these tasks.</p>
+<section id="evaluation-metrics-for-closed-ended-tasks" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="evaluation-metrics-for-closed-ended-tasks"><span class="header-section-number">2.1</span> Evaluation Metrics for Closed-Ended Tasks</h3>
+<p>Understanding how to measure performance is fundamental to closed-ended evaluation. Different metrics serve different purposes and can lead to very different conclusions about model quality</p>
+<p><strong>Task-Specific Metrics</strong></p>
+<p>These metrics evaluate performance on individual labeled tasks and require ground-truth answers:</p>
 <ul>
 <li><strong>Accuracy:</strong> Percentage of correct predictions (simple but can be misleading with imbalanced data).<br>
 </li>
@@ -255,9 +257,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li><strong>F1-Score:</strong> Harmonic mean of precision and recall (balances both concerns).</li>
 </ul>
-<p><strong>Benchmark</strong> is a standardized dataset with known correct answers that researchers use to test and compare AI models objectively. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
-<section id="types-of-closed-ended-tasks" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="types-of-closed-ended-tasks"><span class="header-section-number">2.1</span> Types of Closed-Ended Tasks</h3>
+<p><strong>Language Modeling Metric (Perplexity)</strong></p>
+<p>Perplexity measures how “surprised” a model is by text (lower = better at predicting next words).</p>
+<p>Perplexity = 2^(average negative log probability)</p>
+<p>In simpler terms: for each word in a text, the model predicts how likely that word is. Perplexity averages these predictions across all words. If the model consistently gives high probability to the correct words, perplexity is low. If the model is often surprised (gives low probability to correct words), perplexity is high.</p>
+<p>These metrics are typically applied to standardized datasets called benchmarks, which we’ll explore in the next section. Like standardized tests for AI, benchmarks enable fair comparison between models from different research groups and track progress over time.</p>
+</section>
+<section id="types-of-closed-ended-tasks" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="types-of-closed-ended-tasks"><span class="header-section-number">2.2</span> Types of Closed-Ended Tasks</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
@@ -322,8 +329,8 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p>These individual tasks can also be grouped into multi-task benchmarks that evaluate general language understanding across a range of closed-ended challenges. <strong>SuperGLUE</strong> is one of the most prominent such benchmarks.</p>
 </section>
-<section id="multi-task-benchmark-superglue" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.2</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
+<section id="multi-task-benchmark-superglue" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="multi-task-benchmark-superglue"><span class="header-section-number">2.3</span> Multi-Task Benchmark: <strong>SuperGLUE</strong></h3>
 <p>While the previous section outlined individual closed-ended tasks, real-world evaluation often demands a unified benchmark that spans multiple task types. <strong>SuperGLUE</strong> is a widely adopted <strong>closed-ended multi-task benchmark</strong> created to evaluate broad general language understanding. It builds on its predecessor (GLUE) with harder tasks, more robust metrics, and an emphasis on reasoning.</p>
 <p>SuperGLUE combines a diverse set of tasks—ranging from entailment and coreference resolution to causal reasoning and word sense disambiguation—designed to holistically assess a model’s linguistic and reasoning capabilities across multiple dimensions.</p>
 <p><strong>Tasks in SuperGLUE:</strong></p>
@@ -383,8 +390,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>The leaderboard emphasizes <strong>balanced generalization</strong>, rewarding models that perform consistently well across diverse task types—not just a few. This makes it a reliable benchmark for tracking progress toward broadly capable language models.</p>
 </section>
-<section id="domain-rich-multi-task-benchmark-mmlu" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="domain-rich-multi-task-benchmark-mmlu"><span class="header-section-number">2.3</span> Domain-Rich Multi-Task Benchmark: MMLU</h3>
+<section id="domain-rich-multi-task-benchmark-mmlu" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="domain-rich-multi-task-benchmark-mmlu"><span class="header-section-number">2.4</span> Domain-Rich Multi-Task Benchmark: MMLU</h3>
 <p>While SuperGLUE focuses on general linguistic reasoning, <strong>Massive Multitask Language Understanding (MMLU)</strong> shifts the spotlight to <strong>domain knowledge</strong>. It has rapidly become the <em>de facto</em> benchmark for evaluating a model’s grasp of academic and professional subjects—effectively acting as a proxy for general intelligence in many LLM leaderboards.</p>
 <p><strong>What is MMLU?</strong></p>
 <ul>
@@ -448,8 +455,8 @@ ul.task-list li input[type="checkbox"] {
 <p>While both are multi-task benchmarks, they evaluate very different capabilities—SuperGLUE emphasizes reasoning and understanding, whereas MMLU stresses factual recall across disciplines.</p>
 </blockquote>
 </section>
-<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.4</span> Challenges in Closed-Ended Evaluation</h3>
+<section id="challenges-in-closed-ended-evaluation" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="challenges-in-closed-ended-evaluation"><span class="header-section-number">2.5</span> Challenges in Closed-Ended Evaluation</h3>
 <ol type="1">
 <li><p><strong>Metric Selection:</strong> Different metrics highlight different aspects of model performance. For example: Accuracy can be misleading on imbalanced datasets—it may just reflect majority-class predictions. Precision measures correctness (fewer false positives), while Recall measures completeness (fewer false negatives). Using a single metric in isolation—especially on skewed tasks—can hide a model’s weaknesses.</p></li>
 <li><p><strong>Metric Aggregation:</strong> Benchmarks like SuperGLUE combine many tasks, each with its own metric (e.g., F1, accuracy, loss). Simply averaging scores can give an incomplete picture. Some tasks are easier than others, and their metrics scale differently. Without proper weighting or normalization, overall scores may not reflect true performance.</p></li>
