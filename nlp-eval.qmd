@@ -5,9 +5,7 @@ format: html
 
 ## Introduction:
 
-NLP evaluation measures how well language models actually work. It answers basic questions: Is this model good enough? Can we trust it with real users?
-
-But here's the challenge—testing language models isn't like testing regular software. When code breaks, it's obvious. When a language model fails, it might write something that sounds perfect but is completely wrong. A model might be 92% accurate overall but fail every time it sees sarcasm. This is what makes NLP evaluation so tricky: we're measuring how well computers understand the messy, complex world of human language.
+NLP evaluation measures how well language models actually work. It answers basic questions: Is this model good enough? Can we trust it with real users? But here's the challenge—testing language models isn't like testing regular software. When code breaks, it's obvious. When a language model fails, it might write something that sounds perfect but is completely wrong. A model might be 92% accurate overall but fail every time it sees sarcasm. This is what makes NLP evaluation so tricky: we're measuring how well computers understand the messy, complex world of human language.
 
 **Why It Matters Now More Than Ever**
 
@@ -40,20 +38,18 @@ While this constraint makes evaluation more straightforward than open-ended gene
 
 Understanding how to measure performance is fundamental to closed-ended evaluation. Different metrics serve different purposes and can lead to very different conclusions about model quality
 
-**Task-Specific Metrics**
-
-These metrics evaluate performance on individual labeled tasks and require ground-truth answers:
+**Task-Specific Metrics:** These metrics evaluate performance on individual labeled tasks and require ground-truth answers:
 
 - **Accuracy:** Percentage of correct predictions (simple but can be misleading with imbalanced data).    
 - **Precision:** Of all positive predictions, how many were correct? (important when false alarms are costly).    
 - **Recall:** Of all actual positive cases, how many were found? (important when missing cases is costly).    
 - **F1-Score:** Harmonic mean of precision and recall (balances both concerns).    
 
-**Language Modeling Metric (Perplexity)**
+**Language Modeling Metric (Perplexity):** Perplexity measures how "surprised" a model is by text (lower = better at predicting next words). 
 
-Perplexity measures how "surprised" a model is by text (lower = better at predicting next words). 
-
-Perplexity = 2^(average negative log probability)
+$$
+\text{Perplexity} = 2^{-\frac{1}{N} \sum_{i=1}^{N} \log_2 p(x_i)}
+$$
 
 In simpler terms: for each word in a text, the model predicts how likely that word is. Perplexity averages these predictions across all words. If the model consistently gives high probability to the correct words, perplexity is low. If the model is often surprised (gives low probability to correct words), perplexity is high.
 
