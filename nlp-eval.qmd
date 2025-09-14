@@ -202,7 +202,7 @@ BERTScore measures how semantically close a generated text is to a reference by 
 - **IDF Weighting**: Emphasizes rare and informative words.  
 - **Baseline Rescaling**: Normalizes scores for consistency.
 
-![**Figure:** BERTScore computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. *(Source: Zhang et al. (2020))*](images/bert-score.png)
+![**Figure:** BERTScore computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. *(Source: Zhang et al. (2020))*](images/bert-score.png){fig-align="center" width="800"}
 
 
 **Example**  
@@ -222,7 +222,7 @@ BLEURT offers a learning-based alternative to similarity-based metrics like BERT
 
 Given a candidate and reference sentence, BLEURT returns a scalar score, typically between -1 and 1, reflecting how closely the candidate aligns with human expectations in meaning, fluency, and grammatical correctness.
 
-![**Figure:** BLEURT learns to predict human ratings by pre-training on synthetic sentence pairs and fine-tuning on labeled examples, optionally adapting to task-specific human feedback. *(Source: Sellam et al. (2020))*](images/bleurt.png){fig-align="center" width="800"}
+![**Figure:** BLEURT learns to predict human ratings by pre-training on synthetic sentence pairs and fine-tuning on labeled examples, optionally adapting to task-specific human feedback. *(Source: Sellam et al. (2020))*](images/bleurt.png)
 
 **Example**         
 - Reference: “The weather is cold today”           
