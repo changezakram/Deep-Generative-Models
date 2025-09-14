@@ -1,5 +1,5 @@
 ---
-title: "NLP Model Evaluation"
+title: "Language Model Evaluation"
 format: html
 ---
 
@@ -202,7 +202,7 @@ BERTScore measures how semantically close a generated text is to a reference by 
 - **IDF Weighting**: Emphasizes rare and informative words.  
 - **Baseline Rescaling**: Normalizes scores for consistency.
 
-![**Figure:** BERTScore pipeline and formulas. The metric computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. *(Source: Zhang et al. (2020))*](images/bert-score.png){fig-align="center" width="800"}
+![**Figure:** BERTScore computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. *(Source: Zhang et al. (2020))*](images/bert-score.png){fig-align="center" width="800"}
 
 
 **Example**  
@@ -337,8 +337,10 @@ Used to compare models directly, especially for chatbots or instruction-followin
 
 
 
+
 ## References & Further Reading
 
+[1] Chang, T., et al. (2020). *BERTSCORE: Evaluating Text Generation With BERT*. https://arxiv.org/pdf/1904.09675
 
 
 [16] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
