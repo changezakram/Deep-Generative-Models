@@ -525,6 +525,12 @@ Generated → BLEU score:</p>
 </li>
 <li><strong>Baseline Rescaling</strong>: Normalizes scores for consistency.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bert-score.png" class="img-fluid figure-img" width="800"></p>
+<figcaption><strong>Figure:</strong> BERTScore pipeline and formulas. The metric computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. <em>(Source: Zhang et al.&nbsp;(2020))</em></figcaption>
+</figure>
+</div>
 <p><strong>Example</strong><br>
 - <em>Reference</em>: “The weather is cold today”<br>
 - <em>Candidate</em>: “It is freezing today”</p>
