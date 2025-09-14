@@ -202,7 +202,7 @@ BERTScore measures how semantically close a generated text is to a reference by 
 - **IDF Weighting**: Emphasizes rare and informative words.  
 - **Baseline Rescaling**: Normalizes scores for consistency.
 
-![**Figure:** BERTScore computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. *(Source: Zhang et al. (2020))*](images/bert-score.png){fig-align="center" width="800"}
+![**Figure:** BERTScore computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. *(Source: Zhang et al. (2020))*](images/bert-score.png)
 
 
 **Example**  
