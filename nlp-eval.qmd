@@ -181,116 +181,54 @@ These metrics penalize valid rephrasings and may reward word overlap even when m
 
 ### Model-Based Metrics
 
-As NLP models generate increasingly fluent and diverse outputs, traditional word-overlap metrics like BLEU and ROUGE struggle to capture true semantic quality. To address this, researchers have developed **model-based metrics** that leverage the power of pre-trained language models to assess meaning, fluency, and naturalness. Two widely adopted examples are **BERTScore** and **BLEURT**.
+As NLP systems generate increasingly fluent and diverse outputs, traditional word-overlap metrics like BLEU and ROUGE often fail to capture deeper aspects of quality such as semantic fidelity, naturalness, and paraphrasing. To overcome these limitations, researchers have developed model-based evaluation metrics that harness the semantic understanding of pretrained language models.
+
+Two widely adopted examples are **BERTScore**, which uses contextual embeddings for token-level semantic similarity, and **BLEURT**, which is trained to predict human quality judgments directly.
+
 
 #### BERTScore: Semantic Matching with Contextual Embeddings 
 
-BERTScore compares generated and reference texts using contextual token embeddings from BERT. Instead of matching exact words, it evaluates how semantically similar they are. 
+BERTScore measures how semantically close a generated text is to a reference by comparing their contextualized token embeddings from BERT. It operates in three main steps:
 
 **Step-by-Step: How BERTScore Works**
 
-1. **Token Embedding:** Both candidate and reference sentences are passed through BERT to get contextualized embeddings for each token.
-2. **Similarity Matrix:** A cosine similarity matrix is computed between every token in the candidate and reference.
-3. **Greedy Token Matching**  
-   - **Precision**: Each candidate token is matched to its most similar reference token.  
-   - **Recall**: Each reference token is matched to its most similar candidate token.  
-   - **F1 Score**: Harmonic mean of precision and recall gives the final BERTScore.   
-4. **Optional Enhancements**  
-   - **IDF Weighting** to highlight rare, informative words  
-   - **Baseline Rescaling** to improve comparability across datasets
+1. **Token Embedding**: Each token is mapped to a contextual vector using a pre-trained BERT model.  
+2. **Similarity Matrix**: Cosine similarity is computed between each candidate and reference token.  
+3. **Greedy Matching**:
+   - **Precision**: Max similarity for each candidate token to reference.  
+   - **Recall**: Max similarity for each reference token to candidate.  
+   - **F1 Score**: Harmonic mean of the two.
 
-**Example**:     
-- *Reference*: "The weather is cold today"  
-- *Candidate*: "It is freezing today"  
+**Optional Enhancements**
+- **IDF Weighting**: Emphasizes rare and informative words.  
+- **Baseline Rescaling**: Normalizes scores for consistency.
 
-BLEU would score this low due to minimal overlap. BERTScore identifies that “cold” and “freezing” are semantically similar, and “it” can contextually align with “weather,” resulting in a high score.
+**Example**  
+- *Reference*: “The weather is cold today”  
+- *Candidate*: “It is freezing today”  
 
-**Comparison with Traditional Metrics**
-
-| Aspect                  | **BERTScore**                                      | **BLEU / ROUGE**                        |
-|-------------------------|----------------------------------------------------|-----------------------------------------|
-| **Basis**               | Contextual semantic similarity                     | N-gram word overlap                     |
-| **Paraphrase Handling** | Robust: understands rewordings                     | Weak: penalizes even accurate paraphrases |
-| **Sensitivity**         | Sensitive to semantic errors                       | Overly sensitive to word order/style |
-| **Human Alignment**     | Strong correlation with human ratings              | Weaker alignment                     |
-
-
-**Real-World Use Cases**    
-
-- **Machine Translation**: Meaningful quality evaluation across phrasing differences
-- **Text Summarization**: Measures fidelity to the source even if words differ
-- **Dialogue Systems**: Checks relevance of model responses
-- **Paraphrase Generation**: Verifies semantic alignment
-
-**Key Advantages** 
-     
-- **Semantic Awareness**: Captures meaning beyond exact matches
-- **Context Sensitivity**: Embeddings reflect true contextual meaning
-- **Better Human Alignment**: Matches human quality judgments more closely
-- **Robust to Variation**: Tolerates stylistic and structural differences
-
-**Limitations**   
-     
-- **Computational Overhead**: Requires expensive BERT inference
-- **Reference-Dependent**: Needs gold-standard responses
-- **Bias Inheritance**: Carries biases from pre-trained models
-- **Domain Sensitivity**: May underperform in out-of-domain settings
+BLEU would assign a low score due to low word overlap. BERTScore correctly identifies that “cold” and “freezing” are semantically similar and aligns “it” with “weather,” producing a high score.
 
 
 #### BLEURT: Learned Quality Estimation
 
-BLEURT (Bilingual Evaluation Understudy with Representations from Transformers) is a learned metric trained to mimic human judgments of text quality.
+BLEURT takes a different approach: instead of computing semantic similarity heuristically, it learns to predict human ratings using fine-tuned BERT models.
 
-**How It Works**:
+1. **Pre-training**: Initialized with BERT and trained on synthetically modified sentence pairs.  
+2. **Fine-tuning**: Trained on human-labeled examples to mimic human preferences.  
+3. **Scoring**: Outputs a scalar score (typically between -1 and 1) indicating semantic similarity and naturalness compared to a reference.
 
-1. **Pre-training:** BLEURT starts with a pre-trained BERT model and further trains it using synthetic sentence pairs—created by automatically altering clean reference sentences (e.g., adding noise, paraphrasing, or inserting errors).
-2. **Fine-Tuning:** The model is then fine-tuned on a smaller dataset with **human-annotated quality scores**, teaching it to mimic human evaluations. This dual-stage training makes BLEURT robust and accurate.
-3. **Scoring:** To evaluate a model-generated sentence, BLEURT compares it to a reference and outputs a **single scalar score**—typically between -1 and 1—indicating semantic similarity and overall quality.
-
-
-**Why BLEURT Outperforms Traditional Metrics**
-
-| Feature                  | **BLEURT**                                         | **BLEU / ROUGE**                        |
-|--------------------------|---------------------------------------------------|-----------------------------------------|
-| **Learning-Based**       | Trained to predict human ratings               | Rule-based n-gram matching            |
-| **Paraphrasing Support** | Recognizes semantically similar variations     | Penalizes even minor wording changes  |
-| **Fluency Awareness**    | Understands natural phrasing and grammar       | Ignores fluency                       |
-| **Human Alignment**      | Strong correlation with human scores           | Weaker and inconsistent               |
-| **Generalization**       | Works well even out-of-domain or with limited data | Domain-sensitive                      |
-
-
-**Real-World Applications**
-
-BLEURT is commonly used to evaluate generation tasks where **semantic fidelity** and **natural language quality** are crucial:    
-- **Machine Translation**: Measures fluency and meaning even when translations use different phrasing.
-- **Text Summarization**: Evaluates whether summaries retain key points while sounding natural.
-- **Caption Generation**: Scores image captions by how well they match reference captions in meaning and readability.
-- **Response Generation**: Used in dialogue and chatbot systems to assess how human-like the responses sound.
-
-
-**Advantages of BLEURT**  
-  
-- **Trained on Human Ratings**: Directly optimized to match real human preferences.
-- **Sensitive to Meaning and Fluency**: Goes beyond surface-level matching to assess semantic equivalence and naturalness.
-- **Robust Across Domains**: Performs well even when applied to tasks or topics outside its training data.
-- **Single Unified Score**: Simplifies evaluation with a clear, continuous score that reflects quality.
-
-
-**Limitations**    
-
-- **Computational Cost**: Requires GPU inference for fast scoring, especially at scale.
-- **Reference-Based**: Like most metrics, BLEURT still needs a reference sentence for comparison.
-- **Opacity**: Being a neural model, it's harder to interpret than transparent metrics like BLEU.
+BLEURT captures nuances such as grammar, fluency, and subtle paraphrasing that traditional metrics often miss.
 
 
 #### Summary: When to Use Which?
 
-| Metric     | Strengths                                 | Limitations                               |
-|------------|--------------------------------------------|--------------------------------------------|
-| **BERTScore** | Fast, interpretable, uses contextual embeddings | Requires alignment heuristics (greedy match), less fluent-aware |
-| **BLEURT**    | Trained to match human ratings, fluency-aware  | Heavier compute, less transparent          |
+| Metric     | Strengths                                         | Limitations                                   |
+|------------|---------------------------------------------------|-----------------------------------------------|
+| **BERTScore** | Fast, interpretable; captures token-level semantics | Relies on heuristic alignment; less fluency-aware |
+| **BLEURT**    | Trained on human ratings; captures fluency and variation | More computationally intensive; less transparent |
 
-Both metrics mark a shift toward evaluation methods that better reflect **semantic correctness**, **paraphrasing**, and **natural language generation goals**.
+Both metrics represent a shift toward evaluation methods that better reflect **semantic correctness**, **paraphrasing**, and **generation quality**. BERTScore excels in **semantic alignment**, while BLEURT better captures **fluency** and **natural language variation**.
 
 
 ### Human Evaluations
