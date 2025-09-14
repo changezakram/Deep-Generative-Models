@@ -160,23 +160,58 @@ The following sections outline key evaluation methods and challenges.
 
 These methods compute similarity based on surface-level word overlap between the generated text and a human-written reference. They are fast, interpretable, and have long been used in machine translation, summarization, and captioning. However, they often fail to recognize valid paraphrases or semantic equivalence.
 
-**Common metrics:**      
-- **BLEU** emphasizes precision; 
-- **ROUGE** emphasizes recall.
+**Popular metrics:**   
+   
+#### BLEU (Bilingual Evaluation Understudy)
 
-> **Limitation:** N-gram metrics have no concept of meaning—they fail when different words express the same idea.
+- **Focus:** Precision-oriented n-gram overlap
+- **Calculation:** Geometric mean of 1-gram through 4-gram precision, with brevity penalty
+- **Use Case:** Machine Translation — how much of the generated text appears in the reference
+- **Formula:**
+$$
+\text{BLEU} = \text{BP} \cdot \exp\left( \sum_{n=1}^{N} \frac{1}{N} \cdot \log(p_n) \right)
+$$
+where $p_n$ is n-gram precision and BP is brevity penalty.
 
-**Example:**
 
-Reference: "Heck yes!"  
-Generated → BLEU score:
+#### ROUGE (Recall-Oriented Understudy for Gisting Evaluation)
 
-	- "Yes!" → 67%
-	- "You know it!" → low
-	- "Yup" → 0% (but semantically correct!)
-	- "Heck no!" → 67% (opposite meaning!)
+- **Focus:** Recall-oriented n-gram overlap
+- **Variants:** ROUGE-1: Unigrams, ROUGE-2: Bigrams, ROUGE-L: Longest common subsequence
+- **Use Case:** Summarization — how much of the reference is captured in the generated text
 
-These metrics penalize valid rephrasings and may reward word overlap even when meaning is incorrect.
+>**Limitation:** N-gram metrics have no concept of meaning. They fail when different words express the same idea.
+
+**Example 1:**
+
+**Reference**: `"Heck yes!"`
+
+| Generated Output              | BLEU Score | Semantic Meaning            |
+|-------------------------------|------------|-----------------------------|
+| `"Yes!"`                      | 67%        | Correct                     |
+| `"You know it!"`              | Low        | Correct                     |
+| `"Yup"`                       | 0%         | Correct                     |
+| `"Heck no!"`                  | 67%        | **Wrong** (opposite meaning)|
+
+> These metrics reward lexical matches even when the meaning is incorrect.
+
+
+**Example 2:**
+
+**Reference**: `"The innovative startup secured substantial funding"`
+
+- **Generated A**:  
+  `"The creative company obtained significant investment"`  
+  → 0% BLEU overlap, **perfect semantic match**
+
+- **Generated B**:  
+  `"The innovative startup funding substantial secured"`  
+  → 83% BLEU overlap, **grammatically broken and semantically wrong**
+
+> BLEU would incorrectly score **Generated B** higher than A due to word overlap.
+
+
+
 
 
 ### Model-Based Metrics

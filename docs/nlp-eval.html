@@ -68,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -481,19 +510,83 @@ ul.task-list li input[type="checkbox"] {
 <section id="content-overlap-metrics" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="content-overlap-metrics"><span class="header-section-number">3.1</span> Content Overlap Metrics</h3>
 <p>These methods compute similarity based on surface-level word overlap between the generated text and a human-written reference. They are fast, interpretable, and have long been used in machine translation, summarization, and captioning. However, they often fail to recognize valid paraphrases or semantic equivalence.</p>
-<p><strong>Common metrics:</strong><br>
-- <strong>BLEU</strong> emphasizes precision; - <strong>ROUGE</strong> emphasizes recall.</p>
+<p><strong>Popular metrics:</strong></p>
+<section id="bleu-bilingual-evaluation-understudy" class="level4" data-number="3.1.1">
+<h4 data-number="3.1.1" class="anchored" data-anchor-id="bleu-bilingual-evaluation-understudy"><span class="header-section-number">3.1.1</span> BLEU (Bilingual Evaluation Understudy)</h4>
+<ul>
+<li><strong>Focus:</strong> Precision-oriented n-gram overlap</li>
+<li><strong>Calculation:</strong> Geometric mean of 1-gram through 4-gram precision, with brevity penalty</li>
+<li><strong>Use Case:</strong> Machine Translation — how much of the generated text appears in the reference</li>
+<li><strong>Formula:</strong> <span class="math display">\[
+\text{BLEU} = \text{BP} \cdot \exp\left( \sum_{n=1}^{N} \frac{1}{N} \cdot \log(p_n) \right)
+\]</span> where <span class="math inline">\(p_n\)</span> is n-gram precision and BP is brevity penalty.</li>
+</ul>
+</section>
+<section id="rouge-recall-oriented-understudy-for-gisting-evaluation" class="level4" data-number="3.1.2">
+<h4 data-number="3.1.2" class="anchored" data-anchor-id="rouge-recall-oriented-understudy-for-gisting-evaluation"><span class="header-section-number">3.1.2</span> ROUGE (Recall-Oriented Understudy for Gisting Evaluation)</h4>
+<ul>
+<li><strong>Focus:</strong> Recall-oriented n-gram overlap</li>
+<li><strong>Variants:</strong> ROUGE-1: Unigrams, ROUGE-2: Bigrams, ROUGE-L: Longest common subsequence</li>
+<li><strong>Use Case:</strong> Summarization — how much of the reference is captured in the generated text</li>
+</ul>
 <blockquote class="blockquote">
-<p><strong>Limitation:</strong> N-gram metrics have no concept of meaning—they fail when different words express the same idea.</p>
+<p><strong>Limitation:</strong> N-gram metrics have no concept of meaning. They fail when different words express the same idea.</p>
 </blockquote>
-<p><strong>Example:</strong></p>
-<p>Reference: “Heck yes!”<br>
-Generated → BLEU score:</p>
-<pre><code>- "Yes!" → 67%
-- "You know it!" → low
-- "Yup" → 0% (but semantically correct!)
-- "Heck no!" → 67% (opposite meaning!)</code></pre>
-<p>These metrics penalize valid rephrasings and may reward word overlap even when meaning is incorrect.</p>
+<p><strong>Example 1:</strong></p>
+<p><strong>Reference</strong>: <code>"Heck yes!"</code></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 16%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Generated Output</th>
+<th>BLEU Score</th>
+<th>Semantic Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>"Yes!"</code></td>
+<td>67%</td>
+<td>Correct</td>
+</tr>
+<tr class="even">
+<td><code>"You know it!"</code></td>
+<td>Low</td>
+<td>Correct</td>
+</tr>
+<tr class="odd">
+<td><code>"Yup"</code></td>
+<td>0%</td>
+<td>Correct</td>
+</tr>
+<tr class="even">
+<td><code>"Heck no!"</code></td>
+<td>67%</td>
+<td><strong>Wrong</strong> (opposite meaning)</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>These metrics reward lexical matches even when the meaning is incorrect.</p>
+</blockquote>
+<p><strong>Example 2:</strong></p>
+<p><strong>Reference</strong>: <code>"The innovative startup secured substantial funding"</code></p>
+<ul>
+<li><p><strong>Generated A</strong>:<br>
+<code>"The creative company obtained significant investment"</code><br>
+→ 0% BLEU overlap, <strong>perfect semantic match</strong></p></li>
+<li><p><strong>Generated B</strong>:<br>
+<code>"The innovative startup funding substantial secured"</code><br>
+→ 83% BLEU overlap, <strong>grammatically broken and semantically wrong</strong></p></li>
+</ul>
+<blockquote class="blockquote">
+<p>BLEU would incorrectly score <strong>Generated B</strong> higher than A due to word overlap.</p>
+</blockquote>
+</section>
 </section>
 <section id="model-based-metrics" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="model-based-metrics"><span class="header-section-number">3.2</span> Model-Based Metrics</h3>
