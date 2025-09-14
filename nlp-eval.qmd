@@ -183,7 +183,6 @@ These metrics penalize valid rephrasings and may reward word overlap even when m
 
 As NLP models generate increasingly fluent and diverse outputs, traditional word-overlap metrics like BLEU and ROUGE struggle to capture true semantic quality. To address this, researchers have developed **model-based metrics** that leverage the power of pre-trained language models to assess meaning, fluency, and naturalness. Two widely adopted examples are **BERTScore** and **BLEURT**.
 
-
 #### BERTScore: Semantic Matching with Contextual Embeddings 
 
 BERTScore compares generated and reference texts using contextual token embeddings from BERT. Instead of matching exact words, it evaluates how semantically similar they are. 
@@ -216,29 +215,23 @@ BLEU would score this low due to minimal overlap. BERTScore identifies that “c
 | **Human Alignment**     | Strong correlation with human ratings              | Weaker alignment                     |
 
 
-** Real-World Use Cases**
-
+**Real-World Use Cases**    
 - **Machine Translation**: Meaningful quality evaluation across phrasing differences
 - **Text Summarization**: Measures fidelity to the source even if words differ
 - **Dialogue Systems**: Checks relevance of model responses
 - **Paraphrase Generation**: Verifies semantic alignment
 
-**Key Advantages**
-
+**Key Advantages**      
 - **Semantic Awareness**: Captures meaning beyond exact matches
 - **Context Sensitivity**: Embeddings reflect true contextual meaning
 - **Better Human Alignment**: Matches human quality judgments more closely
 - **Robust to Variation**: Tolerates stylistic and structural differences
 
-**Limitations**
-
+**Limitations**        
 - **Computational Overhead**: Requires expensive BERT inference
 - **Reference-Dependent**: Needs gold-standard responses
 - **Bias Inheritance**: Carries biases from pre-trained models
 - **Domain Sensitivity**: May underperform in out-of-domain settings
-
-
-
 
 
 #### BLEURT: Learned Quality Estimation
@@ -262,26 +255,24 @@ BLEURT (Bilingual Evaluation Understudy with Representations from Transformers) 
 | **Human Alignment**      | Strong correlation with human scores           | Weaker and inconsistent               |
 | **Generalization**       | Works well even out-of-domain or with limited data | Domain-sensitive                      |
 
+
 **Real-World Applications**
 
-BLEURT is commonly used to evaluate generation tasks where **semantic fidelity** and **natural language quality** are crucial:
-
+BLEURT is commonly used to evaluate generation tasks where **semantic fidelity** and **natural language quality** are crucial:    
 - **Machine Translation**: Measures fluency and meaning even when translations use different phrasing.
 - **Text Summarization**: Evaluates whether summaries retain key points while sounding natural.
 - **Caption Generation**: Scores image captions by how well they match reference captions in meaning and readability.
 - **Response Generation**: Used in dialogue and chatbot systems to assess how human-like the responses sound.
 
 
-**Advantages of BLEURT**
-
+**Advantages of BLEURT**    
 - **Trained on Human Ratings**: Directly optimized to match real human preferences.
 - **Sensitive to Meaning and Fluency**: Goes beyond surface-level matching to assess semantic equivalence and naturalness.
 - **Robust Across Domains**: Performs well even when applied to tasks or topics outside its training data.
 - **Single Unified Score**: Simplifies evaluation with a clear, continuous score that reflects quality.
 
 
-**Limitations**
-
+**Limitations**    
 - **Computational Cost**: Requires GPU inference for fast scoring, especially at scale.
 - **Reference-Based**: Like most metrics, BLEURT still needs a reference sentence for comparison.
 - **Opacity**: Being a neural model, it's harder to interpret than transparent metrics like BLEU.
