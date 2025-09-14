@@ -222,6 +222,8 @@ BLEURT offers a learning-based alternative to similarity-based metrics like BERT
 
 Given a candidate and reference sentence, BLEURT returns a scalar score, typically between -1 and 1, reflecting how closely the candidate aligns with human expectations in meaning, fluency, and grammatical correctness.
 
+![**Figure:** BLEURT learns to predict human ratings by pre-training on synthetic sentence pairs and fine-tuning on labeled examples, optionally adapting to task-specific human feedback. *(Source: Sellam et al. (2020))*](images/bleurt.png){fig-align="center" width="800"}
+
 **Example**         
 - Reference: “The weather is cold today”           
 - Candidate: “It is freezing today”
@@ -347,6 +349,8 @@ Used to compare models directly, especially for chatbots or instruction-followin
 ## References & Further Reading
 
 [1] Chang, T., et al. (2020). *BERTSCORE: Evaluating Text Generation With BERT*. https://arxiv.org/pdf/1904.09675
+
+[2] Sellam, T., et al. (2020). *BLEURT: Learning Robust Metrics for Text Generation*. https://arxiv.org/pdf/2004.04696
 
 
 [16] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  

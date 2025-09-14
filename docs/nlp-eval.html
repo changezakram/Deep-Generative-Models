@@ -545,6 +545,12 @@ Generated → BLEU score:</p>
 <li><strong>(Optional) Application-Specific Fine-tuning:</strong> For custom use cases (e.g., legal, medical, or customer support), BLEURT can be further fine-tuned using domain-specific human feedback, improving alignment with task-specific quality standards.</li>
 </ol>
 <p>Given a candidate and reference sentence, BLEURT returns a scalar score, typically between -1 and 1, reflecting how closely the candidate aligns with human expectations in meaning, fluency, and grammatical correctness.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bleurt.png" class="img-fluid figure-img" width="800"></p>
+<figcaption><strong>Figure:</strong> BLEURT learns to predict human ratings by pre-training on synthetic sentence pairs and fine-tuning on labeled examples, optionally adapting to task-specific human feedback. <em>(Source: Sellam et al.&nbsp;(2020))</em></figcaption>
+</figure>
+</div>
 <p><strong>Example</strong><br>
 - Reference: “The weather is cold today”<br>
 - Candidate: “It is freezing today”</p>
@@ -694,6 +700,7 @@ Generated → BLEU score:</p>
 <section id="references-further-reading" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">4</span> References &amp; Further Reading</h2>
 <p>[1] Chang, T., et al.&nbsp;(2020). <em>BERTSCORE: Evaluating Text Generation With BERT</em>. https://arxiv.org/pdf/1904.09675</p>
+<p>[2] Sellam, T., et al.&nbsp;(2020). <em>BLEURT: Learning Robust Metrics for Text Generation</em>. https://arxiv.org/pdf/2004.04696</p>
 <p>[16] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media.</p>
 <p>[17] Alammar, J., &amp; Grootendorst, M. (2023). <em>Hands-On Large Language Models: Language Understanding and Generation</em>. O’Reilly Media.</p>
 
