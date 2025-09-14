@@ -178,6 +178,15 @@ where $p_n$ is n-gram precision and BP is brevity penalty.
 
 - **Focus:** Recall-oriented n-gram overlap
 - **Variants:** ROUGE-1: Unigrams, ROUGE-2: Bigrams, ROUGE-L: Longest common subsequence
+- **Formula (ROUGE-L F1 score)**:  
+  $$
+  \text{ROUGE-L} = \frac{(1 + \beta^2) \cdot \text{Precision} \cdot \text{Recall}}{\text{Recall} + \beta^2 \cdot \text{Precision}}
+  $$
+  where:    
+  - Precision = $\frac{LCS}{\text{candidate length}}$
+  - Recall = $\frac{LCS}{\text{reference length}}$
+  - LCS = Longest Common Subsequence
+  - $\beta$ balances recall and precision (often $\beta = 1$)
 - **Use Case:** Summarization — how much of the reference is captured in the generated text
 
 >**Limitation:** N-gram metrics have no concept of meaning. They fail when different words express the same idea.

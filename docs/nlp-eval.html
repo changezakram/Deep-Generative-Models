@@ -527,6 +527,16 @@ window.Quarto = {
 <ul>
 <li><strong>Focus:</strong> Recall-oriented n-gram overlap</li>
 <li><strong>Variants:</strong> ROUGE-1: Unigrams, ROUGE-2: Bigrams, ROUGE-L: Longest common subsequence</li>
+<li><strong>Formula (ROUGE-L F1 score)</strong>:<br>
+<span class="math display">\[
+\text{ROUGE-L} = \frac{(1 + \beta^2) \cdot \text{Precision} \cdot \text{Recall}}{\text{Recall} + \beta^2 \cdot \text{Precision}}
+\]</span> where:
+<ul>
+<li>Precision = <span class="math inline">\(\frac{LCS}{\text{candidate length}}\)</span></li>
+<li>Recall = <span class="math inline">\(\frac{LCS}{\text{reference length}}\)</span></li>
+<li>LCS = Longest Common Subsequence</li>
+<li><span class="math inline">\(\beta\)</span> balances recall and precision (often <span class="math inline">\(\beta = 1\)</span>)</li>
+</ul></li>
 <li><strong>Use Case:</strong> Summarization — how much of the reference is captured in the generated text</li>
 </ul>
 <blockquote class="blockquote">
