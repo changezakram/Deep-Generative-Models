@@ -532,21 +532,22 @@ Generated → BLEU score:</p>
 </figure>
 </div>
 <p><strong>Example</strong><br>
-- <em>Reference</em>: “The weather is cold today”<br>
-- <em>Candidate</em>: “It is freezing today”</p>
+- Reference: “The weather is cold today”<br>
+- Candidate: “It is freezing today”</p>
 <p>BLEU would assign a low score due to low word overlap. BERTScore correctly identifies that “cold” and “freezing” are semantically similar and aligns “it” with “weather,” producing a high score.</p>
 </section>
 <section id="bleurt-learned-quality-estimation" class="level4" data-number="3.2.2">
 <h4 data-number="3.2.2" class="anchored" data-anchor-id="bleurt-learned-quality-estimation"><span class="header-section-number">3.2.2</span> BLEURT: Learned Quality Estimation</h4>
-<p>BLEURT takes a different approach: instead of computing semantic similarity heuristically, it learns to predict human ratings using fine-tuned BERT models.</p>
+<p>BLEURT offers a learning-based alternative to similarity-based metrics like BERTScore. Instead of relying on heuristic rules, BLEURT is trained to predict human quality judgments directly using fine-tuned BERT models.</p>
 <ol type="1">
-<li><strong>Pre-training</strong>: Initialized with BERT and trained on synthetically modified sentence pairs.<br>
-</li>
-<li><strong>Fine-tuning</strong>: Trained on human-labeled examples to mimic human preferences.<br>
-</li>
-<li><strong>Scoring</strong>: Outputs a scalar score (typically between -1 and 1) indicating semantic similarity and naturalness compared to a reference.</li>
+<li><strong>Pre-training:</strong> Initialized with BERT and trained on synthetically modified sentence pairs. For example, original sentences and their noisy or paraphrased versions. This helps the model learn how edits, errors, or rewordings affect meaning.</li>
+<li><strong>Fine-tuning:</strong> BLEURT is fine-tuned using real sentence pairs labeled by humans in shared tasks. This allows it to learn what humans consider high- or low-quality responses.</li>
+<li><strong>(Optional) Fine-tuning on Application-Specific Ratings:</strong> For custom use cases (e.g., legal, medical, or customer support), BLEURT can be further fine-tuned using domain-specific human feedback, improving alignment with task-specific quality standards.</li>
 </ol>
-<p>BLEURT captures nuances such as grammar, fluency, and subtle paraphrasing that traditional metrics often miss.</p>
+<p>Given a candidate and reference sentence, BLEURT returns a scalar score, typically between -1 and 1, reflecting how closely the candidate aligns with human expectations in meaning, fluency, and grammatical correctness.</p>
+<p><strong>Example</strong><br>
+- Reference: “The weather is cold today” - Candidate: “It is freezing today”</p>
+<p>Despite limited word overlap, BLEURT assigns a high score, recognizing semantic equivalence and fluent expression — something traditional metrics might miss.</p>
 </section>
 <section id="summary-when-to-use-which" class="level4" data-number="3.2.3">
 <h4 data-number="3.2.3" class="anchored" data-anchor-id="summary-when-to-use-which"><span class="header-section-number">3.2.3</span> Summary: When to Use Which?</h4>
