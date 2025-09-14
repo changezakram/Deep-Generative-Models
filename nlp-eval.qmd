@@ -218,12 +218,12 @@ BLEURT offers a learning-based alternative to similarity-based metrics like BERT
 
 1. **Pre-training:** Initialized with BERT and trained on synthetically modified sentence pairs. For example, original sentences and their noisy or paraphrased versions. This helps the model learn how edits, errors, or rewordings affect meaning. 
 2. **Fine-tuning:** BLEURT is fine-tuned using real sentence pairs labeled by humans in shared tasks. This allows it to learn what humans consider high- or low-quality responses. 
-3. **(Optional) Fine-tuning on Application-Specific Ratings:** For custom use cases (e.g., legal, medical, or customer support), BLEURT can be further fine-tuned using domain-specific human feedback, improving alignment with task-specific quality standards.
+3. **(Optional) Application-Specific Fine-tuning:** For custom use cases (e.g., legal, medical, or customer support), BLEURT can be further fine-tuned using domain-specific human feedback, improving alignment with task-specific quality standards.
 
 Given a candidate and reference sentence, BLEURT returns a scalar score, typically between -1 and 1, reflecting how closely the candidate aligns with human expectations in meaning, fluency, and grammatical correctness.
 
 **Example**         
-- Reference: “The weather is cold today”
+- Reference: “The weather is cold today”           
 - Candidate: “It is freezing today”
 
 Despite limited word overlap, BLEURT assigns a high score, recognizing semantic equivalence and fluent expression — something traditional metrics might miss.
