@@ -565,12 +565,27 @@ Generated → BLEU score:</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Real-World Use Cases</strong><br>
-- <strong>Machine Translation</strong>: Meaningful quality evaluation across phrasing differences - <strong>Text Summarization</strong>: Measures fidelity to the source even if words differ - <strong>Dialogue Systems</strong>: Checks relevance of model responses - <strong>Paraphrase Generation</strong>: Verifies semantic alignment</p>
-<p><strong>Key Advantages</strong><br>
-- <strong>Semantic Awareness</strong>: Captures meaning beyond exact matches - <strong>Context Sensitivity</strong>: Embeddings reflect true contextual meaning - <strong>Better Human Alignment</strong>: Matches human quality judgments more closely - <strong>Robust to Variation</strong>: Tolerates stylistic and structural differences</p>
-<p><strong>Limitations</strong><br>
-- <strong>Computational Overhead</strong>: Requires expensive BERT inference - <strong>Reference-Dependent</strong>: Needs gold-standard responses - <strong>Bias Inheritance</strong>: Carries biases from pre-trained models - <strong>Domain Sensitivity</strong>: May underperform in out-of-domain settings</p>
+<p><strong>Real-World Use Cases</strong></p>
+<ul>
+<li><strong>Machine Translation</strong>: Meaningful quality evaluation across phrasing differences</li>
+<li><strong>Text Summarization</strong>: Measures fidelity to the source even if words differ</li>
+<li><strong>Dialogue Systems</strong>: Checks relevance of model responses</li>
+<li><strong>Paraphrase Generation</strong>: Verifies semantic alignment</li>
+</ul>
+<p><strong>Key Advantages</strong></p>
+<ul>
+<li><strong>Semantic Awareness</strong>: Captures meaning beyond exact matches</li>
+<li><strong>Context Sensitivity</strong>: Embeddings reflect true contextual meaning</li>
+<li><strong>Better Human Alignment</strong>: Matches human quality judgments more closely</li>
+<li><strong>Robust to Variation</strong>: Tolerates stylistic and structural differences</li>
+</ul>
+<p><strong>Limitations</strong></p>
+<ul>
+<li><strong>Computational Overhead</strong>: Requires expensive BERT inference</li>
+<li><strong>Reference-Dependent</strong>: Needs gold-standard responses</li>
+<li><strong>Bias Inheritance</strong>: Carries biases from pre-trained models</li>
+<li><strong>Domain Sensitivity</strong>: May underperform in out-of-domain settings</li>
+</ul>
 </section>
 <section id="bleurt-learned-quality-estimation" class="level4" data-number="3.2.2">
 <h4 data-number="3.2.2" class="anchored" data-anchor-id="bleurt-learned-quality-estimation"><span class="header-section-number">3.2.2</span> BLEURT: Learned Quality Estimation</h4>
@@ -626,10 +641,19 @@ Generated → BLEU score:</p>
 <p><strong>Real-World Applications</strong></p>
 <p>BLEURT is commonly used to evaluate generation tasks where <strong>semantic fidelity</strong> and <strong>natural language quality</strong> are crucial:<br>
 - <strong>Machine Translation</strong>: Measures fluency and meaning even when translations use different phrasing. - <strong>Text Summarization</strong>: Evaluates whether summaries retain key points while sounding natural. - <strong>Caption Generation</strong>: Scores image captions by how well they match reference captions in meaning and readability. - <strong>Response Generation</strong>: Used in dialogue and chatbot systems to assess how human-like the responses sound.</p>
-<p><strong>Advantages of BLEURT</strong><br>
-- <strong>Trained on Human Ratings</strong>: Directly optimized to match real human preferences. - <strong>Sensitive to Meaning and Fluency</strong>: Goes beyond surface-level matching to assess semantic equivalence and naturalness. - <strong>Robust Across Domains</strong>: Performs well even when applied to tasks or topics outside its training data. - <strong>Single Unified Score</strong>: Simplifies evaluation with a clear, continuous score that reflects quality.</p>
-<p><strong>Limitations</strong><br>
-- <strong>Computational Cost</strong>: Requires GPU inference for fast scoring, especially at scale. - <strong>Reference-Based</strong>: Like most metrics, BLEURT still needs a reference sentence for comparison. - <strong>Opacity</strong>: Being a neural model, it’s harder to interpret than transparent metrics like BLEU.</p>
+<p><strong>Advantages of BLEURT</strong></p>
+<ul>
+<li><strong>Trained on Human Ratings</strong>: Directly optimized to match real human preferences.</li>
+<li><strong>Sensitive to Meaning and Fluency</strong>: Goes beyond surface-level matching to assess semantic equivalence and naturalness.</li>
+<li><strong>Robust Across Domains</strong>: Performs well even when applied to tasks or topics outside its training data.</li>
+<li><strong>Single Unified Score</strong>: Simplifies evaluation with a clear, continuous score that reflects quality.</li>
+</ul>
+<p><strong>Limitations</strong></p>
+<ul>
+<li><strong>Computational Cost</strong>: Requires GPU inference for fast scoring, especially at scale.</li>
+<li><strong>Reference-Based</strong>: Like most metrics, BLEURT still needs a reference sentence for comparison.</li>
+<li><strong>Opacity</strong>: Being a neural model, it’s harder to interpret than transparent metrics like BLEU.</li>
+</ul>
 </section>
 <section id="summary-when-to-use-which" class="level4" data-number="3.2.3">
 <h4 data-number="3.2.3" class="anchored" data-anchor-id="summary-when-to-use-which"><span class="header-section-number">3.2.3</span> Summary: When to Use Which?</h4>

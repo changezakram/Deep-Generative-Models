@@ -216,18 +216,21 @@ BLEU would score this low due to minimal overlap. BERTScore identifies that “c
 
 
 **Real-World Use Cases**    
+
 - **Machine Translation**: Meaningful quality evaluation across phrasing differences
 - **Text Summarization**: Measures fidelity to the source even if words differ
 - **Dialogue Systems**: Checks relevance of model responses
 - **Paraphrase Generation**: Verifies semantic alignment
 
-**Key Advantages**      
+**Key Advantages** 
+     
 - **Semantic Awareness**: Captures meaning beyond exact matches
 - **Context Sensitivity**: Embeddings reflect true contextual meaning
 - **Better Human Alignment**: Matches human quality judgments more closely
 - **Robust to Variation**: Tolerates stylistic and structural differences
 
-**Limitations**        
+**Limitations**   
+     
 - **Computational Overhead**: Requires expensive BERT inference
 - **Reference-Dependent**: Needs gold-standard responses
 - **Bias Inheritance**: Carries biases from pre-trained models
@@ -265,7 +268,8 @@ BLEURT is commonly used to evaluate generation tasks where **semantic fidelity**
 - **Response Generation**: Used in dialogue and chatbot systems to assess how human-like the responses sound.
 
 
-**Advantages of BLEURT**    
+**Advantages of BLEURT**  
+  
 - **Trained on Human Ratings**: Directly optimized to match real human preferences.
 - **Sensitive to Meaning and Fluency**: Goes beyond surface-level matching to assess semantic equivalence and naturalness.
 - **Robust Across Domains**: Performs well even when applied to tasks or topics outside its training data.
@@ -273,6 +277,7 @@ BLEURT is commonly used to evaluate generation tasks where **semantic fidelity**
 
 
 **Limitations**    
+
 - **Computational Cost**: Requires GPU inference for fast scoring, especially at scale.
 - **Reference-Based**: Like most metrics, BLEURT still needs a reference sentence for comparison.
 - **Opacity**: Being a neural model, it's harder to interpret than transparent metrics like BLEU.
