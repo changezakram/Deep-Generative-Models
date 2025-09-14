@@ -158,15 +158,15 @@ The following sections outline key evaluation methods and challenges.
 
 ### Content Overlap Metrics
 
-These methods compute similarity based on surface-level word overlap between the generated text and a human-written reference. They are fast and widely used but fail to capture meaning or paraphrased content.
+These methods compute similarity based on surface-level word overlap between the generated text and a human-written reference. They are fast, interpretable, and have long been used in machine translation, summarization, and captioning. However, they often fail to recognize valid paraphrases or semantic equivalence.
 
-- **Common metrics:** `BLEU`, `ROUGE`, `METEOR`, `CIDEr`.
-- BLEU emphasizes precision; ROUGE emphasizes recall.
-- Often used in summarization and translation tasks.
+**Common metrics:**      
+- **BLEU** emphasizes precision; 
+- **ROUGE** emphasizes recall.
 
 > **Limitation:** N-gram metrics have no concept of meaning—they fail when different words express the same idea.
 
-**Illustrative Example:**
+**Example:**
 
 Reference: "Heck yes!"  
 Generated → BLEU score:
@@ -205,7 +205,7 @@ BERTScore measures how semantically close a generated text is to a reference by 
 ![**Figure:** BERTScore computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. *(Source: Zhang et al. (2020))*](images/bert-score.png){fig-align="center" width="800"}
 
 
-**Example**  
+**Example:**  
 - Reference: “The weather is cold today”  
 - Candidate: “It is freezing today”  
 
@@ -224,7 +224,7 @@ Given a candidate and reference sentence, BLEURT returns a scalar score, typical
 
 ![**Figure:** BLEURT learns to predict human ratings by pre-training on synthetic sentence pairs and fine-tuning on labeled examples, optionally adapting to task-specific human feedback. *(Source: Sellam et al. (2020))*](images/bleurt.png)
 
-**Example**         
+**Example:**         
 - Reference: “The weather is cold today”           
 - Candidate: “It is freezing today”
 

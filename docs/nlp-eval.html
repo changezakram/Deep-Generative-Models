@@ -480,16 +480,13 @@ ul.task-list li input[type="checkbox"] {
 <p>The following sections outline key evaluation methods and challenges.</p>
 <section id="content-overlap-metrics" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="content-overlap-metrics"><span class="header-section-number">3.1</span> Content Overlap Metrics</h3>
-<p>These methods compute similarity based on surface-level word overlap between the generated text and a human-written reference. They are fast and widely used but fail to capture meaning or paraphrased content.</p>
-<ul>
-<li><strong>Common metrics:</strong> <code>BLEU</code>, <code>ROUGE</code>, <code>METEOR</code>, <code>CIDEr</code>.</li>
-<li>BLEU emphasizes precision; ROUGE emphasizes recall.</li>
-<li>Often used in summarization and translation tasks.</li>
-</ul>
+<p>These methods compute similarity based on surface-level word overlap between the generated text and a human-written reference. They are fast, interpretable, and have long been used in machine translation, summarization, and captioning. However, they often fail to recognize valid paraphrases or semantic equivalence.</p>
+<p><strong>Common metrics:</strong><br>
+- <strong>BLEU</strong> emphasizes precision; - <strong>ROUGE</strong> emphasizes recall.</p>
 <blockquote class="blockquote">
 <p><strong>Limitation:</strong> N-gram metrics have no concept of meaning—they fail when different words express the same idea.</p>
 </blockquote>
-<p><strong>Illustrative Example:</strong></p>
+<p><strong>Example:</strong></p>
 <p>Reference: “Heck yes!”<br>
 Generated → BLEU score:</p>
 <pre><code>- "Yes!" → 67%
@@ -531,7 +528,7 @@ Generated → BLEU score:</p>
 <figcaption><strong>Figure:</strong> BERTScore computes contextual similarity between candidate and reference tokens using BERT embeddings and cosine similarity, followed by precision, recall, and F1 aggregation. <em>(Source: Zhang et al.&nbsp;(2020))</em></figcaption>
 </figure>
 </div>
-<p><strong>Example</strong><br>
+<p><strong>Example:</strong><br>
 - Reference: “The weather is cold today”<br>
 - Candidate: “It is freezing today”</p>
 <p>BLEU would assign a low score due to low word overlap. BERTScore correctly identifies that “cold” and “freezing” are semantically similar and aligns “it” with “weather,” producing a high score.</p>
@@ -551,7 +548,7 @@ Generated → BLEU score:</p>
 <figcaption><strong>Figure:</strong> BLEURT learns to predict human ratings by pre-training on synthetic sentence pairs and fine-tuning on labeled examples, optionally adapting to task-specific human feedback. <em>(Source: Sellam et al.&nbsp;(2020))</em></figcaption>
 </figure>
 </div>
-<p><strong>Example</strong><br>
+<p><strong>Example:</strong><br>
 - Reference: “The weather is cold today”<br>
 - Candidate: “It is freezing today”</p>
 <p>Despite limited word overlap, BLEURT assigns a high score, recognizing semantic equivalence and fluent expression — something traditional metrics might miss.</p>
