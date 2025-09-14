@@ -190,8 +190,6 @@ Two widely adopted examples are **BERTScore**, which uses contextual embeddings 
 
 BERTScore measures how semantically close a generated text is to a reference by comparing their contextualized token embeddings from BERT. It operates in three main steps:
 
-**Step-by-Step: How BERTScore Works**
-
 1. **Token Embedding**: Each token is mapped to a contextual vector using a pre-trained BERT model.  
 2. **Similarity Matrix**: Cosine similarity is computed between each candidate and reference token.  
 3. **Greedy Matching**:
