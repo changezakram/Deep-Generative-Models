@@ -296,7 +296,7 @@ A widely used benchmark for summarization, the CNN/Daily Mail dataset, illustrat
 
 However, closer scrutiny revealed major issues. The highlights were often incomplete, loosely structured, or inconsistent in tone. They sometimes emphasized trivial surface-level details over summary-worthy content, and rarely reflected what real users actually wanted from a summary. This raised serious concerns about their reliability as evaluation references.
 
-Several studies have examined this issue. For example, Fabbri et al. (2021) in *SummEval* found that common metrics like ROUGE showed **weak or near-zero correlation with human quality judgments** under such conditions. However, when expert-written or carefully revised references were used, the same metrics exhibited significantly stronger correlation (r ≈ 0.6–0.7), suggesting that the evaluation metric itself wasn’t broken—the references were. Similar conclusions were drawn by Akter et al. (2022), who proposed a semantic-aware alternative and highlighted how poor references in CNN/Daily Mail limit metric reliability.
+Several studies have examined this issue. For example, Fabbri et al. (2021) found that common metrics like ROUGE showed **weak or near-zero correlation with human quality judgments** under such conditions. However, when expert-written or carefully revised references were used, the same metrics exhibited significantly stronger correlation (r ≈ 0.6–0.7), suggesting that the evaluation metric itself wasn’t broken—the references were. Similar conclusions were drawn by Akter et al. (2022), who proposed a semantic-aware alternative and highlighted how poor references in CNN/Daily Mail limit metric reliability.
 
 #### Broader Challenges with Reference-Based Evaluation
 
@@ -447,15 +447,19 @@ Human evaluation remains the **gold standard**, especially for open-ended tasks.
 
 [7] Durmus, E., et al. (2022). Spurious Correlations in Reference‑Free Evaluation of Text Generation. https://arxiv.org/abs/2204.09890
 
-[8] Specia, L., et al. (2010). Quality Estimation for Machine Translation Without Human-Labeled Data. https://www.aclweb.org/anthology/W10-1753.pdf
+[8] Fabbri, A., et al. (2021). SummEval: Re-evaluating Summarization Evaluation. https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00373/100686/SummEval-Re-evaluating-Summarization-Evaluation
 
-[9] Su, Y., et al. (2023). Reference-Free Evaluation Metrics for Text Generation: A Survey. https://arxiv.org/pdf/2305.04648.pdf
+[9] Akter, M., et al. (2022). Can We Do Better than ROUGE? Sem-nCG for Evaluating Summarization. https://aclanthology.org/2022.findings-acl.122.pdf
 
-[10] Celikyilmaz, A., et al. (2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799
+[10] Specia, L., et al. (2010). Quality Estimation for Machine Translation Without Human-Labeled Data. https://www.aclweb.org/anthology/W10-1753.pdf
 
-[11] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
+[11] Su, Y., et al. (2023). Reference-Free Evaluation Metrics for Text Generation: A Survey. https://arxiv.org/pdf/2305.04648.pdf
 
-[12] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+[12] Celikyilmaz, A., et al. (2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799
+
+[13] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
+
+[14] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
 
 
 
