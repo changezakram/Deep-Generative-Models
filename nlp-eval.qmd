@@ -293,10 +293,10 @@ Reference-based evaluation is only as reliable as the references themselves. If 
 #### Case Study: CNN/Daily Mail Summarization  
 This widely-used benchmark illustrates the reference quality problem in real-world evaluation. The CNN/Daily Mail summarization dataset was created by collecting news articles and using the bullet-point highlights written by journalists as "gold standard" summaries. These highlights were then used to train and evaluate summarization models.
  
-**Problems Discovered:**
+**Problems Discovered:**     
 Several issues were identified with these reference summaries. Since the highlights were often written by journalists under time pressure, they tended to be incomplete, poorly structured, or inconsistent. Many of them emphasized surface-level details rather than content that users actually found summary-worthy. In some cases, the references didn't even reflect what end-users valued or needed from a summary.
 
-**Experimental Evidence:**  
+**Experimental Evidence:**     
 To assess the impact of reference quality, researchers conducted an evaluation comparing model outputs against two types of references:
 
 1. **Original references**: the CNN bullet-point highlights  
