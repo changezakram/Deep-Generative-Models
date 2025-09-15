@@ -396,13 +396,13 @@ Used to compare models directly, especially for chatbots or instruction-followin
 
 [2] Hendrycks, D., et al. (2020). Measuring Massive Multitask Language Understanding (MMLU). https://arxiv.org/pdf/2009.03300
 
-[3] Papineni, K., Roukos, S., Ward, T., & Zhu, W.-J. (2002). BLEU: A Method for Automatic Evaluation of Machine Translation. https://aclanthology.org/P02-1040
+[3] Papineni, K., et al. (2002). BLEU: A Method for Automatic Evaluation of Machine Translation. https://aclanthology.org/P02-1040
 
 [4] Lin, C.-Y. (2004). ROUGE: A Package for Automatic Evaluation of Summaries. https://aclanthology.org/W04-1013
 
 [5] Chang, T., et al. (2020). *BERTSCORE: Evaluating Text Generation With BERT*. https://arxiv.org/pdf/1904.09675
 
-[5] Sellam, T., et al. (2020). *BLEURT: Learning Robust Metrics for Text Generation*. https://arxiv.org/pdf/2004.04696
+[6] Sellam, T., et al. (2020). *BLEURT: Learning Robust Metrics for Text Generation*. https://arxiv.org/pdf/2004.04696
 
 
 [16] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
