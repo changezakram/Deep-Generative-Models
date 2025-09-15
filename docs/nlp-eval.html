@@ -692,24 +692,20 @@ window.Quarto = {
 <p>Reference-based evaluation is only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead metrics and penalize valid outputs.</p>
 <section id="case-study-cnndaily-mail-summarization" class="level4" data-number="3.3.1">
 <h4 data-number="3.3.1" class="anchored" data-anchor-id="case-study-cnndaily-mail-summarization"><span class="header-section-number">3.3.1</span> Case Study: CNN/Daily Mail Summarization</h4>
-<p>This widely-used benchmark illustrates the reference quality problem in real-world evaluation. The CNN/Daily Mail summarization dataset was created by collecting news articles and using the bullet-point highlights written by journalists as “gold standard” summaries. These highlights were then used to train and evaluate summarization models.</p>
-<p><strong>Problems Discovered:</strong><br>
-Several issues were identified with these reference summaries. Since the highlights were often written by journalists under time pressure, they tended to be incomplete, poorly structured, or inconsistent. Many of them emphasized surface-level details rather than content that users actually found summary-worthy. In some cases, the references didn’t even reflect what end-users valued or needed from a summary.</p>
-<p><strong>Experimental Evidence:</strong><br>
-To assess the impact of reference quality, researchers conducted an evaluation comparing model outputs against two types of references:</p>
-<ol type="1">
-<li><strong>Original references</strong>: the CNN bullet-point highlights<br>
-</li>
-<li><strong>Expert references</strong>: carefully crafted summaries written by trained annotators</li>
-</ol>
-<p>The results were striking. When using the original references, ROUGE scores showed <strong>near-zero correlation</strong> with human quality ratings. In contrast, scores computed against expert-written references demonstrated a <strong>strong positive correlation</strong> with human evaluations (r = 0.6–0.7).</p>
-<p><strong>Implication:</strong><br>
-The evaluation metric wasn’t broken—the reference was. Poor references undermine the reliability of evaluation metrics like ROUGE.</p>
+<p>A widely used benchmark for summarization, the CNN/Daily Mail dataset, illustrates the pitfalls of poor reference quality in real-world evaluation. The dataset was constructed by collecting CNN news articles along with their accompanying bullet-point highlights. These highlights, written by journalists under deadline pressure, were used as “gold standard” summaries to train and evaluate models.</p>
+<p>However, closer scrutiny revealed major issues. The highlights were often incomplete, loosely structured, or inconsistent in tone. They sometimes emphasized trivial surface-level details over summary-worthy content, and rarely reflected what real users actually wanted from a summary. This raised serious concerns about their reliability as evaluation references.</p>
+<p>Several studies have examined this issue. For example, Fabbri et al.&nbsp;(2021) in <em>SummEval</em> found that common metrics like ROUGE showed <strong>weak or near-zero correlation with human quality judgments</strong> under such conditions. However, when expert-written or carefully revised references were used, the same metrics exhibited significantly stronger correlation (r ≈ 0.6–0.7), suggesting that the evaluation metric itself wasn’t broken—the references were. Similar conclusions were drawn by Akter et al.&nbsp;(2022), who proposed a semantic-aware alternative and highlighted how poor references in CNN/Daily Mail limit metric reliability.</p>
 </section>
 <section id="broader-challenges-with-reference-based-evaluation" class="level4" data-number="3.3.2">
 <h4 data-number="3.3.2" class="anchored" data-anchor-id="broader-challenges-with-reference-based-evaluation"><span class="header-section-number">3.3.2</span> Broader Challenges with Reference-Based Evaluation</h4>
-<p>Even beyond CNN/Daily Mail, reference quality issues are widespread across NLP benchmarks. Many tasks provide only a <strong>single reference</strong> per example, despite the existence of many equally valid outputs. This limits the diversity of acceptable responses and penalizes models for generating creative or paraphrased alternatives.</p>
-<p>Additionally, references often exhibit <strong>inconsistencies in tone, verbosity, or writing style</strong>, which can bias metrics like BLEU or ROUGE that rely on surface-level matching. In some cases, reference summaries may highlight information that is <strong>misaligned with the task objective</strong>, especially in domains like creative generation or abstractive summarization. Moreover, crowdsourced references or those produced under time constraints may include grammatical errors, ambiguity, or shallow reasoning—adding <strong>noise</strong> that further degrades evaluation quality.</p>
+<p>Beyond CNN/Daily Mail, reference quality issues are widespread across many NLP benchmarks:</p>
+<ul>
+<li><strong>Sparse or Limited References</strong>: Many benchmarks provide only a single reference output, even though multiple diverse and valid responses may exist.</li>
+<li><strong>Stylistic or Tonal Inconsistency</strong>: Reference texts often vary in formality, phrasing, or verbosity, which can skew similarity-based metrics.</li>
+<li><strong>Task Misalignment</strong>: Some references emphasize different aspects than what users or tasks actually prioritize.</li>
+<li><strong>Noisy or Imperfect Texts</strong>: Crowdsourced or time-constrained references may include grammatical mistakes, ambiguity, or shallow reasoning.</li>
+</ul>
+<p>These limitations are not just theoretical. They directly influence metric scores and evaluation outcomes in ways that can misrepresent model performance.</p>
 </section>
 <section id="consequences" class="level4" data-number="3.3.3">
 <h4 data-number="3.3.3" class="anchored" data-anchor-id="consequences"><span class="header-section-number">3.3.3</span> Consequences</h4>
