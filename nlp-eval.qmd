@@ -404,6 +404,10 @@ Used to compare models directly, especially for chatbots or instruction-followin
 
 [6] Sellam, T., et al. (2020). *BLEURT: Learning Robust Metrics for Text Generation*. https://arxiv.org/pdf/2004.04696
 
+[7] Durmus, E., et al. (2022). Spurious Correlations in Reference‑Free Evaluation of Text Generation. https://arxiv.org/abs/2204.09890
+
+[8] Mukherjee, A., & Shrivastava, M. (2022). REUSE: Reference‑free UnSupervised quality Estimation Metric. https://aclanthology.org/2022.acl-long.102.pdf
+
 
 [16] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
 
