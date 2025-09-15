@@ -836,7 +836,7 @@ window.Quarto = {
 <section id="the-human-evaluation-crisis" class="level4" data-number="3.5.1">
 <h4 data-number="3.5.1" class="anchored" data-anchor-id="the-human-evaluation-crisis"><span class="header-section-number">3.5.1</span> The Human Evaluation Crisis</h4>
 <p>While human evaluations are critical, they are often plagued by reproducibility, consistency, and cost challenges.</p>
-<p>A large-scale review of NLP papers from 2015 to 2020 found that <strong>only 5%</strong> of studies provided enough methodological detail to replicate the human evaluation process. Common issues included missing annotator guidelines, inconsistent scoring criteria, and the absence of publicly shared data. This undermines scientific rigor and prevents meaningful comparisons across models and studies.</p>
+<p>An analysis of NLP papers from 2015–2020 found that only 5% of human evaluation studies were fully reproducible. The primary culprits were lack of methodological detail and unavailability of materials, which made it difficult for others to verify or replicate the results. Common issues included missing annotator guidelines, inconsistent scoring criteria, and the absence of publicly shared data. This undermines scientific rigor and prevents meaningful comparisons across models and studies.</p>
 <p>Even when guidelines are clear, <strong>annotator disagreement remains high</strong>. Studies have shown inter-annotator agreement rates hovering around 60–70%, and for more subjective tasks—like helpfulness or summarization—agreement can drop to as low as 40–50%. For example, in one study on summarization quality, even expert annotators disagreed 30–40% of the time.</p>
 <p>Human evaluations are also <strong>expensive and time-consuming</strong>. Annotators typically charge $15–$30 per hour, and evaluating a single output can take 5–15 minutes. Large-scale evaluations, which require hundreds or thousands of samples, quickly become cost-prohibitive.</p>
 <p>Moreover, <strong>quality control</strong> is non-trivial. Annotators need training, ongoing calibration, and clear rubrics. Without rigorous oversight, annotators may interpret vague instructions differently or apply inconsistent standards. There’s also a natural <strong>incentive misalignment</strong>: annotators may prioritize speed over quality, while researchers seek careful, nuanced judgments. This tension can lead to superficial or biased evaluations.</p>
@@ -869,9 +869,10 @@ window.Quarto = {
 </section>
 <section id="key-takeaways" class="level3" data-number="3.8">
 <h3 data-number="3.8" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3.8</span> Key Takeaways</h3>
-<p>Evaluating open-ended tasks is inherently complex. No single approach—automatic, human, or LLM-based—works universally well across all use cases.</p>
-<p>Traditional metrics like BLEU and ROUGE remain useful, especially for structured tasks like translation, but they’re increasingly insufficient for tasks involving reasoning or generation. Human evaluations, while more insightful, are expensive, slow, and often irreproducible. Meanwhile, LLM-based evaluation is fast, scalable, and increasingly well-aligned with human judgments—but not without limitations.</p>
-<p>In practice, the best evaluation strategy is hybrid: use multiple metrics, validate with human feedback, and always manually inspect outputs. Numbers alone can be misleading.</p>
+<p>Evaluating open-ended tasks is inherently complex. No single approach—automatic, human, or LLM-based—works universally well across all scenarios.</p>
+<p>Traditional metrics like BLEU and ROUGE still serve a role, especially for structured tasks like translation. But for generation tasks involving reasoning, creativity, or nuance, they increasingly fall short. Human evaluations offer deeper insights but remain expensive, slow, and often difficult to reproduce. LLM-based evaluations, on the other hand, are fast, scalable, and more aligned with human preferences—yet not without their own biases.</p>
+<p>In practice, the most effective strategy is hybrid: combine multiple metrics, validate with human feedback, and always review outputs manually. Quantitative scores alone can be misleading.</p>
+<p>As generative systems grow more powerful and widely deployed, aligning evaluation with human judgment becomes more important than ever.</p>
 </section>
 </section>
 <section id="references-further-reading" class="level2" data-number="4">
