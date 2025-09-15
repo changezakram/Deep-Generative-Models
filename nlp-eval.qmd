@@ -283,9 +283,6 @@ Despite limited word overlap, BLEURT assigns a high score, recognizing semantic 
 Both metrics represent a shift toward evaluation methods that better reflect **semantic correctness**, **paraphrasing**, and **generation quality**. BERTScore excels in **semantic alignment**, while BLEURT better captures **fluency** and **natural language variation**.
 
 
-
-
-
 ### The Reference Quality Crisis
 
 Reference-based evaluation metrics—such as BLEU, ROUGE, BERTScore, and BLEURT—are only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead the metric and penalize otherwise valid model outputs.
@@ -322,17 +319,31 @@ These reference quality problems have several downstream consequences:
 
 ### Reference-Free Evaluation
 
-Instead of comparing to human-written references, these approaches judge quality **without a gold standard**.
+Instead of comparing model outputs to human-written references, **reference-free evaluation** methods attempt to judge quality directly—**without requiring a gold standard**. This is especially useful in open-ended generation tasks where multiple outputs may be valid, and reference quality is often poor (as discussed in Section 3.3).
 
-**Approaches:**
+Reference-based metrics can penalize valid outputs that differ in wording or structure from the reference. As an alternative, reference-free methods evaluate the generation directly—by learning quality predictors or leveraging language models as judges.
 
-- **Traditional:** Fine-tune BERT to predict quality scores.
-- **Modern (LLM-based):** Use GPT-4 to evaluate generated outputs.
-  - Benchmarks: `AlpacaEval`, `MT-Bench`, `Chatbot Arena`
-  - Surprisingly strong alignment with human judgments
-  - Fast and scalable—100× cheaper than human eval
+#### Approaches
 
-> GPT-4 shows **higher agreement with humans than humans show with each other** due to low variance.
+- **Traditional (Quality Estimation Models)**: Early methods trained separate models (e.g., fine-tuned BERT or regression models) to predict output quality, using features like fluency, coherence, and adequacy. These models require annotated training data but can generalize across tasks.
+
+- **Modern (LLM-Based Evaluation)**: Recent approaches use large language models like GPT-4 to evaluate generations directly. The LLM acts as a judge, scoring output quality based on prompts or evaluation rubrics.
+
+  - **Key Benchmarks**:
+    - [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval)
+    - [MT-Bench](https://huggingface.co/spaces/lmsys/mt-bench)
+    - [Chatbot Arena](https://chat.lmsys.org/)
+  
+  - These methods show:
+    - **Surprisingly strong agreement with human judgments**
+    - **Lower variance than human evaluators**
+    - **High scalability** — up to 100× cheaper than human annotation
+
+> **Note**: GPT-4 often shows *higher agreement with human preferences than humans do with each other*, due to its consistency and lack of annotator noise.
+
+
+
+
 
 
 

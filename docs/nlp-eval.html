@@ -723,20 +723,32 @@ window.Quarto = {
 </section>
 <section id="reference-free-evaluation" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="reference-free-evaluation"><span class="header-section-number">3.4</span> Reference-Free Evaluation</h3>
-<p>Instead of comparing to human-written references, these approaches judge quality <strong>without a gold standard</strong>.</p>
-<p><strong>Approaches:</strong></p>
+<p>Instead of comparing model outputs to human-written references, <strong>reference-free evaluation</strong> methods attempt to judge quality directly—<strong>without requiring a gold standard</strong>. This is especially useful in open-ended generation tasks where multiple outputs may be valid, and reference quality is often poor (as discussed in Section 3.3).</p>
+<p>Reference-based metrics can penalize valid outputs that differ in wording or structure from the reference. As an alternative, reference-free methods evaluate the generation directly—by learning quality predictors or leveraging language models as judges.</p>
+<section id="approaches" class="level4" data-number="3.4.1">
+<h4 data-number="3.4.1" class="anchored" data-anchor-id="approaches"><span class="header-section-number">3.4.1</span> Approaches</h4>
 <ul>
-<li><strong>Traditional:</strong> Fine-tune BERT to predict quality scores.</li>
-<li><strong>Modern (LLM-based):</strong> Use GPT-4 to evaluate generated outputs.
+<li><p><strong>Traditional (Quality Estimation Models)</strong>: Early methods trained separate models (e.g., fine-tuned BERT or regression models) to predict output quality, using features like fluency, coherence, and adequacy. These models require annotated training data but can generalize across tasks.</p></li>
+<li><p><strong>Modern (LLM-Based Evaluation)</strong>: Recent approaches use large language models like GPT-4 to evaluate generations directly. The LLM acts as a judge, scoring output quality based on prompts or evaluation rubrics.</p>
 <ul>
-<li>Benchmarks: <code>AlpacaEval</code>, <code>MT-Bench</code>, <code>Chatbot Arena</code></li>
-<li>Surprisingly strong alignment with human judgments</li>
-<li>Fast and scalable—100× cheaper than human eval</li>
+<li><strong>Key Benchmarks</strong>:
+<ul>
+<li><a href="https://github.com/tatsu-lab/alpaca_eval">AlpacaEval</a></li>
+<li><a href="https://huggingface.co/spaces/lmsys/mt-bench">MT-Bench</a></li>
+<li><a href="https://chat.lmsys.org/">Chatbot Arena</a></li>
+</ul></li>
+<li>These methods show:
+<ul>
+<li><strong>Surprisingly strong agreement with human judgments</strong></li>
+<li><strong>Lower variance than human evaluators</strong></li>
+<li><strong>High scalability</strong> — up to 100× cheaper than human annotation</li>
+</ul></li>
 </ul></li>
 </ul>
 <blockquote class="blockquote">
-<p>GPT-4 shows <strong>higher agreement with humans than humans show with each other</strong> due to low variance.</p>
+<p><strong>Note</strong>: GPT-4 often shows <em>higher agreement with human preferences than humans do with each other</em>, due to its consistency and lack of annotator noise.</p>
 </blockquote>
+</section>
 </section>
 <section id="human-evaluations" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="human-evaluations"><span class="header-section-number">3.5</span> Human Evaluations</h3>
