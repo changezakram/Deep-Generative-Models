@@ -381,32 +381,6 @@ Human evaluation remains the **gold standard**, especially for open-ended tasks.
 
 
 
-
-
-
-### Side-by-Side Comparison (Arena-style)
-
-Used to compare models directly, especially for chatbots or instruction-following tasks.
-
-**Example:**
-
-- Ask the same question to two models.
-- Let humans (or GPT-4) choose the better output.
-- Use **Elo ratings** (like chess) to build a leaderboard.
-
-**Tools:**
-
-- **Chatbot Arena**: Crowdsourced, ongoing, 200K+ votes
-- **HELM**, **Open LLM Leaderboard**, **VLLM Eval Leaderboard**
-
-**Limitations:**
-
-- User-generated prompts may not be representative.
-- Early-stage models don't get enough votes.
-- Not usable for training or development, only end-product evaluation.
-
-
-
 ### Evaluation Pitfalls and Biases
 
 **Reference Quality Matters:**
