@@ -291,63 +291,36 @@ Both metrics represent a shift toward evaluation methods that better reflect **s
 Reference-based evaluation is only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead metrics and penalize valid outputs.
 
 #### Case Study: CNN/Daily Mail Summarization  
-This widely-used benchmark illustrates the reference quality problem in real-world evaluation.
-
-**Dataset Creation:**
-
-- Collected CNN news articles with bullet-point highlights  
-- Used highlights as “gold standard” summaries  
-- Trained and evaluated summarization models against these references  
-
+This widely-used benchmark illustrates the reference quality problem in real-world evaluation. The CNN/Daily Mail summarization dataset was created by collecting news articles and using the bullet-point highlights written by journalists as "gold standard" summaries. These highlights were then used to train and evaluate summarization models.
+ 
 **Problems Discovered:**
-
-- Highlights written by journalists under time pressure  
-- Often incomplete, poorly structured, or inconsistent  
-- Emphasize surface details rather than summary-worthy content  
-- Don’t reflect what users actually want  
+Several issues were identified with these reference summaries. Since the highlights were often written by journalists under time pressure, they tended to be incomplete, poorly structured, or inconsistent. Many of them emphasized surface-level details rather than content that users actually found summary-worthy. In some cases, the references didn't even reflect what end-users valued or needed from a summary.
 
 **Experimental Evidence:**  
-Researchers compared evaluation outcomes using:
+To assess the impact of reference quality, researchers conducted an evaluation comparing model outputs against two types of references:
 
-1. **Original references:** CNN highlights  
-2. **Expert references:** Carefully crafted summaries by trained annotators  
+1. **Original references**: the CNN bullet-point highlights  
+2. **Expert references**: carefully crafted summaries written by trained annotators 
 
-**Results:**
-
-- **Original references**: ROUGE showed **near-zero correlation** with human quality ratings  
-- **Expert references**: ROUGE achieved **strong correlation** (r = 0.6–0.7)  
+The results were striking. When using the original references, ROUGE scores showed **near-zero correlation** with human quality ratings. In contrast, scores computed against expert-written references demonstrated a **strong positive correlation** with human evaluations (r = 0.6–0.7). 
 
 **Implication:**  
-The metric wasn’t broken—the reference was. Poor references undermine evaluation reliability.
+The evaluation metric wasn’t broken—the reference was. Poor references undermine the reliability of evaluation metrics like ROUGE.
 
 #### Broader Challenges with Reference-Based Evaluation
 
-Even beyond CNN/Daily Mail, reference quality issues are widespread across NLP benchmarks. Common problems include:
+Even beyond CNN/Daily Mail, reference quality issues are widespread across NLP benchmarks. Many tasks provide only a **single reference** per example, despite the existence of many equally valid outputs. This limits the diversity of acceptable responses and penalizes models for generating creative or paraphrased alternatives.
 
-- **Sparse or Limited References**: Many tasks only include a single reference, despite the existence of many valid outputs  
-- **Stylistic or Tonal Inconsistency**: Differences in formality, phrasing, or verbosity can affect n-gram or model-based scores  
-- **Misalignment with Task Objective**: References may emphasize different information than what users or the task demands  
-- **Noisy or Imperfect Texts**: Crowdsourced or time-constrained references often include grammar issues, ambiguity, or shallow reasoning  
+Additionally, references often exhibit **inconsistencies in tone, verbosity, or writing style**, which can bias metrics like BLEU or ROUGE that rely on surface-level matching. In some cases, reference summaries may highlight information that is **misaligned with the task objective**, especially in domains like creative generation or abstractive summarization. Moreover, crowdsourced references or those produced under time constraints may include grammatical errors, ambiguity, or shallow reasoning—adding **noise** that further degrades evaluation quality.
 
 #### Consequences
+
+These reference quality problems have several downstream consequences:
 
 - Misleading comparisons between models  
 - Underestimation of strong models that diverge stylistically from the reference  
 - Optimization toward flawed targets (“gaming the metric”)  
 - Motivation to explore **Reference-Free Evaluation**, which avoids dependency on flawed gold standards  
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
