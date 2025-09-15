@@ -971,38 +971,25 @@ A large-scale review of NLP papers (2015–2020) revealed:</p>
 </section>
 <section id="evaluation-pitfalls-and-biases" class="level3" data-number="3.6">
 <h3 data-number="3.6" class="anchored" data-anchor-id="evaluation-pitfalls-and-biases"><span class="header-section-number">3.6</span> Evaluation Pitfalls and Biases</h3>
-<p><strong>Reference Quality Matters:</strong></p>
-<ul>
-<li>Bad references = bad evaluation.</li>
-<li>Studies show ROUGE is uncorrelated with human scores unless references are written by experts.</li>
-</ul>
-<p><strong>Spurious Correlations:</strong></p>
-<ul>
-<li><strong>Length bias</strong>: ~70% preference for longer outputs</li>
-<li><strong>List bias</strong>: Preference for bullet-style responses</li>
-<li><strong>Position bias</strong>: Left vs right positioning in comparison</li>
-<li><strong>Self-bias</strong>: GPT-4 mildly favors its own outputs</li>
-</ul>
+<p>Automatic metrics are only as good as the references they rely on. If reference texts are low-quality, misaligned with the task, or poorly written, evaluation results can be misleading. For example, studies have shown that ROUGE is poorly correlated with human preferences unless expert-written references are used.</p>
+<p>Beyond reference quality, evaluation metrics can suffer from spurious correlations—patterns that have nothing to do with true output quality. For instance, length bias leads to a ~70% preference for longer outputs, regardless of informativeness. Similarly, models often benefit from list bias (bullet-style responses), position bias (left-vs-right placement in comparisons), and self-bias, where models like GPT-4 subtly favor outputs they generated themselves.</p>
+<p>These pitfalls suggest that even widely used metrics can be unintentionally skewed. Careful design and manual oversight are crucial to avoid false confidence in metric-based scores.</p>
 </section>
 <section id="broader-challenges" class="level3" data-number="3.7">
 <h3 data-number="3.7" class="anchored" data-anchor-id="broader-challenges"><span class="header-section-number">3.7</span> Broader Challenges</h3>
 <ul>
-<li><strong>Consistency Issues</strong>: Different prompt styles or decoding methods yield very different results (e.g., MMLU scores varied by 15%).</li>
-<li><strong>Contamination</strong>: Models trained on test data (e.g., GPT-4 aces pre-2021 Codeforces, flunks post-2021).</li>
-<li><strong>Overfitting</strong>: Datasets saturate quickly; benchmark usefulness decays.</li>
-<li><strong>Monoculture</strong>: 70% of ACL 2021 papers were English-only; many ignore bias or efficiency.</li>
-<li><strong>Single Metric Fallacy</strong>: Oversimplifies model performance. E.g., accuracy alone misses bias, latency, and fairness tradeoffs.</li>
+<li><strong>Consistency Issues</strong>: Results can vary significantly based on small changes in prompt style or decoding strategy. For example, MMLU scores can fluctuate by up to 15% due to formatting alone.</li>
+<li><strong>Contamination</strong>: models sometimes perform well on benchmarks not because they generalize, but because they were trained on test data. GPT-4’s performance on Codeforces pre-2021 vs post-2021 illustrates this concern.</li>
+<li><strong>Overfitting</strong>: Benchmarks saturate quickly, reducing their long-term usefulness.</li>
+<li><strong>Monoculture</strong>: A lack of linguistic and cultural diversity—70% of ACL 2021 papers were English-only—limits the generalizability of results.</li>
+<li><strong>Single Metric Fallacy</strong>: Over-relying on one metric (e.g., accuracy) oversimplifies model performance and can obscure fairness, bias, and usability trade-offs.</li>
 </ul>
 </section>
 <section id="key-takeaways" class="level3" data-number="3.8">
 <h3 data-number="3.8" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3.8</span> Key Takeaways</h3>
-<ul>
-<li>Open-ended evaluation is <strong>complex</strong>—no one-size-fits-all.</li>
-<li>Traditional metrics (BLEU, ROUGE) are useful but <strong>insufficient</strong>.</li>
-<li>Model-based metrics and human evals are better but expensive or slow.</li>
-<li>LLM-based eval is promising—<strong>fast</strong>, <strong>scalable</strong>, <strong>well-correlated</strong>.</li>
-<li>Always <strong>manually inspect outputs</strong>—numbers alone can be misleading.</li>
-</ul>
+<p>Evaluating open-ended tasks is inherently complex. No single approach—automatic, human, or LLM-based—works universally well across all use cases.</p>
+<p>Traditional metrics like BLEU and ROUGE remain useful, especially for structured tasks like translation, but they’re increasingly insufficient for tasks involving reasoning or generation. Human evaluations, while more insightful, are expensive, slow, and often irreproducible. Meanwhile, LLM-based evaluation is fast, scalable, and increasingly well-aligned with human judgments—but not without limitations.</p>
+<p>In practice, the best evaluation strategy is hybrid: use multiple metrics, validate with human feedback, and always manually inspect outputs. Numbers alone can be misleading.</p>
 </section>
 </section>
 <section id="references-further-reading" class="level2" data-number="4">
