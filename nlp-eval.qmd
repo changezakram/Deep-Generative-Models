@@ -409,35 +409,104 @@ These limitations suggest that while LLM-based evaluation is powerful, **careful
 
 ### Human Evaluations
 
-Human evaluation remains the **gold standard**, especially for open-ended tasks.
+Despite rapid advances in automatic metrics, human judgment remains the **gold standard**—especially for evaluating open-ended tasks where nuance, subjectivity, and user preference matter. Human evaluation plays a critical role in:
 
-**What they measure:**
+- Validating the correlation of automatic metrics with human perception  
+- Evaluating subjective tasks (e.g., helpfulness, engagement, creativity)  
+- Capturing user-centric preferences not easily quantified  
+- Detecting subtle quality issues that metrics miss
 
-- Fluency
-- Coherence
-- Factual Accuracy
-- Commonsense
-- Harmlessness
-- Style and grammar
-- Redundancy
+**What Human Evaluation Measures**
 
-**Methods:**
+Core quality aspects commonly assessed include:
 
-- Likert-scale ratings  
-- Pairwise comparisons  
-- Ranking systems  
-- Multi-annotator voting (for inter-rater reliability)
+- **Fluency** – Is the text grammatically correct and natural?  
+- **Coherence** – Does the output flow logically and make sense throughout?  
+- **Relevance** – Is the response appropriate to the input and task?  
+- **Factual Accuracy** – Are the claims factually correct?  
+- **Completeness** – Does the output cover all necessary points?  
+- **Originality** – Is the output non-redundant and creative?  
 
-> **Note:** Never compare scores across studies—evaluation methods, prompts, and annotators vary.
+**Evaluation Methodologies**
 
-**Challenges:**
+Human evaluation uses both **absolute scoring** and **comparative judgment** approaches.
 
-- **Expensive** and **time-consuming**
-- **Inter-annotator disagreement**: Even simple tasks had only 67% agreement.
-- **Intra-annotator inconsistency**
-- **Crowdworker incentives**: Speed over care, favoring longer outputs.
-- **Precision-only**: Humans can't judge what _could_ have been generated, only what _was_.
-- **Reproducibility crisis**: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.
+- **Likert Scales**  
+  - Annotators rate responses on a 1–5 or 1–7 scale for each dimension  
+  - *Advantage*: Provides direct quantitative quality measurement  
+  - *Challenge*: Subjective scale interpretation leads to annotator variability  
+
+- **Pairwise Comparisons & Rankings**  
+  - Annotators compare two or more outputs and choose the better one  
+  - *Advantage*: Easier and more intuitive than absolute scoring  
+  - *Use case*: Model benchmarking, leaderboard construction  
+
+- **Best–Worst Scaling**  
+  - From a group of outputs, identify the best and worst examples  
+  - *Advantage*: Improves reliability over simple pairwise choices  
+  - *Application*: Fine-grained quality judgments across multiple models  
+
+#### The Human Evaluation Crisis
+
+Despite its importance, human evaluation faces serious practical and methodological challenges.
+
+**Reproducibility Problem**  
+A large-scale review of NLP papers (2015–2020) revealed:
+
+- Only **~5%** of studies provided enough methodological detail to replicate the human evaluation  
+- *Issues included*: Missing annotator instructions, inconsistent scoring procedures, and unavailable data  
+- *Impact*: Undermines scientific rigor and prevents meaningful comparison across studies  
+
+**Agreement Challenges** 
+
+- **Inter-annotator Agreement**: Typically ~60–70%, even with guidelines  
+- **Subjective Tasks**: Can fall to 40–50% (e.g., summarization, helpfulness)  
+- *Example*: In summarization, experts disagreed 30–40% of the time on quality ratings  
+
+**Cost, Scale, and Quality Control**  
+
+- **Cost**:  
+  - Professional annotators charge $15–30/hour  
+  - Evaluating a single output can take 5–15 minutes  
+  - Meaningful evaluations often require hundreds or thousands of examples  
+
+- **Quality Control**:  
+  - Requires thorough annotator training  
+  - Needs consistent monitoring and calibration  
+  - Annotators may interpret vague guidelines differently without enforcement  
+
+- **Incentive Misalignment**:  
+  - Annotators aim to maximize throughput  
+  - Researchers seek careful, thoughtful evaluation  
+  - Result: Annotators may rush, use heuristics, or reward outputs with superficial polish  
+
+#### Best Practices for Human Evaluation
+
+Well-designed human evaluation protocols can mitigate many of these issues. Recommended practices include:
+
+- **Clear Instructions** – Detailed rubrics with examples and edge cases  
+- **Pilot Studies** – Run small-scale pilots to refine the procedure  
+- **Multiple Annotators** – Use 3–5 evaluators per item to improve reliability  
+- **Quality Monitoring** – Track inter-annotator agreement over time  
+- **Feedback Loops** – Conduct calibration sessions and clarify discrepancies  
+
+#### Example Evaluation Rubric: Summary Quality
+
+| Score | Description |
+|-------|-------------|
+| **5 – Excellent** | Captures all key points, accurate, well-written, and concise |
+| **4 – Good** | Covers most content with minor clarity or factual issues |
+| **3 – Fair** | Some important information missing or unclear |
+| **2 – Poor** | Major gaps in coverage or significant factual errors |
+| **1 – Unacceptable** | Incoherent or completely fails to address the input |
+
+> **Note**: Never compare human scores across studies—evaluation prompts, instructions, and annotators all differ.
+
+
+
+
+
+
 
 
 

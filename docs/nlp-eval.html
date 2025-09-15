@@ -812,39 +812,162 @@ window.Quarto = {
 </section>
 <section id="human-evaluations" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="human-evaluations"><span class="header-section-number">3.5</span> Human Evaluations</h3>
-<p>Human evaluation remains the <strong>gold standard</strong>, especially for open-ended tasks.</p>
-<p><strong>What they measure:</strong></p>
+<p>Despite rapid advances in automatic metrics, human judgment remains the <strong>gold standard</strong>—especially for evaluating open-ended tasks where nuance, subjectivity, and user preference matter. Human evaluation plays a critical role in:</p>
 <ul>
-<li>Fluency</li>
-<li>Coherence</li>
-<li>Factual Accuracy</li>
-<li>Commonsense</li>
-<li>Harmlessness</li>
-<li>Style and grammar</li>
-<li>Redundancy</li>
+<li>Validating the correlation of automatic metrics with human perception<br>
+</li>
+<li>Evaluating subjective tasks (e.g., helpfulness, engagement, creativity)<br>
+</li>
+<li>Capturing user-centric preferences not easily quantified<br>
+</li>
+<li>Detecting subtle quality issues that metrics miss</li>
 </ul>
-<p><strong>Methods:</strong></p>
+<p><strong>What Human Evaluation Measures</strong></p>
+<p>Core quality aspects commonly assessed include:</p>
 <ul>
-<li>Likert-scale ratings<br>
+<li><strong>Fluency</strong> – Is the text grammatically correct and natural?<br>
 </li>
-<li>Pairwise comparisons<br>
+<li><strong>Coherence</strong> – Does the output flow logically and make sense throughout?<br>
 </li>
-<li>Ranking systems<br>
+<li><strong>Relevance</strong> – Is the response appropriate to the input and task?<br>
 </li>
-<li>Multi-annotator voting (for inter-rater reliability)</li>
+<li><strong>Factual Accuracy</strong> – Are the claims factually correct?<br>
+</li>
+<li><strong>Completeness</strong> – Does the output cover all necessary points?<br>
+</li>
+<li><strong>Originality</strong> – Is the output non-redundant and creative?</li>
 </ul>
+<p><strong>Evaluation Methodologies</strong></p>
+<p>Human evaluation uses both <strong>absolute scoring</strong> and <strong>comparative judgment</strong> approaches.</p>
+<ul>
+<li><strong>Likert Scales</strong>
+<ul>
+<li>Annotators rate responses on a 1–5 or 1–7 scale for each dimension<br>
+</li>
+<li><em>Advantage</em>: Provides direct quantitative quality measurement<br>
+</li>
+<li><em>Challenge</em>: Subjective scale interpretation leads to annotator variability</li>
+</ul></li>
+<li><strong>Pairwise Comparisons &amp; Rankings</strong>
+<ul>
+<li>Annotators compare two or more outputs and choose the better one<br>
+</li>
+<li><em>Advantage</em>: Easier and more intuitive than absolute scoring<br>
+</li>
+<li><em>Use case</em>: Model benchmarking, leaderboard construction</li>
+</ul></li>
+<li><strong>Best–Worst Scaling</strong>
+<ul>
+<li>From a group of outputs, identify the best and worst examples<br>
+</li>
+<li><em>Advantage</em>: Improves reliability over simple pairwise choices<br>
+</li>
+<li><em>Application</em>: Fine-grained quality judgments across multiple models</li>
+</ul></li>
+</ul>
+<section id="the-human-evaluation-crisis" class="level4" data-number="3.5.1">
+<h4 data-number="3.5.1" class="anchored" data-anchor-id="the-human-evaluation-crisis"><span class="header-section-number">3.5.1</span> The Human Evaluation Crisis</h4>
+<p>Despite its importance, human evaluation faces serious practical and methodological challenges.</p>
+<p><strong>Reproducibility Problem</strong><br>
+A large-scale review of NLP papers (2015–2020) revealed:</p>
+<ul>
+<li>Only <strong>~5%</strong> of studies provided enough methodological detail to replicate the human evaluation<br>
+</li>
+<li><em>Issues included</em>: Missing annotator instructions, inconsistent scoring procedures, and unavailable data<br>
+</li>
+<li><em>Impact</em>: Undermines scientific rigor and prevents meaningful comparison across studies</li>
+</ul>
+<p><strong>Agreement Challenges</strong></p>
+<ul>
+<li><strong>Inter-annotator Agreement</strong>: Typically ~60–70%, even with guidelines<br>
+</li>
+<li><strong>Subjective Tasks</strong>: Can fall to 40–50% (e.g., summarization, helpfulness)<br>
+</li>
+<li><em>Example</em>: In summarization, experts disagreed 30–40% of the time on quality ratings</li>
+</ul>
+<p><strong>Cost, Scale, and Quality Control</strong></p>
+<ul>
+<li><strong>Cost</strong>:
+<ul>
+<li>Professional annotators charge $15–30/hour<br>
+</li>
+<li>Evaluating a single output can take 5–15 minutes<br>
+</li>
+<li>Meaningful evaluations often require hundreds or thousands of examples</li>
+</ul></li>
+<li><strong>Quality Control</strong>:
+<ul>
+<li>Requires thorough annotator training<br>
+</li>
+<li>Needs consistent monitoring and calibration<br>
+</li>
+<li>Annotators may interpret vague guidelines differently without enforcement</li>
+</ul></li>
+<li><strong>Incentive Misalignment</strong>:
+<ul>
+<li>Annotators aim to maximize throughput<br>
+</li>
+<li>Researchers seek careful, thoughtful evaluation<br>
+</li>
+<li>Result: Annotators may rush, use heuristics, or reward outputs with superficial polish</li>
+</ul></li>
+</ul>
+</section>
+<section id="best-practices-for-human-evaluation" class="level4" data-number="3.5.2">
+<h4 data-number="3.5.2" class="anchored" data-anchor-id="best-practices-for-human-evaluation"><span class="header-section-number">3.5.2</span> Best Practices for Human Evaluation</h4>
+<p>Well-designed human evaluation protocols can mitigate many of these issues. Recommended practices include:</p>
+<ul>
+<li><strong>Clear Instructions</strong> – Detailed rubrics with examples and edge cases<br>
+</li>
+<li><strong>Pilot Studies</strong> – Run small-scale pilots to refine the procedure<br>
+</li>
+<li><strong>Multiple Annotators</strong> – Use 3–5 evaluators per item to improve reliability<br>
+</li>
+<li><strong>Quality Monitoring</strong> – Track inter-annotator agreement over time<br>
+</li>
+<li><strong>Feedback Loops</strong> – Conduct calibration sessions and clarify discrepancies</li>
+</ul>
+</section>
+<section id="example-evaluation-rubric-summary-quality" class="level4" data-number="3.5.3">
+<h4 data-number="3.5.3" class="anchored" data-anchor-id="example-evaluation-rubric-summary-quality"><span class="header-section-number">3.5.3</span> Example Evaluation Rubric: Summary Quality</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Score</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>5 – Excellent</strong></td>
+<td>Captures all key points, accurate, well-written, and concise</td>
+</tr>
+<tr class="even">
+<td><strong>4 – Good</strong></td>
+<td>Covers most content with minor clarity or factual issues</td>
+</tr>
+<tr class="odd">
+<td><strong>3 – Fair</strong></td>
+<td>Some important information missing or unclear</td>
+</tr>
+<tr class="even">
+<td><strong>2 – Poor</strong></td>
+<td>Major gaps in coverage or significant factual errors</td>
+</tr>
+<tr class="odd">
+<td><strong>1 – Unacceptable</strong></td>
+<td>Incoherent or completely fails to address the input</td>
+</tr>
+</tbody>
+</table>
 <blockquote class="blockquote">
-<p><strong>Note:</strong> Never compare scores across studies—evaluation methods, prompts, and annotators vary.</p>
+<p><strong>Note</strong>: Never compare human scores across studies—evaluation prompts, instructions, and annotators all differ.</p>
 </blockquote>
-<p><strong>Challenges:</strong></p>
-<ul>
-<li><strong>Expensive</strong> and <strong>time-consuming</strong></li>
-<li><strong>Inter-annotator disagreement</strong>: Even simple tasks had only 67% agreement.</li>
-<li><strong>Intra-annotator inconsistency</strong></li>
-<li><strong>Crowdworker incentives</strong>: Speed over care, favoring longer outputs.</li>
-<li><strong>Precision-only</strong>: Humans can’t judge what <em>could</em> have been generated, only what <em>was</em>.</li>
-<li><strong>Reproducibility crisis</strong>: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.</li>
-</ul>
+</section>
 </section>
 <section id="evaluation-pitfalls-and-biases" class="level3" data-number="3.6">
 <h3 data-number="3.6" class="anchored" data-anchor-id="evaluation-pitfalls-and-biases"><span class="header-section-number">3.6</span> Evaluation Pitfalls and Biases</h3>
