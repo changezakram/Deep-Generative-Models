@@ -221,8 +221,6 @@ where $p_n$ is n-gram precision and BP is brevity penalty.
 
 
 
-
-
 ### Model-Based Metrics
 
 As NLP systems generate increasingly fluent and diverse outputs, traditional word-overlap metrics like BLEU and ROUGE often fail to capture deeper aspects of quality such as semantic fidelity, naturalness, and paraphrasing. To overcome these limitations, researchers have developed model-based evaluation metrics that harness the semantic understanding of pretrained language models.
@@ -283,6 +281,74 @@ Despite limited word overlap, BLEURT assigns a high score, recognizing semantic 
 | **BLEURT**    | Trained on human ratings; captures fluency and variation | More computationally intensive; less transparent |
 
 Both metrics represent a shift toward evaluation methods that better reflect **semantic correctness**, **paraphrasing**, and **generation quality**. BERTScore excels in **semantic alignment**, while BLEURT better captures **fluency** and **natural language variation**.
+
+
+
+
+
+### The Reference Quality Crisis
+
+Reference-based evaluation is only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead metrics and penalize valid outputs.
+
+#### Case Study: CNN/Daily Mail Summarization  
+This widely-used benchmark illustrates the reference quality problem in real-world evaluation.
+
+**Dataset Creation:**
+
+- Collected CNN news articles with bullet-point highlights  
+- Used highlights as “gold standard” summaries  
+- Trained and evaluated summarization models against these references  
+
+**Problems Discovered:**
+
+- Highlights written by journalists under time pressure  
+- Often incomplete, poorly structured, or inconsistent  
+- Emphasize surface details rather than summary-worthy content  
+- Don’t reflect what users actually want  
+
+**Experimental Evidence:**  
+Researchers compared evaluation outcomes using:
+
+1. **Original references:** CNN highlights  
+2. **Expert references:** Carefully crafted summaries by trained annotators  
+
+**Results:**
+
+- **Original references**: ROUGE showed **near-zero correlation** with human quality ratings  
+- **Expert references**: ROUGE achieved **strong correlation** (r = 0.6–0.7)  
+
+**Implication:**  
+The metric wasn’t broken—the reference was. Poor references undermine evaluation reliability.
+
+#### Broader Challenges with Reference-Based Evaluation
+
+Even beyond CNN/Daily Mail, reference quality issues are widespread across NLP benchmarks. Common problems include:
+
+- **Sparse or Limited References**: Many tasks only include a single reference, despite the existence of many valid outputs  
+- **Stylistic or Tonal Inconsistency**: Differences in formality, phrasing, or verbosity can affect n-gram or model-based scores  
+- **Misalignment with Task Objective**: References may emphasize different information than what users or the task demands  
+- **Noisy or Imperfect Texts**: Crowdsourced or time-constrained references often include grammar issues, ambiguity, or shallow reasoning  
+
+#### Consequences
+
+- Misleading comparisons between models  
+- Underestimation of strong models that diverge stylistically from the reference  
+- Optimization toward flawed targets (“gaming the metric”)  
+- Motivation to explore **Reference-Free Evaluation**, which avoids dependency on flawed gold standards  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Reference-Free Evaluation
@@ -412,7 +478,7 @@ Human evaluation remains the **gold standard**, especially for open-ended tasks.
 
 [7] Durmus, E., et al. (2022). Spurious Correlations in Reference‑Free Evaluation of Text Generation. https://arxiv.org/abs/2204.09890
 
-[8] Mukherjee, A., & Shrivastava, M. (2022). REUSE: Reference‑free UnSupervised quality Estimation Metric. https://aclanthology.org/2022.acl-long.102.pdf
+[8] Mukherjee, A., & Shrivastava, M. (2022). REUSE: Reference‑free UnSupervised quality Estimation Metric. 
 
 [9] Celikyilmaz, A., et al. (2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799
 

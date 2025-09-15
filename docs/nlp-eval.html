@@ -687,8 +687,74 @@ window.Quarto = {
 <p>Both metrics represent a shift toward evaluation methods that better reflect <strong>semantic correctness</strong>, <strong>paraphrasing</strong>, and <strong>generation quality</strong>. BERTScore excels in <strong>semantic alignment</strong>, while BLEURT better captures <strong>fluency</strong> and <strong>natural language variation</strong>.</p>
 </section>
 </section>
-<section id="reference-free-evaluation" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="reference-free-evaluation"><span class="header-section-number">3.3</span> Reference-Free Evaluation</h3>
+<section id="the-reference-quality-crisis" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="the-reference-quality-crisis"><span class="header-section-number">3.3</span> The Reference Quality Crisis</h3>
+<p>Reference-based evaluation is only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead metrics and penalize valid outputs.</p>
+<section id="case-study-cnndaily-mail-summarization" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="case-study-cnndaily-mail-summarization"><span class="header-section-number">3.3.1</span> Case Study: CNN/Daily Mail Summarization</h4>
+<p>This widely-used benchmark illustrates the reference quality problem in real-world evaluation.</p>
+<p><strong>Dataset Creation:</strong></p>
+<ul>
+<li>Collected CNN news articles with bullet-point highlights<br>
+</li>
+<li>Used highlights as “gold standard” summaries<br>
+</li>
+<li>Trained and evaluated summarization models against these references</li>
+</ul>
+<p><strong>Problems Discovered:</strong></p>
+<ul>
+<li>Highlights written by journalists under time pressure<br>
+</li>
+<li>Often incomplete, poorly structured, or inconsistent<br>
+</li>
+<li>Emphasize surface details rather than summary-worthy content<br>
+</li>
+<li>Don’t reflect what users actually want</li>
+</ul>
+<p><strong>Experimental Evidence:</strong><br>
+Researchers compared evaluation outcomes using:</p>
+<ol type="1">
+<li><strong>Original references:</strong> CNN highlights<br>
+</li>
+<li><strong>Expert references:</strong> Carefully crafted summaries by trained annotators</li>
+</ol>
+<p><strong>Results:</strong></p>
+<ul>
+<li><strong>Original references</strong>: ROUGE showed <strong>near-zero correlation</strong> with human quality ratings<br>
+</li>
+<li><strong>Expert references</strong>: ROUGE achieved <strong>strong correlation</strong> (r = 0.6–0.7)</li>
+</ul>
+<p><strong>Implication:</strong><br>
+The metric wasn’t broken—the reference was. Poor references undermine evaluation reliability.</p>
+</section>
+<section id="broader-challenges-with-reference-based-evaluation" class="level4" data-number="3.3.2">
+<h4 data-number="3.3.2" class="anchored" data-anchor-id="broader-challenges-with-reference-based-evaluation"><span class="header-section-number">3.3.2</span> Broader Challenges with Reference-Based Evaluation</h4>
+<p>Even beyond CNN/Daily Mail, reference quality issues are widespread across NLP benchmarks. Common problems include:</p>
+<ul>
+<li><strong>Sparse or Limited References</strong>: Many tasks only include a single reference, despite the existence of many valid outputs<br>
+</li>
+<li><strong>Stylistic or Tonal Inconsistency</strong>: Differences in formality, phrasing, or verbosity can affect n-gram or model-based scores<br>
+</li>
+<li><strong>Misalignment with Task Objective</strong>: References may emphasize different information than what users or the task demands<br>
+</li>
+<li><strong>Noisy or Imperfect Texts</strong>: Crowdsourced or time-constrained references often include grammar issues, ambiguity, or shallow reasoning</li>
+</ul>
+</section>
+<section id="consequences" class="level4" data-number="3.3.3">
+<h4 data-number="3.3.3" class="anchored" data-anchor-id="consequences"><span class="header-section-number">3.3.3</span> Consequences</h4>
+<ul>
+<li>Misleading comparisons between models<br>
+</li>
+<li>Underestimation of strong models that diverge stylistically from the reference<br>
+</li>
+<li>Optimization toward flawed targets (“gaming the metric”)<br>
+</li>
+<li>Motivation to explore <strong>Reference-Free Evaluation</strong>, which avoids dependency on flawed gold standards</li>
+</ul>
+</section>
+</section>
+<section id="reference-free-evaluation" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="reference-free-evaluation"><span class="header-section-number">3.4</span> Reference-Free Evaluation</h3>
 <p>Instead of comparing to human-written references, these approaches judge quality <strong>without a gold standard</strong>.</p>
 <p><strong>Approaches:</strong></p>
 <ul>
@@ -704,8 +770,8 @@ window.Quarto = {
 <p>GPT-4 shows <strong>higher agreement with humans than humans show with each other</strong> due to low variance.</p>
 </blockquote>
 </section>
-<section id="side-by-side-comparison-arena-style" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="side-by-side-comparison-arena-style"><span class="header-section-number">3.4</span> Side-by-Side Comparison (Arena-style)</h3>
+<section id="side-by-side-comparison-arena-style" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="side-by-side-comparison-arena-style"><span class="header-section-number">3.5</span> Side-by-Side Comparison (Arena-style)</h3>
 <p>Used to compare models directly, especially for chatbots or instruction-following tasks.</p>
 <p><strong>Example:</strong></p>
 <ul>
@@ -725,8 +791,8 @@ window.Quarto = {
 <li>Not usable for training or development, only end-product evaluation.</li>
 </ul>
 </section>
-<section id="evaluation-pitfalls-and-biases" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="evaluation-pitfalls-and-biases"><span class="header-section-number">3.5</span> Evaluation Pitfalls and Biases</h3>
+<section id="evaluation-pitfalls-and-biases" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="evaluation-pitfalls-and-biases"><span class="header-section-number">3.6</span> Evaluation Pitfalls and Biases</h3>
 <p><strong>Reference Quality Matters:</strong></p>
 <ul>
 <li>Bad references = bad evaluation.</li>
@@ -740,8 +806,8 @@ window.Quarto = {
 <li><strong>Self-bias</strong>: GPT-4 mildly favors its own outputs</li>
 </ul>
 </section>
-<section id="broader-challenges" class="level3" data-number="3.6">
-<h3 data-number="3.6" class="anchored" data-anchor-id="broader-challenges"><span class="header-section-number">3.6</span> Broader Challenges</h3>
+<section id="broader-challenges" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="broader-challenges"><span class="header-section-number">3.7</span> Broader Challenges</h3>
 <ul>
 <li><strong>Consistency Issues</strong>: Different prompt styles or decoding methods yield very different results (e.g., MMLU scores varied by 15%).</li>
 <li><strong>Contamination</strong>: Models trained on test data (e.g., GPT-4 aces pre-2021 Codeforces, flunks post-2021).</li>
@@ -750,8 +816,8 @@ window.Quarto = {
 <li><strong>Single Metric Fallacy</strong>: Oversimplifies model performance. E.g., accuracy alone misses bias, latency, and fairness tradeoffs.</li>
 </ul>
 </section>
-<section id="human-evaluations" class="level3" data-number="3.7">
-<h3 data-number="3.7" class="anchored" data-anchor-id="human-evaluations"><span class="header-section-number">3.7</span> Human Evaluations</h3>
+<section id="human-evaluations" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="human-evaluations"><span class="header-section-number">3.8</span> Human Evaluations</h3>
 <p>Human evaluation remains the <strong>gold standard</strong>, especially for open-ended tasks.</p>
 <p><strong>What they measure:</strong></p>
 <ul>
@@ -786,8 +852,8 @@ window.Quarto = {
 <li><strong>Reproducibility crisis</strong>: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.</li>
 </ul>
 </section>
-<section id="key-takeaways" class="level3" data-number="3.8">
-<h3 data-number="3.8" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3.8</span> Key Takeaways</h3>
+<section id="key-takeaways" class="level3" data-number="3.9">
+<h3 data-number="3.9" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3.9</span> Key Takeaways</h3>
 <ul>
 <li>Open-ended evaluation is <strong>complex</strong>—no one-size-fits-all.</li>
 <li>Traditional metrics (BLEU, ROUGE) are useful but <strong>insufficient</strong>.</li>
@@ -806,7 +872,7 @@ window.Quarto = {
 <p>[5] Chang, T., et al.&nbsp;(2020). <em>BERTSCORE: Evaluating Text Generation With BERT</em>. https://arxiv.org/pdf/1904.09675</p>
 <p>[6] Sellam, T., et al.&nbsp;(2020). <em>BLEURT: Learning Robust Metrics for Text Generation</em>. https://arxiv.org/pdf/2004.04696</p>
 <p>[7] Durmus, E., et al.&nbsp;(2022). Spurious Correlations in Reference‑Free Evaluation of Text Generation. https://arxiv.org/abs/2204.09890</p>
-<p>[8] Mukherjee, A., &amp; Shrivastava, M. (2022). REUSE: Reference‑free UnSupervised quality Estimation Metric. https://aclanthology.org/2022.acl-long.102.pdf</p>
+<p>[8] Mukherjee, A., &amp; Shrivastava, M. (2022). REUSE: Reference‑free UnSupervised quality Estimation Metric.</p>
 <p>[9] Celikyilmaz, A., et al.&nbsp;(2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799</p>
 <p>[10] van der Lee, C., et al.&nbsp;(2020). Human Evaluation of Automatically Generated Text: Current Trends and Best Practice Guidelines. https://www.researchgate.net/publication/347355146_Human_evaluation_of_automatically_generated_text_Current_trends_and_best_practice_guidelines</p>
 <p>[11] Krishna, K., et al.&nbsp;(2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf</p>
