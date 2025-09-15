@@ -725,29 +725,83 @@ window.Quarto = {
 <h3 data-number="3.4" class="anchored" data-anchor-id="reference-free-evaluation"><span class="header-section-number">3.4</span> Reference-Free Evaluation</h3>
 <p>Instead of comparing model outputs to human-written references, <strong>reference-free evaluation</strong> methods attempt to judge quality directly—<strong>without requiring a gold standard</strong>. This is especially useful in open-ended generation tasks where multiple outputs may be valid, and reference quality is often poor (as discussed in Section 3.3).</p>
 <p>Reference-based metrics can penalize valid outputs that differ in wording or structure from the reference. As an alternative, reference-free methods evaluate the generation directly—by learning quality predictors or leveraging language models as judges.</p>
-<section id="approaches" class="level4" data-number="3.4.1">
-<h4 data-number="3.4.1" class="anchored" data-anchor-id="approaches"><span class="header-section-number">3.4.1</span> Approaches</h4>
+<section id="traditional-reference-free-approaches" class="level4" data-number="3.4.1">
+<h4 data-number="3.4.1" class="anchored" data-anchor-id="traditional-reference-free-approaches"><span class="header-section-number">3.4.1</span> Traditional Reference-Free Approaches</h4>
+<p>Before the rise of large language models (LLMs), researchers explored simpler reference-free methods by training <strong>regression models</strong> to predict human quality ratings.</p>
 <ul>
-<li><p><strong>Traditional (Quality Estimation Models)</strong>: Early methods trained separate models (e.g., fine-tuned BERT or regression models) to predict output quality, using features like fluency, coherence, and adequacy. These models require annotated training data but can generalize across tasks.</p></li>
-<li><p><strong>Modern (LLM-Based Evaluation)</strong>: Recent approaches use large language models like GPT-4 to evaluate generations directly. The LLM acts as a judge, scoring output quality based on prompts or evaluation rubrics.</p>
+<li><strong>Input</strong>: Model-generated output only (no reference)</li>
+<li><strong>Output</strong>: Predicted quality score, usually trained on large annotated datasets</li>
+<li><strong>Limitation</strong>: Required costly human-labeled examples and struggled to generalize across domains or tasks</li>
+</ul>
+<p>These approaches demonstrated the <em>possibility</em> of reference-free evaluation, but lacked robustness and flexibility.</p>
+</section>
+<section id="llm-as-judge-a-paradigm-shift" class="level4" data-number="3.4.2">
+<h4 data-number="3.4.2" class="anchored" data-anchor-id="llm-as-judge-a-paradigm-shift"><span class="header-section-number">3.4.2</span> LLM-as-Judge: A Paradigm Shift</h4>
+<p>Recent advances have shown that <strong>LLMs like GPT-4</strong> can act as <strong>sophisticated, multi-criteria evaluators</strong>—scoring generated outputs with surprisingly high alignment to human judgments.</p>
+<p><strong>Methodology</strong></p>
+<p>A typical prompt might look like this:</p>
+<blockquote class="blockquote">
+<p><strong>Original Article</strong>: [article text]<br>
+<strong>Generated Summary</strong>: [summary text]</p>
+<p><strong>Evaluate on a scale of 1 to 5 based on:</strong><br>
+- Accuracy (factual correctness)<br>
+- Completeness (coverage of key points)<br>
+- Clarity (writing quality and coherence)<br>
+- Conciseness (appropriate length and focus)</p>
+<p><strong>Score</strong>: ___<br>
+<strong>Explanation</strong>: ___</p>
+</blockquote>
+<p>This format enables LLMs to perform nuanced evaluation—<strong>without needing a gold reference</strong>—and produce both numeric ratings and reasoning.</p>
+<p><strong>Advantages of LLM-Based Evaluation</strong></p>
+<p>Research has shown that LLM-as-judge methods offer several compelling benefits:</p>
 <ul>
-<li><strong>Key Benchmarks</strong>:
-<ul>
-<li><a href="https://github.com/tatsu-lab/alpaca_eval">AlpacaEval</a></li>
-<li><a href="https://huggingface.co/spaces/lmsys/mt-bench">MT-Bench</a></li>
-<li><a href="https://chat.lmsys.org/">Chatbot Arena</a></li>
-</ul></li>
-<li>These methods show:
-<ul>
-<li>Surprisingly strong agreement with human judgments</li>
-<li>Lower variance than human evaluators</li>
-<li>High scalability — up to 100× cheaper than human annotation</li>
-</ul></li>
-</ul></li>
+<li><strong>Multi-dimensional</strong>: Can evaluate factuality, fluency, style, etc.</li>
+<li><strong>Scalable and Fast</strong>: ~100× faster and cheaper than human annotators</li>
+<li><strong>Consistent</strong>: Inter-rater agreement higher than among humans (85% vs 67%)</li>
+<li><strong>Correlated with Human Judgments</strong>: Pearson correlation of <strong>r = 0.8–0.9</strong> in many tasks</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Note</strong>: GPT-4 often shows <em>higher agreement with human preferences than humans do with each other</em>, due to its consistency and lack of annotator noise.</p>
+<p><em>GPT-4 often shows higher agreement with humans than humans show with each other.</em></p>
 </blockquote>
+<p><strong>Popular Benchmarks</strong></p>
+<p>Several modern benchmarks now use LLMs as evaluation agents:</p>
+<ul>
+<li><strong>AlpacaEval</strong>: GPT-4 judges instruction-following responses<br>
+</li>
+<li><strong>MT-Bench</strong>: Evaluates multi-turn dialogues with GPT-based raters<br>
+</li>
+<li><strong>Chatbot Arena</strong>: Combines LLM judgments with human preferences at scale</li>
+</ul>
+<p>These benchmarks have helped validate the use of LLMs for practical, scalable evaluation.</p>
+<p><strong>Limitations and Biases of LLM-as-Judge Methods</strong></p>
+<p>Despite their promise, LLM-based evaluations are not without flaws. Known issues include:</p>
+<ul>
+<li><strong>Self-Preference Bias</strong>
+<ul>
+<li>LLMs (e.g., GPT-4) tend to prefer outputs generated by themselves<br>
+</li>
+<li><em>Mitigation</em>: Use diverse evaluator models and blind prompts</li>
+</ul></li>
+<li><strong>Length Bias</strong>
+<ul>
+<li>Tendency to favor longer outputs (~70% of the time), regardless of quality<br>
+</li>
+<li><em>Mitigation</em>: Normalize for length or include brevity constraints</li>
+</ul></li>
+<li><strong>Style Bias</strong>
+<ul>
+<li>Preference for structured or bullet-style outputs over more creative formats<br>
+</li>
+<li><em>Impact</em>: May unfairly penalize stylistic diversity</li>
+</ul></li>
+<li><strong>Cultural and Demographic Bias</strong>
+<ul>
+<li>Reflect evaluator training data (e.g., Western academic tone)<br>
+</li>
+<li><em>Concern</em>: May underrepresent responses from non-Western or informal settings</li>
+</ul></li>
+</ul>
+<p>These limitations suggest that while LLM-based evaluation is powerful, <strong>careful prompt design, evaluator diversity, and bias monitoring</strong> are essential.</p>
 </section>
 </section>
 <section id="human-evaluations" class="level3" data-number="3.5">
@@ -837,9 +891,11 @@ window.Quarto = {
 <p>[11] Su, Y., et al.&nbsp;(2023). Reference-Free Evaluation Metrics for Text Generation: A Survey. https://arxiv.org/pdf/2305.04648.pdf</p>
 <p>[12] Rei, M., et al.&nbsp;(2020). Comet: A neural framework for MT evaluation. https://arxiv.org/pdf/2009.09025</p>
 <p>[13] Zheng, S., et al.&nbsp;(2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. https://arxiv.org/pdf/2306.05685</p>
-<p>[14] Celikyilmaz, A., et al.&nbsp;(2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799</p>
-<p>[15] Krishna, K., et al.&nbsp;(2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf</p>
-<p>[16] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media.</p>
+<p>[14] Fu, Y., et al.&nbsp;(2023). G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment. https://arxiv.org/pdf/2303.16634</p>
+<p>[15] Tuan, Y., et al.&nbsp;(2021). Quality Estimation without Human-labeled Data. https://arxiv.org/pdf/2102.04020</p>
+<p>[16] Celikyilmaz, A., et al.&nbsp;(2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799</p>
+<p>[17] Krishna, K., et al.&nbsp;(2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf</p>
+<p>[18] Huyen, C. (2024). <em>AI Engineering: Building Applications with Foundation Models</em>. O’Reilly Media.</p>
 
 
 </section>
