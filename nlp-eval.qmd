@@ -316,7 +316,6 @@ These reference quality problems have several downstream consequences:
 - Motivation to explore **Reference-Free Evaluation**, which avoids dependency on flawed gold standards  
 
 
-
 ### Reference-Free Evaluation
 
 Instead of comparing model outputs to human-written references, **reference-free evaluation** methods attempt to judge quality directly—**without requiring a gold standard**. This is especially useful in open-ended generation tasks where multiple outputs may be valid, and reference quality is often poor (as discussed in Section 3.3).
@@ -418,7 +417,7 @@ Despite rapid advances in automatic metrics, human judgment remains the **gold s
 
 **What Human Evaluation Measures**
 
-Core quality aspects commonly assessed include:
+Evaluators typically assess a model's output along key quality dimensions:
 
 - **Fluency** – Is the text grammatically correct and natural?  
 - **Coherence** – Does the output flow logically and make sense throughout?  
@@ -426,6 +425,8 @@ Core quality aspects commonly assessed include:
 - **Factual Accuracy** – Are the claims factually correct?  
 - **Completeness** – Does the output cover all necessary points?  
 - **Originality** – Is the output non-redundant and creative?  
+
+These dimensions align closely with human expectations in real-world applications like summarization, dialogue, and question answering.
 
 **Evaluation Methodologies**
 
@@ -448,14 +449,17 @@ Human evaluation uses both **absolute scoring** and **comparative judgment** app
 
 #### The Human Evaluation Crisis
 
-Despite its importance, human evaluation faces serious practical and methodological challenges.
+Despite its importance, human evaluation is fraught with reproducibility and consistency challenges.
 
 **Reproducibility Problem**  
-A large-scale review of NLP papers (2015–2020) revealed:
+A large-scale review of NLP papers from 2015–2020 found that **only ~5%** of human evaluation setups were fully reproducible. Key problems included:
 
-- Only **~5%** of studies provided enough methodological detail to replicate the human evaluation  
-- *Issues included*: Missing annotator instructions, inconsistent scoring procedures, and unavailable data  
-- *Impact*: Undermines scientific rigor and prevents meaningful comparison across studies  
+- Missing annotator guidelines or task definitions  
+- Inconsistent scoring procedures across studies  
+- Lack of publicly available outputs or instructions
+
+The result is a **replication crisis**: scores across papers are difficult to compare, and findings are hard to validate.
+
 
 **Agreement Challenges** 
 

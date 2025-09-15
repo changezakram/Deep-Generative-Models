@@ -823,7 +823,7 @@ window.Quarto = {
 <li>Detecting subtle quality issues that metrics miss</li>
 </ul>
 <p><strong>What Human Evaluation Measures</strong></p>
-<p>Core quality aspects commonly assessed include:</p>
+<p>Evaluators typically assess a model’s output along key quality dimensions:</p>
 <ul>
 <li><strong>Fluency</strong> – Is the text grammatically correct and natural?<br>
 </li>
@@ -837,6 +837,7 @@ window.Quarto = {
 </li>
 <li><strong>Originality</strong> – Is the output non-redundant and creative?</li>
 </ul>
+<p>These dimensions align closely with human expectations in real-world applications like summarization, dialogue, and question answering.</p>
 <p><strong>Evaluation Methodologies</strong></p>
 <p>Human evaluation uses both <strong>absolute scoring</strong> and <strong>comparative judgment</strong> approaches.</p>
 <ul>
@@ -867,16 +868,17 @@ window.Quarto = {
 </ul>
 <section id="the-human-evaluation-crisis" class="level4" data-number="3.5.1">
 <h4 data-number="3.5.1" class="anchored" data-anchor-id="the-human-evaluation-crisis"><span class="header-section-number">3.5.1</span> The Human Evaluation Crisis</h4>
-<p>Despite its importance, human evaluation faces serious practical and methodological challenges.</p>
+<p>Despite its importance, human evaluation is fraught with reproducibility and consistency challenges.</p>
 <p><strong>Reproducibility Problem</strong><br>
-A large-scale review of NLP papers (2015–2020) revealed:</p>
+A large-scale review of NLP papers from 2015–2020 found that <strong>only ~5%</strong> of human evaluation setups were fully reproducible. Key problems included:</p>
 <ul>
-<li>Only <strong>~5%</strong> of studies provided enough methodological detail to replicate the human evaluation<br>
+<li>Missing annotator guidelines or task definitions<br>
 </li>
-<li><em>Issues included</em>: Missing annotator instructions, inconsistent scoring procedures, and unavailable data<br>
+<li>Inconsistent scoring procedures across studies<br>
 </li>
-<li><em>Impact</em>: Undermines scientific rigor and prevents meaningful comparison across studies</li>
+<li>Lack of publicly available outputs or instructions</li>
 </ul>
+<p>The result is a <strong>replication crisis</strong>: scores across papers are difficult to compare, and findings are hard to validate.</p>
 <p><strong>Agreement Challenges</strong></p>
 <ul>
 <li><strong>Inter-annotator Agreement</strong>: Typically ~60–70%, even with guidelines<br>
