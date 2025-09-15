@@ -335,9 +335,9 @@ Reference-based metrics can penalize valid outputs that differ in wording or str
     - [Chatbot Arena](https://chat.lmsys.org/)
   
   - These methods show:
-    - **Surprisingly strong agreement with human judgments**
-    - **Lower variance than human evaluators**
-    - **High scalability** — up to 100× cheaper than human annotation
+    - Surprisingly strong agreement with human judgments
+    - Lower variance than human evaluators
+    - High scalability — up to 100× cheaper than human annotation
 
 > **Note**: GPT-4 often shows *higher agreement with human preferences than humans do with each other*, due to its consistency and lack of annotator noise.
 
@@ -466,11 +466,15 @@ Used to compare models directly, especially for chatbots or instruction-followin
 
 [11] Su, Y., et al. (2023). Reference-Free Evaluation Metrics for Text Generation: A Survey. https://arxiv.org/pdf/2305.04648.pdf
 
-[12] Celikyilmaz, A., et al. (2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799
+[12] Rei, M., et al. (2020). Comet: A neural framework for MT evaluation. https://arxiv.org/pdf/2009.09025
 
-[13] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
+[13] Zheng, S., et al. (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. https://arxiv.org/pdf/2306.05685
 
-[14] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+[14] Celikyilmaz, A., et al. (2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799
+
+[15] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
+
+[16] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
 
 
 
