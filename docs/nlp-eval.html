@@ -689,7 +689,7 @@ window.Quarto = {
 </section>
 <section id="the-reference-quality-crisis" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="the-reference-quality-crisis"><span class="header-section-number">3.3</span> The Reference Quality Crisis</h3>
-<p>Reference-based evaluation is only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead metrics and penalize valid outputs.</p>
+<p>Reference-based evaluation metrics—such as BLEU, ROUGE, BERTScore, and BLEURT—are only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead the metric and penalize otherwise valid model outputs.</p>
 <section id="case-study-cnndaily-mail-summarization" class="level4" data-number="3.3.1">
 <h4 data-number="3.3.1" class="anchored" data-anchor-id="case-study-cnndaily-mail-summarization"><span class="header-section-number">3.3.1</span> Case Study: CNN/Daily Mail Summarization</h4>
 <p>A widely used benchmark for summarization, the CNN/Daily Mail dataset, illustrates the pitfalls of poor reference quality in real-world evaluation. The dataset was constructed by collecting CNN news articles along with their accompanying bullet-point highlights. These highlights, written by journalists under deadline pressure, were used as “gold standard” summaries to train and evaluate models.</p>

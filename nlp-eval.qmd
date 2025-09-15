@@ -288,7 +288,7 @@ Both metrics represent a shift toward evaluation methods that better reflect **s
 
 ### The Reference Quality Crisis
 
-Reference-based evaluation is only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead metrics and penalize valid outputs.
+Reference-based evaluation metrics—such as BLEU, ROUGE, BERTScore, and BLEURT—are only as reliable as the references themselves. If the reference is flawed—due to poor quality, weak alignment, or narrow scope—it can mislead the metric and penalize otherwise valid model outputs.
 
 #### Case Study: CNN/Daily Mail Summarization  
 
