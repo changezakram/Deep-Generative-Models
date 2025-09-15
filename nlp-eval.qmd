@@ -285,39 +285,6 @@ Despite limited word overlap, BLEURT assigns a high score, recognizing semantic 
 Both metrics represent a shift toward evaluation methods that better reflect **semantic correctness**, **paraphrasing**, and **generation quality**. BERTScore excels in **semantic alignment**, while BLEURT better captures **fluency** and **natural language variation**.
 
 
-### Human Evaluations
-
-Human evaluation remains the **gold standard**, especially for open-ended tasks.
-
-**What they measure:**
-
-- Fluency
-- Coherence
-- Factual Accuracy
-- Commonsense
-- Harmlessness
-- Style and grammar
-- Redundancy
-
-**Methods:**
-
-- Likert-scale ratings  
-- Pairwise comparisons  
-- Ranking systems  
-- Multi-annotator voting (for inter-rater reliability)
-
-> **Note:** Never compare scores across studies—evaluation methods, prompts, and annotators vary.
-
-**Challenges:**
-
-- **Expensive** and **time-consuming**
-- **Inter-annotator disagreement**: Even simple tasks had only 67% agreement.
-- **Intra-annotator inconsistency**
-- **Crowdworker incentives**: Speed over care, favoring longer outputs.
-- **Precision-only**: Humans can't judge what _could_ have been generated, only what _was_.
-- **Reproducibility crisis**: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.
-
-
 ### Reference-Free Evaluation
 
 Instead of comparing to human-written references, these approaches judge quality **without a gold standard**.
@@ -377,6 +344,45 @@ Used to compare models directly, especially for chatbots or instruction-followin
 - **Overfitting**: Datasets saturate quickly; benchmark usefulness decays.
 - **Monoculture**: 70% of ACL 2021 papers were English-only; many ignore bias or efficiency.
 - **Single Metric Fallacy**: Oversimplifies model performance. E.g., accuracy alone misses bias, latency, and fairness tradeoffs.
+
+
+
+
+
+### Human Evaluations
+
+Human evaluation remains the **gold standard**, especially for open-ended tasks.
+
+**What they measure:**
+
+- Fluency
+- Coherence
+- Factual Accuracy
+- Commonsense
+- Harmlessness
+- Style and grammar
+- Redundancy
+
+**Methods:**
+
+- Likert-scale ratings  
+- Pairwise comparisons  
+- Ranking systems  
+- Multi-annotator voting (for inter-rater reliability)
+
+> **Note:** Never compare scores across studies—evaluation methods, prompts, and annotators vary.
+
+**Challenges:**
+
+- **Expensive** and **time-consuming**
+- **Inter-annotator disagreement**: Even simple tasks had only 67% agreement.
+- **Intra-annotator inconsistency**
+- **Crowdworker incentives**: Speed over care, favoring longer outputs.
+- **Precision-only**: Humans can't judge what _could_ have been generated, only what _was_.
+- **Reproducibility crisis**: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.
+
+
+
 
 
 ### Key Takeaways

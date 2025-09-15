@@ -687,8 +687,71 @@ window.Quarto = {
 <p>Both metrics represent a shift toward evaluation methods that better reflect <strong>semantic correctness</strong>, <strong>paraphrasing</strong>, and <strong>generation quality</strong>. BERTScore excels in <strong>semantic alignment</strong>, while BLEURT better captures <strong>fluency</strong> and <strong>natural language variation</strong>.</p>
 </section>
 </section>
-<section id="human-evaluations" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="human-evaluations"><span class="header-section-number">3.3</span> Human Evaluations</h3>
+<section id="reference-free-evaluation" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="reference-free-evaluation"><span class="header-section-number">3.3</span> Reference-Free Evaluation</h3>
+<p>Instead of comparing to human-written references, these approaches judge quality <strong>without a gold standard</strong>.</p>
+<p><strong>Approaches:</strong></p>
+<ul>
+<li><strong>Traditional:</strong> Fine-tune BERT to predict quality scores.</li>
+<li><strong>Modern (LLM-based):</strong> Use GPT-4 to evaluate generated outputs.
+<ul>
+<li>Benchmarks: <code>AlpacaEval</code>, <code>MT-Bench</code>, <code>Chatbot Arena</code></li>
+<li>Surprisingly strong alignment with human judgments</li>
+<li>Fast and scalable—100× cheaper than human eval</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>GPT-4 shows <strong>higher agreement with humans than humans show with each other</strong> due to low variance.</p>
+</blockquote>
+</section>
+<section id="side-by-side-comparison-arena-style" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="side-by-side-comparison-arena-style"><span class="header-section-number">3.4</span> Side-by-Side Comparison (Arena-style)</h3>
+<p>Used to compare models directly, especially for chatbots or instruction-following tasks.</p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Ask the same question to two models.</li>
+<li>Let humans (or GPT-4) choose the better output.</li>
+<li>Use <strong>Elo ratings</strong> (like chess) to build a leaderboard.</li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><strong>Chatbot Arena</strong>: Crowdsourced, ongoing, 200K+ votes</li>
+<li><strong>HELM</strong>, <strong>Open LLM Leaderboard</strong>, <strong>VLLM Eval Leaderboard</strong></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>User-generated prompts may not be representative.</li>
+<li>Early-stage models don’t get enough votes.</li>
+<li>Not usable for training or development, only end-product evaluation.</li>
+</ul>
+</section>
+<section id="evaluation-pitfalls-and-biases" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="evaluation-pitfalls-and-biases"><span class="header-section-number">3.5</span> Evaluation Pitfalls and Biases</h3>
+<p><strong>Reference Quality Matters:</strong></p>
+<ul>
+<li>Bad references = bad evaluation.</li>
+<li>Studies show ROUGE is uncorrelated with human scores unless references are written by experts.</li>
+</ul>
+<p><strong>Spurious Correlations:</strong></p>
+<ul>
+<li><strong>Length bias</strong>: ~70% preference for longer outputs</li>
+<li><strong>List bias</strong>: Preference for bullet-style responses</li>
+<li><strong>Position bias</strong>: Left vs right positioning in comparison</li>
+<li><strong>Self-bias</strong>: GPT-4 mildly favors its own outputs</li>
+</ul>
+</section>
+<section id="broader-challenges" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="broader-challenges"><span class="header-section-number">3.6</span> Broader Challenges</h3>
+<ul>
+<li><strong>Consistency Issues</strong>: Different prompt styles or decoding methods yield very different results (e.g., MMLU scores varied by 15%).</li>
+<li><strong>Contamination</strong>: Models trained on test data (e.g., GPT-4 aces pre-2021 Codeforces, flunks post-2021).</li>
+<li><strong>Overfitting</strong>: Datasets saturate quickly; benchmark usefulness decays.</li>
+<li><strong>Monoculture</strong>: 70% of ACL 2021 papers were English-only; many ignore bias or efficiency.</li>
+<li><strong>Single Metric Fallacy</strong>: Oversimplifies model performance. E.g., accuracy alone misses bias, latency, and fairness tradeoffs.</li>
+</ul>
+</section>
+<section id="human-evaluations" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="human-evaluations"><span class="header-section-number">3.7</span> Human Evaluations</h3>
 <p>Human evaluation remains the <strong>gold standard</strong>, especially for open-ended tasks.</p>
 <p><strong>What they measure:</strong></p>
 <ul>
@@ -721,69 +784,6 @@ window.Quarto = {
 <li><strong>Crowdworker incentives</strong>: Speed over care, favoring longer outputs.</li>
 <li><strong>Precision-only</strong>: Humans can’t judge what <em>could</em> have been generated, only what <em>was</em>.</li>
 <li><strong>Reproducibility crisis</strong>: Only ~5% of NLP papers between 2015–2020 documented enough to replicate human evals.</li>
-</ul>
-</section>
-<section id="reference-free-evaluation" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="reference-free-evaluation"><span class="header-section-number">3.4</span> Reference-Free Evaluation</h3>
-<p>Instead of comparing to human-written references, these approaches judge quality <strong>without a gold standard</strong>.</p>
-<p><strong>Approaches:</strong></p>
-<ul>
-<li><strong>Traditional:</strong> Fine-tune BERT to predict quality scores.</li>
-<li><strong>Modern (LLM-based):</strong> Use GPT-4 to evaluate generated outputs.
-<ul>
-<li>Benchmarks: <code>AlpacaEval</code>, <code>MT-Bench</code>, <code>Chatbot Arena</code></li>
-<li>Surprisingly strong alignment with human judgments</li>
-<li>Fast and scalable—100× cheaper than human eval</li>
-</ul></li>
-</ul>
-<blockquote class="blockquote">
-<p>GPT-4 shows <strong>higher agreement with humans than humans show with each other</strong> due to low variance.</p>
-</blockquote>
-</section>
-<section id="side-by-side-comparison-arena-style" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="side-by-side-comparison-arena-style"><span class="header-section-number">3.5</span> Side-by-Side Comparison (Arena-style)</h3>
-<p>Used to compare models directly, especially for chatbots or instruction-following tasks.</p>
-<p><strong>Example:</strong></p>
-<ul>
-<li>Ask the same question to two models.</li>
-<li>Let humans (or GPT-4) choose the better output.</li>
-<li>Use <strong>Elo ratings</strong> (like chess) to build a leaderboard.</li>
-</ul>
-<p><strong>Tools:</strong></p>
-<ul>
-<li><strong>Chatbot Arena</strong>: Crowdsourced, ongoing, 200K+ votes</li>
-<li><strong>HELM</strong>, <strong>Open LLM Leaderboard</strong>, <strong>VLLM Eval Leaderboard</strong></li>
-</ul>
-<p><strong>Limitations:</strong></p>
-<ul>
-<li>User-generated prompts may not be representative.</li>
-<li>Early-stage models don’t get enough votes.</li>
-<li>Not usable for training or development, only end-product evaluation.</li>
-</ul>
-</section>
-<section id="evaluation-pitfalls-and-biases" class="level3" data-number="3.6">
-<h3 data-number="3.6" class="anchored" data-anchor-id="evaluation-pitfalls-and-biases"><span class="header-section-number">3.6</span> Evaluation Pitfalls and Biases</h3>
-<p><strong>Reference Quality Matters:</strong></p>
-<ul>
-<li>Bad references = bad evaluation.</li>
-<li>Studies show ROUGE is uncorrelated with human scores unless references are written by experts.</li>
-</ul>
-<p><strong>Spurious Correlations:</strong></p>
-<ul>
-<li><strong>Length bias</strong>: ~70% preference for longer outputs</li>
-<li><strong>List bias</strong>: Preference for bullet-style responses</li>
-<li><strong>Position bias</strong>: Left vs right positioning in comparison</li>
-<li><strong>Self-bias</strong>: GPT-4 mildly favors its own outputs</li>
-</ul>
-</section>
-<section id="broader-challenges" class="level3" data-number="3.7">
-<h3 data-number="3.7" class="anchored" data-anchor-id="broader-challenges"><span class="header-section-number">3.7</span> Broader Challenges</h3>
-<ul>
-<li><strong>Consistency Issues</strong>: Different prompt styles or decoding methods yield very different results (e.g., MMLU scores varied by 15%).</li>
-<li><strong>Contamination</strong>: Models trained on test data (e.g., GPT-4 aces pre-2021 Codeforces, flunks post-2021).</li>
-<li><strong>Overfitting</strong>: Datasets saturate quickly; benchmark usefulness decays.</li>
-<li><strong>Monoculture</strong>: 70% of ACL 2021 papers were English-only; many ignore bias or efficiency.</li>
-<li><strong>Single Metric Fallacy</strong>: Oversimplifies model performance. E.g., accuracy alone misses bias, latency, and fairness tradeoffs.</li>
 </ul>
 </section>
 <section id="key-takeaways" class="level3" data-number="3.8">
