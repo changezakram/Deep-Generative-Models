@@ -484,11 +484,9 @@ Human evaluation remains the **gold standard**, especially for open-ended tasks.
 
 [10] Celikyilmaz, A., et al. (2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799
 
-[11] van der Lee, C., et al. (2020). Human Evaluation of Automatically Generated Text: Current Trends and Best Practice Guidelines. https://www.researchgate.net/publication/347355146_Human_evaluation_of_automatically_generated_text_Current_trends_and_best_practice_guidelines
+[11] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
 
-[12] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
-
-[13] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+[12] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
 
 
 
