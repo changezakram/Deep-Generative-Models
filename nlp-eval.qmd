@@ -335,54 +335,6 @@ Instead of comparing to human-written references, these approaches judge quality
 > GPT-4 shows **higher agreement with humans than humans show with each other** due to low variance.
 
 
-### Side-by-Side Comparison (Arena-style)
-
-Used to compare models directly, especially for chatbots or instruction-following tasks.
-
-**Example:**
-
-- Ask the same question to two models.
-- Let humans (or GPT-4) choose the better output.
-- Use **Elo ratings** (like chess) to build a leaderboard.
-
-**Tools:**
-
-- **Chatbot Arena**: Crowdsourced, ongoing, 200K+ votes
-- **HELM**, **Open LLM Leaderboard**, **VLLM Eval Leaderboard**
-
-**Limitations:**
-
-- User-generated prompts may not be representative.
-- Early-stage models don't get enough votes.
-- Not usable for training or development, only end-product evaluation.
-
-
-### Evaluation Pitfalls and Biases
-
-**Reference Quality Matters:**
-
-- Bad references = bad evaluation.
-- Studies show ROUGE is uncorrelated with human scores unless references are written by experts.
-
-**Spurious Correlations:**
-
-- **Length bias**: ~70% preference for longer outputs
-- **List bias**: Preference for bullet-style responses
-- **Position bias**: Left vs right positioning in comparison
-- **Self-bias**: GPT-4 mildly favors its own outputs
-
-
-### Broader Challenges
-
-- **Consistency Issues**: Different prompt styles or decoding methods yield very different results (e.g., MMLU scores varied by 15%).
-- **Contamination**: Models trained on test data (e.g., GPT-4 aces pre-2021 Codeforces, flunks post-2021).
-- **Overfitting**: Datasets saturate quickly; benchmark usefulness decays.
-- **Monoculture**: 70% of ACL 2021 papers were English-only; many ignore bias or efficiency.
-- **Single Metric Fallacy**: Oversimplifies model performance. E.g., accuracy alone misses bias, latency, and fairness tradeoffs.
-
-
-
-
 
 ### Human Evaluations
 
@@ -418,6 +370,54 @@ Human evaluation remains the **gold standard**, especially for open-ended tasks.
 
 
 
+
+
+
+### Side-by-Side Comparison (Arena-style)
+
+Used to compare models directly, especially for chatbots or instruction-following tasks.
+
+**Example:**
+
+- Ask the same question to two models.
+- Let humans (or GPT-4) choose the better output.
+- Use **Elo ratings** (like chess) to build a leaderboard.
+
+**Tools:**
+
+- **Chatbot Arena**: Crowdsourced, ongoing, 200K+ votes
+- **HELM**, **Open LLM Leaderboard**, **VLLM Eval Leaderboard**
+
+**Limitations:**
+
+- User-generated prompts may not be representative.
+- Early-stage models don't get enough votes.
+- Not usable for training or development, only end-product evaluation.
+
+
+
+### Evaluation Pitfalls and Biases
+
+**Reference Quality Matters:**
+
+- Bad references = bad evaluation.
+- Studies show ROUGE is uncorrelated with human scores unless references are written by experts.
+
+**Spurious Correlations:**
+
+- **Length bias**: ~70% preference for longer outputs
+- **List bias**: Preference for bullet-style responses
+- **Position bias**: Left vs right positioning in comparison
+- **Self-bias**: GPT-4 mildly favors its own outputs
+
+
+### Broader Challenges
+
+- **Consistency Issues**: Different prompt styles or decoding methods yield very different results (e.g., MMLU scores varied by 15%).
+- **Contamination**: Models trained on test data (e.g., GPT-4 aces pre-2021 Codeforces, flunks post-2021).
+- **Overfitting**: Datasets saturate quickly; benchmark usefulness decays.
+- **Monoculture**: 70% of ACL 2021 papers were English-only; many ignore bias or efficiency.
+- **Single Metric Fallacy**: Oversimplifies model performance. E.g., accuracy alone misses bias, latency, and fairness tradeoffs.
 
 
 ### Key Takeaways
