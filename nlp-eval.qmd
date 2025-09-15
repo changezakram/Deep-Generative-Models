@@ -478,17 +478,18 @@ Human evaluation remains the **gold standard**, especially for open-ended tasks.
 
 [7] Durmus, E., et al. (2022). Spurious Correlations in Reference‑Free Evaluation of Text Generation. https://arxiv.org/abs/2204.09890
 
-[8] Mukherjee, A., & Shrivastava, M. (2022). REUSE: Reference‑free UnSupervised quality Estimation Metric. 
+[8] Specia, L., et al. (2010). Quality Estimation for Machine Translation Without Human-Labeled Data. https://www.aclweb.org/anthology/W10-1753.pdf
 
-[9] Celikyilmaz, A., et al. (2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799
+[9] Su, Y., et al. (2023). Reference-Free Evaluation Metrics for Text Generation: A Survey. https://arxiv.org/pdf/2305.04648.pdf
 
-[10] van der Lee, C., et al. (2020). Human Evaluation of Automatically Generated Text: Current Trends and Best Practice Guidelines. https://www.researchgate.net/publication/347355146_Human_evaluation_of_automatically_generated_text_Current_trends_and_best_practice_guidelines
+[10] Celikyilmaz, A., et al. (2020). Evaluation of Text Generation: A Survey. https://arxiv.org/abs/2006.14799
 
-[11] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
+[11] van der Lee, C., et al. (2020). Human Evaluation of Automatically Generated Text: Current Trends and Best Practice Guidelines. https://www.researchgate.net/publication/347355146_Human_evaluation_of_automatically_generated_text_Current_trends_and_best_practice_guidelines
 
-[12] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+[12] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
 
-[13] Alammar, J., & Grootendorst, M. (2023). *Hands-On Large Language Models: Language Understanding and Generation*. O’Reilly Media. 
+[13] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+
 
 
  
