@@ -425,7 +425,9 @@ These dimensions align closely with human expectations in real-world application
 
 **Evaluation Methodologies**
 
-There are two primary approaches to scoring: **absolute scoring** and **comparative judgment**. Absolute scoring methods use Likert scales, where annotators rate outputs numerically across different dimensions—typically on a 1-to-5 or 1-to-7 scale. While this provides granular data, it can introduce subjectivity due to differences in annotators' interpretations of the scale.
+There are two primary approaches to scoring: **absolute scoring** and **comparative judgment**. 
+
+Absolute scoring methods use Likert scales, where annotators rate outputs numerically across different dimensions—typically on a 1-to-5 or 1-to-7 scale. While this provides granular data, it can introduce subjectivity due to differences in annotators' interpretations of the scale.
 
 Comparative methods, such as pairwise ranking or best–worst scaling, tend to be more robust. In pairwise ranking, annotators compare two or more outputs and choose the better one. Best–worst scaling takes this further by having annotators identify both the best and worst examples from a set. These approaches reduce variability and are commonly used in benchmark leaderboards and model comparisons.
 
@@ -451,19 +453,6 @@ Using **multiple annotators** (typically 3–5 per example) improves reliability
 
 When applied carefully, these practices make human evaluation more consistent, interpretable, and fair.
 
-
-#### Example Evaluation Rubric: Summary Quality
-
-Below is a sample rubric commonly used for evaluating summary quality:
-
-
-| Score | Description |
-|-------|-------------|
-| **5 – Excellent** | Captures all key points, accurate, well-written, and concise |
-| **4 – Good** | Covers most content with minor clarity or factual issues |
-| **3 – Fair** | Some important information missing or unclear |
-| **2 – Poor** | Major gaps in coverage or significant factual errors |
-| **1 – Unacceptable** | Incoherent or completely fails to address the input |
 
 > **Note**: Human scores should never be compared across studies, as prompts, instructions, and annotators vary widely.
 

@@ -830,7 +830,8 @@ window.Quarto = {
 </ul>
 <p>These dimensions align closely with human expectations in real-world applications like summarization, dialogue, and question answering.</p>
 <p><strong>Evaluation Methodologies</strong></p>
-<p>There are two primary approaches to scoring: <strong>absolute scoring</strong> and <strong>comparative judgment</strong>. Absolute scoring methods use Likert scales, where annotators rate outputs numerically across different dimensions—typically on a 1-to-5 or 1-to-7 scale. While this provides granular data, it can introduce subjectivity due to differences in annotators’ interpretations of the scale.</p>
+<p>There are two primary approaches to scoring: <strong>absolute scoring</strong> and <strong>comparative judgment</strong>.</p>
+<p>Absolute scoring methods use Likert scales, where annotators rate outputs numerically across different dimensions—typically on a 1-to-5 or 1-to-7 scale. While this provides granular data, it can introduce subjectivity due to differences in annotators’ interpretations of the scale.</p>
 <p>Comparative methods, such as pairwise ranking or best–worst scaling, tend to be more robust. In pairwise ranking, annotators compare two or more outputs and choose the better one. Best–worst scaling takes this further by having annotators identify both the best and worst examples from a set. These approaches reduce variability and are commonly used in benchmark leaderboards and model comparisons.</p>
 <section id="the-human-evaluation-crisis" class="level4" data-number="3.5.1">
 <h4 data-number="3.5.1" class="anchored" data-anchor-id="the-human-evaluation-crisis"><span class="header-section-number">3.5.1</span> The Human Evaluation Crisis</h4>
@@ -845,44 +846,6 @@ window.Quarto = {
 <p>To mitigate these issues, researchers have proposed several best practices. First, providing <strong>clear instructions</strong>—including detailed rubrics and examples—can significantly reduce ambiguity. Conducting <strong>pilot studies</strong> before full-scale evaluation helps refine the task and catch misunderstandings early.</p>
 <p>Using <strong>multiple annotators</strong> (typically 3–5 per example) improves reliability, especially when combined with inter-annotator agreement tracking. Regular <strong>calibration sessions</strong> and <strong>feedback loops</strong> ensure that annotators stay aligned over time and surface discrepancies before they affect results.</p>
 <p>When applied carefully, these practices make human evaluation more consistent, interpretable, and fair.</p>
-</section>
-<section id="example-evaluation-rubric-summary-quality" class="level4" data-number="3.5.3">
-<h4 data-number="3.5.3" class="anchored" data-anchor-id="example-evaluation-rubric-summary-quality"><span class="header-section-number">3.5.3</span> Example Evaluation Rubric: Summary Quality</h4>
-<p>Below is a sample rubric commonly used for evaluating summary quality:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 65%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Score</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>5 – Excellent</strong></td>
-<td>Captures all key points, accurate, well-written, and concise</td>
-</tr>
-<tr class="even">
-<td><strong>4 – Good</strong></td>
-<td>Covers most content with minor clarity or factual issues</td>
-</tr>
-<tr class="odd">
-<td><strong>3 – Fair</strong></td>
-<td>Some important information missing or unclear</td>
-</tr>
-<tr class="even">
-<td><strong>2 – Poor</strong></td>
-<td>Major gaps in coverage or significant factual errors</td>
-</tr>
-<tr class="odd">
-<td><strong>1 – Unacceptable</strong></td>
-<td>Incoherent or completely fails to address the input</td>
-</tr>
-</tbody>
-</table>
 <blockquote class="blockquote">
 <p><strong>Note</strong>: Human scores should never be compared across studies, as prompts, instructions, and annotators vary widely.</p>
 </blockquote>
