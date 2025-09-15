@@ -812,16 +812,7 @@ window.Quarto = {
 </section>
 <section id="human-evaluations" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="human-evaluations"><span class="header-section-number">3.5</span> Human Evaluations</h3>
-<p>Despite rapid advances in automatic metrics, human judgment remains the <strong>gold standard</strong>—especially for evaluating open-ended tasks where nuance, subjectivity, and user preference matter. Human evaluation plays a critical role in:</p>
-<ul>
-<li>Validating the correlation of automatic metrics with human perception<br>
-</li>
-<li>Evaluating subjective tasks (e.g., helpfulness, engagement, creativity)<br>
-</li>
-<li>Capturing user-centric preferences not easily quantified<br>
-</li>
-<li>Detecting subtle quality issues that metrics miss</li>
-</ul>
+<p>Despite rapid advances in automatic metrics, <strong>human judgment remains the gold standard</strong> for evaluating open-ended tasks. Nuance, subjectivity, and user-centric preferences often elude automated scoring methods, especially in tasks like summarization, dialogue, and creative generation. Human evaluation remains essential for validating whether model outputs are helpful, coherent, accurate, and aligned with human expectations.</p>
 <p><strong>What Human Evaluation Measures</strong></p>
 <p>Evaluators typically assess a model’s output along key quality dimensions:</p>
 <ul>
@@ -839,99 +830,25 @@ window.Quarto = {
 </ul>
 <p>These dimensions align closely with human expectations in real-world applications like summarization, dialogue, and question answering.</p>
 <p><strong>Evaluation Methodologies</strong></p>
-<p>Human evaluation uses both <strong>absolute scoring</strong> and <strong>comparative judgment</strong> approaches.</p>
-<ul>
-<li><strong>Likert Scales</strong>
-<ul>
-<li>Annotators rate responses on a 1–5 or 1–7 scale for each dimension<br>
-</li>
-<li><em>Advantage</em>: Provides direct quantitative quality measurement<br>
-</li>
-<li><em>Challenge</em>: Subjective scale interpretation leads to annotator variability</li>
-</ul></li>
-<li><strong>Pairwise Comparisons &amp; Rankings</strong>
-<ul>
-<li>Annotators compare two or more outputs and choose the better one<br>
-</li>
-<li><em>Advantage</em>: Easier and more intuitive than absolute scoring<br>
-</li>
-<li><em>Use case</em>: Model benchmarking, leaderboard construction</li>
-</ul></li>
-<li><strong>Best–Worst Scaling</strong>
-<ul>
-<li>From a group of outputs, identify the best and worst examples<br>
-</li>
-<li><em>Advantage</em>: Improves reliability over simple pairwise choices<br>
-</li>
-<li><em>Application</em>: Fine-grained quality judgments across multiple models</li>
-</ul></li>
-</ul>
+<p>There are two primary approaches to scoring: <strong>absolute scoring</strong> and <strong>comparative judgment</strong>. Absolute scoring methods use Likert scales, where annotators rate outputs numerically across different dimensions—typically on a 1-to-5 or 1-to-7 scale. While this provides granular data, it can introduce subjectivity due to differences in annotators’ interpretations of the scale.</p>
+<p>Comparative methods, such as pairwise ranking or best–worst scaling, tend to be more robust. In pairwise ranking, annotators compare two or more outputs and choose the better one. Best–worst scaling takes this further by having annotators identify both the best and worst examples from a set. These approaches reduce variability and are commonly used in benchmark leaderboards and model comparisons.</p>
 <section id="the-human-evaluation-crisis" class="level4" data-number="3.5.1">
 <h4 data-number="3.5.1" class="anchored" data-anchor-id="the-human-evaluation-crisis"><span class="header-section-number">3.5.1</span> The Human Evaluation Crisis</h4>
-<p>Despite its importance, human evaluation is fraught with reproducibility and consistency challenges.</p>
-<p><strong>Reproducibility Problem</strong><br>
-A large-scale review of NLP papers from 2015–2020 found that <strong>only ~5%</strong> of human evaluation setups were fully reproducible. Key problems included:</p>
-<ul>
-<li>Missing annotator guidelines or task definitions<br>
-</li>
-<li>Inconsistent scoring procedures across studies<br>
-</li>
-<li>Lack of publicly available outputs or instructions</li>
-</ul>
-<p>The result is a <strong>replication crisis</strong>: scores across papers are difficult to compare, and findings are hard to validate.</p>
-<p><strong>Agreement Challenges</strong></p>
-<ul>
-<li><strong>Inter-annotator Agreement</strong>: Typically ~60–70%, even with guidelines<br>
-</li>
-<li><strong>Subjective Tasks</strong>: Can fall to 40–50% (e.g., summarization, helpfulness)<br>
-</li>
-<li><em>Example</em>: In summarization, experts disagreed 30–40% of the time on quality ratings</li>
-</ul>
-<p><strong>Cost, Scale, and Quality Control</strong></p>
-<ul>
-<li><strong>Cost</strong>:
-<ul>
-<li>Professional annotators charge $15–30/hour<br>
-</li>
-<li>Evaluating a single output can take 5–15 minutes<br>
-</li>
-<li>Meaningful evaluations often require hundreds or thousands of examples</li>
-</ul></li>
-<li><strong>Quality Control</strong>:
-<ul>
-<li>Requires thorough annotator training<br>
-</li>
-<li>Needs consistent monitoring and calibration<br>
-</li>
-<li>Annotators may interpret vague guidelines differently without enforcement</li>
-</ul></li>
-<li><strong>Incentive Misalignment</strong>:
-<ul>
-<li>Annotators aim to maximize throughput<br>
-</li>
-<li>Researchers seek careful, thoughtful evaluation<br>
-</li>
-<li>Result: Annotators may rush, use heuristics, or reward outputs with superficial polish</li>
-</ul></li>
-</ul>
+<p>While human evaluations are critical, they are often plagued by reproducibility, consistency, and cost challenges.</p>
+<p>A large-scale review of NLP papers from 2015 to 2020 found that <strong>only 5%</strong> of studies provided enough methodological detail to replicate the human evaluation process. Common issues included missing annotator guidelines, inconsistent scoring criteria, and the absence of publicly shared data. This undermines scientific rigor and prevents meaningful comparisons across models and studies.</p>
+<p>Even when guidelines are clear, <strong>annotator disagreement remains high</strong>. Studies have shown inter-annotator agreement rates hovering around 60–70%, and for more subjective tasks—like helpfulness or summarization—agreement can drop to as low as 40–50%. For example, in one study on summarization quality, even expert annotators disagreed 30–40% of the time.</p>
+<p>Human evaluations are also <strong>expensive and time-consuming</strong>. Annotators typically charge $15–$30 per hour, and evaluating a single output can take 5–15 minutes. Large-scale evaluations, which require hundreds or thousands of samples, quickly become cost-prohibitive.</p>
+<p>Moreover, <strong>quality control</strong> is non-trivial. Annotators need training, ongoing calibration, and clear rubrics. Without rigorous oversight, annotators may interpret vague instructions differently or apply inconsistent standards. There’s also a natural <strong>incentive misalignment</strong>: annotators may prioritize speed over quality, while researchers seek careful, nuanced judgments. This tension can lead to superficial or biased evaluations.</p>
 </section>
 <section id="best-practices-for-human-evaluation" class="level4" data-number="3.5.2">
 <h4 data-number="3.5.2" class="anchored" data-anchor-id="best-practices-for-human-evaluation"><span class="header-section-number">3.5.2</span> Best Practices for Human Evaluation</h4>
-<p>Well-designed human evaluation protocols can mitigate many of these issues. Recommended practices include:</p>
-<ul>
-<li><strong>Clear Instructions</strong> – Detailed rubrics with examples and edge cases<br>
-</li>
-<li><strong>Pilot Studies</strong> – Run small-scale pilots to refine the procedure<br>
-</li>
-<li><strong>Multiple Annotators</strong> – Use 3–5 evaluators per item to improve reliability<br>
-</li>
-<li><strong>Quality Monitoring</strong> – Track inter-annotator agreement over time<br>
-</li>
-<li><strong>Feedback Loops</strong> – Conduct calibration sessions and clarify discrepancies</li>
-</ul>
+<p>To mitigate these issues, researchers have proposed several best practices. First, providing <strong>clear instructions</strong>—including detailed rubrics and examples—can significantly reduce ambiguity. Conducting <strong>pilot studies</strong> before full-scale evaluation helps refine the task and catch misunderstandings early.</p>
+<p>Using <strong>multiple annotators</strong> (typically 3–5 per example) improves reliability, especially when combined with inter-annotator agreement tracking. Regular <strong>calibration sessions</strong> and <strong>feedback loops</strong> ensure that annotators stay aligned over time and surface discrepancies before they affect results.</p>
+<p>When applied carefully, these practices make human evaluation more consistent, interpretable, and fair.</p>
 </section>
 <section id="example-evaluation-rubric-summary-quality" class="level4" data-number="3.5.3">
 <h4 data-number="3.5.3" class="anchored" data-anchor-id="example-evaluation-rubric-summary-quality"><span class="header-section-number">3.5.3</span> Example Evaluation Rubric: Summary Quality</h4>
+<p>Below is a sample rubric commonly used for evaluating summary quality:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 35%">
@@ -967,7 +884,7 @@ A large-scale review of NLP papers from 2015–2020 found that <strong>only ~5%<
 </tbody>
 </table>
 <blockquote class="blockquote">
-<p><strong>Note</strong>: Never compare human scores across studies—evaluation prompts, instructions, and annotators all differ.</p>
+<p><strong>Note</strong>: Human scores should never be compared across studies, as prompts, instructions, and annotators vary widely.</p>
 </blockquote>
 </section>
 </section>
