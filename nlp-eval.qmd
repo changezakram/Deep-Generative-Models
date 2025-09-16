@@ -530,7 +530,17 @@ As generative systems grow more powerful and widely deployed, evaluation becomes
 
 [17] Krishna, K., et al. (2023). LongEval: Guidelines for Human Evaluation of Faithfulness in Long-form Summarization. https://aclanthology.org/2023.eacl-main.121.pdf
 
-[18] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+[18] Liang, P. et al. (2023). Holistic Evaluation of Language Models. https://arxiv.org/pdf/2211.09110
+
+[19] Zheng, L. et al. (2024). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. https://arxiv.org/pdf/2306.05685
+
+[20] Ouyang, L. et al. (2022). Training language models to follow instructions with human feedback. https://arxiv.org/pdf/2203.02155
+
+[21] Anthropic. (2022). Constitutional AI: Harmlessness from AI Feedback. https://arxiv.org/pdf/2212.08073
+
+[22] Wei, J. et al. (2023). Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. https://arxiv.org/pdf/2201.11903
+
+[23] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
 
 
 
