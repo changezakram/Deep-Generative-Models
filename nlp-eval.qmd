@@ -484,6 +484,7 @@ Evaluating open-ended tasks is inherently complex. No single approach—automati
 Traditional metrics like BLEU and ROUGE still serve a role, especially for structured tasks like translation. But for generation tasks involving reasoning, creativity, or nuance, they increasingly fall short. Human evaluations offer deeper insights but remain expensive, slow, and often difficult to reproduce. LLM-based evaluations (like GPT-4 as a judge) are fast, scalable, and correlate better with human preferences than n-gram metrics—yet they can hallucinate scores and inherit training biases.
 
 **Practical Recommendations:**
+
 - Start with automated metrics for rapid iteration, then validate with human evaluation
 - Use multiple metrics rather than relying on a single score
 - For high-stakes applications, always include domain expert review
