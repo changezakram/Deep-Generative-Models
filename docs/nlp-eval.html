@@ -892,12 +892,12 @@ window.Quarto = {
 <li><strong>EleutherAI LM Evaluation Harness</strong>: 200+ tasks, open-source. Ideal for reproducible benchmarking.</li>
 </ul>
 <p><strong>Selection Guide</strong>:</p>
-<ul>
-<li>Classification tasks → Traditional metrics (accuracy, F1)</li>
-<li>Text generation → Model-based metrics (BERTScore, BLEURT)</li>
-<li>High-stakes applications → Human evaluation + LLM validation</li>
-<li>Production monitoring → Fast automated metrics with periodic human checks</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/task-evals.png" class="img-fluid figure-img" width="800"></p>
+<figcaption><strong>Figure:</strong> Choosing evaluation metrics based on task type and requirements. Classification tasks are best evaluated using traditional metrics like accuracy or F1. For text generation tasks, the choice of metric depends on context—BLEU/ROUGE for speed, BERTScore/BLEURT for semantic alignment, human evaluation for high-stakes scenarios, and LLM-as-judge for scalable, high-quality assessment.</figcaption>
+</figure>
+</div>
 </section>
 <section id="key-takeaways" class="level3" data-number="3.9">
 <h3 data-number="3.9" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3.9</span> Key Takeaways</h3>
