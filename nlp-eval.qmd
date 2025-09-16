@@ -470,11 +470,14 @@ These pitfalls suggest that even widely used metrics can be unintentionally skew
 
 ### Broader Challenges
 
-- **Consistency Issues**: Results can vary significantly based on small changes in prompt style or decoding strategy. For example, MMLU scores can fluctuate by up to 15% due to formatting alone.
-- **Contamination**: Models sometimes perform well on benchmarks not because they generalize, but because they were trained on test data. GPT-4’s performance on Codeforces pre-2021 vs post-2021 illustrates this concern.
-- **Overfitting**: Benchmarks saturate quickly, reducing their long-term usefulness.
-- **Monoculture**: A lack of linguistic and cultural diversity—70% of ACL 2021 papers were English-only—limits the generalizability of results.
-- **Single Metric Fallacy**: Over-relying on one metric (e.g., accuracy) oversimplifies model performance and can obscure fairness, bias, and usability trade-offs.
+- **Consistency Issues**: Results can vary significantly based on small changes in prompt style or decoding strategy. MMLU scores can fluctuate by up to 15% due to formatting alone—changing "Answer: A" to "A)" or adding "Please" can shift model rankings. This makes benchmark comparisons unreliable when papers don't specify exact evaluation setups.
+- **Contamination**: Models sometimes perform well on benchmarks because they were trained on test data, not because they generalize. GPT-4's performance on Codeforces pre-2021 vs post-2021 illustrates this concern. Recent analysis suggests 10-30% of benchmark improvements may reflect contamination rather than genuine capability gains—models scoring 85% on original MMLU might only achieve 65% on contamination-free variants.
+- **Overfitting**: Benchmarks saturate quickly, reducing their long-term usefulness. The pattern is predictable: introduction (40-60% scores) → optimization (rapid progress) → saturation (85-95%) → gaming (exploiting artifacts). GLUE reached human performance within 2 years and required replacement by SuperGLUE.
+- **Monoculture**: A lack of linguistic and cultural diversity—70% of ACL 2021 papers were English-only—limits the generalizability of results. With 85% of NLP benchmarks focusing on English despite 6B non-English speakers globally, models may fail catastrophically in non-Western contexts.
+- **Single Metric Fallacy**: Over-relying on one metric (e.g., accuracy) oversimplifies model performance and can obscure fairness, bias, and usability trade-offs. A customer service chatbot optimized for accuracy might achieve 95% correct answers but sound robotic, leading to poor user satisfaction despite high benchmark scores.
+- **Evaluation Infrastructure Gaps**: 78% of papers don't specify exact prompts, 65% don't report model versions or temperature settings, and only 23% provide reproducible evaluation code. This makes meta-analyses impossible and progress measurement unreliable.
+
+These challenges collectively suggest that evaluation metrics provide useful signals but should be interpreted cautiously and combined with multiple assessment approaches.
 
 
 ### Key Takeaways
