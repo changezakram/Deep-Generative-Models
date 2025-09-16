@@ -481,11 +481,17 @@ These pitfalls suggest that even widely used metrics can be unintentionally skew
 
 Evaluating open-ended tasks is inherently complex. No single approach—automatic, human, or LLM-based—works universally well across all scenarios.
 
-Traditional metrics like BLEU and ROUGE still serve a role, especially for structured tasks like translation. But for generation tasks involving reasoning, creativity, or nuance, they increasingly fall short. Human evaluations offer deeper insights but remain expensive, slow, and often difficult to reproduce. LLM-based evaluations, on the other hand, are fast, scalable, and more aligned with human preferences—yet not without their own biases.
+Traditional metrics like BLEU and ROUGE still serve a role, especially for structured tasks like translation. But for generation tasks involving reasoning, creativity, or nuance, they increasingly fall short. Human evaluations offer deeper insights but remain expensive, slow, and often difficult to reproduce. LLM-based evaluations (like GPT-4 as a judge) are fast, scalable, and correlate better with human preferences than n-gram metrics—yet they can hallucinate scores and inherit training biases.
+
+**Practical Recommendations:**
+- Start with automated metrics for rapid iteration, then validate with human evaluation
+- Use multiple metrics rather than relying on a single score
+- For high-stakes applications, always include domain expert review
+- Consider the evaluation cost vs. application risk trade-off when choosing methods
 
 In practice, the most effective strategy is hybrid: combine multiple metrics, validate with human feedback, and always review outputs manually. Quantitative scores alone can be misleading.
 
-As generative systems grow more powerful and widely deployed, aligning evaluation with human judgment becomes more important than ever.
+As generative systems grow more powerful and widely deployed, evaluation becomes a critical bottleneck. The future lies in developing evaluation methods that are both scalable and semantically meaningful, while addressing emerging challenges like benchmark contamination and safety alignment. The quality of our evaluation methods will ultimately determine how safely and effectively we can deploy these powerful systems.
 
 
 ## References & Further Reading
