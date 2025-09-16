@@ -871,16 +871,33 @@ window.Quarto = {
 </section>
 <section id="evaluation-tools-and-frameworks" class="level3" data-number="3.8">
 <h3 data-number="3.8" class="anchored" data-anchor-id="evaluation-tools-and-frameworks"><span class="header-section-number">3.8</span> Evaluation Tools and Frameworks</h3>
-<p><strong>Automated Metric Libraries</strong><br>
-- <strong>Hugging Face Evaluate</strong>: 60+ metrics with standardized interface. Best for rapid prototyping and consistent implementation. - <strong>NLTK</strong>: Traditional metrics (BLEU, ROUGE, METEOR). Mature and well-tested but slower than modern alternatives.</p>
-<p><strong>Model-Based Evaluation</strong><br>
-- <strong>BERTScore/BLEURT</strong>: Semantic similarity using pretrained models. Use for paraphrase-heavy tasks when reference quality varies. - <strong>Comet</strong>: Neural MT evaluation framework with high human correlation (r=0.87).</p>
-<p><strong>LLM-as-Judge Frameworks</strong><br>
-- <strong>G-Eval</strong>: GPT-4-based evaluation with chain-of-thought reasoning. Cost: ~$0.01-0.05 per evaluation. - <strong>AlpacaEval</strong>: Standardized instruction-following evaluation with 85% human agreement.</p>
-<p><strong>Comprehensive Suites</strong><br>
-- <strong>HELM (Stanford)</strong>: Holistic evaluation across 16 scenarios, 7 metrics. Best for research organizations. - <strong>EleutherAI LM Evaluation Harness</strong>: 200+ tasks, open-source. Ideal for reproducible benchmarking.</p>
-<p><strong>Selection Guide</strong>:<br>
-- Classification tasks → Traditional metrics (accuracy, F1) - Text generation → Model-based metrics (BERTScore, BLEURT) - High-stakes applications → Human evaluation + LLM validation - Production monitoring → Fast automated metrics with periodic human checks</p>
+<p><strong>Automated Metric Libraries</strong></p>
+<ul>
+<li><strong>Hugging Face Evaluate</strong>: 60+ metrics with standardized interface. Best for rapid prototyping and consistent implementation.</li>
+<li><strong>NLTK</strong>: Traditional metrics (BLEU, ROUGE, METEOR). Mature and well-tested but slower than modern alternatives.</li>
+</ul>
+<p><strong>Model-Based Evaluation</strong></p>
+<ul>
+<li><strong>BERTScore/BLEURT</strong>: Semantic similarity using pretrained models. Use for paraphrase-heavy tasks when reference quality varies.</li>
+<li><strong>Comet</strong>: Neural MT evaluation framework with high human correlation (r=0.87).</li>
+</ul>
+<p><strong>LLM-as-Judge Frameworks</strong></p>
+<ul>
+<li><strong>G-Eval</strong>: GPT-4-based evaluation with chain-of-thought reasoning. Cost: ~$0.01-0.05 per evaluation.</li>
+<li><strong>AlpacaEval</strong>: Standardized instruction-following evaluation with 85% human agreement.</li>
+</ul>
+<p><strong>Comprehensive Suites</strong></p>
+<ul>
+<li><strong>HELM (Stanford)</strong>: Holistic evaluation across 16 scenarios, 7 metrics. Best for research organizations.</li>
+<li><strong>EleutherAI LM Evaluation Harness</strong>: 200+ tasks, open-source. Ideal for reproducible benchmarking.</li>
+</ul>
+<p><strong>Selection Guide</strong>:</p>
+<ul>
+<li>Classification tasks → Traditional metrics (accuracy, F1)</li>
+<li>Text generation → Model-based metrics (BERTScore, BLEURT)</li>
+<li>High-stakes applications → Human evaluation + LLM validation</li>
+<li>Production monitoring → Fast automated metrics with periodic human checks</li>
+</ul>
 </section>
 <section id="key-takeaways" class="level3" data-number="3.9">
 <h3 data-number="3.9" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">3.9</span> Key Takeaways</h3>

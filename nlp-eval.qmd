@@ -482,23 +482,28 @@ These challenges collectively suggest that evaluation metrics provide useful sig
 
 ### Evaluation Tools and Frameworks
 
-**Automated Metric Libraries**      
+**Automated Metric Libraries** 
+     
 - **Hugging Face Evaluate**: 60+ metrics with standardized interface. Best for rapid prototyping and consistent implementation.
 - **NLTK**: Traditional metrics (BLEU, ROUGE, METEOR). Mature and well-tested but slower than modern alternatives.
 
-**Model-Based Evaluation**        
+**Model-Based Evaluation**     
+   
 - **BERTScore/BLEURT**: Semantic similarity using pretrained models. Use for paraphrase-heavy tasks when reference quality varies.
 - **Comet**: Neural MT evaluation framework with high human correlation (r=0.87).
 
 **LLM-as-Judge Frameworks**      
+
 - **G-Eval**: GPT-4-based evaluation with chain-of-thought reasoning. Cost: ~$0.01-0.05 per evaluation.
 - **AlpacaEval**: Standardized instruction-following evaluation with 85% human agreement.
 
-**Comprehensive Suites**      
+**Comprehensive Suites**     
+ 
 - **HELM (Stanford)**: Holistic evaluation across 16 scenarios, 7 metrics. Best for research organizations.
 - **EleutherAI LM Evaluation Harness**: 200+ tasks, open-source. Ideal for reproducible benchmarking.
 
-**Selection Guide**:      
+**Selection Guide**:    
+  
 - Classification tasks → Traditional metrics (accuracy, F1)
 - Text generation → Model-based metrics (BERTScore, BLEURT) 
 - High-stakes applications → Human evaluation + LLM validation
