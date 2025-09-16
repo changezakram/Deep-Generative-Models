@@ -503,7 +503,9 @@ These challenges collectively suggest that evaluation metrics provide useful sig
 - **EleutherAI LM Evaluation Harness**: 200+ tasks, open-source. Ideal for reproducible benchmarking.
 
 **Selection Guide**:    
-  
+
+Choosing the right evaluation method depends on your specific task requirements, resource constraints, and quality needs. The following framework provides a systematic approach to selecting appropriate metrics based on these factors. While this guide offers clear starting points, remember that production systems often benefit from combining multiple evaluation approaches—using fast automated metrics for development iteration and higher-quality methods for final validation.
+
 ![**Figure:** Choosing evaluation metrics based on task type and requirements. Classification tasks are best evaluated using traditional metrics like accuracy or F1. For text generation tasks, the choice of metric depends on context—BLEU/ROUGE for speed, BERTScore/BLEURT for semantic alignment, human evaluation for high-stakes scenarios, and LLM-as-judge for scalable, high-quality assessment.](images/task-evals.png)
 
 
