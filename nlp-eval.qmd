@@ -571,9 +571,11 @@ As generative systems grow more powerful and widely deployed, evaluation becomes
 
 [21] Anthropic. (2022). Constitutional AI: Harmlessness from AI Feedback. https://arxiv.org/pdf/2212.08073
 
-[22] Wei, J. et al. (2023). Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. https://arxiv.org/pdf/2201.11903
+[22] Wei, J. et al. (2023). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models*. https://arxiv.org/pdf/2201.11903
 
 [23] Huyen, C. (2024). *AI Engineering: Building Applications with Foundation Models*. O’Reilly Media.  
+
+[24] Sebastian R. (2025) *Understanding the 4 Main Approaches to LLM Evaluation (From Scratch)* https://magazine.sebastianraschka.com/p/llm-evaluation-4-approaches
 
 
 
