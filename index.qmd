@@ -125,6 +125,60 @@ This site explores how different model families approach this goal — from Vari
 </details>
 
 
+
+## 5 Use-Case Framing & Prioritization
+
+Before diving into individual use cases, it’s critical to assess *where* and *how* Generative AI can drive real value. Not every idea is equally feasible, safe, or impactful. A structured framing ensures that AI initiatives align with business priorities and responsible innovation.
+
+We recommend evaluating use cases across three key dimensions:
+
+| **Evaluation Dimension**     | **Description**                                                                 |
+|-----------------------------|----------------------------------------------------------------------------------|
+| **Business Value**           | Impact on revenue, cost, efficiency, risk reduction, or customer experience.    |
+| **Feasibility**              | Availability of data, model readiness, integration complexity, compute needs.   |
+| **Governance Sensitivity**  | Oversight required for regulatory compliance, explainability, and risk of misuse.|
+
+This prioritization helps teams focus on use cases that are not only promising but also **implementable** and **sustainable**, especially in regulated domains like banking and healthcare.
+
+---
+
+## 6 Industry Use Cases
+
+### ◾ Banking
+
+| **Use Case**             | **Model Type**                   | **Example Application**                                               |
+|--------------------------|----------------------------------|------------------------------------------------------------------------|
+| **Customer Service**     | Autoregressive (e.g., GPT)       | Virtual agents for handling account queries and FAQs                  |
+| **Fraud Detection**      | Energy-Based Models              | Real-time anomaly detection in transaction behavior                   |
+| **Operational Efficiency** | RAG (Retrieval-Augmented Gen)  | Automating call summaries and back-office document workflows          |
+| **Business Intelligence** | VAEs (Variational Autoencoders) | Detecting anomalies in product or branch-level KPIs                   |
+| **Marketing & Personalization** | GANs                    | Generating personalized offers based on behavioral segmentation       |
+
+> Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
+
+---
+
+### ◾ Healthcare
+
+| **Use Case**             | **Model Type**                            | **Example Application**                                                   |
+|--------------------------|-------------------------------------------|----------------------------------------------------------------------------|
+| **Clinical Documentation** | GPT-4, RAG (Nuance DAX)                 | Auto-generating visit summaries and physician notes                        |
+| **Medical Imaging**      | Diffusion Models                          | Enhancing and reconstructing radiological images                          |
+| **Diagnostics & Triage** | VAEs                                      | Supporting diagnosis with uncertainty-aware modeling                      |
+| **Patient Education**    | Conversational AI                         | Explaining test results in accessible, human-like language                |
+| **Drug Discovery**       | Normalizing Flows, VAEs                   | Accelerating compound generation and molecular simulation                 |
+
+> Highlights include work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.
+
+
+
+
+
+
+
+
+
+
 ## Industry Use Cases
 
 <details>
