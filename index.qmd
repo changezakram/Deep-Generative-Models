@@ -26,7 +26,7 @@ Generative AI models can create entirely new content — such as text, images, s
 
 Since 2022, innovation in this space has accelerated rapidly. Foundation models like ChatGPT, Claude, and Gemini are being deployed across industries — from writing assistance and image generation to fraud detection and synthetic data creation.
 
-> 💡 **Business impact:** McKinsey estimates that generative AI could contribute up to **$4.4 trillion in annual global economic value**, with wide-ranging implications for productivity, personalization, and decision support.
+> **Business impact:** McKinsey estimates that generative AI could contribute up to **$4.4 trillion in annual global economic value**, with wide-ranging implications for productivity, personalization, and decision support.
 
 At the same time, generative AI introduces new risks. Outputs may appear convincing but be inaccurate, biased, or open to misuse. This is especially critical in high-stakes domains such as banking, healthcare, and law.  
 Ensuring responsible use requires strong governance, human oversight, and ethical deployment practices.
