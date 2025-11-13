@@ -144,7 +144,7 @@ This prioritization helps teams focus on use cases that are not only promising b
 
 ## Industry Use Cases
 
-### ◾ Banking
+### Banking
 
 | **Use Case**             | **Model Type**                   | **Example Application**                                               |
 |--------------------------|----------------------------------|------------------------------------------------------------------------|
@@ -154,11 +154,11 @@ This prioritization helps teams focus on use cases that are not only promising b
 | **Business Intelligence** | VAEs (Variational Autoencoders) | Detecting anomalies in product or branch-level KPIs                   |
 | **Marketing & Personalization** | GANs                    | Generating personalized offers based on behavioral segmentation       |
 
-> Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley. [View full Banking use cases →](gen-ai-use-cases/banking-use-cases.html)
+> Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley. [View more details on Banking use cases →](gen-ai-use-cases/banking-use-cases.html)
 
 ---
 
-### ◾ Healthcare
+### Healthcare
 
 | **Use Case**             | **Model Type**                            | **Example Application**                                                   |
 |--------------------------|-------------------------------------------|----------------------------------------------------------------------------|
@@ -168,6 +168,6 @@ This prioritization helps teams focus on use cases that are not only promising b
 | **Patient Education**    | Conversational AI                         | Explaining test results in accessible, human-like language                |
 | **Drug Discovery**       | Normalizing Flows, VAEs                   | Accelerating compound generation and molecular simulation                 |
 
-> Highlights include work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine. [View full Healthcare use cases →](gen-ai-use-cases/healthcare-use-cases.html)
+> Highlights include work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine. [View more details on Healthcare use cases →](gen-ai-use-cases/healthcare-use-cases.html)
 
 
