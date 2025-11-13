@@ -4,7 +4,7 @@ title: "Deep Generative Models"
 
 ## Evolution of AI Capabilities
 
-AI is changing fast, and each stage brings new strengths, limits, and oversight needs. The table below offers a strategic comparison of how Traditional AI, Generative AI, and Agentic AI differ in behavior and best use.
+AI is changing fast, and each stage brings new strengths, limits, and oversight needs. The table below offers a comparison of how Traditional AI, Generative AI, and Agentic AI differ in behavior and best use.
 
 
 <div style="overflow-x:auto;">
@@ -50,6 +50,8 @@ Generative AI models aim to learn the underlying distribution of real-world data
 
 
 ## Key Gen AI Model Families
+
+These foundational architectures form the backbone of modern GenAI applications. Each family differs in how it models data distributions, handles sampling and inference, and supports various real-world use cases.
 
 ### Variational Autoencoders (VAEs)
 - **Core Idea**: Encode input into a latent space and reconstruct while optimizing a lower bound on likelihood (ELBO).
