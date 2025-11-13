@@ -126,7 +126,7 @@ This site explores how different model families approach this goal — from Vari
 
 
 
-## 5 Use-Case Framing & Prioritization
+## Use-Case Framing & Prioritization
 
 Before diving into individual use cases, it’s critical to assess *where* and *how* Generative AI can drive real value. Not every idea is equally feasible, safe, or impactful. A structured framing ensures that AI initiatives align with business priorities and responsible innovation.
 
@@ -142,7 +142,7 @@ This prioritization helps teams focus on use cases that are not only promising b
 
 ---
 
-## 6 Industry Use Cases
+## Industry Use Cases
 
 ### ◾ Banking
 
@@ -154,7 +154,7 @@ This prioritization helps teams focus on use cases that are not only promising b
 | **Business Intelligence** | VAEs (Variational Autoencoders) | Detecting anomalies in product or branch-level KPIs                   |
 | **Marketing & Personalization** | GANs                    | Generating personalized offers based on behavioral segmentation       |
 
-> Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.
+> Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley. [View full Banking use cases →](gen-ai-use-cases/banking-use-cases.html)
 
 ---
 
@@ -168,7 +168,7 @@ This prioritization helps teams focus on use cases that are not only promising b
 | **Patient Education**    | Conversational AI                         | Explaining test results in accessible, human-like language                |
 | **Drug Discovery**       | Normalizing Flows, VAEs                   | Accelerating compound generation and molecular simulation                 |
 
-> Highlights include work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.
+> Highlights include work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine. [View full Healthcare use cases →](gen-ai-use-cases/healthcare-use-cases.html)
 
 
 
