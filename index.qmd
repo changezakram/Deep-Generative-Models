@@ -11,6 +11,19 @@ Generative machine learning models aim to learn the underlying distribution of r
 - We generate new data by **sampling** from this learned distribution  
 - In practice, generative models are trained to **maximize the expected log-likelihood** of $p_\theta(x)$, or equivalently, **minimize the divergence** between $p_\theta(x)$ and $p_{\text{data}}(x)$
 
+
+## Evolution of AI Capabilities
+
+Although AI agents are exciting, it’s important to bring the right tool for the job.
+
+| Capability              | **Traditional AI**<br><small>Rigid but reliable implementer</small> | **Gen AI**<br><small>Supercharged copilot</small> | **Agentic AI**<br><small>Fully autonomous operator</small> |
+|-------------------------|--------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
+| **Execution Style**     | Executes predefined workflows<br>Hard to scale  | Understands & generates info<br>Lacks execution | Learns, reasons, and acts<br>Executes workflows |
+| **Adaptability**        | ❌ Doesn’t adapt<br>Requires structured inputs   | ⚠️ Context-aware but reactive                   | ✅ Adapts in real-time<br>Minimal oversight      |
+| **Cognitive Ability**   | ❌ Doesn’t learn or reason                       | ✅ Smart but needs direction                     | ✅ Makes decisions without predefined rules      |
+| **Interaction**         | Rule-based, efficient but inflexible            | Needs human-in-the-loop                         | Fewer human touchpoints                         |
+| **Best For**            | <strong>Basic repetitive tasks</strong><br>Structured processes | <strong>Human augmentation</strong><br>Knowledge generation | <strong>End-to-end automation</strong><br>Decision-making & orchestration |
+
 > 📌 **Note**:  
 > - Models like **Autoregressive models** and **Normalizing Flows** directly maximize log-likelihood.  
 > - **VAEs** maximize a variational lower bound (ELBO) on log-likelihood.  
