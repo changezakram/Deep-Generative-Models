@@ -129,66 +129,57 @@ This site explores how different model families approach this goal — from Vari
 
 
 
-:::{.grid cols=2}
-::: {.card}
-#### Variational Autoencoders (VAEs)
-- **Core Idea**: Encode and reconstruct input using latent variables.
-- **Likelihood**: Approximate (ELBO).
-- **Sampling**: Fast — sample latent & decode.
+
+
+## Key Gen AI Model Families
+
+### Variational Autoencoders (VAEs)
+- **Core Idea**: Encode input into a latent space and reconstruct while optimizing a lower bound on likelihood (ELBO).
+- **Likelihood**: Approximate (variational lower bound).
+- **Sampling**: Fast — sample latent vector and decode.
 - **Use Cases**: Representation learning, image generation.
-- **Examples**: β-VAE, Conditional VAE
-:::
+- **Example Models**: β-VAE, Conditional VAE  
+- [Go to VAE write-up →](vae.qmd)
 
-::: {.card}
-#### Generative Adversarial Networks (GANs)
-- **Core Idea**: Generator vs. discriminator in a minimax game.
-- **Likelihood**: None (implicit).
-- **Sampling**: Fast — sample latent & generate.
-- **Use Cases**: Image generation, style transfer.
-- **Examples**: StyleGAN, CycleGAN
-:::
-:::
+### Generative Adversarial Networks (GANs)
+- **Core Idea**: Generator and discriminator compete in a minimax game to produce realistic samples.
+- **Likelihood**: None (implicit model).
+- **Sampling**: Fast — sample latent vector and pass through generator.
+- **Use Cases**: High-quality image generation, style transfer.
+- **Example Models**: StyleGAN, CycleGAN  
+- [Go to GAN write-up →]
 
-:::{.grid cols=2}
-::: {.card}
-#### Autoregressive Models
-- **Core Idea**: Factor joint distribution conditionally.
+### Autoregressive Models
+- **Core Idea**: Factor the joint distribution as a product of conditional probabilities.
 - **Likelihood**: Exact.
-- **Sampling**: Slow — token-by-token.
-- **Use Cases**: Language modeling, code, time series.
-- **Examples**: GPT, PixelRNN
-:::
+- **Sampling**: Slow — token-by-token generation.
+- **Use Cases**: Language modeling, code generation, time series.
+- **Example Models**: GPT, PixelRNN  
+- [Go to Autoregressive Models →]
 
-::: {.card}
-#### Normalizing Flows
-- **Core Idea**: Invertible transforms using change-of-variable.
-- **Likelihood**: Exact & tractable.
-- **Sampling**: Fast — invert base distribution.
+### Normalizing Flows
+- **Core Idea**: Learn invertible transformations using the change-of-variable formula.
+- **Likelihood**: Exact and tractable.
+- **Sampling**: Fast — sample from base distribution and invert.
 - **Use Cases**: Density estimation, latent space modeling.
-- **Examples**: RealNVP, Glow
-:::
-:::
+- **Example Models**: RealNVP, Glow  
+- [Go to Flow Models →](flows.qmd)
 
-:::{.grid cols=2}
-::: {.card}
-#### Energy-Based Models (EBMs)
-- **Core Idea**: Assign energy; lower = higher probability.
-- **Likelihood**: Unnormalized.
-- **Sampling**: Very slow — MCMC/Langevin.
+### Energy-Based Models (EBMs)
+- **Core Idea**: Define an energy function over inputs; lower energy = higher probability.
+- **Likelihood**: Unnormalized (intractable partition function).
+- **Sampling**: Very slow — requires MCMC or Langevin dynamics.
 - **Use Cases**: Uncertainty modeling, compositional generation.
-- **Examples**: Score-based EBMs
-:::
+- **Example Models**: Score-based EBMs  
+- [Go to EBMs →](ebm.qmd)
 
-::: {.card}
-#### Diffusion Models
-- **Core Idea**: Denoise gradual noise to reconstruct.
-- **Likelihood**: Approximate.
-- **Sampling**: Slow — reverse diffusion steps.
-- **Use Cases**: High-res image & audio generation.
-- **Examples**: Stable Diffusion
-:::
-:::
-
+### Diffusion Models
+- **Core Idea**: Learn to reverse a gradual noise process via denoising.
+- **Likelihood**: Approximate (via variational bound).
+- **Sampling**: Slow — requires hundreds of reverse steps.
+- **Use Cases**: High-resolution image and audio generation.
+- **Example Models**: Stable Diffusion  
+- [Go to Diffusion Models →](diffusion.qmd)
 
 
 
