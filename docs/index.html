@@ -415,6 +415,72 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 <li><a href="./diffusion.html">Go to Diffusion Models →</a></li>
 </ul>
 </details>
+<div class="grid" cols="2">
+<section id="variational-autoencoders-vaes" class="level4 card" data-number="4.0.1">
+<h4 data-number="4.0.1" class="anchored" data-anchor-id="variational-autoencoders-vaes"><span class="header-section-number">4.0.1</span> Variational Autoencoders (VAEs)</h4>
+<ul>
+<li><strong>Core Idea</strong>: Encode and reconstruct input using latent variables.</li>
+<li><strong>Likelihood</strong>: Approximate (ELBO).</li>
+<li><strong>Sampling</strong>: Fast — sample latent &amp; decode.</li>
+<li><strong>Use Cases</strong>: Representation learning, image generation.</li>
+<li><strong>Examples</strong>: β-VAE, Conditional VAE</li>
+</ul>
+</section>
+<section id="generative-adversarial-networks-gans" class="level4 card" data-number="4.0.2">
+<h4 data-number="4.0.2" class="anchored" data-anchor-id="generative-adversarial-networks-gans"><span class="header-section-number">4.0.2</span> Generative Adversarial Networks (GANs)</h4>
+<ul>
+<li><strong>Core Idea</strong>: Generator vs.&nbsp;discriminator in a minimax game.</li>
+<li><strong>Likelihood</strong>: None (implicit).</li>
+<li><strong>Sampling</strong>: Fast — sample latent &amp; generate.</li>
+<li><strong>Use Cases</strong>: Image generation, style transfer.</li>
+<li><strong>Examples</strong>: StyleGAN, CycleGAN</li>
+</ul>
+</section>
+</div>
+<div class="grid" cols="2">
+<section id="autoregressive-models" class="level4 card" data-number="4.0.3">
+<h4 data-number="4.0.3" class="anchored" data-anchor-id="autoregressive-models"><span class="header-section-number">4.0.3</span> Autoregressive Models</h4>
+<ul>
+<li><strong>Core Idea</strong>: Factor joint distribution conditionally.</li>
+<li><strong>Likelihood</strong>: Exact.</li>
+<li><strong>Sampling</strong>: Slow — token-by-token.</li>
+<li><strong>Use Cases</strong>: Language modeling, code, time series.</li>
+<li><strong>Examples</strong>: GPT, PixelRNN</li>
+</ul>
+</section>
+<section id="normalizing-flows" class="level4 card" data-number="4.0.4">
+<h4 data-number="4.0.4" class="anchored" data-anchor-id="normalizing-flows"><span class="header-section-number">4.0.4</span> Normalizing Flows</h4>
+<ul>
+<li><strong>Core Idea</strong>: Invertible transforms using change-of-variable.</li>
+<li><strong>Likelihood</strong>: Exact &amp; tractable.</li>
+<li><strong>Sampling</strong>: Fast — invert base distribution.</li>
+<li><strong>Use Cases</strong>: Density estimation, latent space modeling.</li>
+<li><strong>Examples</strong>: RealNVP, Glow</li>
+</ul>
+</section>
+</div>
+<div class="grid" cols="2">
+<section id="energy-based-models-ebms" class="level4 card" data-number="4.0.5">
+<h4 data-number="4.0.5" class="anchored" data-anchor-id="energy-based-models-ebms"><span class="header-section-number">4.0.5</span> Energy-Based Models (EBMs)</h4>
+<ul>
+<li><strong>Core Idea</strong>: Assign energy; lower = higher probability.</li>
+<li><strong>Likelihood</strong>: Unnormalized.</li>
+<li><strong>Sampling</strong>: Very slow — MCMC/Langevin.</li>
+<li><strong>Use Cases</strong>: Uncertainty modeling, compositional generation.</li>
+<li><strong>Examples</strong>: Score-based EBMs</li>
+</ul>
+</section>
+<section id="diffusion-models" class="level4 card" data-number="4.0.6">
+<h4 data-number="4.0.6" class="anchored" data-anchor-id="diffusion-models"><span class="header-section-number">4.0.6</span> Diffusion Models</h4>
+<ul>
+<li><strong>Core Idea</strong>: Denoise gradual noise to reconstruct.</li>
+<li><strong>Likelihood</strong>: Approximate.</li>
+<li><strong>Sampling</strong>: Slow — reverse diffusion steps.</li>
+<li><strong>Use Cases</strong>: High-res image &amp; audio generation.</li>
+<li><strong>Examples</strong>: Stable Diffusion</li>
+</ul>
+</section>
+</div>
 </section>
 <section id="use-case-framing-prioritization" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="use-case-framing-prioritization"><span class="header-section-number">5</span> Use-Case Framing &amp; Prioritization</h2>

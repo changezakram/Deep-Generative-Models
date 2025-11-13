@@ -126,6 +126,75 @@ This site explores how different model families approach this goal — from Vari
 
 
 
+
+
+
+:::{.grid cols=2}
+::: {.card}
+#### Variational Autoencoders (VAEs)
+- **Core Idea**: Encode and reconstruct input using latent variables.
+- **Likelihood**: Approximate (ELBO).
+- **Sampling**: Fast — sample latent & decode.
+- **Use Cases**: Representation learning, image generation.
+- **Examples**: β-VAE, Conditional VAE
+:::
+
+::: {.card}
+#### Generative Adversarial Networks (GANs)
+- **Core Idea**: Generator vs. discriminator in a minimax game.
+- **Likelihood**: None (implicit).
+- **Sampling**: Fast — sample latent & generate.
+- **Use Cases**: Image generation, style transfer.
+- **Examples**: StyleGAN, CycleGAN
+:::
+:::
+
+:::{.grid cols=2}
+::: {.card}
+#### Autoregressive Models
+- **Core Idea**: Factor joint distribution conditionally.
+- **Likelihood**: Exact.
+- **Sampling**: Slow — token-by-token.
+- **Use Cases**: Language modeling, code, time series.
+- **Examples**: GPT, PixelRNN
+:::
+
+::: {.card}
+#### Normalizing Flows
+- **Core Idea**: Invertible transforms using change-of-variable.
+- **Likelihood**: Exact & tractable.
+- **Sampling**: Fast — invert base distribution.
+- **Use Cases**: Density estimation, latent space modeling.
+- **Examples**: RealNVP, Glow
+:::
+:::
+
+:::{.grid cols=2}
+::: {.card}
+#### Energy-Based Models (EBMs)
+- **Core Idea**: Assign energy; lower = higher probability.
+- **Likelihood**: Unnormalized.
+- **Sampling**: Very slow — MCMC/Langevin.
+- **Use Cases**: Uncertainty modeling, compositional generation.
+- **Examples**: Score-based EBMs
+:::
+
+::: {.card}
+#### Diffusion Models
+- **Core Idea**: Denoise gradual noise to reconstruct.
+- **Likelihood**: Approximate.
+- **Sampling**: Slow — reverse diffusion steps.
+- **Use Cases**: High-res image & audio generation.
+- **Examples**: Stable Diffusion
+:::
+:::
+
+
+
+
+
+
+
 ## Use-Case Framing & Prioritization
 
 Before diving into specific industry use cases, it's critical to assess *where* and *how* generative AI can deliver real value. Not every idea is equally feasible, impactful, or low-risk. A structured framing process helps ensure that AI initiatives align with business priorities and responsible innovation.
