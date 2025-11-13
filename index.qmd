@@ -4,7 +4,8 @@ title: "Deep Generative Models"
 
 ## Evolution of AI Capabilities
 
-Not all AI is created equal. As AI evolves, so do the problems it can solve — and the oversight it requires.
+AI is changing fast, and each stage brings new strengths, limits, and oversight needs. The table below offers a strategic comparison of how Traditional AI, Generative AI, and Agentic AI differ in behavior and best use.
+
 
 <div style="overflow-x:auto;">
 
