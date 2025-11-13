@@ -24,6 +24,24 @@ Although AI agents are exciting, it’s important to bring the right tool for th
 | **Interaction**         | Rule-based, efficient but inflexible            | Needs human-in-the-loop                         | Fewer human touchpoints                         |
 | **Best For**            | <strong>Basic repetitive tasks</strong><br>Structured processes | <strong>Human augmentation</strong><br>Knowledge generation | <strong>End-to-end automation</strong><br>Decision-making & orchestration |
 
+
+## Evolution of AI Capabilities
+
+Not all AI is created equal. As AI evolves, so do the problems it can solve — and the oversight it requires.
+
+<div style="overflow-x:auto;">
+
+| Capability            | **Traditional AI**<br><small>Rule-driven tools</small> | **Generative AI**<br><small>Smart assistants</small> | **Agentic AI**<br><small>Autonomous actors</small> |
+|-----------------------|---------------------------------------------|--------------------------------------------|--------------------------------------------|
+| **What it does**      | Follows hard-coded logic and rules          | Understands prompts and generates output   | Plans, reasons, and acts across steps       |
+| **How it behaves**    | Rigid, predictable                          | Creative but guided                        | Goal-seeking and adaptive                   |
+| **Human involvement** | Fully manual setup and supervision          | Needs context and oversight                | Can operate independently (with guardrails) |
+| **Strengths**         | Reliable on structured tasks                | Great at summarizing, drafting, generating | Handles multistep workflows                 |
+| **Best used for**     | Repetitive decisions and automation         | Insight generation and copiloting          | Full process orchestration                  |
+
+</div>
+
+
 > 📌 **Note**:  
 > - Models like **Autoregressive models** and **Normalizing Flows** directly maximize log-likelihood.  
 > - **VAEs** maximize a variational lower bound (ELBO) on log-likelihood.  
