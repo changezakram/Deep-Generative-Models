@@ -22,16 +22,17 @@ AI is changing fast, and each stage brings new strengths, limits, and oversight 
 
 ## Why Generative AI Matters
 
-Generative AI models can create entirely new content — such as text, images, simulations, or code — by learning from existing data. Unlike traditional AI systems that classify, tag, or score inputs, generative models **produce** new outputs based on patterns they've learned.
+Generative AI models can create entirely new content — such as text, images, simulations, or code — by learning from existing data. Unlike traditional AI systems that classify or tag inputs, generative models **produce** new outputs based on patterns they’ve learned.
 
-Since 2022, the pace of innovation in generative AI has accelerated rapidly. Foundation models like ChatGPT, Claude, and Gemini are being applied across industries — from writing assistance and image generation to fraud detection and synthetic data creation.
+Since 2022, innovation in this space has accelerated rapidly. Foundation models like ChatGPT, Claude, and Gemini are being deployed across industries — from writing assistance and image generation to fraud detection and synthetic data creation.
 
-> 💡 **Business impact:** According to McKinsey, generative AI could add up to **$4.4 trillion in annual global economic value**, with significant implications for productivity, personalization, and decision support.
+> 💡 **Business impact:** McKinsey estimates that generative AI could contribute up to **$4.4 trillion in annual global economic value**, with wide-ranging implications for productivity, personalization, and decision support.
 
-However, generative AI also introduces new challenges. Outputs can be wrong, biased, or easily misused — especially in high-stakes domains like banking, healthcare, and law. Ensuring responsible use requires robust governance, human oversight, and ethical deployment frameworks.
+At the same time, generative AI introduces new risks. Outputs may appear convincing but be inaccurate, biased, or open to misuse. This is especially critical in high-stakes domains such as banking, healthcare, and law.  
+Ensuring responsible use requires strong governance, human oversight, and ethical deployment practices.
 
 
-## Generative AI Models
+## How Generative Models Work
 
 Generative AI models aim to learn the underlying distribution of real-world data, typically denoted as $p_{\text{data}}(x)$. Their goal is to approximate this distribution as closely as possible.
 
