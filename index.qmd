@@ -2,16 +2,6 @@
 title: "Deep Generative Models"
 ---
 
-## Overview
-
-Generative machine learning models aim to learn the underlying distribution of real-world data, typically denoted as $p_{\text{data}}(x)$. Their goal is to approximate this distribution as closely as possible.
-
-
-- The distribution learned by the model is denoted as $p_\theta(x)$  
-- We generate new data by **sampling** from this learned distribution  
-- In practice, generative models are trained to **maximize the expected log-likelihood** of $p_\theta(x)$, or equivalently, **minimize the divergence** between $p_\theta(x)$ and $p_{\text{data}}(x)$
-
-
 ## Evolution of AI Capabilities
 
 Not all AI is created equal. As AI evolves, so do the problems it can solve — and the oversight it requires.
@@ -27,6 +17,16 @@ Not all AI is created equal. As AI evolves, so do the problems it can solve — 
 | **Best used for**     | Repetitive decisions and automation         | Insight generation and copiloting          | Full process orchestration                  |
 
 </div>
+
+
+## Generative AI
+
+Generative machine learning models aim to learn the underlying distribution of real-world data, typically denoted as $p_{\text{data}}(x)$. Their goal is to approximate this distribution as closely as possible.
+
+
+- The distribution learned by the model is denoted as $p_\theta(x)$  
+- We generate new data by **sampling** from this learned distribution  
+- In practice, generative models are trained to **maximize the expected log-likelihood** of $p_\theta(x)$, or equivalently, **minimize the divergence** between $p_\theta(x)$ and $p_{\text{data}}(x)$
 
 
 > 📌 **Note**:  
