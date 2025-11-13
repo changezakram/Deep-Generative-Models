@@ -57,7 +57,7 @@ Generative AI models aim to learn the underlying distribution of real-world data
 - **Sampling**: Fast — sample latent vector and decode.
 - **Use Cases**: Representation learning, image generation.
 - **Example Models**: β-VAE, Conditional VAE  
-- [Go to VAE write-up →](vae.qmd)
+- [Go to VAE Models →](vae.qmd)
 
 ### Generative Adversarial Networks (GANs)
 - **Core Idea**: Generator and discriminator compete in a minimax game to produce realistic samples.
@@ -65,7 +65,7 @@ Generative AI models aim to learn the underlying distribution of real-world data
 - **Sampling**: Fast — sample latent vector and pass through generator.
 - **Use Cases**: High-quality image generation, style transfer.
 - **Example Models**: StyleGAN, CycleGAN  
-- [Go to GAN write-up →]
+- [Go to GAN Models →]
 
 ### Autoregressive Models
 - **Core Idea**: Factor the joint distribution as a product of conditional probabilities.
