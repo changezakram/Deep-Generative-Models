@@ -224,10 +224,9 @@ window.Quarto = {
   <li><a href="#why-generative-ai-matters" id="toc-why-generative-ai-matters" class="nav-link" data-scroll-target="#why-generative-ai-matters"><span class="header-section-number">2</span> Why Generative AI Matters</a></li>
   <li><a href="#how-generative-models-work" id="toc-how-generative-models-work" class="nav-link" data-scroll-target="#how-generative-models-work"><span class="header-section-number">3</span> How Generative Models Work</a></li>
   <li><a href="#key-gen-ai-model-families" id="toc-key-gen-ai-model-families" class="nav-link" data-scroll-target="#key-gen-ai-model-families"><span class="header-section-number">4</span> Key Gen AI Model Families</a></li>
-  <li><a href="#key-gen-ai-model-families-1" id="toc-key-gen-ai-model-families-1" class="nav-link" data-scroll-target="#key-gen-ai-model-families-1"><span class="header-section-number">5</span> Key Gen AI Model Families</a></li>
-  <li><a href="#use-case-framing-prioritization" id="toc-use-case-framing-prioritization" class="nav-link" data-scroll-target="#use-case-framing-prioritization"><span class="header-section-number">6</span> Use-Case Framing &amp; Prioritization</a></li>
-  <li><a href="#industry-use-cases" id="toc-industry-use-cases" class="nav-link" data-scroll-target="#industry-use-cases"><span class="header-section-number">7</span> Industry Use Cases</a></li>
-  <li><a href="#governance-risk-warnings" id="toc-governance-risk-warnings" class="nav-link" data-scroll-target="#governance-risk-warnings"><span class="header-section-number">8</span> Governance &amp; Risk Warnings</a></li>
+  <li><a href="#use-case-framing-prioritization" id="toc-use-case-framing-prioritization" class="nav-link" data-scroll-target="#use-case-framing-prioritization"><span class="header-section-number">5</span> Use-Case Framing &amp; Prioritization</a></li>
+  <li><a href="#industry-use-cases" id="toc-industry-use-cases" class="nav-link" data-scroll-target="#industry-use-cases"><span class="header-section-number">6</span> Industry Use Cases</a></li>
+  <li><a href="#governance-risk-warnings" id="toc-governance-risk-warnings" class="nav-link" data-scroll-target="#governance-risk-warnings"><span class="header-section-number">7</span> Governance &amp; Risk Warnings</a></li>
   </ul>
 </nav>
     </div>
@@ -338,89 +337,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 </section>
 <section id="key-gen-ai-model-families" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="key-gen-ai-model-families"><span class="header-section-number">4</span> Key Gen AI Model Families</h2>
-<details>
-<summary>
-<strong> Variational Autoencoders (VAEs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Encode input to a latent space and reconstruct it while optimizing a lower bound on likelihood (ELBO).</li>
-<li><strong>Likelihood</strong>: Approximate (variational lower bound).</li>
-<li><strong>Sampling</strong>: Fast — sample latent vector and decode.</li>
-<li><strong>Use Cases</strong>: Representation learning, image generation.</li>
-<li><strong>Example Models</strong>: β-VAE, Conditional VAE</li>
-<li><a href="./vae.html">Go to VAE write-up →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Generative Adversarial Networks (GANs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: A generator and discriminator compete in a minimax game to produce realistic samples.</li>
-<li><strong>Likelihood</strong>: None (implicit model).</li>
-<li><strong>Sampling</strong>: Fast — sample latent vector and pass through generator.</li>
-<li><strong>Use Cases</strong>: High-quality image generation, style transfer.</li>
-<li><strong>Example Models</strong>: StyleGAN, CycleGAN</li>
-<li>[Go to GAN write-up →]</li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Autoregressive Models</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Factor the joint distribution as a product of conditional probabilities.</li>
-<li><strong>Likelihood</strong>: Exact.</li>
-<li><strong>Sampling</strong>: Slow — token-by-token generation.</li>
-<li><strong>Use Cases</strong>: Language modeling, code generation, time series.</li>
-<li><strong>Example Models</strong>: GPT, PixelRNN</li>
-<li>[Go to Autoregressive Models →]</li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Normalizing Flows</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Learn invertible transformations of latent variables using the change-of-variable formula.</li>
-<li><strong>Likelihood</strong>: Exact and tractable.</li>
-<li><strong>Sampling</strong>: Fast — sample from base distribution and invert.</li>
-<li><strong>Use Cases</strong>: Density estimation, latent space modeling.</li>
-<li><strong>Example Models</strong>: RealNVP, Glow</li>
-<li><a href="./flows.html">Go to Flow Models →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Energy-Based Models (EBMs)</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = higher probability.</li>
-<li><strong>Likelihood</strong>: Unnormalized (intractable partition function).</li>
-<li><strong>Sampling</strong>: Very slow — requires MCMC or Langevin dynamics.</li>
-<li><strong>Use Cases</strong>: Uncertainty modeling, compositional generation.</li>
-<li><strong>Example Models</strong>: Score-based EBMs</li>
-<li><a href="./ebm.html">Go to EBMs →</a></li>
-</ul>
-</details>
-<details>
-<summary>
-<strong> Diffusion Models</strong>
-</summary>
-<ul>
-<li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
-<li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
-<li><strong>Sampling</strong>: Slow — requires hundreds of reverse steps.</li>
-<li><strong>Use Cases</strong>: High-resolution image and audio generation.</li>
-<li><strong>Example Models</strong>: Stable Diffusion</li>
-<li><a href="./diffusion.html">Go to Diffusion Models →</a></li>
-</ul>
-</details>
-</section>
-<section id="key-gen-ai-model-families-1" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="key-gen-ai-model-families-1"><span class="header-section-number">5</span> Key Gen AI Model Families</h2>
-<section id="variational-autoencoders-vaes" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="variational-autoencoders-vaes"><span class="header-section-number">5.1</span> Variational Autoencoders (VAEs)</h3>
+<section id="variational-autoencoders-vaes" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="variational-autoencoders-vaes"><span class="header-section-number">4.1</span> Variational Autoencoders (VAEs)</h3>
 <ul>
 <li><strong>Core Idea</strong>: Encode input into a latent space and reconstruct while optimizing a lower bound on likelihood (ELBO).</li>
 <li><strong>Likelihood</strong>: Approximate (variational lower bound).</li>
@@ -431,8 +349,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 <li><a href="./vae.html">Go to VAE write-up →</a></li>
 </ul>
 </section>
-<section id="generative-adversarial-networks-gans" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="generative-adversarial-networks-gans"><span class="header-section-number">5.2</span> Generative Adversarial Networks (GANs)</h3>
+<section id="generative-adversarial-networks-gans" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="generative-adversarial-networks-gans"><span class="header-section-number">4.2</span> Generative Adversarial Networks (GANs)</h3>
 <ul>
 <li><strong>Core Idea</strong>: Generator and discriminator compete in a minimax game to produce realistic samples.</li>
 <li><strong>Likelihood</strong>: None (implicit model).</li>
@@ -443,8 +361,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 <li>[Go to GAN write-up →]</li>
 </ul>
 </section>
-<section id="autoregressive-models" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="autoregressive-models"><span class="header-section-number">5.3</span> Autoregressive Models</h3>
+<section id="autoregressive-models" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="autoregressive-models"><span class="header-section-number">4.3</span> Autoregressive Models</h3>
 <ul>
 <li><strong>Core Idea</strong>: Factor the joint distribution as a product of conditional probabilities.</li>
 <li><strong>Likelihood</strong>: Exact.</li>
@@ -455,8 +373,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 <li>[Go to Autoregressive Models →]</li>
 </ul>
 </section>
-<section id="normalizing-flows" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="normalizing-flows"><span class="header-section-number">5.4</span> Normalizing Flows</h3>
+<section id="normalizing-flows" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="normalizing-flows"><span class="header-section-number">4.4</span> Normalizing Flows</h3>
 <ul>
 <li><strong>Core Idea</strong>: Learn invertible transformations using the change-of-variable formula.</li>
 <li><strong>Likelihood</strong>: Exact and tractable.</li>
@@ -467,8 +385,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 <li><a href="./flows.html">Go to Flow Models →</a></li>
 </ul>
 </section>
-<section id="energy-based-models-ebms" class="level3" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="energy-based-models-ebms"><span class="header-section-number">5.5</span> Energy-Based Models (EBMs)</h3>
+<section id="energy-based-models-ebms" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="energy-based-models-ebms"><span class="header-section-number">4.5</span> Energy-Based Models (EBMs)</h3>
 <ul>
 <li><strong>Core Idea</strong>: Define an energy function over inputs; lower energy = higher probability.</li>
 <li><strong>Likelihood</strong>: Unnormalized (intractable partition function).</li>
@@ -479,8 +397,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 <li><a href="./ebm.html">Go to EBMs →</a></li>
 </ul>
 </section>
-<section id="diffusion-models" class="level3" data-number="5.6">
-<h3 data-number="5.6" class="anchored" data-anchor-id="diffusion-models"><span class="header-section-number">5.6</span> Diffusion Models</h3>
+<section id="diffusion-models" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="diffusion-models"><span class="header-section-number">4.6</span> Diffusion Models</h3>
 <ul>
 <li><strong>Core Idea</strong>: Learn to reverse a gradual noise process via denoising.</li>
 <li><strong>Likelihood</strong>: Approximate (via variational bound).</li>
@@ -492,8 +410,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 </ul>
 </section>
 </section>
-<section id="use-case-framing-prioritization" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="use-case-framing-prioritization"><span class="header-section-number">6</span> Use-Case Framing &amp; Prioritization</h2>
+<section id="use-case-framing-prioritization" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="use-case-framing-prioritization"><span class="header-section-number">5</span> Use-Case Framing &amp; Prioritization</h2>
 <p>Before diving into specific industry use cases, it’s critical to assess <em>where</em> and <em>how</em> generative AI can deliver real value. Not every idea is equally feasible, impactful, or low-risk. A structured framing process helps ensure that AI initiatives align with business priorities and responsible innovation.</p>
 <p>We recommend evaluating GenAI use cases across three key dimensions:</p>
 <ul>
@@ -504,10 +422,10 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 <p>This framing helps prioritize AI use cases that are not only <strong>promising</strong>, but also <strong>implementable</strong> and <strong>sustainable</strong>—especially in highly regulated environments.</p>
 <hr>
 </section>
-<section id="industry-use-cases" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">7</span> Industry Use Cases</h2>
-<section id="banking" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="banking"><span class="header-section-number">7.1</span> Banking</h3>
+<section id="industry-use-cases" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">6</span> Industry Use Cases</h2>
+<section id="banking" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="banking"><span class="header-section-number">6.1</span> Banking</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 19%">
@@ -554,8 +472,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 </blockquote>
 <hr>
 </section>
-<section id="healthcare" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="healthcare"><span class="header-section-number">7.2</span> Healthcare</h3>
+<section id="healthcare" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="healthcare"><span class="header-section-number">6.2</span> Healthcare</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 17%">
@@ -602,8 +520,8 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 </blockquote>
 </section>
 </section>
-<section id="governance-risk-warnings" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="governance-risk-warnings"><span class="header-section-number">8</span> Governance &amp; Risk Warnings</h2>
+<section id="governance-risk-warnings" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="governance-risk-warnings"><span class="header-section-number">7</span> Governance &amp; Risk Warnings</h2>
 <p>Generative AI introduces exciting new capabilities—but also carries <strong>unique risks</strong> that traditional analytics and rules-based systems did not. Without strong governance, these risks can quickly undermine trust, compliance, and effectiveness.</p>
 <p><strong>Key Risks to Watch:</strong></p>
 <ul>
