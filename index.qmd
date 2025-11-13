@@ -19,7 +19,7 @@ Generative machine learning models aim to learn the underlying distribution of r
 
 This site explores how different model families approach this goal — from Variational Autoencoders (VAEs) to Diffusion Models — grounded in theory and real-world use.
 
-## Key Model Families
+## Key Gen AI Model Families
 
 <details>
 <summary><strong> Variational Autoencoders (VAEs)</strong></summary>
