@@ -48,8 +48,6 @@ Generative AI models aim to learn the underlying distribution of real-world data
 > - **GANs** minimize the **Jensen-Shannon divergence** through adversarial training.  
 > - **Diffusion models** and **EBMs** use score matching or other divergence-minimizing techniques.
 
-This site explores how different model families approach this goal — from Variational Autoencoders (VAEs) to Diffusion Models — grounded in theory and real-world use.
-
 
 ## Key Gen AI Model Families
 
@@ -100,9 +98,6 @@ This site explores how different model families approach this goal — from Vari
 - **Use Cases**: High-resolution image and audio generation.
 - **Example Models**: Stable Diffusion  
 - [Go to Diffusion Models →](diffusion.qmd)
-
-
-
 
 
 
