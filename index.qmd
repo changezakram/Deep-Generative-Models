@@ -128,17 +128,17 @@ This site explores how different model families approach this goal — from Vari
 
 ## Use-Case Framing & Prioritization
 
-Before diving into individual use cases, it’s critical to assess *where* and *how* Generative AI can drive real value. Not every idea is equally feasible, safe, or impactful. A structured framing ensures that AI initiatives align with business priorities and responsible innovation.
+Before diving into specific industry use cases, it's critical to assess *where* and *how* generative AI can deliver real value. Not every idea is equally feasible, impactful, or low-risk. A structured framing process helps ensure that AI initiatives align with business priorities and responsible innovation.
 
-We recommend evaluating use cases across three key dimensions:
+We recommend evaluating GenAI use cases across three key dimensions:
 
-| **Evaluation Dimension**     | **Description**                                                                 |
-|-----------------------------|----------------------------------------------------------------------------------|
-| **Business Value**           | Impact on revenue, cost, efficiency, risk reduction, or customer experience.    |
-| **Feasibility**              | Availability of data, model readiness, integration complexity, compute needs.   |
-| **Governance Sensitivity**  | Oversight required for regulatory compliance, explainability, and risk of misuse.|
+- **Business Value**: Consider how the use case impacts revenue generation, cost reduction, operational efficiency, risk mitigation, or customer experience. This ensures alignment with strategic business outcomes.
 
-This prioritization helps teams focus on use cases that are not only promising but also **implementable** and **sustainable**, especially in regulated domains like banking and healthcare.
+- **Feasibility**: Evaluate the availability and quality of data, the readiness of models, the complexity of integration, and infrastructure or compute requirements. This grounds ideas in technical and operational reality.
+
+- **Governance Sensitivity**: Assess how much oversight is needed to meet regulatory, ethical, or reputational expectations—especially in domains like banking and healthcare. This includes explainability, auditability, and the potential for misuse.
+
+This framing helps prioritize AI use cases that are not only **promising**, but also **implementable** and **sustainable**—especially in highly regulated environments.
 
 ---
 
@@ -178,7 +178,7 @@ Generative AI introduces exciting new capabilities—but also carries **unique r
 **Key Risks to Watch:**
 
 - **Inaccuracy & Hallucination**: GenAI can confidently generate responses that sound right—but are completely wrong or misleading.
-- **Bias & Fairness**: Models can unintentionally reinforce historical bias found in training data, especially when outcomes affect customers or patients.
+- **Bias & Fairness**: Models can unintentionally reinforce historical bias found in training data. These outcomes could affect customers or patients.
 - **Security & Privacy**: Prompts or training data may inadvertently expose sensitive, private, or proprietary information.
 - **Overtrust**: Users may take outputs at face value without critical thinking, especially in high-volume environments like BI dashboards or chatbots.
 - **Regulatory Exposure**: Lack of transparency, explainability, or auditability may put the organization at odds with standards such as OCC guidelines, HIPAA, GDPR, or emerging AI laws.
