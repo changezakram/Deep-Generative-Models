@@ -21,7 +21,7 @@ AI is changing fast, and each stage brings new strengths, limits, and oversight 
 
 The development of Generative AI has been shaped by decades of research and breakthroughs in deep learning, representation learning, and probabilistic modeling. The timeline below highlights key milestones — from foundational models in the 1980s to the latest trends in agentic AI and enterprise deployment.
 
-![**Figure:** Generative AI: Key Milestones. Tracks key advances from early neural nets and probabilistic models to modern transformers, diffusion models, and real-world deployment.](images/GenAI-Timeline.png)
+![**Figure:** Generative AI: Key Milestones. Tracks key advances from early neural nets and probabilistic models to modern transformers, diffusion models, and real-world deployment.](images/GenAI-timeline.png)
 
 
 
