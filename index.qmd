@@ -111,7 +111,7 @@ Expand your understanding of Generative AI with these supporting deep dives:
 - [Post-Training Techniques →](post-training.qmd)  
   Learn how fine-tuning, RLHF, and instruction tuning make base models usable in the real world.
 
-- [Evaluation Strategies →](evaluation.qmd)  
+- [Evaluation Strategies →](nlp-eval.qmd)  
   Discover how we evaluate GenAI output quality — from traditional metrics to modern LLM-based approaches.
 :::
 
@@ -182,3 +182,8 @@ Generative AI introduces exciting new capabilities—but also carries **unique r
 
 > **Bottom line**: In highly regulated industries like banking and healthcare, governance isn't just a best practice—it's a business requirement. The goal is to innovate *responsibly* and scale *safely*.
 
+## Conclusion
+
+Generative AI is more than a technological breakthrough — it represents a fundamental shift in how knowledge is created, consumed, and applied. As organizations move beyond isolated experiments, the focus will shift toward embedding GenAI into real workflows, governed environments, and long-term value creation.
+
+Looking ahead, the next wave of GenAI will be defined by intelligent copilots, adaptive agents, and deeply integrated AI layers that understand industry context and human intent. This evolution will demand strong foundations in model governance, strategic use case alignment, and scalable architecture — exactly the pillars explored in this guide.
