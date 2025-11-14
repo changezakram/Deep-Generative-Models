@@ -11,6 +11,8 @@ website:
 
       - text: Generative AI
         menu:
+          - text: Gen AI Introduction
+            href: index.qmd
           - text: Variational Autoencoders (VAEs)
             href: vae.qmd
           - text: Normalizing Flows
