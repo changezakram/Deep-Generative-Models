@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Post-Training for Foundation Models</title>
+<title>Post-Training LLMs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,6 +94,10 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
         <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">Gen AI Introduction</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./vae.html">
  <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
   </li>  
@@ -123,6 +127,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/post-training.html">
  <span class="dropdown-text">Post Training</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/nlp-eval.html">
+ <span class="dropdown-text">NLP Evaluation</span></a>
   </li>  
     </ul>
   </li>
@@ -202,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Post-Training for Foundation Models</h1>
+<h1 class="title">Post-Training LLMs</h1>
 </div>
 
 
@@ -221,22 +229,19 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction-why-post-training-matters-for-reasoning" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction-why-post-training-matters-for-reasoning"><span class="header-section-number">1</span> Introduction: Why Post-Training Matters for Reasoning</h2>
-<p>Large language models like GPT-4 and Claude have demonstrated impressive capabilities across a wide range of tasks, including writing, summarization, problem solving, and open-ended reasoning. These are examples of <strong>foundation models</strong>—large, general-purpose models trained on broad data at scale, designed to serve as flexible building blocks for many downstream applications. But their raw, pre-trained form is not sufficient for safe, reliable deployment.</p>
-<p>The core limitation lies in how LLMs are initially trained. They don’t follow strict rules or formal logic. Instead, they learn from statistical patterns in massive text corpora. This makes them flexible and creative—but also means their reasoning can be inconsistent, misleading, or untrustworthy.</p>
-<p>These models are typically optimized to predict the next word in a sentence—not to follow instructions, act ethically, or meet human expectations. This initial phase is called <strong>pre-training</strong>, and it focuses on token-level quality—generating the most likely next word given the prior context. But users care more about the quality of the entire response than just the next token.</p>
-<p>This is where <strong>post-training</strong> comes in. It refines the model’s behavior to be helpful, safe, and aligned with human intent. Some compare pre-training to reading a vast amount of text, and post-training to learning how to apply that knowledge in a useful, trustworthy way.</p>
+<p>Foundation models like GPT-4, Claude, and Gemini are large neural networks trained on massive text corpora to predict the next word in a sequence. This stage of training — often called <strong>pre-training</strong> — gives models broad generality. They learn patterns of language, knowledge, and relationships in data. This flexibility allows them to adapt across many tasks.</p>
+<p>But in their raw form, these models are still optimized for next-token prediction rather than following instructions or aligning with human expectations. As a result, they can generate inconsistent reasoning, misleading statements, or unhelpful answers. This gap between raw capability and user needs is why <strong>post-training</strong> is essential— adapting a foundation model into a safe, reliable, instruction-following AI assistant, much like learning how to apply the knowledge from a vast library in useful, trustworthy ways.</p>
 <p>Post-training typically involves two key stages:</p>
 <ul>
 <li><strong>Supervised Fine-Tuning (SFT)</strong>: teaching the model to follow instructions and carry out tasks</li>
 <li><strong>Preference Optimization</strong>: aligning outputs with human feedback using methods like RLHF, DPO, or RLAIF</li>
 </ul>
-<p>These techniques not only improve factual accuracy and safety, but also enhance the model’s ability to reason. And surprisingly, they require relatively little compute—InstructGPT, for example, used only 2% of its total compute budget for post-training.</p>
-<p>While supervised and preference tuning are the core of post-training, it’s also important to consider <strong>prompting techniques</strong>. These methods—such as <strong>zero-shot</strong>, <strong>few-shot</strong>, and <strong>chain-of-thought</strong> prompting—don’t change the model’s weights but can steer its behavior at inference time. Prompting often delivers strong results without additional training, making it an essential part of real-world LLM deployment.</p>
-<p>In the sections that follow, we’ll explore both post-training techniques and prompting strategies, and how they work together to transform general-purpose LLMs into dependable, aligned assistants.</p>
+<p>Alongside these methods, <strong>prompting techniques</strong> also play a key role. Approaches such as zero-shot, few-shot, and chain-of-thought prompting don’t change the model’s weights but can steer its behavior at inference time. Prompting often delivers strong results without additional training, making it an essential part of real-world LLM deployment.</p>
+<p>In the sections that follow, we’ll explore post-training techniques alongside prompting strategies, and how they work together to transform general-purpose LLMs into dependable, aligned assistants. This transformation explains why ChatGPT felt so different from GPT-3, why Claude can engage in dialogue that feels helpful rather than predictive, and why modern AI systems reliably follow complex instructions while staying aligned with user intent.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/post-training-methods.png" class="img-fluid figure-img" width="800"></p>
-<figcaption><strong>Figure:</strong> High-level taxonomy of large language model (LLM) post-training strategies, showing where scaling methods (bottom right) fit alongside reinforcement, tuning, and alignment approaches. <em>(Source: Kumar et al., 2023)</em></figcaption>
+<figcaption><strong>Figure:</strong> High-level taxonomy of large language model (LLM) post-training strategies, showing where scaling methods (bottom right) fit alongside reinforcement, tuning, and alignment approaches. <em>(Source: Kumar, K., Ashraf, T., Thawakar, O., et al., 2025)</em></figcaption>
 </figure>
 </div>
 <hr>
@@ -245,15 +250,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="2" class="anchored" data-anchor-id="prompting"><span class="header-section-number">2</span> Prompting</h2>
 <section id="in-context-learning-zero-shot-and-few-shot" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="in-context-learning-zero-shot-and-few-shot"><span class="header-section-number">2.1</span> In-Context Learning: Zero-Shot and Few-Shot</h3>
-<p><strong>Concept:</strong><br>
-In-Context Learning (ICL) refers to the ability of large language models (LLMs) to perform tasks by conditioning on examples provided in the input prompt, without any gradient updates or fine-tuning. This capability emerged prominently with GPT-3, as shown in Brown et al.&nbsp;(2020), <em>Language Models are Few-Shot Learners</em>.</p>
-<p>Traditionally, models learn behavior during training stages such as pre-training and post-training that involve updating model weights. In contrast, ICL allows a model to learn the desired behavior from the <em>context</em> in which the prompt is given, even if the desired task differs from what it was explicitly trained to do. No weight updates are performed; instead, the model leverages its massive training data and generalization ability.</p>
-<p><strong>How It Works</strong></p>
-<ul>
-<li>The model treats the prompt as a temporary training set, inferring patterns between inputs and outputs.</li>
-<li>These patterns are applied to new examples within the same prompt context.</li>
-<li>This enables the model to adapt its behavior on-the-fly without persistent changes to its parameters.</li>
-</ul>
+<p><strong>Concept:</strong></p>
+<p>In-Context Learning (ICL) lets models learn new tasks by using examples directly in the prompt—no parameter updates required. Zero-shot uses just an instruction, while few-shot provides labeled examples. In both cases, the model infers patterns from the prompt and applies them to new inputs.</p>
 <p><strong>Key Variants</strong></p>
 <p><strong>1. Zero-Shot Prompting:</strong> Ask the model to perform a task using only an instruction or question — without providing any explicit examples of how the task should be done.</p>
 <ul>
@@ -265,10 +263,11 @@ In-Context Learning (ICL) refers to the ability of large language models (LLMs) 
 No translations are shown beforehand — the model generates the French sentence using patterns it learned during training.</p>
 <p><strong>2. Few-Shot Prompting:</strong> Provide a small number of (input → output) examples before asking for a new prediction.</p>
 <ul>
-<li>One example = one “shot” (e.g., 5 examples = 5-shot learning).</li>
+<li>One example = one “shot”, 5 examples = 5-shot.</li>
 <li>More examples generally improve performance, but are limited by the model’s maximum context length.</li>
 </ul>
 <p>Example: Showing labeled sentiment examples before asking for classification of a new sentence.</p>
+<p>The diagram below visualizes zero-shot, one-shot, and few-shot prompting, and contrasts them with fine-tuning for clarity.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/eval_strategies.png" class="img-fluid figure-img"></p>
@@ -304,11 +303,10 @@ Performance Summary
 </ul>
 <p><strong>Limitations</strong></p>
 <ul>
-<li><strong>Context Length Constraints</strong>: Limited by the model’s maximum input size, restricting the number of examples that can be provided.</li>
-<li><strong>Performance Sensitivity</strong>: Output quality varies depending on prompt wording, ordering, and example selection.</li>
-<li><strong>Lack of True Learning</strong>: The model’s weights are not updated; adaptation is temporary and disappears when the context changes.</li>
-<li><strong>Weak Multi-Step Reasoning</strong>: Struggles with tasks requiring reasoning across multiple logical or arithmetic steps.</li>
-<li><strong>Limited Interpretability</strong>: Produces final answers without an explicit reasoning trail, making verification and debugging difficult.</li>
+<li><strong>Context Limits</strong>: Constrained by max input size; too many examples can’t fit.</li>
+<li><strong>Variable Performance</strong>: Output quality depends on prompt wording, ordering, and examples.</li>
+<li><strong>No True Learning</strong>: The model’s weights aren’t updated—adaptation disappears once context is gone.</li>
+<li><strong>Reasoning Weaknesses</strong>: Struggles with multi-step reasoning and provides little interpretability for debugging.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled" title="Key Insight">
 <div class="callout-header d-flex align-content-center">
@@ -327,16 +325,8 @@ Key Insight
 </section>
 <section id="addressing-icls-reasoning-limitations-chain-of-thought-prompting" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="addressing-icls-reasoning-limitations-chain-of-thought-prompting"><span class="header-section-number">2.2</span> Addressing ICL’s Reasoning Limitations: Chain-of-Thought Prompting</h3>
-<p><strong>Concept:</strong><br>
-Chain-of-Thought (CoT) prompting is a technique that augments ICL by adding <strong>natural language reasoning steps</strong> between the input and the final output. Instead of going directly from problem → answer, the model is encouraged to generate a sequence of intermediate steps — a “reasoning chain” — before producing its final answer.</p>
-<p><strong>How It Works:</strong></p>
-<ul>
-<li>The prompt explicitly demonstrates step-by-step reasoning for a few training examples in the context.<br>
-</li>
-<li>The model learns to emulate this reasoning pattern when solving new tasks in the same prompt.<br>
-</li>
-<li>The final output is preceded by a textual reasoning trace, making the model’s thought process transparent.</li>
-</ul>
+<p><strong>Concept:</strong></p>
+<p>Chain-of-Thought (CoT) prompting augments in-context learning by encouraging models to generate intermediate reasoning steps before the final answer. Instead of jumping directly from input → output, the prompt shows worked-out examples of step-by-step reasoning, which the model then imitates. This produces more transparent, accurate results, especially on arithmetic or multi-step problems.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/cot-reasoning.png" class="img-fluid figure-img"></p>
@@ -438,12 +428,9 @@ While both prompting and TTS work without retraining the model, they target <em>
 </section>
 <section id="testtime-scaling-methods" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="testtime-scaling-methods"><span class="header-section-number">3</span> Test‑Time Scaling Methods</h2>
-<p><strong>Concept:</strong><br>
-Test-time scaling (TTS) improves a model’s performance and reasoning during inference—without changing its parameters. While prompting guides the model by adjusting the input text, TTS works by giving the model more “thinking time.” It runs extra computations, explores multiple reasoning paths, and often blends the best results from several runs. Unlike pre-training, which teaches the model new skills through large-scale learning, TTS makes smarter use of existing skills by allocating more resources—like iterative refinement, search-based decoding, or adaptive sampling—based on complexity of the task.</p>
-<p>TTS can match the performance of a model up to 14× larger on easy to intermediate tasks, while using up to 4× lower compute cost<sup>[1]</sup>. This makes it highly effective when inference budgets are limited or when the base model already has the necessary core competence. However, for tasks requiring fundamentally new capabilities—such as novel reasoning—<strong>pre-training remains superior</strong>, as larger pre-trained models inherently encode deeper reasoning ability.</p>
-<p>In practice, TTS and pre-training are <strong>complementary</strong>: pre-training builds broad, general‑purpose competence, while TTS offers flexible, on‑demand optimization at inference time. Many deployments use a <strong>hybrid approach</strong>, combining a pre-trained base model with TTS to achieve cost‑efficient scaling and adaptability.</p>
-<p><strong>Why It Matters:</strong></p>
-<p>Test-time scaling lets you squeeze more performance out of your current models by simply working them harder at inference. Instead of paying the price (in time, data, and money) to train a larger model, you can unlock competitive or even superior results by exploring multiple reasoning paths and smartly combining answers. This translates into stronger performance, lower costs, and faster innovation—without the need for heavy, expensive upgrades.</p>
+<p><strong>Concept:</strong></p>
+<p>Test-time scaling (TTS) boosts a model’s reasoning and performance during inference—without changing its parameters—by allocating more “thinking time.” It does this by running extra compute, exploring multiple reasoning paths, and blending the best results. Empirical results show strong efficiency: TTS can match the performance of models up to <strong>14× larger</strong> while using <strong>4× less compute</strong><sup>[1]</sup>. Techniques like Self-Consistency—sampling multiple reasoning paths and taking a majority vote—further improve reasoning accuracy, with gains of <strong>+17.9% on GSM8K</strong>, <strong>+11.0% on SVAMP</strong>, and <strong>+12.2% on AQuA</strong><sup>[9]</sup>.</p>
+<p>TTS is especially valuable when inference budgets are limited or the base model already has strong core competence. However, for tasks that require fundamentally new capabilities, pre-training remains essential, since larger models inherently encode deeper reasoning ability.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
 <li>Improves performance without retraining or altering model parameters<br>
@@ -488,7 +475,6 @@ Test-time scaling (TTS) improves a model’s performance and reasoning during in
 <h3 data-number="3.1" class="anchored" data-anchor-id="best-of-n-search-rejection-sampling"><span class="header-section-number">3.1</span> Best-of-N Search (Rejection Sampling)</h3>
 <p><strong>Concept:</strong><br>
 Best-of-N (BoN) search enhances model performance at inference by generating <em>N</em> candidate outputs (often via sampling) and selecting the one that scores highest according to a chosen criterion — such as a reward model, likelihood score, or rule-based evaluator. This approach systematically explores multiple solution paths and prunes all but the top-rated result. Compared to Beam Search, BoN treats each candidate independently, which can increase diversity but may also be more computationally expensive.</p>
-<p>In reinforcement learning contexts, BoN can be integrated with a learned reward model to pick the best candidate from multiple rollouts, yielding strong performance in reasoning-heavy tasks. It is a popular choice in applications like question answering, code generation, and reasoning benchmarks.</p>
 <p><strong>Advantages:</strong></p>
 <ul>
 <li>Can significantly boost task performance, especially with a robust reward model</li>
@@ -546,7 +532,6 @@ The model is run multiple times with the same prompt, and each output is scored 
 <li><p><strong>Self-Consistency Decoding:</strong> Goal is to find the answer most reasoning paths agree on.<br>
 The model is run multiple times, encouraging different step-by-step reasoning chains. The final answer from each chain is collected, and the one appearing most often (majority vote) is chosen.</p></li>
 </ul>
-<p><strong>In short:</strong> Best-of-N picks the <em>best-rated</em> answer. Self-Consistency picks the <em>most common</em> answer.</p>
 </div>
 </div>
 <p>The following table summarizes key test‑time scaling methods described in <em>LLM Post‑Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.</p>
@@ -579,77 +564,45 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <td>High cost if N is large; requires effective selection criteria; may miss diversity benefits.</td>
 </tr>
 <tr class="odd">
-<td><strong>Compute‑Optimal Scaling (COS)</strong></td>
-<td>Dynamically allocate compute based on task difficulty; use more search for hard cases, less for easy ones.</td>
-<td>Balances accuracy and efficiency; can achieve large efficiency gains over uniform sampling.</td>
-<td>Requires reliable difficulty estimation; complex to implement in production.</td>
-</tr>
-<tr class="even">
 <td><strong>Self‑Consistency Decoding</strong></td>
 <td>Sample multiple reasoning chains, then select the most common final answer.</td>
 <td>Improves multi‑step reasoning accuracy; simple and model‑agnostic.</td>
 <td>Higher inference cost; relies on majority vote, which may fail if most outputs are wrong.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Tree of Thoughts (ToT)</strong></td>
 <td>Expand multiple reasoning paths as a search tree, evaluating and pruning branches.</td>
 <td>Enhances complex problem solving and planning; allows backtracking.</td>
 <td>High computational cost; requires good heuristics to prune effectively.</td>
 </tr>
-<tr class="even">
-<td><strong>Graph of Thoughts (GoT)</strong></td>
-<td>Represent reasoning steps as a graph with flexible dependencies; enables merging and dynamic exploration.</td>
-<td>More adaptable than ToT; reduces redundant computation; efficient for complex reasoning.</td>
-<td>Implementation complexity; less studied than ToT.</td>
-</tr>
 <tr class="odd">
-<td><strong>Confidence‑Based Sampling</strong></td>
-<td>Select expansions or answers based on model confidence scores.</td>
-<td>Reduces wasted exploration on low‑probability paths; can improve efficiency.</td>
-<td>Confidence scores may not correlate with correctness; risk of overconfidence.</td>
-</tr>
-<tr class="even">
 <td><strong>Search‑Augmented Verification</strong></td>
 <td>Use external verifiers to evaluate and rank candidate answers or reasoning steps.</td>
 <td>Increases correctness in binary decision tasks; modular and flexible.</td>
 <td>Dependent on verifier quality; additional inference steps add latency.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Self‑Improvement via Refinements</strong></td>
 <td>Model iteratively critiques and revises its own answers until acceptable.</td>
 <td>Can improve accuracy across varied tasks; useful for open‑ended reasoning.</td>
 <td>Risk of over‑editing or drifting from initial intent; higher inference cost.</td>
 </tr>
-<tr class="even">
-<td><strong>Monte Carlo Tree Search (MCTS)</strong></td>
-<td>Explore possible reasoning paths via random simulations, guided by heuristics and rewards.</td>
-<td>Effective for planning and reasoning under uncertainty; supports large search spaces.</td>
-<td>High computational cost; requires effective reward design.</td>
-</tr>
-<tr class="odd">
-<td><strong>Chain‑of‑Action‑Thought Reasoning</strong></td>
-<td>Integrate action planning with reasoning steps for complex tasks.</td>
-<td>Handles multi‑agent, tool‑augmented reasoning; improves adaptability.</td>
-<td>Complex to implement; requires specialized training or prompting.</td>
-</tr>
 </tbody>
 </table>
-<p>While prompting and test-time scaling adjust model behavior without altering weights, supervised fine-tuning directly updates model parameters to improve performance on specific tasks.</p>
+<p>While prompting and test-time scaling work well, they have limits—sometimes you need to actually change how the model thinks, which requires updating its weights through supervised fine-tuning.</p>
 <hr>
 </section>
 </section>
 <section id="supervised-fine-tuning-sft" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="supervised-fine-tuning-sft"><span class="header-section-number">4</span> Supervised Fine-Tuning (SFT)</h2>
 <p><strong>Concept:</strong></p>
-<p>Supervised Fine-Tuning (SFT) is a post-training method where a pre-trained foundation model is further trained on labeled examples (input–output pairs) to better align it with desired behaviors or domain needs. While pre-training learns broad language patterns, SFT narrows the focus—adapting the model for specific goals by adjusting its internal weights on high-quality datasets. In contrast to prompting or test-time scaling, which only influence outputs at inference time, SFT changes the model’s parameters directly, so the improvements stay in the model even after the training.</p>
+<p>Supervised Fine-Tuning (SFT) is a post-training method where a pre-trained foundation model is further trained on labeled examples (input–output pairs) to better align it with desired behaviors or domain needs. While pre-training learns broad language patterns, SFT narrows the focus—adapting the model for specific goals by adjusting its internal weights on high-quality datasets. In contrast to prompting or test-time scaling, which only influence outputs at inference time, SFT changes the model’s parameters directly, so the improvements stay in the model even after the training. It also serves as the foundation for later optimization steps such as preference alignment (e.g., RLHF or DPO).</p>
 <p>SFT can be applied in two main ways:</p>
 <ul>
 <li><strong>General-purpose instruction tuning</strong> – teaching the model to follow diverse natural language instructions across many tasks.<br>
 </li>
 <li><strong>Domain-specific tuning</strong> – adapting the model for specialized fields such as legal, medical, or financial applications.</li>
 </ul>
-<p><strong>Why it matters:</strong></p>
-<p>SFT is one of the most effective ways to improve task performance, consistency, and controllability in large language models. It also serves as the foundation for later optimization steps such as preference alignment (e.g., RLHF or DPO).</p>
 <p>While many approaches exist for supervised fine‑tuning, <strong>Instruction Fine‑Tuning</strong> and <strong>Domain‑Specific Fine‑Tuning</strong> are among the most prevalent in modern LLM post‑training pipelines. The sections below explore these methods in greater detail.</p>
 <section id="instruction-fine-tuning" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="instruction-fine-tuning"><span class="header-section-number">4.1</span> Instruction Fine-Tuning</h3>
@@ -818,7 +771,7 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <ol type="1">
 <li><strong>Supervised Fine-Tuning (SFT):</strong> Train a baseline model on high-quality instruction–response pairs so it learns the basics of following human instructions.<br>
 </li>
-<li><strong>Preference Data Collection:</strong> Gather human feedback by having annotators rank multiple model responses for the same prompt from best to worst.<br>
+<li><strong>Preference Data Collection:</strong> Gather human feedback by having annotators rank multiple model responses for the same prompt from best to worst. For example, if a model gives a technically correct but rude response, human annotators would rank a polite version higher, teaching the reward model to value helpfulness.<br>
 </li>
 <li><strong>Reinforcement Learning Optimization:</strong> Fine-tune the model with reinforcement learning (often using Proximal Policy Optimization, PPO) so that it produces outputs that maximize a learned <em>reward model</em> based on collected preferences.</li>
 </ol>
@@ -829,8 +782,6 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 <figcaption><strong>Figure 1:</strong> RLHF pipeline showing three stages — (1) supervised fine-tuning from demonstrations, (2) preference ranking to train a reward model, and (3) policy optimization using reinforcement learning. <em>(Source: Ouyang et al., 2022)</em></figcaption>
 </figure>
 </div>
-<p><strong>How it works:</strong></p>
-<p>A prompt is sampled from a dataset, and a human labeler writes the ideal response. These examples teach the base model to follow instructions (SFT). Next, the model generates several responses for a prompt, and human labelers rank them, enabling the creation of a <em>reward model</em> that predicts human preference. Finally, the policy is optimized with reinforcement learning to produce outputs that maximize predicted reward while staying close to the SFT model, ensuring improvements in alignment without degrading core capabilities.</p>
 <p><strong>RLHF Performance Gains:</strong></p>
 <p>RLHF has been shown to produce higher-quality outputs than models trained only with pre-training or supervised fine-tuning. In human evaluations on the TL;DR summarization dataset, RLHF-trained models not only outperform models trained without RLHF but also exceed the quality of the human-written reference summaries—baseline summaries created by people, shown as the dotted black line in the figure below. This performance advantage is consistent across model sizes and increases steadily as model capacity grows.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -857,12 +808,12 @@ The model is run multiple times, encouraging different step-by-step reasoning ch
 </li>
 <li>Sensitive to bias in collected preferences.</li>
 </ul>
-<p>While RLHF delivers strong alignment and quality improvements, its reliance on reinforcement learning introduces significant complexity and cost. Training requires fitting a value function, performing online sampling, and carefully tuning hyperparameters — processes that are computationally expensive, time-consuming, and sensitive to setup. These challenges have prompted the search for simpler, more efficient alternatives. Direct Preference Optimization (DPO) is one such method, offering a streamlined approach to preference optimization without the heavy reinforcement learning overhead.</p>
+<p>While RLHF achieves strong alignment, it comes with heavy complexity and cost. Training requires fitting a value function, online sampling, and careful hyperparameter tuning — processes that are expensive, time-consuming, and fragile. These challenges motivated simpler alternatives. Direct Preference Optimization (DPO) offers one: a streamlined approach that skips reinforcement learning while still optimizing for human preferences.</p>
 </section>
 <section id="direct-preference-optimization-dpo" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="direct-preference-optimization-dpo"><span class="header-section-number">5.2</span> Direct Preference Optimization (DPO)</h3>
 <p><strong>Concept:</strong></p>
-<p>Direct Preference Optimization (DPO) is a simpler, more efficient alternative to RLHF that eliminates the need for a separate reward model and reinforcement learning loop. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log-likelihood ratio to favor preferred responses. This “bakes in” human preferences directly into the model parameters, avoiding costly online sampling, PPO training, and hyperparameter sensitive RL steps.</p>
+<p>Direct Preference Optimization (DPO) is a simpler, more efficient alternative to RLHF that eliminates the need for a separate reward model and reinforcement learning loop. Instead of predicting absolute reward scores, DPO learns directly from preference pairs (chosen vs.&nbsp;rejected outputs) by optimizing the log-likelihood ratio to favor preferred responses. For example, DPO directly learns that “Here’s a step-by-step solution…” is better than “I think the answer is…” for math problems, without needing a separate reward model. This “bakes in” human preferences directly into the model parameters, avoiding costly online sampling, PPO training, and hyperparameter sensitive RL steps.</p>
 <p>The main difference between RLHF and DPO lies in how they use preference data. The figure below shows how DPO streamlines the process by removing the reward model and RL loop.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -906,8 +857,20 @@ RLHF vs DPO: Key Differences
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Reinforcement Learning from Human Feedback (RLHF)</strong> - Trains an <strong>explicit reward model</strong> on comparison data to predict a score for a given completion. - Optimizes the LM to <strong>maximize the predicted score</strong> under a KL-constraint. - Very effective when tuned well, but <strong>computationally expensive</strong> and tricky to get right. - Requires multiple steps: supervised fine-tuning → reward model training → policy optimization (e.g., PPO).</p>
-<p><strong>Direct Preference Optimization (DPO)</strong> - Optimizes LM parameters <strong>directly on preference data</strong> by solving a binary classification problem. - Avoids reward model training and reinforcement learning loops entirely. - <strong>Simpler and more efficient</strong> than RLHF while maintaining similar alignment benefits. - Does not leverage online data; operates purely on static preference pairs.</p>
+<p><strong>Reinforcement Learning from Human Feedback (RLHF)</strong></p>
+<ul>
+<li>Trains an <strong>explicit reward model</strong> on comparison data to predict a score for a given completion.</li>
+<li>Optimizes the LM to <strong>maximize the predicted score</strong> under a KL-constraint.</li>
+<li>Very effective when tuned well, but <strong>computationally expensive</strong> and tricky to get right.</li>
+<li>Requires multiple steps: supervised fine-tuning → reward model training → policy optimization (e.g., PPO).</li>
+</ul>
+<p><strong>Direct Preference Optimization (DPO)</strong></p>
+<ul>
+<li>Optimizes LM parameters <strong>directly on preference data</strong> by solving a binary classification problem.</li>
+<li>Avoids reward model training and reinforcement learning loops entirely.</li>
+<li><strong>Simpler and more efficient</strong> than RLHF while maintaining similar alignment benefits.</li>
+<li>Does not leverage online data; operates purely on static preference pairs.</li>
+</ul>
 </div>
 </div>
 <p>The following table summarizes supervised Preference Optimization methods described in <em>LLM Post-Training: A Deep Dive into Reasoning</em> by Komal Kumar, Tajamul Ashraf et al<sup>[1]</sup>.</p>
@@ -970,8 +933,14 @@ RLHF vs DPO: Key Differences
 </section>
 <section id="conclusion" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
-<p>Post-training for foundation models is not a single technique, but a <strong>toolbox of complementary strategies</strong>. Prompting and test-time scaling deliver immediate gains without altering model weights, making them ideal for rapid experimentation and deployment. Supervised fine-tuning adapts models for broad instruction-following or specialized domains, while preference optimization aligns outputs with human values and expectations.</p>
-<p>In real-world systems, the most capable LLMs often <strong>combine these methods</strong>: prompting for quick control, test-time scaling for reasoning-heavy queries, supervised fine-tuning for skill building, and preference optimization for safety and alignment. Looking ahead, we can expect tighter integration of these approaches alongside emerging trends such as <strong>agentic AI, retrieval-augmented generation, and continuous self-improvement loops</strong>.</p>
+<p>Post-training combines complementary strategies that transform raw LLMs into capable assistants. Prompting and test-time scaling enable quick improvements without retraining, while supervised fine-tuning and preference optimization build deeper alignment. The key is to match the method to the goal—balancing speed, cost, and alignment needs.</p>
+<ul>
+<li><strong>Prompting:</strong> quick results without model changes</li>
+<li><strong>Test-time scaling:</strong> boosts reasoning within compute budget</li>
+<li><strong>Supervised fine-tuning:</strong> persistent behavior/domain expertise</li>
+<li><strong>Preference optimization:</strong> safety, alignment, human-like responses</li>
+</ul>
+<p>The strongest systems integrate these methods—prompting for fast control, test-time scaling for complex reasoning, fine-tuning for skills, and preference optimization for safety. OpenAI’s evolution from GPT-3 to ChatGPT layered tuning, RLHF, and CoT to transform raw capability into reliable assistance. Similarly, Klarna’s AI assistant blends fine-tuning, preference optimization, and TTS to achieve human-level workloads with consistent quality.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -989,7 +958,7 @@ Key takeaway
 </section>
 <section id="references-further-reading" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">7</span> References &amp; Further Reading</h2>
-<p>[1] Kumar, K., Ashraf, T., Thawakar, O., et al.&nbsp;(2024). <em>LLM Post-Training: A Deep Dive into Reasoning Large Language Models</em>. https://arxiv.org/abs/2502.21321</p>
+<p>[1] Kumar, K., Ashraf, T., Thawakar, O., et al.&nbsp;(2025). <em>LLM Post-Training: A Deep Dive into Reasoning Large Language Models</em>. https://arxiv.org/abs/2502.21321</p>
 <p>[2] Brown, T., Mann, B., Ryder, N., et al.&nbsp;(2020). <em>Language Models are Few-Shot Learners (GPT-3)</em>. https://arxiv.org/abs/2005.14165</p>
 <p>[3] Wei, J., Wang, X., Schuurmans, D., et al.&nbsp;(2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. https://arxiv.org/abs/2201.11903</p>
 <p>[4] Ouyang, L., Wu, J., Jiang, X., et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback (InstructGPT)</em>. https://arxiv.org/abs/2203.02155</p>
