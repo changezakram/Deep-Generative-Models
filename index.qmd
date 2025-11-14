@@ -36,6 +36,7 @@ Ensuring responsible use requires strong governance, human oversight, and ethica
 
 Generative AI models aim to learn the underlying distribution of real-world data, typically denoted as $p_{\text{data}}(x)$. Their goal is to approximate this distribution as closely as possible.
 
+![](images/gen-ai.png)
 
 - The distribution learned by the model is denoted as $p_\theta(x)$  
 - We generate new data by **sampling** from this learned distribution  
