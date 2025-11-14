@@ -61,14 +61,6 @@ These foundational architectures form the backbone of modern GenAI applications.
 - **Example Models**: β-VAE, Conditional VAE  
 - [Go to VAE Models →](vae.qmd)
 
-### Generative Adversarial Networks (GANs)
-- **Core Idea**: Generator and discriminator compete in a minimax game to produce realistic samples.
-- **Likelihood**: None (implicit model).
-- **Sampling**: Fast — sample latent vector and pass through generator.
-- **Use Cases**: High-quality image generation, style transfer.
-- **Example Models**: StyleGAN, CycleGAN  
-- [Go to GAN Models →]
-
 ### Autoregressive Models
 - **Core Idea**: Factor the joint distribution as a product of conditional probabilities.
 - **Likelihood**: Exact.
@@ -92,6 +84,14 @@ These foundational architectures form the backbone of modern GenAI applications.
 - **Use Cases**: Uncertainty modeling, compositional generation.
 - **Example Models**: Score-based EBMs  
 - [Go to EBMs →](ebm.qmd)
+
+### Generative Adversarial Networks (GANs)
+- **Core Idea**: Generator and discriminator compete in a minimax game to produce realistic samples.
+- **Likelihood**: None (implicit model).
+- **Sampling**: Fast — sample latent vector and pass through generator.
+- **Use Cases**: High-quality image generation, style transfer.
+- **Example Models**: StyleGAN, CycleGAN  
+- [Go to GAN Models →]
 
 ### Diffusion Models
 - **Core Idea**: Learn to reverse a gradual noise process via denoising.
