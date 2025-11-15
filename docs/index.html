@@ -387,22 +387,29 @@ window.Quarto = {
 <ul>
 <li><strong>What they’re good at:</strong> Learning useful representations of data, generating images, and handling cases where you want some control over what gets generated.</li>
 <li><strong>How they generate:</strong> Sample a random point in the latent space and decode it into an output. (Fast)</li>
-<li><strong>Examples:</strong> β-VAE, Conditional VAE &gt; <a href="./vae.html">Go to VAE Models →</a></li>
+<li><strong>Examples:</strong> β-VAE, Conditional VAE</li>
 </ul>
+<blockquote class="blockquote">
+<p><a href="./vae.html">Go to VAE Models →</a></p>
+</blockquote>
 </section>
 <section id="autoregressive-models" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="autoregressive-models"><span class="header-section-number">5.2</span> Autoregressive Models</h3>
 <p>These models generate content one piece at a time, like writing a sentence word by word. Each new piece depends on everything that came before it. GPT is the most famous example—it predicts the next token based on all previous tokens.</p>
-<p><strong>What they’re good at:</strong> Language modeling, code generation, anything sequential. They’re exact—they can tell you precisely how likely any sequence is.</p>
-<p><strong>The tradeoff:</strong> You can’t parallelize it because each step depends on the previous one. (Slow generation)</p>
-<p><strong>Examples:</strong> GPT, PixelRNN</p>
+<ul>
+<li><strong>What they’re good at:</strong> Language modeling, code generation, anything sequential. They’re exact—they can tell you precisely how likely any sequence is.</li>
+<li><strong>The tradeoff:</strong> You can’t parallelize it because each step depends on the previous one. (Slow generation)</li>
+<li><strong>Examples:</strong> GPT, PixelRNN</li>
+</ul>
 </section>
 <section id="normalizing-flows" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="normalizing-flows"><span class="header-section-number">5.3</span> Normalizing Flows</h3>
 <p>Normalizing Flows transform simple random noise into complex data through a series of reversible steps. Think of it as a recipe you can run backwards—start with noise, apply transformations, get realistic data. Because everything is reversible, you can compute exact probabilities.</p>
-<p><strong>What they’re good at:</strong> Density estimation and scenarios where you need exact likelihoods.</p>
-<p><strong>How they generate:</strong> Sample from simple noise and run it through the transformations. (Fast)</p>
-<p><strong>Examples:</strong> RealNVP, Glow</p>
+<ul>
+<li><strong>What they’re good at:</strong> Density estimation and scenarios where you need exact likelihoods.</li>
+<li><strong>How they generate:</strong> Sample from simple noise and run it through the transformations. (Fast)</li>
+<li><strong>Examples:</strong> RealNVP, Glow</li>
+</ul>
 <blockquote class="blockquote">
 <p><a href="./flows.html">Go to Flow Models →</a></p>
 </blockquote>
@@ -410,9 +417,11 @@ window.Quarto = {
 <section id="energy-based-models-ebms" class="level3" data-number="5.4">
 <h3 data-number="5.4" class="anchored" data-anchor-id="energy-based-models-ebms"><span class="header-section-number">5.4</span> Energy-Based Models (EBMs)</h3>
 <p>EBMs assign an “energy level” to every possible input. Real data gets low energy, fake data gets high energy. The model learns what energy landscape makes sense. The catch is that computing exact probabilities is intractable—the math doesn’t work out cleanly.</p>
-<p><strong>What they’re good at:</strong> Modeling uncertainty and building compositional systems where you can combine different concepts.</p>
-<p><strong>The tradeoff:</strong> Very slow sampling. You need techniques like MCMC or Langevin dynamics, which require many iterations.</p>
-<p><strong>Examples:</strong> Score-based EBMs</p>
+<ul>
+<li><strong>What they’re good at:</strong> Modeling uncertainty and building compositional systems where you can combine different concepts.</li>
+<li><strong>The tradeoff:</strong> Very slow sampling. You need techniques like MCMC or Langevin dynamics, which require many iterations.</li>
+<li><strong>Examples:</strong> Score-based EBMs</li>
+</ul>
 <blockquote class="blockquote">
 <p><a href="./ebm.html">Go to EBMs →</a></p>
 </blockquote>
@@ -420,16 +429,20 @@ window.Quarto = {
 <section id="generative-adversarial-networks-gans" class="level3" data-number="5.5">
 <h3 data-number="5.5" class="anchored" data-anchor-id="generative-adversarial-networks-gans"><span class="header-section-number">5.5</span> Generative Adversarial Networks (GANs)</h3>
 <p>GANs use a clever trick: pit two networks against each other. One network (the generator) tries to create fakes. The other (the discriminator) tries to spot them. They compete until the fakes become so good the discriminator can’t tell the difference.</p>
-<p><strong>What they’re good at:</strong> Creating high-quality images and style transfer. They don’t model probabilities explicitly—they just learn to generate convincing outputs.</p>
-<p><strong>How they generate:</strong> Sample random noise and pass it through the generator. (Fast)</p>
-<p><strong>Examples:</strong> StyleGAN, CycleGAN</p>
+<ul>
+<li><strong>What they’re good at:</strong> Creating high-quality images and style transfer. They don’t model probabilities explicitly—they just learn to generate convincing outputs.</li>
+<li><strong>How they generate:</strong> Sample random noise and pass it through the generator. (Fast)</li>
+<li><strong>Examples:</strong> StyleGAN, CycleGAN</li>
+</ul>
 </section>
 <section id="diffusion-models" class="level3" data-number="5.6">
 <h3 data-number="5.6" class="anchored" data-anchor-id="diffusion-models"><span class="header-section-number">5.6</span> Diffusion Models</h3>
 <p>Diffusion models work backwards from noise. Start with pure noise, then gradually remove it step by step until you reveal a clean image. It’s like watching a photo develop in reverse. The model learns how to denoise at each step.</p>
-<p><strong>What they’re good at:</strong> High-resolution images and audio. They’ve become incredibly popular because they produce excellent results and are more stable to train than GANs.</p>
-<p><strong>The tradeoff:</strong> Slow. You need hundreds of steps to generate a single sample.</p>
-<p><strong>Examples:</strong> Stable Diffusion</p>
+<ul>
+<li><strong>What they’re good at:</strong> High-resolution images and audio. They’ve become incredibly popular because they produce excellent results and are more stable to train than GANs.</li>
+<li><strong>The tradeoff:</strong> Slow. You need hundreds of steps to generate a single sample.</li>
+<li><strong>Examples:</strong> Stable Diffusion</li>
+</ul>
 <blockquote class="blockquote">
 <p><a href="./diffusion.html">Go to Diffusion Models →</a></p>
 </blockquote>
