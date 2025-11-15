@@ -28,6 +28,8 @@ Traditional AI needs constant human direction. Generative AI acts more like a sm
 
 Let's explore why generative AI has become such a big deal.
 
+---
+
 ## Why Generative AI Matters
 
 Generative AI can create brand new content—text, images, code, you name it—by learning patterns from existing data. Unlike traditional AI that just sorts or labels things, generative models actually produce something new. Since 2022, this field has exploded. Models like ChatGPT, Claude, and Gemini are being used everywhere—from helping people write and create images to detecting fraud and generating synthetic data for testing.
@@ -36,6 +38,7 @@ Generative AI can create brand new content—text, images, code, you name it—b
 
 But it's not all upside. GenAI can produce outputs that sound convincing but are completely wrong, biased, or even harmful. This is especially risky in fields like banking, healthcare, and law where mistakes have serious consequences. Making GenAI work responsibly means having strong governance, keeping humans in the loop, and deploying it ethically.
 
+---
 
 ## How Generative Models Work
 
@@ -56,6 +59,7 @@ Now that we've seen why GenAI matters, let's look under the hood. How do these m
 > - **GANs** minimize the **Jensen-Shannon divergence** through adversarial training.  
 > - **Diffusion models** and **EBMs** use score matching or other divergence-minimizing techniques.
 
+---
 
 ## How We Got Here
 
@@ -86,6 +90,8 @@ GPT-3 launched in 2020 and DALL-E 2 in 2022, showing what massive models trained
 Open-source models like LLaMA and Mistral made powerful AI accessible to more people, not just big tech companies with massive budgets. This competition sped up innovation. Tools like LangChain and RAG emerged to help AI systems do more complex, multi-step tasks and ground their outputs in real data. Companies started deploying GenAI in production, which meant they had to get serious about governance, safety, and making sure these systems were explainable and trustworthy. We're moving from "cool demos" to "systems people rely on," which changes what matters.
 
 Now that we've seen how GenAI evolved, let's dive deeper into the main types of models. Each family has its own way of learning patterns and generating new content.
+
+---
 
 ## Key Gen AI Model Families
 
@@ -153,6 +159,8 @@ Expand your understanding of Generative AI with these supporting deep dives:
   Discover how we evaluate GenAI output quality — from traditional metrics to modern LLM-based approaches.
 :::
 
+---
+
 ## Use-Case Framing & Prioritization
 
 Before diving into specific industry use cases, it's critical to assess *where* and *how* generative AI can deliver real value. Not every idea is equally feasible, impactful, or low-risk. A structured framing process helps ensure that AI initiatives align with business priorities and responsible innovation.
@@ -193,8 +201,6 @@ These use cases work in nearly any industry—they're about common business func
 
 Financial institutions use GenAI for scenario modeling, risk assessment, and customer operations—all while navigating strict regulatory requirements.
 
-#### Common Applications:
-
 | **Use Case**                   | **Example Application**                                                                 |
 |--------------------------------|------------------------------------------------------------------------------------------|
 | **Customer Service**           | Virtual agents for handling account queries and FAQs                                     |
@@ -217,8 +223,6 @@ Decision-making requires scenario simulation, risk model assessment, and custome
 
 Healthcare organizations deploy GenAI for drug discovery, clinical documentation, and personalized treatment—all while maintaining patient privacy and safety standards.
 
-#### Common Applications:
-
 | **Use Case**              | **Example Application**                                                                      |
 |---------------------------|-----------------------------------------------------------------------------------------------|
 | **Clinical Documentation**| Auto-generating visit summaries and physician notes                                           |
@@ -233,9 +237,9 @@ Healthcare organizations deploy GenAI for drug discovery, clinical documentation
 GenAI develops new drugs and treatments, designs medical devices, creates personalized treatment plans, and generates patient documentation on instructions, risks, and drug interactions. Patient safety and privacy (HIPAA) are non-negotiable.
 
 > Examples from Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.  
-> **[View complete healthcare implementation guide →](healthcare-use-cases.html)**
+> **[View complete healthcare implementation guide →](gen-ai-use-cases/healthcare-use-cases.html)**
 
-
+---
 
 ## Governance & Risk Warnings
 
@@ -258,6 +262,8 @@ Generative AI introduces exciting new capabilities—but also carries **unique r
 - **Alignment with Ethical and Regulatory Frameworks**: Embed enterprise values and industry-specific compliance into your AI lifecycle—from design to deployment.
 
 > **Bottom line**: In highly regulated industries like banking and healthcare, governance isn't just a best practice—it's a business requirement. The goal is to innovate *responsibly* and scale *safely*.
+
+---
 
 ## Conclusion
 
