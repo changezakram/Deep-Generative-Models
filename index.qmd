@@ -26,8 +26,9 @@ Here's how they compare:
 
 Traditional AI needs constant human direction. Generative AI acts more like a smart assistant. Agentic AI can work toward goals on its own, though it still needs guardrails. This evolution creates exciting opportunities, but it also raises important questions about safety and control.
 
+Let's explore why generative AI has become such a big deal.
 
-**Why Generative AI Matters**
+## Why Generative AI Matters
 
 Generative AI can create brand new content—text, images, code, you name it—by learning patterns from existing data. Unlike traditional AI that just sorts or labels things, generative models actually produce something new. Since 2022, this field has exploded. Models like ChatGPT, Claude, and Gemini are being used everywhere—from helping people write and create images to detecting fraud and generating synthetic data for testing.
 
@@ -36,7 +37,7 @@ Generative AI can create brand new content—text, images, code, you name it—b
 But it's not all upside. GenAI can produce outputs that sound convincing but are completely wrong, biased, or even harmful. This is especially risky in fields like banking, healthcare, and law where mistakes have serious consequences. Making GenAI work responsibly means having strong governance, keeping humans in the loop, and deploying it ethically.
 
 
-**How We Got Here**
+## How We Got Here
 
 To understand today's AI, it helps to look back at the key breakthroughs that got us here. The timeline below shows how Generative AI evolved over five distinct periods:
 
