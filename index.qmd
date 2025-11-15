@@ -107,52 +107,35 @@ Now that we've seen how GenAI evolved, let's dive deeper into the main types of 
 
 These foundational architectures form the backbone of modern GenAI applications. Each family differs in how it models data distributions, handles sampling and inference, and supports various real-world use cases.
 
+
 ### Variational Autoencoders (VAEs)
-- **Core Idea**: Encode input into a latent space and reconstruct while optimizing a lower bound on likelihood (ELBO).
-- **Likelihood**: Approximate (variational lower bound).
-- **Sampling**: Fast — sample latent vector and decode.
-- **Use Cases**: Representation learning, image generation.
-- **Example Models**: β-VAE, Conditional VAE  
-- [Go to VAE Models →](vae.qmd)
+
+VAEs work by compressing data into a compact representation (the "latent space"), then reconstructing it. They use a technique called ELBO (Evidence Lower Bound) to make this work efficiently—it's a workaround that approximates what we really want to measure.
+**What they're good at:** Learning useful representations of data, generating images, and handling cases where you want some control over what gets generated.
+**How they generate:** Sample a random point in the latent space and decode it into an output. (Fast)
+**Examples:** β-VAE, Conditional VAE
+> [Go to VAE Models →](vae.qmd)
 
 ### Autoregressive Models
-- **Core Idea**: Factor the joint distribution as a product of conditional probabilities.
-- **Likelihood**: Exact.
-- **Sampling**: Slow — token-by-token generation.
-- **Use Cases**: Language modeling, code generation, time series.
-- **Example Models**: GPT, PixelRNN  
-- [Go to Autoregressive Models →]
+These models generate content one piece at a time, like writing a sentence word by word. Each new piece depends on everything that came before it. GPT is the most famous example—it predicts the next token based on all previous tokens.
+**What they're good at:** Language modeling, code generation, anything sequential. They're exact—they can tell you precisely how likely any sequence is.
+**The tradeoff:** Slow generation. You can't parallelize it because each step depends on the previous one.
+**Examples:** GPT, PixelRNN
+
 
 ### Normalizing Flows
-- **Core Idea**: Learn invertible transformations using the change-of-variable formula.
-- **Likelihood**: Exact and tractable.
-- **Sampling**: Fast — sample from base distribution and invert.
-- **Use Cases**: Density estimation, latent space modeling.
-- **Example Models**: RealNVP, Glow  
+ 
 - [Go to Flow Models →](flows.qmd)
 
 ### Energy-Based Models (EBMs)
-- **Core Idea**: Define an energy function over inputs; lower energy = higher probability.
-- **Likelihood**: Unnormalized (intractable partition function).
-- **Sampling**: Very slow — requires MCMC or Langevin dynamics.
-- **Use Cases**: Uncertainty modeling, compositional generation.
-- **Example Models**: Score-based EBMs  
+ 
 - [Go to EBMs →](ebm.qmd)
 
 ### Generative Adversarial Networks (GANs)
-- **Core Idea**: Generator and discriminator compete in a minimax game to produce realistic samples.
-- **Likelihood**: None (implicit model).
-- **Sampling**: Fast — sample latent vector and pass through generator.
-- **Use Cases**: High-quality image generation, style transfer.
-- **Example Models**: StyleGAN, CycleGAN  
-- [Go to GAN Models →]
+
 
 ### Diffusion Models
-- **Core Idea**: Learn to reverse a gradual noise process via denoising.
-- **Likelihood**: Approximate (via variational bound).
-- **Sampling**: Slow — requires hundreds of reverse steps.
-- **Use Cases**: High-resolution image and audio generation.
-- **Example Models**: Stable Diffusion  
+ 
 - [Go to Diffusion Models →](diffusion.qmd)
 
 
