@@ -21,7 +21,7 @@ Artificial Intelligence has rapidly evolved from rule-based systems to generativ
 
 To understand how we reached the current stage, it’s helpful to trace the key breakthroughs in AI research and model development. The timeline below outlines the progression of Generative AI, highlighting key innovations across five eras:
 
-![**Figure:** Generative AI: Key Milestones. Tracks key advances from early neural nets and probabilistic models to modern transformers, diffusion models, and real-world deployment.](images/gen-ai-evolution.png)
+![**Figure:** Generative AI: Key Milestones. Tracks key advances from early neural nets and probabilistic models to modern transformers, diffusion models, and real-world deployment.](images/genai-timeline.png)
 
 ### 1980–1990s: Foundations in Sequence and Probabilistic Modeling
 - Introduction of **Recurrent Neural Networks (RNNs)** in the late 1980s and **LSTMs** in 1997 improved how machines handled sequential data.
