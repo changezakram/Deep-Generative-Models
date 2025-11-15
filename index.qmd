@@ -39,9 +39,7 @@ But it's not all upside. GenAI can produce outputs that sound convincing but are
 
 ## How Generative Models Work
 
-Now that we've seen why GenAI matters, let's look under the hood. How do these models actually learn to create realistic content?
-
-The basic idea is pretty simple. These models look at tons of real examples—dog photos, text, whatever—and figure out the patterns. Then they use those patterns to make new stuff that looks real.
+Now that we've seen why GenAI matters, let's look under the hood. How do these models actually learn to create realistic content? The basic idea is pretty simple. These models look at tons of real examples—dog photos, text, whatever—and figure out the patterns. Then they use those patterns to make new stuff that looks real.
 
 ![**Figure 1:** Generative models learn to approximate the true data distribution $P_{\text{data}}$ by optimizing a parameterized model $P_\theta$. The goal is to minimize divergence $d(P_{\text{data}}, P_\theta)$. *Source: Adapted from Stanford CS236.*](images/gen-ai.png)
 
@@ -57,9 +55,6 @@ The basic idea is pretty simple. These models look at tons of real examples—do
 > - **VAEs** maximize a variational lower bound (ELBO) on log-likelihood.  
 > - **GANs** minimize the **Jensen-Shannon divergence** through adversarial training.  
 > - **Diffusion models** and **EBMs** use score matching or other divergence-minimizing techniques.
-
-
-
 
 
 ## How We Got Here
