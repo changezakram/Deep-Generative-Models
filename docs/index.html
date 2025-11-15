@@ -486,7 +486,7 @@ Discover how we evaluate GenAI output quality — from traditional metrics to mo
 <h2 data-number="7" class="anchored" data-anchor-id="industry-use-cases"><span class="header-section-number">7</span> Industry Use Cases</h2>
 <p>GenAI is being deployed across industries in two ways: <strong>horizontal use cases</strong> that work everywhere, and <strong>industry-specific applications</strong> tailored to particular sectors. Let’s look at both.</p>
 <section id="horizontal-use-cases-apply-across-industries" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="horizontal-use-cases-apply-across-industries"><span class="header-section-number">7.1</span> 7.1 Horizontal Use Cases (Apply Across Industries)</h3>
+<h3 data-number="7.1" class="anchored" data-anchor-id="horizontal-use-cases-apply-across-industries"><span class="header-section-number">7.1</span> Horizontal Use Cases (Apply Across Industries)</h3>
 <p>These use cases work in nearly any industry—they’re about common business functions like content creation, customer service, and compliance.</p>
 <table class="caption-top table">
 <colgroup>
@@ -545,100 +545,116 @@ Discover how we evaluate GenAI output quality — from traditional metrics to mo
 </tbody>
 </table>
 </section>
-<section id="banking" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="banking"><span class="header-section-number">7.2</span> Banking</h3>
+<section id="banking-financial-services" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="banking-financial-services"><span class="header-section-number">7.2</span> Banking &amp; Financial Services</h3>
+<p>Financial institutions use GenAI for scenario modeling, risk assessment, and customer operations—all while navigating strict regulatory requirements.</p>
+<section id="common-applications" class="level4" data-number="7.2.1">
+<h4 data-number="7.2.1" class="anchored" data-anchor-id="common-applications"><span class="header-section-number">7.2.1</span> Common Applications:</h4>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 25%">
-<col style="width: 54%">
+<col style="width: 26%">
+<col style="width: 73%">
 </colgroup>
 <thead>
 <tr class="header">
 <th><strong>Use Case</strong></th>
-<th><strong>Model Type</strong></th>
 <th><strong>Example Application</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Customer Service</strong></td>
-<td>Autoregressive (e.g., GPT)</td>
 <td>Virtual agents for handling account queries and FAQs</td>
 </tr>
 <tr class="even">
 <td><strong>Fraud Detection</strong></td>
-<td>Energy-Based Models</td>
 <td>Real-time anomaly detection in transaction behavior</td>
 </tr>
 <tr class="odd">
-<td><strong>Operational Efficiency</strong></td>
-<td>RAG (Retrieval-Augmented Gen)</td>
-<td>Automating call summaries and back-office document workflows</td>
+<td><strong>Risk Modeling</strong></td>
+<td>Scenario analysis for credit risk and market stress testing</td>
 </tr>
 <tr class="even">
-<td><strong>Business Intelligence</strong></td>
-<td>VAEs (Variational Autoencoders)</td>
-<td>Detecting anomalies in product or branch-level KPIs</td>
+<td><strong>Operational Efficiency</strong></td>
+<td>Auto-summarizing calls and processing back-office documents</td>
 </tr>
 <tr class="odd">
+<td><strong>Business Intelligence</strong></td>
+<td>Spotting unusual patterns in product or branch-level KPIs</td>
+</tr>
+<tr class="even">
 <td><strong>Marketing &amp; Personalization</strong></td>
-<td>GANs</td>
-<td>Generating personalized offers based on behavioral segmentation</td>
+<td>Creating personalized offers based on customer behavior and transaction history</td>
+</tr>
+<tr class="odd">
+<td><strong>Product Development</strong></td>
+<td>Simulating scenarios to develop new financial products and services</td>
 </tr>
 </tbody>
 </table>
+<p><strong>What makes financial services different:</strong><br>
+Decision-making requires scenario simulation, risk model assessment, and customer personalization based on transaction history. Everything must be explainable and auditable for regulators.</p>
 <blockquote class="blockquote">
-<p>Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley. <a href="gen-ai-use-cases/banking-use-cases.html">View more details on Banking use cases →</a></p>
+<p>Real-world examples from JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.<br>
+<strong><a href="gen-ai-use-cases/banking-use-cases.html">View complete banking implementation guide →</a></strong></p>
 </blockquote>
 <hr>
 </section>
-<section id="healthcare" class="level3" data-number="7.3">
-<h3 data-number="7.3" class="anchored" data-anchor-id="healthcare"><span class="header-section-number">7.3</span> Healthcare</h3>
+</section>
+<section id="healthcare-life-sciences" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="healthcare-life-sciences"><span class="header-section-number">7.3</span> Healthcare &amp; Life Sciences</h3>
+<p>Healthcare organizations deploy GenAI for drug discovery, clinical documentation, and personalized treatment—all while maintaining patient privacy and safety standards.</p>
+<section id="common-applications-1" class="level4" data-number="7.3.1">
+<h4 data-number="7.3.1" class="anchored" data-anchor-id="common-applications-1"><span class="header-section-number">7.3.1</span> Common Applications:</h4>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 29%">
-<col style="width: 52%">
+<col style="width: 22%">
+<col style="width: 77%">
 </colgroup>
 <thead>
 <tr class="header">
 <th><strong>Use Case</strong></th>
-<th><strong>Model Type</strong></th>
 <th><strong>Example Application</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Clinical Documentation</strong></td>
-<td>GPT-4, RAG (Nuance DAX)</td>
 <td>Auto-generating visit summaries and physician notes</td>
 </tr>
 <tr class="even">
-<td><strong>Medical Imaging</strong></td>
-<td>Diffusion Models</td>
-<td>Enhancing and reconstructing radiological images</td>
+<td><strong>Drug Discovery</strong></td>
+<td>Accelerating compound generation and molecular simulation</td>
 </tr>
 <tr class="odd">
-<td><strong>Diagnostics &amp; Triage</strong></td>
-<td>VAEs</td>
-<td>Supporting diagnosis with uncertainty-aware modeling</td>
+<td><strong>Medical Device Design</strong></td>
+<td>Creating and optimizing new medical devices</td>
 </tr>
 <tr class="even">
-<td><strong>Patient Education</strong></td>
-<td>Conversational AI</td>
-<td>Explaining test results in accessible, human-like language</td>
+<td><strong>Treatment Plans</strong></td>
+<td>Generating personalized patient treatment plans</td>
 </tr>
 <tr class="odd">
-<td><strong>Drug Discovery</strong></td>
-<td>Normalizing Flows, VAEs</td>
-<td>Accelerating compound generation and molecular simulation</td>
+<td><strong>Medical Imaging</strong></td>
+<td>Improving and reconstructing radiological images</td>
+</tr>
+<tr class="even">
+<td><strong>Diagnostics &amp; Triage</strong></td>
+<td>Supporting diagnosis with uncertainty-aware modeling (confidence scores)</td>
+</tr>
+<tr class="odd">
+<td><strong>Patient Education</strong></td>
+<td>Explaining test results, medication instructions, and drug interactions in plain language</td>
 </tr>
 </tbody>
 </table>
+<p><strong>What makes healthcare different:</strong><br>
+GenAI develops new drugs and treatments, designs medical devices, creates personalized treatment plans, and generates patient documentation on instructions, risks, and drug interactions. Patient safety and privacy (HIPAA) are non-negotiable.</p>
 <blockquote class="blockquote">
-<p>Highlights include work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine. <a href="gen-ai-use-cases/healthcare-use-cases.html">View more details on Healthcare use cases →</a></p>
+<p>Examples from Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.<br>
+<strong><a href="healthcare-use-cases.html">View complete healthcare implementation guide →</a></strong></p>
 </blockquote>
+</section>
 </section>
 </section>
 <section id="governance-risk-warnings" class="level2" data-number="8">

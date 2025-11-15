@@ -173,7 +173,7 @@ This framing helps prioritize AI use cases that are not only **promising**, but 
 
 GenAI is being deployed across industries in two ways: **horizontal use cases** that work everywhere, and **industry-specific applications** tailored to particular sectors. Let's look at both.
 
-### 7.1 Horizontal Use Cases (Apply Across Industries)
+### Horizontal Use Cases (Apply Across Industries)
 
 These use cases work in nearly any industry—they're about common business functions like content creation, customer service, and compliance.
 
@@ -189,31 +189,52 @@ These use cases work in nearly any industry—they're about common business func
 | **Contract Management**  | Drafts legal documents and understands regulatory requirements                   | Reduce human mistakes and make informed decisions faster                           |
 
 
-### Banking
+### Banking & Financial Services
 
-| **Use Case**             | **Model Type**                   | **Example Application**                                               |
-|--------------------------|----------------------------------|------------------------------------------------------------------------|
-| **Customer Service**     | Autoregressive (e.g., GPT)       | Virtual agents for handling account queries and FAQs                  |
-| **Fraud Detection**      | Energy-Based Models              | Real-time anomaly detection in transaction behavior                   |
-| **Operational Efficiency** | RAG (Retrieval-Augmented Gen)  | Automating call summaries and back-office document workflows          |
-| **Business Intelligence** | VAEs (Variational Autoencoders) | Detecting anomalies in product or branch-level KPIs                   |
-| **Marketing & Personalization** | GANs                    | Generating personalized offers based on behavioral segmentation       |
+Financial institutions use GenAI for scenario modeling, risk assessment, and customer operations—all while navigating strict regulatory requirements.
 
-> Includes deployments by JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley. [View more details on Banking use cases →](gen-ai-use-cases/banking-use-cases.html)
+#### Common Applications:
+
+| **Use Case**                   | **Example Application**                                                                 |
+|--------------------------------|------------------------------------------------------------------------------------------|
+| **Customer Service**           | Virtual agents for handling account queries and FAQs                                     |
+| **Fraud Detection**            | Real-time anomaly detection in transaction behavior                                      |
+| **Risk Modeling**              | Scenario analysis for credit risk and market stress testing                              |
+| **Operational Efficiency**     | Auto-summarizing calls and processing back-office documents                              |
+| **Business Intelligence**      | Spotting unusual patterns in product or branch-level KPIs                                |
+| **Marketing & Personalization**| Creating personalized offers based on customer behavior and transaction history          |
+| **Product Development**        | Simulating scenarios to develop new financial products and services                      |
+
+**What makes financial services different:**  
+Decision-making requires scenario simulation, risk model assessment, and customer personalization based on transaction history. Everything must be explainable and auditable for regulators.
+
+> Real-world examples from JPMorgan, Mastercard, Wells Fargo, and Morgan Stanley.  
+> **[View complete banking implementation guide →](gen-ai-use-cases/banking-use-cases.html)**
 
 ---
 
-### Healthcare
+### Healthcare & Life Sciences
 
-| **Use Case**             | **Model Type**                            | **Example Application**                                                   |
-|--------------------------|-------------------------------------------|----------------------------------------------------------------------------|
-| **Clinical Documentation** | GPT-4, RAG (Nuance DAX)                 | Auto-generating visit summaries and physician notes                        |
-| **Medical Imaging**      | Diffusion Models                          | Enhancing and reconstructing radiological images                          |
-| **Diagnostics & Triage** | VAEs                                      | Supporting diagnosis with uncertainty-aware modeling                      |
-| **Patient Education**    | Conversational AI                         | Explaining test results in accessible, human-like language                |
-| **Drug Discovery**       | Normalizing Flows, VAEs                   | Accelerating compound generation and molecular simulation                 |
+Healthcare organizations deploy GenAI for drug discovery, clinical documentation, and personalized treatment—all while maintaining patient privacy and safety standards.
 
-> Highlights include work by Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine. [View more details on Healthcare use cases →](gen-ai-use-cases/healthcare-use-cases.html)
+#### Common Applications:
+
+| **Use Case**              | **Example Application**                                                                      |
+|---------------------------|-----------------------------------------------------------------------------------------------|
+| **Clinical Documentation**| Auto-generating visit summaries and physician notes                                           |
+| **Drug Discovery**        | Accelerating compound generation and molecular simulation                                     |
+| **Medical Device Design** | Creating and optimizing new medical devices                                                   |
+| **Treatment Plans**       | Generating personalized patient treatment plans                                               |
+| **Medical Imaging**       | Improving and reconstructing radiological images                                              |
+| **Diagnostics & Triage**  | Supporting diagnosis with uncertainty-aware modeling (confidence scores)                      |
+| **Patient Education**     | Explaining test results, medication instructions, and drug interactions in plain language     |
+
+**What makes healthcare different:**  
+GenAI develops new drugs and treatments, designs medical devices, creates personalized treatment plans, and generates patient documentation on instructions, risks, and drug interactions. Patient safety and privacy (HIPAA) are non-negotiable.
+
+> Examples from Nuance (Microsoft), Mayo Clinic, DeepMind, and Insilico Medicine.  
+> **[View complete healthcare implementation guide →](healthcare-use-cases.html)**
+
 
 
 ## Governance & Risk Warnings
