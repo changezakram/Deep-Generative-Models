@@ -85,8 +85,7 @@ GPT-3 launched in 2020 and DALL-E 2 in 2022, showing what massive models trained
 
 Open-source models like LLaMA and Mistral made powerful AI accessible to more people, not just big tech companies with massive budgets. This competition sped up innovation. Tools like LangChain and RAG emerged to help AI systems do more complex, multi-step tasks and ground their outputs in real data. Companies started deploying GenAI in production, which meant they had to get serious about governance, safety, and making sure these systems were explainable and trustworthy. We're moving from "cool demos" to "systems people rely on," which changes what matters.
 
-
-
+Now that we've seen how GenAI evolved, let's dive deeper into the main types of models. Each family has its own way of learning patterns and generating new content.
 
 ## Key Gen AI Model Families
 
