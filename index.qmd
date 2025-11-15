@@ -171,6 +171,24 @@ This framing helps prioritize AI use cases that are not only **promising**, but 
 
 ## Industry Use Cases
 
+GenAI is being deployed across industries in two ways: **horizontal use cases** that work everywhere, and **industry-specific applications** tailored to particular sectors. Let's look at both.
+
+### 7.1 Horizontal Use Cases (Apply Across Industries)
+
+These use cases work in nearly any industry—they're about common business functions like content creation, customer service, and compliance.
+
+| **Use Case**             | **What It Does**                                                                 | **Business Impact**                                                                |
+|--------------------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| **Content Generation**   | Creates blogs, reports, emails, social media posts                              | Scale content marketing efforts without proportional headcount increases           |
+| **Personalized Marketing** | Generates customized emails, landing pages, and social posts                  | Reach target audiences more effectively and increase conversion rates              |
+| **Customer Service**     | Powers chatbots that answer questions and resolve problems                       | Free up human agents to focus on complex issues                                    |
+| **Risk Management**      | Identifies and predicts fraud, cyberattacks, supply chain disruptions            | Mitigate risks and protect assets before problems occur                            |
+| **Compliance**           | Generates compliant documents like contracts, reports, disclosures               | Save time and money while reducing noncompliance risk                              |
+| **Software Development** | Generates code, provides snippets, documents and refactors code                  | Speed up development, reduce errors, generate test cases                           |
+| **Data Augmentation**    | Creates synthetic data when real data is insufficient                            | Enable model training when privacy or scarcity limits real data availability       |
+| **Contract Management**  | Drafts legal documents and understands regulatory requirements                   | Reduce human mistakes and make informed decisions faster                           |
+
+
 ### Banking
 
 | **Use Case**             | **Model Type**                   | **Example Application**                                               |
