@@ -36,7 +36,7 @@ Each era built on what came before, introducing new techniques and expanding wha
 
 **1980–1990s: Early Foundations**
 
-In the late 1980s, researchers introduced Recurrent Neural Networks (RNNs), which could process sequences of data like sentences or time series. LSTMs came in 1997, making it easier for models to remember context over longer sequences. Around the same time, early generative models started appearing—a shift from AI that just classified things to AI that could actually create new content. Probabilistic models like Bayesian networks and Hidden Markov Models gave us ways to model uncertainty and complex patterns. These weren't flashy, but they laid the groundwork for everything that followed.
+In the late 1980s, researchers introduced Recurrent Neural Networks (RNNs), which could process sequences of data like sentences or time series. LSTMs came in 1997, making it easier for models to remember context over longer sequences. Around the same time, early generative models started appearing—a shift from AI that just classified things to AI that could actually create new content. Probabilistic models like Bayesian networks and Hidden Markov Models gave us ways to model uncertainty and complex patterns. These weren't exciting, but they laid the groundwork for everything that followed.
 
 **2000s: Learning Better Representations**
 
@@ -44,7 +44,7 @@ The 2000s saw neural networks make a comeback. Researchers figured out how to tr
 
 **2010s: The Big Leap**
 
-This decade brought the models that most people think of as "modern AI." VAEs showed up in 2013 and GANs in 2014—both could generate realistic images and learn useful representations. Then came Transformers in 2017, which changed everything for language models. Their self-attention mechanism made it possible to build the large language models we use today. Diffusion models appeared in 2015 too, though they didn't work well until around 2020-2022. Together, these architectures created the foundation for the AI boom we're seeing now.
+This decade brought the models that most people think of as "modern AI." VAEs showed up in 2013 and GANs in 2014-both could generate realistic images and learn useful representations. Then came Transformers in 2017, which changed everything for language models. Their self-attention mechanism made it possible to build the large language models we use today. Diffusion models appeared in 2015 too, though they didn't work well until around 2020-2022. Together, these architectures created the foundation for the AI boom we're seeing now.
 
 **2020–2022: Going Big**
 
