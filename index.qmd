@@ -50,7 +50,7 @@ Here's what's going on under the hood:
 
 Real data has patterns. Dog photos usually have four legs, fur, a tail. We call this the data distribution $P_{\text{data}}$. The model tries to learn this pattern by building its own version, called $P_\theta$ (where $\theta$ represents the model's internal settings).
 
-Training means adjusting those settings until the model's distribution $P_\theta$ matches the data distribution $P_{\text{data}}$. The model keeps tweaking itself to minimize the gap between what it generates and what actually exists. Once it's trained, you can generate new content by sampling from what the model learned.
+Training means adjusting those settings until the model's distribution $P_\theta$ matches the data distribution $P_{\text{data}}$. The model keeps tweaking itself to minimize the gap between what it generates and what actually exists. Once trained, you can generate new content by sampling from what the model learned.
 
 The basics:
 
