@@ -50,21 +50,22 @@ Here's what's going on under the hood:
 
 Real data has patterns. Dog photos usually have four legs, fur, a tail. We call this the data distribution $P_{\text{data}}$. The model tries to learn this pattern by building its own version, called $P_\theta$ (where $\theta$ represents the model's internal settings).
 
-Training means adjusting those settings until the model's version matches the real thing. The model keeps tweaking itself to minimize the gap between what it generates and what actually exists. Once it's trained, you can generate new content by sampling from what the model learned.
+Training means adjusting those settings until the model's distribution $P_\theta$ matches the data distribution $P_{\text{data}}$. The model keeps tweaking itself to minimize the gap between what it generates and what actually exists. Once it's trained, you can generate new content by sampling from what the model learned.
 
 The basics:
 
-The model learns a pattern $P_\theta$ that captures what makes data look real
-New content comes from sampling—drawing examples from this learned pattern
-Training means making $P_\theta$ match the real data pattern as closely as possible
-Different models, different approaches:
+- The model learns a pattern $P_\theta$ that captures what makes data look real
+- New content comes from sampling—drawing examples from this learned pattern
+- Training means making $P_\theta$ match the real data pattern as closely as possible
+
+**Different models, different approaches:**
 
 Different types of models use different techniques to learn these patterns:
 
-Autoregressive models (like GPT) and Normalizing Flows directly maximize how likely the real data is under their model
-VAEs use a workaround called ELBO (Evidence Lower Bound) to approximate this
-GANs pit two networks against each other—one creates fakes, the other spots them—until the fakes become incredibly convincing
-Diffusion models and EBMs use techniques like score matching to learn the patterns
+- Autoregressive models (like GPT) and Normalizing Flows directly maximize how likely the real data is under their model
+- VAEs use a workaround called ELBO (Evidence Lower Bound) to approximate this
+- GANs pit two networks against each other—one creates fakes, the other spots them—until the fakes become incredibly convincing
+- Diffusion models and EBMs use techniques like score matching to learn the patterns
 
 The key insight: all these models are trying to learn "what real data looks like" so they can create convincing new examples. They just take different paths to get there.
 

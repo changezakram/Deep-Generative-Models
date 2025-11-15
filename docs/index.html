@@ -337,11 +337,21 @@ window.Quarto = {
 </div>
 <p>Here’s what’s going on under the hood:</p>
 <p>Real data has patterns. Dog photos usually have four legs, fur, a tail. We call this the data distribution <span class="math inline">\(P_{\text{data}}\)</span>. The model tries to learn this pattern by building its own version, called <span class="math inline">\(P_\theta\)</span> (where <span class="math inline">\(\theta\)</span> represents the model’s internal settings).</p>
-<p>Training means adjusting those settings until the model’s version matches the real thing. The model keeps tweaking itself to minimize the gap between what it generates and what actually exists. Once it’s trained, you can generate new content by sampling from what the model learned.</p>
+<p>Training means adjusting those settings until the model’s distribution <span class="math inline">\(P_\theta\)</span> matches the data distribution <span class="math inline">\(P_{\text{data}}\)</span>. The model keeps tweaking itself to minimize the gap between what it generates and what actually exists. Once it’s trained, you can generate new content by sampling from what the model learned.</p>
 <p>The basics:</p>
-<p>The model learns a pattern <span class="math inline">\(P_\theta\)</span> that captures what makes data look real New content comes from sampling—drawing examples from this learned pattern Training means making <span class="math inline">\(P_\theta\)</span> match the real data pattern as closely as possible Different models, different approaches:</p>
+<ul>
+<li>The model learns a pattern <span class="math inline">\(P_\theta\)</span> that captures what makes data look real</li>
+<li>New content comes from sampling—drawing examples from this learned pattern</li>
+<li>Training means making <span class="math inline">\(P_\theta\)</span> match the real data pattern as closely as possible</li>
+</ul>
+<p><strong>Different models, different approaches:</strong></p>
 <p>Different types of models use different techniques to learn these patterns:</p>
-<p>Autoregressive models (like GPT) and Normalizing Flows directly maximize how likely the real data is under their model VAEs use a workaround called ELBO (Evidence Lower Bound) to approximate this GANs pit two networks against each other—one creates fakes, the other spots them—until the fakes become incredibly convincing Diffusion models and EBMs use techniques like score matching to learn the patterns</p>
+<ul>
+<li>Autoregressive models (like GPT) and Normalizing Flows directly maximize how likely the real data is under their model</li>
+<li>VAEs use a workaround called ELBO (Evidence Lower Bound) to approximate this</li>
+<li>GANs pit two networks against each other—one creates fakes, the other spots them—until the fakes become incredibly convincing</li>
+<li>Diffusion models and EBMs use techniques like score matching to learn the patterns</li>
+</ul>
 <p>The key insight: all these models are trying to learn “what real data looks like” so they can create convincing new examples. They just take different paths to get there.</p>
 <hr>
 </section>
