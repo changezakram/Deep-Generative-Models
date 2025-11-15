@@ -259,7 +259,9 @@ window.Quarto = {
 
 <section id="evolution-of-ai-capabilities" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="evolution-of-ai-capabilities"><span class="header-section-number">1</span> Evolution of AI Capabilities</h2>
-<p>Artificial Intelligence has rapidly evolved from rule-based systems to generative and agentic models. Each stage introduces new strengths, limitations, and oversight needs. The table below compares how Traditional AI, Generative AI, and Agentic AI differ in terms of behavior, human involvement, and their best uses:</p>
+<p>AI has changed a lot over the past few decades. We’ve gone from simple rule-based systems to creative generative models, and now to AI that can plan and act on its own. Each stage brought new capabilities but also new challenges. To understand where we are today, it helps to look at these three types: Traditional AI, Generative AI, and Agentic AI.</p>
+<p><strong>AI paradigms</strong></p>
+<p><strong>Traditional AI</strong> follows fixed rules and is great at repetitive tasks like sorting emails or detecting fraud. <strong>Generative AI</strong> can create new things—write text, generate images, or write code—by learning patterns from lots of data. <strong>Agentic AI</strong> goes even further: it can plan ahead, reason through problems, and handle multi-step tasks without much human help. Here’s how they compare:</p>
 <div style="overflow-x:auto;">
 <table class="caption-top table">
 <colgroup>
@@ -310,54 +312,26 @@ window.Quarto = {
 </tbody>
 </table>
 </div>
-<p>To understand how we reached the current stage, it’s helpful to trace the key breakthroughs in AI research and model development. The timeline below outlines the progression of Generative AI, highlighting key innovations across five eras:</p>
+<p>Traditional AI needs constant human direction. Generative AI acts more like a smart assistant. Agentic AI can work toward goals on its own, though it still needs guardrails. This evolution creates exciting opportunities, but it also raises important questions about safety and control.</p>
+<p><strong>How We Got Here</strong></p>
+<p>To understand today’s AI, it helps to look back at the key breakthroughs that got us here. The timeline below shows how Generative AI evolved over five distinct periods:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ai-timeline.png" class="img-fluid figure-img"></p>
 <figcaption><strong>Figure:</strong> Generative AI: Key Milestones. Tracks key advances from early neural nets and probabilistic models to modern transformers, diffusion models, and real-world deployment.</figcaption>
 </figure>
 </div>
-<section id="s-foundations-in-sequence-and-probabilistic-modeling" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="s-foundations-in-sequence-and-probabilistic-modeling"><span class="header-section-number">1.1</span> 1980–1990s: Foundations in Sequence and Probabilistic Modeling</h3>
-<ul>
-<li>Introduction of <strong>Recurrent Neural Networks (RNNs)</strong> in the late 1980s and <strong>LSTMs</strong> in 1997 improved how machines handled sequential data.</li>
-<li>Early generative models emerged, shifting from pure classification to <em>content generation</em>.</li>
-<li><strong>Probabilistic graphical models</strong> like Bayesian networks and HMMs laid foundational frameworks for modeling uncertainty.</li>
-</ul>
-</section>
-<section id="s-rise-of-representation-learning" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="s-rise-of-representation-learning"><span class="header-section-number">1.2</span> 2000s: Rise of Representation Learning</h3>
-<ul>
-<li><strong>Neural networks</strong> and <strong>unsupervised learning</strong> gained traction, enabling deeper feature representations.</li>
-<li><strong>Deep Belief Networks (2006)</strong> introduced layer-wise pretraining and revitalized deep learning.</li>
-<li>Graphical models continued to support structured generative tasks.</li>
-</ul>
-</section>
-<section id="s-modern-generative-architectures-emerge" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="s-modern-generative-architectures-emerge"><span class="header-section-number">1.3</span> 2010s: Modern Generative Architectures Emerge</h3>
-<ul>
-<li><strong>VAEs (2013)</strong> and <strong>GANs (2014)</strong> allowed for realistic image generation and continuous latent spaces.</li>
-<li><strong>Transformers (2017)</strong> changed NLP by introducing self-attention, setting the stage for LLMs.</li>
-<li><strong>Diffusion models</strong> entered the scene in 2015, paving the way for stable, high-fidelity generation.</li>
-</ul>
-</section>
-<section id="breakthroughs-in-scale-and-modality" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="breakthroughs-in-scale-and-modality"><span class="header-section-number">1.4</span> 2020–2022: Breakthroughs in Scale and Modality</h3>
-<ul>
-<li><strong>GPT-3 (2020)</strong> and <strong>DALL·E 2 (2022)</strong> demonstrated the power of large-scale pretraining and multimodal generation.</li>
-<li>Advances in <strong>transfer learning</strong>, <strong>zero-shot</strong>, and <strong>few-shot</strong> capabilities broadened GenAI’s versatility.</li>
-<li><strong>Multimodal models</strong> began fusing text, image, and audio.</li>
-</ul>
-</section>
-<section id="shift-toward-deployment-and-autonomy" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="shift-toward-deployment-and-autonomy"><span class="header-section-number">1.5</span> 2023–2025: Shift Toward Deployment and Autonomy</h3>
-<ul>
-<li><strong>Open-source (LLaMA, Mistral)</strong> and <strong>closed models (GPT-4, Claude)</strong> accelerated accessibility and innovation.</li>
-<li>Tools like <strong>LangChain</strong>, <strong>AutoGPT</strong>, and <strong>RAG pipelines</strong> shifted focus to orchestration and grounding.</li>
-<li>Enterprises started deploying GenAI in real-world use cases with an emphasis on <strong>governance</strong>, <strong>safety</strong>, and <strong>explainability</strong>.</li>
-</ul>
-<p>Together, these advancements represent the steady shift from narrow automation to increasingly autonomous and adaptable systems — paving the way for more dynamic, context-aware AI in enterprise and everyday use.</p>
-</section>
+<p>Each era built on what came before, introducing new techniques and expanding what AI could do. Let’s walk through each one.</p>
+<p><strong>1980–1990s: Early Foundations</strong></p>
+<p>In the late 1980s, researchers introduced Recurrent Neural Networks (RNNs), which could process sequences of data like sentences or time series. LSTMs came in 1997, making it easier for models to remember context over longer sequences. Around the same time, early generative models started appearing—a shift from AI that just classified things to AI that could actually create new content. Probabilistic models like Bayesian networks and Hidden Markov Models gave us ways to model uncertainty and complex patterns. These weren’t flashy, but they laid the groundwork for everything that followed.</p>
+<p><strong>2000s: Learning Better Representations</strong></p>
+<p>The 2000s saw neural networks make a comeback. Researchers figured out how to train them to learn meaningful features from raw data automatically—no hand-crafted rules needed. The big breakthrough was Deep Belief Networks in 2006. They used a clever training trick called layer-wise pretraining that made deep learning practical again after years of disappointing results. This proved that neural networks could learn hierarchical patterns on their own, which opened the door to modern deep learning.</p>
+<p><strong>2010s: The Big Leap</strong></p>
+<p>This decade brought the models that most people think of as “modern AI.” VAEs showed up in 2013 and GANs in 2014—both could generate realistic images and learn useful representations. Then came Transformers in 2017, which changed everything for language models. Their self-attention mechanism made it possible to build the large language models we use today. Diffusion models appeared in 2015 too, though they didn’t work well until around 2020-2022. Together, these architectures created the foundation for the AI boom we’re seeing now.</p>
+<p><strong>2020–2022: Going Big</strong></p>
+<p>GPT-3 launched in 2020 and DALL-E 2 in 2022, showing what massive models trained on huge datasets could do—write coherent essays, generate photorealistic images, you name it. Models got better at zero-shot and few-shot learning, meaning they could handle new tasks without needing specific training for each one. We also saw multimodal models that could work with text, images, and audio all at once. Diffusion models matured during this time too, often producing better images than GANs. This was when GenAI went from a research topic to something people could actually use.</p>
+<p><strong>2023–2025: Real-World Deployment</strong></p>
+<p>Open-source models like LLaMA and Mistral made powerful AI accessible to more people, not just big tech companies with massive budgets. This competition sped up innovation. Tools like LangChain and RAG emerged to help AI systems do more complex, multi-step tasks and ground their outputs in real data. Companies started deploying GenAI in production, which meant they had to get serious about governance, safety, and making sure these systems were explainable and trustworthy. We’re moving from “cool demos” to “systems people rely on,” which changes what matters.</p>
 </section>
 <section id="why-generative-ai-matters" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="why-generative-ai-matters"><span class="header-section-number">2</span> Why Generative AI Matters</h2>
