@@ -97,6 +97,8 @@ GPT-3 launched in 2020 and DALL-E 2 in 2022, showing what massive models trained
 
 Open-source models like LLaMA and Mistral made powerful AI accessible to more people, not just big tech companies with massive budgets. This competition sped up innovation. Tools like LangChain and RAG emerged to help AI systems do more complex, multi-step tasks and ground their outputs in real data. Companies started deploying GenAI in production, which meant they had to get serious about governance, safety, and making sure these systems were explainable and trustworthy. We're moving from "cool demos" to "systems people rely on," which changes what matters.
 
+The latest frontier is agentic AI that can plan and execute multi-step workflows autonomously. Recent McKinsey research shows that by 2025, nearly two-thirds of organizations are at least experimenting with AI agents, with early adoption concentrated in IT service management and knowledge operations. This shift from AI-as-tool to AI-as-agent marks another evolution in how businesses deploy these technologies.
+
 Now that we've seen how GenAI evolved, let's dive deeper into the main types of models. Each family has its own way of learning patterns and generating new content.
 
 ---
@@ -186,6 +188,8 @@ We recommend evaluating GenAI use cases across three key dimensions:
 
 - **Governance Sensitivity**: Assess how much oversight is needed to meet regulatory, ethical, or reputational expectations—especially in domains like banking and healthcare. This includes explainability, auditability, and the potential for misuse.
 
+> McKinsey research on high-performing AI implementations reveals that workflow redesign is the single strongest predictor of success. Organizations achieving significant business impact don't just add AI to existing processes—they fundamentally rethink how work gets done. They're also three times more likely to have senior leadership actively championing AI initiatives and to set growth and innovation goals alongside efficiency targets.
+
 This framing helps prioritize AI use cases that are not only **promising**, but also **implementable** and **sustainable**—especially in highly regulated environments.
 
 ---
@@ -209,6 +213,7 @@ These use cases work in nearly any industry—they're about common business func
 | **Data Augmentation**    | Creates synthetic data when real data is insufficient                            | Enable model training when privacy or scarcity limits real data availability       |
 | **Contract Management**  | Drafts legal documents and understands regulatory requirements                   | Reduce human mistakes and make informed decisions faster                           |
 
+Recent McKinsey data shows cost benefits concentrate in software engineering, manufacturing, and IT operations, while revenue gains primarily come from marketing and sales, strategy functions, and product development. Organizations using AI across multiple functions see better results than those with isolated pilots.
 
 ### Banking & Financial Services
 
@@ -264,7 +269,7 @@ We're already seeing what goes wrong when organizations skip governance.
 
 Bank of America found out in 2020 during the COVID unemployment surge. They deployed automated fraud detection—basically a simple set of flags that would freeze suspicious accounts. It caught fraud, sure, but it also locked tens of thousands of legitimate customers out of their unemployment benefits. And the bank had long hold times and limited staff to help people unfreeze accounts, which made a bad situation worse. The bill came to $225 million in regulatory fines, plus hundreds of millions more in customer refunds. Regulators said it violated the Electronic Fund Transfer Act. The real problem wasn't the automation—it was taking humans out of the loop without building in ways to catch and fix mistakes.
 
-Then in 2024, the SEC went after two investment advisers for what they called "AI-washing"—basically lying about AI capabilities to attract investors. Delphia claimed it used machine learning to "predict which companies and trends are about to make it big" using client data. They'd been saying this since 2019. Global Predictions went even further, calling itself the "first regulated AI financial advisor" with "expert AI-driven forecasts." When SEC examiners showed up and asked for documentation? There wasn't any. Delphia had actually admitted back in 2021 they didn't have the algorithm they'd been marketing, then kept making the same claims for two more years. The penalties hit $400,000 combined, plus censures. SEC Chair Gary Gensler didn't sugarcoat it: "Investment advisers should not mislead the public by saying they are using an AI model when they are not."
+In 2024, the SEC went after two investment advisers for what they called "AI-washing"—basically lying about AI capabilities to attract investors. Delphia claimed it used machine learning to "predict which companies and trends are about to make it big" using client data. They'd been saying this since 2019. Global Predictions went even further, calling itself the "first regulated AI financial advisor" with "expert AI-driven forecasts." When SEC examiners showed up and asked for documentation? There wasn't any. Delphia had actually admitted back in 2021 they didn't have the algorithm they'd been marketing, then kept making the same claims for two more years. The penalties hit $400,000 combined, plus censures. SEC Chair Gary Gensler didn't sugarcoat it: "Investment advisers should not mislead the public by saying they are using an AI model when they are not."
 
 **Key Risks to Watch:**
 
@@ -273,6 +278,8 @@ Then in 2024, the SEC went after two investment advisers for what they called "A
 - **Security & Privacy**: Prompts or training data may inadvertently expose sensitive, private, or proprietary information.
 - **Overtrust**: Users may take outputs at face value without critical thinking, especially in high-volume environments like BI dashboards or chatbots.
 - **Regulatory Exposure**: Lack of transparency, explainability, or auditability may put the organization at odds with standards such as OCC guidelines, HIPAA, GDPR, or emerging AI laws.
+
+> These risks are not hypothetical. McKinsey surveys show that 51% of organizations using AI have already experienced at least one negative consequence, with inaccuracy being the most commonly reported issue. High-performing organizations—those deploying more AI use cases—experience more problems but also invest more heavily in mitigation. The average organization now actively addresses four AI-related risks, double the number from just three years ago.
 
 **Governance Practices to Put in Place:**
 
