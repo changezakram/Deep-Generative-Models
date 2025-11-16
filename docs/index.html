@@ -385,8 +385,8 @@ window.Quarto = {
 <p>VAEs compress data into compact representations (latent spaces), then reconstruct it. What makes them useful is how they organize this latent space—similar inputs map to nearby points, which allows smooth interpolation between outputs.</p>
 <p><strong>How they learn:</strong> VAEs optimize the Evidence Lower Bound (ELBO), which approximates the true data distribution through a balance of reconstruction accuracy and regularization in the latent space.</p>
 <p><strong>Real-world example:</strong> In drug discovery, VAEs can generate new molecular structures by learning the latent space of known compounds. Researchers can then explore this space to find promising candidates that share properties with existing drugs but have novel structures.</p>
-<p><strong>Examples:</strong> β-VAE, Conditional VAE</p>
-<p><a href="./vae.html">Learn more about VAE Models →</a></p>
+<p><strong>Examples:</strong> β-VAE, Conditional VAE<br>
+<a href="./vae.html">Learn more about VAE Models →</a></p>
 </section>
 <section id="autoregressive-models" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="autoregressive-models"><span class="header-section-number">5.2</span> Autoregressive Models</h3>
@@ -400,8 +400,8 @@ window.Quarto = {
 <p>Normalizing Flows transform simple distributions (typically Gaussian noise) into complex data distributions through invertible mappings. The reversibility is what sets them apart—you can move from noise to data and back with equal ease.</p>
 <p><strong>How they learn:</strong> By chaining invertible transformations, flows can compute exact log-likelihoods—a unique property among generative models. This makes them particularly valuable when precise probability estimates are required.</p>
 <p><strong>Real-world example:</strong> In audio synthesis, WaveGlow uses normalizing flows to generate natural-sounding speech. The reversibility also makes flows useful for density estimation tasks—determining how likely a particular data point is under the learned distribution, which is valuable for anomaly detection.</p>
-<p><strong>Examples:</strong> RealNVP, Glow, WaveGlow</p>
-<p><a href="./flows.html">Learn more about Flow Models →</a></p>
+<p><strong>Examples:</strong> RealNVP, Glow, WaveGlow<br>
+<a href="./flows.html">Learn more about Flow Models →</a></p>
 </section>
 <section id="energy-based-models-ebms" class="level3" data-number="5.4">
 <h3 data-number="5.4" class="anchored" data-anchor-id="energy-based-models-ebms"><span class="header-section-number">5.4</span> Energy-Based Models (EBMs)</h3>

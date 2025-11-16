@@ -114,8 +114,7 @@ VAEs compress data into compact representations (latent spaces), then reconstruc
 
 **Real-world example:** In drug discovery, VAEs can generate new molecular structures by learning the latent space of known compounds. Researchers can then explore this space to find promising candidates that share properties with existing drugs but have novel structures.
 
-**Examples:** β-VAE, Conditional VAE  
-    
+**Examples:** β-VAE, Conditional VAE        
 [Learn more about VAE Models →](vae.qmd)
 
 ### Autoregressive Models
@@ -137,8 +136,7 @@ Normalizing Flows transform simple distributions (typically Gaussian noise) into
 
 **Real-world example:** In audio synthesis, WaveGlow uses normalizing flows to generate natural-sounding speech. The reversibility also makes flows useful for density estimation tasks—determining how likely a particular data point is under the learned distribution, which is valuable for anomaly detection.
 
-**Examples:** RealNVP, Glow, WaveGlow  
-    
+**Examples:** RealNVP, Glow, WaveGlow        
 [Learn more about Flow Models →](flows.qmd)
 
 ### Energy-Based Models (EBMs)
@@ -149,7 +147,7 @@ Energy-Based Models assign scalar energy values to inputs—lower energy corresp
 
 **Real-world example:** Score-based diffusion models (a type of EBM) power modern image generators like Midjourney. They learn the "score" (gradient of the energy) and use it to denoise images step by step, starting from pure noise and arriving at photorealistic results.
 
-**Examples:** Score-based models, Contrastive Divergence      
+**Examples:** Score-based models, Contrastive Divergence         
 [Learn more about EBMs →](ebm.qmd)
 
 ### Generative Adversarial Networks (GANs)
@@ -170,7 +168,7 @@ Diffusion models generate data through iterative denoising. Starting from pure n
 
 **Real-world example:** Stable Diffusion and DALL-E 3 generate images from text prompts using this approach. Given a description like "sunset over mountains in Van Gogh style," the model begins with Gaussian noise and iteratively denoises while conditioning on the encoded text. Diffusion models have largely supplanted GANs for image synthesis due to superior training stability and sample diversity.
 
-**Examples:** Stable Diffusion, DALL-E 3, Midjourney (likely uses diffusion), Imagen     
+**Examples:** Stable Diffusion, DALL-E 3, Midjourney (likely uses diffusion), Imagen            
 [Learn more about Diffusion Models →](diffusion.qmd)
 
 
