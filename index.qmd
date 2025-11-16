@@ -235,15 +235,15 @@ Decision-making requires scenario simulation, risk model assessment, and custome
 
 Healthcare organizations deploy GenAI for drug discovery, clinical documentation, and personalized treatment—all while maintaining patient privacy and safety standards.
 
-| **Use Case**              | **Example Application**                                                                      |
-|---------------------------|-----------------------------------------------------------------------------------------------|
-| **Clinical Documentation**| Auto-generating visit summaries and physician notes                                           |
-| **Drug Discovery**        | Accelerating compound generation and molecular simulation                                     |
-| **Medical Device Design** | Creating and optimizing new medical devices                                                   |
-| **Treatment Plans**       | Generating personalized patient treatment plans                                               |
-| **Medical Imaging**       | Improving and reconstructing radiological images                                              |
-| **Diagnostics & Triage**  | Supporting diagnosis with uncertainty-aware modeling (confidence scores)                      |
-| **Patient Education**     | Explaining test results, medication instructions, and drug interactions in plain language     |
+| **Use Case**               | **Example Application**                                                                                                                                                     |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Clinical Documentation**| Auto-generating visit summaries and physician notes. Nuance DAX reduces documentation time by **50%**, saving **7 minutes per encounter** and enabling **3–5 additional appointments** daily. |
+| **Drug Discovery**        | Accelerating compound generation and molecular simulation. *Insilico Medicine* advanced a drug candidate to Phase II trials in **under 30 months** (*<18 months* from target to candidate). |
+| **Medical Device Design** | Creating and optimizing new medical devices.                                                                                                                                  |
+| **Treatment Plans**       | Generating personalized patient treatment plans.                                                                                                                              |
+| **Medical Imaging**       | Improving and reconstructing radiological images. *MIT CSAIL's AI* reduced false positives by **37.3%**, biopsy rates by **27.8%**, and unnecessary surgeries by **over 30%**. |
+| **Diagnostics & Triage**  | Supporting diagnosis with uncertainty-aware modeling (confidence scores).                                                                                                     |
+| **Patient Education**     | Explaining test results, medication instructions, and drug interactions in plain language.                                                                                    |
 
 **What makes healthcare different:**  
 GenAI develops new drugs and treatments, designs medical devices, creates personalized treatment plans, and generates patient documentation on instructions, risks, and drug interactions. Patient safety and privacy (HIPAA) are non-negotiable.
