@@ -105,7 +105,7 @@ Now that we've seen how GenAI evolved, let's dive deeper into the main types of 
 
 ## Key Gen AI Model Families
 
-The generative AI landscape includes several distinct model families, each with its own approach to learning patterns and creating content. Understanding these architectures helps you choose the right tool for specific applications.
+The generative AI landscape includes several distinct model families, each with its own approach to learning and creating content. Understanding these architectures helps you choose the right tool for specific applications.
 
 
 ### Variational Autoencoders (VAEs)
