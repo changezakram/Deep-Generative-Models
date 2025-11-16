@@ -53,7 +53,7 @@ Training means adjusting those settings until the model's distribution $P_\theta
 The basics:
 
 - The model learns a pattern $P_\theta$ that captures what makes data look real
-- New content comes from sampling—drawing examples from this learned pattern
+- New content comes from drawing examples from this learned pattern
 - Training means making $P_\theta$ match the real data pattern as closely as possible
 
 **Different models, different approaches:**
@@ -65,7 +65,7 @@ Different types of models use different techniques to learn these patterns:
 - GANs pit two networks against each other—one creates fakes, the other spots them—until the fakes become incredibly convincing
 - Diffusion models and EBMs use techniques like score matching to learn the patterns
 
-The key insight: all these models are trying to learn "what real data looks like" so they can create convincing new examples. They just take different paths to get there.
+All these models are trying to learn "what real data looks like" so they can create convincing new examples. They just take different paths to get there.
 
 ---
 
