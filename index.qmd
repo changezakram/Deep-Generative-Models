@@ -213,15 +213,15 @@ These use cases work in nearly any industry—they're about common business func
 
 Financial institutions use GenAI for scenario modeling, risk assessment, and customer operations—all while navigating strict regulatory requirements.
 
-| **Use Case**                   | **Example Application**                                                                 |
-|--------------------------------|------------------------------------------------------------------------------------------|
-| **Customer Service**           | Virtual agents for handling account queries and FAQs                                     |
-| **Fraud Detection**            | Real-time anomaly detection in transaction behavior                                      |
-| **Risk Modeling**              | Scenario analysis for credit risk and market stress testing                              |
-| **Operational Efficiency**     | Auto-summarizing calls and processing back-office documents                              |
-| **Business Intelligence**      | Spotting unusual patterns in product or branch-level KPIs                                |
-| **Marketing & Personalization**| Creating personalized offers based on customer behavior and transaction history          |
-| **Product Development**        | Simulating scenarios to develop new financial products and services                      |
+| **Use Case**                 | **Example Application**                                                                                                                                      |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Customer Service**        | Virtual agents for handling account queries and FAQs. Bank of America’s *Erica* has handled **2B+ interactions** with **44-second** average resolution time. |
+| **Fraud Detection**         | Real-time anomaly detection in transaction behavior. Mastercard *Decision Intelligence Pro* achieves **20% higher fraud detection** with **85% fewer false positives**. |
+| **Risk Modeling**           | Scenario analysis for credit risk and market stress testing.                                                                                                 |
+| **Operational Efficiency**  | Auto-summarizing calls and processing back-office documents. JPMorgan’s *COiN* reviews **12,000 loan agreements annually**, saving **360,000 hours**.       |
+| **Business Intelligence**   | Spotting unusual patterns in product or branch-level KPIs.                                                                                                   |
+| **Marketing & Personalization** | Creating personalized offers based on customer behavior and transaction history.                                                                         |
+| **Product Development**     | Simulating scenarios to develop new financial products and services.                                                                                        |
 
 **What makes financial services different:**  
 Decision-making requires scenario simulation, risk model assessment, and customer personalization based on transaction history. Everything must be explainable and auditable for regulators.
