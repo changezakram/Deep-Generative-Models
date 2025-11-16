@@ -108,7 +108,8 @@ Now that we've seen how GenAI evolved, let's look at the main types of models po
 
 ### Variational Autoencoders (VAEs)
 
-VAEs compress data into a compact representation (the "latent space"), then reconstruct it. They use a technique called ELBO (Evidence Lower Bound) to approximate the data distribution efficiently.**Examples:** β-VAE, Conditional VAE. 
+VAEs compress data into a compact representation (the "latent space"), then reconstruct it. They use a technique called ELBO (Evidence Lower Bound) to approximate the data distribution efficiently.    
+**Examples:** β-VAE, Conditional VAE.     
 [Learn more about VAE Models →](vae.qmd)
 
 ### Autoregressive Models
