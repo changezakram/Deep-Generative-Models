@@ -385,7 +385,7 @@ window.Quarto = {
 <p>VAEs compress data into compact representations (latent spaces), then reconstruct it. What makes them useful is how they organize this latent space—similar inputs map to nearby points, which allows smooth interpolation between outputs.</p>
 <p><strong>How they learn:</strong> VAEs optimize the Evidence Lower Bound (ELBO), which approximates the true data distribution through a balance of reconstruction accuracy and regularization in the latent space.</p>
 <p><strong>Real-world example:</strong> In drug discovery, VAEs can generate new molecular structures by learning the latent space of known compounds. Researchers can then explore this space to find promising candidates that share properties with existing drugs but have novel structures.</p>
-<p><strong>Examples:</strong> β-VAE, Conditional VAE<br>
+<p><strong>Implementations:</strong> β-VAE, Conditional VAE<br>
 <a href="./vae.html">Learn more about VAE Models →</a></p>
 </section>
 <section id="autoregressive-models" class="level3" data-number="5.2">
@@ -393,14 +393,14 @@ window.Quarto = {
 <p>Autoregressive models generate sequences one element at a time, where each new element depends on all previous ones. GPT models follow this pattern—they predict each token based on the preceding context.</p>
 <p><strong>How they learn:</strong> The training objective is straightforward: maximize the probability of the next token given all previous tokens. This captures sequential dependencies and long-range patterns in the data.</p>
 <p><strong>Real-world example:</strong> GPT-4 and similar models generate text by predicting each subsequent token based on context, maintaining coherence across thousands of tokens. GitHub Copilot applies this same principle to code generation, suggesting completions based on surrounding code and natural language comments.</p>
-<p><strong>Examples:</strong> GPT-4, Claude, Gemini, PixelRNN (for images)</p>
+<p><strong>Implementations:</strong> GPT-4, Claude, Gemini, PixelRNN (for images)</p>
 </section>
 <section id="normalizing-flows" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="normalizing-flows"><span class="header-section-number">5.3</span> Normalizing Flows</h3>
 <p>Normalizing Flows transform simple distributions (typically Gaussian noise) into complex data distributions through invertible mappings. The reversibility is what sets them apart—you can move from noise to data and back with equal ease.</p>
 <p><strong>How they learn:</strong> By chaining invertible transformations, flows can compute exact log-likelihoods—a unique property among generative models. This makes them particularly valuable when precise probability estimates are required.</p>
 <p><strong>Real-world example:</strong> In audio synthesis, WaveGlow uses normalizing flows to generate natural-sounding speech. The reversibility also makes flows useful for density estimation tasks—determining how likely a particular data point is under the learned distribution, which is valuable for anomaly detection.</p>
-<p><strong>Examples:</strong> RealNVP, Glow, WaveGlow<br>
+<p><strong>Implementations:</strong> RealNVP, Glow, WaveGlow<br>
 <a href="./flows.html">Learn more about Flow Models →</a></p>
 </section>
 <section id="energy-based-models-ebms" class="level3" data-number="5.4">
@@ -408,7 +408,7 @@ window.Quarto = {
 <p>Energy-Based Models assign scalar energy values to inputs—lower energy corresponds to more probable data. Rather than modeling probabilities directly, EBMs learn what distinguishes realistic data from noise.</p>
 <p><strong>How they learn:</strong> Training involves learning an energy function through techniques like contrastive divergence or score matching. Generation requires iterative refinement—starting from random initialization and following the energy gradient toward low-energy regions.</p>
 <p><strong>Real-world example:</strong> Score-based diffusion models (a type of EBM) power modern image generators like Midjourney. They learn the “score” (gradient of the energy) and use it to denoise images step by step, starting from pure noise and arriving at photorealistic results.</p>
-<p><strong>Examples:</strong> Score-based models, Contrastive Divergence<br>
+<p><strong>Implementations:</strong> Score-based models, Contrastive Divergence<br>
 <a href="./ebm.html">Learn more about EBMs →</a></p>
 </section>
 <section id="generative-adversarial-networks-gans" class="level3" data-number="5.5">
@@ -416,14 +416,14 @@ window.Quarto = {
 <p>GANs train two networks simultaneously: a generator that creates synthetic samples and a discriminator that distinguishes real from generated data. The adversarial training process pushes the generator to produce increasingly realistic outputs.</p>
 <p><strong>How they learn:</strong> The training objective is a minimax game where the discriminator maximizes classification accuracy while the generator minimizes it. At equilibrium, the generator’s distribution matches the data distribution.</p>
 <p><strong>Real-world example:</strong> NVIDIA’s StyleGAN generates photorealistic synthetic faces with fine-grained control over attributes. The architecture has been widely adopted in applications ranging from data augmentation to creative tools. CycleGAN enables unpaired image-to-image translation, such as converting photographs to paintings without requiring matched training pairs.</p>
-<p><strong>Examples:</strong> StyleGAN, CycleGAN (for image-to-image translation), DALL-E (original version)</p>
+<p><strong>Implementations:</strong> StyleGAN, CycleGAN (for image-to-image translation), DALL-E (original version)</p>
 </section>
 <section id="diffusion-models" class="level3" data-number="5.6">
 <h3 data-number="5.6" class="anchored" data-anchor-id="diffusion-models"><span class="header-section-number">5.6</span> Diffusion Models</h3>
 <p>Diffusion models generate data through iterative denoising. Starting from pure noise, they progressively remove noise over multiple steps until reaching a clean sample. The model learns the reverse of a gradual noising process applied during training.</p>
 <p><strong>How they learn:</strong> Training involves two Markov chains: a forward diffusion process that adds Gaussian noise over T steps, and a learned reverse process that denoises. The model learns to predict the noise component at each step, enabling gradual reconstruction from random noise.</p>
 <p><strong>Real-world example:</strong> Stable Diffusion and DALL-E 3 generate images from text prompts using this approach. Given a description like “sunset over mountains in Van Gogh style,” the model begins with Gaussian noise and iteratively denoises while conditioning on the encoded text. Diffusion models have largely supplanted GANs for image synthesis due to superior training stability and sample diversity.</p>
-<p><strong>Examples:</strong> Stable Diffusion, DALL-E 3, Midjourney (likely uses diffusion), Imagen<br>
+<p><strong>Implementations:</strong> Stable Diffusion, DALL-E 3, Midjourney (likely uses diffusion), Imagen<br>
 <a href="./diffusion.html">Learn more about Diffusion Models →</a></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Explore Related Topics">
 <div class="callout-header d-flex align-content-center">
