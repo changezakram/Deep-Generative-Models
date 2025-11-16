@@ -103,41 +103,74 @@ Now that we've seen how GenAI evolved, let's dive deeper into the main types of 
 
 ## Key Gen AI Model Families
 
-Now that we've seen how GenAI evolved, let's look at the main types of models powering today's applications. Each family takes a different approach to learning and generating content.
+The generative AI landscape includes several distinct model families, each with its own approach to learning patterns and creating content. Understanding these architectures helps you choose the right tool for specific applications.
 
 
 ### Variational Autoencoders (VAEs)
 
-VAEs compress data into a compact representation (the "latent space"), then reconstruct it. They use a technique called ELBO (Evidence Lower Bound) to approximate the data distribution efficiently.    
-**Examples:** β-VAE, Conditional VAE.     
+VAEs compress data into compact representations (latent spaces), then reconstruct it. What makes them useful is how they organize this latent space—similar inputs map to nearby points, which allows smooth interpolation between outputs.
+
+**How they learn:** VAEs optimize the Evidence Lower Bound (ELBO), which approximates the true data distribution through a balance of reconstruction accuracy and regularization in the latent space.
+
+**Real-world example:** In drug discovery, VAEs can generate new molecular structures by learning the latent space of known compounds. Researchers can then explore this space to find promising candidates that share properties with existing drugs but have novel structures.
+
+**Examples:** β-VAE, Conditional VAE  
+    
 [Learn more about VAE Models →](vae.qmd)
 
 ### Autoregressive Models
 
-These models generate content one piece at a time, like writing a sentence word by word. Each new piece depends on everything that came before it. GPT works this way—it predicts the next token based on all previous tokens.    
-**Examples:** GPT, PixelRNN
+Autoregressive models generate sequences one element at a time, where each new element depends on all previous ones. GPT models follow this pattern—they predict each token based on the preceding context.
+
+**How they learn:** The training objective is straightforward: maximize the probability of the next token given all previous tokens. This captures sequential dependencies and long-range patterns in the data.
+
+**Real-world example:** GPT-4 and similar models generate text by predicting each subsequent token based on context, maintaining coherence across thousands of tokens. GitHub Copilot applies this same principle to code generation, suggesting completions based on surrounding code and natural language comments.
+
+**Examples:** GPT-4, Claude, Gemini, PixelRNN (for images)
+
 
 ### Normalizing Flows
 
-Normalizing Flows transform simple random noise into complex data through a series of reversible steps. Because everything is reversible, they can compute exact probabilities.    
-**Examples:** RealNVP, Glow.     
+Normalizing Flows transform simple distributions (typically Gaussian noise) into complex data distributions through invertible mappings. The reversibility is what sets them apart—you can move from noise to data and back with equal ease.
+
+**How they learn:** By chaining invertible transformations, flows can compute exact log-likelihoods—a unique property among generative models. This makes them particularly valuable when precise probability estimates are required.
+
+**Real-world example:** In audio synthesis, WaveGlow uses normalizing flows to generate natural-sounding speech. The reversibility also makes flows useful for density estimation tasks—determining how likely a particular data point is under the learned distribution, which is valuable for anomaly detection.
+
+**Examples:** RealNVP, Glow, WaveGlow  
+    
 [Learn more about Flow Models →](flows.qmd)
 
 ### Energy-Based Models (EBMs)
 
-EBMs assign an "energy level" to every possible input—real data gets low energy, fake data gets high energy. The model learns what energy patterns correspond to real data.    
-**Examples:** Score-based EBMs.     
+Energy-Based Models assign scalar energy values to inputs—lower energy corresponds to more probable data. Rather than modeling probabilities directly, EBMs learn what distinguishes realistic data from noise.
+
+**How they learn:** Training involves learning an energy function through techniques like contrastive divergence or score matching. Generation requires iterative refinement—starting from random initialization and following the energy gradient toward low-energy regions.
+
+**Real-world example:** Score-based diffusion models (a type of EBM) power modern image generators like Midjourney. They learn the "score" (gradient of the energy) and use it to denoise images step by step, starting from pure noise and arriving at photorealistic results.
+
+**Examples:** Score-based models, Contrastive Divergence      
 [Learn more about EBMs →](ebm.qmd)
 
 ### Generative Adversarial Networks (GANs)
 
-GANs pit two networks against each other: one creates fakes (generator), the other tries to spot them (discriminator). They compete until the fakes become convincing enough to fool the discriminator.    
-**Examples:** StyleGAN, CycleGAN
+GANs train two networks simultaneously: a generator that creates synthetic samples and a discriminator that distinguishes real from generated data. The adversarial training process pushes the generator to produce increasingly realistic outputs.
+
+**How they learn:** The training objective is a minimax game where the discriminator maximizes classification accuracy while the generator minimizes it. At equilibrium, the generator's distribution matches the data distribution.
+
+**Real-world example:** NVIDIA's StyleGAN generates photorealistic synthetic faces with fine-grained control over attributes. The architecture has been widely adopted in applications ranging from data augmentation to creative tools. CycleGAN enables unpaired image-to-image translation, such as converting photographs to paintings without requiring matched training pairs.
+
+**Examples:** StyleGAN, CycleGAN (for image-to-image translation), DALL-E (original version)
 
 ### Diffusion Models
 
-Diffusion models start with pure noise and gradually remove it step by step to reveal a clean image. The model learns how to denoise at each step, working backwards from random noise to realistic data.    
-**Examples:** Stable Diffusion.    
+Diffusion models generate data through iterative denoising. Starting from pure noise, they progressively remove noise over multiple steps until reaching a clean sample. The model learns the reverse of a gradual noising process applied during training.
+
+**How they learn:** Training involves two Markov chains: a forward diffusion process that adds Gaussian noise over T steps, and a learned reverse process that denoises. The model learns to predict the noise component at each step, enabling gradual reconstruction from random noise.
+
+**Real-world example:** Stable Diffusion and DALL-E 3 generate images from text prompts using this approach. Given a description like "sunset over mountains in Van Gogh style," the model begins with Gaussian noise and iteratively denoises while conditioning on the encoded text. Diffusion models have largely supplanted GANs for image synthesis due to superior training stability and sample diversity.
+
+**Examples:** Stable Diffusion, DALL-E 3, Midjourney (likely uses diffusion), Imagen     
 [Learn more about Diffusion Models →](diffusion.qmd)
 
 
