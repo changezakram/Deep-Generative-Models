@@ -6,7 +6,7 @@ title: "Deep Generative Models"
 
 Generative AI could add $4.4 trillion in annual economic value globally, according to McKinsey. That's not a distant projection—organizations are already deploying these systems in production. Capturing that value while managing the risks requires understanding where generative AI fits in the broader evolution of AI capabilities.
 
-AI has moved through three distinct phases, each expanding what machines can do while introducing new challenges. **Traditional AI** operates on fixed rules—reliable for repetitive tasks like fraud detection or email filtering, but requiring constant human direction. **Generative AI** learns patterns from data to create new content: text, images, code, synthetic data for testing. **Agentic AI** goes even further: it can plan ahead, reason through problems, and handle multi-step tasks without much human help. 
+AI has moved through three distinct phases, each expanding what machines can do while introducing new challenges. **Traditional AI** operates on fixed rules—reliable for repetitive tasks like fraud detection or email filtering, but requiring constant human direction. **Generative AI** learns patterns from data to create new content: text, images, code, synthetic data for testing. **Agentic AI** takes this further, planning multi-step workflows and pursuing goals with minimal human oversight. 
 
 Here's how they compare:
 
@@ -29,11 +29,11 @@ Each phase unlocked new capabilities but also introduced new failure modes. Trad
 
 ## Why Generative AI Matters
 
-Generative AI can create brand new content—text, images, code, you name it—by learning patterns from existing data. Unlike traditional AI that just sorts or labels things, generative models actually produce something new. Since 2022, this field has exploded. Models like ChatGPT, Claude, and Gemini are being used everywhere—from helping people write and create images to detecting fraud and generating synthetic data for testing.
+Generative AI creates novel content—text, images, code, synthetic data—by learning patterns from existing examples. Since 2022, adoption has accelerated rapidly. Models like ChatGPT, Claude, and Gemini are deployed across use cases ranging from content generation and fraud detection to software development and clinical documentation.
 
 > **Business impact:** McKinsey estimates that generative AI could contribute up to **$4.4 trillion in annual global economic value**, with wide-ranging implications for productivity, personalization, and decision support.
 
-But it's not all upside. GenAI can produce outputs that sound convincing but are completely wrong, biased, or even harmful. This is especially risky in fields like banking, healthcare, and law where mistakes have serious consequences. Making GenAI work responsibly means having strong governance, keeping humans in the loop, and deploying it ethically.
+The technology introduces significant risks alongside its capabilities. GenAI can generate outputs that appear authoritative but are incorrect, biased, or harmful. In banking, healthcare, and legal contexts where errors carry serious consequences, deployment requires strong governance frameworks, human oversight, and careful risk management.
 
 ---
 
