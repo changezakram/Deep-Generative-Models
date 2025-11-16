@@ -95,7 +95,7 @@ GPT-3 launched in 2020 and DALL-E 2 in 2022, showing what massive models trained
 
 **2023–2025: Real-World Deployment**
 
-Open-source models like LLaMA and Mistral made powerful AI accessible to more people, not just big tech companies with massive budgets. This competition sped up innovation. Tools like LangChain and RAG emerged to help AI systems do more complex, multi-step tasks and ground their outputs in real data. Companies started deploying GenAI in production, which meant they had to get serious about governance, safety, explainability, and trust. 
+Open-source models like LLaMA and Mistral made powerful AI accessible to more people, not just big tech companies with massive budgets. This competition sped up innovation. Tools like LangChain and RAG emerged to help AI systems do more complex, multi-step tasks and ground their outputs in real data. Companies started deploying GenAI in production, which meant they had to get serious about governance, safety, and explainability. 
 
 > The latest frontier is agentic AI that can plan and execute multi-step workflows autonomously. Recent McKinsey research shows that by 2025, nearly two-thirds of organizations are at least experimenting with AI agents, with early adoption concentrated in IT service management and knowledge operations. This shift from AI-as-tool to AI-as-agent marks another evolution in how businesses deploy these technologies.
 
