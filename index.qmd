@@ -110,8 +110,7 @@ Now that we've seen how GenAI evolved, let's look at the main types of models po
 
 VAEs compress data into a compact representation (the "latent space"), then reconstruct it. They use a technique called ELBO (Evidence Lower Bound) to approximate the data distribution efficiently.
 **Examples:** β-VAE, Conditional VAE
-
-> [Learn more about VAE Models →](vae.qmd)
+[Learn more about VAE Models →](vae.qmd)
 
 ### Autoregressive Models
 
@@ -122,15 +121,13 @@ These models generate content one piece at a time, like writing a sentence word 
 
 Normalizing Flows transform simple random noise into complex data through a series of reversible steps. Because everything is reversible, they can compute exact probabilities.
 **Examples:** RealNVP, Glow 
-
-> [Learn more about Flow Models →](flows.qmd)
+[Learn more about Flow Models →](flows.qmd)
 
 ### Energy-Based Models (EBMs)
 
 EBMs assign an "energy level" to every possible input—real data gets low energy, fake data gets high energy. The model learns what energy patterns correspond to real data.
 **Examples:** Score-based EBMs
-
-> [Learn more about EBMs →](ebm.qmd)
+[Learn more about EBMs →](ebm.qmd)
 
 ### Generative Adversarial Networks (GANs)
 
@@ -141,8 +138,7 @@ GANs pit two networks against each other: one creates fakes (generator), the oth
 
 Diffusion models start with pure noise and gradually remove it step by step to reveal a clean image. The model learns how to denoise at each step, working backwards from random noise to realistic data.
 **Examples:** Stable Diffusion
-
-> [Learn more about Diffusion Models →](diffusion.qmd)
+[Learn more about Diffusion Models →](diffusion.qmd)
 
 
 ::: {.callout-tip title="Explore Related Topics"}
