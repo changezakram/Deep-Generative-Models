@@ -97,7 +97,7 @@ GPT-3 launched in 2020 and DALL-E 2 in 2022, showing what massive models trained
 
 Open-source models like LLaMA and Mistral made powerful AI accessible to more people, not just big tech companies with massive budgets. This competition sped up innovation. Tools like LangChain and RAG emerged to help AI systems do more complex, multi-step tasks and ground their outputs in real data. Companies started deploying GenAI in production, which meant they had to get serious about governance, safety, and making sure these systems were explainable and trustworthy. We're moving from "cool demos" to "systems people rely on," which changes what matters.
 
-The latest frontier is agentic AI that can plan and execute multi-step workflows autonomously. Recent McKinsey research shows that by 2025, nearly two-thirds of organizations are at least experimenting with AI agents, with early adoption concentrated in IT service management and knowledge operations. This shift from AI-as-tool to AI-as-agent marks another evolution in how businesses deploy these technologies.
+> The latest frontier is agentic AI that can plan and execute multi-step workflows autonomously. Recent McKinsey research shows that by 2025, nearly two-thirds of organizations are at least experimenting with AI agents, with early adoption concentrated in IT service management and knowledge operations. This shift from AI-as-tool to AI-as-agent marks another evolution in how businesses deploy these technologies.
 
 Now that we've seen how GenAI evolved, let's dive deeper into the main types of models. Each family has its own way of learning patterns and generating new content.
 
@@ -289,7 +289,7 @@ In 2024, the SEC went after two investment advisers for what they called "AI-was
 - **Access Control & Masking**: Limit who can access GenAI systems and ensure sensitive data is redacted before prompt injection or model training.
 - **Alignment with Ethical and Regulatory Frameworks**: Embed enterprise values and industry-specific compliance into your AI lifecycle—from design to deployment.
 
-> **Bottom line**: In highly regulated industries like banking and healthcare, governance isn't just a best practice—it's a business requirement. The goal is to innovate *responsibly* and scale safely.
+> **Bottom line**: In highly regulated industries like banking and healthcare, governance isn't just a best practice—it's a business requirement. The goal is to innovate responsibly and scale safely.
 
 ---
 
