@@ -257,6 +257,14 @@ GenAI develops new drugs and treatments, designs medical devices, creates person
 
 Generative AI introduces exciting new capabilities—but also carries **unique risks** that traditional analytics and rules-based systems did not. Without strong governance, these risks can quickly undermine trust, compliance, and effectiveness.
 
+**What Happens When Governance Fails**
+
+We're already seeing what goes wrong when organizations skip governance.
+
+Bank of America found out in 2020 during the COVID unemployment surge. They deployed automated fraud detection—basically a simple set of flags that would freeze suspicious accounts. It caught fraud, sure, but it also locked tens of thousands of legitimate customers out of their unemployment benefits. And the bank had long hold times and limited staff to help people unfreeze accounts, which made a bad situation worse. The bill came to $225 million in regulatory fines, plus hundreds of millions more in customer refunds. Regulators said it violated the Electronic Fund Transfer Act. The real problem wasn't the automation—it was taking humans out of the loop without building in ways to catch and fix mistakes.
+
+Then in 2024, the SEC went after two investment advisers for what they called "AI-washing"—basically lying about AI capabilities to attract investors. Delphia claimed it used machine learning to "predict which companies and trends are about to make it big" using client data. They'd been saying this since 2019. Global Predictions went even further, calling itself the "first regulated AI financial advisor" with "expert AI-driven forecasts." When SEC examiners showed up and asked for documentation? There wasn't any. Delphia had actually admitted back in 2021 they didn't have the algorithm they'd been marketing, then kept making the same claims for two more years. The penalties hit $400,000 combined, plus censures. SEC Chair Gary Gensler didn't sugarcoat it: "Investment advisers should not mislead the public by saying they are using an AI model when they are not."
+
 **Key Risks to Watch:**
 
 - **Inaccuracy & Hallucination**: GenAI can confidently generate responses that sound right—but are completely wrong or misleading.
@@ -273,7 +281,7 @@ Generative AI introduces exciting new capabilities—but also carries **unique r
 - **Access Control & Masking**: Limit who can access GenAI systems and ensure sensitive data is redacted before prompt injection or model training.
 - **Alignment with Ethical and Regulatory Frameworks**: Embed enterprise values and industry-specific compliance into your AI lifecycle—from design to deployment.
 
-> **Bottom line**: In highly regulated industries like banking and healthcare, governance isn't just a best practice—it's a business requirement. The goal is to innovate *responsibly* and scale *safely*.
+> **Bottom line**: In highly regulated industries like banking and healthcare, governance isn't just a best practice—it's a business requirement. The goal is to innovate *responsibly* and scale safely.
 
 ---
 
