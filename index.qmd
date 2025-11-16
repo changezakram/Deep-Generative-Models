@@ -114,28 +114,31 @@ VAEs compress data into a compact representation (the "latent space"), then reco
 
 ### Autoregressive Models
 
-These models generate content one piece at a time, like writing a sentence word by word. Each new piece depends on everything that came before it. GPT works this way—it predicts the next token based on all previous tokens.
+These models generate content one piece at a time, like writing a sentence word by word. Each new piece depends on everything that came before it. GPT works this way—it predicts the next token based on all previous tokens.    
 **Examples:** GPT, PixelRNN
 
 ### Normalizing Flows
 
-Normalizing Flows transform simple random noise into complex data through a series of reversible steps. Because everything is reversible, they can compute exact probabilities.
-**Examples:** RealNVP, Glow. [Learn more about Flow Models →](flows.qmd)
+Normalizing Flows transform simple random noise into complex data through a series of reversible steps. Because everything is reversible, they can compute exact probabilities.    
+**Examples:** RealNVP, Glow.     
+[Learn more about Flow Models →](flows.qmd)
 
 ### Energy-Based Models (EBMs)
 
-EBMs assign an "energy level" to every possible input—real data gets low energy, fake data gets high energy. The model learns what energy patterns correspond to real data.
-**Examples:** Score-based EBMs. [Learn more about EBMs →](ebm.qmd)
+EBMs assign an "energy level" to every possible input—real data gets low energy, fake data gets high energy. The model learns what energy patterns correspond to real data.    
+**Examples:** Score-based EBMs.     
+[Learn more about EBMs →](ebm.qmd)
 
 ### Generative Adversarial Networks (GANs)
 
-GANs pit two networks against each other: one creates fakes (generator), the other tries to spot them (discriminator). They compete until the fakes become convincing enough to fool the discriminator.
+GANs pit two networks against each other: one creates fakes (generator), the other tries to spot them (discriminator). They compete until the fakes become convincing enough to fool the discriminator.    
 **Examples:** StyleGAN, CycleGAN
 
 ### Diffusion Models
 
-Diffusion models start with pure noise and gradually remove it step by step to reveal a clean image. The model learns how to denoise at each step, working backwards from random noise to realistic data.
-**Examples:** Stable Diffusion. [Learn more about Diffusion Models →](diffusion.qmd)
+Diffusion models start with pure noise and gradually remove it step by step to reveal a clean image. The model learns how to denoise at each step, working backwards from random noise to realistic data.    
+**Examples:** Stable Diffusion.    
+[Learn more about Diffusion Models →](diffusion.qmd)
 
 
 ::: {.callout-tip title="Explore Related Topics"}
