@@ -31,7 +31,7 @@ Each phase unlocked new capabilities but also introduced new failure modes. Trad
 
 Generative AI creates novel content—text, images, code, synthetic data—by learning patterns from existing examples. Since 2022, adoption has accelerated rapidly. Models like ChatGPT, Claude, and Gemini are deployed across use cases ranging from content generation and fraud detection to software development and clinical documentation.
 
-> **Business impact:** McKinsey estimates that generative AI could contribute up to **$4.4 trillion in annual global economic value**, with wide-ranging implications for productivity, personalization, and decision support. 
+> McKinsey estimates that generative AI could contribute up to **$4.4 trillion in annual global economic value**, with wide-ranging implications for productivity, personalization, and decision support. 
 > However, moving from promise to reality remains challenging. While 88% of organizations now use AI regularly, most are still in the pilot phase. Only about one-third have successfully scaled AI across their enterprises, and just 39% report any measurable impact on earnings. The gap between individual use case success and enterprise-wide transformation is the defining challenge of 2025.
 
 The technology introduces significant risks alongside its capabilities. GenAI can generate outputs that appear authoritative but are incorrect, biased, or harmful. In banking, healthcare, and legal contexts where errors carry serious consequences, deployment requires strong governance frameworks, human oversight, and careful risk management.
