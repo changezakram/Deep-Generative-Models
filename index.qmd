@@ -1,5 +1,5 @@
 ---
-title: "Deep Generative Models"
+title: "Generative Models Overview"
 ---
 
 ## Evolution of AI Capabilities
