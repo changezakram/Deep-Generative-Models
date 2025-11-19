@@ -225,6 +225,8 @@ Financial institutions use GenAI for scenario modeling, risk assessment, and cus
 | **Fraud Detection**         | Real-time anomaly detection in transaction behavior. Mastercard *Decision Intelligence Pro* achieves **20% higher fraud detection** with **85% fewer false positives**. |
 | **Risk Modeling**           | Scenario analysis for credit risk and market stress testing.                                                                                                 |
 | **Operational Efficiency**  | Auto-summarizing calls and processing back-office documents. JPMorgan’s *COiN* reviews **12,000 loan agreements annually**, saving **360,000 hours**.       |
+| **Personalized Insights**  | Automated note-taking and tailored investment recommendations. Morgan Stanley’s *AI @ Morgan Stanley Debrief* saves **30 minutes per meeting**, freeing **10–15 hours/week per advisor**. |
+| **Document Summarization** | Extracting insights from internal research. Morgan Stanley’s *AskResearchGPT* summarizes insights from **70,000+ proprietary reports**, saving **90% review time**, cutting costs by **80%**, and improving accuracy by **25%**. |
 | **Business Intelligence**   | Spotting unusual patterns in product or branch-level KPIs.                                                                                                   |
 | **Marketing & Personalization** | Creating personalized offers based on customer behavior and transaction history.                                                                         |
 | **Product Development**     | Simulating scenarios to develop new financial products and services.                                                                                        |
