@@ -36,6 +36,8 @@ website:
         menu:
           - text: Introduction
             href: https://changezakram.github.io/agentic-ai/agentic-ai.html
+          - text: Agentic Analytics
+            href: https://changezakram.github.io/agentic-ai/agentic-analytics.html
 
       - text: Math Review
         menu:
