@@ -122,23 +122,6 @@ According to Microsoft, SLMs generally fall into three categories: Distilled Mod
 
 ---
 
-# The Business Case: The "Escalation" Strategy
-
-Smart businesses are moving toward a **Hybrid Escalation** model to balance cost and quality.
-
-1. **Level 1 (The SLM):**  A fast, cheap local model handles 80% of routine user queries (password resets, simple questions).
-
-2. **Level 2 (The LLM):**  If the SLM detects a complex issue or gets confused, it "escalates" the ticket to a smarter cloud-based LLM (like GPT-4).
-
-This keeps operating costs low while ensuring the user always gets an answer.
-
-**Transparency & Privacy** 
-
-Beyond cost, businesses adopt SLMs for Transparency. Large models are "Black Boxes"—it is hard to explain why they made a decision. SLMs are simpler, making it easier to trace their logic.
-They also enable On-Device Processing. A phone can summarize notifications locally without sending data to the cloud, ensuring user privacy and working even without an internet connection.
-
----
-
 # Banking Applications: Where SLMs Excel
 Financial institutions are particularly well-positioned to benefit from SLMs. Banking operations involve high volumes of repetitive, well-defined tasks that are perfect candidates for specialized small models.
 
@@ -168,7 +151,24 @@ This hybrid approach delivers sub-second responses for most customers while main
 
 ---
 
-# The Economics: Beyond Simple Cost Savings
+
+# The Business Case: The "Escalation" Strategy
+
+Smart businesses are moving toward a **Hybrid Escalation** model to balance cost and quality.
+
+1. **Level 1 (The SLM):**  A fast, cheap local model handles 80% of routine user queries (password resets, simple questions).
+
+2. **Level 2 (The LLM):**  If the SLM detects a complex issue or gets confused, it "escalates" the ticket to a smarter cloud-based LLM (like GPT-4).
+
+This keeps operating costs low while ensuring the user always gets an answer.
+
+**Transparency & Privacy** 
+
+Beyond cost, businesses adopt SLMs for Transparency. Large models are "Black Boxes"—it is hard to explain why they made a decision. SLMs are simpler, making it easier to trace their logic.
+They also enable On-Device Processing. A phone can summarize notifications locally without sending data to the cloud, ensuring user privacy and working even without an internet connection.
+
+
+## The Economics: Beyond Simple Cost Savings
 The financial advantages extend beyond per-token pricing:
 
 **Inference Efficiency:** Serving a 7B SLM requires 10-30× fewer FLOPs than a 70-175B LLM, enabling real-time responses at scale with dramatically lower energy consumption.
@@ -179,7 +179,7 @@ The financial advantages extend beyond per-token pricing:
 
 **Infrastructure Simplicity:** SLMs require less or no parallelization across GPUs and nodes, lowering both capital expenditure for hardware and operational costs for maintenance.
 
-# Understanding the Barriers
+## Understanding the Barriers
 If SLMs offer such compelling advantages, why hasn't adoption been universal? Three practical hurdles exist:
 
 **1. Infrastructure Inertia:** Billions have been invested in centralized LLM inference systems. The industry built tools and expertise around this paradigm first.

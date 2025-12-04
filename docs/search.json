@@ -696,22 +696,36 @@
     "objectID": "slm.html#loan-document-processing",
     "href": "slm.html#loan-document-processing",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
-    "section": "8.1 Loan Document Processing",
-    "text": "8.1 Loan Document Processing\nA regional bank processing 10,000 loan applications monthly faces a clear choice:\nLLM approach: GPT-4 analyzes each document → $2-3 per application → $20,000-$30,000/month SLM approach: Fine-tuned 3B model on loan documents → $0.10 per application → $1,000/month The SLM, trained specifically on lending documentation, often delivers higher accuracy on domain-specific extractions like debt-to-income ratios, collateral valuations, and employment verification."
+    "section": "7.1 Loan Document Processing",
+    "text": "7.1 Loan Document Processing\nA regional bank processing 10,000 loan applications monthly faces a clear choice:\nLLM approach: GPT-4 analyzes each document → $2-3 per application → $20,000-$30,000/month SLM approach: Fine-tuned 3B model on loan documents → $0.10 per application → $1,000/month The SLM, trained specifically on lending documentation, often delivers higher accuracy on domain-specific extractions like debt-to-income ratios, collateral valuations, and employment verification."
   },
   {
     "objectID": "slm.html#real-time-compliance-monitoring",
     "href": "slm.html#real-time-compliance-monitoring",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
-    "section": "8.2 Real-Time Compliance Monitoring",
-    "text": "8.2 Real-Time Compliance Monitoring\nBanks must screen communications for regulatory compliance. An SLM fine-tuned on financial regulations can:\nFlag suspicious transaction narratives in milliseconds Run locally on banking infrastructure (no data leaves the network) Process 100,000+ transactions daily at a fraction of cloud API costs Adapt quickly to new regulations through rapid fine-tuning For privacy-sensitive operations, on-premise SLM deployment eliminates the risk of sending customer data to external API endpoints."
+    "section": "7.2 Real-Time Compliance Monitoring",
+    "text": "7.2 Real-Time Compliance Monitoring\nBanks must screen communications for regulatory compliance. An SLM fine-tuned on financial regulations can:\nFlag suspicious transaction narratives in milliseconds Run locally on banking infrastructure (no data leaves the network) Process 100,000+ transactions daily at a fraction of cloud API costs Adapt quickly to new regulations through rapid fine-tuning For privacy-sensitive operations, on-premise SLM deployment eliminates the risk of sending customer data to external API endpoints."
   },
   {
     "objectID": "slm.html#customer-service-triage",
     "href": "slm.html#customer-service-triage",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
-    "section": "8.3 Customer Service Triage",
-    "text": "8.3 Customer Service Triage\nA typical bank call center receives inquiries ranging from “What’s my balance?” to complex product questions. The optimal architecture:\n\nSLM Front-Line (handles 70-80%): Fast, local model answers routine queries instantly\nLLM Escalation (handles 20-30%): Complex issues route to a powerful reasoning model\n\nThis hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×."
+    "section": "7.3 Customer Service Triage",
+    "text": "7.3 Customer Service Triage\nA typical bank call center receives inquiries ranging from “What’s my balance?” to complex product questions. The optimal architecture:\n\nSLM Front-Line (handles 70-80%): Fast, local model answers routine queries instantly\nLLM Escalation (handles 20-30%): Complex issues route to a powerful reasoning model\n\nThis hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×."
+  },
+  {
+    "objectID": "slm.html#the-economics-beyond-simple-cost-savings",
+    "href": "slm.html#the-economics-beyond-simple-cost-savings",
+    "title": "The Future of AI Isn’t Bigger — It’s Smaller",
+    "section": "8.1 The Economics: Beyond Simple Cost Savings",
+    "text": "8.1 The Economics: Beyond Simple Cost Savings\nThe financial advantages extend beyond per-token pricing:\nInference Efficiency: Serving a 7B SLM requires 10-30× fewer FLOPs than a 70-175B LLM, enabling real-time responses at scale with dramatically lower energy consumption.\nFine-Tuning Agility: Full parameter fine-tuning for SLMs requires only GPU-hours versus GPU-weeks for LLMs. This means behaviors can be added, fixed, or specialized overnight rather than over weeks—critical for rapidly evolving business requirements.\nEdge Deployment: SLMs run on consumer-grade GPUs, smartphones, and edge devices. For banks, this means processing sensitive data locally without cloud dependencies, reducing latency and strengthening data control.\nInfrastructure Simplicity: SLMs require less or no parallelization across GPUs and nodes, lowering both capital expenditure for hardware and operational costs for maintenance."
+  },
+  {
+    "objectID": "slm.html#understanding-the-barriers",
+    "href": "slm.html#understanding-the-barriers",
+    "title": "The Future of AI Isn’t Bigger — It’s Smaller",
+    "section": "8.2 Understanding the Barriers",
+    "text": "8.2 Understanding the Barriers\nIf SLMs offer such compelling advantages, why hasn’t adoption been universal? Three practical hurdles exist:\n1. Infrastructure Inertia: Billions have been invested in centralized LLM inference systems. The industry built tools and expertise around this paradigm first.\n2. Benchmark Mismatch: Many SLM evaluations focus on generalist benchmarks where LLMs naturally excel. Task-specific agentic benchmarks tell a different story—one where properly fine-tuned SLMs often outperform much larger models.\n3. Awareness Gap: SLMs don’t receive the marketing intensity of flagship LLMs despite often being better suited for production deployment.\nThese are practical challenges, not fundamental limitations. As advanced inference systems like NVIDIA Dynamo emerge and agentic-specific benchmarks gain prominence, these barriers continue to diminish."
   },
   {
     "objectID": "flows.html",
