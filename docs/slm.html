@@ -217,7 +217,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#quick-reference-the-top-models-of-2025" id="toc-quick-reference-the-top-models-of-2025" class="nav-link" data-scroll-target="#quick-reference-the-top-models-of-2025"><span class="header-section-number">6.1</span> Quick Reference: The Top Models of 2025</a></li>
   </ul></li>
   <li><a href="#the-business-case-the-escalation-strategy" id="toc-the-business-case-the-escalation-strategy" class="nav-link" data-scroll-target="#the-business-case-the-escalation-strategy"><span class="header-section-number">7</span> The Business Case: The “Escalation” Strategy</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">8</span> Conclusion</a></li>
+  <li><a href="#banking-applications-where-slms-excel" id="toc-banking-applications-where-slms-excel" class="nav-link" data-scroll-target="#banking-applications-where-slms-excel"><span class="header-section-number">8</span> Banking Applications: Where SLMs Excel</a>
+  <ul class="collapse">
+  <li><a href="#loan-document-processing" id="toc-loan-document-processing" class="nav-link" data-scroll-target="#loan-document-processing"><span class="header-section-number">8.1</span> Loan Document Processing</a></li>
+  <li><a href="#real-time-compliance-monitoring" id="toc-real-time-compliance-monitoring" class="nav-link" data-scroll-target="#real-time-compliance-monitoring"><span class="header-section-number">8.2</span> Real-Time Compliance Monitoring</a></li>
+  <li><a href="#customer-service-triage" id="toc-customer-service-triage" class="nav-link" data-scroll-target="#customer-service-triage"><span class="header-section-number">8.3</span> Customer Service Triage</a></li>
+  </ul></li>
+  <li><a href="#the-economics-beyond-simple-cost-savings" id="toc-the-economics-beyond-simple-cost-savings" class="nav-link" data-scroll-target="#the-economics-beyond-simple-cost-savings"><span class="header-section-number">9</span> The Economics: Beyond Simple Cost Savings</a></li>
+  <li><a href="#understanding-the-barriers" id="toc-understanding-the-barriers" class="nav-link" data-scroll-target="#understanding-the-barriers"><span class="header-section-number">10</span> Understanding the Barriers</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">11</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -385,12 +393,53 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Level 2 (The LLM):</strong> If the SLM detects a complex issue or gets confused, it “escalates” the ticket to a smarter cloud-based LLM (like GPT-4).</p></li>
 </ol>
 <p>This keeps operating costs low while ensuring the user always gets an answer.</p>
-<p>Transparency &amp; Privacy Beyond cost, businesses adopt SLMs for Transparency. Large models are “Black Boxes”—it is hard to explain why they made a decision. SLMs are simpler, making it easier to trace their logic.</p>
-<p>They also enable On-Device Processing. A phone can summarize notifications locally without sending data to the cloud, ensuring user privacy and working even without an internet connection.</p>
+<p><strong>Transparency &amp; Privacy</strong></p>
+<p>Beyond cost, businesses adopt SLMs for Transparency. Large models are “Black Boxes”—it is hard to explain why they made a decision. SLMs are simpler, making it easier to trace their logic. They also enable On-Device Processing. A phone can summarize notifications locally without sending data to the cloud, ensuring user privacy and working even without an internet connection.</p>
 <hr>
 </section>
-<section id="conclusion" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Conclusion</h1>
+<section id="banking-applications-where-slms-excel" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Banking Applications: Where SLMs Excel</h1>
+<p>Financial institutions are particularly well-positioned to benefit from SLMs. Banking operations involve high volumes of repetitive, well-defined tasks that are perfect candidates for specialized small models.</p>
+<section id="loan-document-processing" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="loan-document-processing"><span class="header-section-number">8.1</span> Loan Document Processing</h2>
+<p>A regional bank processing 10,000 loan applications monthly faces a clear choice:</p>
+<p>LLM approach: GPT-4 analyzes each document → $2-3 per application → $20,000-$30,000/month SLM approach: Fine-tuned 3B model on loan documents → $0.10 per application → $1,000/month The SLM, trained specifically on lending documentation, often delivers higher accuracy on domain-specific extractions like debt-to-income ratios, collateral valuations, and employment verification.</p>
+</section>
+<section id="real-time-compliance-monitoring" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="real-time-compliance-monitoring"><span class="header-section-number">8.2</span> Real-Time Compliance Monitoring</h2>
+<p>Banks must screen communications for regulatory compliance. An SLM fine-tuned on financial regulations can:</p>
+<p>Flag suspicious transaction narratives in milliseconds Run locally on banking infrastructure (no data leaves the network) Process 100,000+ transactions daily at a fraction of cloud API costs Adapt quickly to new regulations through rapid fine-tuning For privacy-sensitive operations, on-premise SLM deployment eliminates the risk of sending customer data to external API endpoints.</p>
+</section>
+<section id="customer-service-triage" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="customer-service-triage"><span class="header-section-number">8.3</span> Customer Service Triage</h2>
+<p>A typical bank call center receives inquiries ranging from “What’s my balance?” to complex product questions. The optimal architecture:</p>
+<ol type="1">
+<li>SLM Front-Line (handles 70-80%): Fast, local model answers routine queries instantly</li>
+<li>LLM Escalation (handles 20-30%): Complex issues route to a powerful reasoning model</li>
+</ol>
+<p>This hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×.</p>
+<hr>
+</section>
+</section>
+<section id="the-economics-beyond-simple-cost-savings" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> The Economics: Beyond Simple Cost Savings</h1>
+<p>The financial advantages extend beyond per-token pricing:</p>
+<p><strong>Inference Efficiency:</strong> Serving a 7B SLM requires 10-30× fewer FLOPs than a 70-175B LLM, enabling real-time responses at scale with dramatically lower energy consumption.</p>
+<p><strong>Fine-Tuning Agility:</strong> Full parameter fine-tuning for SLMs requires only GPU-hours versus GPU-weeks for LLMs. This means behaviors can be added, fixed, or specialized overnight rather than over weeks—critical for rapidly evolving business requirements.</p>
+<p><strong>Edge Deployment:</strong> SLMs run on consumer-grade GPUs, smartphones, and edge devices. For banks, this means processing sensitive data locally without cloud dependencies, reducing latency and strengthening data control.</p>
+<p><strong>Infrastructure Simplicity:</strong> SLMs require less or no parallelization across GPUs and nodes, lowering both capital expenditure for hardware and operational costs for maintenance.</p>
+</section>
+<section id="understanding-the-barriers" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Understanding the Barriers</h1>
+<p>If SLMs offer such compelling advantages, why hasn’t adoption been universal? Three practical hurdles exist:</p>
+<p><strong>1. Infrastructure Inertia:</strong> Billions have been invested in centralized LLM inference systems. The industry built tools and expertise around this paradigm first.</p>
+<p><strong>2. Benchmark Mismatch:</strong> Many SLM evaluations focus on generalist benchmarks where LLMs naturally excel. Task-specific agentic benchmarks tell a different story—one where properly fine-tuned SLMs often outperform much larger models.</p>
+<p><strong>3. Awareness Gap:</strong> SLMs don’t receive the marketing intensity of flagship LLMs despite often being better suited for production deployment.</p>
+<p>These are practical challenges, not fundamental limitations. As advanced inference systems like NVIDIA Dynamo emerge and agentic-specific benchmarks gain prominence, these barriers continue to diminish.</p>
+<hr>
+</section>
+<section id="conclusion" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Conclusion</h1>
 <p>We are transitioning from the era of the <strong>“God Model”</strong> to the era of the <strong>Model Swarm</strong>. As research highlights, the future of AI agents relies on <strong>specialization</strong>. By offloading routine tasks to Small Language Models, organizations gain greater speed, improved privacy, stronger reliability, and dramatically lower costs.</p>
 
 
