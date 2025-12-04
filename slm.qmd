@@ -48,7 +48,7 @@ The evidence is clear: modern SLMs are not just "smaller" — they are matching 
 
 - **Salesforce xLAM-2 (8B parameters)** demonstrates state-of-the-art tool-calling performance, surpassing frontier models like GPT-4o and Claude 3.5 Sonnet on specialized benchmarks.
 
-DeepSeek-R1-Distill-Qwen (7B parameters) outperforms Claude 3.5 Sonnet on reasoning tasks — a remarkable achievement showing that properly trained small models can exceed much larger proprietary systems.
+- **DeepSeek-R1-Distill-Qwen (7B parameters)** outperforms Claude 3.5 Sonnet on reasoning tasks — a remarkable achievement showing that properly trained small models can exceed much larger proprietary systems.
 
 > The performance gap between small and large models is closing rapidly. With modern training techniques, SLMs can deliver 95%+ of the accuracy at 10% of the cost for well-defined tasks.
 
@@ -150,7 +150,6 @@ A typical bank call center receives inquiries ranging from "What's my balance?" 
 This hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×.
 
 ---
-
 
 # The Business Case: The "Escalation" Strategy
 
