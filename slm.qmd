@@ -36,7 +36,7 @@ The best way to understand SLMs is to view them as **specialized tools** rather 
 
 ---
 
-#Proven Performance: SLMs Competing with Giants
+# Proven Performance: SLMs Competing with Giants
 
 The evidence is clear: modern SLMs are not just "smaller" — they are matching and even exceeding larger models on specific tasks.
 
