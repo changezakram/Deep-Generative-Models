@@ -208,6 +208,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-scalability-problem" id="toc-the-scalability-problem" class="nav-link" data-scroll-target="#the-scalability-problem"><span class="header-section-number">3</span> The Scalability Problem</a>
   <ul class="collapse">
   <li><a href="#the-solution-heterogeneous-architecture" id="toc-the-solution-heterogeneous-architecture" class="nav-link" data-scroll-target="#the-solution-heterogeneous-architecture"><span class="header-section-number">3.1</span> The Solution: Heterogeneous Architecture</a></li>
+  <li><a href="#why-agents-specifically-need-slms" id="toc-why-agents-specifically-need-slms" class="nav-link" data-scroll-target="#why-agents-specifically-need-slms"><span class="header-section-number">3.2</span> Why Agents Specifically Need SLMs</a></li>
   </ul></li>
   <li><a href="#how-do-they-work" id="toc-how-do-they-work" class="nav-link" data-scroll-target="#how-do-they-work"><span class="header-section-number">4</span> How Do They Work?</a></li>
   <li><a href="#the-landscape-selecting-a-model" id="toc-the-landscape-selecting-a-model" class="nav-link" data-scroll-target="#the-landscape-selecting-a-model"><span class="header-section-number">5</span> The Landscape: Selecting a Model</a>
@@ -261,6 +262,19 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>The Small Model (The Specialist):</strong> These models are optimized for execution. While they lack the broad “world knowledge” to discuss 14th-century history, they excel at defined tasks like code generation, summarization, or data formatting. Because they are smaller, they deliver results with lower latency and significantly lower costs.</p></li>
 </ul>
 <hr>
+<p>#Proven Performance: SLMs Competing with Giants</p>
+<p>The evidence is clear: modern SLMs are not just “smaller” — they are matching and even exceeding larger models on specific tasks.</p>
+<p><strong>Recent benchmarks reveal:</strong></p>
+<ul>
+<li><p><strong>Microsoft Phi-3 (7B parameters)</strong> achieves language understanding and code generation scores comparable to models with 70 billion parameters while running significantly faster.</p></li>
+<li><p><strong>NVIDIA Nemotron-H family (2-9B parameters)</strong> delivers instruction-following accuracy comparable to 30B LLMs at a fraction of the computational cost — requiring an order of magnitude fewer FLOPs.</p></li>
+<li><p><strong>Salesforce xLAM-2 (8B parameters)</strong> demonstrates state-of-the-art tool-calling performance, surpassing frontier models like GPT-4o and Claude 3.5 Sonnet on specialized benchmarks.</p></li>
+</ul>
+<p>DeepSeek-R1-Distill-Qwen (7B parameters) outperforms Claude 3.5 Sonnet on reasoning tasks — a remarkable achievement showing that properly trained small models can exceed much larger proprietary systems.</p>
+<blockquote class="blockquote">
+<p>The performance gap between small and large models is closing rapidly. With modern training techniques, SLMs can deliver 95%+ of the accuracy at 10% of the cost for well-defined tasks.</p>
+</blockquote>
+<hr>
 </section>
 </section>
 <section id="the-scalability-problem" class="level1" data-number="3">
@@ -271,6 +285,29 @@ ul.task-list li input[type="checkbox"] {
 <p>NVIDIA suggests that scalable systems need to mix different model sizes to work effectively.</p>
 <p>In this “Heterogeneous” approach, a Large Language Model (LLM) acts as the Planner, orchestrating the workflow and handling vague user instructions. Meanwhile, a swarm of SLMs acts as the Executors, performing specific steps like running SQL queries, summarizing text, or formatting output.</p>
 <p>This approach can reduce costs by 10x to 30x. It also improves reliability, as small models are fine-tuned for a narrow scope and are less likely to “hallucinate” or get distracted by irrelevant information.</p>
+</section>
+<section id="why-agents-specifically-need-slms" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="why-agents-specifically-need-slms"><span class="header-section-number">3.2</span> Why Agents Specifically Need SLMs</h2>
+<p>Agentic systems present a unique economic challenge. Unlike traditional applications where a user submits a single query, agents operate in continuous loops:</p>
+<ol type="1">
+<li>Perception — Read the current state</li>
+<li>Decision — Choose the next action</li>
+<li>Execution — Call a tool or API</li>
+<li>Verification — Check if the goal is met</li>
+<li>Repeat — Loop until complete</li>
+</ol>
+<p>A single user request might trigger 20-50 model invocations. When each call goes to a large model, costs compound rapidly.</p>
+<blockquote class="blockquote">
+<p><strong>Real-World Impact</strong> - NVIDIA’s analysis of popular open-source agents (MetaGPT, Open Operator, Cradle) suggests that 60-70% of LLM queries could be reliably handled by specialized SLMs without any loss in end-user experience.</p>
+</blockquote>
+<p>Most agentic subtasks are repetitive and narrow:</p>
+<ul>
+<li>Parsing structured data (JSON, XML)</li>
+<li>Formatting tool parameters</li>
+<li>Validating outputs</li>
+<li>Simple decision logic</li>
+</ul>
+<p>These don’t require the broad “world knowledge” of a 400B parameter model. A specialized 3B model fine-tuned for the specific task often performs better and costs 30× less.</p>
 <hr>
 </section>
 </section>

@@ -36,6 +36,24 @@ The best way to understand SLMs is to view them as **specialized tools** rather 
 
 ---
 
+#Proven Performance: SLMs Competing with Giants
+
+The evidence is clear: modern SLMs are not just "smaller" — they are matching and even exceeding larger models on specific tasks.
+
+**Recent benchmarks reveal:**
+
+- **Microsoft Phi-3 (7B parameters)** achieves language understanding and code generation scores comparable to models with 70 billion parameters while running significantly faster.
+
+- **NVIDIA Nemotron-H family (2-9B parameters)** delivers instruction-following accuracy comparable to 30B LLMs at a fraction of the computational cost — requiring an order of magnitude fewer FLOPs.
+
+- **Salesforce xLAM-2 (8B parameters)** demonstrates state-of-the-art tool-calling performance, surpassing frontier models like GPT-4o and Claude 3.5 Sonnet on specialized benchmarks.
+
+DeepSeek-R1-Distill-Qwen (7B parameters) outperforms Claude 3.5 Sonnet on reasoning tasks — a remarkable achievement showing that properly trained small models can exceed much larger proprietary systems.
+
+> The performance gap between small and large models is closing rapidly. With modern training techniques, SLMs can deliver 95%+ of the accuracy at 10% of the cost for well-defined tasks.
+
+---
+
 # The Scalability Problem
 
 The shift to "Small" is largely driven by the rise of **Agentic AI**. We are currently building AI Agents that use tools to complete actual work. Since these agents operate in a continuous loop—thinking, acting, checking, and repeating—the cost of running them stacks up quickly. If every step in that loop relies on a massive model, operations become prohibitively expensive and sluggish.
@@ -47,6 +65,29 @@ NVIDIA suggests that scalable systems need to mix different model sizes to work 
 In this "Heterogeneous" approach, a Large Language Model (LLM) acts as the Planner, orchestrating the workflow and handling vague user instructions. Meanwhile, a swarm of SLMs acts as the Executors, performing specific steps like running SQL queries, summarizing text, or formatting output.
 
 This approach can reduce costs by 10x to 30x. It also improves reliability, as small models are fine-tuned for a narrow scope and are less likely to "hallucinate" or get distracted by irrelevant information.
+
+## Why Agents Specifically Need SLMs
+
+Agentic systems present a unique economic challenge. Unlike traditional applications where a user submits a single query, agents operate in continuous loops:
+
+1. Perception — Read the current state
+2. Decision — Choose the next action
+3. Execution — Call a tool or API
+4. Verification — Check if the goal is met
+5. Repeat — Loop until complete
+
+A single user request might trigger 20-50 model invocations. When each call goes to a large model, costs compound rapidly.
+
+> **Real-World Impact** - NVIDIA's analysis of popular open-source agents (MetaGPT, Open Operator, Cradle) suggests that 60-70% of LLM queries could be reliably handled by specialized SLMs without any loss in end-user experience.
+
+Most agentic subtasks are repetitive and narrow:
+
+- Parsing structured data (JSON, XML)
+- Formatting tool parameters
+- Validating outputs
+- Simple decision logic
+
+These don't require the broad "world knowledge" of a 400B parameter model. A specialized 3B model fine-tuned for the specific task often performs better and costs 30× less.
 
 ---
 
