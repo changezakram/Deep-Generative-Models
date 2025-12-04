@@ -662,7 +662,7 @@
     "href": "slm.html",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
     "section": "",
-    "text": "For the last few years, the AI industry has been obsessed with size. We raced from 7 billion parameters to a trillion, chasing the dream of a single “God Model” that could do everything.\nBut in 2025, the wind has shifted. We are entering the era of Small Language Models (SLMs).\nThese aren’t just downgraded versions of GPT-4; they are specialized, privacy-focused engines designed for efficiency. This shift is fundamentally reshaping how we build AI architectures, especially for the new wave of Autonomous Agents.\nHere is an executive overview of the SLM ecosystem."
+    "text": "For the last few years, the AI industry has been obsessed with size. We raced from 7 billion parameters to a trillion, chasing the dream of a single “God Model” that could do everything.\nBut in 2025, the wind has shifted. We are entering the era of Small Language Models (SLMs).\nThese aren’t just downgraded versions of GPT-4; they are specialized, privacy-focused engines designed for efficiency. This shift is fundamentally reshaping how we build AI architectures, especially for the new wave of Autonomous Agents.\nHere is an executive overview of the Small Language Models (SLMs)."
   },
   {
     "objectID": "slm.html#generalist-vs.-specialist",

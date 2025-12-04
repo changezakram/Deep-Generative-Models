@@ -18,7 +18,7 @@ But in 2025, the wind has shifted. We are entering the era of Small Language Mod
 
 These aren't just downgraded versions of GPT-4; they are specialized, privacy-focused engines designed for efficiency. This shift is fundamentally reshaping how we build AI architectures, especially for the new wave of Autonomous Agents.
 
-Here is an executive overview of the SLM ecosystem.
+Here is an executive overview of the Small Language Models (SLMs).
 
 ---
 
@@ -38,14 +38,7 @@ The best way to understand SLMs is to view them as **specialized tools** rather 
 
 # The Scalability Problem
 
-::: {.callout-note}
-### Research Insight
-Based on *Belcak et al., NVIDIA Research, 2025*
-:::
-
-The shift to "Small" is largely driven by the rise of **Agentic AI**.
-
-We are currently building AI Agents that use tools to complete actual work. Since these agents operate in a continuous loop—thinking, acting, checking, and repeating—the cost of running them stacks up quickly. If every step in that loop relies on a massive model, operations become prohibitively expensive and sluggish.
+The shift to "Small" is largely driven by the rise of **Agentic AI**. We are currently building AI Agents that use tools to complete actual work. Since these agents operate in a continuous loop—thinking, acting, checking, and repeating—the cost of running them stacks up quickly. If every step in that loop relies on a massive model, operations become prohibitively expensive and sluggish.
 
 ## The Solution: Heterogeneous Architecture
 
@@ -107,9 +100,5 @@ They also enable On-Device Processing. A phone can summarize notifications local
 
 # Conclusion
 
-We are transitioning from the era of the **“God Model”** to the era of the **Model Swarm**.
-
-As research highlights, the future of AI agents relies on **specialization**.
-
-By offloading routine tasks to Small Language Models, organizations gain greater speed, improved privacy, stronger reliability, and dramatically lower costs.
+We are transitioning from the era of the **“God Model”** to the era of the **Model Swarm**. As research highlights, the future of AI agents relies on **specialization**. By offloading routine tasks to Small Language Models, organizations gain greater speed, improved privacy, stronger reliability, and dramatically lower costs.
 
