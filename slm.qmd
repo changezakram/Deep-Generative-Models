@@ -123,16 +123,19 @@ According to Microsoft, SLMs generally fall into three categories: Distilled Mod
 ---
 
 # Banking Applications: Where SLMs Excel
+
 Financial institutions are particularly well-positioned to benefit from SLMs. Banking operations involve high volumes of repetitive, well-defined tasks that are perfect candidates for specialized small models.
 
 ## Loan Document Processing
 A regional bank processing 10,000 loan applications monthly faces a clear choice:
 
-LLM approach: GPT-4 analyzes each document → $2-3 per application → $20,000-$30,000/month
-SLM approach: Fine-tuned 3B model on loan documents → $0.10 per application → $1,000/month
+- **LLM approach:** GPT-4 analyzes each document → $2-3 per application → $20,000-$30,000/month     
+- **SLM approach:** Fine-tuned 3B model on loan documents → $0.10 per application → $1,000/month
+
 The SLM, trained specifically on lending documentation, often delivers higher accuracy on domain-specific extractions like debt-to-income ratios, collateral valuations, and employment verification.
 
 ## Real-Time Compliance Monitoring
+
 Banks must screen communications for regulatory compliance. An SLM fine-tuned on financial regulations can:
 
 Flag suspicious transaction narratives in milliseconds
@@ -142,6 +145,7 @@ Adapt quickly to new regulations through rapid fine-tuning
 For privacy-sensitive operations, on-premise SLM deployment eliminates the risk of sending customer data to external API endpoints.
 
 ## Customer Service Triage
+
 A typical bank call center receives inquiries ranging from "What's my balance?" to complex product questions. The optimal architecture:
 
 1. SLM Front-Line (handles 70-80%): Fast, local model answers routine queries instantly
