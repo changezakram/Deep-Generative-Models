@@ -38,6 +38,8 @@ website:
             href: https://changezakram.github.io/agentic-ai/agentic-ai.html
           - text: Agentic Analytics
             href: https://changezakram.github.io/agentic-ai/agentic-analytics.html
+          - text: Small Language Models
+            href: https://changezakram.github.io/Deep-Generative-Models/slm.html
 
       - text: Math Review
         menu:
