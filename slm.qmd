@@ -145,16 +145,14 @@ This hybrid approach delivers sub-second responses for most customers while main
 
 Most organizations are adopting a hybrid approach that balances cost and quality.
 
-- **Level 1 (The SLM):**  A fast, cheap local model handles 80% of routine user queries - password resets, simple questions.
-
+- **Level 1 (The SLM):**  A fast, cheap local model handles 80% of routine user queries - password resets, simple questions.          
 - **Level 2 (The LLM):**  If the SLM detects a complex issue or gets confused, it "escalates" the ticket to a more capable cloud model like GPT-4.
 
 This approach cuts costs by 10-20× while maintaining response quality.
 
-**Transparency & Privacy** 
-
-> **Transparency:** Large models are black boxes—it's difficult to explain their decisions. SLMs are simpler, making it easier to trace their logic and satisfy regulatory requirements.       
-> **Privacy:** SLMs can run entirely on-device. A phone can summarize notifications locally without sending data to the cloud, ensuring privacy and offline functionality.
+**Latency:** It’s not just about cost—it’s about speed. A local SLM can reply in **under 200 milliseconds**. A cloud LLM often takes 1–3 seconds. In customer service, that lag is the difference between a snappy conversation and a frustrating wait.        
+**Transparency:** Large models are black boxes—it's difficult to explain their decisions. SLMs are simpler, making it easier to trace their logic and satisfy regulatory requirements.           
+**Privacy:** SLMs can run entirely on-device. A phone can summarize notifications locally without sending data to the cloud, ensuring privacy and offline functionality.
 
 
 ## The Economics: Beyond Simple Cost Savings
