@@ -690,14 +690,14 @@
     "href": "slm.html#loan-document-processing",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
     "section": "7.1 Loan Document Processing",
-    "text": "7.1 Loan Document Processing\nA regional bank processing 10,000 loan applications monthly faces a clear choice:\n\nLLM approach: GPT-4 analyzes each document → $2-3 per application → $20,000-$30,000/month\n\nSLM approach: Fine-tuned 3B model on loan documents → $0.10 per application → $1,000/month\n\nThe SLM, trained specifically on lending documentation, often delivers higher accuracy on domain-specific extractions like debt-to-income ratios, collateral valuations, and employment verification."
+    "text": "7.1 Loan Document Processing\nA regional bank processing 10,000 loan applications monthly has two options:\n\nLLM approach: GPT-4 at $2-3 per application = $20,000-$30,000/month\n\nSLM approach: Fine-tuned 3B model at $0.10 per application = $1,000/month\n\nThe SLM, trained specifically on lending documentation, often delivers higher accuracy on domain-specific extractions like debt-to-income ratios, collateral valuations, and employment verification."
   },
   {
     "objectID": "slm.html#real-time-compliance-monitoring",
     "href": "slm.html#real-time-compliance-monitoring",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
     "section": "7.2 Real-Time Compliance Monitoring",
-    "text": "7.2 Real-Time Compliance Monitoring\nBanks must screen communications for regulatory compliance. An SLM fine-tuned on financial regulations can:\nFlag suspicious transaction narratives in milliseconds Run locally on banking infrastructure (no data leaves the network) Process 100,000+ transactions daily at a fraction of cloud API costs Adapt quickly to new regulations through rapid fine-tuning For privacy-sensitive operations, on-premise SLM deployment eliminates the risk of sending customer data to external API endpoints."
+    "text": "7.2 Real-Time Compliance Monitoring\nBanks must screen communications for regulatory compliance. An SLM fine-tuned on financial regulations can:\n\nFlag suspicious transactions in milliseconds\n\nRun locally on banking infrastructure (no data leaves the network)\n\nProcess 100,000+ transactions daily at a fraction of cloud API costs\n\nAdapt quickly to new regulations through rapid fine-tuning\n\nFor privacy-sensitive operations, on-premise deployment eliminates the risk of sending customer data to external API endpoints."
   },
   {
     "objectID": "slm.html#customer-service-triage",

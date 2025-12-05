@@ -106,10 +106,10 @@ Following six leading models represent the current SLM landscape:
 Financial institutions are particularly well-positioned to benefit from SLMs. Banking operations involve high volumes of repetitive, well-defined tasks that are perfect candidates for specialized small models.
 
 ## Loan Document Processing
-A regional bank processing 10,000 loan applications monthly faces a clear choice:
+A regional bank processing 10,000 loan applications monthly has two options:
 
-- **LLM approach:** GPT-4 analyzes each document → $2-3 per application → $20,000-$30,000/month     
-- **SLM approach:** Fine-tuned 3B model on loan documents → $0.10 per application → $1,000/month
+- **LLM approach:** GPT-4 at $2-3 per application = $20,000-$30,000/month    
+- **SLM approach:** Fine-tuned 3B model at $0.10 per application = $1,000/month
 
 The SLM, trained specifically on lending documentation, often delivers higher accuracy on domain-specific extractions like debt-to-income ratios, collateral valuations, and employment verification.
 
@@ -117,11 +117,12 @@ The SLM, trained specifically on lending documentation, often delivers higher ac
 
 Banks must screen communications for regulatory compliance. An SLM fine-tuned on financial regulations can:
 
-Flag suspicious transaction narratives in milliseconds
-Run locally on banking infrastructure (no data leaves the network)
-Process 100,000+ transactions daily at a fraction of cloud API costs
-Adapt quickly to new regulations through rapid fine-tuning
-For privacy-sensitive operations, on-premise SLM deployment eliminates the risk of sending customer data to external API endpoints.
+- Flag suspicious transactions in milliseconds     
+- Run locally on banking infrastructure (no data leaves the network)      
+- Process 100,000+ transactions daily at a fraction of cloud API costs      
+- Adapt quickly to new regulations through rapid fine-tuning     
+
+For privacy-sensitive operations, on-premise deployment eliminates the risk of sending customer data to external API endpoints.
 
 ## Customer Service Triage
 
