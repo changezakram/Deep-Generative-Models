@@ -42,7 +42,7 @@ The economics are straightforward: if you're running the same type of task thous
 
 # Proven Performance: SLMs Competing with LLMs
 
-The performance gap between small and large models has closed. In head-to-head testing, 7-billion parameter models now match the performance of models 10 times their size—and sometimes beat them.
+The performance gap between small and large models has closed. In head-to-head testing, 7-billion parameter models now match the performance of models 10 times their size—and specifically outperform them on specialized benchmarks.
 
 Four examples demonstrate how far small models have come:<sup>1</sup>
 
@@ -50,9 +50,9 @@ Four examples demonstrate how far small models have come:<sup>1</sup>
 
 - **NVIDIA Nemotron-H family (9B parameters)** handles complex instructions as accurately as 30-billion parameter models while using one-tenth the computational resources. For high-volume applications, this translates to dramatically lower infrastructure costs.
 
-- **Salesforce xLAM-2 (8B parameters)** outperforms GPT-4o and Claude 3.5 Sonnet on tool-calling tasks—the ability to interact with external systems and APIs. This matters because agentic systems live and die by tool-calling accuracy.
+- **Salesforce xLAM-2 (8B parameters)** outperforms GPT-4o and Claude 3.5 Sonnet on **tool-calling tasks**—the ability to interact with external APIs. This is critical for agentic systems where precision matters more than poetry.
 
-- **DeepSeek-R1-Distill-Qwen (7B parameters)** beats Claude 3.5 Sonnet on reasoning benchmarks. A 7-billion parameter model outperforming one of the industry's flagship systems isn't just impressive—it's a signal that the small-model approach has reached maturity.
+- **DeepSeek-R1-Distill-Qwen (7B parameters)** beats Claude 3.5 Sonnet on **math benchmarks** (achieving 97.3% vs 78.3% on MATH-500). A 7-billion parameter model outperforming a flagship system on reasoning signals that the small-model approach has reached maturity.
 
 > **The bottom line:** Small models now deliver 95%+ accuracy at 10% of the cost for well-defined tasks.
 
