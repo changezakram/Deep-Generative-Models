@@ -24,7 +24,7 @@ This matters because the next wave of AI isn't about chatbots. It's about autono
 
 Think of SLMs as precision tools rather than Swiss Army knives. A 7-billion parameter model fine-tuned for loan document extraction will outperform GPT-4 on that specific task—while costing 30 times less to run.
 
-![**Figure:** Model size evolution from 2018-2025 (logarithmic scale). Large language models grew from 0.1B to 1.7 trillion parameters, while small language models emerged in 2023, optimizing performance at 3-10B—achieving comparable results at 100× smaller scale.](images/model-size.png){fig-align="center" width="800"}
+![**Figure:** Model size evolution from 2018-2025 (logarithmic scale). Large language models grew from 0.1B to 1.7 trillion parameters, while small language models emerged in 2023, optimizing performance at 3-10B—achieving comparable results at 100× smaller scale.](images/model-size-evolution.png){fig-align="center" width="800"}
 
 ## The Trade-Off: Breadth vs. Depth
 
