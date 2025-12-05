@@ -662,14 +662,14 @@
     "href": "slm.html",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
     "section": "",
-    "text": "For the last few years, the AI industry has been obsessed with size. We raced from 7 billion parameters to a trillion, chasing the dream of a single “God Model” that could do everything.\nBut in 2025, the wind has shifted. We are entering the era of Small Language Models (SLMs).\nThese aren’t just downgraded versions of GPT-4; they are specialized, privacy-focused engines designed for efficiency. This shift is fundamentally reshaping how we build AI architectures, especially for the new wave of Autonomous Agents.\nHere is an executive overview of the Small Language Models (SLMs)."
+    "text": "For years, the AI industry chased a single dream: one massive model that could do everything. We went from 7 billion parameters to a trillion, racing toward a “God Model.” But in 2025, the wind has shifted. We are entering the era of Small Language Models (SLMs).\nSmall Language Models (SLMs)—compact, specialized AI systems typically under 10 billion parameters—are reshaping how organizations deploy AI. They’re not cheaper versions of GPT-4. They’re purpose-built engines designed for specific tasks, offering faster performance, lower costs, and better privacy controls.\nThis matters because the next wave of AI isn’t about chatbots. It’s about autonomous agents that make hundreds of decisions per transaction. And those agents need a different architecture—one where small, specialized models handle routine work while large models tackle genuine complexity."
   },
   {
-    "objectID": "slm.html#generalist-vs.-specialist",
-    "href": "slm.html#generalist-vs.-specialist",
+    "objectID": "slm.html#the-trade-off-breadth-vs.-depth",
+    "href": "slm.html#the-trade-off-breadth-vs.-depth",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
-    "section": "2.1 Generalist vs. Specialist",
-    "text": "2.1 Generalist vs. Specialist\nThe best way to understand SLMs is to view them as specialized tools rather than weaker alternatives.\n\nThe Large Model (The Generalist): Models like GPT-4 are designed to handle ambiguity. They can reason across disconnected topics and solve complex, vague problems. However, using them for routine data processing is inefficient — it’s like firing up a supercomputer just to run a simple spreadsheet.\nThe Small Model (The Specialist): These models are optimized for execution. While they lack the broad “world knowledge” to discuss 14th-century history, they excel at defined tasks like code generation, summarization, or data formatting. Because they are smaller, they deliver results with lower latency and significantly lower costs."
+    "section": "2.1 The Trade-Off: Breadth vs. Depth",
+    "text": "2.1 The Trade-Off: Breadth vs. Depth\nLarge models excel at versatility. GPT-4 can write poetry, debug code, and explain quantum physics in the same conversation. But using a 400-billion parameter model to extract dates from invoices is like hiring a philosophy professor to sort your mail — effective, but absurdly expensive.\nSmall models excel at efficiency. A 3-billion parameter model trained specifically on financial documents can’t discuss medieval history, but it will process loan applications faster and more accurately than a generalist model. Because it focuses on one domain, it delivers results in milliseconds rather than seconds—and at a fraction of the cost.\nThe economics are straightforward: if you’re running the same type of task thousands of times daily, specialized models make sense. If you need broad capabilities for unpredictable queries, large models remain essential."
   },
   {
     "objectID": "slm.html#the-solution-heterogeneous-architecture",
