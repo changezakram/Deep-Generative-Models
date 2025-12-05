@@ -153,8 +153,7 @@ This approach cuts costs by 10-20× while maintaining response quality.
 
 **Transparency & Privacy** 
 
-> **Transparency:** Large models are black boxes—it's difficult to explain their decisions. SLMs are simpler, making it easier to trace their logic and satisfy regulatory requirements.  
-
+> **Transparency:** Large models are black boxes—it's difficult to explain their decisions. SLMs are simpler, making it easier to trace their logic and satisfy regulatory requirements.       
 > **Privacy:** SLMs can run entirely on-device. A phone can summarize notifications locally without sending data to the cloud, ensuring privacy and offline functionality.
 
 
