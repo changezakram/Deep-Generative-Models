@@ -128,8 +128,8 @@ For privacy-sensitive operations, on-premise deployment eliminates the risk of s
 
 A typical bank call center receives inquiries ranging from "What's my balance?" to complex product questions. The optimal architecture:
 
-1. SLM Front-Line (handles 70-80%): Fast, local model answers routine queries instantly
-2. LLM Escalation (handles 20-30%): Complex issues route to a powerful reasoning model
+- **SLM Front-Line (handles 70-80%):** Fast, local model answers routine queries instantly
+- **LLM Escalation (handles 20-30%):** Complex issues route to a powerful reasoning model
 
 This hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×.
 
