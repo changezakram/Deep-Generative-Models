@@ -404,17 +404,19 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="the-business-case-the-escalation-strategy" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> The Business Case: The “Escalation” Strategy</h1>
-<p>Smart businesses are moving toward a <strong>Hybrid Escalation</strong> model to balance cost and quality.</p>
+<p>Most organizations are adopting a hybrid approach that balances cost and quality.</p>
 <ol type="1">
-<li><p><strong>Level 1 (The SLM):</strong> A fast, cheap local model handles 80% of routine user queries (password resets, simple questions).</p></li>
-<li><p><strong>Level 2 (The LLM):</strong> If the SLM detects a complex issue or gets confused, it “escalates” the ticket to a smarter cloud-based LLM (like GPT-4).</p></li>
+<li><p><strong>Level 1 (The SLM):</strong> A fast, cheap local model handles 80% of routine user queries - password resets, simple questions.</p></li>
+<li><p><strong>Level 2 (The LLM):</strong> If the SLM detects a complex issue or gets confused, it “escalates” the ticket to a more capable cloud model like GPT-4.</p></li>
 </ol>
-<p>This keeps operating costs low while ensuring the user always gets an answer.</p>
+<p>This approach cuts costs by 10-20× while maintaining response quality.</p>
 <p><strong>Transparency &amp; Privacy</strong></p>
-<p>Beyond cost, businesses adopt SLMs for Transparency. Large models are “Black Boxes”—it is hard to explain why they made a decision. SLMs are simpler, making it easier to trace their logic. They also enable On-Device Processing. A phone can summarize notifications locally without sending data to the cloud, ensuring user privacy and working even without an internet connection.</p>
+<blockquote class="blockquote">
+<p><strong>Transparency:</strong> Large models are black boxes—it’s difficult to explain their decisions. SLMs are simpler, making it easier to trace their logic and satisfy regulatory requirements. <strong>Privacy:</strong> SLMs can run entirely on-device. A phone can summarize notifications locally without sending data to the cloud, ensuring privacy and offline functionality.</p>
+</blockquote>
 <section id="the-economics-beyond-simple-cost-savings" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="the-economics-beyond-simple-cost-savings"><span class="header-section-number">8.1</span> The Economics: Beyond Simple Cost Savings</h2>
-<p>The financial advantages extend beyond per-token pricing:</p>
+<p>The economic advantages extend beyond per-token pricing:</p>
 <p><strong>Inference Efficiency:</strong> Serving a 7B SLM requires 10-30× fewer FLOPs than a 70-175B LLM, enabling real-time responses at scale with dramatically lower energy consumption.</p>
 <p><strong>Fine-Tuning Agility:</strong> Full parameter fine-tuning for SLMs requires only GPU-hours versus GPU-weeks for LLMs. This means behaviors can be added, fixed, or specialized overnight rather than over weeks—critical for rapidly evolving business requirements.</p>
 <p><strong>Edge Deployment:</strong> SLMs run on consumer-grade GPUs, smartphones, and edge devices. For banks, this means processing sensitive data locally without cloud dependencies, reducing latency and strengthening data control.</p>
@@ -422,7 +424,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="understanding-the-barriers" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="understanding-the-barriers"><span class="header-section-number">8.2</span> Understanding the Barriers</h2>
-<p>If SLMs offer such compelling advantages, why hasn’t adoption been universal? Three practical hurdles exist:</p>
+<p>Three practical barriers have slowed adoption:</p>
 <p><strong>1. Infrastructure Inertia:</strong> Billions have been invested in centralized LLM inference systems. The industry built tools and expertise around this paradigm first.</p>
 <p><strong>2. Benchmark Mismatch:</strong> Many SLM evaluations focus on generalist benchmarks where LLMs naturally excel. Task-specific agentic benchmarks tell a different story—one where properly fine-tuned SLMs often outperform much larger models.</p>
 <p><strong>3. Awareness Gap:</strong> SLMs don’t receive the marketing intensity of flagship LLMs despite often being better suited for production deployment.</p>
