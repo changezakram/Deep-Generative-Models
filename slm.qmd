@@ -150,7 +150,7 @@ Most organizations are adopting a hybrid approach that balances cost and quality
 
 This approach cuts costs by 10-20× while maintaining response quality.
 
-**Latency:** It’s not just about cost—it’s about speed. A local SLM can reply in **under 200 milliseconds**. A cloud LLM often takes 1–3 seconds. In customer service, that lag is the difference between a snappy conversation and a frustrating wait.        
+**Latency:** It’s not just about cost—it’s about speed. A local SLM can reply in under 200 milliseconds. A cloud LLM often takes 1–3 seconds. In customer service, that lag is the difference between a quick conversation and a frustrating wait.        
 **Transparency:** Large models are black boxes—it's difficult to explain their decisions. SLMs are simpler, making it easier to trace their logic and satisfy regulatory requirements.           
 **Privacy:** SLMs can run entirely on-device. A phone can summarize notifications locally without sending data to the cloud, ensuring privacy and offline functionality.
 
