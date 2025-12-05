@@ -49,7 +49,7 @@ Four examples demonstrate how far small models have come:<sup>1</sup>
 
 - **DeepSeek-R1-Distill-Qwen (7B parameters)** beats Claude 3.5 Sonnet on reasoning benchmarks. A 7-billion parameter model outperforming one of the industry's flagship systems isn't just impressive—it's a signal that the small-model approach has reached maturity.
 
-> **The bottom line:** Small models now deliver 95%+ accuracy at 10% of the cost for well-defined tasks. The performance gap isn't closing—it's closed.
+> **The bottom line:** Small models now deliver 95%+ accuracy at 10% of the cost for well-defined tasks.
 
 ---
 
