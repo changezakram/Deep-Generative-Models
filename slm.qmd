@@ -37,19 +37,19 @@ The economics are straightforward: if you're running the same type of task thous
 
 # Proven Performance: SLMs Competing with Giants
 
-The evidence is clear: modern SLMs are not just "smaller" — they are matching and even exceeding larger models on specific tasks.
+The skepticism about small models is fading fast. In head-to-head testing, 7-billion parameter models now match the performance of models 10 times their size—and sometimes beat them.
 
-**Recent benchmarks reveal:**
+Four examples demonstrate how far small models have come:
 
-- **Microsoft Phi-3 (7B parameters)** achieves language understanding and code generation scores comparable to models with 70 billion parameters while running significantly faster.
+- **Microsoft Phi-3 (7B parameters)** matches 70-billion parameter models on code generation and language tasks. The difference? Phi-3 runs 15 times faster and costs a fraction to deploy.
 
-- **NVIDIA Nemotron-H family (2-9B parameters)** delivers instruction-following accuracy comparable to 30B LLMs at a fraction of the computational cost — requiring an order of magnitude fewer FLOPs.
+- **NVIDIA Nemotron-H family (9B parameters)** handles complex instructions as accurately as 30-billion parameter models while using one-tenth the computational resources. For high-volume applications, this translates to dramatically lower infrastructure costs.
 
-- **Salesforce xLAM-2 (8B parameters)** demonstrates state-of-the-art tool-calling performance, surpassing frontier models like GPT-4o and Claude 3.5 Sonnet on specialized benchmarks.
+- **Salesforce xLAM-2 (8B parameters)** outperforms GPT-4o and Claude 3.5 Sonnet on tool-calling tasks—the ability to interact with external systems and APIs. This matters because agentic systems live and die by tool-calling accuracy.
 
-- **DeepSeek-R1-Distill-Qwen (7B parameters)** outperforms Claude 3.5 Sonnet on reasoning tasks — a remarkable achievement showing that properly trained small models can exceed much larger proprietary systems.
+- **DeepSeek-R1-Distill-Qwen (7B parameters)** beats Claude 3.5 Sonnet on reasoning benchmarks. A 7-billion parameter model outperforming one of the industry's flagship systems isn't just impressive—it's a signal that the small-model approach has reached maturity.
 
-> The performance gap between small and large models is closing rapidly. With modern training techniques, SLMs can deliver 95%+ of the accuracy at 10% of the cost for well-defined tasks.
+> **The bottom line:** Small models now deliver 95%+ accuracy at 10% of the cost for well-defined tasks. The performance gap isn't closing—it's closed.
 
 ---
 
