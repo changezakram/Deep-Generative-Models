@@ -57,7 +57,7 @@ Four examples demonstrate how far small models have come:<sup>1</sup>
 
 # The Scalability Problem
 
-![**Figure:** Generative vs Agentic AI.](images/genal-vs-agenticai.png){fig-align="center" width="800"}
+![**Figure:** Generative AI responds to single queries, while agentic AI operates in continuous loops..](images/genal-vs-agenticai.png){fig-align="center" width="800"}
 
 The shift to "Small" is driven by autonomous agents. These agents operate in continuous loops — thinking, acting, checking, and repeating. Each cycle calls AI models multiple times. If every step uses a massive model, costs multiply quickly. At scale, this becomes unsustainable.
 
