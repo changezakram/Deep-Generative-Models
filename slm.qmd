@@ -33,6 +33,8 @@ Small models excel at efficiency. A 3-billion parameter model trained specifical
 
 The economics are straightforward: if you're running the same type of task thousands of times daily, specialized models make sense. If you need broad capabilities for unpredictable queries, large models remain essential.
 
+![**Figure:** Large models excel at versatility; small models excel at efficiency. The choice depends on your use case.](images/llm-vs-slm.png){fig-align="center" width="800"}
+
 ---
 
 # Proven Performance: SLMs Competing with LLMs
