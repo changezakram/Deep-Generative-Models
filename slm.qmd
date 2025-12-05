@@ -22,7 +22,9 @@ This matters because the next wave of AI isn't about chatbots. It's about autono
 
 # What is a Small Language Model?
 
-Think of SLMs as precision tools rather than Swiss Army knives. While large language models grew from 0.1 billion to 1.7 trillion parameters over seven years, small language models emerged in 2023 as a strategic optimization—staying in the 3-10 billion range while achieving comparable results on specific tasks. A 7-billion parameter model fine-tuned for loan document extraction will outperform GPT-4 on that specific task—while costing 30 times less to run.
+Think of SLMs as precision tools rather than Swiss Army knives. While large language models grew from 0.1 billion to 1.7 trillion parameters over seven years, small language models emerged in 2023 as a strategic optimization—staying in the 3-10 billion range while achieving comparable results on specific tasks. 
+
+> A 7-billion parameter model fine-tuned for loan document extraction will outperform GPT-4 on that specific task—while costing 30 times less to run.
 
 ![**Figure:** Model size evolution from 2018-2025 (logarithmic scale). Large language models grew from 0.1B to 1.7 trillion parameters, while small language models emerged in 2023, optimizing performance at 3-10B—achieving comparable results at 100× smaller scale.](images/model-size-evolution.png){fig-align="center" width="800"}
 
