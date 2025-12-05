@@ -686,13 +686,6 @@
     "text": "4.2 Why Agents Specifically Need SLMs\nHere’s the economic challenge: Unlike traditional applications where a user submits a single query, agents make dozens of calls per request. A single request might trigger 20-50 model calls. When each call goes to a large model, costs compound rapidly.\nAnalysis of real agents (MetaGPT, Open Operator, Cradle) reveals that 60-70% of their model calls are repetitive, narrow tasks: parsing JSON, formatting API parameters, validating outputs, simple decision logic. These don’t need a 400-billion parameter model’s “world knowledge.” A 3-billion parameter model trained specifically for the task performs better and costs 30× less."
   },
   {
-    "objectID": "slm.html#quick-reference-the-top-models-of-2025",
-    "href": "slm.html#quick-reference-the-top-models-of-2025",
-    "title": "The Future of AI Isn’t Bigger — It’s Smaller",
-    "section": "6.1 Quick Reference: The Top Models of 2025",
-    "text": "6.1 Quick Reference: The Top Models of 2025\n\n\n\n\n\n\n\n\nModel\nBest Use Case\nWhy?\n\n\n\n\nMicrosoft Phi-3.5\nLogic & Reasoning\nExcels at math and analytical tasks. Ideal for agents that need to solve logic puzzles.\n\n\nQwen 2.5 (Alibaba)\nCoding & Multilingual\nState-of-the-art for its size; powerhouse for coding and non-English languages.\n\n\nMeta Llama 3.2\nMobile / Edge\nOptimized for ARM processors (phones/tablets). Great for tool calling and strict instructions.\n\n\nGoogle Gemma 2\nCreative NLP\nBuilt on Gemini technology; strong in conversation and creative writing.\n\n\nMistral (Ministral)\nLow Latency\nDesigned for extreme speed; ideal for instant-response applications.\n\n\nIBM Granite 3.0\nEnterprise Coding\nTrained on business software; excellent for RAG and structured coding tasks."
-  },
-  {
     "objectID": "slm.html#loan-document-processing",
     "href": "slm.html#loan-document-processing",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",

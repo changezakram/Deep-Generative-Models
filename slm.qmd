@@ -88,9 +88,7 @@ Engineers use the following four advanced techniques to shrink these models whil
 
 # The Landscape: Selecting a Model
 
-According to Microsoft, SLMs generally fall into three categories: Distilled Models (smaller versions of popular architectures), Task-Specific Models (fine-tuned for a single domain), and Edge Natives (built from scratch for mobile devices).
-
-## Quick Reference: The Top Models of 2025
+Following six leading models represent the current SLM landscape:
 
 | Model | Best Use Case | Why? |
 | :--- | :--- | :--- |
