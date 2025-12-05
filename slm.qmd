@@ -28,9 +28,9 @@ Think of SLMs as precision tools rather than Swiss Army knives. A 7-billion para
 
 ## The Trade-Off: Breadth vs. Depth
 
-Large models excel at versatility. GPT-4 can write poetry, debug code, and explain quantum physics in the same conversation. But using a 400-billion parameter model to extract dates from invoices is like hiring a philosophy professor to sort your mail — effective, but absurdly expensive.
+**Large models** excel at versatility. GPT-4 can write poetry, debug code, and explain quantum physics in the same conversation. But using a 400-billion parameter model to extract dates from invoices is like hiring a philosophy professor to sort your mail — effective, but absurdly expensive.
 
-Small models excel at efficiency. A 3-billion parameter model trained specifically on financial documents can't discuss medieval history, but it will process loan applications faster and more accurately than a generalist model. Since it focuses on one domain, it delivers results in milliseconds rather than seconds—and at a fraction of the cost.
+**Small models** excel at efficiency. A 3-billion parameter model trained specifically on financial documents can't discuss medieval history, but it will process loan applications faster and more accurately than a generalist model. Since it focuses on one domain, it delivers results in milliseconds rather than seconds—and at a fraction of the cost.
 
 The economics are straightforward: if you're running the same type of task thousands of times daily, specialized models make sense. If you need broad capabilities for unpredictable queries, large models remain essential.
 
