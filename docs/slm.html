@@ -209,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#the-trade-off-breadth-vs.-depth" id="toc-the-trade-off-breadth-vs.-depth" class="nav-link" data-scroll-target="#the-trade-off-breadth-vs.-depth"><span class="header-section-number">2.1</span> The Trade-Off: Breadth vs.&nbsp;Depth</a></li>
   </ul></li>
-  <li><a href="#proven-performance-slms-competing-with-giants" id="toc-proven-performance-slms-competing-with-giants" class="nav-link" data-scroll-target="#proven-performance-slms-competing-with-giants"><span class="header-section-number">3</span> Proven Performance: SLMs Competing with Giants</a></li>
+  <li><a href="#proven-performance-slms-competing-with-llms" id="toc-proven-performance-slms-competing-with-llms" class="nav-link" data-scroll-target="#proven-performance-slms-competing-with-llms"><span class="header-section-number">3</span> Proven Performance: SLMs Competing with LLMs</a></li>
   <li><a href="#the-scalability-problem" id="toc-the-scalability-problem" class="nav-link" data-scroll-target="#the-scalability-problem"><span class="header-section-number">4</span> The Scalability Problem</a>
   <ul class="collapse">
   <li><a href="#the-solution-heterogeneous-architecture" id="toc-the-solution-heterogeneous-architecture" class="nav-link" data-scroll-target="#the-solution-heterogeneous-architecture"><span class="header-section-number">4.1</span> The Solution: Heterogeneous Architecture</a></li>
@@ -277,9 +277,9 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="proven-performance-slms-competing-with-giants" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Proven Performance: SLMs Competing with Giants</h1>
-<p>The skepticism about small models is fading fast. In head-to-head testing, 7-billion parameter models now match the performance of models 10 times their size—and sometimes beat them.</p>
+<section id="proven-performance-slms-competing-with-llms" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Proven Performance: SLMs Competing with LLMs</h1>
+<p>The performance gap between small and large models has closed. In head-to-head testing, 7-billion parameter models now match the performance of models 10 times their size—and sometimes beat them.</p>
 <p>Four examples demonstrate how far small models have come:<sup>1</sup></p>
 <ul>
 <li><p><strong>Microsoft Phi-3 (7B parameters)</strong> matches 70-billion parameter models on code generation and language tasks. The difference? Phi-3 runs 15 times faster and costs a fraction to deploy.</p></li>
@@ -294,35 +294,18 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="the-scalability-problem" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> The Scalability Problem</h1>
-<p>The shift to “Small” is largely driven by the rise of <strong>Agentic AI</strong>. We are currently building AI Agents that use tools to complete actual work. Since these agents operate in a continuous loop—thinking, acting, checking, and repeating—the cost of running them stacks up quickly. If every step in that loop relies on a massive model, operations become prohibitively expensive and sluggish.</p>
+<p>The shift to “Small” is largely driven by the rise of <strong>Agentic AI</strong>. We are currently building AI Agents that use tools to complete actual work. Since these agents operate in a continuous loop—thinking, acting, checking, and repeating—the cost of running them stacks up quickly. If every step uses a massive model, costs multiply quickly. At scale, this becomes unsustainable.</p>
 <section id="the-solution-heterogeneous-architecture" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="the-solution-heterogeneous-architecture"><span class="header-section-number">4.1</span> The Solution: Heterogeneous Architecture</h2>
-<p>NVIDIA suggests that scalable systems need to mix different model sizes to work effectively.</p>
-<p>In this “Heterogeneous” approach, a Large Language Model (LLM) acts as the Planner, orchestrating the workflow and handling vague user instructions. Meanwhile, a swarm of SLMs acts as the Executors, performing specific steps like running SQL queries, summarizing text, or formatting output.</p>
-<p>This approach can reduce costs by 10x to 30x. It also improves reliability, as small models are fine-tuned for a narrow scope and are less likely to “hallucinate” or get distracted by irrelevant information.</p>
+<p>The answer isn’t using one model for everything. It’s using the right model for each task. NVIDIA suggests that scalable systems need to mix different model sizes to work effectively.</p>
+<p>In this “Heterogeneous” approach, a large model acts as an orchestrator—understanding vague requests, planning the workflow, handling edge cases. Small models execute the routine steps: running database queries, formatting outputs, validating results.</p>
+<p>This mixed approach cuts costs by 10-30× while improving reliability. Small models fine-tuned for specific tasks “hallucinate” less than generalist models attempting the same work.</p>
 </section>
 <section id="why-agents-specifically-need-slms" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="why-agents-specifically-need-slms"><span class="header-section-number">4.2</span> Why Agents Specifically Need SLMs</h2>
-<p>Agentic systems present a unique economic challenge. Unlike traditional applications where a user submits a single query, agents operate in continuous loops:</p>
-<ol type="1">
-<li>Perception — Read the current state</li>
-<li>Decision — Choose the next action</li>
-<li>Execution — Call a tool or API</li>
-<li>Verification — Check if the goal is met</li>
-<li>Repeat — Loop until complete</li>
-</ol>
-<p>A single user request might trigger 20-50 model invocations. When each call goes to a large model, costs compound rapidly.</p>
-<blockquote class="blockquote">
-<p><strong>Real-World Impact</strong> - NVIDIA’s analysis of popular open-source agents (MetaGPT, Open Operator, Cradle) suggests that 60-70% of LLM queries could be reliably handled by specialized SLMs without any loss in end-user experience.</p>
-</blockquote>
-<p>Most agentic subtasks are repetitive and narrow:</p>
-<ul>
-<li>Parsing structured data (JSON, XML)</li>
-<li>Formatting tool parameters</li>
-<li>Validating outputs</li>
-<li>Simple decision logic</li>
-</ul>
-<p>These don’t require the broad “world knowledge” of a 400B parameter model. A specialized 3B model fine-tuned for the specific task often performs better and costs 30× less.</p>
+<p>Agentic systems present a unique economic challenge. Unlike traditional applications where a user submits a single query, agents operate in loops. For every user request, they cycle through perception (reading current state), decision (choosing next action), execution (calling tools), and verification (checking results)—then repeat until the task is complete.</p>
+<p>A single request might trigger 20-50 model calls. When each call goes to a large model, costs compound rapidly.</p>
+<p>Analysis of real agents (MetaGPT, Open Operator, Cradle) reveals that 60-70% of their model calls are repetitive, narrow tasks: parsing JSON, formatting API parameters, validating outputs, simple decision logic. These don’t need a 400-billion parameter model’s “world knowledge.” A 3-billion parameter model trained specifically for the task performs better and costs 30× less.</p>
 <hr>
 </section>
 </section>

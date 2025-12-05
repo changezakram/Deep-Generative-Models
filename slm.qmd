@@ -35,9 +35,9 @@ The economics are straightforward: if you're running the same type of task thous
 
 ---
 
-# Proven Performance: SLMs Competing with Giants
+# Proven Performance: SLMs Competing with LLMs
 
-The skepticism about small models is fading fast. In head-to-head testing, 7-billion parameter models now match the performance of models 10 times their size—and sometimes beat them.
+The performance gap between small and large models has closed. In head-to-head testing, 7-billion parameter models now match the performance of models 10 times their size—and sometimes beat them.
 
 Four examples demonstrate how far small models have come:<sup>1</sup>
 
@@ -55,38 +55,23 @@ Four examples demonstrate how far small models have come:<sup>1</sup>
 
 # The Scalability Problem
 
-The shift to "Small" is largely driven by the rise of **Agentic AI**. We are currently building AI Agents that use tools to complete actual work. Since these agents operate in a continuous loop—thinking, acting, checking, and repeating—the cost of running them stacks up quickly. If every step in that loop relies on a massive model, operations become prohibitively expensive and sluggish.
+The shift to "Small" is largely driven by the rise of **Agentic AI**. We are currently building AI Agents that use tools to complete actual work. Since these agents operate in a continuous loop—thinking, acting, checking, and repeating—the cost of running them stacks up quickly. If every step uses a massive model, costs multiply quickly. At scale, this becomes unsustainable.
 
 ## The Solution: Heterogeneous Architecture
 
-NVIDIA suggests that scalable systems need to mix different model sizes to work effectively.
+The answer isn't using one model for everything. It's using the right model for each task. NVIDIA suggests that scalable systems need to mix different model sizes to work effectively.
 
-In this "Heterogeneous" approach, a Large Language Model (LLM) acts as the Planner, orchestrating the workflow and handling vague user instructions. Meanwhile, a swarm of SLMs acts as the Executors, performing specific steps like running SQL queries, summarizing text, or formatting output.
+In this "Heterogeneous" approach, a large model acts as an orchestrator—understanding vague requests, planning the workflow, handling edge cases. Small models execute the routine steps: running database queries, formatting outputs, validating results.
 
-This approach can reduce costs by 10x to 30x. It also improves reliability, as small models are fine-tuned for a narrow scope and are less likely to "hallucinate" or get distracted by irrelevant information.
+This mixed approach cuts costs by 10-30× while improving reliability. Small models fine-tuned for specific tasks "hallucinate" less than generalist models attempting the same work.
 
 ## Why Agents Specifically Need SLMs
 
-Agentic systems present a unique economic challenge. Unlike traditional applications where a user submits a single query, agents operate in continuous loops:
+Agentic systems present a unique economic challenge. Unlike traditional applications where a user submits a single query, agents operate in loops. For every user request, they cycle through perception (reading current state), decision (choosing next action), execution (calling tools), and verification (checking results)—then repeat until the task is complete.
 
-1. Perception — Read the current state
-2. Decision — Choose the next action
-3. Execution — Call a tool or API
-4. Verification — Check if the goal is met
-5. Repeat — Loop until complete
+A single request might trigger 20-50 model calls. When each call goes to a large model, costs compound rapidly.
 
-A single user request might trigger 20-50 model invocations. When each call goes to a large model, costs compound rapidly.
-
-> **Real-World Impact** - NVIDIA's analysis of popular open-source agents (MetaGPT, Open Operator, Cradle) suggests that 60-70% of LLM queries could be reliably handled by specialized SLMs without any loss in end-user experience.
-
-Most agentic subtasks are repetitive and narrow:
-
-- Parsing structured data (JSON, XML)
-- Formatting tool parameters
-- Validating outputs
-- Simple decision logic
-
-These don't require the broad "world knowledge" of a 400B parameter model. A specialized 3B model fine-tuned for the specific task often performs better and costs 30× less.
+Analysis of real agents (MetaGPT, Open Operator, Cradle) reveals that 60-70% of their model calls are repetitive, narrow tasks: parsing JSON, formatting API parameters, validating outputs, simple decision logic. These don't need a 400-billion parameter model's "world knowledge." A 3-billion parameter model trained specifically for the task performs better and costs 30× less.
 
 ---
 
