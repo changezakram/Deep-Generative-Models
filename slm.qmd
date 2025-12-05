@@ -91,7 +91,7 @@ Engineers use the following four advanced techniques to shrink these models whil
 
 ---
 
-# The Landscape: Selecting a Model
+# SLM Examples
 
 Six leading models from the current SLM landscape:
 
