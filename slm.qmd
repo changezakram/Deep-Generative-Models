@@ -94,9 +94,13 @@ Engineers use the following four advanced techniques to shrink these models whil
 
 ![**Figure:** Quantization converts floating-point numbers (32-bit) to integers (8-bit), cutting memory requirements by 75% while maintaining model performance. This enables deployment on devices like phones and laptops.](images/quantization.png){fig-align="center" width="500"}
 
-**4. LoRA (The Skill Plugin):** Rather than retraining an entire model for a new task (which takes weeks), LoRA adds a small, specialized layer on top. Think of it as giving the model a task-specific cheat sheet—one for legal contracts, another for loan applications—that adapts the model in hours instead of weeks.
+**4. LoRA (The Skill Plugin):** The previous three techniques—distillation, pruning, and quantization—create small models. LoRA makes them practical for enterprise deployment. Here's the challenge: A generic 7B model won't excel at your specific banking tasks. You need one version fine-tuned for loan documents, another for fraud patterns, another for compliance reports. Traditional fine-tuning means retraining billions of parameters for each task—weeks of time and tens of thousands of dollars per customization. LoRA (Low-Rank Adaptation) keeps the base model frozen and trains only small adapter layers in parallel. By training just 1-2% of the model's parameters, banks can customize models for specific tasks in hours instead of weeks, for hundreds instead of thousands of dollars.
 
 ![**Figure:** LoRA's parallel architecture enables rapid model customization. A 7B base model stays frozen (navy) while small adapters (green) learn banking-specific tasks. Training 100M adapter parameters instead of 7B base parameters achieves 10× faster adaptation—customizing models for loan processing in hours, not weeks.](images/LoRA_.png){fig-align="center" width="700"}
+
+The technique works by adding small adapter matrices that run in parallel to the frozen base weights. During training, the base model stays unchanged while only the adapters learn task-specific patterns. The outputs from both paths combine to produce specialized predictions. After training, the adapters can be merged back into the base weights, resulting in a single efficient model with no runtime overhead. 
+
+> **Why this matters for banking:** Without LoRA, you're forced to choose between generic small models (suboptimal performance) or expensive full fine-tuning (which defeats the cost advantage). LoRA gives you the best of both worlds: maintain the efficiency of small models while achieving task-specific performance through rapid, affordable adaptation.
 
 ---
 
