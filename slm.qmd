@@ -98,8 +98,6 @@ Engineers use four advanced techniques to make small language models enterprise-
 
 ![**Figure:** LoRA's parallel architecture enables rapid model customization. A 7B base model stays frozen (navy) while small adapters (green) learn banking-specific tasks. Training 100M adapter parameters instead of 7B base parameters achieves 10× faster adaptation—customizing models for loan processing in hours, not weeks.](images/LoRA_.png){fig-align="center" width="700"}
 
-The technique works by adding small adapter matrices that run in parallel to the frozen base weights. During training, the base model stays unchanged while only the adapters learn task-specific patterns. The outputs from both paths combine to produce specialized predictions. After training, the adapters can be merged back into the base weights, resulting in a single efficient model with no runtime overhead. 
-
 > **Why this matters for banking:** Without LoRA, you're forced to choose between generic small models (suboptimal performance) or expensive full fine-tuning (which defeats the cost advantage). LoRA gives you the best of both worlds: maintain the efficiency of small models while achieving task-specific performance through rapid, affordable adaptation.
 
 ---
