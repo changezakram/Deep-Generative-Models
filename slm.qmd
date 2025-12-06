@@ -206,4 +206,10 @@ For banks, the choice is strategic: deploy small models now and capture the 10-3
 
 [1] Belcak, P. et al. (2023). Small Language Models are the Future of Agentic AI. https://arxiv.org/pdf/2506.02153
 
+[2] Lu Z. et al. (2025). Small Language Models: Survey, Measurements, and Insights. https://arxiv.org/pdf/2409.15790
+
+[3] The Economist. (2025). The bigger-is-better approach to AI is running out of road. https://www.economist.com/science-and-technology/2023/06/21/the-bigger-is-better-approach-to-ai-is-running-out-of-road
+
+[4] Nvidia. (2025). How Small Language Models Are Key to Scalable Agentic AI. https://developer.nvidia.com/blog/how-small-language-models-are-key-to-scalable-agentic-ai/
+
 
