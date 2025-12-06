@@ -88,7 +88,7 @@ Engineers use four advanced techniques to make small language models enterprise-
 
 **2. Pruning:** Like trimming a tree, engineers analyze the neural network to identify connections that don't contribute to output quality. Removing these "dead branches" cuts the model size while preserving accuracy.
 
-![**Figure:** Pruning removes unnecessary connections, reducing model size by 40-60% while maintaining performance.](images/pruning.png){fig-align="center" width="800"}
+![**Figure:** Pruning removes unnecessary connections, reducing model size by 40-60% while maintaining performance.](images/pruning_.png){fig-align="center" width="800"}
 
 **3. Quantization:** Instead of storing numbers with high precision (3.14159), the model rounds them to simple integers (3). This reduces memory requirements dramatically—enabling powerful AI to run on laptops instead of servers.
 
