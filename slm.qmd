@@ -112,30 +112,31 @@ Six leading models from the current SLM landscape:
 Financial institutions are particularly well-positioned to benefit from SLMs. Banking operations involve high volumes of repetitive, well-defined tasks that are perfect candidates for specialized small models.
 
 ## Loan Document Processing
+
 A regional bank processing 10,000 loan applications monthly has two options:
 
-- **LLM approach:** GPT-4 at $2-3 per application = $20,000-$30,000/month    
-- **SLM approach:** Fine-tuned 3B model at $0.10 per application = $1,000/month
+- **The Old Way (LLM):** GPT-4 at ~$2.50 per application costs $25,000/month.   
+- **The SLM Way:** A fine-tuned 3B model costs ~$0.10 per application, totaling $1,000/month.
 
 The SLM, trained specifically on lending documentation, often delivers higher accuracy on domain-specific extractions like debt-to-income ratios, collateral valuations, and employment verification.
 
-## Real-Time Compliance Monitoring
+## Real-Time Fraud & Compliance Monitoring
 
-Banks must screen communications for regulatory compliance. An SLM fine-tuned on financial regulations can:
+Banks need to screen every transaction for fraud. A massive cloud model is too slow and risky for this. An SLM can:
 
 - Flag suspicious transactions in milliseconds     
-- Run locally on banking infrastructure (no data leaves the network)      
-- Process 100,000+ transactions daily at a fraction of cloud API costs      
-- Adapt quickly to new regulations through rapid fine-tuning     
+- Run entirely on-premise (no data leaves the bank's secure network).    
+- Process 100,000+ transactions daily at a fraction of cloud API costs.     
+- Adapt overnight to new regulations via fine-tuning.     
 
 For privacy-sensitive operations, on-premise deployment eliminates the risk of sending customer data to external API endpoints.
 
 ## Customer Service Triage
 
-A typical bank call center receives inquiries ranging from "What's my balance?" to complex product questions. The optimal architecture:
+Instead of forcing every customer to wait for a "genius" AI, banks use a tiered system:
 
-- **SLM Front-Line (handles 70-80%):** Fast, local model answers routine queries instantly
-- **LLM Escalation (handles 20-30%):** Complex issues route to a powerful reasoning model
+- **The Front Line (SLM):** A fast local model answers routine questions ("What's my balance?") instantly (<200ms).
+- **The Escalation (LLM):** Complex problems are routed to a larger reasoning model.
 
 This hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×.
 
