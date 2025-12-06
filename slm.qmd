@@ -96,7 +96,7 @@ Engineers use the following four advanced techniques to shrink these models whil
 
 **4. LoRA (The Skill Plugin):** Rather than retraining an entire model for a new task (which takes weeks), LoRA adds a small, specialized layer on top. Think of it as giving the model a task-specific cheat sheet—one for legal contracts, another for loan applications—that adapts the model in hours instead of weeks.
 
-![**Figure:** LoRA (Low-Rank Adaptation) trains small adapter layers instead of the entire model, achieving 10× faster fine-tuning. A bank can adapt a model for loan applications in hours instead of weeks.](images/LoRA.png){fig-align="center" width="700"}
+![**Figure:** LoRA's parallel architecture enables rapid model customization. A 7B base model stays frozen (navy) while small adapters (green) learn banking-specific tasks. Training 100M adapter parameters instead of 7B base parameters achieves 10× faster adaptation—customizing models for loan processing in hours, not weeks.](images/LoRA_.png){fig-align="center" width="700"}
 
 ---
 
