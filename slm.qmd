@@ -80,7 +80,7 @@ Analysis of real agents (MetaGPT, Open Operator, Cradle) reveals that 60-70% of 
 
 # How Do They Work?
 
-Engineers use the following four advanced techniques to shrink these models while maintaining performance.
+Engineers use four advanced techniques to make small language models enterprise-ready. The first three—distillation, pruning, and quantization—create smaller models. The fourth, LoRA, enables rapid customization for specific tasks.
 
 **1. Distillation:** A large "teacher" model generates millions of training examples. A small "student" model learns from these examples, absorbing the teacher's problem-solving approach without inheriting its size.
 
