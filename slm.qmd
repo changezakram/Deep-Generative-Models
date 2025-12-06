@@ -84,11 +84,19 @@ Engineers use the following four advanced techniques to shrink these models whil
 
 **1. Distillation:** A large "teacher" model generates millions of training examples. A small "student" model learns from these examples, absorbing the teacher's problem-solving approach without inheriting its size.
 
+![**Figure:** Distillation transfers knowledge from a large "teacher" model (175B parameters) to a small "student" model (7B parameters), achieving 10-20× compression while preserving task performance.](images/distillation.png){fig-align="center" width="800"}
+
 **2. Pruning:** Like trimming a tree, engineers analyze the neural network to identify connections that don't contribute to output quality. Removing these "dead branches" cuts the model size while preserving accuracy.
+
+![**Figure:** Pruning removes unnecessary connections, reducing model size by 40-60% while maintaining performance.](images/pruning.png){fig-align="center" width="800"}
 
 **3. Quantization:** Instead of storing numbers with high precision (3.14159), the model rounds them to simple integers (3). This reduces memory requirements dramatically—enabling powerful AI to run on laptops instead of servers.
 
+![**Figure:** Quantization converts floating-point numbers (32-bit) to integers (8-bit), cutting memory requirements by 75% while maintaining model performance. This enables deployment on devices like phones and laptops.](images/quantization.png){fig-align="center" width="800"}
+
 **4. LoRA (The Skill Plugin):** Rather than retraining an entire model for a new task (which takes weeks), LoRA adds a small, specialized layer on top. Think of it as giving the model a task-specific cheat sheet—one for legal contracts, another for loan applications—that adapts the model in hours instead of weeks.
+
+![**Figure:** ](images/.png){fig-align="center" width="800"}
 
 ---
 
