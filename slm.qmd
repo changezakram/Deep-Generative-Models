@@ -60,7 +60,7 @@ Four examples demonstrate how far small models have come:<sup>1</sup>
 
 # The Scalability Problem
 
-![**Figure:** Generative AI responds to single queries, while agentic AI operates in continuous loops..](images/Gen-AI-vs-Agentic-AI.png){fig-align="center" width="800"}
+![**Figure:** Generative AI responds to single queries, while agentic AI operates in continuous loops..](images/GenAIvsAgenticAI_.png){fig-align="center" width="800"}
 
 The shift to "Small" is driven by autonomous agents. Unlike traditional chatbots where a user asks a question and gets one answer, agents operate in continuous loops — planning, taking action, observing outcomes, and repeating. A single complex user request (e.g., "Plan my travel and book tickets") might trigger **20 to 50 separate model calls** as the agent checks calendars, searches flights, and parses API errors. If every one of those 50 steps uses a massive, expensive model (like GPT-4), the cost for a single transaction explodes. At scale, this becomes unsustainable.
 
