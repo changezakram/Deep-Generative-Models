@@ -182,11 +182,11 @@ The economic advantages extend beyond per-token pricing:
 
 Three practical barriers have slowed adoption in financial services:
 
-**1. Infrastructure Inertia:** Billions have been invested in training and serving large language models. Organizations built teams, workflows, and tooling around centralized LLM deployment, creating institutional momentum that takes time to redirect toward heterogeneous architectures.
+**1. Organizational Inertia:** Enterprises have invested heavily in LLM-centric infrastructure, building specialized teams, deployment workflows, and expertise around centralized models. Shifting to heterogeneous architectures requires retooling processes, retraining personnel, and adapting governance frameworks—organizational changes that take time even when the technical case is clear.
 
 **2. Governance & Compliance Readiness:** Banks face regulatory requirements for model explainability, validation, and risk management. While SLMs are actually more transparent and easier to audit than massive LLMs, many institutions haven't yet adapted their AI governance frameworks to evaluate and deploy them confidently.
 
-**3. Talent & Expertise Gap:** Most enterprise AI teams have deep experience with centralized LLM deployments but limited expertise in distributed SLM architectures. Skills required for heterogeneous systems—model routing logic, fine-tuning workflows, edge optimization, performance monitoring across model tiers—are less common. Building this expertise requires training existing teams or hiring specialized talent, adding time and cost to adoption.
+**3. Cost-Benefit Validation:** While SLMs promise 10-30× cost savings, most banks lack internal data to validate these claims for their specific workloads and compliance requirements. Without clear ROI models and banking-specific case studies, risk-averse financial institutions hesitate to migrate from proven (expensive) LLM deployments to newer (cheaper) SLM architectures—even when the business case appears compelling.
 
 
 These are practical challenges, not fundamental limitations. As AI governance frameworks mature and agentic-specific benchmarks gain prominence, these barriers continue to diminish.
