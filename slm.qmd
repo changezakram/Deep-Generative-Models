@@ -190,7 +190,7 @@ Organizations that deployed LLM-based solutions face **organizational inertia** 
 
 **1. Governance & Compliance Uncertainty:** Financial institutions face regulatory requirements for model explainability, validation, and risk management. While SLMs are actually more transparent than massive LLMs, most banks haven't yet built AI governance frameworks. Starting with smaller, more auditable models is actually easier, but the perceived complexity of "AI governance" creates hesitation.
 
-**2. Lack of Banking-Specific Validation:** Most published SLM case studies focus on tech companies or consumer applications. Regional banks lack peer examples showing successful SLM deployments in banking operations, credit decisioning, or compliance workflows. This "proof gap" slows adoption in risk-averse institutions.
+**2. Lack of Banking-Specific Validation:** Most published SLM case studies focus on tech companies or consumer applications. Regional banks lack peer examples showing successful SLM deployments in banking operations, credit decisioning, or compliance workflows. This slows adoption in risk-averse institutions.
 
 **3. Skills & Vendor Ecosystem:** Unlike mature LLM platforms (OpenAI API, Anthropic), the SLM tooling ecosystem is less developed. Banks face uncertainty about deployment platforms, monitoring tools, and vendor support—increasing perceived implementation risk.
 
