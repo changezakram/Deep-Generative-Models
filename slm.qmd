@@ -194,17 +194,19 @@ Organizations that deployed LLM-based solutions face **organizational inertia** 
 
 **3. Skills & Vendor Ecosystem:** Unlike mature LLM platforms (OpenAI API, Anthropic), the SLM tooling ecosystem is less developed. Banks face uncertainty about deployment platforms, monitoring tools, and vendor support—increasing perceived implementation risk.
 
-> **The Opportunity:** Banks starting fresh can skip the LLM phase entirely, building SLM-first architectures from the ground up—capturing 10-30× cost advantages without migration complexity.
+These are practical challenges, not fundamental limitations. As organizations adapt their processes and banking-specific benchmarks emerge, these barriers continue to diminish.
+
+**The Strategic Choice:** For banks beginning their AI journey, SLMs offer a clear path forward—lower costs, easier governance, on-premise deployment. For institutions already using LLM-based solutions, the transition to heterogeneous architectures requires systematic planning but delivers compelling ROI. The next section provides a practical implementation roadmap for both scenarios.
 
 ---
 
-# How to Migrate Your Agents to SLMs
+# SLM Implementation Roadmap
 
-Transitioning from a massive GPT-4 based agent to a lean, heterogeneous system doesn't happen overnight. Based on recent research from NVIDIA and Georgia Tech, here is a practical 6-step algorithm to identify exactly which parts of your agent can be downsized to an SLM.
+Building a production-grade SLM solution—whether migrating from existing LLM agents or starting fresh—requires a systematic approach. Based on recent research from NVIDIA and Georgia Tech, here is a practical 6-step algorithm to identify exactly which parts of your agent can be downsized to an SLM.
 
 **Step 1: Start Logging Everything:** You can't optimize what you can't measure. The first step is to capture every prompt, response, and tool call your current LLM makes. In a banking context, this means logging every time customer service bot classifies a transaction or resets a password. Make sure PII redaction is active before data hits your logs.
        
-**Step 2: Clean Your Data:** Raw logs are noisy. You need to filter this data down to a high-quality training set — aim for 10,000 to 100,000 examples. Remove any “I don’t know” responses, hallucinations, or failures. You want your new small model to learn only from your current model’s wins, not its mistakes.
+**Step 2: Clean Your Data:** Raw logs are noisy. You need to filter this data down to a high-quality training set — aim for 10,000 to 100,000 examples (for LoRA fine-tuning; full fine-tuning may require more). Remove any “I don’t know” responses, hallucinations, or failures. You want your new small model to learn only from your current model’s wins, not its mistakes.
 
 **Step 3: Find the Patterns:** Analyze the data to find repetitive tasks. You will likely find that 60-70% of your agent’s work falls into narrow buckets. For example, your "General Banking Assistant" might actually spend half its time just formatting JSON for an API. This is the perfect candidate for a small model.
 
@@ -215,7 +217,9 @@ Transitioning from a massive GPT-4 based agent to a lean, heterogeneous system d
 
 **Step 5: Fine-Tune (The Transfer):** This is the critical step. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen small model using the clean data from Step 2. You are effectively teaching the small model to mimic the large one, but only for that specific task. It doesn't need to know French poetry; it just needs to know how to handle that specific banking API.
 
-**Step 6: Deploy and Iterate:** Launch the small model as a "sub-agent." Set up your router so that if the small model has low confidence, it automatically falls back to the large model. This keeps the system reliable while you continue to log data and refine the small model over time.
+**Step 6: Evaluate, Deploy, and Monitor:** Test your fine-tuned SLM against the baseline LLM on a held-out test set before production deployment. Validate that accuracy matches or exceeds the LLM for your specific task. Once confirmed, launch the SLM as a specialized worker with automatic fallback to the larger model when confidence is low. Monitor task completion rates (>95%), fallback frequency (<20%), and cost savings (10-30×) to continuously refine performance.
+
+> **For Banking Deployments:** Document your model selection rationale, training data sources, and validation methodology to satisfy model risk management requirements. SLMs' smaller size and task-specific nature actually make governance easier than LLM deployments — leverage this in your compliance documentation.
 
 ![**Figure:** Three-tier heterogeneous architecture. A lightweight LLM orchestrator routes incoming requests: complex reasoning tasks go to a powerful LLM (GPT-4), while routine operations (data extraction, formatting, classification) route to specialized SLMs. This intelligent routing achieves 10-30× cost savings—expensive models handle only tasks that truly require them.](images/HeterogeneousAgenticSystem.png){fig-align="center" width="800"}
 
