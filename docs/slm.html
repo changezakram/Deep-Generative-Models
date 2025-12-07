@@ -508,7 +508,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Step 5: Fine-Tune (The Transfer):</strong> This is the critical step. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen small model using the clean data from Step 2. You are effectively teaching the small model to mimic the large one, but only for that specific task. It doesn’t need to know French poetry; it just needs to know how to handle that specific banking API.</p>
 <p><strong>Step 6: Evaluate, Deploy, and Monitor:</strong> Test your fine-tuned SLM against the baseline LLM on a held-out test set before deployment. Validate that accuracy matches or exceeds the LLM for your specific task. Once confirmed, launch the SLM as a specialized worker with automatic fallback to the larger model when confidence is low. Monitor task completion rates (&gt;95%), fallback frequency (&lt;20%), and cost savings (10-30×) to continuously improve performance.</p>
 <blockquote class="blockquote">
-<p><strong>For Banking Deployments:</strong> Document your model selection rationale, training data sources, and validation methodology to satisfy model risk management requirements. SLMs’ smaller size and task-specific nature actually make governance easier than LLM deployments.</p>
+<p><strong>For Banking Deployments:</strong> Document your model selection rationale, training data sources, and validation methodology to satisfy model risk management requirements. SLMs’ smaller size and task-specific nature make governance easier than LLM deployments.</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

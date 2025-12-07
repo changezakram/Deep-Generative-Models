@@ -219,7 +219,7 @@ Building a production-grade SLM solution—whether migrating from existing LLM a
 
 **Step 6: Evaluate, Deploy, and Monitor:** Test your fine-tuned SLM against the baseline LLM on a held-out test set before deployment. Validate that accuracy matches or exceeds the LLM for your specific task. Once confirmed, launch the SLM as a specialized worker with automatic fallback to the larger model when confidence is low. Monitor task completion rates (>95%), fallback frequency (<20%), and cost savings (10-30×) to continuously improve performance.
 
-> **For Banking Deployments:** Document your model selection rationale, training data sources, and validation methodology to satisfy model risk management requirements. SLMs' smaller size and task-specific nature actually make governance easier than LLM deployments.
+> **For Banking Deployments:** Document your model selection rationale, training data sources, and validation methodology to satisfy model risk management requirements. SLMs' smaller size and task-specific nature make governance easier than LLM deployments.
 
 ![**Figure:** Three-tier heterogeneous architecture. A lightweight LLM orchestrator routes incoming requests: complex reasoning tasks go to a powerful LLM (GPT-4), while routine operations (data extraction, formatting, classification) route to specialized SLMs. This intelligent routing achieves 10-30× cost savings—expensive models handle only tasks that truly require them.](images/HeterogeneousAgenticSystem.png){fig-align="center" width="800"}
 
