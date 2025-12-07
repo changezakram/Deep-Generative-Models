@@ -184,7 +184,7 @@ Financial institutions face different barriers depending on their AI maturity:
 
 **For Early Adopters (Already Using LLMs):**
 
-Organizations that deployed LLM-based solutions face **organizational inertia** — they've built teams, workflows, and expertise around centralized models. Shifting to heterogeneous architectures requires retooling processes and adapting governance frameworks, organizational changes that take time even when the technical case is clear.
+Organizations that deployed LLM-based solutions face **organizational inertia** — they've built teams, workflows, and expertise around centralized models. Shifting to heterogeneous architectures requires retooling processes and adapting governance frameworks, organizational changes that take time.
 
 **For Institutions Just Starting:**
 
