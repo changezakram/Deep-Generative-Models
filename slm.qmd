@@ -221,7 +221,7 @@ Building a production-grade SLM solution—whether migrating from existing LLM a
 
 > **For Banking Deployments:** Document your model selection rationale, training data sources, and validation methodology to satisfy model risk management requirements. SLMs' smaller size and task-specific nature make governance easier than LLM deployments.
 
-![**Figure:** Three-tier heterogeneous architecture. A lightweight LLM orchestrator routes incoming requests: complex reasoning tasks go to a powerful LLM (GPT-4), while routine operations (data extraction, formatting, classification) route to specialized SLMs. This intelligent routing achieves 10-30× cost savings—expensive models handle only tasks that truly require them.](images/HeterogeneousAgenticSystem.png){fig-align="center" width="800"}
+![**Figure:** Three-tier heterogeneous architecture. A lightweight LLM orchestrator routes incoming requests: complex reasoning tasks go to a powerful LLM (GPT-4), while routine operations (data extraction, formatting, classification) route to specialized SLMs. This intelligent routing achieves 10-30× cost savings—expensive models handle only tasks that truly require them.](images/Heterogeneous_Agentic_System.png){fig-align="center" width="800"}
 
 ---
 
