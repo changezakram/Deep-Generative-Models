@@ -202,40 +202,20 @@ Organizations that deployed LLM-based solutions face **organizational inertia** 
 
 Transitioning from a massive GPT-4 based agent to a lean, heterogeneous system doesn't happen overnight. Based on recent research from NVIDIA and Georgia Tech, here is a practical 6-step algorithm to identify exactly which parts of your agent can be downsized to an SLM.
 
-**Step 1: Secure The "Black Box" (Logging)**
-
-You can't optimize what you can't measure. The first step is deploying secure logging to capture every prompt, response, and tool call your current LLM makes.   
+**Step 1: Start Logging Everything:** You can't optimize what you can't measure. The first step is to capture every prompt, response, and tool call your current LLM makes. In a banking context, this means logging every time customer service bot classifies a transaction or resets a password. Make sure PII redaction is active before data hits your logs.
        
-- Banking Context: If you have a customer service bot, log every time it classifies a transaction or resets a password. Ensure PII redaction is active before data hits your logs.
+**Step 2: Clean Your Data:** Raw logs are noisy. You need to filter this data down to a high-quality training set — aim for 10,000 to 100,000 examples. Remove any “I don’t know” responses, hallucinations, or failures. You want your new small model to learn only from your current model’s wins, not its mistakes.
 
-**Step 2: Curation & Hygiene**
+**Step 3: Find the Patterns:** Analyze the data to find repetitive tasks. You will likely find that 60-70% of your agent’s work falls into narrow buckets. For example, your "General Banking Assistant" might actually spend half its time just formatting JSON for an API. This is the perfect candidate for a small model.
 
-Raw logs are noisy. You need to filter this data into a high-quality training set (aim for 10k–100k examples).  
-      
-- Action: Remove "I don't know" responses, hallucinations, or failed tool calls. You only want the SLM to learn from the successes of the LLM.
-
-**Step 3: Cluster the Skills**
-
-Use clustering algorithms to find patterns. You will likely find that 60-70% of your agent's work falls into narrow, repetitive buckets.      
-  
-- Example: You might discover your "General Banking Assistant" actually spends 50% of its time just formatting JSON for the transfer_funds API. This is a perfect candidate for an SLM.
-
-**Step 4: Draft the Specialist (Model Selection)**
-
-Pick an SLM that fits the specific cluster.    
+**Step 4: Pick Your Model:** Pick an SLM that fits the specific task you identified.    
  
 - For reasoning tasks: Look at Phi-3 or DeepSeek-R1-Distill.        
 - For strict formatting: Look at highly quantized versions of Mistral or Llama 3 8B.
 
-**Step 5: The Knowledge Transfer (Fine-Tuning)**
+**Step 5: Fine-Tune (The Transfer):** This is the critical step. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen small model using the clean data from Step 2. You are effectively teaching the small model to mimic the large one, but only for that specific task. It doesn't need to know French poetry; it just needs to know how to handle that specific banking API.
 
-This is where the magic happens. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen SLM using the curated data from Step 2.    
-            
-- Why this works: You are effectively "distilling" the intelligence of the massive model into a tiny one, but only for that specific task. The SLM doesn't need to know French poetry; it just needs to know how to handle that specific banking API.
-
-**Step 6: The Feedback Loop**
-
-Deploy the SLM as a "sub-agent." The main LLM acts as a router, sending specific tasks to your new SLM. Continue logging to refine the model over time.
+**Step 6: Deploy and Iterate:** Launch the small model as a "sub-agent." Set up your router so that if the small model has low confidence, it automatically falls back to the large model. This keeps the system reliable while you continue to log data and refine the small model over time.
 
 ---
 

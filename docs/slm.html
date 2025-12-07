@@ -489,35 +489,17 @@ ul.task-list li input[type="checkbox"] {
 <section id="how-to-migrate-your-agents-to-slms" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> How to Migrate Your Agents to SLMs</h1>
 <p>Transitioning from a massive GPT-4 based agent to a lean, heterogeneous system doesn’t happen overnight. Based on recent research from NVIDIA and Georgia Tech, here is a practical 6-step algorithm to identify exactly which parts of your agent can be downsized to an SLM.</p>
-<p><strong>Step 1: Secure The “Black Box” (Logging)</strong></p>
-<p>You can’t optimize what you can’t measure. The first step is deploying secure logging to capture every prompt, response, and tool call your current LLM makes.</p>
-<ul>
-<li>Banking Context: If you have a customer service bot, log every time it classifies a transaction or resets a password. Ensure PII redaction is active before data hits your logs.</li>
-</ul>
-<p><strong>Step 2: Curation &amp; Hygiene</strong></p>
-<p>Raw logs are noisy. You need to filter this data into a high-quality training set (aim for 10k–100k examples).</p>
-<ul>
-<li>Action: Remove “I don’t know” responses, hallucinations, or failed tool calls. You only want the SLM to learn from the successes of the LLM.</li>
-</ul>
-<p><strong>Step 3: Cluster the Skills</strong></p>
-<p>Use clustering algorithms to find patterns. You will likely find that 60-70% of your agent’s work falls into narrow, repetitive buckets.</p>
-<ul>
-<li>Example: You might discover your “General Banking Assistant” actually spends 50% of its time just formatting JSON for the transfer_funds API. This is a perfect candidate for an SLM.</li>
-</ul>
-<p><strong>Step 4: Draft the Specialist (Model Selection)</strong></p>
-<p>Pick an SLM that fits the specific cluster.</p>
+<p><strong>Step 1: Start Logging Everything:</strong> You can’t optimize what you can’t measure. The first step is to capture every prompt, response, and tool call your current LLM makes. In a banking context, this means logging every time customer service bot classifies a transaction or resets a password. Make sure PII redaction is active before data hits your logs.</p>
+<p><strong>Step 2: Clean Your Data:</strong> Raw logs are noisy. You need to filter this data down to a high-quality training set — aim for 10,000 to 100,000 examples. Remove any “I don’t know” responses, hallucinations, or failures. You want your new small model to learn only from your current model’s wins, not its mistakes.</p>
+<p><strong>Step 3: Find the Patterns:</strong> Analyze the data to find repetitive tasks. You will likely find that 60-70% of your agent’s work falls into narrow buckets. For example, your “General Banking Assistant” might actually spend half its time just formatting JSON for an API. This is the perfect candidate for a small model.</p>
+<p><strong>Step 4: Pick Your Model:</strong> Pick an SLM that fits the specific task you identified.</p>
 <ul>
 <li>For reasoning tasks: Look at Phi-3 or DeepSeek-R1-Distill.<br>
 </li>
 <li>For strict formatting: Look at highly quantized versions of Mistral or Llama 3 8B.</li>
 </ul>
-<p><strong>Step 5: The Knowledge Transfer (Fine-Tuning)</strong></p>
-<p>This is where the magic happens. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen SLM using the curated data from Step 2.</p>
-<ul>
-<li>Why this works: You are effectively “distilling” the intelligence of the massive model into a tiny one, but only for that specific task. The SLM doesn’t need to know French poetry; it just needs to know how to handle that specific banking API.</li>
-</ul>
-<p><strong>Step 6: The Feedback Loop</strong></p>
-<p>Deploy the SLM as a “sub-agent.” The main LLM acts as a router, sending specific tasks to your new SLM. Continue logging to refine the model over time.</p>
+<p><strong>Step 5: Fine-Tune (The Transfer):</strong> This is the critical step. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen small model using the clean data from Step 2. You are effectively teaching the small model to mimic the large one, but only for that specific task. It doesn’t need to know French poetry; it just needs to know how to handle that specific banking API.</p>
+<p><strong>Step 6: Deploy and Iterate:</strong> Launch the small model as a “sub-agent.” Set up your router so that if the small model has low confidence, it automatically falls back to the large model. This keeps the system reliable while you continue to log data and refine the small model over time.</p>
 <hr>
 </section>
 <section id="conclusion" class="level1" data-number="10">
