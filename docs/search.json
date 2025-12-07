@@ -704,7 +704,7 @@
     "href": "slm.html#customer-service-triage",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
     "section": "7.3 Customer Service Triage",
-    "text": "7.3 Customer Service Triage\nInstead of forcing every customer to wait for a “genius” AI, banks use a tiered system:\n\nThe Front Line (SLM): A fast local model answers routine questions (“What’s my balance?”) instantly (&lt;200ms).\nThe Escalation (LLM): Complex problems are routed to a larger reasoning model.\n\nThis hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×."
+    "text": "7.3 Customer Service Triage\nInstead of forcing every customer to wait for a “genius” AI, banks use a tiered system:\n\nThe Front Line (SLM): A fast local model answers routine questions (“What’s my balance?”) instantly.\nThe Escalation (LLM): Complex problems are routed to a larger reasoning model.\n\nThis hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×."
   },
   {
     "objectID": "slm.html#the-economics-beyond-simple-cost-savings",

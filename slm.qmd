@@ -145,7 +145,7 @@ For privacy-sensitive operations, on-premise deployment eliminates the risk of s
 
 Instead of forcing every customer to wait for a "genius" AI, banks use a tiered system:
 
-- **The Front Line (SLM):** A fast local model answers routine questions ("What's my balance?") instantly (<200ms).
+- **The Front Line (SLM):** A fast local model answers routine questions ("What's my balance?") instantly.
 - **The Escalation (LLM):** Complex problems are routed to a larger reasoning model.
 
 This hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×.
