@@ -707,11 +707,11 @@
     "text": "7.3 Customer Service Triage\nInstead of forcing every customer to wait for a “genius” AI, banks use a tiered system:\n\nThe Front Line (SLM): A fast local model answers routine questions (“What’s my balance?”) instantly.\nThe Escalation (LLM): Complex problems are routed to a larger reasoning model.\n\nThis hybrid approach delivers sub-second responses for most customers while maintaining quality for complex cases—all while reducing inference costs by 10-15×."
   },
   {
-    "objectID": "slm.html#the-economics-beyond-simple-cost-savings",
-    "href": "slm.html#the-economics-beyond-simple-cost-savings",
+    "objectID": "slm.html#the-deeper-economics-of-slms",
+    "href": "slm.html#the-deeper-economics-of-slms",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
-    "section": "8.1 The Economics: Beyond Simple Cost Savings",
-    "text": "8.1 The Economics: Beyond Simple Cost Savings\nThe economic advantages extend beyond per-token pricing:\nInference Efficiency: Serving a 7B SLM requires 10-30× fewer FLOPs than a 70-175B LLM, enabling real-time responses at scale with dramatically lower energy consumption.\nFine-Tuning Agility: Full parameter fine-tuning for SLMs requires only GPU-hours versus GPU-weeks for LLMs. This means behaviors can be added, fixed, or specialized overnight rather than over weeks—critical for rapidly evolving business requirements.\nEdge Deployment: SLMs run on consumer-grade GPUs, smartphones, and edge devices. For banks, this means processing sensitive data locally without cloud dependencies, reducing latency and strengthening data control.\nInfrastructure Simplicity: SLMs require less or no parallelization across GPUs and nodes, lowering both capital expenditure for hardware and operational costs for maintenance."
+    "section": "8.1 The Deeper Economics of SLMs",
+    "text": "8.1 The Deeper Economics of SLMs\nThe economic advantages extend beyond per-token pricing:\nInference Efficiency: Serving a 7B SLM requires 10-30× fewer FLOPs than a 70-175B LLM, enabling real-time responses at scale with dramatically lower energy consumption.\nFine-Tuning Agility: Full parameter fine-tuning for SLMs requires only GPU-hours versus GPU-weeks for LLMs. This means behaviors can be added, fixed, or specialized overnight rather than over weeks—critical for rapidly evolving business requirements.\nEdge Deployment: SLMs run on consumer-grade GPUs, smartphones, and edge devices. For banks, this means processing sensitive data locally without cloud dependencies, reducing latency and strengthening data control.\nInfrastructure Simplicity: SLMs require less or no parallelization across GPUs and nodes, lowering both capital expenditure for hardware and operational costs for maintenance."
   },
   {
     "objectID": "slm.html#understanding-the-barriers",

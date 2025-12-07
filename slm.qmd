@@ -166,7 +166,7 @@ This approach cuts costs by 10–30× while maintaining response quality. But th
 **Privacy:** SLMs can run entirely on-device. A phone can summarize notifications locally without sending data to the cloud, ensuring privacy and offline functionality.
 
 
-## The Economics: Beyond Simple Cost Savings
+## The Deeper Economics of SLMs
 
 The economic advantages extend beyond per-token pricing:
 
