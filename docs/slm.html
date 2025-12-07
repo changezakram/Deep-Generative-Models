@@ -233,7 +233,10 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   </ul></li>
   <li><a href="#slm-implementation-roadmap" id="toc-slm-implementation-roadmap" class="nav-link" data-scroll-target="#slm-implementation-roadmap"><span class="header-section-number">9</span> SLM Implementation Roadmap</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10</span> Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1"><span class="header-section-number">10.1</span> 10 Conclusion</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11</span> References</a></li>
   </ul>
 </nav>
@@ -506,7 +509,7 @@ ul.task-list li input[type="checkbox"] {
 <li>For strict formatting: Look at highly quantized versions of Mistral or Llama 3 8B.</li>
 </ul>
 <p><strong>Step 5: Fine-Tune (The Transfer):</strong> This is the critical step. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen small model using the clean data from Step 2. You are effectively teaching the small model to mimic the large one, but only for that specific task. It doesn’t need to know French poetry; it just needs to know how to handle that specific banking API.</p>
-<p><strong>Step 6: Evaluate, Deploy, and Monitor:</strong> Test your fine-tuned SLM against the baseline LLM on a held-out test set before production deployment. Validate that accuracy matches or exceeds the LLM for your specific task. Once confirmed, launch the SLM as a specialized worker with automatic fallback to the larger model when confidence is low. Monitor task completion rates (&gt;95%), fallback frequency (&lt;20%), and cost savings (10-30×) to continuously refine performance.</p>
+<p><strong>Step 6: Evaluate, Deploy, and Monitor:</strong> Test your fine-tuned SLM against the baseline LLM on a held-out test set before deployment. Validate that accuracy matches or exceeds the LLM for your specific task. Once confirmed, launch the SLM as a specialized worker with automatic fallback to the larger model when confidence is low. Monitor task completion rates (&gt;95%), fallback frequency (&lt;20%), and cost savings (10-30×) to continuously improve performance.</p>
 <blockquote class="blockquote">
 <p><strong>For Banking Deployments:</strong> Document your model selection rationale, training data sources, and validation methodology to satisfy model risk management requirements. SLMs’ smaller size and task-specific nature actually make governance easier than LLM deployments — leverage this in your compliance documentation.</p>
 </blockquote>
@@ -525,7 +528,17 @@ ul.task-list li input[type="checkbox"] {
 <p>For banking and other regulated industries, the advantages extend beyond economics: on-premise deployment, faster adaptation to new requirements, and explainable decision-making that satisfies regulators.</p>
 <p>Small models now handle 60–70% of agent tasks — and they do so at a fraction of the cost. The performance gap has closed—3-billion parameter models now match 400-billion models on specific tasks. The infrastructure is maturing.</p>
 <p>For banks, the choice is strategic: deploy small models now and capture the 10-30× cost advantage, or wait while competitors build faster, more efficient operations. The “God Model” era is over. The precision tool era has begun.</p>
+<section id="conclusion-1" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="conclusion-1"><span class="header-section-number">10.1</span> 10 Conclusion</h2>
+<p>The industry spent years chasing bigger models. That phase is over.</p>
+<p><strong>The shift is fundamental:</strong> From one massive “God Model” attempting everything to heterogeneous architectures deploying the right model for each task. Research from NVIDIA and leading institutions confirms what early adopters already know—small, specialized models handle 60-70% of agentic AI tasks at 10-30× lower cost while often outperforming larger models on specific banking operations.</p>
+<p><strong>For financial institutions, the advantages are compelling:</strong> On-premise deployment addresses data sovereignty concerns. Transparent, auditable models satisfy regulatory requirements. Rapid fine-tuning enables fast adaptation to new products and compliance rules. And the economics are undeniable—a regional bank processing 10,000 monthly loan applications can reduce AI costs from $360,000 to $12,000 annually.</p>
+<p><strong>The technology is production-ready.</strong> Techniques like distillation, pruning, quantization, and LoRA have matured. Models from Microsoft, Meta, Google, and Alibaba demonstrate enterprise-grade performance. The deployment patterns are proven. The barriers—organizational inertia, governance readiness, cost validation—are practical challenges, not technical limitations.</p>
+<p><strong>The strategic window is now.</strong> Banks deploying SLM-first architectures today build sustainable cost structures their competitors will struggle to match. Those waiting for “more proof” will find themselves racing to catch up while operating at 10-30× higher costs.</p>
+<p>The question isn’t whether small language models will dominate enterprise AI—research and early deployments confirm they will. The question is whether your institution will lead this transition or follow it.</p>
+<p>The “God Model” era is over. The precision tool era has begun. Your move.</p>
 <hr>
+</section>
 </section>
 <section id="references" class="level1" data-number="11">
 <h1 data-number="11"><span class="header-section-number">11</span> References</h1>
