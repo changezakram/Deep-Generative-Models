@@ -500,6 +500,12 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p><strong>Step 5: Fine-Tune (The Transfer):</strong> This is the critical step. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen small model using the clean data from Step 2. You are effectively teaching the small model to mimic the large one, but only for that specific task. It doesn’t need to know French poetry; it just needs to know how to handle that specific banking API.</p>
 <p><strong>Step 6: Deploy and Iterate:</strong> Launch the small model as a “sub-agent.” Set up your router so that if the small model has low confidence, it automatically falls back to the large model. This keeps the system reliable while you continue to log data and refine the small model over time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Heterogeneous-Agentic-System.png" class="img-fluid figure-img" width="700"></p>
+<figcaption><strong>Figure:</strong> Three-tier heterogeneous architecture. A lightweight LLM orchestrator routes incoming requests: complex reasoning tasks go to a powerful LLM (GPT-4), while routine operations (data extraction, formatting, classification) route to specialized SLMs. This intelligent routing achieves 10-30× cost savings—expensive models handle only tasks that truly require them.</figcaption>
+</figure>
+</div>
 <hr>
 </section>
 <section id="conclusion" class="level1" data-number="10">
