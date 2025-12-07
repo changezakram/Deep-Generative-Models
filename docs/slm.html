@@ -228,8 +228,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-economics-beyond-simple-cost-savings" id="toc-the-economics-beyond-simple-cost-savings" class="nav-link" data-scroll-target="#the-economics-beyond-simple-cost-savings"><span class="header-section-number">8.1</span> The Economics: Beyond Simple Cost Savings</a></li>
   <li><a href="#understanding-the-barriers" id="toc-understanding-the-barriers" class="nav-link" data-scroll-target="#understanding-the-barriers"><span class="header-section-number">8.2</span> Understanding the Barriers</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">9</span> Conclusion</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10</span> References</a></li>
+  <li><a href="#how-to-migrate-your-agents-to-slms" id="toc-how-to-migrate-your-agents-to-slms" class="nav-link" data-scroll-target="#how-to-migrate-your-agents-to-slms"><span class="header-section-number">9</span> How to Migrate Your Agents to SLMs</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10</span> Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -485,8 +486,31 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="conclusion" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Conclusion</h1>
+<section id="how-to-migrate-your-agents-to-slms" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> How to Migrate Your Agents to SLMs</h1>
+<p>Transitioning from a massive GPT-4 based agent to a lean, heterogeneous system doesn’t happen overnight. Based on recent research from NVIDIA and Georgia Tech, here is a practical 6-step algorithm to identify exactly which parts of your agent can be downsized to an SLM.</p>
+<p><strong>Step 1: Secure The “Black Box” (Logging)</strong></p>
+<p>You can’t optimize what you can’t measure. The first step is deploying secure logging to capture every prompt, response, and tool call your current LLM makes.<br>
+- Banking Context: If you have a customer service bot, log every time it classifies a transaction or resets a password. Ensure PII redaction is active before data hits your logs.</p>
+<p><strong>Step 2: Curation &amp; Hygiene</strong></p>
+<p>Raw logs are noisy. You need to filter this data into a high-quality training set (aim for 10k–100k examples).<br>
+- Action: Remove “I don’t know” responses, hallucinations, or failed tool calls. You only want the SLM to learn from the successes of the LLM.</p>
+<p><strong>Step 3: Cluster the Skills</strong></p>
+<p>Use clustering algorithms to find patterns. You will likely find that 60-70% of your agent’s work falls into narrow, repetitive buckets.<br>
+- Example: You might discover your “General Banking Assistant” actually spends 50% of its time just formatting JSON for the transfer_funds API. This is a perfect candidate for an SLM.</p>
+<p><strong>Step 4: Draft the Specialist (Model Selection)</strong></p>
+<p>Pick an SLM that fits the specific cluster.<br>
+- For reasoning tasks: Look at Phi-3 or DeepSeek-R1-Distill.<br>
+- For strict formatting: Look at highly quantized versions of Mistral or Llama 3 8B.</p>
+<p><strong>Step 5: The Knowledge Transfer (Fine-Tuning)</strong></p>
+<p>This is where the magic happens. Use LoRA (Low-Rank Adaptation) to fine-tune your chosen SLM using the curated data from Step 2.<br>
+- Why this works: You are effectively “distilling” the intelligence of the massive model into a tiny one, but only for that specific task. The SLM doesn’t need to know French poetry; it just needs to know how to handle that specific banking API.</p>
+<p><strong>Step 6: The Feedback Loop</strong></p>
+<p>Deploy the SLM as a “sub-agent.” The main LLM acts as a router, sending specific tasks to your new SLM. Continue logging to refine the model over time.</p>
+<hr>
+</section>
+<section id="conclusion" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Conclusion</h1>
 <p>The industry spent years chasing bigger models. That phase is over.</p>
 <p>The path forward isn’t one massive model doing everything—it’s the right model for each task. Small models handling routine work. Large models tackling genuine complexity. This architecture cuts costs by 10-30× while often improving accuracy on specific tasks.</p>
 <p>For banking and other regulated industries, the advantages extend beyond economics: on-premise deployment, faster adaptation to new requirements, and explainable decision-making that satisfies regulators.</p>
@@ -494,8 +518,8 @@ ul.task-list li input[type="checkbox"] {
 <p>For banks, the choice is strategic: deploy small models now and capture the 10-30× cost advantage, or wait while competitors build faster, more efficient operations. The “God Model” era is over. The precision tool era has begun.</p>
 <hr>
 </section>
-<section id="references" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> References</h1>
+<section id="references" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> References</h1>
 <p>[1] Belcak, P. et al.&nbsp;(2023). Small Language Models are the Future of Agentic AI. https://arxiv.org/pdf/2506.02153</p>
 <p>[2] Lu Z. et al.&nbsp;(2025). Small Language Models: Survey, Measurements, and Insights. https://arxiv.org/pdf/2409.15790</p>
 <p>[3] The Economist. (2025). The bigger-is-better approach to AI is running out of road. https://www.economist.com/science-and-technology/2023/06/21/the-bigger-is-better-approach-to-ai-is-running-out-of-road</p>
