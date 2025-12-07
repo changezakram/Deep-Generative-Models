@@ -217,7 +217,7 @@ Transitioning from a massive GPT-4 based agent to a lean, heterogeneous system d
 
 **Step 6: Deploy and Iterate:** Launch the small model as a "sub-agent." Set up your router so that if the small model has low confidence, it automatically falls back to the large model. This keeps the system reliable while you continue to log data and refine the small model over time.
 
-![**Figure:** Three-tier heterogeneous architecture. A lightweight LLM orchestrator routes incoming requests: complex reasoning tasks go to a powerful LLM (GPT-4), while routine operations (data extraction, formatting, classification) route to specialized SLMs. This intelligent routing achieves 10-30× cost savings—expensive models handle only tasks that truly require them.](images/Heterogeneous-Agentic-System.png){fig-align="center" width="700"}
+![**Figure:** Three-tier heterogeneous architecture. A lightweight LLM orchestrator routes incoming requests: complex reasoning tasks go to a powerful LLM (GPT-4), while routine operations (data extraction, formatting, classification) route to specialized SLMs. This intelligent routing achieves 10-30× cost savings—expensive models handle only tasks that truly require them.](images/HeterogeneousAgenticSystem.png){fig-align="center" width="800"}
 
 ---
 
