@@ -194,7 +194,7 @@ Organizations that deployed LLM-based solutions face **organizational inertia** 
 
 **3. Skills & Vendor Ecosystem:** Unlike mature LLM platforms (OpenAI API, Anthropic), the SLM tooling ecosystem is less developed. Banks face uncertainty about deployment platforms, monitoring tools, and vendor support—increasing perceived implementation risk.
 
-**The Opportunity:** Banks starting fresh can skip the LLM phase entirely, building SLM-first architectures from the ground up—capturing 10-30× cost advantages without migration complexity.
+> **The Opportunity:** Banks starting fresh can skip the LLM phase entirely, building SLM-first architectures from the ground up—capturing 10-30× cost advantages without migration complexity.
 
 ---
 
