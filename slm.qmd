@@ -70,7 +70,7 @@ The answer isn't using one model for everything. It's using the right model for 
 
 This mixed approach cuts costs by 10-30× while improving reliability. Small models fine-tuned for specific tasks "hallucinate" less than generalist models attempting the same work.<sup>1</sup>
 
-## Why Agents Specifically Need SLMs
+## Why Agents Need SLMs
 
 Here's the economic challenge: Unlike traditional applications where a user submits a single query, agents make dozens of calls per request. A single request might trigger 20-50 model calls. When each call goes to a large model, costs compound rapidly.
 

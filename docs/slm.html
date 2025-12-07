@@ -213,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-scalability-problem" id="toc-the-scalability-problem" class="nav-link" data-scroll-target="#the-scalability-problem"><span class="header-section-number">4</span> The Scalability Problem</a>
   <ul class="collapse">
   <li><a href="#the-solution-heterogeneous-architecture" id="toc-the-solution-heterogeneous-architecture" class="nav-link" data-scroll-target="#the-solution-heterogeneous-architecture"><span class="header-section-number">4.1</span> The Solution: Heterogeneous Architecture</a></li>
-  <li><a href="#why-agents-specifically-need-slms" id="toc-why-agents-specifically-need-slms" class="nav-link" data-scroll-target="#why-agents-specifically-need-slms"><span class="header-section-number">4.2</span> Why Agents Specifically Need SLMs</a></li>
+  <li><a href="#why-agents-need-slms" id="toc-why-agents-need-slms" class="nav-link" data-scroll-target="#why-agents-need-slms"><span class="header-section-number">4.2</span> Why Agents Need SLMs</a></li>
   </ul></li>
   <li><a href="#how-do-they-work" id="toc-how-do-they-work" class="nav-link" data-scroll-target="#how-do-they-work"><span class="header-section-number">5</span> How Do They Work?</a></li>
   <li><a href="#slm-examples" id="toc-slm-examples" class="nav-link" data-scroll-target="#slm-examples"><span class="header-section-number">6</span> SLM Examples</a></li>
@@ -318,8 +318,8 @@ ul.task-list li input[type="checkbox"] {
 <p>The answer isn’t using one model for everything. It’s using the right model for each task. In this approach, a large model acts as an orchestrator—understanding vague requests, planning the workflow, handling edge cases. Small models execute the routine steps: running database queries, formatting outputs, validating results.</p>
 <p>This mixed approach cuts costs by 10-30× while improving reliability. Small models fine-tuned for specific tasks “hallucinate” less than generalist models attempting the same work.<sup>1</sup></p>
 </section>
-<section id="why-agents-specifically-need-slms" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="why-agents-specifically-need-slms"><span class="header-section-number">4.2</span> Why Agents Specifically Need SLMs</h2>
+<section id="why-agents-need-slms" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="why-agents-need-slms"><span class="header-section-number">4.2</span> Why Agents Need SLMs</h2>
 <p>Here’s the economic challenge: Unlike traditional applications where a user submits a single query, agents make dozens of calls per request. A single request might trigger 20-50 model calls. When each call goes to a large model, costs compound rapidly.</p>
 <p>Analysis of real agents (MetaGPT, Open Operator, Cradle) reveals that 60-70% of their model calls are repetitive, narrow tasks: parsing JSON, formatting API parameters, validating outputs, simple decision logic. These don’t need a 400-billion parameter model’s “world knowledge.” A 3-billion parameter model trained specifically for the task performs better and costs 30× less.<sup>1</sup></p>
 <hr>
