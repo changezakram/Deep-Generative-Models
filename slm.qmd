@@ -189,7 +189,7 @@ Three practical barriers have slowed adoption in financial services:
 **3. Cost-Benefit Validation:** While SLMs promise 10-30× cost savings, most banks lack internal data to validate these claims for their specific workloads and compliance requirements. Without clear ROI models and banking-specific case studies, risk-averse financial institutions hesitate to migrate from proven (expensive) LLM deployments to newer (cheaper) SLM architectures—even when the business case appears compelling.
 
 
-These are practical challenges, not fundamental limitations. As AI governance frameworks mature and agentic-specific benchmarks gain prominence, these barriers continue to diminish.
+These are practical challenges, not fundamental limitations. As early adopters publish results, governance frameworks mature, and organizational expertise grows, these barriers continue to diminish.
 
 ---
 
