@@ -159,7 +159,7 @@ As discussed in Section 4, agentic AI requires a heterogeneous architecture. Mos
 - **Level 1 (The SLM):** A fast, cheap local model handles 80% of routine user queries in customer service scenarios—password resets, simple questions.      
 - **Level 2 (The LLM):**  If the SLM detects a complex issue or gets confused, it "escalates" the ticket to a more capable cloud model like GPT-4.
 
-This approach cuts costs by 10-30× while maintaining response quality.
+This approach cuts costs by 10–30× while maintaining response quality. But the benefits go beyond economics. SLM-first architectures improve system speed, transparency, and privacy—three requirements that matter just as much in real-world deployments.
 
 **Latency:** It’s not just about cost—it’s about speed. A local SLM can reply in under 200 milliseconds. A cloud LLM often takes 1–3 seconds. In customer service, that lag is the difference between a quick conversation and a frustrating wait.        
 **Transparency:** Large models are black boxes—it's difficult to explain their decisions. SLMs are simpler, making it easier to trace their logic and satisfy regulatory requirements.           
