@@ -117,7 +117,7 @@ Six leading models from the current SLM landscape:
 
 ---
 
-# Banking Applications: Where SLMs Excel
+# Banking Applications
 
 Financial institutions are particularly well-positioned to benefit from SLMs. Banking operations involve high volumes of repetitive, well-defined tasks that are perfect candidates for specialized small models.
 
