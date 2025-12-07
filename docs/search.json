@@ -697,7 +697,7 @@
     "href": "slm.html#real-time-fraud-compliance-monitoring",
     "title": "The Future of AI Isn’t Bigger — It’s Smaller",
     "section": "7.2 Real-Time Fraud & Compliance Monitoring",
-    "text": "7.2 Real-Time Fraud & Compliance Monitoring\nBanks need to screen every transaction for fraud. A massive cloud model is too slow and risky for this. An SLM can:\n\nFlag suspicious transactions in milliseconds\n\nRun entirely on-premise (no data leaves the bank’s secure network).\n\nProcess 100,000+ transactions daily at a fraction of cloud API costs.\n\nAdapt overnight to new regulations via fine-tuning.\n\nFor privacy-sensitive operations, on-premise deployment eliminates the risk of sending customer data to external API endpoints."
+    "text": "7.2 Real-Time Fraud & Compliance Monitoring\nBanks need to screen every transaction for fraud. A massive cloud model is too slow and too expensive for this. An SLM can:\n\nFlag suspicious transactions in milliseconds\n\nRun entirely on-premise (no data leaves the bank’s secure network).\n\nProcess 100,000+ transactions daily at a fraction of cloud API costs.\n\nAdapt overnight to new regulations via fine-tuning.\n\nFor privacy-sensitive operations, on-premise deployment eliminates the risk of sending customer data to external API endpoints."
   },
   {
     "objectID": "slm.html#customer-service-triage",
