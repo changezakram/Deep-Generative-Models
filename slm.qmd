@@ -182,11 +182,11 @@ The economic advantages extend beyond per-token pricing:
 
 Financial institutions face different barriers depending on their AI maturity:
 
-**For Early Adopters (Already Using LLMs):**
+### For Early Adopters (Already Using LLMs)
 
 Organizations that deployed LLM-based solutions face **organizational inertia** — they've built teams, workflows, and expertise around centralized models. Shifting to heterogeneous architectures requires retooling processes and adapting governance frameworks, organizational changes that take time.
 
-**For Institutions Just Starting:**
+### For Institutions Just Starting
 
 **1. Governance & Compliance Uncertainty:** Financial institutions face regulatory requirements for model explainability, validation, and risk management. While SLMs are actually more transparent than massive LLMs, most banks haven't yet built AI governance frameworks. Starting with smaller, more auditable models is actually easier, but the perceived complexity of "AI governance" creates hesitation.
 
