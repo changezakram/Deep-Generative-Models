@@ -185,7 +185,7 @@ Three practical barriers have slowed adoption:
 
 **2. Benchmark Mismatch:** Many SLM evaluations focus on generalist benchmarks where LLMs naturally excel. Task-specific agentic benchmarks tell a different story—one where properly fine-tuned SLMs often outperform much larger models.
 
-**3. Awareness Gap:** SLMs don't receive the marketing intensity of flagship LLMs despite often being better suited for production deployment.
+**3. Perception Gap:** Enterprise decision-makers are more familiar with flagship LLMs than with specialized SLMs, despite SLMs often being better suited for production deployment at scale.
 
 These are practical challenges, not fundamental limitations. As advanced inference systems like NVIDIA Dynamo emerge and agentic-specific benchmarks gain prominence, these barriers continue to diminish.
 
