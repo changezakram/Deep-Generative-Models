@@ -12,7 +12,7 @@ format:
 
 # Introduction
 
-For years, the AI industry chased a single dream: one massive model that could do everything. We went from 7 billion parameters to a trillion, racing toward a "God Model." But in 2025, the wind has shifted. We are entering the era of Small Language Models (SLMs).
+For years, the AI industry chased a single dream — one massive model that could do everything. We went from 7 billion parameters to a trillion, racing toward a "God Model." But in 2025, the wind has shifted. We are entering the era of Small Language Models (SLMs).
 
 Small Language Models (SLMs)—compact, specialized AI systems typically under 10 billion parameters—are reshaping how organizations deploy AI. They're not cheaper versions of GPT-4. They're purpose-built engines designed for specific tasks, offering faster performance, lower costs, and better privacy controls.
 
