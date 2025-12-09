@@ -56,5 +56,8 @@
   },
   "slm.qmd": {
     "slm.html": "e7de8a49"
+  },
+  "gen-ai-use-cases/ai_in_banking.qmd": {
+    "ai_in_banking.html": "1bf39904"
   }
 }

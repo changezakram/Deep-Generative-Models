@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Changez Akram">
+
+<title>AI in Banking: From Architecture to Agentic AI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://changezakram.github.io/"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="../index.html">
+ <span class="dropdown-text">Gen AI Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../diffusion.html">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/transformers.html">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/post-training.html">
+ <span class="dropdown-text">Post Training</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/nlp-eval.html">
+ <span class="dropdown-text">NLP Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-agentic-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Agentic AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-agentic-ai">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-ai.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-analytics.html">
+ <span class="dropdown-text">Agentic Analytics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/slm.html">
+ <span class="dropdown-text">Small Language Models</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-math-review" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Math Review</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-math-review">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/linear-algebra.html">
+ <span class="dropdown-text">Linear Algebra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/calculus.html">
+ <span class="dropdown-text">Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/probability.html">
+ <span class="dropdown-text">Probability</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-use-cases" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Use Cases</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-use-cases">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html">
+ <span class="dropdown-text">Banking</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html">
+ <span class="dropdown-text">Healthcare</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#technology-transitions-in-banking-architecture" id="toc-technology-transitions-in-banking-architecture" class="nav-link" data-scroll-target="#technology-transitions-in-banking-architecture"><span class="header-section-number">2</span> Technology Transitions in Banking Architecture</a></li>
+  <li><a href="#the-three-levels-of-agents-in-banking" id="toc-the-three-levels-of-agents-in-banking" class="nav-link" data-scroll-target="#the-three-levels-of-agents-in-banking"><span class="header-section-number">3</span> The Three Levels of Agents in Banking</a></li>
+  <li><a href="#experience-agents-vs.-domain-agents" id="toc-experience-agents-vs.-domain-agents" class="nav-link" data-scroll-target="#experience-agents-vs.-domain-agents"><span class="header-section-number">4</span> Experience Agents vs.&nbsp;Domain Agents</a></li>
+  <li><a href="#the-reference-architecture-for-an-ai-first-bank" id="toc-the-reference-architecture-for-an-ai-first-bank" class="nav-link" data-scroll-target="#the-reference-architecture-for-an-ai-first-bank"><span class="header-section-number">5</span> The Reference Architecture for an AI-First Bank</a></li>
+  <li><a href="#use-case-1-retail-banking-agent-collaboration" id="toc-use-case-1-retail-banking-agent-collaboration" class="nav-link" data-scroll-target="#use-case-1-retail-banking-agent-collaboration"><span class="header-section-number">6</span> Use Case 1: Retail Banking (Agent Collaboration)</a></li>
+  <li><a href="#use-case-2-corporate-banking-agent-to-agent-automation" id="toc-use-case-2-corporate-banking-agent-to-agent-automation" class="nav-link" data-scroll-target="#use-case-2-corporate-banking-agent-to-agent-automation"><span class="header-section-number">7</span> Use Case 2: Corporate Banking (Agent-to-Agent Automation)</a></li>
+  <li><a href="#use-case-3-risk-management-stress-testing-and-ccar" id="toc-use-case-3-risk-management-stress-testing-and-ccar" class="nav-link" data-scroll-target="#use-case-3-risk-management-stress-testing-and-ccar"><span class="header-section-number">8</span> Use Case 3: Risk Management (Stress Testing and CCAR)</a></li>
+  <li><a href="#use-case-4-financial-crime-ai-investigator" id="toc-use-case-4-financial-crime-ai-investigator" class="nav-link" data-scroll-target="#use-case-4-financial-crime-ai-investigator"><span class="header-section-number">9</span> Use Case 4: Financial Crime (AI Investigator)</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AI in Banking: From Architecture to Agentic AI</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Changez Akram </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>Nearly half a century ago, the banking world was transformed by how we managed data. A decade ago, the cloud reimagined how we scaled. Today, we are witnessing a shift that is just as seismic: the move from <strong>Generative AI</strong> (creating content) to <strong>Agentic AI</strong> (executing work).</p>
+<p>In this new era—often described as <em>Banking 4.0</em>—AI is no longer just a chatbot on the side; it is the <strong>blood in the veins</strong> of the organization. It represents an ecosystem where AI does not merely assist humans, but actively collaborates with them to reshape operations, competition, and innovation.</p>
+<p>The following use cases illustrate how <strong>Experience Agents and Domain Agents</strong>, operating across different levels of autonomy, are beginning to transform core banking functions—from retail engagement and corporate finance to risk management and financial crime.</p>
+<hr>
+</section>
+<section id="technology-transitions-in-banking-architecture" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="technology-transitions-in-banking-architecture"><span class="header-section-number">2</span> Technology Transitions in Banking Architecture</h2>
+<p>To understand where banking AI is headed, it helps to look at the major architectural transitions that shaped modern banking systems.</p>
+<section id="s1980s-monolithic-mainframe-systems" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="s1980s-monolithic-mainframe-systems"><span class="header-section-number">2.1</span> 1960s–1980s (Monolithic Mainframe Systems)</h3>
+<p>Banking technology began with centralized mainframe systems, where core deposits, payments, and general ledger processing all lived inside a single tightly controlled computing “vault.” These systems were built for extreme reliability and massive transaction volumes, and many global systems of record still run on mainframes today. This era optimized stability and scale, but it tightly coupled business logic, data, and processing.</p>
+</section>
+<section id="late-1990smid-2000s-client-server-internet-banking" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="late-1990smid-2000s-client-server-internet-banking"><span class="header-section-number">2.2</span> Late 1990s–Mid 2000s (Client-Server &amp; Internet Banking)</h3>
+<p>As personal computing and the internet matured, banks shifted from purely centralized processing toward client-server architectures and early web platforms. This period introduced online banking, expanded ATM networks, enterprise data warehouses, and large-scale ETL pipelines. Customer access became digital for the first time, and data started to be separated from transactional systems for analytics and reporting.</p>
+</section>
+<section id="early-2000searly-2010s-service-oriented-architecture" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="early-2000searly-2010s-service-oriented-architecture"><span class="header-section-number">2.3</span> Early 2000s–Early 2010s (Service-Oriented Architecture)</h3>
+<p>Service-Oriented Architecture (SOA) emerged as a way to break monolithic systems into reusable business services such as customer information, KYC, payments, and fraud checks. Integration platforms and enterprise service buses allowed banks to connect core systems, digital channels, and risk platforms through standardized interfaces. This era introduced true three-tier architectures—presentation, application, and data—and laid the groundwork for enterprise-scale system interoperability.</p>
+</section>
+<section id="mid-2010searly-2020s-cloud-microservices" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="mid-2010searly-2020s-cloud-microservices"><span class="header-section-number">2.4</span> Mid 2010s–Early 2020s (Cloud &amp; Microservices)</h3>
+<p>With the maturation of hyperscale cloud platforms and evolving regulatory guidance, banks began adopting hybrid and multi-cloud architectures. This era introduced containerization, microservices, API-first design, elastic scaling, and improved system resilience. While few banks became fully cloud-native, this period enabled faster product development, open banking, partner ecosystems, and modern data platforms.</p>
+</section>
+<section id="present-ai-infused-and-agentic-ecosystems" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="present-ai-infused-and-agentic-ecosystems"><span class="header-section-number">2.5</span> 2022–Present (AI-Infused and Agentic Ecosystems)</h3>
+<p>The emergence of large language models and Generative AI marked a shift from data-driven automation to intelligence-driven systems. Banks are now moving toward AI-infused architectures where LLMs, retrieval systems, semantic layers, and orchestration tools work together with enterprise data to support decisioning, automation, and human workflows. Emerging patterns—such as structured context pipelines, tool calling, and governed data access mechanisms—allow private data to be safely exposed to AI systems. This fusion of foundational models with proprietary banking data is beginning to define the next competitive moat.</p>
+<p>This architectural evolution sets the foundation for the next operating model in banking: <strong>AI agents</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="the-three-levels-of-agents-in-banking" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="the-three-levels-of-agents-in-banking"><span class="header-section-number">3</span> The Three Levels of Agents in Banking</h2>
+<section id="l1-insight-agents-assistive-intelligence" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="l1-insight-agents-assistive-intelligence"><span class="header-section-number">3.1</span> L1 – Insight Agents (Assistive Intelligence)</h3>
+<p>L1 agents are foundational systems that extract, synthesize, and present information to support human decision-making. They are context-aware and assist with planning, discovery, and knowledge retrieval, but they do not take actions on their own. Humans remain fully in control of execution. In retail banking, a strong example of an L1 agent is personalized insights for financial advisors. These agents automate note-taking, analyze client profiles, transaction histories, and market trends, and generate tailored recommendations ahead of client meetings. At Morgan Stanley, the <em>AI @ Morgan Stanley Debrief</em> tool saves approximately 30 minutes per meeting, freeing up 10–15 hours per week per advisor for higher-value client interactions. Another L1 example is document summarization. GenAI tools powered by LLMs can extract, synthesize, and summarize large volumes of internal research and compliance content at scale. Morgan Stanley’s <em>AskResearchGPT</em> summarizes insights from over 70,000 proprietary reports, while EY’s DI Platform has reduced review time by 90 percent, cut costs by 80 percent, and improved accuracy by 25 percent. These agents dramatically improve speed and quality of insight while leaving decisions firmly in human hands.</p>
+</section>
+<section id="l2-process-orchestration-agents-semi-autonomous" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="l2-process-orchestration-agents-semi-autonomous"><span class="header-section-number">3.2</span> L2 – Process Orchestration Agents (Semi-Autonomous)</h3>
+<p>L2 agents extend beyond insight to execute multi-step, rule-governed business processes. These agents can decompose tasks, orchestrate workflows across multiple systems, and automate structured operations end-to-end, while still operating under human supervision and regulatory guardrails. A strong banking example is document generation and compliance automation. Writing compliance memos, suspicious activity reports (SARs), and internal summaries has traditionally required significant manual effort and is prone to inconsistency. With L2 agents, generative AI models—combined with intelligent document processing (IDP) systems—automate document classification, data extraction, summarization, and drafting while enforcing compliance standards. In practice, AI-powered IDP platforms have reduced review time by up to 90 percent, improved processing accuracy, and significantly accelerated turnaround for regulatory and audit documentation. These agents do not merely provide information; they actively execute regulated workflows.</p>
+</section>
+<section id="l3-complex-decisioning-agents-fully-autonomous" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="l3-complex-decisioning-agents-fully-autonomous"><span class="header-section-number">3.3</span> L3 – Complex Decisioning Agents (Fully Autonomous)</h3>
+<p>L3 agents represent the highest level of maturity. These are fully autonomous systems that continuously monitor their environment, make decisions, and trigger actions without the need for constant human involvement. They coordinate L1 insight agents and L2 process agents to operate as closed-loop decision systems. A true L3 banking example is autonomous mortgage optimization. Instead of waiting for borrowers or advisors to discover refinancing opportunities manually, an L3 agent continuously monitors market interest rates, borrower credit profiles, loan performance, and property valuation trends. When optimal conditions emerge, the agent automatically triggers eligibility checks through L2 agents, generates personalized refinance offers, initiates pre-approval workflows, and notifies both customers and relationship managers. Processes that traditionally take weeks of manual coordination can be compressed into hours or even minutes, significantly improving customer retention, borrower economics, and lifetime value. Because these agents act independently and continuously, they also introduce real operational and regulatory risk, making governance, auditability, and human override mechanisms absolutely critical.</p>
+<hr>
+</section>
+</section>
+<section id="experience-agents-vs.-domain-agents" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="experience-agents-vs.-domain-agents"><span class="header-section-number">4</span> Experience Agents vs.&nbsp;Domain Agents</h2>
+<p><strong>Experience Agents</strong> are human-facing agents that interact directly with customers, relationship managers, and operations staff. They are context-aware, maintain conversational or session-level memory, and adapt responses based on user intent, historical interactions, and real-time context. These agents enhance user experience through personalization, guidance, and recommendation, while operating under strict governance and feedback controls appropriate for regulated environments.</p>
+<p><strong>Domain Agents</strong> are system-facing agents that interact directly with enterprise data, applications, and workflows. These agents range from semi-autonomous to fully autonomous and execute tasks such as validation, orchestration, optimization, and decisioning. They operate within defined business policies, risk controls, and model constraints, and are responsible for executing core banking processes across credit, fraud, compliance, and operations.</p>
+<blockquote class="blockquote">
+<p><strong>Key Takeaway for Banking Leaders:</strong> Across this evolution, the progression is clear. L1 agents prepare intelligence, L2 agents execute regulated processes, and L3 agents independently make and act on decisions. While most banks today operate primarily at L1 and are scaling L2, tightly governed L3 use cases represent the next frontier of competitive advantage—and the next major governance challenge.</p>
+</blockquote>
+<hr>
+</section>
+<section id="the-reference-architecture-for-an-ai-first-bank" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="the-reference-architecture-for-an-ai-first-bank"><span class="header-section-number">5</span> The Reference Architecture for an AI-First Bank</h2>
+<p>The reference architecture for an intelligent, AI-first bank is organized into distinct but tightly integrated layers. Each layer plays a specific role in enabling Experience Agents, Domain Agents, and autonomous decisioning while maintaining regulatory control and operational resilience.</p>
+<section id="customer-layer" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="customer-layer"><span class="header-section-number">5.1</span> Customer Layer</h3>
+<p>The Customer Layer consists of omnichannel sales and service interfaces across web, mobile, contact centers, and advisor desktops. This is where <strong>Experience Agents</strong> operate. These agents interact directly with customers and bankers, providing personalization, guidance, recommendations, and conversational support. This layer is optimized for responsiveness, user experience, and secure identity-aware interactions.</p>
+</section>
+<section id="action-layer" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="action-layer"><span class="header-section-number">5.2</span> Action Layer</h3>
+<p>The Action Layer is where business execution occurs and is primarily powered by <strong>Domain Agents</strong>. Core banking processes—such as trading, cash management, loan origination, servicing, fraud operations, and payments—are decomposed into orchestrated agent-driven workflows. At this layer, business processes are no longer static workflows but dynamic, policy-constrained sequences of agent actions operating across multiple systems.</p>
+</section>
+<section id="intelligence-layer-ai-fabric" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="intelligence-layer-ai-fabric"><span class="header-section-number">5.3</span> Intelligence Layer (AI Fabric)</h3>
+<p>The Intelligence Layer serves as the orchestration and decisioning fabric for the entire architecture. This is the “control center” for enterprise AI and includes model orchestration, inference runtime, prompt management, hallucination detection, model risk controls, and performance monitoring. It is also where L1, L2, and L3 agents are coordinated, ensuring that insights, workflows, and autonomous decisions operate within defined risk and governance boundaries.</p>
+</section>
+<section id="data-layer" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="data-layer"><span class="header-section-number">5.4</span> Data Layer</h3>
+<p>The Data Layer provides the informational backbone for all agents. It includes traditional enterprise data platforms such as data lakes and warehouses, alongside <strong>vector stores for semantic retrieval</strong> and <strong>feature stores for model-driven decisioning</strong>. This layer ensures that agents operate on trusted, governed, and explainable data while enabling both real-time and batch intelligence.</p>
+</section>
+<section id="foundational-layer" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="foundational-layer"><span class="header-section-number">5.5</span> Foundational Layer</h3>
+<p>The Foundational Layer consists of the bank’s core systems of record, including deposits, lending, payments, general ledger, and customer master data. These systems remain the ultimate source of truth and continue to anchor financial integrity, regulatory reporting, and transaction processing.</p>
+</section>
+<section id="control-plane-and-cloud-native-fabric" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="control-plane-and-cloud-native-fabric"><span class="header-section-number">5.6</span> Control Plane and Cloud Native Fabric</h3>
+<p>Cutting across all layers is the <strong>Control Plane</strong>, which provides enterprise-wide security, governance, compliance, auditability, and access control. Alongside it is the <strong>Cloud Native Fabric</strong>, which enables workloads to be deployed on-premise, in the public cloud, or in hybrid environments. Together, these cross-cutting layers ensure that innovation in AI and agents does not come at the expense of regulatory discipline, data protection, or operational resilience.</p>
+<hr>
+</section>
+</section>
+<section id="use-case-1-retail-banking-agent-collaboration" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="use-case-1-retail-banking-agent-collaboration"><span class="header-section-number">6</span> Use Case 1: Retail Banking (Agent Collaboration)</h2>
+<p><strong>Scenario:</strong> A customer, Grace, interacts with her bank, while a relationship manager, Davis, manages the relationship. This workflow involves multiple <strong>Experience Agents</strong> and one <strong>Domain Agent</strong> working in harmony.</p>
+<section id="the-customer-experience" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="the-customer-experience"><span class="header-section-number">6.1</span> The Customer Experience</h3>
+<p>Grace uses a <strong>Spend Analyzer Agent</strong> that tracks spending patterns without being restrictive. When she plans for a major expense, a <strong>Product Recommendation Agent</strong> identifies that she is likely to face a future cash shortfall and suggests relevant lending products. A <strong>Personalized Repayment Plan Agent</strong> then creates a repayment schedule based on her specific income and expense patterns.</p>
+</section>
+<section id="the-banker-experience" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="the-banker-experience"><span class="header-section-number">6.2</span> The Banker Experience</h3>
+<p>Davis works through an AI-powered dashboard. An <strong>Application Tracker Agent</strong> summarizes Grace’s loan application and categorizes it by risk tier and approval probability. A <strong>Credit Decisioning Agent</strong> assists with due diligence and issues an automated approval <strong>within predefined risk and policy thresholds</strong>, routing exceptions to human credit officers for manual review.</p>
+<p>This use case demonstrates how AI integrates seamlessly into the customer’s financial life while empowering bankers with summarized, actionable, and policy-compliant intelligence.</p>
+<hr>
+</section>
+</section>
+<section id="use-case-2-corporate-banking-agent-to-agent-automation" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="use-case-2-corporate-banking-agent-to-agent-automation"><span class="header-section-number">7</span> Use Case 2: Corporate Banking (Agent-to-Agent Automation)</h2>
+<p><strong>Scenario:</strong> Supremo Corporation plans to expand into Europe, requiring complex coordination between the corporate client and the bank across multiple geographies.</p>
+<section id="forecasting" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="forecasting"><span class="header-section-number">7.1</span> Forecasting</h3>
+<p>The CFO uses a <strong>Cash Flow Forecasting Agent</strong> that consolidates data from <strong>Balance Inquiry Agents</strong> and <strong>Document Extraction Agents</strong> that read and interpret invoice data. Together, these agents project a future working capital shortfall.</p>
+</section>
+<section id="agent-to-agent-communication" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="agent-to-agent-communication"><span class="header-section-number">7.2</span> Agent-to-Agent Communication</h3>
+<p>The client’s agent communicates directly with the bank’s domain agents to request a €50 million credit facility.</p>
+</section>
+<section id="execution" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="execution"><span class="header-section-number">7.3</span> Execution</h3>
+<p>The bank’s <strong>Risk Agent</strong> generates a detailed credit write-up by analyzing financial statements, market conditions, and unstructured reports. Once approved, the <strong>Supply Chain Finance (SCF) Smart Program Agent</strong> reads supplier contracts and automatically onboards new European suppliers into the financing program.</p>
+<p>All approvals and onboarding activities operate <strong>within predefined regulatory, legal, and credit policy constraints</strong>, with automatic escalation to regional credit officers when cross-border risk thresholds are exceeded.</p>
+<p>What traditionally takes months of email exchanges, document reviews, and manual coordination is executed rapidly through interoperable, governed domain agents.</p>
+<hr>
+</section>
+</section>
+<section id="use-case-3-risk-management-stress-testing-and-ccar" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="use-case-3-risk-management-stress-testing-and-ccar"><span class="header-section-number">8</span> Use Case 3: Risk Management (Stress Testing and CCAR)</h2>
+<p><strong>Scenario:</strong> Agentic AI is applied to core “Run the Bank” risk processes, specifically regulatory stress testing and scenario analysis.</p>
+<section id="the-problem" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="the-problem"><span class="header-section-number">8.1</span> The Problem</h3>
+<p>Preparing for regulatory stress tests traditionally takes months of data gathering, model execution, and scenario construction to answer questions such as, “What happens if interest rates rise by 2 percent?”</p>
+</section>
+<section id="the-solution" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">8.2</span> The Solution</h3>
+<p>An <strong>AI Assistant</strong> retrieves Federal Reserve guidance and maps regulatory stress scenarios into calibrated internal baseline and adverse frameworks. A <strong>Stress Testing Domain Agent</strong> then applies these scenarios directly to the bank’s portfolio using enterprise calculation engines.</p>
+</section>
+<section id="result" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="result"><span class="header-section-number">8.3</span> Result</h3>
+<p>The Chief Risk Officer can review capital adequacy, liquidity impact, and profitability projections in a single day rather than after multiple months of manual preparation.</p>
+<hr>
+</section>
+</section>
+<section id="use-case-4-financial-crime-ai-investigator" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="use-case-4-financial-crime-ai-investigator"><span class="header-section-number">9</span> Use Case 4: Financial Crime (AI Investigator)</h2>
+<p><strong>Scenario:</strong> Managing anti-money laundering alerts where high false-positive rates traditionally require large investigation teams.</p>
+<section id="the-process" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="the-process"><span class="header-section-number">9.1</span> The Process</h3>
+<p>The <strong>AI Investigator Agent</strong> reviews transaction alerts in real time. It assigns a quantitative risk score (for example, 98.85) and generates a transparent narrative explaining the suspicious behavior, such as rapid movement of funds or transaction structuring.</p>
+</section>
+<section id="human-in-the-loop" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="human-in-the-loop"><span class="header-section-number">9.2</span> Human-in-the-Loop</h3>
+<p>Investigators no longer spend hours manually gathering evidence. Instead, they review the AI-generated narrative along with a visual “waterfall” depiction of fund flows. They validate the insight and mark the case as credible or non-credible, feeding this feedback back into continuous model improvement.</p>
+</section>
+<section id="outcome" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="outcome"><span class="header-section-number">9.3</span> Outcome</h3>
+<p>A task that previously took days of manual evidence gathering is condensed into minutes, producing regulator-ready, auditable, and evidence-backed cases.</p>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">10</span> Conclusion</h2>
+<p>The shift to Agentic AI is the defining characteristic of <em>Banking 4.0</em>. It enables banks to move beyond simply recording transactions toward actively orchestrating financial outcomes in real time. Yet trust remains the true currency of banking. As agents take on greater responsibility, the <strong>Intelligence Layer</strong>—which governs orchestration, hallucination controls, model risk management, and auditability—becomes the most critical piece of infrastructure in the modern bank. The institutions that win will be those that successfully combine the creative power of <strong>large language models (LLMs)</strong> in the front office with the <strong>speed, privacy, and precision of small language models (SLMs)</strong> in the back office—delivering innovation without compromising control.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
