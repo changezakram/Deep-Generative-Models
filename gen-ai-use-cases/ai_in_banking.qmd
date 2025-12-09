@@ -1,7 +1,7 @@
 ---
 author: Changez Akram
 format: html
-title: "AI in Banking: From Architecture to Agentic AI"
+title: "AI-First Banking Architecture & Use Cases"
 toc: true
 ---
 
