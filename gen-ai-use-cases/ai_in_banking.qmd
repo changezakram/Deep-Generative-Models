@@ -72,7 +72,7 @@ The key distinction from L1: these agents don't just provide recommendations—t
 
 L3 agents continuously monitor their environment, make decisions, and trigger actions without constant human involvement. They coordinate L1 and L2 agents to operate as closed-loop decision systems.
 
-Autonomous mortgage optimization demonstrates this level. Rather than waiting for borrowers or advisors to identify refinancing opportunities, an L3 agent monitors market rates, borrower credit profiles, loan performance, and property valuations continuously. 
+Rather than waiting for borrowers or advisors to identify refinancing opportunities, an L3 agent monitors market rates, borrower credit profiles, loan performance, and property valuations continuously. 
 
 When conditions align, the agent triggers eligibility checks through L2 agents, generates personalized offers, initiates pre-approval workflows, and notifies customers and relationship managers. Work that traditionally requires weeks of coordination compresses into hours.
 
