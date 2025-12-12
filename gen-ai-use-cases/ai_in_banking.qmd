@@ -131,11 +131,9 @@ The architecture comes to life through specific banking workflows. These four us
 
 ### Corporate Banking (Agent-to-Agent Automation)
 
-**Scenario:** Supremo Corporation expands into Europe, requiring coordination between the corporate client and bank across multiple geographies.
+**Scenario:** A multinational corporation expands into Europe, requiring coordination between the corporate client and bank across multiple geographies.
 
 **Forecasting:** The CFO uses a Cash Flow Forecasting Agent that consolidates data from Balance Inquiry Agents and Document Extraction Agents reading invoice data. Together they project a working capital shortfall. The client's agent then communicates directly with the bank's domain agents to request a €50 million credit facility.
-
-**Agent-to-agent communication:** The client's agent communicates directly with the bank's domain agents to request a €50 million credit facility.
 
 **Execution:** The bank's Risk Agent generates a credit write-up by analyzing financial statements, market conditions, and reports. Once approved, the Supply Chain Finance Smart Program Agent reads supplier contracts and automatically onboards European suppliers into the financing program.
 
