@@ -127,7 +127,7 @@ The architecture comes to life through specific banking workflows. These four us
 
 **Banker experience:** The relationship manager works through an AI-powered dashboard. An Application Tracker Agent summarizes the loan application by risk tier and approval probability. A Credit Decisioning Agent handles due diligence and issues automated approval within defined risk thresholds, routing exceptions to human credit officers.
 
-AI integrates into the customer's financial life while providing bankers with actionable, policy-compliant intelligence.
+**Outcome:** AI integrates into the customer's financial life while providing bankers with actionable, policy-compliant intelligence.
 
 ### Corporate Banking (Agent-to-Agent Automation)
 
@@ -141,7 +141,7 @@ AI integrates into the customer's financial life while providing bankers with ac
 
 All approvals and onboarding operate within regulatory, legal, and credit policy constraints, with automatic escalation to regional credit officers when cross-border risk thresholds are exceeded.
 
-Work that traditionally requires months of email exchanges and document reviews executes rapidly through interoperable domain agents.
+**Outcome:** Work that traditionally requires months of email exchanges and document reviews executes rapidly through interoperable domain agents.
 
 ### Risk Management (Stress Testing and CCAR)
 
@@ -151,7 +151,7 @@ Work that traditionally requires months of email exchanges and document reviews 
 
 **The solution:** An AI Assistant retrieves Federal Reserve guidance and maps regulatory stress scenarios into calibrated baseline and adverse frameworks. A Stress Testing Domain Agent applies these scenarios to the bank's portfolio using enterprise calculation engines.
 
-**Result:** The Chief Risk Officer reviews capital adequacy, liquidity impact, and profitability projections in one day rather than multiple months.
+**Outcome:** The Chief Risk Officer reviews capital adequacy, liquidity impact, and profitability projections in one day rather than multiple months.
 
 ### Financial Crime (AI Investigator)
 
