@@ -115,56 +115,55 @@ This layered approach allows banks to experiment with AI in customer-facing appl
 
 ---
 
-## Use Case 1: Retail Banking (Agent Collaboration)
+## Use Cases: Agents in Practice
 
-**Scenario:** A customer, Grace, interacts with her bank, while a relationship manager, Davis, manages the relationship. This workflow involves multiple **Experience Agents** and one **Domain Agent** working in harmony.
+The architecture comes to life through specific banking workflows. These four use cases demonstrate how Experience and Domain agents collaborate across retail, corporate, risk, and compliance functions.
 
-**The Customer Experience:** Grace uses a **Spend Analyzer Agent** that tracks spending patterns without being restrictive. When she plans for a major expense, a **Product Recommendation Agent** identifies that she is likely to face a future cash shortfall and suggests relevant lending products. A **Personalized Repayment Plan Agent** then creates a repayment schedule based on her specific income and expense patterns.
+### Retail Banking (Agent Collaboration)
 
-**The Banker Experience:** Davis works through an AI-powered dashboard. An **Application Tracker Agent** summarizes Grace’s loan application and categorizes it by risk tier and approval probability. A **Credit Decisioning Agent** assists with due diligence and issues an automated approval **within predefined risk and policy thresholds**, routing exceptions to human credit officers for manual review.
+**Scenario:** Grace interacts with her bank while relationship manager Davis manages the account. Multiple Experience Agents and one Domain Agent work together.
 
-This use case demonstrates how AI integrates seamlessly into the customer’s financial life while empowering bankers with summarized, actionable, and policy-compliant intelligence.
+**Customer experience:** Grace uses a Spend Analyzer Agent that tracks her spending patterns. When she plans a major expense, a Product Recommendation Agent identifies a likely cash shortfall and suggests lending products. A Personalized Repayment Plan Agent creates a schedule based on her income and expenses.
+
+**Banker experience:** Davis works through an AI-powered dashboard. An Application Tracker Agent summarizes Grace's loan application by risk tier and approval probability. A Credit Decisioning Agent handles due diligence and issues automated approval within defined risk thresholds, routing exceptions to human credit officers.
+
+AI integrates into the customer's financial life while providing bankers with actionable, policy-compliant intelligence.
+
+### Corporate Banking (Agent-to-Agent Automation)
+
+**Scenario:** Supremo Corporation expands into Europe, requiring coordination between the corporate client and bank across multiple geographies.
+
+**Forecasting:** The CFO uses a Cash Flow Forecasting Agent that consolidates data from Balance Inquiry Agents and Document Extraction Agents reading invoice data. Together they project a working capital shortfall.
+
+**Agent-to-agent communication:** The client's agent communicates directly with the bank's domain agents to request a €50 million credit facility.
+
+**Execution:** The bank's Risk Agent generates a credit write-up by analyzing financial statements, market conditions, and reports. Once approved, the Supply Chain Finance Smart Program Agent reads supplier contracts and automatically onboards European suppliers into the financing program.
+
+All approvals and onboarding operate within regulatory, legal, and credit policy constraints, with automatic escalation to regional credit officers when cross-border risk thresholds are exceeded.
+
+Work that traditionally requires months of email exchanges and document reviews executes rapidly through interoperable domain agents.
+
+### Risk Management (Stress Testing and CCAR)
+
+**Scenario:** Regulatory stress testing and scenario analysis for CCAR compliance.
+
+**The problem:** Preparing for regulatory stress tests traditionally requires months of data gathering, model execution, and scenario construction to answer questions like "What happens if interest rates rise by 2 percent?"
+
+**The solution:** An AI Assistant retrieves Federal Reserve guidance and maps regulatory stress scenarios into calibrated baseline and adverse frameworks. A Stress Testing Domain Agent applies these scenarios to the bank's portfolio using enterprise calculation engines.
+
+**Result:** The Chief Risk Officer reviews capital adequacy, liquidity impact, and profitability projections in one day rather than multiple months.
+
+### Financial Crime (AI Investigator)
+
+**Scenario:** Anti-money laundering alerts with high false-positive rates that traditionally require large investigation teams.
+
+**The process:** The AI Investigator Agent reviews transaction alerts in real time, assigns a quantitative risk score (for example, 98.85), and generates a transparent narrative explaining suspicious behavior such as rapid fund movement or transaction structuring.
+
+**Human oversight:** Investigators review the AI-generated narrative and visual fund flow diagrams rather than spending hours gathering evidence manually. They validate insights and mark cases as credible or non-credible, feeding this feedback into continuous model improvement.
+
+**Outcome:** Work that previously required days of manual evidence gathering condenses into minutes, producing regulator-ready, auditable cases.
 
 ---
-
-## Use Case 2: Corporate Banking (Agent-to-Agent Automation)
-
-**Scenario:** Supremo Corporation plans to expand into Europe, requiring complex coordination between the corporate client and the bank across multiple geographies.
-
-**Forecasting:** The CFO uses a **Cash Flow Forecasting Agent** that consolidates data from **Balance Inquiry Agents** and **Document Extraction Agents** that read and interpret invoice data. Together, these agents project a future working capital shortfall.
-
-**Agent-to-Agent Communication:** The client’s agent communicates directly with the bank’s domain agents to request a €50 million credit facility.
-
-**Execution:** The bank’s **Risk Agent** generates a detailed credit write-up by analyzing financial statements, market conditions, and unstructured reports. Once approved, the **Supply Chain Finance (SCF) Smart Program Agent** reads supplier contracts and automatically onboards new European suppliers into the financing program.
-
-All approvals and onboarding activities operate **within predefined regulatory, legal, and credit policy constraints**, with automatic escalation to regional credit officers when cross-border risk thresholds are exceeded.
-
-What traditionally takes months of email exchanges, document reviews, and manual coordination is executed rapidly through interoperable, governed domain agents.
-
----
-
-## Use Case 3: Risk Management (Stress Testing and CCAR)
-
-**Scenario:** Agentic AI is applied to core “Run the Bank” risk processes, specifically regulatory stress testing and scenario analysis.
-
-**The Problem:** Preparing for regulatory stress tests traditionally takes months of data gathering, model execution, and scenario construction to answer questions such as, “What happens if interest rates rise by 2 percent?”
-
-**The Solution:** An **AI Assistant** retrieves Federal Reserve guidance and maps regulatory stress scenarios into calibrated internal baseline and adverse frameworks. A **Stress Testing Domain Agent** then applies these scenarios directly to the bank’s portfolio using enterprise calculation engines.
-
-**Result:** The Chief Risk Officer can review capital adequacy, liquidity impact, and profitability projections in a single day rather than after multiple months of manual preparation.
-
----
-
-## Use Case 4: Financial Crime (AI Investigator)
-
-**Scenario:** Managing anti-money laundering alerts where high false-positive rates traditionally require large investigation teams.
-
-**The Process:** The **AI Investigator Agent** reviews transaction alerts in real time. It assigns a quantitative risk score (for example, 98.85) and generates a transparent narrative explaining the suspicious behavior, such as rapid movement of funds or transaction structuring.
-
-**Human-in-the-Loop:** Investigators no longer spend hours manually gathering evidence. Instead, they review the AI-generated narrative along with a visual “waterfall” depiction of fund flows. They validate the insight and mark the case as credible or non-credible, feeding this feedback back into continuous model improvement.
-
-**Outcome:** A task that previously took days of manual evidence gathering is condensed into minutes, producing regulator-ready, auditable, and evidence-backed cases.
-
 
 ## Conclusion
 
