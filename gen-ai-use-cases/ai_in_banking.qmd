@@ -18,8 +18,6 @@ To understand where banking AI is headed, we need to see how banking architectur
 
 ## Technology Transitions in Banking Architecture
 
-To understand where banking AI is headed, it helps to look at the major architectural transitions that shaped modern banking systems.
-
 **1960s–2000s: From Mainframes to Services**
 
 Banking technology evolved from centralized mainframe systems—where deposits, payments, and accounting lived in a single computing environment—to distributed architectures that separated customer channels from core processing. The internet brought online banking and digital access. Service-oriented architecture (SOA) broke monolithic systems into reusable components like KYC, payments, and fraud checks. By the early 2000s, banks had built the foundational separation between presentation, application logic, and data that modern systems still rely on.
