@@ -296,30 +296,31 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="the-reference-architecture-for-an-ai-first-bank" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="the-reference-architecture-for-an-ai-first-bank"><span class="header-section-number">5</span> The Reference Architecture for an AI-First Bank</h2>
-<p>The reference architecture for an intelligent, AI-first bank is organized into distinct but tightly integrated layers. Each layer plays a specific role in enabling Experience Agents, Domain Agents, and autonomous decisioning while maintaining regulatory control and operational resilience.</p>
+<p>Now that we’ve defined agent types, where do they actually operate? An AI-first bank architecture is organized into six layers, each serving a distinct purpose. Experience Agents live in the customer-facing layer, Domain Agents execute work in the action layer, and the intelligence layer coordinates both.</p>
 <section id="customer-layer" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="customer-layer"><span class="header-section-number">5.1</span> Customer Layer</h3>
-<p>The Customer Layer consists of omnichannel sales and service interfaces across web, mobile, contact centers, and advisor desktops. This is where <strong>Experience Agents</strong> operate. These agents interact directly with customers and bankers, providing personalization, guidance, recommendations, and conversational support. This layer is optimized for responsiveness, user experience, and secure identity-aware interactions.</p>
+<p>Web, mobile, contact centers, and advisor desktops make up the Customer Layer. Experience Agents operate here—the chatbots, copilots, and assistants that customers and bankers interact with directly. This layer handles identity, personalization, and real-time responsiveness.</p>
 </section>
 <section id="action-layer" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="action-layer"><span class="header-section-number">5.2</span> Action Layer</h3>
-<p>The Action Layer is where business execution occurs and is primarily powered by <strong>Domain Agents</strong>. Core banking processes—such as trading, cash management, loan origination, servicing, fraud operations, and payments—are decomposed into orchestrated agent-driven workflows. At this layer, business processes are no longer static workflows but dynamic, policy-constrained sequences of agent actions operating across multiple systems.</p>
+<p>The Action Layer executes core banking work: loan origination, payments, fraud checks, cash management, and servicing. Domain Agents orchestrate these processes, connecting multiple systems and enforcing business rules. What used to be rigid, sequential workflows become flexible, policy-governed sequences that adapt based on data and context.</p>
 </section>
-<section id="intelligence-layer-ai-fabric" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="intelligence-layer-ai-fabric"><span class="header-section-number">5.3</span> Intelligence Layer (AI Fabric)</h3>
-<p>The Intelligence Layer serves as the orchestration and decisioning fabric for the entire architecture. This is the “control center” for enterprise AI and includes model orchestration, inference runtime, prompt management, hallucination detection, model risk controls, and performance monitoring. It is also where L1, L2, and L3 agents are coordinated, ensuring that insights, workflows, and autonomous decisions operate within defined risk and governance boundaries.</p>
+<section id="intelligence-layer" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="intelligence-layer"><span class="header-section-number">5.3</span> Intelligence Layer</h3>
+<p>The Intelligence Layer coordinates all AI activity across the bank. It manages model deployment, monitors performance, controls access to data, and enforces risk boundaries. This is where L1, L2, and L3 agents are orchestrated—ensuring an insight agent pulling research doesn’t access the same systems as a decisioning agent approving loans. The layer also handles prompt management, output validation, and model risk controls that regulators expect.</p>
 </section>
 <section id="data-layer" class="level3" data-number="5.4">
 <h3 data-number="5.4" class="anchored" data-anchor-id="data-layer"><span class="header-section-number">5.4</span> Data Layer</h3>
-<p>The Data Layer provides the informational backbone for all agents. It includes traditional enterprise data platforms such as data lakes and warehouses, alongside <strong>vector stores for semantic retrieval</strong> and <strong>feature stores for model-driven decisioning</strong>. This layer ensures that agents operate on trusted, governed, and explainable data while enabling both real-time and batch intelligence.</p>
+<p>Agents need access to enterprise data—customer profiles, transaction histories, risk scores, and market data. The Data Layer provides this through traditional data warehouses and lakes, plus newer retrieval systems optimized for AI search. Rather than training separate models on private data, banks feed structured context to foundation models through governed pipelines. This approach maintains control while enabling agents to work with proprietary information.</p>
 </section>
 <section id="foundational-layer" class="level3" data-number="5.5">
 <h3 data-number="5.5" class="anchored" data-anchor-id="foundational-layer"><span class="header-section-number">5.5</span> Foundational Layer</h3>
-<p>The Foundational Layer consists of the bank’s core systems of record, including deposits, lending, payments, general ledger, and customer master data. These systems remain the ultimate source of truth and continue to anchor financial integrity, regulatory reporting, and transaction processing.</p>
+<p>Core banking systems—deposits, lending, payments, general ledger, and customer master data—anchor the Foundational Layer. These remain the authoritative source for balances, transactions, and financial positions. Agents read from and write to these systems but never replace them.</p>
 </section>
-<section id="control-plane-and-cloud-native-fabric" class="level3" data-number="5.6">
-<h3 data-number="5.6" class="anchored" data-anchor-id="control-plane-and-cloud-native-fabric"><span class="header-section-number">5.6</span> Control Plane and Cloud Native Fabric</h3>
-<p>Cutting across all layers is the <strong>Control Plane</strong>, which provides enterprise-wide security, governance, compliance, auditability, and access control. Alongside it is the <strong>Cloud Native Fabric</strong>, which enables workloads to be deployed on-premise, in the public cloud, or in hybrid environments. Together, these cross-cutting layers ensure that innovation in AI and agents does not come at the expense of regulatory discipline, data protection, or operational resilience.</p>
+<section id="control-plane" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="control-plane"><span class="header-section-number">5.6</span> Control Plane</h3>
+<p>Two elements cut across all layers. The Control Plane provides enterprise-wide security, governance, compliance, and auditability. The Cloud Native Fabric enables flexible deployment across on-premise and cloud environments. Together they ensure agents can innovate without compromising regulatory discipline or data protection.</p>
+<p>This layered approach allows banks to experiment with AI in customer-facing applications while maintaining strict controls over core banking operations.</p>
 <hr>
 </section>
 </section>
