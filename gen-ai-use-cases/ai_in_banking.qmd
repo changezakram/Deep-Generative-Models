@@ -65,7 +65,7 @@ Consider compliance documentation. Writing suspicious activity reports (SARs), r
 
 L2 agents automate classification, extraction, summarization, and drafting while enforcing compliance standards. These systems have cut turnaround time by 80% and improved processing accuracy, allowing compliance teams to handle higher volumes with better quality.
 
-The key distinction from L1: these agents don't just provide recommendations—they generate final work products and execute regulated processes within defined guardrails.
+> The key distinction from L1: these agents don't just provide recommendations—they generate final work products and execute regulated processes within defined guardrails.
 
 
 **L3 – Complex Decisioning Agents (Fully Autonomous)**
