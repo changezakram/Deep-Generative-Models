@@ -32,6 +32,15 @@ Cloud platforms introduced elastic scaling and microservices, allowing banks to 
 
 The emergence of large language models changed what banks can automate. Earlier AI handled narrow tasks like fraud scoring or chatbot responses. Today's systems combine language models with enterprise data to support complex decision-making and multi-step workflows.
 
+Three architectural patterns define this shift:
+
+- **Structured context**: Banks feed private data to AI models through governed pipelines rather than training custom models, allowing agents to work with proprietary information while maintaining control
+
+- **Tool integration**: AI systems can now trigger actions across multiple platforms—reading documents, querying databases, initiating workflows—rather than just generating text responses
+
+- **Semantic retrieval**: Vector databases allow agents to find relevant information based on meaning rather than keywords, making knowledge discovery faster and more accurate
+
+This combination—language understanding plus structured data access plus action capabilities—is what enables AI agents to execute work rather than simply provide information.
 
 ---
 
