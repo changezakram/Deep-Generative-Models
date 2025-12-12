@@ -50,9 +50,9 @@ AI agents differ by autonomy level. L1 agents provide intelligence, L2 agents ex
 
 L1 agents extract and synthesize information to support human decision-making. They assist with planning, discovery, and knowledge retrieval but do not take actions independently. Humans control all execution.
 
-Morgan Stanley's AI @ Morgan Stanley Debrief tool demonstrates this category. The agent automates meeting notes, analyzes client profiles and transaction histories, and generates tailored recommendations before advisor meetings. The tool saves approximately 30 minutes per meeting, freeing 10–15 hours per week for higher-value client work.
+Morgan Stanley's AI @ Morgan Stanley Debrief tool automates meeting notes, analyzes client profiles and transaction histories, and generates tailored recommendations before advisor meetings. The tool saves approximately 30 minutes per meeting, freeing 10–15 hours per week for higher-value client work.
 
-Document summarization represents another L1 application. Morgan Stanley's AskResearchGPT synthesizes insights from over 70,000 proprietary research reports. Similar tools have reduced document review time by up to 90% while improving accuracy by 25%, allowing analysts to focus on interpretation rather than information gathering.
+Morgan Stanley's AskResearchGPT synthesizes insights from over 70,000 proprietary research reports. Similar tools have reduced document review time by up to 90% while improving accuracy by 25%.
 
 
 **L2 – Process Orchestration Agents (Semi-Autonomous)**
