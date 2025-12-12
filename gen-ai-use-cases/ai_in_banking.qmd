@@ -206,6 +206,6 @@ Banks are moving from AI that creates content to AI that executes work. This shi
 
 The architecture outlined here—layered, governed, and designed for agent collaboration—provides a framework for this transition. Experience agents improve customer and employee interactions. Domain agents automate complex backend processes. The intelligence layer ensures both operate within risk boundaries.
 
-Early movers are already seeing results: Morgan Stanley's advisor tools save 10-15 hours per week. Compliance automation cuts turnaround time by 80%. Stress testing that took months now completes in days.
+Early movers are already seeing results: relationship managers save 10-15 hours per week, compliance automation cuts turnaround time by 80%, and stress testing that took months now completes in days. Banks implementing agentic AI across frontline operations report 3-15% revenue increases per relationship manager and 30% pipeline growth—returns too material to ignore.
 
 The competitive advantage goes to banks that deploy agents systematically rather than experimentally—treating AI as core infrastructure, not a feature. The question isn't whether to build agent-driven architectures, but how quickly to scale them while maintaining the governance and controls that banking requires.
