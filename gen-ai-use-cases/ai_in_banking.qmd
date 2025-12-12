@@ -61,7 +61,7 @@ L2 agents execute multi-step, rule-governed business processes. They decompose t
 
 Compliance documentation illustrates this level. Writing suspicious activity reports (SARs), regulatory memos, and audit summaries traditionally requires manual effort and creates consistency problems. L2 agents—combining generative AI with intelligent document processing—automate classification, extraction, summarization, and drafting while enforcing compliance standards. These systems have cut turnaround time by 80% and improved processing accuracy, allowing compliance teams to handle higher volumes with better quality.
 
-The distinction from L1 is execution. These agents don't just provide information—they generate final work products within defined guardrails.
+Unlike L1 agents that provide recommendations, L2 agents generate final work products and execute regulated workflows within defined guardrails.
 
 **L3 – Complex Decisioning Agents (Fully Autonomous)**
 
