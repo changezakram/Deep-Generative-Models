@@ -119,7 +119,7 @@ Agents need access to enterprise data—customer profiles, transaction histories
 
 Core banking systems—deposits, lending, payments, general ledger, and customer master data—anchor the Foundational Layer. These remain the authoritative source for balances, transactions, and financial positions. Agents read from and write to these systems but never replace them.
 
-### Control Plane
+### Control Plane and Cloud Native Fabric
 
 Two elements cut across all layers. The Control Plane provides enterprise-wide security, governance, compliance, and auditability. The Cloud Native Fabric enables flexible deployment across on-premise and cloud environments. Together they ensure agents can innovate without compromising regulatory discipline or data protection.
 
