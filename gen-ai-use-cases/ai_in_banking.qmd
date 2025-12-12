@@ -91,9 +91,7 @@ Beyond the L1/L2/L3 autonomy levels, agents also differ by who—or what—they 
 
 **Domain Agents** interact directly with systems: enterprise data, applications, and workflows. They execute backend processes such as validation, risk assessment, and transaction orchestration. These agents operate autonomously within defined business rules and execute core banking processes across credit, fraud, compliance, and operations. They work behind the scenes, often invisible to end users.
 
-The distinction matters because these agent types face different design challenges. Experience agents must handle ambiguity, interpret intent, and communicate clearly. Domain agents must execute with precision, maintain audit trails, and operate within strict policy boundaries.
-
-In practice, most banking workflows combine both types—Experience agents at the front end capturing user needs, Domain agents in the back end executing the work.
+Experience agents must handle ambiguity and communicate clearly. Domain agents must execute with precision and maintain audit trails. In practice, most banking workflows combine both types—Experience agents at the front end capturing user needs, Domain agents in the back end executing the work.
 
 --- 
 
