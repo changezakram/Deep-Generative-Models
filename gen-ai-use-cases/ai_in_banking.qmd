@@ -10,9 +10,7 @@ The mainframe revolutionized transaction processing. The cloud enabled elastic s
 
 The difference between **Generative AI** and **Agentic AI** is the difference between a tool that drafts an email and one that reads your inbox, prioritizes responses, and handles routine inquiries without supervision. Generative AI creates content. Agentic AI executes work.
 
-This enables an "always-on" operating model. While relationship managers focus on building trust and navigating complex deals, agents continuously handle qualification, follow-up, and optimization in the background. The banker's role shifts from transactional to strategic.
-
-Banks that are building agent-driven architectures will respond faster, serve customers better, and allocate capital more efficiently than competitors treating AI as an add-on.
+This enables an "always-on" operating model. While relationship managers focus on building trust and navigating complex deals, agents continuously handle qualification, follow-up, and optimization in the background. The banker's role shifts from transactional to strategic. Banks that are building agent-driven architectures will respond faster, serve customers better, and allocate capital more efficiently than competitors treating AI as an add-on.
 
 Why does this matter now? This shift addresses real challenges in banking operations. Relationship managers spend just 25-30% of their time in actual client dialogue, with the rest consumed by prospecting, administrative work, and meeting preparation. The result: frustrated bankers, missed opportunities, and churn rates ranging from 15-35% at many institutions. Banks deploying agent-driven systems report 30% pipeline growth and twice the conversion rates of traditional approaches.<sup>1</sup>
 
