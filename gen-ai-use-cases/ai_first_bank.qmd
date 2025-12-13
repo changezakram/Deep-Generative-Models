@@ -1,6 +1,6 @@
 ---
 format: html
-title: "AI-First Banking Architecture & Use Cases"
+title: "Building the AI-First Bank: A Strategic Guide"
 toc: true
 ---
 

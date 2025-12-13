@@ -59,5 +59,8 @@
   },
   "gen-ai-use-cases/ai_in_banking.qmd": {
     "ai_in_banking.html": "1bf39904"
+  },
+  "gen-ai-use-cases/ai_first_bank.qmd": {
+    "ai_first_bank.html": "a2de837c"
   }
 }
