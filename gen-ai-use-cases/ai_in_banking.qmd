@@ -12,7 +12,7 @@ The difference between **Generative AI** and **Agentic AI** is the difference be
 
 Banks that are building agent-driven architectures will respond faster, serve customers better, and allocate capital more efficiently than competitors treating AI as an add-on.
 
-Why does this matter now? This shift addresses real challenges in banking operations. Relationship managers spend just 25-30% of their time in actual client dialogue, with the rest consumed by prospecting, administrative work, and meeting preparation. The result: frustrated bankers, missed opportunities, and churn rates ranging from 15-35% at many institutions. Banks deploying agent-driven systems report 30% pipeline growth and twice the conversion rates of traditional approaches.
+Why does this matter now? This shift addresses real challenges in banking operations. Relationship managers spend just 25-30% of their time in actual client dialogue, with the rest consumed by prospecting, administrative work, and meeting preparation. The result: frustrated bankers, missed opportunities, and churn rates ranging from 15-35% at many institutions. Banks deploying agent-driven systems report 30% pipeline growth and twice the conversion rates of traditional approaches.<sup>1</sup>
 
 To understand where banking AI is headed, we need to see how banking architecture evolved to support increasingly intelligent automation—and what makes the current moment different from past technology transitions.
 
@@ -131,7 +131,10 @@ The architecture comes to life through specific banking workflows. These four us
 
 **Outcome:** AI integrates into the customer's financial life while providing bankers with actionable, policy-compliant intelligence.
 
-Beyond product recommendations, agents transform daily banker workflows. AI coaches analyze call transcripts and provide real-time guidance, lifting customer satisfaction scores by 7% points and helping new bankers ramp up 20% faster. Meeting preparation that once consumed half a day now takes minutes, with agents synthesizing account plans from CRM data, emails, and reports automatically. One banker noted, "I used to spend half my week chasing leads that went nowhere. Now I only talk to clients who already want to meet."sup>1</sup>
+Beyond product recommendations, agents transform daily banker workflows. AI coaches analyze call transcripts and provide real-time guidance, lifting customer satisfaction scores by 7% points and helping new bankers ramp up 20% faster. Meeting preparation that once consumed half a day now takes minutes, with agents synthesizing account plans from CRM data, emails, and reports automatically. One banker noted, "I used to spend half my week chasing leads that went nowhere. Now I only talk to clients who already want to meet."<sup>1</sup>
+
+These workflow improvements demonstrate how agents compound value—not just through individual tasks, but by fundamentally rebalancing how relationship managers allocate time between administrative work and client relationships.
+
 
 ### Corporate Banking (Agent-to-Agent Automation)
 
@@ -145,7 +148,7 @@ All approvals and onboarding operate within regulatory, legal, and credit policy
 
 **Outcome:** Work that traditionally requires months of email exchanges and document reviews executes rapidly through interoperable domain agents.
 
-Deal structuring benefits from AI-powered pricing agents that analyze discount patterns across relationship managers, customer attributes, and willingness to pay. Rather than relying on banker instinct—"Sometimes I discount because I'm unsure what's fair"—these agents recommend optimal pricing in real time with transparent rationales that risk teams trust. Early results show 10% margin gains and faster quote cycles, with one bank cutting deal turnaround from five days to two.sup>1</sup>
+Deal structuring benefits from AI-powered pricing agents that analyze discount patterns across relationship managers, customer attributes, and willingness to pay. Rather than relying on banker instinct—"Sometimes I discount because I'm unsure what's fair"—these agents recommend optimal pricing in real time with transparent rationales that risk teams trust. Early results show 10% margin gains and faster quote cycles, with one bank cutting deal turnaround from five days to two.<sup>1</sup>
 
 ### Risk Management (Stress Testing and CCAR)
 
@@ -171,7 +174,7 @@ Deal structuring benefits from AI-powered pricing agents that analyze discount p
 
 ## Business Impact: The Economics of Agent-Driven Banking
 
-The shift to agent-driven architectures delivers measurable returns. McKinsey research shows banks implementing agentic AI across frontline operations achieve:
+The shift to agent-driven architectures delivers measurable returns. McKinsey research shows banks implementing agentic AI across frontline operations achieve:<sup>1</sup>
 
 - **3-15% revenue increase per relationship manager** through better lead conversion and coverage
 - **20-40% reduction in cost to serve** by automating administrative workflows
