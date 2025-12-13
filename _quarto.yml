@@ -40,6 +40,8 @@ website:
             href: https://changezakram.github.io/agentic-ai/agentic-analytics.html
           - text: Small Language Models
             href: https://changezakram.github.io/Deep-Generative-Models/slm.html
+          - text: Building Safe & Secure Agentic AI
+            href: https://changezakram.github.io/agentic-ai/agentic_ai_safety.html
 
       - text: Math Review
         menu:
@@ -53,9 +55,11 @@ website:
 
       - text: Use Cases
         menu:
-          - text: Banking
+          - text: Building the AI-First Bank
+            href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html
+          - text: Gen AI in Banking
             href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html
-          - text: Healthcare
+          - text: Gen AI in Healthcare
             href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html
 
 format:
