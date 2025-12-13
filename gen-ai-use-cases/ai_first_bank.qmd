@@ -36,9 +36,7 @@ Cloud platforms introduced elastic scaling and microservices, allowing banks to 
 
 The emergence of large language models changed what banks can automate. Earlier AI handled narrow tasks like fraud scoring or chatbot responses. Today's systems combine language models with enterprise data to support complex decision-making and multi-step workflows.
 
-Most regional and community banks haven't completed the technology transitions that large banks finished years ago. While money-center banks run on cloud infrastructure and modern APIs, many regional banks still operate core systems on mainframes built decades ago.
-
-Banks don't need to complete every modernization before deploying AI agents. Insight-focused agents can layer onto legacy systems through APIs. However, agents that execute processes or make autonomous decisions require modern data platforms and real-time connectivity. The question isn't whether to modernize—it's whether to do so incrementally while deploying agents, or risk falling behind competitors advancing on both fronts.
+This architectural evolution sets the foundation for the next operating model in banking — AI agents.
 
 ---
 
@@ -192,6 +190,8 @@ Deal structuring uses pricing agents that analyze discount patterns across relat
 ---
 
 ## Three Pathways to Agentic Banking
+
+Most regional banks still run core systems on decades-old mainframes. The good news: banks don't need full modernization before deploying agents. Insight-focused agents layer onto legacy systems through APIs. However, agents that execute processes or make autonomous decisions require modern data platforms and real-time connectivity.
 
 Moving from vision to execution requires a practical roadmap. Banks can introduce agentic AI through three distinct approaches, each suited to different organizational contexts, risk appetites, and strategic goals.
 
