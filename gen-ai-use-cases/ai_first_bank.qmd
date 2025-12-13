@@ -24,7 +24,7 @@ To see where banking is headed, it helps to look at how banking architecture evo
 
 **1960s–2000s: From Mainframes to Services**
 
-Banking evolved from centralized mainframe systems—where all functions lived in one environment—to distributed architectures. The internet brought digital banking. Banks separated monolithic systems into reusable components, creating the layered architecture that modern systems build on today.
+Banking evolved from centralized mainframe systems to distributed architectures. The internet brought digital banking. Banks separated monolithic systems into reusable components, creating the layered architecture that modern systems build on today.
 
 **2010s: Cloud and API Ecosystems**
 
