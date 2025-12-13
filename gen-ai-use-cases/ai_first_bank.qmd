@@ -44,6 +44,10 @@ Three architectural patterns define this shift:
 
 This combination—language understanding plus structured data access plus action capabilities—is what enables AI agents to execute work rather than simply provide information.
 
+**The reality for regional and community banks:** Most operate across multiple technology eras. While large banks completed cloud migration years ago, 63% of banks still run core systems on mainframes. Early-2000s SAS models remain in production at many institutions.
+
+Banks don't need to complete every modernization before deploying agents. L1 agents can layer onto legacy systems through APIs. However, L2 and L3 agents require modern data platforms and API infrastructure. The question isn't whether to modernize—it's whether to do so incrementally while deploying agents, or risk falling behind competitors advancing on both fronts.
+
 ---
 
 ## The Three Levels of Agents in Banking
