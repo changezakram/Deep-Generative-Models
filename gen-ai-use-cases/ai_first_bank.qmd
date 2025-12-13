@@ -78,6 +78,29 @@ Because L3 agents act independently, they introduce operational and regulatory r
 
 > **Implementation Reality:** Most banks operate primarily at L1 today and are scaling L2 capabilities. L1 agents prepare intelligence, L2 agents execute regulated processes, and L3 agents make and act on decisions independently. Governed L3 use cases represent the next competitive frontier and the next major governance challenge.
 
+---
+
+### Governing Autonomous Agents: Beyond Traditional Controls
+
+As agents gain autonomy, they introduce risks that traditional IT governance frameworks weren't designed to manage. Understanding and mitigating these risks is not optional—it's the foundation of responsible agentic AI deployment.
+
+**Agent-Specific Risks**
+
+Unlike traditional software, autonomous agents can exhibit unexpected behaviors. Corrupted training data can cause agents to make systematically wrong decisions. Poorly calibrated algorithms can trigger regulatory violations or discriminatory outcomes. In extreme cases, agents can enter feedback loops where one agent's output continuously triggers another agent's action in an uncontrolled cycle.
+
+The deeper issue: as agents interact within large, interconnected systems, behaviors can emerge from the complexity itself. Agents might exploit programming loopholes, misapply learned patterns in new contexts, or demonstrate different objectives in production than they showed during testing.
+
+**Building Control Mechanisms**
+
+Effective agent governance requires three foundational controls:
+
+**Agent Registry:** Every autonomous agent must be catalogued with clear ownership, defined scope, approved data sources, and explicit risk exposure limits—whether financial, reputational, or operational. This registry becomes the authoritative source for monitoring agent proliferation and ensuring accountability.
+
+**Digital Wallets and Action Limits:** Advanced controls, such as digital wallets with spending limits or transaction caps, can constrain agent actions to predefined boundaries. If an agent attempts to execute a trade, approve a loan, or transfer funds beyond its authorized limit, the action is automatically blocked and escalated to human review.
+
+**Continuous Monitoring and Override:** Real-time dashboards track agent performance, decision accuracy, and anomaly detection. Human operators must retain the ability to pause, override, or terminate any agent at any point—regardless of how autonomous the system appears.
+
+The institutions that successfully scale agentic AI will be those that build governance into agent design from day one, not as an afterthought.  
 
 ---
 
