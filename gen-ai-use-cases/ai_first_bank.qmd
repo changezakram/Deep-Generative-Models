@@ -213,11 +213,11 @@ Banking operates under governance requirements that differ from other industries
 
 ### Three Regulatory Pillars
 
-**Model Risk Management (SR 11-7)** - The Federal Reserve's 2011 guidance applies to AI and machine learning. Banks must demonstrate models are fit for purpose through independent validation, maintain documentation others can understand, and ensure board-level oversight. The challenge: AI models that learn and evolve resist validation approaches designed for static statistical models.
+**SR 11-7 (Model Risk Management)** - The Federal Reserve's 2011 guidance applies to AI and machine learning. Banks must demonstrate models are fit for purpose through independent validation, maintain documentation others can understand, and ensure board-level oversight. The challenge: AI models that learn and evolve resist validation approaches designed for static statistical models.
 
 **ECOA and Regulation B (Fair Lending)** - The CFPB established a clear requirement: if you cannot explain why you denied credit, you cannot use the model. "There is no special exemption for artificial intelligence." When agents approve or deny loan applications, banks must provide specific reasons. "Behavioral spending patterns" fails the standard. "Frequent overdrafts in the past 90 days combined with three late utility payments" meets it.
 
-**Third-Party Risk Management (SR 13-19)** - Most banks purchase vendor AI solutions. The rule: outsourcing execution does not transfer accountability. Banks remain responsible for vendor model outcomes despite limited access to proprietary algorithms.
+**SR 13-19 (Third-Party Risk Management)** - Most banks purchase vendor AI solutions. The rule: outsourcing execution does not transfer accountability. Banks remain responsible for vendor model outcomes despite limited access to proprietary algorithms.
 
 ### The Explainability Requirement
 
