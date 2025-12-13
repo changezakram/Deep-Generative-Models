@@ -213,9 +213,7 @@ Banking operates under governance requirements that differ from other industries
 
 ### Three Regulatory Pillars
 
-Three regulatory frameworks anchor AI governance in banking:
-
-**SR 11-7 (Model Risk Management)** - The Federal Reserve's 2011 guidance applies to AI and machine learning. Banks must demonstrate models are fit for purpose through independent validation, maintain documentation others can understand, and ensure board-level oversight. The challenge: AI models that learn and evolve resist validation approaches designed for static statistical models.
+**Model Risk Management (SR 11-7)** - The Federal Reserve's 2011 guidance applies to AI and machine learning. Banks must demonstrate models are fit for purpose through independent validation, maintain documentation others can understand, and ensure board-level oversight. The challenge: AI models that learn and evolve resist validation approaches designed for static statistical models.
 
 **ECOA and Regulation B (Fair Lending)** - The CFPB established a clear requirement: if you cannot explain why you denied credit, you cannot use the model. "There is no special exemption for artificial intelligence." When agents approve or deny loan applications, banks must provide specific reasons. "Behavioral spending patterns" fails the standard. "Frequent overdrafts in the past 90 days combined with three late utility payments" meets it.
 
@@ -225,7 +223,7 @@ Three regulatory frameworks anchor AI governance in banking:
 
 Traditional credit models use techniques where you can trace how each input affects output. Modern AI—particularly deep learning—identifies patterns that predict outcomes more accurately but makes explaining the logic difficult.
 
-Banks address this through explainability methods that approximate which inputs influenced specific decisions. These enable adverse action notices that satisfy regulators. However, approximations introduce risk: if the explanation method is imperfect, banks may provide inaccurate reasons to customers.
+Banks address this through explainability methods that approximate which inputs influenced specific decisions. These enable adverse action notices satisfying regulators, though imperfect approximations risk providing inaccurate reasons to customers.
 
 The practical outcome: banks often limit complex AI to L1 applications (insights) where explainability matters less, and use simpler models for L2 and L3 applications (execution and decisions) where regulatory scrutiny is higher.
 
@@ -239,7 +237,7 @@ Fair lending testing extends monitoring further. Banks must test whether models 
 
 Effective governance requires organization, not just policy. Banks deploying AI at scale establish:
 
-**Model Risk Committees** - Board-level oversight of AI deployment, performance monitoring, and risk exposure. These committees review new models before deployment, monitor production model performance, and ensure compliance with regulatory guidance. Senior management reports regularly on both individual model risk and aggregate exposure across all AI systems.
+**Model Risk Committees** - Board-level oversight of AI deployment, performance monitoring, and risk exposure. These committees review new models before deployment, monitor production model performance, and ensure compliance with regulatory guidance. Senior management reports on individual model risk and aggregate exposure across all AI systems.
 
 **Independent Validation Teams** - Critical analysis by parties separate from development. For AI, this includes bias testing across customer segments, validating explainability methods produce accurate reasons for decisions, and confirming models perform as designed under different conditions. Validation rigor scales with model risk—high-stakes credit decisions require more comprehensive validation than marketing recommendations.
 
@@ -247,11 +245,11 @@ Effective governance requires organization, not just policy. Banks deploying AI 
 
 ### Governance as Enabler
 
-Banks scaling AI build governance capabilities alongside AI capabilities. This means investing in explainability tools and talent who can interpret complex models, establishing monitoring infrastructure that tracks model performance and drift, training validation teams on AI-specific techniques including bias testing and fairness evaluation, and creating escalation procedures when models behave unexpectedly.
+Banks scaling AI must build governance alongside technical capabilities. This means investing in explainability tools and talent who can interpret complex models, establishing monitoring infrastructure that tracks model performance and drift, training validation teams on AI-specific techniques including bias testing and fairness evaluation, and creating escalation procedures when models behave unexpectedly.
 
 The payoff: strong governance enables confident deployment of L3 autonomous agents. When controls, monitoring, and oversight ensure agents operate within defined boundaries, banks can move faster because risk is managed, not avoided.
 
-The banks that treat governance as a capability enabling safe innovation will scale AI faster than competitors who view it as a compliance obstacle. In a regulated industry, governance done well becomes a competitive advantage.
+In a regulated industry, treating governance as a capability rather than an obstacle becomes a competitive advantage that enables faster, safer AI scaling.
 
 ---
 
