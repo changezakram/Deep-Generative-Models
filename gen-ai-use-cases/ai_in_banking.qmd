@@ -205,6 +205,31 @@ Moving from pilots to enterprise-scale requires deliberate choices about how age
 
 **5. Reskill the workforce.** As agents handle more administrative work, new roles emerge—business engineers who design agent workflows and agent orchestrators who manage human-AI collaboration. Meanwhile, relationship managers evolve to focus on delivering insights and coordinating expertise across the bank.
 
+---
+
+## The AI-First Bank: A Vision for 2030
+
+Banks that successfully scale agents won't just improve efficiency—they'll redefine banking itself. Six characteristics will distinguish these institutions:
+
+**1. Always-On Financial Partner**  
+Instead of periodic check-ins with a branch manager, customers have an AI agent continuously monitoring their financial life. When mortgage rates drop below the customer's current rate, the agent initiates refinancing. When spending patterns suggest cash flow issues, the agent offers solutions before the customer asks. This shifts banking from reactive to proactive.
+
+**2. Flexible Products That Adapt**  
+Rather than separate checking, savings, credit card, and loan products, customers access adaptive financial capacity that adjusts to their needs. Purchase groceries and the system functions as a debit card. Buy a car and it converts to installment financing with optimized terms. Build savings and it shifts funds to higher-yield options—all within a single account managed by agents.
+
+**3. Banking Without Banks**  
+Financial services embed into platforms where customers already spend time—shopping apps, ride-sharing services, social media. Customers access credit, payments, and savings without opening separate banking apps or visiting websites. The bank becomes infrastructure, not a destination.
+
+**4. Automated Operations at Scale**  
+Agents handle service inquiries, compliance checks, and exception processing from start to finish within defined guardrails. A customer service team of 500 shrinks to 50 specialists handling complex cases while agents manage routine work at near-zero cost. Staff focus shifts from processing to strategy and relationship building.
+
+**5. Dynamic Balance Sheet Management**  
+Traditional banks allocate capital quarterly through manual processes. AI-first banks shift liquidity and risk exposure continuously across customers and portfolios, maximizing returns while maintaining regulatory compliance. A customer's credit limit adjusts in real time based on behavior, market conditions, and the bank's capital position.
+
+**6. Small Teams, Massive Scale**  
+The AI-first bank may employ 1,000 people yet serve 10 million customers—a ratio impossible in traditional banking. Humans focus on governance, strategy, complex relationships, and oversight while agents handle execution, monitoring, and routine decisions.
+
+These aren't incremental improvements—they represent a different operating model for banking. Banks pursuing this transformation systematically will create competitive advantages that traditional institutions cannot match.
 
 ---
 
