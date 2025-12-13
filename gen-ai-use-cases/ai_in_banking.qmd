@@ -6,13 +6,13 @@ toc: true
 
 ## Introduction
 
-The mainframe revolutionized transaction processing. The cloud enabled elastic scaling. Now AI is fundamentally changing what banks can automate.
+The mainframe revolutionized transaction processing. The cloud enabled elastic scaling. Now AI is changing what banks can automate.
 
 The difference between **Generative AI** and **Agentic AI** is the difference between a tool that drafts an email and one that reads your inbox, prioritizes responses, and handles routine inquiries without supervision. Generative AI creates content. Agentic AI executes work.
 
 Banks that are building agent-driven architectures will respond faster, serve customers better, and allocate capital more efficiently than competitors treating AI as an add-on.
 
-This shift addresses persistent challenges in banking operations. Relationship managers spend just 25-30% of their time in actual client dialogue, with the rest consumed by prospecting, administrative work, and meeting preparation. The result: frustrated bankers, missed opportunities, and churn rates ranging from 15-35% at many institutions. Early movers deploying agent-driven systems report 30% pipeline growth and twice the conversion rates of traditional approaches.
+Why does this matter now? This shift addresses real challenges in banking operations. Relationship managers spend just 25-30% of their time in actual client dialogue, with the rest consumed by prospecting, administrative work, and meeting preparation. The result: frustrated bankers, missed opportunities, and churn rates ranging from 15-35% at many institutions. Banks deploying agent-driven systems report 30% pipeline growth and twice the conversion rates of traditional approaches.
 
 To understand where banking AI is headed, we need to see how banking architecture evolved to support increasingly intelligent automation—and what makes the current moment different from past technology transitions.
 
