@@ -16,6 +16,8 @@ This enables an "always-on" operating model. While relationship managers focus o
 
 Banks that are already moving in this direction report 30% pipeline growth and twice the conversion rates of traditional approaches. These results don't come from chatbots or meeting summaries. They come from redesigning workflows so that routine work runs automatically and people focus on where they add the most value.
 
+<p>The end state is what industry leaders call "invisible intelligence"—AI that operates seamlessly beneath the surface of banking operations rather than as a separate layer bolted on top. In this model, agents become embedded infrastructure, not standalone tools. The technology recedes into the background while the outcomes—faster decisions, better service, lower costs—move to the foreground.</p>
+
 To see where banking is headed, it helps to look at how banking architecture evolved to support increasingly sophisticated automation—and why this moment is different from earlier technology transitions.
 
 --- 
