@@ -176,14 +176,16 @@ Deal structuring uses pricing agents that analyze discount patterns across relat
 
 The shift to agent-driven architectures delivers measurable returns. McKinsey research shows banks implementing agentic AI across frontline operations achieve:<sup>1</sup>
 
-- **3-15% revenue increase per relationship manager** through better lead conversion and coverage
-- **20-40% reduction in cost to serve** by automating administrative workflows
-- **30% growth in pipeline** from AI-driven prospecting and lead qualification
-- **10-12 hours per week** returned to each banker for client-facing activities
+- **3-15%** revenue increase per relationship manager through better lead conversion and coverage
+- **20-40%** reduction in cost to serve by automating administrative workflows
+- **30%** growth in pipeline from AI-driven prospecting and lead qualification
+- **10-12 hours** per week returned to each banker for client-facing activities
 
-These gains stem from rebalancing how bankers spend time. At many commercial banks, relationship managers spend just 25-30% of their time in client dialogue. Agents handling prospecting, meeting preparation, and documentation push that figure toward 70%, fundamentally changing the banker's role from administrator to advisor.
+These gains stem from rebalancing how bankers spend time. At many commercial banks, relationship managers spend just 25-30% of their time in client dialogue. Agents handling prospecting, meeting preparation, and documentation push that figure toward 70%, changing the banker's role from administrator to advisor.
 
-The impact compounds across use cases: prospecting agents deliver twice the conversion rate of traditional lead sources, lead nurturing agents increase qualified leads 2-3x, and AI-powered deal scoring improves margins by 10% while cutting approval cycles from five days to two.
+The impact compounds across use cases: prospecting agents deliver twice the conversion rate of traditional lead sources, lead nurturing agents increase qualified leads 2-3x, and deal scoring agents improves margins by 10% while cutting approval cycles from five days to two.
+
+However, early evidence shows banks often chase low-value use cases first. Meeting summarization and basic chatbots are easier to implement but deliver modest returns. The highest-value applications—AI-powered prospecting, lead nurturing, and deal optimization—require deeper integration with core systems and workflow redesign, but they deliver the returns that matter: revenue growth, not just efficiency.
 
 ---
 
@@ -193,13 +195,14 @@ Moving from pilots to enterprise-scale requires deliberate choices about how age
 
 **1. Define the value creation thesis.** Leading banks are intentional about which use cases to lead versus follow, and about expected impact through frontline productivity gains, customer experience improvements, and competitive differentiation.
 
-**2. Reimagine workflows end-to-end.** Forward-thinking banks don't just layer AI onto existing processes—they redesign entire workflows for human-agent collaboration. Because agents work across departments, this often means rethinking organizational boundaries.
+**2. Reimagine workflows end-to-end.** Leading banks don't just layer AI onto existing processes—they redesign entire workflows for human-agent collaboration. Because agents work across departments, this often means rethinking organizational boundaries.
 
-**3. Build reusable technology foundations.** Three capabilities separate leaders from followers: an agentic mesh (composable orchestration layer), a strong ontology capturing workflows and decisions, and robust trust and security frameworks including end-to-end encryption.
+**3. Build reusable technology foundations.** Three capabilities distinguish successful implementations: an agentic mesh (composable orchestration layer), a strong ontology capturing workflows and decisions, and robust trust and security frameworks including end-to-end encryption.
 
 **4. Establish governance guardrails.** Define agent autonomy levels, set limits on independent decisions (such as credit increases), implement monitoring protocols, and create audit mechanisms before scaling.
 
-**5. Reskill the workforce.** As bankers gain capacity, new roles emerge—business engineers, agent orchestrators—while core roles like relationship managers evolve to focus on delivering differentiated insights and orchestrating expertise across the bank.
+**5. Reskill the workforce.** As agents handle more administrative work, new roles emerge—business engineers who design agent workflows and agent orchestrators who manage human-AI collaboration. Meanwhile, relationship managers evolve to focus on delivering insights and coordinating expertise across the bank.
+
 
 ---
 
