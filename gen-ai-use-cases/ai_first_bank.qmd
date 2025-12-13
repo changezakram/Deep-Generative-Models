@@ -245,18 +245,6 @@ Effective governance requires organization, not just policy. Banks deploying AI 
 
 **Vendor Management Processes** - Due diligence on third-party AI tools. Banks require vendors to provide methodology documentation, conduct independent outcome analysis comparing vendor predictions to actual results, and implement controls such as human review of edge cases or secondary validation models.
 
-### What Regulators Examine
-
-When regulators examine AI systems, they focus on four areas:
-
-**Model inventory** - Do banks know all models in use? Examiners frequently find spreadsheets and tools that meet the model definition but aren't formally tracked.
-
-**Validation rigor** - Is independent validation appropriate for model risk? High-risk applications require detailed documentation of testing, limitations, and monitoring plans.
-
-**Governance effectiveness** - Does the board receive meaningful AI risk information? Do policies shape actual deployment decisions?
-
-**Compliance execution** - For credit models, do adverse action notices meet legal standards with specific, accurate reasons?
-
 ### Governance as Enabler
 
 Banks scaling AI build governance capabilities alongside AI capabilities. This means investing in explainability tools and talent who can interpret complex models, establishing monitoring infrastructure that tracks model performance and drift, training validation teams on AI-specific techniques including bias testing and fairness evaluation, and creating escalation procedures when models behave unexpectedly.
