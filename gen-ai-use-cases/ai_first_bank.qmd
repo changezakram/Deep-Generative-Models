@@ -187,6 +187,19 @@ Deal structuring uses pricing agents that analyze discount patterns across relat
 
 **Outcome:** Work that previously required days of manual evidence gathering condenses into minutes, producing regulator-ready, auditable cases.
 
+
+### Commercial Banking Operations (Email Triage)
+
+**Scenario:** A bank's Commercial Banking division fields 60,000-70,000 client emails monthly. Requests range from urgent credit line draws to complex legal inquiries—each requiring specialized expertise.
+
+**The Challenge:** A team manually reviewed every email: reading the request, determining urgency, identifying the right internal expert, routing it correctly, and logging it for tracking. For complex requests—a CFO asking about cross-border regulatory requirements or a treasurer requesting covenant waivers—this process took hours. Clients waited. Opportunities were missed.
+
+Scotiabank deployed an agentic AI system to handle this complexity autonomously. The agent reads incoming emails, interprets client intent across dozens of request types, routes messages to the appropriate specialists, and creates tracking cases—all without human intervention. Edge cases that fall outside normal patterns are flagged for human review.
+
+**Outcome:** The system now processes 90% of emails autonomously. Response times dropped from hours to minutes. The bank redeployed 70% of the routing team to client-facing roles. Client satisfaction improved, and the system operates continuously—not just during business hours.
+
+Banks historically considered unstructured client communications "too variable to automate." Agentic AI proved otherwise. The agent handles irregularity that would break traditional automation—interpreting ambiguous requests, understanding context, and making routing decisions that previously required human judgment.
+
 ---
 
 ## Three Pathways to Agentic Banking
@@ -296,6 +309,8 @@ Effective governance requires organization, not just policy. Banks deploying AI 
 
 **Vendor Management Processes** - Due diligence on third-party AI tools. Banks require vendors to provide methodology documentation, conduct independent outcome analysis comparing vendor predictions to actual results, and implement controls such as human review of edge cases or secondary validation models.
 
+**AI Ethics Review Boards** - Independent review of AI models before production deployment. Every model undergoes scrutiny for data usage, algorithmic transparency, and bias. Scotiabank implements tiered approval based on risk: low-risk models clear at the department level, high-risk models require C-suite sign-off. This ensures ethical considerations aren't an afterthought—they're embedded in the approval process from day one.
+
 ### Governance as Enabler
 
 Banks scaling AI must build governance alongside technical capabilities. This means investing in explainability tools and talent who can interpret complex models, establishing monitoring infrastructure that tracks model performance and drift, training validation teams on AI-specific techniques including bias testing and fairness evaluation, and creating escalation procedures when models behave unexpectedly.
@@ -308,7 +323,11 @@ In a regulated industry, treating governance as a capability rather than an obst
 
 ## The AI-First Bank: A Vision for 2030
 
-Banks that successfully scale agents won't just improve efficiency—they'll redefine banking itself. Six characteristics will distinguish these institutions:
+Banks that successfully scale agents won't just improve efficiency—they'll redefine banking itself. 
+
+Citi calls this the "Do It For Me" (DIFM) economy. Customers won't use tools to make decisions—AI agents will make and execute decisions on their behalf. A customer won't search for mortgage rates. Their agent monitors the market continuously, identifies optimal refinancing opportunities, and initiates the process without being asked. The bank's role shifts from providing tools to providing trusted agents that act in the customer's best interest.
+
+Six characteristics will distinguish these institutions:
 
 **1. Always-On Financial Partner**  
 Instead of periodic check-ins with a branch manager, customers have an AI agent continuously monitoring their financial life. When mortgage rates drop below the customer's current rate, the agent initiates refinancing. When spending patterns suggest cash flow issues, the agent offers solutions before the customer asks. This shifts banking from reactive to proactive.
