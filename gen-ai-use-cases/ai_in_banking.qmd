@@ -131,9 +131,9 @@ The architecture comes to life through specific banking workflows. These four us
 
 **Outcome:** AI integrates into the customer's financial life while providing bankers with actionable, policy-compliant intelligence.
 
-Beyond product recommendations, agents transform daily banker workflows. AI coaches analyze call transcripts and provide real-time guidance, lifting customer satisfaction scores by 7% points and helping new bankers ramp up 20% faster. Meeting preparation that once consumed half a day now takes minutes, with agents synthesizing account plans from CRM data, emails, and reports automatically. One banker noted, "I used to spend half my week chasing leads that went nowhere. Now I only talk to clients who already want to meet."<sup>1</sup>
+Beyond product recommendations, agents reshape daily banker workflows. AI coaches analyze call transcripts and provide real-time guidance, improving customer satisfaction scores by 7 percentage points and helping new bankers ramp up 20% faster.<sup>1</sup> Meeting preparation that once consumed half a day now takes minutes, with agents synthesizing account plans from CRM data, emails, and reports automatically. One banker noted, "I used to spend half my week chasing leads that went nowhere. Now I only talk to clients who already want to meet."
 
-These workflow improvements demonstrate how agents compound value—not just through individual tasks, but by fundamentally rebalancing how relationship managers allocate time between administrative work and client relationships.
+These workflow improvements demonstrate how agents compound value—not just through individual tasks, but by rebalancing how relationship managers allocate time between administrative work and client relationships.
 
 
 ### Corporate Banking (Agent-to-Agent Automation)
