@@ -259,8 +259,6 @@ Banks scaling AI build governance capabilities alongside AI capabilities. This m
 
 Strong governance enables confident deployment of L3 autonomous agents—because controls, monitoring, and oversight ensure agents operate within defined boundaries. The banks that treat governance as a capability rather than compliance burden will scale AI faster and more safely than competitors who view it as an obstacle.
 
-
-
 ---
 
 ## The AI-First Bank: A Vision for 2030
