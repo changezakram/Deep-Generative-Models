@@ -148,7 +148,7 @@ All approvals and onboarding operate within regulatory, legal, and credit policy
 
 **Outcome:** Work that traditionally requires months of email exchanges and document reviews executes rapidly through interoperable domain agents.
 
-Deal structuring benefits from AI-powered pricing agents that analyze discount patterns across relationship managers, customer attributes, and willingness to pay. Rather than relying on banker instinct—"Sometimes I discount because I'm unsure what's fair"—these agents recommend optimal pricing in real time with transparent rationales that risk teams trust. Early results show 10% margin gains and faster quote cycles, with one bank cutting deal turnaround from five days to two.<sup>1</sup>
+Deal structuring uses pricing agents that analyze discount patterns across relationship managers, customer attributes, and willingness to pay. Rather than relying on banker instinct—"Sometimes I discount because I'm unsure what's fair"—these agents recommend pricing in real time with clear rationales that risk teams trust. Early results show 10% margin gains and faster quote cycles, with one bank cutting deal turnaround from five days to two.<sup>1</sup>
 
 ### Risk Management (Stress Testing and CCAR)
 
