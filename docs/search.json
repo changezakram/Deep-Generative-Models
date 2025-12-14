@@ -1069,5 +1069,12 @@
     "title": "Building the AI-First Bank: A Strategic Guide",
     "section": "13 Conclusion",
     "text": "13 Conclusion\nBanks are moving from AI that creates content to AI that executes work. This shift changes what’s possible in financial services—from reactive customer service to proactive financial guidance, from manual compliance workflows to automated regulatory reporting, from quarterly stress tests to continuous risk monitoring.\nThe architecture outlined here—layered, governed, and designed for agent collaboration—provides a framework for this transition. Experience agents improve customer and employee interactions. Domain agents automate complex backend processes. The intelligence layer ensures both operate within risk boundaries.\nEarly movers are already seeing results: relationship managers save 10-15 hours per week, compliance automation cuts turnaround time by 80%, and stress testing that took months now completes in days. Banks implementing agentic AI across frontline operations report 3-15% revenue increases per relationship manager and 30% pipeline growth—returns too material to ignore.\nThe competitive advantage goes to banks that deploy agents systematically rather than experimentally—treating AI as core infrastructure, not a feature. The question isn’t whether to build agent-driven architectures, but how quickly to scale them while maintaining the governance and controls that banking requires."
+  },
+  {
+    "objectID": "gen-ai-use-cases/ai_first_bank.html#references",
+    "href": "gen-ai-use-cases/ai_first_bank.html#references",
+    "title": "Building the AI-First Bank: A Strategic Guide",
+    "section": "14 References",
+    "text": "14 References\n[1] Mckinsey. (2025). Agentic AI is here. Is your bank’s frontline team ready?\n[2] BCG. (2025). From Branches to Bots: Will AI Agents Transform Retail Banking?\n[3] Deloitte / WSJ CFO Journal. (2025). Agentic AI in Banks: Supercharging Intelligent Automation\n[4] NVIDIA. (2025). AI On: How Financial Services Companies Use Agentic AI to Enhance Productivity, Efficiency and Security\n[5] Scotiabank. (2025). How Agentic AI is the ‘next big wave’ in artificial intelligence\n[6] Citi. (2025). Agentic AI - Finance & the ‘Do It For Me’ Economy\n[7] Bank of America. (2025). The new wave: Agentic AI - Agentic AI represents a generation of increasingly powerful foundation models that may spark a corporate efficiency revolution."
   }
 ]
