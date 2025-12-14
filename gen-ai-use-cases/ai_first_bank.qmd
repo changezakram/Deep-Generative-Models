@@ -124,6 +124,8 @@ Experience agents must handle ambiguity and communicate clearly. Domain agents m
 
 Now that we've defined agent types, where do they actually operate? An AI-first bank architecture is organized into six layers, each serving a distinct purpose. Experience Agents live in the customer-facing layer, Domain Agents execute work in the action layer, and the intelligence layer coordinates both.
 
+![**Figure:** The AI-First Bank Architecture is organized into six functional layers. Experience Agents handle customer interaction, Domain Agents execute business processes, and the Intelligence Layer coordinates workflows—all wrapped in a unified Control Plane for governance.](images/architecture.png){fig-align="center" width="800"}
+
 **1: Customer Layer:** Web, mobile, contact centers, and advisor desktops make up the Customer Layer. Experience Agents operate here—the chatbots, copilots, and assistants that customers and bankers interact with directly. This layer handles identity, personalization, and real-time responsiveness.
 
 **2: Action Layer:** The Action Layer executes core banking work: loan origination, payments, fraud checks, cash management, and servicing. Domain Agents orchestrate these processes, connecting multiple systems and enforcing business rules. What used to be rigid, sequential workflows become flexible, policy-governed sequences that adapt based on data and context.

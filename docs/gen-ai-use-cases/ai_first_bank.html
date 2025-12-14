@@ -336,6 +336,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="the-ai-first-bank-architecture" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="the-ai-first-bank-architecture"><span class="header-section-number">5</span> The AI-First Bank Architecture</h2>
 <p>Now that we’ve defined agent types, where do they actually operate? An AI-first bank architecture is organized into six layers, each serving a distinct purpose. Experience Agents live in the customer-facing layer, Domain Agents execute work in the action layer, and the intelligence layer coordinates both.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/architecture.png" class="img-fluid figure-img" width="800"></p>
+<figcaption><strong>Figure:</strong> The AI-First Bank Architecture is organized into six functional layers. Experience Agents handle customer interaction, Domain Agents execute business processes, and the Intelligence Layer coordinates workflows—all wrapped in a unified Control Plane for governance.</figcaption>
+</figure>
+</div>
 <p><strong>1: Customer Layer:</strong> Web, mobile, contact centers, and advisor desktops make up the Customer Layer. Experience Agents operate here—the chatbots, copilots, and assistants that customers and bankers interact with directly. This layer handles identity, personalization, and real-time responsiveness.</p>
 <p><strong>2: Action Layer:</strong> The Action Layer executes core banking work: loan origination, payments, fraud checks, cash management, and servicing. Domain Agents orchestrate these processes, connecting multiple systems and enforcing business rules. What used to be rigid, sequential workflows become flexible, policy-governed sequences that adapt based on data and context.</p>
 <p><strong>3: Intelligence Layer:</strong> The Intelligence Layer coordinates all AI activity across the bank. It manages model deployment, monitors performance, controls access to data, and enforces risk boundaries. This is where L1, L2, and L3 agents are orchestrated—ensuring an insight agent pulling research doesn’t access the same systems as a decisioning agent approving loans. The layer also handles prompt management, output validation, and model risk controls that regulators expect. Think of this as an AI fabric that connects modern agents with existing core systems, allowing both to work together without requiring a complete technology replacement.</p>
