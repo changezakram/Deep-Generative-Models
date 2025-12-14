@@ -62,7 +62,7 @@ Morgan Stanley's AskResearchGPT synthesizes insights from over 70,000 proprietar
 
 L2 agents execute multi-step, rule-governed business processes. They decompose tasks, orchestrate workflows across systems, and automate structured operations while operating under human supervision and regulatory controls.
 
-![**Figure:** L2 agents orchestrate multi-step workflows using specialized agents coordinated by a central orchestrator. Draft outputs are generated automatically, but human reviewers approve before execution—balancing automation efficiency with accountability and control.](images/L2.png){fig-align="center" width="800"}
+![**Figure:** L2 agents orchestrate multi-step workflows using specialized agents coordinated by a central orchestrator. Draft outputs are generated automatically, but human reviewers approve before execution—balancing automation efficiency with accountability and control.](images/L-2.png){fig-align="center" width="800"}
 
 Consider compliance documentation. Writing suspicious activity reports (SARs), regulatory memos, and audit summaries traditionally requires manual effort and creates consistency problems.
 
