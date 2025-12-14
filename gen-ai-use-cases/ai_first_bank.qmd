@@ -94,6 +94,8 @@ The core risk is **behavioral drift**. Unlike static rule-based systems, agents 
 
 Banks must also guard against **optimization misalignment**, where an agent successfully hits a narrow metric (closing AML alerts quickly) while undermining the actual business goal (accurate fraud detection). This happens when targets are too specific and governance is too hands-off.
 
+These risks are not theoretical—they stem from how autonomous agents interact with data, systems, and each other in production environments.
+
 **Agent-Specific Risks**
 
 Autonomous agents can exhibit unexpected behaviors that traditional software cannot. Corrupted training data can cause agents to make systematically wrong decisions. Poorly calibrated algorithms can trigger regulatory violations or discriminatory outcomes. In extreme cases, agents can enter feedback loops where one agent's output continuously triggers another agent's action in an uncontrolled cycle.
