@@ -61,7 +61,7 @@ L2 agents execute multi-step, rule-governed business processes. They decompose t
 
 Consider compliance documentation. Writing suspicious activity reports (SARs), regulatory memos, and audit summaries traditionally requires manual effort and creates consistency problems.
 
-L2 agents automate classification, extraction, summarization, and drafting while enforcing compliance standards. These systems have cut turnaround time by 80% and improved processing accuracy, allowing compliance teams to handle higher volumes with better quality.
+L2 agents automate classification, extraction, summarization, and drafting while enforcing compliance standards. These systems have cut turnaround time by 80% and improved processing accuracy, allowing compliance teams to handle higher volumes with better quality.<sup>3</sup>
 
 The key distinction from L1: these agents don't just provide recommendations—they generate final work products and execute regulated processes within defined guardrails.
 
@@ -209,7 +209,7 @@ Scotiabank isn't alone. Digital-native banks see similar results. Bunq's AI assi
 
 **The solution:** RBC deployed Aiden, a multi-agent research platform. When a covered company files with the SEC, three specialized agents activate: an SEC Filing Agent extracts financial data and risk factors, an Earnings Agent compares results to forecasts, and a News Agent monitors real-time media coverage. An orchestration agent synthesizes these inputs and generates preliminary research notes for analyst review.
 
-**Outcome:** Analysis that previously required 2-3 hours of manual document review now completes in minutes. Analysts receive structured summaries highlighting what changed and why it matters, allowing them to focus on generating investment insights rather than gathering data.
+**Outcome:** Analysis that previously required 2-3 hours of manual document review now completes in minutes. Analysts receive structured summaries highlighting what changed and why it matters, allowing them to focus on generating investment insights rather than gathering data.<sup>4</sup>
 
 ---
 
