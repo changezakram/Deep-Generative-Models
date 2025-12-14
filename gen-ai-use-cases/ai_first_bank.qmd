@@ -50,6 +50,9 @@ L1 agents extract and synthesize information to support human decision-making. T
 
 In banking, L1 agents appear most commonly in advisor tools and research summarization.
 
+![**Figure:** L1 agents provide assistive intelligence through single request-response interactions. Users submit queries, the LLM generates insights, and humans decide what actions to take. No autonomous execution.](images/L1.png){fig-align="center" width="800"}
+
+
 Morgan Stanley's AI @ Morgan Stanley Debrief tool automates meeting notes, analyzes client profiles and transaction histories, and generates tailored recommendations before advisor meetings. The tool saves approximately 30 minutes per meeting, freeing 10–15 hours per week for higher-value client work.<sup>8</sup>
 
 Morgan Stanley's AskResearchGPT synthesizes insights from over 70,000 proprietary research reports. Similar tools have reduced document review time by up to 90% while improving accuracy by 25%.<sup>9</sup>
@@ -58,6 +61,8 @@ Morgan Stanley's AskResearchGPT synthesizes insights from over 70,000 proprietar
 **L2 – Process Orchestration Agents (Semi-Autonomous)**
 
 L2 agents execute multi-step, rule-governed business processes. They decompose tasks, orchestrate workflows across systems, and automate structured operations while operating under human supervision and regulatory controls.
+
+![**Figure:** L2 agents orchestrate multi-step workflows using specialized agents coordinated by a central orchestrator. Draft outputs are generated automatically, but human reviewers approve before execution—balancing automation efficiency with accountability and control.](images/L2.png){fig-align="center" width="800"}
 
 Consider compliance documentation. Writing suspicious activity reports (SARs), regulatory memos, and audit summaries traditionally requires manual effort and creates consistency problems.
 
@@ -69,6 +74,8 @@ The key distinction from L1: these agents don't just provide recommendations—t
 **L3 – Complex Decisioning Agents (Fully Autonomous)**
 
 L3 agents continuously monitor their environment, make decisions, and trigger actions without constant human involvement. They coordinate L1 and L2 agents to operate as closed-loop decision systems.
+
+![**Figure:** L3 agents operate autonomously in continuous observe-plan-act loops. They monitor environments, make decisions, execute actions, and adapt based on outcomes—all within governance boundaries. Unlike L2, humans are notified after decisions rather than approving before.](images/L3.png){fig-align="center" width="800"}
 
 Rather than waiting for borrowers or advisors to identify refinancing opportunities, an L3 agent monitors market rates, borrower credit profiles, loan performance, and property valuations continuously. 
 
