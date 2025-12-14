@@ -50,9 +50,9 @@ L1 agents extract and synthesize information to support human decision-making. T
 
 In banking, L1 agents appear most commonly in advisor tools and research summarization.
 
-Morgan Stanley's AI @ Morgan Stanley Debrief tool automates meeting notes, analyzes client profiles and transaction histories, and generates tailored recommendations before advisor meetings. The tool saves approximately 30 minutes per meeting, freeing 10–15 hours per week for higher-value client work.
+Morgan Stanley's AI @ Morgan Stanley Debrief tool automates meeting notes, analyzes client profiles and transaction histories, and generates tailored recommendations before advisor meetings. The tool saves approximately 30 minutes per meeting, freeing 10–15 hours per week for higher-value client work.<sup>8</sup>
 
-Morgan Stanley's AskResearchGPT synthesizes insights from over 70,000 proprietary research reports. Similar tools have reduced document review time by up to 90% while improving accuracy by 25%.
+Morgan Stanley's AskResearchGPT synthesizes insights from over 70,000 proprietary research reports. Similar tools have reduced document review time by up to 90% while improving accuracy by 25%.<sup>9</sup>
 
 
 **L2 – Process Orchestration Agents (Semi-Autonomous)**
@@ -400,3 +400,7 @@ The competitive advantage goes to banks that deploy agents systematically rather
 [6] Citi. (2025). Agentic AI - Finance & the ‘Do It For Me’ Economy
 
 [7] Bank of America. (2025). The new wave: Agentic AI - Agentic AI represents a generation of increasingly powerful foundation models that may spark a corporate efficiency revolution.
+
+[8] Morgan Stanley. (2024). AI @ Morgan Stanley Debrief Launch.
+
+[9] Morgan Stanley. (2024). AskResearchGPT helps advisors access 70,000+ research reports.
