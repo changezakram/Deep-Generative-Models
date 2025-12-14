@@ -90,7 +90,7 @@ Traditional IT governance frameworks weren't built for systems that make decisio
 
 **Why Agent Governance Is Different**
 
-The core risk is **behavioral drift**. Unlike static rule-based systems, agents optimize their actions dynamically based on feedback loops and outcome data. Research by Jiang et al. (2025) demonstrates that without explicit policy constraints, these continuously learning systems can develop unstable or unintended behaviors over time—even when operating within their original programming.
+The core risk is **behavioral drift**. Unlike static rule-based systems, agents optimize their actions dynamically based on feedback loops and outcome data. Research by Jiang et al. (2025) demonstrates that without explicit policy constraints, these continuously learning systems can develop unstable or unintended behaviors over time—even when operating within their original programming.<sup>10</sup>
 
 Banks must also guard against **optimization misalignment**, where an agent successfully hits a narrow metric (closing AML alerts quickly) while undermining the actual business goal (accurate fraud detection). This happens when targets are too specific and governance is too hands-off.
 
@@ -437,3 +437,5 @@ The competitive advantage goes to banks that deploy agents systematically rather
 [8] Morgan Stanley. (2024). AI @ Morgan Stanley Debrief Launch.
 
 [9] Morgan Stanley. (2024). AskResearchGPT helps advisors access 70,000+ research reports.
+
+[10] Jiang et al. (2025). Adaptation of Agentic AI.
