@@ -227,6 +227,9 @@ Most regional banks still run core systems on decades-old mainframes. The good n
 
 Moving from vision to execution requires a practical roadmap. Banks can introduce agentic AI through three distinct approaches, each suited to different organizational contexts, risk appetites, and strategic goals.
 
+![**Figure:** The strategic progression of agentic banking. While Smart Overlays deliver immediate efficiency gains with low technical debt, true Reinvention requires deeper integration and fundamental process redesign.](images/Three-Pathways-to-Agentic-Banking.png){fig-align="center" width="800"}
+
+
 **Pathway 1: Smart Overlay**
 
 The fastest way to see results: wrap AI agents around existing processes without requiring a complete technology overhaul. Rather than replacing legacy infrastructure, banks add an intelligent layer on top of current workflows.
