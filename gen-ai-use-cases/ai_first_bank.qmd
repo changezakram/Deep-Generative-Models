@@ -14,7 +14,7 @@ The difference is operational. Generative AI might help draft an email. An agent
 
 This enables an "always-on" operating model. While relationship managers focus on judgment, relationships, and complex negotiations, agents handle preparation, follow-ups, and routine coordination in the background. The banker's role shifts away from execution and toward decision-making and client engagement.
 
-Banks that are already moving in this direction report 30% pipeline growth and twice the conversion rates of traditional approaches. These results don't come from chatbots or meeting summaries. They come from redesigning workflows so that routine work runs automatically and people focus on where they add the most value.
+Banks that are already moving in this direction report 30% pipeline growth and twice the conversion rates of traditional approaches. These results don't come from chatbots or meeting summaries. They come from redesigning workflows so that routine work runs automatically and people focus on where they add the most value.<sup>1</sup>
 
 The end state is what industry leaders call "invisible intelligence"—AI that operates seamlessly beneath the surface of banking operations rather than as a separate layer bolted on top. Agents become embedded infrastructure, not standalone tools. The technology recedes into the background while the outcomes—faster decisions, better service, lower costs—move to the foreground.
 
@@ -86,11 +86,17 @@ When conditions align, the agent triggers eligibility checks through L2 agents, 
 
 ### Governing Autonomous Agents: Beyond Traditional Controls
 
-As agents gain autonomy, they introduce risks that traditional IT governance frameworks weren't designed to manage. Understanding and mitigating these risks is not optional—it's the foundation of responsible agentic AI deployment.
+Traditional IT governance frameworks weren't built for systems that make decisions autonomously and adapt continuously. When an agent can approve transactions, escalate compliance alerts, or reallocate capital based on real-time conditions, the governance challenge fundamentally changes.
+
+**Why Agent Governance Is Different**
+
+The core risk is **behavioral drift**. Unlike static rule-based systems, agents optimize their actions dynamically based on feedback loops and outcome data. Research by Jiang et al. (2025) demonstrates that without explicit policy constraints, these continuously learning systems can develop unstable or unintended behaviors over time—even when operating within their original programming.
+
+Banks must also guard against **optimization misalignment**, where an agent successfully hits a narrow metric (closing AML alerts quickly) while undermining the actual business goal (accurate fraud detection). This happens when targets are too specific and governance is too hands-off.
 
 **Agent-Specific Risks**
 
-Unlike traditional software, autonomous agents can exhibit unexpected behaviors. Corrupted training data can cause agents to make systematically wrong decisions. Poorly calibrated algorithms can trigger regulatory violations or discriminatory outcomes. In extreme cases, agents can enter feedback loops where one agent's output continuously triggers another agent's action in an uncontrolled cycle.
+Autonomous agents can exhibit unexpected behaviors that traditional software cannot. Corrupted training data can cause agents to make systematically wrong decisions. Poorly calibrated algorithms can trigger regulatory violations or discriminatory outcomes. In extreme cases, agents can enter feedback loops where one agent's output continuously triggers another agent's action in an uncontrolled cycle.
 
 The deeper issue: as agents interact within large, interconnected systems, behaviors can emerge from the complexity itself. Agents might exploit programming loopholes, misapply learned patterns in new contexts, or demonstrate different objectives in production than they showed during testing.
 
