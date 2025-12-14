@@ -200,6 +200,17 @@ Scotiabank deployed an agentic AI system to handle this complexity autonomously.
 
 Banks historically considered unstructured client communications "too variable to automate." Agentic AI proved otherwise. The agent handles irregularity that would break traditional automation—interpreting ambiguous requests, understanding context, and making routing decisions that previously required human judgment.
 
+Scotiabank isn't alone. Digital-native banks see similar results. Bunq's AI assistant, Finn, now handles over 90% of customer support tickets autonomously—demonstrating that customer service automation at scale works across both traditional banks with legacy systems and digital-first institutions built on modern infrastructure.
+
+
+## Capital Markets (Analyst Research Automation)
+
+Scenario: Investment analysts at RBC Capital Markets cover hundreds of public companies. When companies release SEC filings or earnings reports, analysts must review the information and update investment recommendations—often within hours of disclosure.
+
+**The solution:** RBC deployed Aiden, a multi-agent research platform. When a covered company files with the SEC, three specialized agents activate: an SEC Filing Agent extracts financial data and risk factors, an Earnings Agent compares results to forecasts, and a News Agent monitors real-time media coverage. An orchestration agent synthesizes these inputs and generates preliminary research notes for analyst review.
+
+**Outcome:** Analysis that previously required 2-3 hours of manual document review now completes in minutes. Analysts receive structured summaries highlighting what changed and why it matters, allowing them to focus on generating investment insights rather than gathering data.
+
 ---
 
 ## Three Pathways to Agentic Banking
@@ -255,9 +266,13 @@ The impact compounds across use cases: prospecting agents deliver twice the conv
 
 However, early evidence shows banks often chase low-value use cases first. Meeting summarization and basic chatbots are easier to implement but deliver modest returns. The highest-value applications—prospecting agents, lead nurturing, and deal optimization—require deeper integration with core systems and workflow redesign, but they deliver the returns that matter: revenue growth, not just efficiency.
 
+Adoption is accelerating. Customer service applications of generative AI in financial services doubled over the past year, rising from 25% to 60% of institutions. More than 90% of banks deploying AI report positive revenue impact, with customer experience metrics improving by 26% on average.
+
+These improvements compound. Better customer experience drives retention, retention increases lifetime value, and lifetime value justifies further AI investment. Banks that deployed AI early are now scaling L2 and L3 agents across departments. Late adopters face a widening competitive gap.
+
 ---
 
-## Scaling Agentic AI: Five Critical Principles
+## Scaling Agentic AI: Six Critical Principles
 
 Moving from pilots to enterprise-scale requires deliberate choices about how agents integrate into banking operations:
 
@@ -270,6 +285,12 @@ Moving from pilots to enterprise-scale requires deliberate choices about how age
 **4. Establish governance guardrails.** Define agent autonomy levels, set limits on independent decisions (such as credit increases), implement monitoring protocols, and create audit mechanisms before scaling.
 
 **5. Reskill the workforce.** As agents handle more administrative work, new roles emerge—business engineers who design agent workflows and agent orchestrators who manage human-AI collaboration. Meanwhile, relationship managers evolve to focus on delivering insights and coordinating expertise across the bank.
+
+**6. Organize for Federated Development.** As AI deployments scale, banks face a coordination challenge: centralized AI development creates bottlenecks, but complete decentralization creates incompatible systems.
+
+BlackRock's Aladdin Copilot demonstrates the solution. Their central AI team established a standardized communication protocol and plug-in registry. Business units develop specialized agents for their domains—portfolio management, risk analysis, compliance—but all agents communicate through a common foundation. Credit teams build credit agents, risk teams build risk agents, each moving at their own pace, while central standards ensure interoperability.
+
+This federated model becomes essential at scale. When you have five agents, coordination is manageable. When you have fifty, you need standardized protocols.
 
 ---
 
