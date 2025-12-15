@@ -43,16 +43,6 @@ website:
           - text: Building Safe & Secure Agentic AI
             href: https://changezakram.github.io/agentic-ai/agentic_ai_safety.html
 
-      - text: Math Review
-        menu:
-          - text: Linear Algebra
-            href: https://changezakram.github.io/math-review/linear-algebra.html
-          - text: Calculus
-            href: https://changezakram.github.io/math-review/calculus.html
-          - text: Probability
-            href: https://changezakram.github.io/math-review/probability.html
-
-
       - text: Use Cases
         menu:
           - text: Building the AI-First Bank
@@ -61,6 +51,15 @@ website:
             href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html
           - text: Gen AI in Healthcare
             href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html
+
+      - text: AI Strategy
+        menu:
+          - text: Linear Algebra
+            href: https://changezakram.github.io/math-review/linear-algebra.html
+          - text: Calculus
+            href: https://changezakram.github.io/math-review/calculus.html
+          - text: Probability
+            href: https://changezakram.github.io/math-review/probability.html
 
 format:
   html:
