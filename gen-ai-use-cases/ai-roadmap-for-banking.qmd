@@ -72,7 +72,13 @@ Across these use cases, generative AI does not replace predictive decision-makin
 
 ### Data Foundations and Semantic Consistency
 
-A scalable AI architecture begins with data readiness. Predictive models depend on clean, well-labeled historical data, while generative models rely on trusted, well-curated knowledge sources. In both cases, the constraint is rarely model capability; it is data quality, lineage, and accessibility. Banks that scale AI invest in centralized, governed data platforms that integrate transactional systems, risk data, customer data, and unstructured content such as documents and policies. A well-defined semantic layer is essential to ensure consistency across analytical outputs and to prevent generative systems from producing misleading responses.
+A scalable AI roadmap depends less on individual models and more on the underlying architecture that supports them. The architecture below illustrates a **capability-based data and AI foundation** that enables both predictive and generative AI. Rather than centering on specific tools or model types, it shows how data is created, acquired, standardized, processed, and ultimately consumed across analytical and operational workflows, with governance applied end-to-end.
+
+In this model, predictive and generative AI share the same core foundations. Predictive AI primarily operates within the processing and analytics layers, where models score transactions, customers, and portfolios. Generative AI extends this foundation by enriching data, synthesizing unstructured information, and enhancing how insights are consumed through conversational and narrative interfaces.
+
+![**Figure:** Reference data and AI architecture supporting predictive and generative AI.  
+This capability-based architecture illustrates how data is created, acquired, enriched, processed, published, and analyzed across the enterprise, with data and model management applied as a cross-cutting governance function.  
+*Source: McKinsey & Company, Revisiting Data Architecture for Next-Gen Data Products.*](images/Data-architecture-for-AI.svgz){fig-align="center" width="900"}
 
 ### Model Platforms and Lifecycle Management
 
