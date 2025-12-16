@@ -1,5 +1,5 @@
 ---
-title: "An AI Roadmap for Banking: From Predictive Intelligence to Generative Scale"
+title: "AI Roadmap for Banking: From Predictive AI to Generative AI"
 date: 2025-01-15
 format:
   html:
