@@ -54,6 +54,8 @@ As banks move from isolated analytics use cases to AI-enabled data products, arc
 
 One of the most immediate and high-impact applications of generative AI in banking is document intelligence. Banks process vast volumes of contracts, financial statements, regulatory guidance, policies, and internal reports. Generative models can summarize lengthy documents, extract key themes, highlight risks, and draft standardized outputs such as credit memos, compliance summaries, or internal briefs. Human oversight remains essential, but generative AI dramatically reduces the time required to move from raw information to informed decision-making.
 
+A platform-oriented architecture enables these generative AI experiences to be contextual rather than generic. When customer, product, and interaction data are unified on shared foundations, generative interfaces can adapt responses, insights, and recommendations as customer needs evolve. Without this architectural coherence, generative capabilities risk becoming isolated features rather than meaningful enhancements to customer experience.
+
 ### Customer and Employee Assistants
 
 Generative AI has significantly advanced conversational interfaces, enabling more capable customer- and employee-facing assistants. Unlike earlier chatbots, modern generative systems can handle complex, multi-turn interactions and adapt responses based on context. For customers, this improves self-service for routine inquiries. Internally, generative assistants help employees navigate policies, retrieve institutional knowledge, and synthesize information across systems, reducing friction in day-to-day work.
@@ -72,9 +74,10 @@ Across these use cases, generative AI does not replace predictive decision-makin
 
 ## Architecture to Enable AI in Banking
 
+As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. In regulated environments, scalable AI depends less on individual models and more on shared data foundations, consistent governance, and reusable platform capabilities.
 
+Traditional banking technology stacks are often organized around products and channels, reinforcing silos that complicate integration and slow change. A platform-oriented architecture helps break these silos by aligning data, analytics, and technology capabilities around shared foundations, making it easier to evolve systems over time and scale intelligent capabilities consistently.
 
-### Data Foundations and Semantic Consistency
 
 ### Data Foundations and Semantic Consistency
 
@@ -110,6 +113,8 @@ Governance is most effective when it is designed to align with the underlying da
 
 Technology alone does not scale AI. The surrounding operating model is equally important. Many banks adopt a hub-and-spoke approach, centralizing platforms, standards, and governance while distributing use-case development across business and analytics teams. This model balances speed with control, enabling reuse while preventing fragmentation. Embedding AI capabilities directly into business workflows is what ultimately converts architectural investment into business value.
 
+Rather than pursuing large, multi-year modernization efforts, many banks make progress through progressive modernization—starting with a small number of high-value journeys or data products and expanding outward. This approach allows teams to deliver measurable impact early while maintaining architectural coherence and reducing execution risk.
+
 ### Designing for Change and Future Capability
 
 Finally, AI architecture must be designed with evolution in mind. Models will change, regulations will evolve, and new capabilities will emerge. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
@@ -126,8 +131,11 @@ Architecture is the decisive factor. A shared data foundation, disciplined model
 
 In the end, competitive advantage will not come from adopting the latest model first, but from building the foundations that allow AI—predictive and generative alike—to be applied consistently, safely, and at scale across the bank.
 
+Ultimately, scaling AI in banking is as much an organizational challenge as a technical one. Platform-oriented architectures require sustained leadership commitment, clear ownership, and a willingness to break down long-standing silos. Banks that treat AI enablement as a continuous, value-driven evolution—rather than a one-time technology initiative—are better positioned to translate both predictive and generative capabilities into lasting business impact.
+
 ---
 
 ## Reference
 
-McKinsey. (2025). Revisiting data architecture for next-gen data products
+[1] McKinsey. (2025). Revisiting data architecture for next-gen data products
+[2] McKinsey. (2025). Next-gen banking success starts with the right data architecture
