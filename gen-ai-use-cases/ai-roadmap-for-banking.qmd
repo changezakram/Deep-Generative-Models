@@ -64,19 +64,31 @@ Across these use cases, generative AI does not replace predictive decision-makin
 
 ---
 
-## Architecture to Enable Predictive and Generative AI in Banking
+## Architecture to Enable AI in Banking
 
-Predictive and generative AI place different demands on technology, but banks cannot scale them through separate, siloed stacks. A credible AI roadmap requires a shared architectural foundation that supports both probabilistic modeling and language-based capabilities, while meeting the security, reliability, and governance standards of a regulated institution.
+### Data Foundations and Semantic Consistency
 
-Everything starts with data readiness. Predictive models depend on clean, well-labeled historical data. Generative models rely on trusted, well-curated knowledge sources. In both cases, the constraint is rarely model capability; it is data quality, lineage, and accessibility. Banks that scale AI invest in centralized, governed data platforms integrating transactional systems, risk data, customer data, and unstructured content. A well-defined semantic layer is critical to ensure consistency and trust.
+A scalable AI architecture begins with data readiness. Predictive models depend on clean, well-labeled historical data, while generative models rely on trusted, well-curated knowledge sources. In both cases, the constraint is rarely model capability; it is data quality, lineage, and accessibility. Banks that scale AI invest in centralized, governed data platforms that integrate transactional systems, risk data, customer data, and unstructured content such as documents and policies. A well-defined semantic layer is essential to ensure consistency across analytical outputs and to prevent generative systems from producing misleading responses.
 
-Above the data foundation sits the model and analytics layer, where predictive and generative workloads coexist. Predictive AI runs on mature machine learning platforms with established practices for training, validation, explainability, and lifecycle management. Generative AI introduces additional components—large language models, embeddings, and retrieval mechanisms—to ground outputs in enterprise data. Despite tooling differences, both must be deployed through controlled, auditable pipelines rather than treated as ad hoc experiments.
+### Model Platforms and Lifecycle Management
 
-Integration is where architecture either enables scale or becomes a bottleneck. Predictive models often operate invisibly, scoring transactions or customers in real time. Generative models sit closer to users, embedded in dashboards and workflow tools. A scalable architecture exposes both through well-defined services and APIs, allowing them to be composed into end-to-end workflows without tight coupling.
+Above the data foundation sits the model and analytics layer, where predictive and generative workloads coexist. Predictive AI typically runs on mature machine learning platforms that support feature engineering, training, validation, explainability, and model risk management. Generative AI introduces additional components, including large language models, embedding services, and retrieval mechanisms that ground outputs in enterprise data. Despite differences in tooling, both model types must be governed through disciplined lifecycle management, including versioning, monitoring, and controlled deployment pipelines.
 
-Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks such as data leakage and opaque outputs, while predictive models remain subject to rigorous model risk management. Strong access controls, auditability, and monitoring must be embedded into existing risk and compliance frameworks to enable responsible scaling.
+### Integration and Workflow Enablement
 
-Finally, architecture must be built for change. Models will evolve, regulations will shift, and new capabilities will emerge. A modular, layered architecture allows banks to adopt new techniques without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
+Integration is where architecture either enables scale or becomes a bottleneck. Predictive models often operate behind the scenes, scoring transactions or customers in real time. Generative models sit closer to users, embedded in dashboards, workflow tools, and internal applications. A robust architecture exposes both capabilities through well-defined services and APIs, allowing them to be composed into end-to-end workflows. This approach enables predictive insights to trigger generative explanations or summaries without tightly coupling systems or duplicating logic.
+
+### Security, Risk, and Governance Controls
+
+Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks, including unintended data exposure and opaque outputs, while predictive models remain subject to established model risk management expectations. Banks must enforce strong access controls, data segregation, auditability, and continuous monitoring across both model types. Governance frameworks should be embedded into existing risk, compliance, and technology control processes, ensuring accountability without creating parallel oversight structures.
+
+### Operating Model and Organizational Enablement
+
+Technology alone does not scale AI. The surrounding operating model is equally important. Many banks adopt a hub-and-spoke approach, centralizing platforms, standards, and governance while distributing use-case development across business and analytics teams. This model balances speed with control, enabling reuse while preventing fragmentation. Embedding AI capabilities directly into business workflows is what ultimately converts architectural investment into business value.
+
+### Designing for Change and Future Capability
+
+Finally, AI architecture must be designed with evolution in mind. Models will change, regulations will evolve, and new capabilities will emerge. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
 
 ---
 
