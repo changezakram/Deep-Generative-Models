@@ -38,9 +38,11 @@ Fraud detection and financial crime monitoring represent another core applicatio
 
 Predictive AI also plays a central role in customer analytics, marketing, and sales optimization. Propensity, churn, and lifetime value models help banks anticipate customer behavior, personalize offers, and prioritize retention efforts. In commercial banking and wealth management, similar techniques support lead scoring, pipeline prioritization, and relationship deepening. In many institutions, these models quietly drive material revenue uplift while improving relevance and reducing wasted effort.
 
+::: callout-note
 ### Where Predictive AI Reaches Its Limits
 
 Across these domains, predictive AI excels where outcomes are measurable, historical data is available, and decisions require probabilistic reasoning. Its limitations are equally important to recognize. Predictive models do not naturally interpret unstructured information such as documents, emails, or call transcripts, nor do they explain outcomes in human terms. This is where generative AI begins to add meaningful value.
+:::
 
 ---
 
@@ -58,9 +60,11 @@ Generative AI has significantly advanced conversational interfaces, enabling mor
 
 Generative AI also enables a new interaction model for analytics, often referred to as Generative BI. Business users can ask questions in natural language and receive contextual explanations rather than relying solely on static dashboards. When grounded in curated semantic models and governed appropriately, this capability lowers the barrier to insight while preserving analytical rigor, particularly for executives and business leaders.
 
+::: callout-note
 ### How Generative AI Complements Predictive Decisions
 
 Across these use cases, generative AI does not replace predictive decision-making. Instead, it surrounds it. Generative models prepare inputs, interpret outputs, and accelerate downstream actions by translating analytical results into human-readable form. Predictive models continue to determine *what* decision should be made; generative models help humans understand *why* and act more efficiently.
+:::
 
 ---
 
