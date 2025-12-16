@@ -115,6 +115,14 @@ Technology alone does not scale AI. The surrounding operating model is equally i
 
 Rather than pursuing large, multi-year modernization efforts, many banks make progress through progressive modernization—starting with a small number of high-value journeys or data products and expanding outward. This approach allows teams to deliver measurable impact early while maintaining architectural coherence and reducing execution risk.
 
+### Operating Models for Scaling AI
+
+As banks move beyond experimentation toward enterprise-wide AI, the operating model becomes a key enabler of scale. An operating model is the blueprint for how strategy is put into action — defining roles, decision rights, resource allocation, and mechanisms for cross-functional execution. High-performing institutions treat the operating model as an integral part of their AI roadmap, aligning structure, talent, governance, and processes so that capabilities can be delivered consistently across the organization.
+
+Different operating archetypes have emerged in practice. Institutions early in their AI journeys often adopt a highly centralized model, with strategic steering, standards, and execution coordinated from a central team. This approach helps allocate scarce talent, build cohesive capability, and guide consistent risk, technology, and data governance decisions enterprise-wide. As maturity grows, many banks evolve toward a hybrid or federated model, wherein strategic oversight and standard setting remain centralized while execution and domain ownership are progressively delegated to business units. At the highest maturity levels, individual functions can prioritize and operationalize domain-specific AI activities while still adhering to enterprise guardrails.
+
+No single model fits all banks. Choosing the right approach requires balancing speed and innovation with risk, regulatory alignment, and cultural norms. Centralized models can accelerate early scaling and reduce duplication, while federated or decentralized designs can improve domain relevance and responsiveness. Whatever the choice, it should be tailored to the institution’s structure, talent, and strategic priorities, with flexibility to evolve over time.
+
 ### Designing for Change and Future Capability
 
 Finally, AI architecture must be designed with evolution in mind. Models will change, regulations will evolve, and new capabilities will emerge. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
