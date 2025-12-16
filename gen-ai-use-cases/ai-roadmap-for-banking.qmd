@@ -78,7 +78,7 @@ In this model, predictive and generative AI share the same core foundations. Pre
 
 ![**Figure:** Reference data and AI architecture supporting predictive and generative AI.  
 This capability-based architecture illustrates how data is created, acquired, enriched, processed, published, and analyzed across the enterprise, with data and model management applied as a cross-cutting governance function.  
-*Source: McKinsey & Company, Revisiting Data Architecture for Next-Gen Data Products.*](images/Data-architecture-for-AI.svgz){fig-align="center" width="900"}
+*Source: McKinsey & Company, Revisiting Data Architecture for Next-Gen Data Products.*](images/Data-architecture-for-AI.SVGZ){fig-align="center" width="900"}
 
 ### Model Platforms and Lifecycle Management
 
