@@ -48,6 +48,8 @@ Across these domains, predictive AI excels where outcomes are measurable, histor
 
 ## Generative AI Use Cases in Banking
 
+As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. In regulated environments, scalable AI depends less on individual models and more on shared data foundations, consistent governance, and reusable platform capabilities.
+
 ### Document Intelligence and Knowledge Processing
 
 One of the most immediate and high-impact applications of generative AI in banking is document intelligence. Banks process vast volumes of contracts, financial statements, regulatory guidance, policies, and internal reports. Generative models can summarize lengthy documents, extract key themes, highlight risks, and draft standardized outputs such as credit memos, compliance summaries, or internal briefs. Human oversight remains essential, but generative AI dramatically reduces the time required to move from raw information to informed decision-making.
@@ -70,19 +72,29 @@ Across these use cases, generative AI does not replace predictive decision-makin
 
 ## Architecture to Enable AI in Banking
 
+
+
+### Data Foundations and Semantic Consistency
+
 ### Data Foundations and Semantic Consistency
 
 A scalable AI roadmap depends less on individual models and more on the underlying architecture that supports them. The architecture below illustrates a **capability-based data and AI foundation** that enables both predictive and generative AI. Rather than centering on specific tools or model types, it shows how data is created, acquired, standardized, processed, and ultimately consumed across analytical and operational workflows, with governance applied end-to-end.
 
-In this model, predictive and generative AI share the same core foundations. Predictive AI primarily operates within the processing and analytics layers, where models score transactions, customers, and portfolios. Generative AI extends this foundation by enriching data, synthesizing unstructured information, and enhancing how insights are consumed through conversational and narrative interfaces.
+In practice, banks tend to adopt a small number of data-architecture patterns, most commonly centralized or hybrid approaches. Centralized architectures provide strong governance and consistent definitions, while hybrid models balance enterprise standards with domain-level ownership and faster data product development. Regulatory and risk considerations often make these two patterns the most effective in banking environments.
+
+Within this foundation, predictive and generative AI operate as complementary capabilities. Predictive AI primarily functions within the processing and analytics layers, where models score transactions, customers, and portfolios. Generative AI extends the same foundation by enriching data, synthesizing unstructured information, and enhancing how insights are consumed through conversational and narrative interfaces.
 
 ![**Figure:** Reference data and AI architecture supporting predictive and generative AI.  
 This capability-based architecture illustrates how data is created, acquired, enriched, processed, published, and analyzed across the enterprise, with data and model management applied as a cross-cutting governance function.  
 *Source: McKinsey & Company, Revisiting Data Architecture for Next-Gen Data Products.*](images/Data-architecture-for-AI.SVGZ){fig-align="center" width="900"}
 
+Together, this architecture shows how predictive and generative AI can scale on a shared foundation, with governance and operating discipline applied end-to-end.
+
 ### Model Platforms and Lifecycle Management
 
 Above the data foundation sits the model and analytics layer, where predictive and generative workloads coexist. Predictive AI typically runs on mature machine learning platforms that support feature engineering, training, validation, explainability, and model risk management. Generative AI introduces additional components, including large language models, embedding services, and retrieval mechanisms that ground outputs in enterprise data. Despite differences in tooling, both model types must be governed through disciplined lifecycle management, including versioning, monitoring, and controlled deployment pipelines.
+
+These extensions build on established machine-learning platforms and lifecycle controls rather than replacing them, reinforcing the importance of shared foundations across predictive and generative AI.
 
 ### Integration and Workflow Enablement
 
@@ -91,6 +103,8 @@ Integration is where architecture either enables scale or becomes a bottleneck. 
 ### Security, Risk, and Governance Controls
 
 Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks, including unintended data exposure and opaque outputs, while predictive models remain subject to established model risk management expectations. Banks must enforce strong access controls, data segregation, auditability, and continuous monitoring across both model types. Governance frameworks should be embedded into existing risk, compliance, and technology control processes, ensuring accountability without creating parallel oversight structures.
+
+Governance is most effective when it is designed to align with the underlying data-architecture pattern, rather than layered on after the fact. When access controls, lineage, and quality standards are embedded into the architecture itself, banks can enforce regulatory and risk requirements consistently without creating fragmented or duplicative oversight structures.
 
 ### Operating Model and Organizational Enablement
 
@@ -102,7 +116,7 @@ Finally, AI architecture must be designed with evolution in mind. Models will ch
 
 ---
 
-## Executive Conclusion
+## Conclusion
 
 AI in banking is no longer a question of experimentation; it is a question of execution. Predictive AI has already proven its value across risk, fraud, and customer analytics. Generative AI extends these capabilities by interpreting unstructured information, accelerating decisions, and reducing operational friction. The opportunity lies not in choosing between them, but in integrating both within the same business workflows.
 
@@ -111,3 +125,9 @@ Banks that succeed will avoid the trap of isolated pilots and instead focus on e
 Architecture is the decisive factor. A shared data foundation, disciplined model lifecycle management, secure integration patterns, and embedded governance turn AI from a collection of tools into an enterprise capability. Institutions that treat architecture as a first-class element of their AI roadmap position themselves to scale responsibly, adapt as technology evolves, and deliver durable business value.
 
 In the end, competitive advantage will not come from adopting the latest model first, but from building the foundations that allow AI—predictive and generative alike—to be applied consistently, safely, and at scale across the bank.
+
+---
+
+## Reference
+
+McKinsey. (2025). Revisiting data architecture for next-gen data products

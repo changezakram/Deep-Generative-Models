@@ -217,7 +217,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#predictive-ai-use-cases-in-banking" id="toc-predictive-ai-use-cases-in-banking" class="nav-link" data-scroll-target="#predictive-ai-use-cases-in-banking"><span class="header-section-number">3</span> Predictive AI Use Cases in Banking</a></li>
   <li><a href="#generative-ai-use-cases-in-banking" id="toc-generative-ai-use-cases-in-banking" class="nav-link" data-scroll-target="#generative-ai-use-cases-in-banking"><span class="header-section-number">4</span> Generative AI Use Cases in Banking</a></li>
   <li><a href="#architecture-to-enable-ai-in-banking" id="toc-architecture-to-enable-ai-in-banking" class="nav-link" data-scroll-target="#architecture-to-enable-ai-in-banking"><span class="header-section-number">5</span> Architecture to Enable AI in Banking</a></li>
-  <li><a href="#executive-conclusion" id="toc-executive-conclusion" class="nav-link" data-scroll-target="#executive-conclusion"><span class="header-section-number">6</span> Executive Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">7</span> Reference</a></li>
   </ul>
 </nav>
     </div>
@@ -292,6 +293,7 @@ Where Predictive AI Reaches Its Limits
 </section>
 <section id="generative-ai-use-cases-in-banking" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="generative-ai-use-cases-in-banking"><span class="header-section-number">4</span> Generative AI Use Cases in Banking</h2>
+<p>As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. In regulated environments, scalable AI depends less on individual models and more on shared data foundations, consistent governance, and reusable platform capabilities.</p>
 <section id="document-intelligence-and-knowledge-processing" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="document-intelligence-and-knowledge-processing"><span class="header-section-number">4.1</span> Document Intelligence and Knowledge Processing</h3>
 <p>One of the most immediate and high-impact applications of generative AI in banking is document intelligence. Banks process vast volumes of contracts, financial statements, regulatory guidance, policies, and internal reports. Generative models can summarize lengthy documents, extract key themes, highlight risks, and draft standardized outputs such as credit memos, compliance summaries, or internal briefs. Human oversight remains essential, but generative AI dramatically reduces the time required to move from raw information to informed decision-making.</p>
@@ -323,8 +325,12 @@ How Generative AI Complements Predictive Decisions
 <h2 data-number="5" class="anchored" data-anchor-id="architecture-to-enable-ai-in-banking"><span class="header-section-number">5</span> Architecture to Enable AI in Banking</h2>
 <section id="data-foundations-and-semantic-consistency" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="data-foundations-and-semantic-consistency"><span class="header-section-number">5.1</span> Data Foundations and Semantic Consistency</h3>
+</section>
+<section id="data-foundations-and-semantic-consistency-1" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="data-foundations-and-semantic-consistency-1"><span class="header-section-number">5.2</span> Data Foundations and Semantic Consistency</h3>
 <p>A scalable AI roadmap depends less on individual models and more on the underlying architecture that supports them. The architecture below illustrates a <strong>capability-based data and AI foundation</strong> that enables both predictive and generative AI. Rather than centering on specific tools or model types, it shows how data is created, acquired, standardized, processed, and ultimately consumed across analytical and operational workflows, with governance applied end-to-end.</p>
-<p>In this model, predictive and generative AI share the same core foundations. Predictive AI primarily operates within the processing and analytics layers, where models score transactions, customers, and portfolios. Generative AI extends this foundation by enriching data, synthesizing unstructured information, and enhancing how insights are consumed through conversational and narrative interfaces.</p>
+<p>In practice, banks tend to adopt a small number of data-architecture patterns, most commonly centralized or hybrid approaches. Centralized architectures provide strong governance and consistent definitions, while hybrid models balance enterprise standards with domain-level ownership and faster data product development. Regulatory and risk considerations often make these two patterns the most effective in banking environments.</p>
+<p>Within this foundation, predictive and generative AI operate as complementary capabilities. Predictive AI primarily functions within the processing and analytics layers, where models score transactions, customers, and portfolios. Generative AI extends the same foundation by enriching data, synthesizing unstructured information, and enhancing how insights are consumed through conversational and narrative interfaces.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Data-architecture-for-AI.SVGZ" class="img-fluid figure-img" width="900"></p>
@@ -333,35 +339,43 @@ This capability-based architecture illustrates how data is created, acquired, en
 <em>Source: McKinsey &amp; Company, Revisiting Data Architecture for Next-Gen Data Products.</em></figcaption>
 </figure>
 </div>
+<p>Together, this architecture shows how predictive and generative AI can scale on a shared foundation, with governance and operating discipline applied end-to-end.</p>
 </section>
-<section id="model-platforms-and-lifecycle-management" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="model-platforms-and-lifecycle-management"><span class="header-section-number">5.2</span> Model Platforms and Lifecycle Management</h3>
+<section id="model-platforms-and-lifecycle-management" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="model-platforms-and-lifecycle-management"><span class="header-section-number">5.3</span> Model Platforms and Lifecycle Management</h3>
 <p>Above the data foundation sits the model and analytics layer, where predictive and generative workloads coexist. Predictive AI typically runs on mature machine learning platforms that support feature engineering, training, validation, explainability, and model risk management. Generative AI introduces additional components, including large language models, embedding services, and retrieval mechanisms that ground outputs in enterprise data. Despite differences in tooling, both model types must be governed through disciplined lifecycle management, including versioning, monitoring, and controlled deployment pipelines.</p>
+<p>These extensions build on established machine-learning platforms and lifecycle controls rather than replacing them, reinforcing the importance of shared foundations across predictive and generative AI.</p>
 </section>
-<section id="integration-and-workflow-enablement" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="integration-and-workflow-enablement"><span class="header-section-number">5.3</span> Integration and Workflow Enablement</h3>
+<section id="integration-and-workflow-enablement" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="integration-and-workflow-enablement"><span class="header-section-number">5.4</span> Integration and Workflow Enablement</h3>
 <p>Integration is where architecture either enables scale or becomes a bottleneck. Predictive models often operate behind the scenes, scoring transactions or customers in real time. Generative models sit closer to users, embedded in dashboards, workflow tools, and internal applications. A robust architecture exposes both capabilities through well-defined services and APIs, allowing them to be composed into end-to-end workflows. This approach enables predictive insights to trigger generative explanations or summaries without tightly coupling systems or duplicating logic.</p>
 </section>
-<section id="security-risk-and-governance-controls" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="security-risk-and-governance-controls"><span class="header-section-number">5.4</span> Security, Risk, and Governance Controls</h3>
+<section id="security-risk-and-governance-controls" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="security-risk-and-governance-controls"><span class="header-section-number">5.5</span> Security, Risk, and Governance Controls</h3>
 <p>Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks, including unintended data exposure and opaque outputs, while predictive models remain subject to established model risk management expectations. Banks must enforce strong access controls, data segregation, auditability, and continuous monitoring across both model types. Governance frameworks should be embedded into existing risk, compliance, and technology control processes, ensuring accountability without creating parallel oversight structures.</p>
+<p>Governance is most effective when it is designed to align with the underlying data-architecture pattern, rather than layered on after the fact. When access controls, lineage, and quality standards are embedded into the architecture itself, banks can enforce regulatory and risk requirements consistently without creating fragmented or duplicative oversight structures.</p>
 </section>
-<section id="operating-model-and-organizational-enablement" class="level3" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="operating-model-and-organizational-enablement"><span class="header-section-number">5.5</span> Operating Model and Organizational Enablement</h3>
+<section id="operating-model-and-organizational-enablement" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="operating-model-and-organizational-enablement"><span class="header-section-number">5.6</span> Operating Model and Organizational Enablement</h3>
 <p>Technology alone does not scale AI. The surrounding operating model is equally important. Many banks adopt a hub-and-spoke approach, centralizing platforms, standards, and governance while distributing use-case development across business and analytics teams. This model balances speed with control, enabling reuse while preventing fragmentation. Embedding AI capabilities directly into business workflows is what ultimately converts architectural investment into business value.</p>
 </section>
-<section id="designing-for-change-and-future-capability" class="level3" data-number="5.6">
-<h3 data-number="5.6" class="anchored" data-anchor-id="designing-for-change-and-future-capability"><span class="header-section-number">5.6</span> Designing for Change and Future Capability</h3>
+<section id="designing-for-change-and-future-capability" class="level3" data-number="5.7">
+<h3 data-number="5.7" class="anchored" data-anchor-id="designing-for-change-and-future-capability"><span class="header-section-number">5.7</span> Designing for Change and Future Capability</h3>
 <p>Finally, AI architecture must be designed with evolution in mind. Models will change, regulations will evolve, and new capabilities will emerge. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.</p>
 <hr>
 </section>
 </section>
-<section id="executive-conclusion" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="executive-conclusion"><span class="header-section-number">6</span> Executive Conclusion</h2>
+<section id="conclusion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
 <p>AI in banking is no longer a question of experimentation; it is a question of execution. Predictive AI has already proven its value across risk, fraud, and customer analytics. Generative AI extends these capabilities by interpreting unstructured information, accelerating decisions, and reducing operational friction. The opportunity lies not in choosing between them, but in integrating both within the same business workflows.</p>
 <p>Banks that succeed will avoid the trap of isolated pilots and instead focus on end-to-end transformation. That requires clarity on where predictive models drive decisions, where generative models augment human judgment, and how both are governed within a regulated environment. Without this clarity, AI investments remain fragmented and difficult to scale.</p>
 <p>Architecture is the decisive factor. A shared data foundation, disciplined model lifecycle management, secure integration patterns, and embedded governance turn AI from a collection of tools into an enterprise capability. Institutions that treat architecture as a first-class element of their AI roadmap position themselves to scale responsibly, adapt as technology evolves, and deliver durable business value.</p>
 <p>In the end, competitive advantage will not come from adopting the latest model first, but from building the foundations that allow AI—predictive and generative alike—to be applied consistently, safely, and at scale across the bank.</p>
+<hr>
+</section>
+<section id="reference" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="reference"><span class="header-section-number">7</span> Reference</h2>
+<p>McKinsey. (2025). Revisiting data architecture for next-gen data products</p>
 
 
 </section>
