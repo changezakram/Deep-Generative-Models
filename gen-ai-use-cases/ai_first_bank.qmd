@@ -216,8 +216,6 @@ Scotiabank deployed an agentic AI system to handle this complexity autonomously.
 
 Banks historically considered unstructured client communications "too variable to automate." Agentic AI proved otherwise. The agent handles irregularity that would break traditional automation—interpreting ambiguous requests, understanding context, and making routing decisions that previously required human judgment.
 
-Scotiabank isn't alone. Digital-native banks see similar results. Bunq's AI assistant, Finn, now handles over 90% of customer support tickets autonomously—demonstrating that customer service automation at scale works across both traditional banks with legacy systems and digital-first institutions built on modern infrastructure.<sup>4</sup>
-
 
 ### Capital Markets (Analyst Research Automation)
 
