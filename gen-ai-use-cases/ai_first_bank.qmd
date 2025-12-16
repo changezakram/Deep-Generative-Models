@@ -308,8 +308,7 @@ Moving from pilots to enterprise-scale requires deliberate choices about how age
 **6. Organize for Federated Development.** At scale, centralized AI teams become bottlenecks, while fully decentralized development leads to fragmentation. Successful banks define shared standards, interfaces, and protocols that allow business units to build domain-specific agents independently while remaining interoperable.
 
 > BlackRock’s Aladdin Copilot illustrates how a federated model works in practice. A central AI platform team defines shared communication standards, integration patterns, and governance controls. Individual business units then develop specialized agents—such as portfolio analysis, risk management, or compliance—on top of this common foundation.<sup>4</sup>
-
-This federated model becomes essential at scale. When you have five agents, coordination is manageable. When you have fifty, you need standardized protocols.
+> This federated model becomes essential at scale. When you have five agents, coordination is manageable. When you have fifty, you need standardized protocols.
 
 ---
 
