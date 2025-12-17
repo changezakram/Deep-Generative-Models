@@ -74,7 +74,7 @@ The key distinction from L1: these agents don't just provide recommendations—t
 
 L3 agents continuously monitor their environment, make decisions, and trigger actions without constant human involvement. They coordinate L1 and L2 agents to operate as closed-loop decision systems.
 
-![**Figure:** L3 agents operate autonomously in continuous observe-plan-act loops. They monitor environments, make decisions, execute actions, and adapt based on outcomes—all within governance boundaries. Unlike L2, humans are notified after decisions rather than approving before.](images/L3.png){fig-align="center" width="800"}
+![**Figure:** L3 agents operate autonomously in continuous observe-plan-act loops. They monitor environments, make decisions, execute actions, and adapt based on outcomes—all within governance boundaries. Unlike L2, humans are notified after decisions rather than approving before.](images/L-3.png){fig-align="center" width="800"}
 
 Rather than waiting for borrowers or advisors to identify refinancing opportunities, an L3 agent monitors market rates, borrower credit profiles, loan performance, and property valuations continuously. 
 
@@ -233,7 +233,7 @@ Most regional banks still run core systems on decades-old mainframes. The good n
 
 Moving from vision to execution requires a practical roadmap. Banks can introduce agentic AI through three distinct approaches, each suited to different organizational contexts, risk appetites, and strategic goals.
 
-![**Figure:** The strategic progression of agentic banking. While Smart Overlays deliver immediate efficiency gains with low technical debt, true Reinvention requires deeper integration and fundamental process redesign.](images/Pathways_AgenticBanking.png){fig-align="center" width="800"}
+![**Figure:** The strategic progression of agentic banking. While Smart Overlays deliver immediate efficiency gains with low technical debt, true Reinvention requires deeper integration and fundamental process redesign.](images/AgenticBankingPathways.png){fig-align="center" width="800"}
 
 
 **Pathway 1: Smart Overlay**
