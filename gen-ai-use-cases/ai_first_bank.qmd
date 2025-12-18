@@ -272,6 +272,8 @@ Most banks won't pursue all three approaches simultaneously. Smart pathways deli
 
 The key is matching the approach to the specific context: organizational readiness, regulatory constraints, technical debt, and strategic importance of the process being transformed.
 
+**Build vs. Buy in an Agentic World**
+
 Banks approaching these pathways face a fundamental question: what should we build ourselves, and where should we partner? The answer shapes timeline, cost, and competitive positioning.
 
 A mature vendor ecosystem has emerged across three distinct layers. At the foundation, platforms such as Amazon Bedrock, Microsoft Azure AI, and Google Vertex AI provide model hosting, orchestration, and compute—capabilities that are increasingly commoditized and rarely a source of differentiation.
