@@ -38,6 +38,21 @@ Fraud detection and financial crime monitoring represent another core applicatio
 
 Predictive AI also plays a central role in customer analytics, marketing, and sales optimization. Propensity, churn, and lifetime value models help banks anticipate customer behavior, personalize offers, and prioritize retention efforts. In commercial banking and wealth management, similar techniques support lead scoring, pipeline prioritization, and relationship deepening. In many institutions, these models quietly drive material revenue uplift while improving relevance and reducing wasted effort.
 
+### Core Predictive AI Applications
+
+| Use Case | Business Problem | Measurable Impact |
+|----------|-----------------|-------------------|
+| **Credit Risk Models** | Estimate default probability and loss severity across portfolios | Improved capital allocation, regulatory compliance, consistent underwriting decisions |
+| **Risk-Based Pricing** | Set loan pricing based on individual customer risk assessment | Balanced profitability and risk, competitive pricing without margin erosion |
+| **Stress Testing** | Assess financial stability under adverse economic scenarios | Regulatory compliance, proactive capital planning, risk mitigation |
+| **Fraud Detection** | Identify fraudulent transactions in real time | Reduced fraud losses, fewer false positives, improved customer experience |
+| **Customer Churn Models** | Predict likelihood of customer attrition | Targeted retention campaigns, reduced customer acquisition costs |
+| **Customer Lifetime Value** | Forecast long-term customer profitability | Optimized marketing spend, prioritized relationship investment |
+| **Propensity Models** | Identify customers likely to respond to specific offers | Higher conversion rates, improved campaign ROI, reduced marketing waste |
+| **Channel Performance** | Optimize resource allocation across branches, digital, and ATM networks | Improved operational efficiency, better customer access, reduced costs |
+
+
+
 ::: callout-note
 ### Where Predictive AI Reaches Its Limits
 
@@ -64,11 +79,37 @@ Generative AI has significantly advanced conversational interfaces, enabling mor
 
 Generative AI also enables a new interaction model for analytics, often referred to as Generative BI. Business users can ask questions in natural language and receive contextual explanations rather than relying solely on static dashboards. When grounded in curated semantic models and governed appropriately, this capability lowers the barrier to insight while preserving analytical rigor, particularly for executives and business leaders.
 
+### Core Generative AI Applications
+
+| Use Case | Business Problem | Measurable Impact |
+|----------|-----------------|-------------------|
+| **Credit Memo Generation** | Manual underwriting documentation is slow and inconsistent | JPMorgan COiN: 360,000 hours saved annually; Zest AI: days to minutes turnaround |
+| **Contract Review & Analysis** | Legal document review creates underwriting bottlenecks | Faster identification of unusual terms, reduced legal review time, consistent analysis |
+| **Document Summarization** | Analysts spend hours reading research reports and compliance docs | Morgan Stanley: 70,000+ reports accessible via AskResearchGPT; EY: 90% review time reduction |
+| **Customer Service Assistants** | High call volumes, long wait times, inconsistent service quality | Bank of America Erica: 2B+ interactions, 44s avg resolution; NatWest Cora+: 50% fewer escalations |
+| **Employee Knowledge Assistants** | Employees struggle to navigate policies and institutional knowledge | Faster policy retrieval, reduced training time, improved compliance adherence |
+| **Generative BI** | Executives need quick insights without waiting for analyst reports | Power BI Copilot: 20% analyst efficiency gain, 2.4 hours saved per week per user |
+| **Fraud Investigation Support** | Investigators manually review cases and draft summaries | Mastercard: 85% reduction in false positives, faster case resolution |
+| **Meeting Notes & Follow-up** | Advisors spend significant time on administrative tasks post-meeting | Morgan Stanley Debrief: 10-15 hours saved per advisor per week |
+
+
+
 ::: callout-note
 ### How Generative AI Complements Predictive Decisions
 
 Across these use cases, generative AI does not replace predictive decision-making. Instead, it surrounds it. Generative models prepare inputs, interpret outputs, and accelerate downstream actions by translating analytical results into human-readable form. Predictive models continue to determine *what* decision should be made; generative models help humans understand *why* and act more efficiently.
 :::
+
+### Real-World Impact: Where Predictive and Generative AI Work Together
+
+The value of combining predictive and generative AI is most visible in production banking workflows. In **credit underwriting**, predictive models still drive the risk decision, but generative AI accelerates the process by analyzing financial statements, extracting key metrics, and summarizing legal clauses. JPMorgan's COiN platform saved over 360,000 hours by automating legal document reviews, while Zest AI reduced underwriting timelines from days to minutes and increased approval rates by up to 25% without adding credit risk.
+
+In **fraud detection**, predictive models identify anomalies in transaction patterns, but generative AI enhances investigator productivity by summarizing account histories, flagging unusual activity narratives, and drafting case summaries. Mastercard reported a 20% improvement in detection accuracy and an 85% reduction in false positives by combining both capabilities within a single decisioning workflow.
+
+In **wealth management**, predictive models power portfolio analytics and risk assessments, while generative AI handles post-meeting follow-up. Morgan Stanley's AI @ Morgan Stanley Debrief automates meeting notes and generates personalized client summaries, saving advisors 10–15 hours per week and allowing them to focus on higher-value client interactions rather than administrative tasks.
+
+These examples share a common pattern: predictive AI handles structured decision-making, while generative AI reduces friction in preparing inputs, interpreting results, and executing follow-up actions. The impact comes not from deploying either capability in isolation, but from integrating both into end-to-end workflows where decisions must be accurate, explainable, and operationally efficient.
+
 
 ---
 
