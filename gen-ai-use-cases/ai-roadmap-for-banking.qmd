@@ -63,13 +63,11 @@ Across these domains, predictive AI excels where outcomes are measurable, histor
 
 ## Generative AI Use Cases in Banking
 
-As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. In regulated environments, scalable AI depends less on individual models and more on shared data foundations, consistent governance, and reusable platform capabilities.
+Generative AI extends the scope of what AI can support in banking. Rather than predicting outcomes, these models interpret unstructured information, synthesize context, and communicate in human language—capabilities that address long-standing operational bottlenecks.
 
 ### Document Intelligence and Knowledge Processing
 
 One of the most immediate and high-impact applications of generative AI in banking is document intelligence. Banks process vast volumes of contracts, financial statements, regulatory guidance, policies, and internal reports. Generative models can summarize lengthy documents, extract key themes, highlight risks, and draft standardized outputs such as credit memos, compliance summaries, or internal briefs. Human oversight remains essential, but generative AI dramatically reduces the time required to move from raw information to informed decision-making.
-
-A platform-oriented architecture enables these generative AI experiences to be contextual rather than generic. When customer, product, and interaction data are unified on shared foundations, generative interfaces can adapt responses, insights, and recommendations as customer needs evolve. Without this architectural coherence, generative capabilities risk becoming isolated features rather than meaningful enhancements to customer experience.
 
 ### Customer and Employee Assistants
 
@@ -100,7 +98,9 @@ Generative AI also enables a new interaction model for analytics, often referred
 Across these use cases, generative AI does not replace predictive decision-making. Instead, it surrounds it. Generative models prepare inputs, interpret outputs, and accelerate downstream actions by translating analytical results into human-readable form. Predictive models continue to determine *what* decision should be made; generative models help humans understand *why* and act more efficiently.
 :::
 
-### Real-World Impact: Where Predictive and Generative AI Work Together
+---
+
+## Real-World Impact: Where Predictive and Generative AI Work Together
 
 The value of combining predictive and generative AI is most visible in production banking workflows. In **credit underwriting**, predictive models still drive the risk decision, but generative AI accelerates the process by analyzing financial statements, extracting key metrics, and summarizing legal clauses. JPMorgan's COiN platform saved over 360,000 hours by automating legal document reviews, while Zest AI reduced underwriting timelines from days to minutes and increased approval rates by up to 25% without adding credit risk.
 
@@ -110,6 +110,7 @@ In **wealth management**, predictive models power portfolio analytics and risk a
 
 These examples share a common pattern: predictive AI handles structured decision-making, while generative AI reduces friction in preparing inputs, interpreting results, and executing follow-up actions. The impact comes not from deploying either capability in isolation, but from integrating both into end-to-end workflows where decisions must be accurate, explainable, and operationally efficient.
 
+These use cases—both predictive and generative—share a common requirement: they must operate on a consistent data foundation, be governed rigorously, and integrate into existing workflows. The architecture that enables this integration determines whether AI investments remain fragmented pilots or scale into enterprise capabilities.
 
 ---
 
@@ -147,13 +148,19 @@ Integration is where architecture either enables scale or becomes a bottleneck. 
 
 Finally, AI architecture must be designed with evolution in mind. Models will change, regulations will evolve, and new capabilities will emerge. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
 
+
+While architecture provides the technical foundation, governance and risk management determine whether that foundation can be deployed safely in a regulated banking environment.
 ---
 
 ## Governance and Risk Management
 
+Architecture defines what can be built. Governance and risk management define what should be deployed. In regulated banking, these are inseparable—AI systems must satisfy both technical requirements and regulatory expectations before they can operate at scale. The governance frameworks that make this possible must be embedded into architecture from the start, not layered on afterward.
+
 Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks, including unintended data exposure and opaque outputs, while predictive models remain subject to established model risk management expectations. Banks must enforce strong access controls, data segregation, auditability, and continuous monitoring across both model types. Governance frameworks should be embedded into existing risk, compliance, and technology control processes, ensuring accountability without creating parallel oversight structures.
 
 Governance is most effective when it is designed to align with the underlying data-architecture pattern, rather than layered on after the fact. When access controls, lineage, and quality standards are embedded into the architecture itself, banks can enforce regulatory and risk requirements consistently without creating fragmented or duplicative oversight structures.
+
+Within this governance framework, model risk management deserves particular attention as both a regulatory requirement and operational necessity.
 
 ### Model Risk Management for Predictive and Generative AI
 
@@ -177,11 +184,12 @@ Security requirements for AI systems extend beyond traditional data protection t
 
 AI systems in banking operate under extensive regulatory oversight. Compliance frameworks must address model explainability, fairness, consumer protection, and regulatory reporting requirements. Auditability is particularly important—regulators and internal audit teams must be able to reconstruct decisions, validate that models operate as intended, and verify that governance controls are effective. This requires comprehensive documentation, version control, and the ability to reproduce model outputs on demand. Banks that treat compliance as an afterthought face material regulatory risk; those that embed it into architecture and operating processes scale more effectively.
 
+Governance frameworks and technical architecture are necessary but not sufficient. Organizations must also define how AI capabilities will be built, deployed, and sustained—the operating model that turns strategy into execution.
 ---
 
 ## Operating Model and Organization
 
-Technology alone does not scale AI. The surrounding operating model is equally important. Many banks adopt a hub-and-spoke approach, centralizing platforms, standards, and governance while distributing use-case development across business and analytics teams. This model balances speed with control, enabling reuse while preventing fragmentation. Embedding AI capabilities directly into business workflows is what ultimately converts architectural investment into business value.
+Successful AI programs require more than good architecture and strong governance—they require the right organizational structure, talent strategy, and change management approach. The operating model determines how decisions are made, how resources are allocated, and how capabilities are built and sustained across the enterprise.
 
 Rather than pursuing large, multi-year modernization efforts, many banks make progress through progressive modernization—starting with a small number of high-value journeys or data products and expanding outward. This approach allows teams to deliver measurable impact early while maintaining architectural coherence and reducing execution risk.
 
