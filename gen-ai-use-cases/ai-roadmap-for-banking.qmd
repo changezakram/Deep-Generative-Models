@@ -119,7 +119,6 @@ As banks move from isolated analytics use cases to AI-enabled data products, arc
 
 Traditional banking technology stacks are often organized around products and channels, reinforcing silos that complicate integration and slow change. A platform-oriented architecture helps break these silos by aligning data, analytics, and technology capabilities around shared foundations, making it easier to evolve systems over time and scale intelligent capabilities consistently.
 
-
 ### Data Foundations and Semantic Consistency
 
 A scalable AI roadmap depends less on individual models and more on the underlying architecture that supports them. The architecture below illustrates a **capability-based data and AI foundation** that enables both predictive and generative AI. Rather than centering on specific tools or model types, it shows how data is created, acquired, standardized, processed, and ultimately consumed across analytical and operational workflows, with governance applied end-to-end.
@@ -144,13 +143,19 @@ These extensions build on established machine-learning platforms and lifecycle c
 
 Integration is where architecture either enables scale or becomes a bottleneck. Predictive models often operate behind the scenes, scoring transactions or customers in real time. Generative models sit closer to users, embedded in dashboards, workflow tools, and internal applications. A robust architecture exposes both capabilities through well-defined services and APIs, allowing them to be composed into end-to-end workflows. This approach enables predictive insights to trigger generative explanations or summaries without tightly coupling systems or duplicating logic.
 
-### Security, Risk, and Governance Controls
+### Designing for Change and Future Capability
+
+Finally, AI architecture must be designed with evolution in mind. Models will change, regulations will evolve, and new capabilities will emerge. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
+
+---
+
+## Governance and Risk Management
 
 Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks, including unintended data exposure and opaque outputs, while predictive models remain subject to established model risk management expectations. Banks must enforce strong access controls, data segregation, auditability, and continuous monitoring across both model types. Governance frameworks should be embedded into existing risk, compliance, and technology control processes, ensuring accountability without creating parallel oversight structures.
 
 Governance is most effective when it is designed to align with the underlying data-architecture pattern, rather than layered on after the fact. When access controls, lineage, and quality standards are embedded into the architecture itself, banks can enforce regulatory and risk requirements consistently without creating fragmented or duplicative oversight structures.
 
-#### Model Risk Management for Predictive and Generative AI
+### Model Risk Management for Predictive and Generative AI
 
 Model risk management remains a regulatory requirement and operational necessity for both predictive and generative AI in banking. The Federal Reserve's SR 11-7 guidance on model risk management applies equally to traditional credit models and to generative AI systems that support business decisions. While the underlying principles remain consistent—effective challenge, ongoing monitoring, independent validation—the application of these principles must evolve to address the distinct characteristics of generative models.
 
@@ -164,23 +169,31 @@ Third-party and vendor-provided models present additional challenges. Many banks
 
 As generative AI becomes more embedded in decision workflows, the boundary between "model" and "application" blurs. A customer-facing assistant or document summarization tool may not fit traditional model definitions, yet it influences outcomes, carries reputational risk, and must be governed accordingly. Banks are adapting MRM frameworks to cover these systems, extending validation principles to AI-enabled products rather than limiting oversight to standalone statistical models. This broader view ensures that governance keeps pace with how AI is actually deployed, rather than being constrained by legacy definitions.
 
+### Security and Access Controls
 
-### Operating Model and Organizational Enablement
+Security requirements for AI systems extend beyond traditional data protection to include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access. Generative models pose unique risks—they can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Defense-in-depth strategies, including input validation, output filtering, and continuous monitoring, are essential.
+
+### Regulatory Compliance and Auditability
+
+AI systems in banking operate under extensive regulatory oversight. Compliance frameworks must address model explainability, fairness, consumer protection, and regulatory reporting requirements. Auditability is particularly important—regulators and internal audit teams must be able to reconstruct decisions, validate that models operate as intended, and verify that governance controls are effective. This requires comprehensive documentation, version control, and the ability to reproduce model outputs on demand. Banks that treat compliance as an afterthought face material regulatory risk; those that embed it into architecture and operating processes scale more effectively.
+
+---
+
+## Operating Model and Organization
 
 Technology alone does not scale AI. The surrounding operating model is equally important. Many banks adopt a hub-and-spoke approach, centralizing platforms, standards, and governance while distributing use-case development across business and analytics teams. This model balances speed with control, enabling reuse while preventing fragmentation. Embedding AI capabilities directly into business workflows is what ultimately converts architectural investment into business value.
 
 Rather than pursuing large, multi-year modernization efforts, many banks make progress through progressive modernization—starting with a small number of high-value journeys or data products and expanding outward. This approach allows teams to deliver measurable impact early while maintaining architectural coherence and reducing execution risk.
 
-### Operating Models for Scaling AI
+### Operating Model Archetypes
 
 As banks move beyond experimentation toward enterprise-wide AI, the operating model becomes a key enabler of scale. An operating model is the blueprint for how strategy is put into action — defining roles, decision rights, resource allocation, and mechanisms for cross-functional execution. High-performing institutions treat the operating model as an integral part of their AI roadmap, aligning structure, talent, governance, and processes so that capabilities can be delivered consistently across the organization.
 
 Different operating archetypes have emerged in practice. Institutions early in their AI journeys often adopt a highly centralized model, with strategic steering, standards, and execution coordinated from a central team. This approach helps allocate scarce talent, build cohesive capability, and guide consistent risk, technology, and data governance decisions enterprise-wide. As maturity grows, many banks evolve toward a hybrid or federated model, wherein strategic oversight and standard setting remain centralized while execution and domain ownership are progressively delegated to business units. At the highest maturity levels, individual functions can prioritize and operationalize domain-specific AI activities while still adhering to enterprise guardrails.
 
-No single model fits all banks. Choosing the right approach requires balancing speed and innovation with risk, regulatory alignment, and cultural norms. Centralized models can accelerate early scaling and reduce duplication, while federated or decentralized designs can improve domain relevance and responsiveness. Whatever the choice, it should be tailored to the institution’s structure, talent, and strategic priorities, with flexibility to evolve over time.
+No single model fits all banks. Choosing the right approach requires balancing speed and innovation with risk, regulatory alignment, and cultural norms. Centralized models can accelerate early scaling and reduce duplication, while federated or decentralized designs can improve domain relevance and responsiveness. Whatever the choice, it should be tailored to the institution's structure, talent, and strategic priorities, with flexibility to evolve over time.
 
-
-#### Talent and Organizational Readiness
+### Talent and Organizational Readiness
 
 Technology and architecture enable AI at scale, but people ultimately determine whether those capabilities translate into business value. The talent required to build, deploy, and govern AI systems remains scarce, and the skills gap represents one of the most significant barriers to execution. Banks must simultaneously develop new capabilities, upskill existing teams, and make strategic decisions about where to build expertise internally versus where to partner or acquire it externally.
 
@@ -197,11 +210,6 @@ Partnerships with technology providers, consulting firms, and academic instituti
 **Change management and user adoption** are often underestimated. AI capabilities that sit unused because teams don't trust them, don't understand them, or find them too difficult to integrate into existing workflows represent wasted investment. Successful deployments involve users early, incorporate feedback iteratively, and design for simplicity. Training and communication matter, but even more important is demonstrating tangible value quickly. When AI tools save time, reduce errors, or make work easier, adoption follows naturally. When they add complexity or require behavior change without clear benefit, resistance is predictable.
 
 Organizational readiness extends beyond skills to include culture and mindset. Banks with strong AI programs cultivate experimentation, tolerate intelligent failure, and reward learning. They establish clear accountability for AI initiatives, aligning incentives so that business leaders are motivated to adopt new capabilities rather than defend existing processes. Leadership commitment is non-negotiable—AI programs that lack sustained executive sponsorship, dedicated resources, and organizational focus struggle to move beyond pilots, regardless of technical merit.
-
-
-### Designing for Change and Future Capability
-
-Finally, AI architecture must be designed with evolution in mind. Models will change, regulations will evolve, and new capabilities will emerge. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
 
 ---
 
@@ -269,7 +277,18 @@ Ultimately, scaling AI in banking is as much an organizational challenge as a te
 
 ---
 
-## Reference
+## References
 
 [1] McKinsey. (2025). Revisiting data architecture for next-gen data products
+
 [2] McKinsey. (2025). Next-gen banking success starts with the right data architecture
+
+[3] Bloomberg. (2017). JPMorgan Software Does in Seconds What Took Lawyers 360,000 Hours. https://www.bloomberg.com/news/articles/2017-02-28/jpmorgan-marshals-an-army-of-developers-to-automate-high-finance
+
+[4] Zest AI. (2024). Zest AI Launches LuLu Strategy Module to Expand Generative AI to Financial Institutions. https://www.zest.ai/company/announcements/zest-ai-launches-lulu-strategy-module-to-expand-generative-ai-to-financial-institutions/
+
+[5] Mastercard. (2024). Mastercard supercharges consumer protection with Gen AI. https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/
+
+[6] Morgan Stanley. (2024). AI @ Morgan Stanley Debrief Launch. https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch
+
+[7] Board of Governors of the Federal Reserve System. (2011). SR 11-7: Guidance on Model Risk Management. https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm
