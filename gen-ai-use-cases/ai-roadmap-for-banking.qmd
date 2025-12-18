@@ -91,7 +91,6 @@ Generative AI also enables a new interaction model for analytics, often referred
 | **Meeting Notes & Follow-up** | Advisors spend significant time on administrative tasks post-meeting | Morgan Stanley Debrief: 10-15 hours saved per advisor per week |
 
 
-
 ::: callout-note
 ### How Generative AI Complements Predictive Decisions
 
@@ -150,6 +149,7 @@ Finally, AI architecture must be designed with evolution in mind. Models will ch
 
 
 While architecture provides the technical foundation, governance and risk management determine whether that foundation can be deployed safely in a regulated banking environment.
+
 ---
 
 ## Governance and Risk Management
