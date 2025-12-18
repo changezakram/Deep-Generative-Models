@@ -67,6 +67,8 @@ Consider compliance documentation. Writing suspicious activity reports (SARs), r
 
 L2 agents automate classification, extraction, summarization, and drafting while enforcing compliance standards. These systems have cut turnaround time by 80% and improved processing accuracy, allowing compliance teams to handle higher volumes with better quality.<sup>3</sup>
 
+L2 agents automate classification, extraction, summarization, and drafting while enforcing compliance standards. EY's Document Intelligence Platform demonstrates this capability at scale: reducing document review time by 90%, cutting costs by 80%, and improving accuracy by 25%.<sup>12</sup>
+
 The key distinction from L1: these agents don't just provide recommendations—they generate final work products and execute regulated processes within defined guardrails.
 
 
@@ -458,3 +460,5 @@ The competitive advantage goes to banks that deploy agents systematically rather
 [10] Jiang et al. (2025). Adaptation of Agentic AI.
 
 [11] MIT Sloan Management Review. (2025). How organizations can achieve big value with smaller AI efforts.
+
+[12] EY. (2024). Document Intelligence Platform.
