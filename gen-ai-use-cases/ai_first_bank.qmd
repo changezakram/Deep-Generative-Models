@@ -82,7 +82,7 @@ When conditions align, the agent triggers eligibility checks through L2 agents, 
 
 > **Implementation Reality:** Most banks operate primarily at L1 today and are scaling L2 capabilities. L1 agents prepare intelligence, L2 agents execute regulated processes, and L3 agents make and act on decisions independently. Governed L3 use cases represent the next competitive frontier and the next major governance challenge.
 
-Recent MIT Sloan research backs up what successful banks are learning: sustainable AI value comes from "small t" transformations—incremental improvements that build capability step by step—not sweeping enterprise redesigns that attempt to transform everything at once.
+Recent MIT Sloan research backs up what successful banks are learning: sustainable AI value comes from "small t" transformations—incremental improvements that build capability step by step—not sweeping enterprise redesigns that attempt to transform everything at once.<sup>11</sup>
 
 The L1 → L2 → L3 progression reflects this reality. Banks that spend time mastering L1 insight agents develop the governance muscle, technical skills, and organizational confidence they need before moving to L2 process orchestration. Those that skip ahead to L3 autonomous decisioning without that foundation tend to hit the same problems: failed pilots, compliance issues, teams that resist the technology.
 
@@ -274,7 +274,11 @@ The key is matching the approach to the specific context: organizational readine
 
 Banks approaching these pathways face a fundamental question: what should we build ourselves, and where should we partner? The answer shapes timeline, cost, and competitive positioning.
 
-A mature vendor ecosystem has emerged across three distinct layers. At the foundation, platforms such as Amazon Bedrock, Microsoft Azure AI, and Google Vertex AI provide model hosting, orchestration, and compute—commodity capabilities where custom development rarely creates advantage. Above that, cross-vendor orchestration tools like ServiceNow’s AI Platform coordinate agents across systems, while solutions such as Salesforce Agentforce offer pre-built agents for CRM and compliance use cases. Finally, banking-specific platforms from providers like Temenos and Finastra embed domain expertise directly into core workflows.
+A mature vendor ecosystem has emerged across three distinct layers. At the foundation, platforms such as Amazon Bedrock, Microsoft Azure AI, and Google Vertex AI provide model hosting, orchestration, and compute—capabilities that are increasingly commoditized and rarely a source of differentiation.
+
+Above this layer, cross-vendor orchestration platforms such as ServiceNow coordinate agents across systems, while products like Salesforce Agentforce deliver pre-built agents for common enterprise functions such as CRM and compliance.
+
+Finally, banking-specific platforms from providers like Temenos and Finastra embed domain expertise directly into core workflows, accelerating adoption in regulated environments.
 
 The pattern among leading banks is clear: partner for infrastructure speed, build for competitive differentiation. Infrastructure and orchestration come from vendors. Proprietary risk models, customer intelligence engines, and strategic decisioning logic get built in-house. Central governance—including policy controls, compliance validation, and performance monitoring—always stays internal.
 
@@ -453,4 +457,4 @@ The competitive advantage goes to banks that deploy agents systematically rather
 
 [10] Jiang et al. (2025). Adaptation of Agentic AI.
 
-[11] MIT Sloan Management Review. (2025). How organizations can achieve big value with smaller AI efforts
+[11] MIT Sloan Management Review. (2025). How organizations can achieve big value with smaller AI efforts.
