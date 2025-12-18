@@ -16,6 +16,8 @@ Banks are not new to artificial intelligence. For decades, predictive models hav
 
 Generative AI does not replace predictive AI. It complements it. Banks that frame their strategy as “GenAI versus traditional analytics” risk discarding proven capabilities rather than building on them. The real opportunity lies in combining both forms of intelligence within end-to-end banking workflows.
 
+This roadmap examines how banks can combine both AI paradigms effectively—exploring core use cases, the architecture required to scale them, governance frameworks to manage risk, operating models to sustain capability, and a practical path from strategy to execution
+
 ## Predictive AI and Generative AI: Distinct Roles, Shared Value
 
 Predictive AI and generative AI solve fundamentally different problems. **Predictive models** estimate probabilities—the likelihood of default, fraud, or customer churn—and remain indispensable for risk-driven decisions. **Generative models**, by contrast, specialize in language, synthesis, and content creation. They can read documents, summarize large volumes of information, draft narratives, and support decision-makers by reducing cognitive and operational load.
@@ -115,9 +117,7 @@ These use cases—both predictive and generative—share a common requirement: t
 
 ## Architecture to Enable AI in Banking
 
-As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. In regulated environments, scalable AI depends less on individual models and more on shared data foundations, consistent governance, and reusable platform capabilities.
-
-Traditional banking technology stacks are often organized around products and channels, reinforcing silos that complicate integration and slow change. A platform-oriented architecture helps break these silos by aligning data, analytics, and technology capabilities around shared foundations, making it easier to evolve systems over time and scale intelligent capabilities consistently.
+As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. Traditional banking technology stacks—organized around products and channels—reinforce silos that complicate integration and slow change. A platform-oriented architecture breaks these silos by aligning data, analytics, and technology capabilities around shared foundations. In regulated environments, scalable AI depends less on individual models and more on consistent data foundations, reusable platform capabilities, and embedded governance that makes it easier to evolve systems over time.
 
 ### Data Foundations and Semantic Consistency
 
