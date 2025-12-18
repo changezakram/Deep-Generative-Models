@@ -185,6 +185,7 @@ Security requirements for AI systems extend beyond traditional data protection t
 AI systems in banking operate under extensive regulatory oversight. Compliance frameworks must address model explainability, fairness, consumer protection, and regulatory reporting requirements. Auditability is particularly important—regulators and internal audit teams must be able to reconstruct decisions, validate that models operate as intended, and verify that governance controls are effective. This requires comprehensive documentation, version control, and the ability to reproduce model outputs on demand. Banks that treat compliance as an afterthought face material regulatory risk; those that embed it into architecture and operating processes scale more effectively.
 
 Governance frameworks and technical architecture are necessary but not sufficient. Organizations must also define how AI capabilities will be built, deployed, and sustained—the operating model that turns strategy into execution.
+
 ---
 
 ## Operating Model and Organization
