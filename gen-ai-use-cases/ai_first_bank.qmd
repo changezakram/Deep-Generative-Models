@@ -120,6 +120,20 @@ Effective agent governance requires three foundational controls:
 
 The institutions that successfully scale agentic AI will be those that build governance into agent design from day one, not as an afterthought. 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Further Reading: Agentic AI Security
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This governance framework addresses regulatory compliance and model risk management. However, agentic AI also introduces operational security risks—prompt injection attacks, tool hijacking, and adversarial manipulation—that traditional IT controls weren't designed to handle. For detailed analysis of these threats and layered defense strategies, see <a href="https://changezakram.github.io/agentic-ai/agentic_ai_safety.html">Building Safe and Secure Agentic AI</a>.</p>
+</div>
+</div>
+
 ---
 
 ## Experience Agents vs. Domain Agents
@@ -380,20 +394,6 @@ Banks scaling AI must build governance alongside technical capabilities. This me
 The payoff: strong governance enables confident deployment of L3 autonomous agents. When controls, monitoring, and oversight ensure agents operate within defined boundaries, banks can move faster because risk is managed, not avoided.
 
 In a regulated industry, treating governance as a capability rather than an obstacle becomes a competitive advantage that enables faster, safer AI scaling.
-
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Further Reading: Agentic AI Security
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This governance framework addresses regulatory compliance and model risk management. However, agentic AI also introduces operational security risks—prompt injection attacks, tool hijacking, and adversarial manipulation—that traditional IT controls weren't designed to handle. For detailed analysis of these threats and layered defense strategies, see <a href="https://changezakram.github.io/agentic-ai/agentic_ai_safety.html">Building Safe and Secure Agentic AI</a>.</p>
-</div>
-</div>
 
 ---
 
