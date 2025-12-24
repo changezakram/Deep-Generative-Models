@@ -319,7 +319,7 @@ Moving from pilots to enterprise-scale requires deliberate choices about how age
 
 **2. Rewire Entire Business Domains.** Successful scaling requires a shift in scope from "isolated processes" to "entire business domains." Leading banks avoid the "peanut butter approach"—spreading investment thinly across dozens of disconnected pilots. Instead, they select one of the bank's core subdomains (e.g., Consumer Lending or Transaction Banking) and transform it end-to-end using one of the three pathways described in Section 7.
 
-This domain-first approach creates a compounding value effect: an agent built to analyze credit risk for Underwriting can be reused for Portfolio Monitoring, while the data pipeline built for Sales can fuel Retention offers. By rewiring a full domain, you capture P&L impact that scattered use cases cannot achieve.
+This domain-first approach creates a **compounding value effect**: an agent built to analyze credit risk for *Underwriting* can be reused for *Portfolio Monitoring*, while the data pipeline built for *Sales* can fuel *Retention* offers.
 
 
 **3. Build reusable technology foundations.** Three capabilities distinguish successful implementations: an agentic mesh (composable orchestration layer), a strong ontology capturing workflows and decisions, and robust trust and security frameworks including end-to-end encryption.
