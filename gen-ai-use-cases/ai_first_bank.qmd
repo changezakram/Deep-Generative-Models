@@ -248,7 +248,7 @@ The fastest way to see results: wrap AI agents around existing processes without
 
 Consider treasury operations. Most banks already use robotic process automation (RPA) for routine cash sweeps and balance reconciliation. A smart overlay elevates this foundation with an AI agent that makes real-time decisions on liquidity optimization, pricing, and hedging based on market conditions.
 
-This works best when banks have clearly documented standard operating procedures. The AI agent follows these documented steps, ensuring consistency and compliance while adding intelligence. The benefit is speed: banks unlock near-term productivity gains without large-scale system replacements.
+This works best when banks have clearly documented standard operating procedures. The AI agent follows these documented steps, ensuring consistency and compliance while adding intelligence. The benefit is speed: banks unlock near-term productivity gains without large-scale system replacements. However, Smart Overlay delivers maximum value when applied to a complete business domain (e.g., entire Consumer Lending workflow) rather than scattered across isolated use cases.
 
 **Pathway 2: Agentic by Design**
 
@@ -307,6 +307,8 @@ Adoption is accelerating. Customer service applications of generative AI in fina
 
 These improvements compound. Better customer experience drives retention, retention increases lifetime value, and lifetime value justifies further AI investment. Banks that deployed AI early are now scaling L2 and L3 agents across departments. Late adopters face a widening competitive gap.
 
+It is important to note that these economic gains are rarely achieved by optimizing single, isolated tasks. The most significant ROI comes when these pathways are applied to a **full business domain** (like Commercial Real Estate Lending) rather than a fragmented process (like "reading emails"). This "Domain Strategy" ensures that the efficiency gains in one step flow through to the rest of the value chain.
+
 ---
 
 ## Scaling Agentic AI: Six Critical Principles
@@ -315,7 +317,10 @@ Moving from pilots to enterprise-scale requires deliberate choices about how age
 
 **1. Define the value creation thesis.** Leading banks are intentional about which use cases to lead versus follow, and about expected impact through frontline productivity gains, customer experience improvements, and competitive differentiation.
 
-**2. Reimagine workflows end-to-end.** Leading banks don't just layer AI onto existing processes—they redesign entire workflows for human-agent collaboration. Because agents work across departments, this often means rethinking organizational boundaries.
+**2. Rewire Entire Business Domains.** Successful scaling requires a shift in scope from "isolated processes" to "entire business domains." Leading banks avoid the "peanut butter approach"—spreading investment thinly across dozens of disconnected pilots. Instead, they select one of the bank's core subdomains (e.g., Consumer Lending or Transaction Banking) and transform it end-to-end using one of the three pathways described in Section 7.
+
+This domain-first approach creates a compounding value effect: an agent built to analyze credit risk for Underwriting can be reused for Portfolio Monitoring, while the data pipeline built for Sales can fuel Retention offers. By rewiring a full domain, you capture P&L impact that scattered use cases cannot achieve.
+
 
 **3. Build reusable technology foundations.** Three capabilities distinguish successful implementations: an agentic mesh (composable orchestration layer), a strong ontology capturing workflows and decisions, and robust trust and security frameworks including end-to-end encryption.
 
