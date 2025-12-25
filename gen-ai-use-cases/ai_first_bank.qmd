@@ -207,11 +207,11 @@ Deal structuring uses pricing agents that analyze discount patterns across relat
 
 ### Risk Management (Stress Testing and CCAR)
 
-CCAR stress testing traditionally requires months of manual work—scenario construction, data preparation, and model execution across dozens of handoffs.
+Multi-agent architecture transforms CCAR preparation by automating manual handoffs while preserving regulatory oversight.
 
 ![**Figure:** L2 workflow for CCAR stress testing showing how agents compress months of scenario preparation into hours while maintaining human oversight. Experience Agents configure scenarios, the Intelligence Layer orchestrates execution with embedded risk controls, Domain Agents run stress calculations on governed data, and Risk Analysts approve final capital impact results.](images/Stress-Testing-Agents_.png){fig-align="center" width="800"}
 
-Agents automate these manual steps while risk analysts retain approval authority, compressing the entire process from months to hours.
+Scenario mapping, data assembly, and stress calculations now execute in hours rather than months—with risk officers approving final results before submission to regulators.
 
 **Scenario:** Regulatory stress testing and scenario analysis for CCAR compliance.
 
