@@ -209,7 +209,9 @@ Deal structuring uses pricing agents that analyze discount patterns across relat
 
 The workflow below illustrates how agentic systems compress CCAR stress testing timelines while preserving regulatory oversight.
 
-![**Figure:** L2 stress testing workflow showing experience interface for scenario setup and oversight, intelligence-layer orchestration enforcing policy and risk controls, domain agents executing regulatory stress tests on governed data, and human risk analysts approving final results.](images/Stress-Testing-Agents.png){fig-align="center" width="800"}
+![**Figure:** L2 stress testing workflow showing experience interface for scenario setup and oversight, intelligence-layer orchestration enforcing policy and risk controls, domain agents executing regulatory stress tests on governed data, and human risk analysts approving final results.](images/Stress-Testing-Agents_.png){fig-align="center" width="800"}
+
+Timelines compress by removing manual handoffs in scenario mapping, data assembly, and model execution—while keeping human approval intact.
 
 **Scenario:** Regulatory stress testing and scenario analysis for CCAR compliance.
 
