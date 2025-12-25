@@ -207,11 +207,11 @@ Deal structuring uses pricing agents that analyze discount patterns across relat
 
 ### Risk Management (Stress Testing and CCAR)
 
-The workflow below illustrates how agentic systems compress CCAR stress testing timelines while preserving regulatory oversight.
+CCAR stress testing traditionally requires months of manual work—scenario construction, data preparation, and model execution across dozens of handoffs.
 
 ![**Figure:** L2 workflow for CCAR stress testing showing how agents compress months of scenario preparation into hours while maintaining human oversight. Experience Agents configure scenarios, the Intelligence Layer orchestrates execution with embedded risk controls, Domain Agents run stress calculations on governed data, and Risk Analysts approve final capital impact results.](images/Stress-Testing-Agents_.png){fig-align="center" width="800"}
 
-Timelines compress by removing manual handoffs in scenario mapping, data assembly, and model execution—while keeping human approval intact.
+Agents automate these manual steps while risk analysts retain approval authority, compressing the entire process from months to hours.
 
 **Scenario:** Regulatory stress testing and scenario analysis for CCAR compliance.
 
