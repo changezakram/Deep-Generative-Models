@@ -215,7 +215,7 @@ Timelines compress by removing manual handoffs in scenario mapping, data assembl
 
 **Scenario:** Regulatory stress testing and scenario analysis for CCAR compliance.
 
-**The problem:** Preparing for regulatory stress tests traditionally requires months of data gathering, model execution, and scenario construction to answer questions like "What happens if interest rates rise by 2 percent?"
+**The problem:** Preparing for regulatory stress tests traditionally takes months of data gathering, model execution, and scenario construction to answer questions like "What happens if interest rates rise by 2 percent?"
 
 **The solution:** An AI Assistant retrieves Federal Reserve guidance and maps regulatory stress scenarios into calibrated baseline and adverse frameworks. A Stress Testing Domain Agent applies these scenarios to the bank's portfolio using enterprise calculation engines.
 
