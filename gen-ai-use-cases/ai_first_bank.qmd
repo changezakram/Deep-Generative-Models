@@ -209,7 +209,7 @@ Deal structuring uses pricing agents that analyze discount patterns across relat
 
 The workflow below illustrates how agentic systems compress CCAR stress testing timelines while preserving regulatory oversight.
 
-![**Figure:** L2 stress testing workflow showing experience interface for scenario setup and oversight, intelligence-layer orchestration enforcing policy and risk controls, domain agents executing regulatory stress tests on governed data, and human risk analysts approving final results.](images/Stress-Testing-Agents_.png){fig-align="center" width="800"}
+![**Figure:** L2 workflow for CCAR stress testing showing how agents compress months of scenario preparation into hours while maintaining human oversight. Experience Agents configure scenarios, the Intelligence Layer orchestrates execution with embedded risk controls, Domain Agents run stress calculations on governed data, and Risk Analysts approve final capital impact results.](images/Stress-Testing-Agents_.png){fig-align="center" width="800"}
 
 Timelines compress by removing manual handoffs in scenario mapping, data assembly, and model execution—while keeping human approval intact.
 
@@ -217,7 +217,7 @@ Timelines compress by removing manual handoffs in scenario mapping, data assembl
 
 **The problem:** Preparing for regulatory stress tests traditionally takes months of data gathering, model execution, and scenario construction to answer questions like "What happens if interest rates rise by 2 percent?"
 
-**The solution:** An AI Assistant retrieves Federal Reserve guidance and maps regulatory stress scenarios into calibrated baseline and adverse frameworks. A Stress Testing Domain Agent applies these scenarios to the bank's portfolio using enterprise calculation engines.
+**The solution:** A Scenario Configuration Agent pulls Federal Reserve stress test guidance and translates it into the baseline and adverse scenarios the bank must run. Execution Agents then run those scenarios against the portfolio using the bank's risk calculation engines.
 
 **Outcome:** The Chief Risk Officer reviews capital adequacy, liquidity impact, and profitability projections in one day rather than multiple months.
 
