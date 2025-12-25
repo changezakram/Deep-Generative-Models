@@ -217,7 +217,7 @@ Scenario mapping, data assembly, and stress calculations now execute in hours ra
 
 **The problem:** Preparing for regulatory stress tests traditionally takes months of data gathering, model execution, and scenario construction to answer questions like "What happens if interest rates rise by 2 percent?"
 
-**The solution:** A Scenario Configuration Agent pulls Federal Reserve stress test guidance and translates it into the baseline and adverse scenarios the bank must run. Execution Agents then run those scenarios against the portfolio using the bank's risk calculation engines.
+**The solution:** A Scenario Configuration Agent reads Federal Reserve stress test requirements and constructs the mandatory baseline and adverse scenarios. Execution Agents then apply those scenarios to the bank's portfolio using the existing risk calculation platform.
 
 **Outcome:** The Chief Risk Officer reviews capital adequacy, liquidity impact, and profitability projections in one day rather than multiple months.
 
