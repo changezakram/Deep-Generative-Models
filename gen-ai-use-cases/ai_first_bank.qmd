@@ -150,7 +150,7 @@ Experience agents must handle ambiguity and communicate clearly. Domain agents m
 
 ## The AI-First Bank Architecture
 
-Now that we've defined agent types, where do they actually operate? An AI-first bank architecture is organized into six layers, each serving a distinct purpose. Experience Agents live in the customer-facing layer, Domain Agents execute work in the action layer, and the intelligence layer coordinates both.
+Now that we've defined agent types, where do they operate? An AI-first bank architecture is organized into six layers, each serving a distinct purpose. Experience Agents live in the customer-facing layer, Domain Agents execute work in the action layer, and the intelligence layer coordinates both.
 
 ![**Figure:** The AI-First Bank Architecture is organized into six functional layers. Experience Agents handle customer interaction, Domain Agents execute business processes, and the Intelligence Layer coordinates workflows—all wrapped in a unified Control Plane for governance.](images/ai_first_bank_architecture.png){fig-align="center" width="800"}
 
@@ -282,11 +282,11 @@ This approach requires more upfront investment but delivers greater long-term fl
 
 **Pathway 3: Process Redesign**
 
-The boldest approach—and the hardest—involves fundamentally reengineering workflows to embed agents at their core. This goes beyond automation to reimagine how work actually gets done.
+The boldest approach—and the hardest—involves fundamentally reengineering workflows to embed agents at their core. This goes beyond automation to reimagine how work gets done.
 
 Traditional mortgage servicing assumes a human reviews each refinancing opportunity. Process redesign flips this model: autonomous agents continuously monitor market conditions, borrower profiles, and property valuations, proactively triggering refinance workflows when optimal conditions emerge. The process isn't just faster—it's fundamentally different.
 
-This pathway works best for strategically important processes where current automation is low but business impact is high. It demands close collaboration between business leaders, process engineers, and AI developers to map new workflows that leverage agent capabilities rather than simply replicating existing manual steps.
+This pathway works best for strategically important processes where current automation is low but business impact is high. It demands close collaboration between business leaders, process engineers, and AI developers to map new workflows that use agent capabilities rather than simply replicating existing manual steps.
 
 **Choosing Your Path**
 
@@ -306,7 +306,7 @@ Finally, banking-specific platforms from providers like Temenos and Finastra emb
 
 The pattern among leading banks is clear: partner for infrastructure speed, build for competitive differentiation. Infrastructure and orchestration come from vendors. Proprietary risk models, customer intelligence engines, and strategic decisioning logic get built in-house. Central governance—including policy controls, compliance validation, and performance monitoring—always stays internal.
 
-This hybrid approach compresses what used to take years into months. More importantly, it lets banks focus their best technical talent on the work that actually differentiates them in the market: understanding customer behavior, managing complex risks, and making better credit decisions. The underlying technology matters less than how effectively it is used.
+This hybrid approach compresses what used to take years into months. More importantly, it lets banks focus their best technical talent on the work that  differentiates them in the market: understanding customer behavior, managing complex risks, and making better credit decisions. The underlying technology matters less than how effectively it is used.
 
 ---
 
@@ -379,7 +379,7 @@ The practical outcome: banks often limit complex AI to L1 applications (insights
 
 ### Continuous Monitoring Requirements
 
-AI models drift. Customer behavior changes, economic conditions shift, and patterns models learned become less predictive. Banks must implement monitoring that tracks model performance in production, tests for bias across protected classes regularly, validates models remain within design parameters, and maintains human oversight for high-stakes decisions.
+AI models drift. Customer behavior changes, economic conditions shift, and patterns models learned become less predictive. Banks must monitor model performance in production, tests for bias across protected classes regularly, validates models remain within design parameters, and maintains human oversight for high-stakes decisions.
 
 Fair lending testing extends monitoring further. Banks must test whether models produce disparate impact across protected classes—even when models don't use protected class as an input. If a model approves loans for different groups at significantly different rates, banks must adjust the model or demonstrate legitimate business justification.
 
@@ -391,9 +391,9 @@ Effective governance requires organization, not just policy. Banks deploying AI 
 
 **Independent Validation Teams** - Critical analysis by parties separate from development. For AI, this includes bias testing across customer segments, validating explainability methods produce accurate reasons for decisions, and confirming models perform as designed under different conditions. Validation rigor scales with model risk—high-stakes credit decisions require more comprehensive validation than marketing recommendations.
 
-**Vendor Management Processes** - Due diligence on third-party AI tools. Banks require vendors to provide methodology documentation, conduct independent outcome analysis comparing vendor predictions to actual results, and implement controls such as human review of edge cases or secondary validation models.
+**Vendor Management Processes** - Due diligence on third-party AI tools. Banks require vendors to provide methodology documentation, conduct independent outcome analysis comparing vendor predictions to actual results, and establish controls such as human review of edge cases or secondary validation models.
 
-**AI Ethics Review Boards** - Independent review of AI models before production deployment. Every model undergoes scrutiny for data usage, algorithmic transparency, and bias. Scotiabank implements tiered approval based on risk: low-risk models clear at the department level, high-risk models require C-suite sign-off. This ensures ethical considerations aren't an afterthought—they're embedded in the approval process from day one.
+**AI Ethics Review Boards** - Independent review of AI models before production deployment. Every model undergoes scrutiny for data usage, algorithmic transparency, and bias. Scotiabank uses tiered approval based on risk: low-risk models clear at the department level, high-risk models require C-suite sign-off. This ensures ethical considerations aren't an afterthought—they're embedded in the approval process from day one.
 
 ### Governance as Enabler
 
