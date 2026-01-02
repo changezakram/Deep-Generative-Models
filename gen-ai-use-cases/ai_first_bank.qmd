@@ -176,7 +176,7 @@ The architecture comes to life through specific banking workflows. These four us
 
 ### Mortgage Loan Underwriting (Agent Collaboration)
 
-The diagram below shows how experience agents, domain agents, and the intelligence layer collaborate in a mortgage underwriting workflow, with humans retaining final approval.
+Experience agents, domain agents, and the intelligence layer collaborate in a mortgage underwriting workflow, compressing cycle times from weeks to days while credit officers retain final approval.
 
 ![**Figure:** L2 mortgage loan underwriting workflow showing experience agents handling intake, domain agents generating draft underwriting outcomes, intelligence-layer coordination enforcing policy and risk controls, and human underwriters and credit officers approving final decisions.](images/Mortgage-Underwriting-Agents.png){fig-align="center" width="800"}
 
