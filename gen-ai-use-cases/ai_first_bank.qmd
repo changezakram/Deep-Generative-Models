@@ -6,7 +6,7 @@ toc: true
 
 ## Introduction
 
-Relationship managers at most banks spend only 25–30% of their time in actual client conversations. The rest goes to prospecting, meeting preparation, documentation, and follow-ups. The result is predictable: frustrated bankers, missed opportunities, and churn rates that often reach 15–35%.<sup>1</sup>
+Relationship managers at most banks spend only 25–30% of their time in actual client conversations. The rest goes to prospecting, meeting preparation, documentation, and follow-ups. The result is predictable: reduced client coverage, missed opportunities, and churn rates that often reach 15–35%.<sup>1</sup>
 
 AI is now changing not just what banks can do—but who does the work. Today, most banks use Generative AI as a productivity aid: drafting emails, summarizing meetings, or answering basic questions. The bigger opportunity is Agentic AI—systems designed to carry out work, not just assist with it.
 
