@@ -176,7 +176,7 @@ The architecture comes to life through specific banking workflows. These four us
 
 ### Mortgage Loan Underwriting (Agent Collaboration)
 
-The diagram below illustrates how experience agents, domain agents, and the intelligence layer collaborate in a mortgage underwriting workflow, with humans retaining final approval.
+The diagram below shows how experience agents, domain agents, and the intelligence layer collaborate in a mortgage underwriting workflow, with humans retaining final approval.
 
 ![**Figure:** L2 mortgage loan underwriting workflow showing experience agents handling intake, domain agents generating draft underwriting outcomes, intelligence-layer coordination enforcing policy and risk controls, and human underwriters and credit officers approving final decisions.](images/Mortgage-Underwriting-Agents.png){fig-align="center" width="800"}
 
@@ -329,7 +329,7 @@ Adoption is accelerating. Customer service applications of generative AI in fina
 
 These improvements compound. Better customer experience drives retention, retention increases lifetime value, and lifetime value justifies further AI investment. Banks that deployed AI early are now scaling L2 and L3 agents across departments. Late adopters face a widening competitive gap.
 
-It is important to note that these economic gains are rarely achieved by optimizing single, isolated tasks. The most significant ROI comes when these pathways are applied to a **full business domain** (like Commercial Real Estate Lending) rather than a fragmented process (like "reading emails"). This "Domain Strategy" ensures that the efficiency gains in one step flow through to the rest of the value chain.
+These economic gains are rarely achieved by optimizing single, isolated tasks. The most significant ROI comes when these pathways are applied to a **full business domain** (like Commercial Real Estate Lending) rather than a fragmented process (like "reading emails"). This "Domain Strategy" ensures that the efficiency gains in one step flow through to the rest of the value chain.
 
 ---
 
