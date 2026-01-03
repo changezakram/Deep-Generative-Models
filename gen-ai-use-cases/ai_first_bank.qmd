@@ -34,7 +34,7 @@ Cloud platforms introduced elastic scaling and faster deployment through microse
 
 **2022–Present: AI as Operating Infrastructure**
 
-Large language models expanded what banks can automate. Earlier AI focused on narrow tasks like fraud scoring or chatbots. Today’s systems combine models with enterprise data to support complex decision-making and multi-step workflows—setting the stage for agent-driven operating models.
+Large language models expanded what banks can automate. Earlier AI focused on narrow tasks like fraud scoring or chatbots. Today’s systems combine models with enterprise data to support complex decisions and multi-step workflows—setting the stage for agent-driven operating models.
 
 This architectural evolution sets the foundation for the next operating model in banking — AI agents.
 
