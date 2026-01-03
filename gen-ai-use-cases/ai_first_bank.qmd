@@ -48,7 +48,7 @@ AI agents differ by autonomy level. L1 agents provide intelligence, L2 agents ex
 
 L1 agents extract and synthesize information to support human decision-making. They assist with planning, discovery, and knowledge retrieval but do not take actions independently. Humans control all execution.
 
-![**Figure:** L1 agents provide assistive intelligence through single request-response interactions. Users submit queries, the LLM generates insights, and humans decide what actions to take. No autonomous execution.](images/L1.png){fig-align="center" width="800"}
+![**Figure:** L1 agents provide assistive intelligence through single request-response interactions. Users submit queries, the LLM generates insights, and humans decide what actions to take. No autonomous execution.](images/L1.png){#fig-L1-Agents fig-align="center" width="800"}
 
 In banking, L1 agents appear most commonly in advisor tools and research summarization.
 
