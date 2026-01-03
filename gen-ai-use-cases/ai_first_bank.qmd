@@ -54,8 +54,6 @@ In banking, L1 agents appear most commonly in advisor tools and research summari
 
 Morgan Stanley's AI @ Morgan Stanley Debrief tool automates meeting notes, analyzes client profiles and transaction histories, and generates tailored recommendations before advisor meetings. The tool saves approximately 30 minutes per meeting, freeing 10–15 hours per week for higher-value client work.<sup>8</sup>
 
-Morgan Stanley's AskResearchGPT synthesizes insights from over 70,000 proprietary research reports. Similar tools have reduced document review time by up to 90% while improving accuracy by 25%.<sup>9</sup>
-
 
 **L2 – Process Orchestration Agents (Semi-Autonomous)**
 
