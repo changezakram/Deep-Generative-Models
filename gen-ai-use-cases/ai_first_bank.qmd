@@ -61,7 +61,7 @@ L2 agents execute multi-step, rule-governed business processes. They decompose t
 
 ![L2 agents orchestrate multi-step workflows using specialized agents coordinated by a central orchestrator. Draft outputs are generated automatically, but human reviewers approve before execution—balancing automation efficiency with accountability and control.](images/L-2.png){#fig-L2-Agents fig-align="center" width="800"}
 
-Consider compliance documentation. Writing suspicious activity reports (SARs), regulatory memos, and audit summaries traditionally requires manual effort and creates consistency problems.
+Consider compliance documentation. Writing suspicious activity reports (SARs), regulatory memos, and audit summaries traditionally requires manual effort and often results in inconsistent structure, language, and supporting rationale across similar cases.
 
 L2 agents automate classification, extraction, summarization, and drafting while enforcing compliance standards. EY's Document Intelligence Platform demonstrates this capability at scale: reducing document review time by 90%, cutting costs by 80%, and improving accuracy by 25%.<sup>12</sup>
 
