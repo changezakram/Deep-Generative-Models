@@ -65,7 +65,7 @@ Consider compliance documentation. Writing suspicious activity reports (SARs), r
 
 L2 agents automate classification, extraction, and drafting at scale—applying consistent compliance rules across cases. EY’s Document Intelligence Platform demonstrates this capability in practice, reducing document review time by 90%, cutting costs by 80%, and improving accuracy by 25%.<sup>12</sup>
 
-> The key distinction from L1: these agents don't just provide recommendations—they generate final work products and execute regulated processes within defined guardrails.
+> The key distinction from L1: these agents don’t just provide recommendations—they generate draft work products and advance regulated workflows within defined guardrails.
 
 
 **L3 – Complex Decisioning Agents (Fully Autonomous)**
