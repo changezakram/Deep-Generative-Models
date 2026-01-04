@@ -206,11 +206,11 @@ Scenario mapping, data assembly, and stress calculations can execute in hours ra
 
 **Scenario:** Anti-money laundering alerts with high false-positive rates that traditionally require large investigation teams.
 
-**The process:** The AI Investigator Agent reviews transaction alerts in real time, assigns a quantitative risk score (for example, 98.85), and generates a transparent narrative explaining suspicious behavior such as rapid fund movement or transaction structuring.
+**The process:** The AI Investigator Agent reviews transaction alerts as they are generated, assigns a quantitative risk score, and produces a clear narrative explaining suspicious behavior such as rapid fund movement or transaction structuring.
 
-**Human oversight:** Investigators review the AI-generated narrative and visual fund flow diagrams rather than spending hours gathering evidence manually. They validate insights and mark cases as credible or non-credible, feeding this feedback into continuous model improvement.
+**Human oversight:** Investigators review the AI-generated narrative and visual fund-flow diagrams instead of spending hours gathering evidence manually. They validate findings, determine case disposition, and provide feedback that improves future investigations.
 
-**Outcome:** Work that previously required days of manual evidence gathering condenses into minutes, producing regulator-ready, auditable cases.
+**Outcome:** Work that previously required days of manual evidence gathering is significantly accelerated, producing regulator-ready, auditable cases with consistent documentation.
 
 
 ### Commercial Banking Operations (Email Triage)
