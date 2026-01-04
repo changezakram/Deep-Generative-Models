@@ -363,7 +363,7 @@ Fair lending testing extends monitoring further. Banks must assess whether model
 
 ### Governance Structure
 
-**Model Risk Committees** - These committees provide board-level oversight of AI deployment, performance, and risk exposure. They review models before deployment, oversee performance in production, and ensure compliance with regulatory guidance. Senior management reports on individual model risks and aggregate exposure across all AI systems.
+**Model Risk Committees** - These committees provide board-level oversight of AI deployment, performance, and risk exposure. They review models before deployment, oversee performance in production, and ensure compliance with regulatory guidance. Senior management reports on individual model risks and aggregate exposure.
 
 **Independent Validation Teams** - These teams provide critical analysis independent of model development. For AI, this includes bias testing across customer segments, validating explainability outputs, and confirming models perform as designed under varying conditions. Validation rigor scales with model risk, with high-stakes credit decisions requiring more comprehensive review than lower-risk use cases.
 
@@ -377,31 +377,32 @@ Governance enables banks to deploy AI safely at scale. Clear documentation, cont
 
 ---
 
-## The AI-First Bank: A Vision for 2030
+## The AI-First Bank: Where Banking Is Headed
 
-Banks that successfully scale agents won't just improve efficiency—they'll redefine banking itself. 
+Banks that scale agents effectively will not just improve efficiency. Over time, they will change how financial services are delivered, how decisions are made, and where value is created.
 
-Citi calls this the "Do It For Me" (DIFM) economy. Customers won't use tools to make decisions—AI agents will make and execute decisions on their behalf. A customer won't search for mortgage rates. Their agent monitors the market continuously, identifies optimal refinancing opportunities, and initiates the process without being asked. The bank's role shifts from providing tools to providing trusted agents that act in the customer's best interest.<sup>6</sup>
+Some industry observers describe this shift as a move toward a “do-it-for-me” (DIFM) model. Rather than using tools to research options, customers rely on AI agents to monitor conditions, identify opportunities, and initiate actions within predefined controls. For example, instead of actively searching for mortgage rates, an agent can track market movements, flag refinancing opportunities, and prepare next steps for customer approval. In this model, the bank’s role evolves from providing decision tools to operating trusted, policy-constrained agents on customer’s behalf.<sup>6</sup>
 
-Six characteristics will distinguish these institutions:
+Several characteristics are likely to distinguish banks that move furthest in this direction.
 
-**1. Always-On Financial Partner**  
-Instead of periodic check-ins with a branch manager, customers have an AI agent continuously monitoring their financial life. When mortgage rates drop below the customer's current rate, the agent initiates refinancing. When spending patterns suggest cash flow issues, the agent offers solutions before the customer asks. This shifts banking from reactive to proactive.
+**1. Always-On Financial Support**     
+Customer interaction becomes more continuous and event-driven rather than episodic. Agents monitor accounts, obligations, and market conditions, and notify customers when action may be warranted. Banking becomes more proactive, but still bounded by customer consent and policy constraints.
 
-**2. Flexible Products That Adapt**  
-Rather than separate checking, savings, credit card, and loan products, customers access adaptive financial capacity that adjusts to their needs. Purchase groceries and the system functions as a debit card. Buy a car and it converts to installment financing with optimized terms. Build savings and it shifts funds to higher-yield options—all within a single account managed by agents.
+**2. More Adaptive Financial Products**  
+Product boundaries become less rigid. Instead of managing separate accounts and credit products, customers may interact with flexible financial capacity that adjusts based on usage, risk profile, and preferences. Financing, payments, and savings behaviors adapt dynamically rather than being tied to fixed product structures.
 
-**3. Banking Without Banks**  
-Financial services embed into platforms where customers already spend time—shopping apps, ride-sharing services, social media. Customers access credit, payments, and savings without opening separate banking apps or visiting websites. The bank becomes infrastructure, not a destination.
+**3. Banking Embedded in Other Experiences**  
+Financial services increasingly appear inside non-bank platforms—commerce, travel, and business software—rather than requiring dedicated banking interfaces. In this model, banks provide regulated infrastructure and decisioning capabilities while customer interaction occurs elsewhere.
 
-**4. Automated Operations at Scale**  
-Agents handle service inquiries, compliance checks, and exception processing from start to finish within defined guardrails. A customer service team of 500 shrinks to 50 specialists handling complex cases while agents manage routine work at near-zero cost. Staff focus shifts from processing to strategy and relationship building.
+**4. Higher Automation in Operations**  
+Agents take on a greater share of routine service, investigation, and compliance preparation tasks within defined guardrails. Human teams focus on complex cases, oversight, and judgment rather than coordination and manual processing. Staffing models shift, but accountability remains human.
 
-**5. Dynamic Balance Sheet Management**  
-Traditional banks allocate capital quarterly through manual processes. AI-first banks shift liquidity and risk exposure continuously across customers and portfolios, maximizing returns while maintaining regulatory compliance. A customer's credit limit adjusts in real time based on behavior, market conditions, and the bank's capital position.
+**5. More Responsive Balance Sheet Management**  
+Decision cycles around liquidity, pricing, and exposure shorten. Rather than periodic reallocation, banks adjust within approved limits based on changing conditions. Customer-level terms, such as credit limits, evolve dynamically but remain governed by policy and regulatory requirements.
 
-**6. Small Teams, Massive Scale**  
-The AI-first bank may operate with far fewer people than today while serving millions of customers through highly automated, policy-constrained workflows.
+
+**6. Leaner Operating Models**  
+As automation increases, banks can support larger customer bases without proportional growth in operations staff. Scale comes from system design and governance, not unchecked autonomy.
 
 These aren't incremental improvements—they represent a different operating model for banking. Banks pursuing this transformation systematically will create competitive advantages that traditional institutions cannot match.
 
