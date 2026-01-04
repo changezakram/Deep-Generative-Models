@@ -215,7 +215,7 @@ Scenario mapping, data assembly, and stress calculations can execute in hours ra
 
 ### Commercial Banking Operations (Email Triage)
 
-**Scenario:** A bank's Commercial Banking division fields 60,000-70,000 client emails monthly. Requests range from urgent credit line draws to complex legal inquiries—each requiring specialized expertise.
+**Scenario:** A bank's Commercial Banking division fields 60,000–70,000 client emails monthly. Requests range from urgent credit line draws to complex legal inquiries—each requiring specialized expertise.
 
 **The Challenge:** A team manually reviewed incoming emails—reading the request, assessing urgency, identifying the right internal expert, routing it correctly, and logging it for tracking. For complex requests, this process could take hours, delaying responses and increasing the risk of missed opportunities.
 
@@ -381,7 +381,7 @@ Governance enables banks to deploy AI safely at scale. Clear documentation, cont
 
 Banks that scale agents effectively will not just improve efficiency. Over time, they will change how financial services are delivered, how decisions are made, and where value is created.
 
-Some industry observers describe this shift as a move toward a “do-it-for-me” (DIFM) model. Rather than using tools to research options, customers rely on AI agents to monitor conditions, identify opportunities, and initiate actions within predefined controls. For example, instead of actively searching for mortgage rates, an agent can track market movements, flag refinancing opportunities, and prepare next steps for customer approval. In this model, the bank’s role evolves from providing decision tools to operating trusted, policy-constrained agents on customer’s behalf.<sup>6</sup>
+Some industry observers describe this shift as a move toward a “do-it-for-me” (DIFM) model. Rather than using tools to research options, customers rely on AI agents to monitor conditions, identify opportunities, and initiate actions within predefined controls. For example, instead of actively searching for mortgage rates, an agent can track market movements, flag refinancing opportunities, and prepare next steps for customer approval. In this model, the bank’s role evolves from providing decision tools to operating trusted, policy-constrained agents on customers' behalf.<sup>6</sup>
 
 Several characteristics are likely to distinguish banks that move furthest in this direction.
 
@@ -423,7 +423,7 @@ The advantage does not come from deploying agents in isolation, but from integra
 
 ## References
 
-[1] Mckinsey. (2025). Agentic AI is here. Is your bank’s frontline team ready? 
+[1] McKinsey. (2025). Agentic AI is here. Is your bank’s frontline team ready? 
 
 [2] BCG. (2025). From Branches to Bots: Will AI Agents Transform Retail Banking? 
 
