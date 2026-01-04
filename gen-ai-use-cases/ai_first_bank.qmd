@@ -238,7 +238,7 @@ Banks historically considered unstructured client communications "too variable t
 
 ## Three Pathways to Agentic Banking
 
-Most regional banks still run core systems on decades-old mainframes. The good news: banks don't need full modernization before deploying agents. Insight-focused agents layer onto legacy systems through APIs. However, agents that execute processes or make autonomous decisions require modern data platforms and real-time connectivity.
+Most regional banks still run core systems on decades-old mainframes. The key point: banks don't need full modernization before deploying agents. Insight-focused agents layer onto legacy systems through APIs. However, agents that execute processes or make autonomous decisions require modern data platforms and real-time connectivity.
 
 Moving from vision to execution requires a practical roadmap. Banks can introduce agentic AI through three distinct approaches, each suited to different organizational contexts, risk appetites, and strategic goals.
 
