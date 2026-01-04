@@ -192,15 +192,15 @@ Multi-agent architecture transforms CCAR preparation by automating manual handof
 
 ![**Figure:** L2 workflow for CCAR stress testing showing how agents compress months of scenario preparation into hours while maintaining human oversight. Experience Agents configure scenarios, the Intelligence Layer orchestrates execution with embedded risk controls, Domain Agents run stress calculations on governed data, and Risk Analysts approve final capital impact results.](images/Stress-Testing-Agents_.png){fig-align="center" width="800"}
 
-Scenario mapping, data assembly, and stress calculations now execute in hours rather than months—with risk officers approving final results before submission to regulators.
+Scenario mapping, data assembly, and stress calculations can execute in hours rather than months—while risk officers retain formal approval authority before regulatory submission.
 
 **Scenario:** Regulatory stress testing and scenario analysis for CCAR compliance.
 
 **The problem:** Preparing for regulatory stress tests traditionally takes months of data gathering, model execution, and scenario construction to answer questions like "What happens if interest rates rise by 2 percent?"
 
-**The solution:** A Scenario Configuration Agent reads Federal Reserve stress test requirements and constructs the mandatory baseline and adverse scenarios. Execution Agents then apply those scenarios to the bank's portfolio using the existing risk calculation platform.
+**The solution:** A Scenario Configuration Agent applies Federal Reserve stress test requirements and constructs the mandatory baseline and adverse scenarios. Execution Agents then apply those scenarios to the bank's portfolio using the existing risk calculation platform.
 
-**Outcome:** The Chief Risk Officer reviews capital adequacy, liquidity impact, and profitability projections in one day rather than multiple months.
+**Outcome:** The Chief Risk Officer can review and approve capital, liquidity, and profitability projections within a single business day, once scenarios are executed and results are prepared.
 
 ### Financial Crime (AI Investigator)
 
