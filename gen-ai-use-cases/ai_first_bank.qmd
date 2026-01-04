@@ -82,7 +82,7 @@ When conditions align, the agent triggers eligibility checks through L2 agents, 
 
 Recent MIT Sloan research reinforces this reality: sustainable AI value comes from incremental capability building, not sweeping redesigns.<sup>11</sup> Banks that skip foundational L1 and L2 capabilities in favor of L3 autonomy often encounter familiar failure modes—compliance breakdowns, stalled pilots, and organizational resistance.
 
-Building an AI-first bank is a journey, not a sprint. Each level surfaces different lessons—about data quality, model behavior, human–AI collaboration, and where operational and compliance risks emerge. The banks that succeed are those that resist the urge to move fast and break things, choosing instead to embed controls, accountability, and learning at each stage before advancing.
+Building AI capability in banking requires a staged approach. Each level introduces distinct considerations around data quality, model behavior, and human oversight that must be addressed before advancing. Banks that scale successfully do so by embedding controls, accountability, and review mechanisms at each stage.
 
 ---
 
