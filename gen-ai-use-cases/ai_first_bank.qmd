@@ -108,7 +108,7 @@ These risks often emerge gradually during normal operation rather than during te
 
 **Building Control Mechanisms**
 
-Effective agent governance requires controls that address continuous execution, not just model accuracy at launch.
+Effective agent governance requires controls that address continuous execution and autonomous action, not just periodic model performance review.
 
 **Agent Registry:** Every autonomous agent must be catalogued with a defined purpose, approved data sources, action scope, and named owner. This ensures accountability as agents proliferate across workflows.
 
