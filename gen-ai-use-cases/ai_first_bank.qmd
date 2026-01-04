@@ -88,13 +88,13 @@ Building AI capability in banking requires a staged approach. Each level introdu
 
 ### Governing Autonomous Agents: Beyond Traditional Controls
 
-Traditional governance frameworks weren't built for systems that make decisions autonomously and adapt continuously. When an agent can approve transactions, escalate compliance alerts, or reallocate capital based on real-time conditions, the governance challenge changes.
+Traditional governance frameworks weren't built for systems that make decisions autonomously and adapt continuously. When an agent can approve transactions, escalate compliance alerts, or reallocate capital based on real-time conditions, the governance challenge changes materially.
 
 **Why Agent Governance Is Different**
 
-The core risk is **behavioral drift**. Unlike static rule-based systems, agents adjust their actions dynamically based on feedback loops and outcome data. Research by Jiang et al. (2025) shows that when agents and their supporting tools adapt simultaneously without coordination, systems can enter unstable feedback cycles—where behavior changes continuously without improving results. Without explicit controls governing adaptation, these systems can develop unintended behaviors over time. Rather than stemming from a single incorrect decision, risk accumulates as agents operate continuously across changing conditions.
+The core risk is **behavioral drift**. Unlike static rule-based systems, agents adjust their actions dynamically based on feedback loops and outcome data. Research by Jiang et al. (2025) shows that when agents and their supporting tools adapt simultaneously without coordination, systems can enter unstable feedback cycles—where behavior changes continuously without improving results. Without explicit controls governing adaptation, these systems can develop unintended behaviors. Rather than stemming from a single incorrect decision, risk accumulates as agents operate continuously across changing conditions.
 
-Banks must also guard against optimization misalignment—a more visible failure mode where an agent optimizes for a narrow target (such as closing AML alerts quickly) while undermining the true objective (accurate risk detection). Without clear policy constraints and oversight, agents can meet performance metrics while increasing regulatory risk.
+Banks must also guard against optimization misalignment, where an agent performs well against a narrow metric but undermines the broader business objective. For example, an agent optimized to close AML alerts quickly may reduce cycle time while increasing regulatory risk. This typically occurs when objectives are narrowly defined and governance controls are insufficient.
 
 These risks are not theoretical—they stem from how autonomous agents interact with data, systems, and each other in production environments.
 
@@ -104,11 +104,11 @@ Autonomous agents introduce risks that differ from traditional analytics or rule
 
 Poor data quality or misconfigured tools can cause agents to take inappropriate actions repeatedly—potentially triggering regulatory violations or discriminatory outcomes. In more complex workflows, agents may interact in ways that create feedback loops—where one agent's output triggers another agent's action without sufficient checks.
 
-These risks often emerge gradually during normal operation rather than during testing. As a result, effective governance must focus not only on model validation before deployment, but on monitoring behavior in production and intervening when outcomes begin to drift.
+These risks often emerge gradually during normal operation rather than during testing. As a result, effective governance must extend beyond pre-deployment validation to continuous monitoring and timely intervention in production.
 
 **Building Control Mechanisms**
 
-Effective agent governance requires controls that address continuous execution and autonomous action, not just periodic model performance review.
+Effective agent governance requires controls that address continuous execution and autonomous action, not just periodic model performance reviews.
 
 **Agent Registry:** Every autonomous agent must be catalogued with a defined purpose, approved data sources, action scope, and named owner. This ensures accountability as agents proliferate across workflows.
 
