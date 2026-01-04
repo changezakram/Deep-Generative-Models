@@ -238,7 +238,7 @@ Banks historically considered unstructured client communications "too variable t
 
 ## Three Pathways to Agentic Banking
 
-Most regional banks still run core systems on decades-old mainframes. The key point: banks don't need full modernization before deploying agents. Insight-focused agents layer onto legacy systems through APIs. However, agents that execute processes or make autonomous decisions require modern data platforms and real-time connectivity.
+Most regional banks still run core systems on decades-old mainframes. Banks don't need full modernization before deploying agents. Insight-focused agents layer onto legacy systems through APIs. However, agents that execute processes or make autonomous decisions require modern data platforms and real-time connectivity.
 
 Moving from vision to execution requires a practical roadmap. Banks can introduce agentic AI through three distinct approaches, each suited to different organizational contexts, risk appetites, and strategic goals.
 
@@ -255,7 +255,7 @@ This works best when banks have clearly documented standard operating procedures
 
 **Pathway 2: Agentic by Design**
 
-Some processes can't be optimized by overlaying intelligence—they need to be rebuilt from the ground up. The agentic by design approach creates new, purpose-built autonomous applications specifically tailored for each banking function.
+Some processes can’t be optimized by overlaying intelligence—they need to be rebuilt from the ground up. The agentic by design approach creates new, purpose-built autonomous applications tailored to specific banking functions. These agents operate alongside existing workflows, augmenting them without replacing the end-to-end process.
 
 Think of it like microservices. Instead of one monolithic system, banks develop smaller, specialized agentic services that handle specific functions yet integrate smoothly into the broader infrastructure. For example, rather than retrofitting a 30-year-old loan origination system, a bank might build a new autonomous credit decisioning service that coordinates multiple agents: one for document verification, another for creditworthiness analysis, and a third for regulatory compliance checks.
 
@@ -265,7 +265,7 @@ This approach requires more upfront investment but delivers greater long-term fl
 
 The boldest approach—and the hardest—involves fundamentally reengineering workflows to embed agents at their core. This goes beyond automation to reimagine how work gets done.
 
-Traditional mortgage servicing assumes a human reviews each refinancing opportunity. Process redesign flips this model: autonomous agents continuously monitor market conditions, borrower profiles, and property valuations, proactively triggering refinance workflows when optimal conditions emerge. The process isn't just faster—it's fundamentally different.
+Traditional mortgage servicing assumes a human reviews each refinancing opportunity. Process redesign changes the operating model: autonomous agents continuously monitor market conditions, borrower profiles, and property valuations, proactively triggering refinance workflows when optimal conditions emerge. The process isn't just faster—it's fundamentally different.
 
 This pathway works best for strategically important processes where current automation is low but business impact is high. It demands close collaboration between business leaders, process engineers, and AI developers to map new workflows that use agent capabilities rather than simply replicating existing manual steps.
 
