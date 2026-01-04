@@ -217,11 +217,11 @@ Scenario mapping, data assembly, and stress calculations can execute in hours ra
 
 **Scenario:** A bank's Commercial Banking division fields 60,000-70,000 client emails monthly. Requests range from urgent credit line draws to complex legal inquiries—each requiring specialized expertise.
 
-**The Challenge:** A team manually reviewed every email: reading the request, determining urgency, identifying the right internal expert, routing it correctly, and logging it for tracking. For complex requests—a CFO asking about cross-border regulatory requirements or a treasurer requesting covenant waivers—this process took hours. Clients waited. Opportunities were missed.
+**The Challenge:** A team manually reviewed incoming emails—reading the request, assessing urgency, identifying the right internal expert, routing it correctly, and logging it for tracking. For complex requests, this process could take hours, delaying responses and increasing the risk of missed opportunities.
 
-Scotiabank deployed an agentic AI system to handle this complexity autonomously. The agent reads incoming emails, interprets client intent across dozens of request types, routes messages to the appropriate specialists, and creates tracking cases—all without human intervention. Edge cases that fall outside normal patterns are flagged for human review.<sup>5</sup>
+Scotiabank deployed an agentic AI system to automate email intake and routing. The agent interprets client intent across dozens of request types, routes messages to appropriate specialists, and creates tracking cases. Edge cases and exceptions are flagged for human review.<sup>5</sup>
 
-**Outcome:** The system now processes 90% of emails autonomously. Response times dropped from hours to minutes. The bank redeployed 70% of the routing team to client-facing roles. Client satisfaction improved, and the system operates continuously—not just during business hours.<sup>5</sup>
+**Outcome:** The system now automates the majority of email triage and routing. Response times dropped from hours to minutes, allowing the bank to redeploy a significant portion of the routing team to higher-value, client-facing work. Client satisfaction improved, and coverage expanded beyond business hours.<sup>5</sup>
 
 Banks historically considered unstructured client communications "too variable to automate." Agentic AI proved otherwise. The agent handles irregularity that would break traditional automation—interpreting ambiguous requests, understanding context, and making routing decisions that previously required human judgment.
 
