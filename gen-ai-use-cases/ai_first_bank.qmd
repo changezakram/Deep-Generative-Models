@@ -204,7 +204,7 @@ Scenario mapping, data assembly, and stress calculations can execute in hours ra
 
 ### Financial Crime (AI Investigator)
 
-**Scenario:** Anti-money laundering alerts with high false-positive rates that traditionally require large investigation teams.
+**Scenario:** Anti-money laundering alerts with high false-positive rates that traditionally require significant manual investigation effort.
 
 **The process:** The AI Investigator Agent reviews transaction alerts as they are generated, assigns a quantitative risk score, and produces a clear narrative explaining suspicious behavior such as rapid fund movement or transaction structuring.
 
