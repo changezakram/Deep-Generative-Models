@@ -100,9 +100,11 @@ These risks are not theoretical—they stem from how autonomous agents interact 
 
 **Agent-Specific Risks**
 
-Autonomous agents can exhibit unexpected behaviors that traditional software cannot. Corrupted training data can cause agents to make systematically wrong decisions. Poorly calibrated algorithms can trigger regulatory violations or discriminatory outcomes. In extreme cases, agents can enter feedback loops where one agent's output continuously triggers another agent's action in an uncontrolled cycle.
+Autonomous agents introduce risks that differ from traditional analytics or rules-based systems. Because agents act continuously across systems, errors can compound over time rather than appearing as isolated failures.
 
-The deeper issue: as agents interact within large, interconnected systems, behaviors can emerge from the complexity itself. Agents might exploit programming loopholes, misapply learned patterns in new contexts, or demonstrate different objectives in production than they showed during testing.
+Poor data quality or misconfigured tools can cause agents to take inappropriate actions repeatedly—potentially triggering regulatory violations or discriminatory outcomes. In more complex workflows, agents may interact in ways that create feedback loops—where one agent's output triggers another agent's action without sufficient checks.
+
+These risks often emerge gradually during normal operation rather than during testing. As a result, effective governance must focus not only on model validation before deployment, but on monitoring behavior in production and intervening when outcomes begin to drift.
 
 **Building Control Mechanisms**
 
