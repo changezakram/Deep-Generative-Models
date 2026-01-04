@@ -88,7 +88,7 @@ Building AI capability in banking requires a staged approach. Each level introdu
 
 ### Governing Autonomous Agents: Beyond Traditional Controls
 
-Traditional IT governance frameworks weren't built for systems that make decisions autonomously and adapt continuously. When an agent can approve transactions, escalate compliance alerts, or reallocate capital based on real-time conditions, the governance challenge fundamentally changes.
+Traditional governance frameworks weren't built for systems that make decisions autonomously and adapt continuously. When an agent can approve transactions, escalate compliance alerts, or reallocate capital based on real-time conditions, the governance challenge changes.
 
 **Why Agent Governance Is Different**
 
