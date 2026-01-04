@@ -249,7 +249,7 @@ Moving from vision to execution requires a practical roadmap. Banks can adopt ag
 
 The fastest way to see results: wrap AI agents around existing processes without requiring a complete technology overhaul. Rather than replacing legacy infrastructure, banks add an intelligent layer on top of current workflows.
 
-Consider treasury operations. Most banks already use robotic process automation (RPA) for routine cash sweeps and balance reconciliation. A smart overlay elevates this foundation with an AI agent that makes real-time decisions on liquidity optimization, pricing, and hedging based on market conditions.
+Consider treasury operations. Many banks already use robotic process automation (RPA) for routine cash sweeps and balance reconciliation. A smart overlay builds on this foundation by introducing AI agents that analyze market conditions and generate real-time recommendations for liquidity optimization, pricing, and hedging—within defined risk limits and approval controls.
 
 This works best when banks have clearly documented standard operating procedures. The AI agent follows these documented steps, ensuring consistency and compliance while adding intelligence. The benefit is speed: banks unlock near-term productivity gains without large-scale system replacements. However, Smart Overlay delivers maximum value when applied to a complete business domain (e.g., entire Consumer Lending workflow) rather than scattered across isolated use cases.
 
@@ -302,15 +302,15 @@ The shift to agent-driven architectures delivers measurable returns. McKinsey re
 
 These gains stem from rebalancing how bankers spend time. At many commercial banks, relationship managers spend just 25-30% of their time in client dialogue. Agents handling prospecting, meeting preparation, and documentation push that figure toward 70%, changing the banker's role from administrator to advisor.
 
-The impact compounds across use cases: prospecting agents deliver twice the conversion rate of traditional lead sources, lead nurturing agents increase qualified leads 2-3x, and deal scoring agents improves margins by 10% while cutting approval cycles from five days to two.
+The impact compounds across use cases: agents improve conversion, increase deal quality, and shorten approval cycles simultaneously—driving both revenue growth and margin expansion.
 
 However, early evidence shows banks often chase low-value use cases first. Meeting summarization and basic chatbots are easier to implement but deliver modest returns. The highest-value applications—prospecting agents, lead nurturing, and deal optimization—require deeper integration with core systems and workflow redesign, but they deliver the returns that matter: revenue growth, not just efficiency.
 
-Adoption is accelerating. Customer service applications of generative AI in financial services doubled over the past year, rising from 25% to 60% of institutions. More than 90% of banks deploying AI report positive revenue impact, with customer experience metrics improving by 26% on average.<sup>4</sup>
+Adoption is accelerating as banks move from pilots to revenue-backed deployments. Customer service applications of generative AI in financial services doubled over the past year, rising from 25% to 60% of institutions. More than 90% of banks deploying AI report positive revenue impact, with customer experience metrics improving by 26% on average.<sup>4</sup>
 
 These improvements compound. Better customer experience drives retention, retention increases lifetime value, and lifetime value justifies further AI investment. Banks that deployed AI early are now scaling L2 and L3 agents across departments. Late adopters face a widening competitive gap.
 
-These economic gains are rarely achieved by optimizing single, isolated tasks. The most significant ROI comes when these pathways are applied to a **full business domain** (like Commercial Real Estate Lending) rather than a fragmented process (like "reading emails"). This "Domain Strategy" ensures that the efficiency gains in one step flow through to the rest of the value chain.
+The largest returns come when agents are applied across an entire business domain—such as Commercial Real Estate Lending—rather than isolated tasks. This ensures gains in one step flow through the full value chain.
 
 ---
 
