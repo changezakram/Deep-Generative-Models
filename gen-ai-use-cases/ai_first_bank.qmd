@@ -365,11 +365,11 @@ Fair lending testing extends monitoring further. Banks must assess whether model
 
 **Model Risk Committees** - These committees provide board-level oversight of AI deployment, performance, and risk exposure. They review models before deployment, oversee performance in production, and ensure compliance with regulatory guidance. Senior management reports on individual model risks and aggregate exposure across all AI systems.
 
-**Independent Validation Teams** - These teams provide critical analysis independent of model development. For AI, this includes bias testing across customer segments, validating that explainability methods produce accurate reasons for decisions, and confirming models perform as designed under different conditions. Validation rigor scales with model risk, with high-stakes credit decisions requiring more comprehensive review than lower-risk use cases.
+**Independent Validation Teams** - These teams provide critical analysis independent of model development. For AI, this includes bias testing across customer segments, validating explainability outputs, and confirming models perform as designed under varying conditions. Validation rigor scales with model risk, with high-stakes credit decisions requiring more comprehensive review than lower-risk use cases.
 
 **Vendor Management Processes** - These processes govern the use of third-party AI tools. Banks require vendors to provide methodology documentation, conduct independent outcome analysis comparing predictions to actual results, and implement controls such as human review of edge cases or secondary validation models.
 
-**AI Ethics Review Boards** - These boards conduct independent review of AI models before production deployment. Models are assessed for data usage, transparency, and bias. Approval is tiered by risk: low-risk models clear at the department level, while high-risk models require C-suite sign-off. This ensures ethical considerations are embedded in the approval process rather than treated as an afterthought.
+**AI Ethics Review Boards** - These boards conduct independent review of AI models before deployment. Models are assessed for data usage, transparency, and bias. Approval is tiered by risk: low-risk models clear at the department level, while high-risk models require C-suite sign-off. This ensures ethical considerations are embedded in the approval process rather than treated as an afterthought.
 
 ### Governance as Enabler
 
