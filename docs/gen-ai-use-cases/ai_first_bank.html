@@ -378,10 +378,14 @@ This governance framework addresses behavioral drift, optimization misalignment,
 <section id="the-ai-first-bank-architecture" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="the-ai-first-bank-architecture"><span class="header-section-number">5</span> The AI-First Bank Architecture</h2>
 <p>Now that we’ve defined agent types, where do they operate? An AI-first bank architecture is organized into six layers, each serving a distinct purpose. Experience Agents live in the customer-facing layer, Domain Agents execute work in the action layer, and the intelligence layer coordinates both.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/ai_first_bank_architecture.png" class="img-fluid figure-img" width="800"></p>
-<figcaption><strong>Figure:</strong> The AI-First Bank Architecture is organized into six functional layers. Experience Agents handle customer interaction, Domain Agents execute business processes, and the Intelligence Layer coordinates workflows—all wrapped in a unified Control Plane for governance.</figcaption>
+<div id="fig-Architecture" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/ai_first_bank_architecture.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The AI-First Bank Architecture is organized into six functional layers. Experience Agents handle customer interaction, Domain Agents execute business processes, and the Intelligence Layer coordinates workflows—all wrapped in a unified Control Plane for governance.
+</figcaption>
 </figure>
 </div>
 <p><strong>1: Customer Layer:</strong> Web, mobile, contact centers, and advisor desktops make up the Customer Layer. Experience Agents operate here—the chatbots, copilots, and assistants that customers and bankers interact with directly. This layer manages user identity, personalization, and real-time interactions.</p>
@@ -399,10 +403,14 @@ This governance framework addresses behavioral drift, optimization misalignment,
 <section id="mortgage-loan-underwriting-agent-collaboration" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="mortgage-loan-underwriting-agent-collaboration"><span class="header-section-number">6.1</span> Mortgage Loan Underwriting (Agent Collaboration)</h3>
 <p>Experience agents, domain agents, and the intelligence layer collaborate to automate mortgage underwriting workflows—compressing cycle times from weeks to days while credit officers retain final approval.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Mortgage-Underwriting-Agents.png" class="img-fluid figure-img" width="800"></p>
-<figcaption><strong>Figure:</strong> L2 mortgage underwriting workflow showing experience agents handling intake, domain agents generating draft underwriting outputs, intelligence-layer coordination enforcing policy and risk controls, and human underwriters and credit officers approving final decisions.</figcaption>
+<div id="fig-Mortgage-Underwriting" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Mortgage-Underwriting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Mortgage-Underwriting-Agents.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Mortgage-Underwriting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: L2 mortgage underwriting workflow showing experience agents handling intake, domain agents generating draft underwriting outputs, intelligence-layer coordination enforcing policy and risk controls, and human underwriters and credit officers approving final decisions.
+</figcaption>
 </figure>
 </div>
 <p><strong>Scenario:</strong> A borrower applies for a mortgage loan. Experience agents manage application intake and document collection, while domain agents perform underwriting analysis across income, affordability, collateral, pricing, and compliance. Credit officers remain accountable for final approval.</p>
@@ -413,10 +421,14 @@ This governance framework addresses behavioral drift, optimization misalignment,
 <section id="risk-management-stress-testing-and-ccar" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="risk-management-stress-testing-and-ccar"><span class="header-section-number">6.2</span> Risk Management (Stress Testing and CCAR)</h3>
 <p>Multi-agent architecture transforms CCAR preparation by automating manual handoffs while preserving regulatory oversight.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Stress-Testing-Agents_.png" class="img-fluid figure-img" width="800"></p>
-<figcaption><strong>Figure:</strong> L2 workflow for CCAR stress testing showing how agents compress months of scenario preparation into hours while maintaining human oversight. Experience Agents configure scenarios, the Intelligence Layer orchestrates execution with embedded risk controls, Domain Agents run stress calculations on governed data, and Risk Analysts approve final capital impact results.</figcaption>
+<div id="fig-CCAR" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CCAR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Stress-Testing-Agents_.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CCAR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: L2 workflow for CCAR stress testing showing how agents compress months of scenario preparation into hours while maintaining human oversight. Experience Agents configure scenarios, the Intelligence Layer orchestrates execution with embedded risk controls, Domain Agents run stress calculations on governed data, and Risk Analysts approve final capital impact results.
+</figcaption>
 </figure>
 </div>
 <p>Scenario mapping, data assembly, and stress calculations can execute in hours rather than months—while risk officers retain formal approval authority before regulatory submission.</p>
@@ -452,10 +464,14 @@ This governance framework addresses behavioral drift, optimization misalignment,
 <h2 data-number="7" class="anchored" data-anchor-id="three-pathways-to-agentic-banking"><span class="header-section-number">7</span> Three Pathways to Agentic Banking</h2>
 <p>Most regional banks still run core systems on decades-old mainframes. The good news is that full modernization is not required to begin deploying agents. Insight-focused agents layer onto legacy systems through APIs. However, agents that execute processes or make autonomous decisions require modern data platforms and real-time connectivity.</p>
 <p>Moving from vision to execution requires a practical roadmap. Banks can adopt agentic AI through three distinct approaches, each aligned to different risk appetites, technical readiness, and strategic objectives.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/AgenticBankingPathways.png" class="img-fluid figure-img" width="800"></p>
-<figcaption><strong>Figure:</strong> The strategic progression of agentic banking. While Smart Overlays deliver immediate efficiency gains with low technical debt, true Reinvention requires deeper integration and fundamental process redesign.</figcaption>
+<div id="fig-Pathways" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Pathways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/AgenticBankingPathways.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Pathways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: The strategic progression of agentic banking. While Smart Overlays deliver immediate efficiency gains with low technical debt, true Reinvention requires deeper integration and fundamental process redesign.
+</figcaption>
 </figure>
 </div>
 <p><strong>Pathway 1: Smart Overlay</strong></p>

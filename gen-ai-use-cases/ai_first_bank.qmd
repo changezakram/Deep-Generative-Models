@@ -150,7 +150,7 @@ Experience agents must handle ambiguity and communicate clearly. Domain agents m
 
 Now that we've defined agent types, where do they operate? An AI-first bank architecture is organized into six layers, each serving a distinct purpose. Experience Agents live in the customer-facing layer, Domain Agents execute work in the action layer, and the intelligence layer coordinates both.
 
-![**Figure:** The AI-First Bank Architecture is organized into six functional layers. Experience Agents handle customer interaction, Domain Agents execute business processes, and the Intelligence Layer coordinates workflows—all wrapped in a unified Control Plane for governance.](images/ai_first_bank_architecture.png){fig-align="center" width="800"}
+![The AI-First Bank Architecture is organized into six functional layers. Experience Agents handle customer interaction, Domain Agents execute business processes, and the Intelligence Layer coordinates workflows—all wrapped in a unified Control Plane for governance.](images/ai_first_bank_architecture.png){#fig-Architecture fig-align="center" width="800"}
 
 **1: Customer Layer:** Web, mobile, contact centers, and advisor desktops make up the Customer Layer. Experience Agents operate here—the chatbots, copilots, and assistants that customers and bankers interact with directly. This layer manages user identity, personalization, and real-time interactions.
 
@@ -176,7 +176,7 @@ The architecture comes to life through specific banking workflows. These four us
 
 Experience agents, domain agents, and the intelligence layer collaborate to automate mortgage underwriting workflows—compressing cycle times from weeks to days while credit officers retain final approval.
 
-![**Figure:** L2 mortgage underwriting workflow showing experience agents handling intake, domain agents generating draft underwriting outputs, intelligence-layer coordination enforcing policy and risk controls, and human underwriters and credit officers approving final decisions.](images/Mortgage-Underwriting-Agents.png){fig-align="center" width="800"}
+![L2 mortgage underwriting workflow showing experience agents handling intake, domain agents generating draft underwriting outputs, intelligence-layer coordination enforcing policy and risk controls, and human underwriters and credit officers approving final decisions.](images/Mortgage-Underwriting-Agents.png){#fig-Mortgage-Underwriting fig-align="center" width="800"}
 
 **Scenario:** A borrower applies for a mortgage loan. Experience agents manage application intake and document collection, while domain agents perform underwriting analysis across income, affordability, collateral, pricing, and compliance. Credit officers remain accountable for final approval.
 
@@ -190,7 +190,7 @@ Experience agents, domain agents, and the intelligence layer collaborate to auto
 
 Multi-agent architecture transforms CCAR preparation by automating manual handoffs while preserving regulatory oversight.
 
-![**Figure:** L2 workflow for CCAR stress testing showing how agents compress months of scenario preparation into hours while maintaining human oversight. Experience Agents configure scenarios, the Intelligence Layer orchestrates execution with embedded risk controls, Domain Agents run stress calculations on governed data, and Risk Analysts approve final capital impact results.](images/Stress-Testing-Agents_.png){fig-align="center" width="800"}
+![L2 workflow for CCAR stress testing showing how agents compress months of scenario preparation into hours while maintaining human oversight. Experience Agents configure scenarios, the Intelligence Layer orchestrates execution with embedded risk controls, Domain Agents run stress calculations on governed data, and Risk Analysts approve final capital impact results.](images/Stress-Testing-Agents_.png){#fig-CCAR fig-align="center" width="800"}
 
 Scenario mapping, data assembly, and stress calculations can execute in hours rather than months—while risk officers retain formal approval authority before regulatory submission.
 
@@ -242,7 +242,7 @@ Most regional banks still run core systems on decades-old mainframes. The good n
 
 Moving from vision to execution requires a practical roadmap. Banks can adopt agentic AI through three distinct approaches, each aligned to different risk appetites, technical readiness, and strategic objectives.
 
-![**Figure:** The strategic progression of agentic banking. While Smart Overlays deliver immediate efficiency gains with low technical debt, true Reinvention requires deeper integration and fundamental process redesign.](images/AgenticBankingPathways.png){fig-align="center" width="800"}
+![The strategic progression of agentic banking. While Smart Overlays deliver immediate efficiency gains with low technical debt, true Reinvention requires deeper integration and fundamental process redesign.](images/AgenticBankingPathways.png){#fig-Pathways fig-align="center" width="800"}
 
 
 **Pathway 1: Smart Overlay**
