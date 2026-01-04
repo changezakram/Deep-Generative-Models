@@ -186,20 +186,6 @@ Experience agents, domain agents, and the intelligence layer collaborate to auto
 
 **Outcome:** Mortgage underwriting becomes faster and more consistent, while credit officers retain full control over final decisions within policy and regulatory limits.
 
-
-### Corporate Banking (Agent-to-Agent Automation)
-
-**Scenario:** A multinational corporation expands into Europe, requiring coordination between the corporate client and bank across multiple geographies.
-
-**Forecasting:** The CFO uses a Cash Flow Forecasting Agent that consolidates data from Balance Inquiry Agents and Document Extraction Agents reading invoice data. Together they project a working capital shortfall. The client's agent then communicates directly with the bank's domain agents to request a €50 million credit facility.
-
-**Execution:** The bank's Risk Agent generates a credit write-up by analyzing financial statements, market conditions, and reports. Once approved, the Supply Chain Finance Smart Program Agent reads supplier contracts and automatically onboards European suppliers into the financing program.
-
-All approvals and onboarding operate within regulatory, legal, and credit policy constraints. Cross-border risk thresholds trigger automatic escalation to regional credit officers.
-
-**Outcome:** Work that traditionally requires months of email exchanges and document reviews executes in days through domain agents. Pricing agents recommend deal terms in real time based on historical discounting, customer attributes, and willingness to pay—shortening quote cycles and improving margins. Early results show margin gains of ~10% and deal turnaround reduced from five days to two.<sup>1</sup>
-
-
 ### Risk Management (Stress Testing and CCAR)
 
 Multi-agent architecture transforms CCAR preparation by automating manual handoffs while preserving regulatory oversight.
