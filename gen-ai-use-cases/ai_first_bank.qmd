@@ -410,13 +410,13 @@ These aren't incremental improvements—they represent a different operating mod
 
 ## Conclusion
 
-Banks are moving from AI that creates content to AI that executes work. This shift changes what's possible in financial services—from reactive customer service to proactive financial guidance, from manual compliance workflows to automated regulatory reporting, from quarterly stress tests to continuous risk monitoring.
+Banks are moving from AI that generates content to AI that executes work. This shift expands what automation can support in financial services—from reactive service interactions to proactive financial guidance, from manual compliance workflows to assisted regulatory reporting, and from periodic risk analysis to more continuous monitoring.
 
-The architecture outlined here—layered, governed, and designed for agent collaboration—provides a framework for this transition. Experience agents improve customer and employee interactions. Domain agents automate complex backend processes. The intelligence layer ensures both operate within risk boundaries.
+The architecture outlined here—layered, governed, and designed for agent collaboration—provides a practical framework for this transition. Experience agents improve customer and employee interactions. Domain agents automate structured, multi-step processes. The intelligence layer ensures these activities operate within defined policy, risk, and control boundaries.
 
-Early movers are already seeing results: relationship managers save 10-15 hours per week, compliance automation cuts turnaround time by 80%, and stress testing that took months now completes in days. Banks implementing agentic AI across frontline operations report 3-15% revenue increases per relationship manager and 30% pipeline growth—returns too material to ignore.
+Early adopters are beginning to see measurable benefits. Relationship managers report meaningful time savings, compliance teams reduce turnaround times, and stress testing cycles shorten significantly compared to traditional approaches. In some cases, banks applying agentic capabilities across frontline workflows report improvements in productivity, pipeline conversion, and responsiveness.
 
-The competitive advantage goes to banks that deploy agents systematically rather than experimentally—treating AI as core infrastructure, not a feature. The question isn't whether to build agent-driven architectures, but how quickly to scale them while maintaining the governance and controls that banking requires.
+The advantage does not come from deploying agents in isolation, but from integrating them systematically as part of core operating infrastructure. The question for banks is no longer whether agentic AI is relevant, but how to scale it deliberately—while preserving the governance, accountability, and controls that the industry requires.
 
 
 ---
