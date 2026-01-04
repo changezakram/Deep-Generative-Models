@@ -343,23 +343,21 @@ In banking, AI governance is not optional—it is a requirement for deployment. 
 
 ### Three Regulatory Pillars
 
-**SR 11-7 (Model Risk Management)** - The Federal Reserve's 2011 guidance applies to AI and machine learning. Banks must demonstrate models are fit for purpose through independent validation, maintain documentation others can understand, and ensure board-level oversight. The challenge: AI models that learn and evolve resist validation approaches designed for static statistical models.
+**SR 11-7 (Model Risk Management)** - The Federal Reserve’s guidance applies to AI and machine learning. Banks must show that models are fit for purpose through independent validation, clear documentation, and board-level oversight. For adaptive models, this requires extending traditional validation with ongoing monitoring and governance rather than relying on one-time approval.
 
-**ECOA and Regulation B (Fair Lending)** - The CFPB established a clear requirement: if you cannot explain why you denied credit, you cannot use the model. "There is no special exemption for artificial intelligence." When agents approve or deny loan applications, banks must provide specific reasons. "Behavioral spending patterns" fails the standard. "Frequent overdrafts in the past 90 days combined with three late utility payments" meets it.
+**ECOA and Regulation B (Fair Lending)** -  Fair lending rules require banks to explain credit decisions in specific, understandable terms. There is no exemption for AI-based decisions. When agents approve or deny loans, banks must be able to state concrete reasons for the outcome. Vague explanations such as “behavioral spending patterns” are insufficient, while specific factors—such as recent overdrafts combined with late bill payments—meet regulatory standards.
 
-**SR 13-19 (Third-Party Risk Management)** - Most banks purchase vendor AI solutions. The rule: outsourcing execution does not transfer accountability. Banks remain responsible for vendor model outcomes despite limited access to proprietary algorithms.
+**SR 13-19 (Third-Party Risk Management)** - Banks frequently rely on third-party vendors for AI capabilities. Regulatory guidance is clear: outsourcing technology does not outsource responsibility. Banks remain accountable for model outcomes, even when vendors limit access to underlying algorithms. This requires strong due diligence and clear controls over how vendor models operate in production.
 
 ### The Explainability Requirement
 
-Traditional credit models use techniques where you can trace how each input affects output. Modern AI—particularly deep learning—identifies patterns that predict outcomes more accurately but makes explaining the logic difficult.
+Traditional credit models are easier to explain because each input can be traced to an outcome. Modern AI models—especially deep learning—often deliver more accurate predictions, but their internal logic is harder to interpret. To meet regulatory requirements, banks rely on explainability methods that estimate which factors influenced a decision. These methods make it possible to generate the explanations regulators require when credit is denied, but the explanations are approximations and can be difficult to defend.
 
-Banks address this through explainability methods that approximate which inputs influenced specific decisions. These enable adverse action notices satisfying regulators, though imperfect approximations risk providing inaccurate reasons to customers.
-
-The practical outcome: banks often limit complex AI to L1 applications (insights) where explainability matters less, and use simpler models for L2 and L3 applications (execution and decisions) where regulatory scrutiny is higher.
+As a result, banks typically limit complex AI models to L1 insight applications, where explainability requirements are lighter, and reserve simpler, more transparent models for L2 and L3 use cases involving execution and credit decisions, where regulatory scrutiny is highest.
 
 ### Continuous Monitoring Requirements
 
-Regulators expect banks to demonstrate ongoing oversight of AI systems in production. This includes monitoring performance, stability, and fairness metrics, documenting exceptions, and ensuring accountable human review for high-impact outcomes. Monitoring is not a one-time control but a continuous supervisory obligation.
+Regulators expect banks to demonstrate ongoing oversight of AI systems in production. This includes monitoring performance, stability, and fairness metrics, documenting exceptions, and ensuring accountable human review for high-impact outcomes. Monitoring is a continuous supervisory obligation.
 
 Fair lending testing extends monitoring further. Banks must test whether models produce disparate impact across protected classes—even when models don't use protected class as an input. If a model approves loans for different groups at significantly different rates, banks must adjust the model or demonstrate legitimate business justification.
 
