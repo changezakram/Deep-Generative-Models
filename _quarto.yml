@@ -42,8 +42,8 @@ website:
             href: https://changezakram.github.io/Deep-Generative-Models/slm.html
           - text: Multi-Agent Orchestration
             href: https://changezakram.github.io/agentic-ai/Workflow-Orchestration.html
-          - text: Building Safe & Secure Agentic AI
-            href: https://changezakram.github.io/agentic-ai/agentic_ai_safety.html
+          - text: Securing Agentic AI Systems
+            href: https://changezakram.github.io/agentic-ai/agentic_ai_security.html
 
       - text: AI Strategy
         menu:
