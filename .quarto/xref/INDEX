@@ -68,5 +68,9 @@
   },
   "gen-ai-use-cases/ai-roadmap-for-banking.qmd": {
     "ai-roadmap-for-banking.html": "77251367"
+  },
+  "explainable-ai.qmd": {
+    "explainable-ai.html": "243fac4b",
+    "explainable-ai.tex": "06b5f000"
   }
 }

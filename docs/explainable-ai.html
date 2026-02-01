@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-01-31">
+
+<title>Explainable AI: Beyond the Checkbox</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://changezakram.github.io/"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">Gen AI Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./diffusion.html">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/transformers.html">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/post-training.html">
+ <span class="dropdown-text">Post Training</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/nlp-eval.html">
+ <span class="dropdown-text">NLP Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-agentic-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Agentic AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-agentic-ai">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-ai.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-analytics.html">
+ <span class="dropdown-text">Agentic Analytics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/slm.html">
+ <span class="dropdown-text">Small Language Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/Workflow-Orchestration.html">
+ <span class="dropdown-text">Multi-Agent Orchestration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic_ai_security.html">
+ <span class="dropdown-text">Securing Agentic AI Systems</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai-strategy" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">AI Strategy</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai-strategy">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html">
+ <span class="dropdown-text">Building the AI-First Bank</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html">
+ <span class="dropdown-text">Gen AI in Banking</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html">
+ <span class="dropdown-text">Gen AI in Healthcare</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-math-review" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Math Review</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-math-review">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/linear-algebra.html">
+ <span class="dropdown-text">Linear Algebra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/calculus.html">
+ <span class="dropdown-text">Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/math-review/probability.html">
+ <span class="dropdown-text">Probability</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#explainable-ai-beyond-the-checkbox" id="toc-explainable-ai-beyond-the-checkbox" class="nav-link active" data-scroll-target="#explainable-ai-beyond-the-checkbox">Explainable AI: Beyond the Checkbox</a></li>
+  <li><a href="#when-explainability-mattersand-when-it-does-not" id="toc-when-explainability-mattersand-when-it-does-not" class="nav-link" data-scroll-target="#when-explainability-mattersand-when-it-does-not">When Explainability Matters—and When It Does Not</a></li>
+  <li><a href="#why-accuracy-alone-breaks-down" id="toc-why-accuracy-alone-breaks-down" class="nav-link" data-scroll-target="#why-accuracy-alone-breaks-down">Why Accuracy Alone Breaks Down</a></li>
+  <li><a href="#explainability-as-diagnostic-infrastructure" id="toc-explainability-as-diagnostic-infrastructure" class="nav-link" data-scroll-target="#explainability-as-diagnostic-infrastructure">Explainability as Diagnostic Infrastructure</a></li>
+  <li><a href="#two-paths-to-model-understanding" id="toc-two-paths-to-model-understanding" class="nav-link" data-scroll-target="#two-paths-to-model-understanding">Two Paths to Model Understanding</a></li>
+  <li><a href="#explanation-as-an-interface-not-a-property" id="toc-explanation-as-an-interface-not-a-property" class="nav-link" data-scroll-target="#explanation-as-an-interface-not-a-property">Explanation as an Interface, Not a Property</a></li>
+  <li><a href="#local-and-global-views" id="toc-local-and-global-views" class="nav-link" data-scroll-target="#local-and-global-views">Local and Global Views</a></li>
+  <li><a href="#core-post-hoc-techniques" id="toc-core-post-hoc-techniques" class="nav-link" data-scroll-target="#core-post-hoc-techniques">Core Post-Hoc Techniques</a></li>
+  <li><a href="#attention-is-not-explanation" id="toc-attention-is-not-explanation" class="nav-link" data-scroll-target="#attention-is-not-explanation">Attention Is Not Explanation</a></li>
+  <li><a href="#the-security-dimension" id="toc-the-security-dimension" class="nav-link" data-scroll-target="#the-security-dimension">The Security Dimension</a></li>
+  <li><a href="#the-limits-of-post-hoc-explainability" id="toc-the-limits-of-post-hoc-explainability" class="nav-link" data-scroll-target="#the-limits-of-post-hoc-explainability">The Limits of Post-Hoc Explainability</a></li>
+  <li><a href="#the-regulatory-reality" id="toc-the-regulatory-reality" class="nav-link" data-scroll-target="#the-regulatory-reality">The Regulatory Reality</a></li>
+  <li><a href="#a-practical-view" id="toc-a-practical-view" class="nav-link" data-scroll-target="#a-practical-view">A Practical View</a></li>
+  <li><a href="#implications-for-agentic-systems" id="toc-implications-for-agentic-systems" class="nav-link" data-scroll-target="#implications-for-agentic-systems">Implications for Agentic Systems</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="explainable-ai.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Explainable AI: Beyond the Checkbox</h1>
+<p class="subtitle lead">Why Explainability Is About Judgment, Not Transparency</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 31, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="explainable-ai-beyond-the-checkbox" class="level2">
+<h2 class="anchored" data-anchor-id="explainable-ai-beyond-the-checkbox">Explainable AI: Beyond the Checkbox</h2>
+<p>Explainability is often treated as a technical add-on—something applied after a model is trained, when stakeholders start asking uncomfortable questions. The reason it exists is simpler: <strong>optimization breaks down in the real world</strong>.</p>
+<p>The stakes are not abstract. Google’s facial recognition system once mislabeled Black individuals as gorillas. Unable to fix the underlying bias, Google removed primate-related labels entirely—a workaround, not a solution. Uber’s autonomous vehicle ran a stop sign, raising questions about accountability in systems no one fully understands. As Cathy O’Neil documents in <em>Weapons of Math Destruction</em>, opaque models create feedback loops that amplify bias across criminal justice, hiring, credit scoring, and healthcare.</p>
+<p>The presence of machine learning alone does not determine whether explainability matters. <strong>Context does.</strong></p>
+<hr>
+</section>
+<section id="when-explainability-mattersand-when-it-does-not" class="level2">
+<h2 class="anchored" data-anchor-id="when-explainability-mattersand-when-it-does-not">When Explainability Matters—and When It Does Not</h2>
+<p>Not every system needs explanations. When errors are reversible, harm is limited, and no human is expected to interpret or justify individual decisions, performance metrics are often sufficient. Recommendation systems, ad targeting, and internal optimization tools fall into this category. If a model makes a poor prediction, the consequences are contained.</p>
+<p>High-stakes systems change the equation. In healthcare, lending, hiring, and judicial settings, model outputs shape outcomes that cannot be undone. People may lose access to credit, treatment, employment, or liberty. In these settings, humans remain responsible for the decisions the system supports.</p>
+<p>That responsibility does not disappear because a model is involved. When people are expected to rely on a system and justify its decisions, <strong>explainability becomes a safety requirement—not a transparency exercise</strong>.</p>
+<hr>
+</section>
+<section id="why-accuracy-alone-breaks-down" class="level2">
+<h2 class="anchored" data-anchor-id="why-accuracy-alone-breaks-down">Why Accuracy Alone Breaks Down</h2>
+<p><strong>In high-impact settings, accuracy alone is a weak guarantee of acceptable behavior.</strong></p>
+<p>Many such applications are under-studied. Training data rarely reflects the conditions encountered after deployment. Distribution shift is common. Historical data often encodes bias. Feedback loops quietly distort outcomes over time. A model can appear accurate in validation and still fail for reasons metrics never reveal.</p>
+<p>High-stakes systems also face requirements that extend beyond predictive performance. Fairness, non-discrimination, robustness, safety, and legal defensibility all matter. Increasingly, regulations mandate transparency or a right to explanation when automated systems influence consequential decisions.</p>
+<p>These demands expose a deeper issue: many of the criteria we care about cannot be fully specified as optimization objectives. What it means for a model to behave acceptably is often contextual, contested, and situation-dependent. <strong>Problem formulations are inherently incomplete.</strong></p>
+<p>When requirements cannot be encoded into training, behavior must be evaluated another way. That is where explainability enters—not as proof that a model is correct, but as a diagnostic tool.</p>
+<hr>
+</section>
+<section id="explainability-as-diagnostic-infrastructure" class="level2">
+<h2 class="anchored" data-anchor-id="explainability-as-diagnostic-infrastructure">Explainability as Diagnostic Infrastructure</h2>
+<p>Explainability is best understood as <strong>diagnostic infrastructure</strong>—a way to examine how a system behaves when performance metrics fall short. By inspecting what a model relies on and how its predictions change across cases, we can surface failure modes that would otherwise remain hidden.</p>
+<p>In vision systems, explanations reveal shortcut learning: models that appear accurate while relying on irrelevant background cues. In financial systems, they can expose reliance on prohibited or proxy attributes. In clinical settings, they help practitioners decide when to trust a recommendation and when to override it.</p>
+<p>For people affected by automated decisions, the need is different. Feature importance alone is rarely useful. What matters is <strong>recourse</strong>—understanding what could realistically change an outcome.</p>
+<p>Across these cases, the audience varies: developers, decision-makers, regulators, affected individuals. The function does not. Explainability supports debugging, bias detection, trust calibration, recourse, and governance by making failures visible before they become systemic.</p>
+<hr>
+</section>
+<section id="two-paths-to-model-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="two-paths-to-model-understanding">Two Paths to Model Understanding</h2>
+<p>There are two ways to make AI systems understandable.</p>
+<p><strong>The first is to design models that are interpretable by construction.</strong> These models expose their logic directly, allowing humans to inspect how inputs lead to outputs. Rule-based models, risk scores, and generalized additive models fall into this category. When an inherently interpretable model achieves adequate performance, it should usually be preferred. There is no surrogate layer, no approximation, and no ambiguity about fidelity.</p>
+<p>But there is a trade-off. Simpler models often sacrifice performance. In domains like banking and insurance, interpretability may be required for every decision—yet true relationships in data are rarely linear. The most accurate models are often the hardest to interpret. This tension is why post-hoc explainability methods exist.</p>
+<p><strong>The second path is to explain models after the fact.</strong> When models are too complex, externally sourced, or already deployed, post-hoc explanations act as a bridge between a black-box system and its users. The question shifts from <em>how does the model work?</em> to <em>how can its behavior be described without misleading people?</em></p>
+<p>That distinction matters.</p>
+<hr>
+</section>
+<section id="explanation-as-an-interface-not-a-property" class="level2">
+<h2 class="anchored" data-anchor-id="explanation-as-an-interface-not-a-property">Explanation as an Interface, Not a Property</h2>
+<p>Post-hoc explanations do not reveal a model’s internal reasoning. They <strong>approximate behavior from the outside</strong>.</p>
+<p>An explanation method takes a trained model and produces a secondary artifact—feature attributions, rules, examples, or counterfactuals—that people can inspect. This artifact sits between the system and its stakeholders, translating complex computation into a usable form.</p>
+<p>This means explanations help people <strong>use</strong> a model, not fully understand it.</p>
+<p>For this interface to be useful, it must balance two competing goals: reflecting what the model actually does and remaining understandable to its audience. Improving one often degrades the other. There is no universal solution. Explainability is inherently audience-dependent.</p>
+<hr>
+</section>
+<section id="local-and-global-views" class="level2">
+<h2 class="anchored" data-anchor-id="local-and-global-views">Local and Global Views</h2>
+<p>Local explanations focus on individual predictions. They answer: <em>why did the model make this decision here?</em> These are useful for debugging, investigating specific outcomes, and assessing whether individual decisions are defensible.</p>
+<p>Global explanations summarize behavior across populations. They address: <em>what does the model generally rely on?</em> and <em>are certain groups systematically affected?</em> These views are essential for governance, auditing, and regulatory oversight.</p>
+<p><strong>Local explanations reveal failures. Global explanations contextualize them.</strong><br>
+Both are necessary. Neither is sufficient on its own.</p>
+<hr>
+</section>
+<section id="core-post-hoc-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="core-post-hoc-techniques">Core Post-Hoc Techniques</h2>
+<p><em>Executives may skim this section; the key takeaway is that these methods differ in stability, cost, and risk.</em></p>
+<section id="lime-local-interpretable-model-agnostic-explanations" class="level3">
+<h3 class="anchored" data-anchor-id="lime-local-interpretable-model-agnostic-explanations">LIME (Local Interpretable Model-agnostic Explanations)</h3>
+<p>LIME explains individual predictions by fitting simple surrogate models around a specific instance. It is flexible and model-agnostic, but unstable: small changes in assumptions can produce very different explanations.</p>
+</section>
+<section id="shap-shapley-additive-explanations" class="level3">
+<h3 class="anchored" data-anchor-id="shap-shapley-additive-explanations">SHAP (SHapley Additive exPlanations)</h3>
+<p>SHAP attributes predictions to features using game-theoretic principles. It offers consistency and supports both local and global views, but can be computationally expensive and slow at scale.</p>
+</section>
+<section id="counterfactual-explanations" class="level3">
+<h3 class="anchored" data-anchor-id="counterfactual-explanations">Counterfactual Explanations</h3>
+<p>Counterfactuals answer: <em>what would need to change for the decision to change?</em> They are especially valuable when recourse matters more than attribution. But generating realistic counterfactuals is hard—many mathematically minimal changes are infeasible or unethical.</p>
+<p>Aggregated counterfactuals are particularly important for governance. They can reveal whether certain groups must exert systematically more effort to achieve favorable outcomes.</p>
+</section>
+<section id="permutation-feature-importance" class="level3">
+<h3 class="anchored" data-anchor-id="permutation-feature-importance">Permutation Feature Importance</h3>
+<p>A global technique that measures how model performance changes when features are shuffled. It helps validate whether a model relies on sensible signals—but does not explain individual decisions.</p>
+<hr>
+</section>
+</section>
+<section id="attention-is-not-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="attention-is-not-explanation">Attention Is Not Explanation</h2>
+<p>As large language models enter production, attention mechanisms are often presented as explanations. This is a mistake.</p>
+<p>Attention weights show which inputs influenced a prediction, not how or why a decision was made. High attention does not imply importance; low attention does not imply irrelevance. Treating attention as explanation conflates correlation with justification.</p>
+<p>The same caution applies to saliency maps in vision models. Saliency shows where the model is sensitive, not why. Without context, these artifacts can create confidence without understanding.</p>
+<hr>
+</section>
+<section id="the-security-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="the-security-dimension">The Security Dimension</h2>
+<p>Explainability is also a security concern—one often overlooked.</p>
+<p>Opaque models create attack surfaces. Model inversion attacks extract sensitive training data. Adversarial inputs exploit blind spots. Model drift quietly degrades performance as environments change.</p>
+<p>Explainability can help detect these risks early. But it also introduces a paradox: revealing too much can create exploitation roadmaps. Organizations must balance transparency with security—providing enough insight to build trust without enabling abuse.</p>
+<hr>
+</section>
+<section id="the-limits-of-post-hoc-explainability" class="level2">
+<h2 class="anchored" data-anchor-id="the-limits-of-post-hoc-explainability">The Limits of Post-Hoc Explainability</h2>
+<p>Post-hoc explanations are powerful tools, but they introduce new risks.</p>
+<p>They can be unstable. They can be misleading. They can be selectively presented. Most importantly, they can create the illusion that a system is understood when it is not.</p>
+<p>Explainability does not make a system fair. It does not make it safe. And it does not remove human responsibility. Sometimes explanations reveal problems that require changing the model itself. Other times, they reveal that a system should not have been deployed at all.</p>
+<hr>
+</section>
+<section id="the-regulatory-reality" class="level2">
+<h2 class="anchored" data-anchor-id="the-regulatory-reality">The Regulatory Reality</h2>
+<p>Regulation is not theoretical. Explainability requirements are already in force.</p>
+<p>The EU AI Act mandates transparency for high-risk systems. GDPR grants individuals rights related to automated decisions. California’s Transparency in Frontier AI Act requires disclosure of risks and mitigation measures.</p>
+<p>Organizations deploying AI without explainability capabilities are accumulating regulatory debt that will eventually come due.</p>
+<hr>
+</section>
+<section id="a-practical-view" class="level2">
+<h2 class="anchored" data-anchor-id="a-practical-view">A Practical View</h2>
+<p>Explainable AI is not about choosing the “right” technique. It is about <strong>judgment</strong>.</p>
+<p>Interpretable models offer clarity but may lack flexibility. Post-hoc explanations offer access but rely on approximation. Local explanations surface failures. Global explanations support oversight. None provides a complete picture.</p>
+<p>Responsible AI does not require perfect transparency. It requires knowing <strong>when explanations are sufficient, when they mislead, and when a system should not be trusted at all</strong>.</p>
+<p>That judgment—not any individual method—is the real objective of explainable AI.</p>
+<hr>
+</section>
+<section id="implications-for-agentic-systems" class="level2">
+<h2 class="anchored" data-anchor-id="implications-for-agentic-systems">Implications for Agentic Systems</h2>
+<p>For agentic AI—systems that act autonomously—the stakes rise further.</p>
+<p>Agents do not just make predictions; they chain decisions, interact with environments, and adapt over time. Explaining a single output is hard enough. Explaining sequences of autonomous actions requires new approaches to traceability, accountability, and oversight.</p>
+<p>The question is not whether to invest in explainability. It is whether to build it in now—or scramble to retrofit it later.</p>
+<hr>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<ul>
+<li>Molnar, Christoph. <em>Interpretable Machine Learning</em>. https://christophm.github.io/interpretable-ml-book/</li>
+<li>O’Neil, Cathy. <em>Weapons of Math Destruction</em>.</li>
+<li>Rudin, Cynthia. “Stop Explaining Black Box Machine Learning Models for High Stakes Decisions and Use Interpretable Models Instead.” <em>Nature Machine Intelligence</em>, 2019.</li>
+<li>Ribeiro, Singh, Guestrin. “Why Should I Trust You?” KDD 2016.</li>
+<li>Lundberg, Lee. “A Unified Approach to Interpreting Model Predictions.” NeurIPS 2017.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
