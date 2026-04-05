@@ -1,6 +1,7 @@
 ---
 format: html
-title: "Building the AI-First Bank: Agents, Architecture, and the Path to Autonomous Banking"
+title: "Building the AI-First Bank"
+subtitle: "Agents, Architecture, and the Path to Autonomous Banking"
 toc: true
 ---
 
