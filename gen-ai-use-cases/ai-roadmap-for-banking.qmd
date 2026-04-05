@@ -1,6 +1,6 @@
 ---
 title: "AI Roadmap for Banking"
-subtitle: "From Predictive AI to Generative AI"
+subtitle: "A Strategic Framework for AI Adoption in Banking—from Predictive Models to Generative AI and the Path to Agentic Operations"
 date: 2026-03-15
 format:
   html:
@@ -12,7 +12,7 @@ format:
 
 ## Introduction
 
-Banks are not new to artificial intelligence. For decades, predictive models have quietly powered core decisions across credit risk, fraud detection, customer attrition, pricing, and marketing. What has changed with the rise of Generative AI is not the relevance of these models, but the scope of what AI can now support. Instead of only predicting outcomes, AI systems can increasingly understand unstructured information, synthesize context, and communicate insights in human language.
+Banks are not new to artificial intelligence. For decades, predictive models have powered core decisions across credit risk, fraud detection, customer attrition, pricing, and marketing. What has changed with the rise of Generative AI is not the relevance of these models, but the scope of what AI can now support. Instead of only predicting outcomes, AI systems can increasingly understand unstructured information, synthesize context, and communicate insights in human language.
 
 Generative AI does not replace predictive AI. It complements it. Banks that frame their strategy as “GenAI versus traditional analytics” risk discarding proven capabilities rather than building on them. The real opportunity lies in combining both forms of intelligence within end-to-end banking workflows.
 
