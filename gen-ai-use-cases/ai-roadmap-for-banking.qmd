@@ -59,7 +59,7 @@ Predictive AI also plays a central role in customer analytics, marketing, and sa
 ::: callout-note
 ### Where Predictive AI Reaches Its Limits
 
-Across these domains, predictive AI excels where outcomes are measurable, historical data is available, and decisions require probabilistic reasoning. Predictive models do not naturally interpret unstructured information such as documents, emails, or call transcripts, nor do they explain outcomes in human terms. This is where generative AI begins to add meaningful value.
+Across these domains, predictive AI excels where outcomes are measurable and historical data is available. Predictive models do not naturally interpret unstructured information such as documents, emails, or call transcripts, nor do they explain outcomes in human terms. This is where generative AI adds its most value.
 :::
 
 ---
