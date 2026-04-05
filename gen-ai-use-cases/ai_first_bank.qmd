@@ -283,7 +283,7 @@ A mature vendor ecosystem has emerged across three distinct layers. At the found
 
 Above this layer, enterprise AI platforms such as ServiceNow orchestrate agents across systems and vendors from a central governance layer, while products like Salesforce Agentforce deliver pre-built agents for customer service and relationship management functions.
 
-Finally, banking-specific platforms from providers like Temenos and Finastra embed domain expertise directly into core workflows, accelerating adoption in regulated environments.
+Finally, banking-specific platforms from providers like Temenos and Finastra embed pre-built domain expertise—covering lending, payments, compliance, and trade finance—directly into core workflows, reducing the time and cost of deploying AI in regulated environments.
 
 The pattern among leading banks is clear: partner for infrastructure speed, build for competitive differentiation. Infrastructure and orchestration come from vendors. Proprietary risk models, customer intelligence engines, and strategic decisioning logic get built in-house. Central governance—including policy controls, compliance validation, and performance monitoring—always stays internal.
 
