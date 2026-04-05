@@ -1,6 +1,6 @@
 ---
 title: "AI Roadmap for Banking"
-subtitle: "A Strategic Framework for AI Adoption in Banking—from Predictive Models to Generative AI and the Path to Agentic Operations"
+subtitle: "From Predictive AI to Generative AI and the Path to Agentic Operations"
 date: 2026-03-15
 format:
   html:
