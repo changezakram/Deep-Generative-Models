@@ -271,7 +271,7 @@ This pathway works best for strategically important processes where current auto
 
 **Choosing Your Path**
 
-Most banks won't pursue all three approaches simultaneously. Smart pathways deliver quick wins in well-documented, repeatable processes. Agentic by design creates competitive differentiation in customer-facing value chains. Process redesign earns returns where business value is demonstrably high.
+Most banks won't pursue all three approaches simultaneously. Smart overlays deliver quick wins in well-documented, repeatable processes. Agentic by Design delivers competitive differentiation where legacy systems are the primary constraint. Process redesign earns returns where business value is demonstrably high.
 
 The key is matching the approach to the specific context: organizational readiness, regulatory constraints, technical debt, and strategic importance of the process being transformed.
 
