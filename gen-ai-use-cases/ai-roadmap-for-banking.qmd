@@ -85,10 +85,10 @@ Generative AI also enables a new interaction model for analytics, often referred
 | Use Case | Business Problem | Business Impact |
 |----------|-----------------|-------------------|
 | **Credit Memo Generation** | Manual underwriting documentation is slow and inconsistent | Faster underwriting documentation with consistent structure and rationale across cases |
-| **Contract Review & Analysis** | Legal document review creates underwriting bottlenecks | Faster identification of unusual terms, reduced legal review time, consistent analysis across deals |
+| **Contract Review & Analysis** | Legal document review creates underwriting bottlenecks | Quicker identification of unusual terms, reduced legal review time, consistent analysis across deals |
 | **Document Summarization** | Analysts spend hours reading research reports and compliance docs | Analysts move from raw documents to informed decisions in minutes rather than hours |
 | **Customer Service Assistants** | High call volumes, long wait times, inconsistent service quality | Improved self-service resolution, reduced wait times, consistent service quality across channels |
-| **Employee Knowledge Assistants** | Employees struggle to navigate policies and institutional knowledge | Faster access to policies and institutional knowledge, improved compliance adherence |
+| **Employee Knowledge Assistants** | Employees struggle to navigate policies and institutional knowledge | Immediate access to policies and institutional knowledge, improved compliance adherence |
 | **Generative BI** | Executives need quick insights without waiting for analyst reports | Business users access insights without analyst dependency, faster executive decision-making |
 | **Fraud Investigation Support** | Investigators manually review cases and draft summaries | Investigators spend less time on evidence gathering and documentation, faster case resolution |
 | **Meeting Notes & Follow-up** | Advisors spend significant time on administrative tasks post-meeting | Advisors shift time from administrative tasks to client-facing work |
