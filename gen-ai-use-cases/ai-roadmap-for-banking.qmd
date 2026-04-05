@@ -16,7 +16,8 @@ Banks are not new to artificial intelligence. For decades, predictive models hav
 
 Generative AI does not replace predictive AI. It complements it. Banks that frame their strategy as “GenAI versus traditional analytics” risk discarding proven capabilities rather than building on them. The real opportunity lies in combining both forms of intelligence within end-to-end banking workflows.
 
-This roadmap examines how banks can combine both AI paradigms effectively—exploring core use cases, the architecture required to scale them, governance frameworks to manage risk, operating models to sustain capability, and a practical path from strategy to execution
+This roadmap covers the full AI strategy for banking—from predictive models through generative AI to the emerging frontier of agentic operations, where AI systems execute work autonomously within governed boundaries. For banks ready to move into agentic AI deployment, a companion article—[Building the AI-First Bank: A Strategic Guide](https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html)—covers that execution layer in depth.
+
 
 ## Predictive AI and Generative AI: Distinct Roles, Shared Value
 
