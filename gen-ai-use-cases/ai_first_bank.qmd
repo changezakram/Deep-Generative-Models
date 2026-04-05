@@ -281,7 +281,7 @@ Banks pursuing these pathways face a fundamental question: what should we build 
 
 A mature vendor ecosystem has emerged across three distinct layers. At the foundation, platforms such as Amazon Bedrock, Microsoft Azure AI, and Google Vertex AI provide model hosting, orchestration, and compute—capabilities that are increasingly commoditized and rarely a source of differentiation.
 
-Above this layer, cross-vendor orchestration platforms such as ServiceNow coordinate agents across systems, while products like Salesforce Agentforce deliver pre-built agents for common enterprise functions such as CRM and compliance.
+Above this layer, enterprise AI platforms such as ServiceNow orchestrate agents across systems and vendors from a central governance layer, while products like Salesforce Agentforce deliver pre-built agents for customer service and relationship management functions.
 
 Finally, banking-specific platforms from providers like Temenos and Finastra embed domain expertise directly into core workflows, accelerating adoption in regulated environments.
 
