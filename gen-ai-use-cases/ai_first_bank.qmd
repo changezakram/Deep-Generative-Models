@@ -255,10 +255,9 @@ This works best when banks have clearly documented standard operating procedures
 
 **Pathway 2: Agentic by Design**
 
-Some processes can’t be optimized by overlaying intelligence—they need to be rebuilt from the ground up. The agentic by design approach creates new, purpose-built autonomous applications tailored to specific banking functions. These agents operate alongside existing workflows, augmenting them without replacing the end-to-end process.
+Some processes can't be optimized by overlaying intelligence—they need to be rebuilt from the ground up. The Agentic by Design approach creates new, purpose-built autonomous applications tailored to specific banking functions. This approach is appropriate when existing systems cannot support the speed, intelligence, or regulatory precision the business requires—and when the process is central enough to justify the investment.
 
 Think of it like microservices. Instead of one monolithic system, banks develop smaller, specialized agentic services that handle specific functions yet integrate smoothly into the broader infrastructure. For example, rather than retrofitting a 30-year-old loan origination system, a bank might build a new autonomous credit decisioning service that coordinates multiple agents: one for document verification, another for creditworthiness analysis, and a third for regulatory compliance checks.
-
 This approach requires more upfront investment but delivers greater long-term flexibility. As regulations change or customer expectations evolve, individual agent services can be updated or replaced without disrupting the entire technology stack.
 
 **Pathway 3: Process Redesign**
