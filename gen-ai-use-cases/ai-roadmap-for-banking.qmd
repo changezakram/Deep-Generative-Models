@@ -286,18 +286,3 @@ Ultimately, scaling AI in banking is as much an organizational challenge as a te
 
 ---
 
-## References
-
-[1] McKinsey. (2025). Revisiting data architecture for next-gen data products
-
-[2] McKinsey. (2025). Next-gen banking success starts with the right data architecture
-
-[3] Bloomberg. (2017). JPMorgan Software Does in Seconds What Took Lawyers 360,000 Hours. https://www.bloomberg.com/news/articles/2017-02-28/jpmorgan-marshals-an-army-of-developers-to-automate-high-finance
-
-[4] Zest AI. (2024). Zest AI Launches LuLu Strategy Module to Expand Generative AI to Financial Institutions. https://www.zest.ai/company/announcements/zest-ai-launches-lulu-strategy-module-to-expand-generative-ai-to-financial-institutions/
-
-[5] Mastercard. (2024). Mastercard supercharges consumer protection with Gen AI. https://www.mastercard.com/news/press/2024/february/mastercard-supercharges-consumer-protection-with-gen-ai/
-
-[6] Morgan Stanley. (2024). AI @ Morgan Stanley Debrief Launch. https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch
-
-[7] Board of Governors of the Federal Reserve System. (2011). SR 11-7: Guidance on Model Risk Management. https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm
