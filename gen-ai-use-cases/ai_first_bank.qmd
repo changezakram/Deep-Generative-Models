@@ -1,6 +1,6 @@
 ---
 format: html
-title: "Building the AI-First Bank: A Strategic Guide"
+title: "Building the AI-First Bank: Agents, Architecture, and the Path to Autonomous Banking"
 toc: true
 ---
 
