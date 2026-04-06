@@ -140,7 +140,13 @@ At the user-facing layer, this integration appears as advisor desktops, customer
 
 AI architecture must be built to change. Models will change and regulations will evolve. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
 
-Architecture provides the technical foundation. Governance and risk management determine whether that foundation can be deployed safely in a regulated banking environment.
+The same architectural principles apply as banks move toward agentic operations. Agentic deployments require three additional architectural elements:
+
+- An action layer where domain agents execute core banking processes within defined policy boundaries
+- An intelligence layer that coordinates agent planning and orchestration across multi-step workflows
+- A data layer that provides agents controlled access to enterprise information at execution time, under strict access, logging, and audit controls
+
+The governance and security controls already embedded in the architecture must extend to cover agent activity—including agent registries, action limits, and audit trails for every agent decision. Banks that build modular, layered architectures now are better positioned to extend them for agentic workloads without rebuilding from scratch. For a detailed treatment of agentic architecture, see [Building the AI-First Bank: Agents, Architecture, and the Path to Autonomous Banking](https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html).
 
 ---
 
