@@ -172,19 +172,13 @@ As generative AI becomes more embedded in decision workflows, the boundary betwe
 
 ### Security and Access Controls
 
-Security requirements for AI systems extend beyond traditional data protection to include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access.
+Security requirements for AI systems cover more than traditional data protection—they include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access.
 
-Generative models pose unique risks—they can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Defense-in-depth strategies, including input validation, output filtering, and continuous monitoring, are essential.
+Generative models pose unique risks—they can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Defense-in-depth strategies—input validation, output filtering, and continuous monitoring—address risks that access controls alone cannot prevent.
 
-Agentic deployments expand this attack surface further. Agents interact with production systems autonomously, meaning a compromised agent executes harmful operations rather than simply producing bad output. Controls must scale with autonomy—privilege separation, policy enforcement at the tool layer, and action limits are architectural requirements, not optional safeguards.
+Agentic deployments expand this attack surface further. Agents interact with production systems autonomously, meaning a compromised agent executes harmful operations rather than simply producing bad output. Controls must scale with autonomy—privilege separation, policy enforcement at the tool layer, and action limits are architectural requirements.
 
 *For a detailed treatment of agentic AI security threats and defense strategies, see [Securing Agentic AI Systems: A Defense-in-Depth Approach](https://changezakram.github.io/agentic-ai/agentic_ai_security.html).*
-
-### Regulatory Compliance and Auditability
-
-AI systems in banking operate under extensive regulatory oversight. Compliance frameworks must address model explainability, fairness, consumer protection, and regulatory reporting requirements. Auditability is particularly important—regulators and internal audit teams must be able to reconstruct decisions, validate that models operate as intended, and verify that governance controls are effective. This requires comprehensive documentation, version control, and the ability to reproduce model outputs on demand. Banks that treat compliance as an afterthought face material regulatory risk; those that embed it into architecture and operating processes scale more effectively.
-
-Governance frameworks and technical architecture are necessary but not sufficient. Organizations must also define how AI capabilities will be built, deployed, and sustained—the operating model that turns strategy into execution.
 
 ---
 
