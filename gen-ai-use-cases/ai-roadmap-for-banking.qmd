@@ -174,7 +174,7 @@ As generative AI becomes more embedded in decision workflows, the boundary betwe
 
 Security requirements for AI systems cover more than traditional data protection—they include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access.
 
-Generative models pose unique risks—they can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Defense-in-depth strategies—input validation, output filtering, and continuous monitoring—address risks that access controls alone cannot prevent.
+Generative models pose unique risks. They can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Input validation, output filtering, and continuous monitoring address risks that access controls alone cannot prevent.
 
 Agentic deployments expand this attack surface further. Agents interact with production systems autonomously, meaning a compromised agent executes harmful operations rather than simply producing bad output. Controls must scale with autonomy—privilege separation, policy enforcement at the tool layer, and action limits are architectural requirements.
 
