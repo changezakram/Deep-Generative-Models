@@ -506,6 +506,12 @@ How Generative AI Complements Predictive Decisions
 <p>Generative models pose unique risks. They can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Input validation, output filtering, and continuous monitoring address risks that access controls alone cannot prevent.</p>
 <p>Agentic deployments expand this attack surface further. Agents interact with production systems autonomously, meaning a compromised agent executes harmful operations rather than simply producing bad output. Controls must scale with autonomy—privilege separation, policy enforcement at the tool layer, and action limits are architectural requirements.</p>
 <p><em>For a detailed treatment of agentic AI security threats and defense strategies, see <a href="https://changezakram.github.io/agentic-ai/agentic_ai_security.html">Securing Agentic AI Systems: A Defense-in-Depth Approach</a>.</em></p>
+</section>
+<section id="regulatory-compliance-and-auditability" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="regulatory-compliance-and-auditability"><span class="header-section-number">7.3</span> Regulatory Compliance and Auditability</h3>
+<p>AI systems in banking operate under extensive regulatory oversight. In the United States, SR 11-7 governs model risk management across both predictive and generative AI. ECOA and Regulation B require that credit decisions—including those driven by AI—be explainable in specific, actionable terms. SR 13-19 holds banks accountable for third-party model behavior, even when underlying algorithms are proprietary. Banks operating across jurisdictions must also navigate the EU AI Act, which introduces risk-based requirements for AI systems used in consequential decisions.</p>
+<p>Auditability is a cross-cutting requirement. Regulators and internal audit teams must be able to reconstruct decisions, validate that models operate as intended, and verify that governance controls are effective. This requires comprehensive documentation, version control, and the ability to reproduce model outputs on demand—for both predictive scores and generative outputs.</p>
+<p>Banks that treat compliance as an afterthought face material regulatory risk. Those that embed it into architecture and operating processes from the start scale more effectively and spend less time retrofitting controls after deployment.</p>
 <hr>
 </section>
 </section>
