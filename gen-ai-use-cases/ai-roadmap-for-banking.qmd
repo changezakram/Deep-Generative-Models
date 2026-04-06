@@ -128,9 +128,9 @@ Within this foundation, predictive and generative AI operate as complementary ca
 
 ### Model Platforms and Lifecycle Management
 
-Above the data foundation sits the model and analytics layer, where predictive and generative workloads coexist. Predictive AI typically runs on mature machine learning platforms that support feature engineering, training, validation, explainability, and model risk management. Generative AI introduces additional components, including large language models, embedding services, and retrieval mechanisms that ground outputs in enterprise data. Despite differences in tooling, both model types must be governed through disciplined lifecycle management, including versioning, monitoring, and controlled deployment pipelines.
+Above the data foundation sits the model and analytics layer, where predictive and generative workloads coexist. Predictive AI typically runs on mature machine learning platforms that support feature engineering, training, validation, explainability, and model risk management. Generative AI introduces additional components, including large language models, embedding services, and retrieval mechanisms that ground outputs in enterprise data. Retrieval-augmented generation has emerged as the preferred approach for grounding generative outputs in enterprise data—allowing models to access proprietary information at query time without requiring sensitive data to be embedded in model weights.
 
-These extensions build on established machine-learning platforms and lifecycle controls rather than replacing them, reinforcing the importance of shared foundations across predictive and generative AI.
+Both model types must be governed through disciplined lifecycle management—versioning, monitoring, and controlled deployment pipelines—regardless of differences in tooling. This shared governance discipline is what allows predictive and generative capabilities to scale together on a common platform rather than proliferating as disconnected systems.
 
 ### Integration and Workflow Enablement
 
