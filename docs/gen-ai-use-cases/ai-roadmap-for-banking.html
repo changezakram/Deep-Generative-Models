@@ -483,7 +483,8 @@ How Generative AI Complements Predictive Decisions
 <li>An intelligence layer that coordinates agent planning and orchestration across multi-step workflows</li>
 <li>A data layer that provides agents controlled access to enterprise information at execution time, under strict access, logging, and audit controls</li>
 </ul>
-<p>The governance and security controls already embedded in the architecture must extend to cover agent activity—including agent registries, action limits, and audit trails for every agent decision. Banks that build modular, layered architectures now are better positioned to extend them for agentic workloads without rebuilding from scratch. For a detailed treatment of agentic architecture, see <a href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html">Building the AI-First Bank: Agents, Architecture, and the Path to Autonomous Banking</a>.</p>
+<p>The governance and security controls already embedded in the architecture must extend to cover agent activity—including agent registries, action limits, and audit trails for every agent decision. Banks that build modular, layered architectures now are better positioned to extend them for agentic workloads without rebuilding from scratch.</p>
+<p><em>For a detailed treatment of agentic architecture, see <a href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html">Building the AI-First Bank: Agents, Architecture, and the Path to Autonomous Banking</a>.</em></p>
 <hr>
 </section>
 </section>
@@ -504,7 +505,10 @@ How Generative AI Complements Predictive Decisions
 </section>
 <section id="security-and-access-controls" class="level3" data-number="7.2">
 <h3 data-number="7.2" class="anchored" data-anchor-id="security-and-access-controls"><span class="header-section-number">7.2</span> Security and Access Controls</h3>
-<p>Security requirements for AI systems extend beyond traditional data protection to include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access. Generative models pose unique risks—they can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Defense-in-depth strategies, including input validation, output filtering, and continuous monitoring, are essential.</p>
+<p>Security requirements for AI systems extend beyond traditional data protection to include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access.</p>
+<p>Generative models pose unique risks—they can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Defense-in-depth strategies, including input validation, output filtering, and continuous monitoring, are essential.</p>
+<p>Agentic deployments expand this attack surface further. Agents interact with production systems autonomously, meaning a compromised agent executes harmful operations rather than simply producing bad output. Controls must scale with autonomy—privilege separation, policy enforcement at the tool layer, and action limits are architectural requirements, not optional safeguards.</p>
+<p><em>For a detailed treatment of agentic AI security threats and defense strategies, see <a href="https://changezakram.github.io/agentic-ai/agentic_ai_security.html">Securing Agentic AI Systems: A Defense-in-Depth Approach</a>.</em></p>
 </section>
 <section id="regulatory-compliance-and-auditability" class="level3" data-number="7.3">
 <h3 data-number="7.3" class="anchored" data-anchor-id="regulatory-compliance-and-auditability"><span class="header-section-number">7.3</span> Regulatory Compliance and Auditability</h3>

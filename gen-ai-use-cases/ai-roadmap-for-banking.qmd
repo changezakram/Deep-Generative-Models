@@ -146,7 +146,9 @@ The same architectural principles apply as banks move toward agentic operations.
 - An intelligence layer that coordinates agent planning and orchestration across multi-step workflows
 - A data layer that provides agents controlled access to enterprise information at execution time, under strict access, logging, and audit controls
 
-The governance and security controls already embedded in the architecture must extend to cover agent activity—including agent registries, action limits, and audit trails for every agent decision. Banks that build modular, layered architectures now are better positioned to extend them for agentic workloads without rebuilding from scratch. For a detailed treatment of agentic architecture, see [Building the AI-First Bank: Agents, Architecture, and the Path to Autonomous Banking](https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html).
+The governance and security controls already embedded in the architecture must extend to cover agent activity—including agent registries, action limits, and audit trails for every agent decision. Banks that build modular, layered architectures now are better positioned to extend them for agentic workloads without rebuilding from scratch. 
+
+*For a detailed treatment of agentic architecture, see [Building the AI-First Bank: Agents, Architecture, and the Path to Autonomous Banking](https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html).*
 
 ---
 
@@ -176,7 +178,13 @@ As generative AI becomes more embedded in decision workflows, the boundary betwe
 
 ### Security and Access Controls
 
-Security requirements for AI systems extend beyond traditional data protection to include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access. Generative models pose unique risks—they can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Defense-in-depth strategies, including input validation, output filtering, and continuous monitoring, are essential.
+Security requirements for AI systems extend beyond traditional data protection to include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access.
+
+Generative models pose unique risks—they can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Defense-in-depth strategies, including input validation, output filtering, and continuous monitoring, are essential.
+
+Agentic deployments expand this attack surface further. Agents interact with production systems autonomously, meaning a compromised agent executes harmful operations rather than simply producing bad output. Controls must scale with autonomy—privilege separation, policy enforcement at the tool layer, and action limits are architectural requirements, not optional safeguards.
+
+*For a detailed treatment of agentic AI security threats and defense strategies, see [Securing Agentic AI Systems: A Defense-in-Depth Approach](https://changezakram.github.io/agentic-ai/agentic_ai_security.html).*
 
 ### Regulatory Compliance and Auditability
 
