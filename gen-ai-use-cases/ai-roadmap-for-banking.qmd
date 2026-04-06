@@ -138,10 +138,9 @@ At the user-facing layer, this integration appears as advisor desktops, customer
 
 ### Designing for Change and Future Capability
 
-Finally, AI architecture must be designed with evolution in mind. Models will change, regulations will evolve, and new capabilities will emerge. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
+AI architecture must be built to change. Models will change and regulations will evolve. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
 
-
-While architecture provides the technical foundation, governance and risk management determine whether that foundation can be deployed safely in a regulated banking environment.
+Architecture provides the technical foundation. Governance and risk management determine whether that foundation can be deployed safely in a regulated banking environment.
 
 ---
 
