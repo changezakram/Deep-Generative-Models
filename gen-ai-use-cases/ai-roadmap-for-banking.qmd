@@ -132,7 +132,9 @@ Above the data foundation sits the model and analytics layer, where predictive a
 
 ### Integration and Workflow Enablement
 
-Integration is where architecture either enables scale or becomes a bottleneck. Predictive models often operate behind the scenes, scoring transactions or customers in real time. Generative models sit closer to users, embedded in dashboards, workflow tools, and internal applications. A robust architecture exposes both capabilities through well-defined services and APIs, allowing them to be composed into end-to-end workflows. This approach enables predictive insights to trigger generative explanations or summaries without tightly coupling systems or duplicating logic.
+Integration is where architecture either enables scale or becomes a bottleneck. Predictive models operate behind the scenes, scoring transactions or customers in real time. Generative models sit closer to users, embedded in dashboards, workflow tools, and internal applications. Both capabilities should be exposed through well-defined services and APIs, allowing them to be composed into end-to-end workflows—enabling predictive insights to trigger generative explanations or summaries without tightly coupling systems or duplicating logic.
+
+At the user-facing layer, this integration appears as advisor desktops, customer assistants, and analyst tools—where predictive scores and generative narratives are delivered together in a single, coherent experience. This is where architecture becomes visible to the business: not as infrastructure, but as capability that bankers and customers interact with directly.
 
 ### Designing for Change and Future Capability
 
