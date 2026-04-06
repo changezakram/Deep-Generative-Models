@@ -152,13 +152,9 @@ The governance and security controls already embedded in the architecture must e
 
 ## Governance and Risk Management
 
-Architecture defines what can be built. Governance and risk management define what should be deployed. In regulated banking, these are inseparable—AI systems must satisfy both technical requirements and regulatory expectations before they can operate at scale. The governance frameworks that make this possible must be embedded into architecture from the start, not layered on afterward.
+Architecture defines what can be built. Governance and risk management define what should be deployed. In regulated banking, these are inseparable—AI systems must satisfy both technical requirements and regulatory expectations before they can operate at scale.
 
-Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks, including unintended data exposure and opaque outputs, while predictive models remain subject to established model risk management expectations. Banks must enforce strong access controls, data segregation, auditability, and continuous monitoring across both model types. Governance frameworks should be embedded into existing risk, compliance, and technology control processes, ensuring accountability without creating parallel oversight structures.
-
-Governance is most effective when it is designed to align with the underlying data-architecture pattern, rather than layered on after the fact. When access controls, lineage, and quality standards are embedded into the architecture itself, banks can enforce regulatory and risk requirements consistently without creating fragmented or duplicative oversight structures.
-
-Within this governance framework, model risk management deserves particular attention as both a regulatory requirement and operational necessity.
+Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks, including unintended data exposure and opaque outputs, while predictive models remain subject to established model risk management expectations. Banks must enforce strong access controls, data segregation, auditability, and continuous monitoring across both model types. Governance frameworks should be embedded into existing risk, compliance, and technology control processes, ensuring accountability without duplicating existing control functions.
 
 ### Model Risk Management for Predictive and Generative AI
 
