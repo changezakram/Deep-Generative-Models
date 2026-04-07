@@ -118,7 +118,7 @@ These examples share a common pattern: predictive AI handles structured decision
 
 As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. Traditional banking technology stacks—organized around products and channels—reinforce silos that complicate integration and slow change. A platform-oriented architecture breaks these silos by aligning data, analytics, and technology capabilities around shared foundations. In regulated environments, scalable AI depends less on individual models and more on consistent data foundations, reusable platform capabilities, and embedded governance that makes it easier to evolve systems over time.
 
-![AI Capability Architecture for Banking — A layered view of how predictive, generative, and agentic AI integrate across data, model platforms, and business applications, with governance and risk controls embedded throughout.](images/ai_architecture.png){#fig-ai-architecture fig-align="center" width="800"}
+![AI Capability Architecture for Banking — Predictive AI drives decisions, generative AI interprets and communicates insights, and agentic AI enables workflow execution, all supported by a shared data foundation and governed control framework.](images/ai_architecture.png){#fig-ai-architecture fig-align="center" width="800"}
 
 ### Data Foundations and Semantic Consistency
 
