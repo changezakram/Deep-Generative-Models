@@ -215,6 +215,9 @@ Change management is consistently underestimated. AI tools that sit unused becau
 
 Understanding what to build is only half the challenge. The more difficult question is how to get started—how to sequence investments, prioritize use cases, and maintain momentum while managing risk. Banks that succeed avoid both extremes: they neither pursue multi-year transformation programs that delay value, nor launch disconnected pilots that fail to scale. Instead, they adopt a phased approach that delivers measurable impact early while building the architectural foundations needed for long-term scale.
 
+![AI Adoption Roadmap for Banking — A phased approach to move from initial pilots to scaled platforms and enterprise-wide AI capabilities, with governance and model risk management embedded from the start.](images/roadmap){#fig-roadmap fig-align="center" width="800"}
+
+
 ### Phase 1: Foundation and Proof of Value (6–12 Months)
 
 The first phase focuses on establishing technical foundations and early credibility. Banks should prioritize a small number of high-impact use cases that demonstrate value quickly while informing architecture and governance decisions. Foundation-building activities include defining data governance standards, establishing model risk management processes for generative AI, selecting core technology platforms, and implementing baseline security and access controls.
