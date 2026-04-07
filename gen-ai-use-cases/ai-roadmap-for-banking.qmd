@@ -25,6 +25,8 @@ Predictive AI and generative AI solve fundamentally different problems. **Predic
 
 A mature banking AI strategy recognizes these differences and uses each capability where it is strongest. A credit decision, for example, may still rely on a predictive risk score, while generative AI reviews financial statements, highlights unusual contractual terms, and drafts a credit memo for analyst review. The value comes not from choosing one paradigm, but from combining them within the same workflow.
 
+**Agentic AI** extends this progression from insight to execution. While predictive models inform decisions and generative AI explains them, agentic systems can act—orchestrating and executing multi-step workflows within defined controls. This enables a shift from decision support to automated, end-to-end processes such as loan origination or fraud resolution, while maintaining governance and oversight.
+
 ![Distinct Roles, Shared Value — Predictive AI drives decisions, generative AI enables interpretation and interaction, and together they create value when integrated within the same workflow.](images/predictive-gen-agentic-ai.png){#fig-predictive-gen-agentic-ai fig-align="center" width="800"}
 
 ---
