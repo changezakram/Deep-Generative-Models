@@ -21,9 +21,9 @@ This roadmap covers the full AI strategy for banking—from predictive models th
 
 ## Predictive AI and Generative AI: Distinct Roles, Shared Value
 
-Predictive AI and generative AI solve fundamentally different problems. **Predictive models** estimate probabilities—the likelihood of default, fraud, or customer churn—and remain essential for risk-driven decisions. **Generative models**, by contrast, specialize in language and content: they read documents, summarize information, and draft narratives, reducing manual effort.
+Predictive AI and generative AI solve fundamentally different problems. Most banks don’t struggle with building models—they struggle with integrating them into workflows that actually drive decisions. **Predictive AI models** estimate probabilities—the likelihood of default, fraud, or customer churn—and remain essential for risk-driven decisions. **Generative models**, by contrast, specialize in language and content: they read documents, summarize information, and draft narratives, reducing manual effort.
 
-A banking AI strategy should use each capability where it is strongest. A credit decision, for example, may rely on a predictive risk score. Generative AI then reviews financial statements, highlights key terms, and drafts a credit memo for analyst review. The value comes not from choosing one approach, but from combining them within the same workflow.
+A banking AI strategy should use each capability where it is strongest. A credit decision, for example, may rely on a predictive risk score. Generative AI then reviews financial statements, highlights key terms, and drafts a credit memo for analyst review. The value comes not from choosing one approach, but from combining them within the same workflow. These roles come together within a single workflow, as shown below.
 
 **Agentic AI** extends this progression from insight to execution. Predictive models inform decisions, and generative AI explains them. Agentic systems can then act—orchestrating and executing multi-step workflows within defined controls. This enables a shift from decision support to automated, end-to-end processes such as loan origination or fraud resolution, while maintaining governance and oversight.
 
@@ -114,13 +114,15 @@ In **fraud detection**, predictive models identify anomalies in transaction patt
 
 In **wealth management**, predictive models power portfolio analytics and risk assessments, while generative AI handles post-meeting follow-up. Morgan Stanley's AI @ Morgan Stanley Debrief automates meeting notes and generates personalized client summaries, saving advisors 10–15 hours per week and allowing them to focus on higher-value client interactions rather than administrative tasks.
 
-These examples share a common pattern: predictive AI handles structured decision-making, while generative AI reduces friction in preparing inputs, interpreting results, and executing follow-up actions. The impact comes not from deploying either capability in isolation, but from integrating both into end-to-end workflows where decisions must be accurate, explainable, and operationally efficient.
+Across these examples, a consistent pattern emerges: predictive AI handles structured decision-making, while generative AI reduces friction in preparing inputs, interpreting results, and executing follow-up actions. The impact comes from embedding these capabilities within the same workflow.
 
 ---
 
 ## Architecture to Enable AI in Banking
 
-As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. Traditional banking technology stacks—organized around products and channels—reinforce silos that complicate integration and slow change. A platform-oriented architecture breaks these silos by aligning data, analytics, and technology capabilities around shared foundations. In regulated environments, scalable AI depends less on individual models and more on consistent data foundations, reusable platform capabilities, and embedded governance that makes it easier to evolve systems over time.
+As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. Traditional banking technology stacks—organized around products and channels—reinforce silos that complicate integration and slow change. 
+
+A platform-oriented architecture breaks these silos by aligning data, analytics, and technology capabilities around shared foundations. In regulated environments, scalable AI depends less on individual models and more on consistent data foundations, reusable platform capabilities, and embedded governance that makes it easier to evolve systems over time.
 
 ![AI Capability Architecture for Banking — Predictive AI drives decisions, generative AI interprets and communicates insights, and agentic AI enables workflow execution, all supported by a shared data foundation and governed control framework.](images/ai_architecture.png){#fig-ai-architecture fig-align="center" width="800"}
 
@@ -144,7 +146,7 @@ At the user-facing layer, this integration appears as advisor desktops, customer
 
 ### Designing for Change and Future Capability
 
-AI architecture must be built to change. Models will change and regulations will evolve. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
+AI architecture must be modular—models, vendors, and regulations will change. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.
 
 The same architectural principles apply as banks move toward agentic operations. Agentic deployments require three additional architectural elements:
 
@@ -254,7 +256,7 @@ A balanced portfolio includes quick wins that build momentum, strategic bets tha
 
 Generative AI reduces friction and accelerates decisions, but it still operates reactively—responding to prompts, summarizing documents, and supporting human judgment. The next stage moves beyond assistance to autonomous execution. Agentic AI systems plan, coordinate, and act across multi-step banking workflows without continuous human direction—shifting AI from a productivity tool to an operational capability.
 
-This means AI agents that execute loan origination workflows, monitor borrower covenant compliance, triage commercial banking communications, and run stress testing scenarios—coordinating multiple specialized agents within defined risk and governance boundaries. The distinction from generative AI is operational: agents don't just help bankers work faster, they do structured work independently within policy-governed limits.
+This means AI agents that execute loan origination workflows, monitor borrower covenant compliance, triage commercial banking communications, and run stress testing scenarios—coordinating specialized agents within defined risk and governance boundaries. The distinction from generative AI is operational: agents don't just help bankers work faster, they do structured work independently within policy-governed limits.
 
 The transition to agentic operations follows the same staged logic as the predictive-to-generative progression described in this article. Banks begin with assistive agents that support human decisions before advancing to process execution agents that automate multi-step workflows, and ultimately to autonomous decisioning agents operating within defined guardrails.
 
