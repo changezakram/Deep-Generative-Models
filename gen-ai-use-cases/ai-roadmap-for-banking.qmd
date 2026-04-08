@@ -114,7 +114,7 @@ In **fraud detection**, predictive models identify anomalies in transaction patt
 
 In **wealth management**, predictive models power portfolio analytics and risk assessments, while generative AI handles post-meeting follow-up. Morgan Stanley's AI @ Morgan Stanley Debrief automates meeting notes and generates personalized client summaries, saving advisors 10–15 hours per week and allowing them to focus on higher-value client interactions rather than administrative tasks.
 
-Across these examples, a consistent pattern emerges: predictive AI handles structured decision-making, while generative AI reduces friction in preparing inputs, interpreting results, and executing follow-up actions. The impact comes from embedding these capabilities within the same workflow.
+Across these examples, a consistent pattern emerges: predictive AI handles structured decision-making, while generative AI reduces friction in preparing inputs, interpreting results, and executing follow-up actions. The impact comes from embedding these capabilities within the same workflow. This same pattern sets the foundation for agentic AI, where workflows are not just supported but increasingly executed end-to-end within defined controls.
 
 ---
 
