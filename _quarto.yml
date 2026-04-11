@@ -47,6 +47,8 @@ website:
 
       - text: AI Strategy
         menu:
+          - text: AI Roadmap for Banking
+            href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai-roadmap-for-banking.html
           - text: Building the AI-First Bank
             href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html
           - text: Gen AI in Banking
