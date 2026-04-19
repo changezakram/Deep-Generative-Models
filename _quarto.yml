@@ -42,8 +42,6 @@ website:
             href: https://changezakram.github.io/Deep-Generative-Models/slm.html
           - text: Multi-Agent Orchestration
             href: https://changezakram.github.io/agentic-ai/Workflow-Orchestration.html
-          - text: Securing Agentic AI Systems
-            href: https://changezakram.github.io/agentic-ai/agentic_ai_security.html
 
       - text: AI Strategy
         menu:
@@ -56,14 +54,12 @@ website:
           - text: Gen AI in Healthcare
             href: https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html
 
-      - text: Math Review
+      - text: Responsible AI
         menu:
-          - text: Linear Algebra
-            href: https://changezakram.github.io/math-review/linear-algebra.html
-          - text: Calculus
-            href: https://changezakram.github.io/math-review/calculus.html
-          - text: Probability
-            href: https://changezakram.github.io/math-review/probability.html
+          - text: AI Security
+            href: https://changezakram.github.io/agentic-ai/agentic_ai_security.html
+          - text: Ai Safety
+            href: https://changezakram.github.io/responsible-ai/ai-safety.html
 
 format:
   html:
