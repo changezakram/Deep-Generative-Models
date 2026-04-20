@@ -58,7 +58,7 @@ website:
         menu:
           - text: AI Security
             href: https://changezakram.github.io/agentic-ai/agentic_ai_security.html
-          - text: Ai Safety
+          - text: AI Safety
             href: https://changezakram.github.io/responsible-ai/ai-safety.html
 
 format:
