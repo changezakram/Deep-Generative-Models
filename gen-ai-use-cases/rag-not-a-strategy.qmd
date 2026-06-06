@@ -203,23 +203,33 @@ The institutions that get this right will not just have better document search. 
 
 ## References
 
-[1] NStarX Inc., "The Next Frontier of RAG: How Enterprise Knowledge Systems Will Evolve (2026–2030)," December 2025.
-[2] Lewis, P., Perez, E., Piktus, A., et al. "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks." NeurIPS 2020. arXiv:2005.11401.
-[3] Setty, S., Thakkar, H., Lee, A., Chung, E., and Vidra, N. "Improving Retrieval for RAG Based Question Answering Models on Financial Documents." arXiv:2404.07221, 2024.
-[4] FinDebate: Multi-Agent Collaborative Intelligence for Financial Analysis. arXiv:2509.17395, 2025.
-[5] Choi et al. "FinDER: Financial Dataset for Question Answering and Evaluating Retrieval-Augmented Generation." arXiv:2504.15800, 2025.
-[6] Gondhalekar et al. "MultiFinRAG: Multimodal RAG for Financial Question Answering." 2025.
-[7] Magesh, V., Surani, F., et al. "Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools." arXiv:2405.20362, 2024.
-[8] Liu, N. et al. "Lost in the Middle: How Language Models Use Long Contexts." TACL, 2024.
-[9] "SoK: Agentic Retrieval-Augmented Generation (RAG): Taxonomy, Architectures, Evaluation, and Research Directions." arXiv:2603.07379, 2025.
-[10] Ngartera, L., Nadarajah, S., Koina, R. "Bayesian RAG: Uncertainty-Aware Retrieval for Reliable Financial Question Answering." Frontiers in AI, January 2026.
-[11] Kiteworks. "Top 5 Compliance Risks in Financial Services RAG Implementations." 2026.
-[12] U.S. Government Accountability Office. "Artificial Intelligence: Use and Oversight in Financial Services." GAO-25-107197, May 2025.
-[13] Board of Governors of the Federal Reserve System and OCC. "Supervisory Guidance on Model Risk Management." SR 11-7, April 2011.
-[14] "Model Risk Management for Generative AI in Financial Institutions." arXiv:2503.15668, 2025.
-[15] NStarX Inc., op. cit.
-[16] Firecrawl. "Best Chunking Strategies for RAG (and LLMs) in 2026." Citing MDPI Bioengineering adaptive chunking study, November 2025.
-[17] McKinsey & Company / Vantage Point. "The State of AI in Financial Services: Key Insights for 2025." 2025.
-[18] Deloitte AI Institute. "State of AI in the Enterprise 2026." January 2026.
----
+[1] Kiteworks. (2026). Top 5 Compliance Risks in Financial Services RAG Implementations. https://www.kiteworks.com/regulatory-compliance/financial-services-rag-compliance-risks/
+
+[2] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W., Rocktäschel, T., Riedel, S., & Kiela, D. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. *Advances in Neural Information Processing Systems*, 33, 9459–9474. https://arxiv.org/abs/2005.11401
+
+[3] Setty, S., Thakkar, H., Lee, A., Chung, E., & Vidra, N. (2024). Improving Retrieval for RAG Based Question Answering Models on Financial Documents. arXiv preprint. https://arxiv.org/abs/2404.07221
+
+[4] Yepes, A. J., You, Y., Milczek, J., Laverde, S., & Li, R. (2024). Financial Report Chunking for Effective Retrieval Augmented Generation. arXiv preprint. https://arxiv.org/abs/2402.05131
+
+[5] Choi, J., et al. (2025). FinDER: Financial Dataset for Question Answering and Evaluating Retrieval-Augmented Generation. arXiv preprint. https://arxiv.org/abs/2504.15800
+
+[6] Magesh, V., Surani, F., Dahl, M., Suzgun, M., Manning, C. D., & Ho, D. E. (2025). Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools. *Journal of Empirical Legal Studies*, 22, 216–242. https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413
+
+[7] Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2024). Lost in the Middle: How Language Models Use Long Contexts. *Transactions of the Association for Computational Linguistics*, 12, 157–173. https://arxiv.org/abs/2307.03172
+
+[8] SoK Authors. (2025). SoK: Agentic Retrieval-Augmented Generation (RAG): Taxonomy, Architectures, Evaluation, and Research Directions. arXiv preprint. https://arxiv.org/abs/2603.07379
+
+[9] Ngartera, L., Nadarajah, S., & Koina, R. (2026). Bayesian RAG: Uncertainty-Aware Retrieval for Reliable Financial Question Answering. *Frontiers in Artificial Intelligence*, 8, 1668172. https://doi.org/10.3389/frai.2025.1668172
+
+[10] U.S. Government Accountability Office. (2025). Artificial Intelligence: Use and Oversight in Financial Services. GAO-25-107197. https://www.gao.gov/assets/gao-25-107197.pdf
+
+[11] Board of Governors of the Federal Reserve System & Office of the Comptroller of the Currency. (2011). Supervisory Guidance on Model Risk Management. SR 11-7. https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm
+
+[12] Anonymous Authors. (2025). Model Risk Management for Generative AI in Financial Institutions. arXiv preprint. https://arxiv.org/abs/2503.15668
+
+[13] Firecrawl. (2025). Best Chunking Strategies for RAG (and LLMs) in 2026. https://www.firecrawl.dev/blog/best-chunking-strategies-rag
+
+[14] McKinsey & Company. (2025). Superagency in the Workplace: Empowering People to Unlock AI's Full Potential at Work. https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work
+
+[15] Deloitte AI Institute. (2026). State of AI in the Enterprise 2026: The Untapped Edge. https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html
 
