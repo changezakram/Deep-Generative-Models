@@ -72,5 +72,8 @@
   "explainable-ai.qmd": {
     "explainable-ai.html": "243fac4b",
     "explainable-ai.tex": "06b5f000"
+  },
+  "gen-ai-use-cases/rag-not-a-strategy.qmd": {
+    "rag-not-a-strategy.html": "78b37421"
   }
 }
