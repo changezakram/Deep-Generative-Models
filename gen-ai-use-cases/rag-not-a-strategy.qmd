@@ -1,38 +1,12 @@
 ---
 title: "RAG Is Not a Strategy: Document Intelligence Done Right in Financial Services"
-author: "Changez Akram"
-date: "2026-06-06"
-categories: [AI Strategy, Financial Services, RAG, Document Intelligence, AI Governance]
-tags: [RAG, LLM, document intelligence, SR 11-7, model risk, hallucination, financial services, generative AI]
-description: "40–60% of RAG implementations fail to reach production. The problem isn't the technology — it's that organizations have confused a retrieval technique with a document intelligence strategy."
-image: "thumbnail.png"
-toc: true
-toc-depth: 3
-toc-title: "In This Article"
-number-sections: false
-bibliography: references.bib
-csl: apa.csl
-citation: true
-google-scholar: true
+date: 2026-06-01
 format:
   html:
-    code-fold: false
-    fig-cap-location: bottom
-    callout-appearance: simple
----
-
-```{=html}
-<div class="author-meta">
-  <p><em>Changez Akram | Chief Data Analytics Officer | AI Strategy &amp; Governance</em></p>
-</div>
-```
-
----
-
-> "The question is no longer 'does RAG work?' but 'how do we make RAG safe, verifiable, and governable at enterprise scale?'"
->
-> — NStarX Enterprise AI Research, 2025
-
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    theme: cosmo
 ---
 
 ## Introduction: The Demo Gap

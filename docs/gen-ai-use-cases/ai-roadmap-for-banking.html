@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-03-15">
+
+<title>AI Roadmap for Banking</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://changezakram.github.io/"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="../index.html">
+ <span class="dropdown-text">Gen AI Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../diffusion.html">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/transformers.html">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/post-training.html">
+ <span class="dropdown-text">Post Training</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/nlp-eval.html">
+ <span class="dropdown-text">NLP Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-agentic-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Agentic AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-agentic-ai">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-ai.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-analytics.html">
+ <span class="dropdown-text">Agentic Analytics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/slm.html">
+ <span class="dropdown-text">Small Language Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/Workflow-Orchestration.html">
+ <span class="dropdown-text">Multi-Agent Orchestration</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai-strategy" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">AI Strategy</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai-strategy">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai-roadmap-for-banking.html">
+ <span class="dropdown-text">AI Roadmap for Banking</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html">
+ <span class="dropdown-text">Building the AI-First Bank</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html">
+ <span class="dropdown-text">Gen AI in Banking</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html">
+ <span class="dropdown-text">Gen AI in Healthcare</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-responsible-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Responsible AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-responsible-ai">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic_ai_security.html">
+ <span class="dropdown-text">AI Security</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/responsible-ai/ai-safety.html">
+ <span class="dropdown-text">AI Safety</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#predictive-ai-and-generative-ai-distinct-roles-shared-value" id="toc-predictive-ai-and-generative-ai-distinct-roles-shared-value" class="nav-link" data-scroll-target="#predictive-ai-and-generative-ai-distinct-roles-shared-value"><span class="header-section-number">2</span> Predictive AI and Generative AI: Distinct Roles, Shared Value</a></li>
+  <li><a href="#predictive-ai-use-cases-in-banking" id="toc-predictive-ai-use-cases-in-banking" class="nav-link" data-scroll-target="#predictive-ai-use-cases-in-banking"><span class="header-section-number">3</span> Predictive AI Use Cases in Banking</a></li>
+  <li><a href="#generative-ai-use-cases-in-banking" id="toc-generative-ai-use-cases-in-banking" class="nav-link" data-scroll-target="#generative-ai-use-cases-in-banking"><span class="header-section-number">4</span> Generative AI Use Cases in Banking</a></li>
+  <li><a href="#real-world-impact-where-predictive-and-generative-ai-work-together" id="toc-real-world-impact-where-predictive-and-generative-ai-work-together" class="nav-link" data-scroll-target="#real-world-impact-where-predictive-and-generative-ai-work-together"><span class="header-section-number">5</span> Real-World Impact: Where Predictive and Generative AI Work Together</a></li>
+  <li><a href="#architecture-to-enable-ai-in-banking" id="toc-architecture-to-enable-ai-in-banking" class="nav-link" data-scroll-target="#architecture-to-enable-ai-in-banking"><span class="header-section-number">6</span> Architecture to Enable AI in Banking</a></li>
+  <li><a href="#governance-and-risk-management" id="toc-governance-and-risk-management" class="nav-link" data-scroll-target="#governance-and-risk-management"><span class="header-section-number">7</span> Governance and Risk Management</a></li>
+  <li><a href="#operating-model-and-organization" id="toc-operating-model-and-organization" class="nav-link" data-scroll-target="#operating-model-and-organization"><span class="header-section-number">8</span> Operating Model and Organization</a></li>
+  <li><a href="#from-strategy-to-execution-a-phased-approach" id="toc-from-strategy-to-execution-a-phased-approach" class="nav-link" data-scroll-target="#from-strategy-to-execution-a-phased-approach"><span class="header-section-number">9</span> From Strategy to Execution: A Phased Approach</a></li>
+  <li><a href="#the-path-to-agentic-operations" id="toc-the-path-to-agentic-operations" class="nav-link" data-scroll-target="#the-path-to-agentic-operations"><span class="header-section-number">10</span> The Path to Agentic Operations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">11</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AI Roadmap for Banking</h1>
+<p class="subtitle lead">From Predictive AI to Generative AI and the Path to Agentic Operations</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 15, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>Banks are not new to artificial intelligence. For decades, predictive models have powered core decisions across credit risk, fraud detection, customer attrition, pricing, and marketing. What has changed with the rise of Generative AI is not the relevance of these models, but the scope of what AI can now support. Instead of only predicting outcomes, AI systems can increasingly understand unstructured information, synthesize context, and communicate insights in human language.</p>
+<p>Generative AI does not replace predictive AI. It complements it. Banks that frame their strategy as “GenAI versus traditional analytics” risk discarding proven capabilities rather than building on them. The real opportunity lies in combining both forms of intelligence within end-to-end banking workflows.</p>
+<p>This roadmap covers the full AI strategy for banking—from predictive models through generative AI to the emerging frontier of agentic operations, where AI systems execute work autonomously within governed boundaries. For banks ready to move into agentic AI deployment, a companion article—<a href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html">Building the AI-First Bank: A Strategic Guide</a>—covers that execution layer in depth.</p>
+</section>
+<section id="predictive-ai-and-generative-ai-distinct-roles-shared-value" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="predictive-ai-and-generative-ai-distinct-roles-shared-value"><span class="header-section-number">2</span> Predictive AI and Generative AI: Distinct Roles, Shared Value</h2>
+<p>Predictive AI and generative AI solve fundamentally different problems. Most banks don’t struggle with building models—they struggle with integrating them into workflows that actually drive decisions. <strong>Predictive AI models</strong> estimate probabilities—the likelihood of default, fraud, or customer churn—and remain essential for risk-driven decisions. <strong>Generative models</strong>, by contrast, specialize in language and content: they read documents, summarize information, and draft narratives, reducing manual effort.</p>
+<p>A banking AI strategy should use each capability where it is strongest. A credit decision, for example, may rely on a predictive risk score. Generative AI then reviews financial statements, highlights key terms, and drafts a credit memo for analyst review. The value comes not from choosing one approach, but from combining them within the same workflow. These roles come together within a single workflow, as shown below.</p>
+<p><strong>Agentic AI</strong> extends this progression from insight to execution. Predictive models inform decisions, and generative AI explains them. Agentic systems can then act—orchestrating and executing multi-step workflows within defined controls. This enables a shift from decision support to automated, end-to-end processes such as loan origination or fraud resolution, while maintaining governance and oversight.</p>
+<div id="fig-predictive-gen-agentic-ai" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-predictive-gen-agentic-ai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/predictive-gen-agentic-ai.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-predictive-gen-agentic-ai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distinct Roles, Shared Value — Predictive AI drives decisions, generative AI enables interpretation and interaction, and together they create value when integrated within the same workflow.
+</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="predictive-ai-use-cases-in-banking" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="predictive-ai-use-cases-in-banking"><span class="header-section-number">3</span> Predictive AI Use Cases in Banking</h2>
+<section id="risk-and-capital-management" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="risk-and-capital-management"><span class="header-section-number">3.1</span> Risk and Capital Management</h3>
+<p>Predictive AI remains foundational to how banks manage risk and allocate capital. In credit risk, predictive models estimate probability of default, loss severity, and exposure across retail and commercial portfolios. These outputs directly inform underwriting decisions, pricing, capital planning, and regulatory stress testing. While modeling techniques have evolved over time, the role of predictive AI in enforcing consistency, discipline, and regulatory alignment has remained constant.</p>
+</section>
+<section id="fraud-detection-and-financial-crime-monitoring" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="fraud-detection-and-financial-crime-monitoring"><span class="header-section-number">3.2</span> Fraud Detection and Financial Crime Monitoring</h3>
+<p>Fraud detection and financial crime monitoring represent another core application of predictive AI. Models analyze transaction patterns and behavioral signals to surface anomalies in real time, adapting to evolving fraud tactics more effectively than static rule-based systems. Predictive models reduce false positives while improving detection accuracy, delivering measurable gains in both customer experience and operational efficiency.</p>
+</section>
+<section id="customer-analytics-marketing-and-sales-effectiveness" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="customer-analytics-marketing-and-sales-effectiveness"><span class="header-section-number">3.3</span> Customer Analytics, Marketing, and Sales Effectiveness</h3>
+<p>Predictive AI also plays a central role in customer analytics, marketing, and sales optimization. Propensity, churn, and lifetime value models help banks anticipate customer behavior, personalize offers, and prioritize retention efforts. In commercial banking and wealth management, similar techniques support lead scoring, pipeline prioritization, and relationship deepening. In many institutions, these models drive measurable revenue growth while improving relevance and reducing wasted effort.</p>
+</section>
+<section id="core-predictive-ai-applications" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="core-predictive-ai-applications"><span class="header-section-number">3.4</span> Core Predictive AI Applications</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 36%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Use Case</th>
+<th>Business Problem</th>
+<th>Business Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Credit Risk Models</strong></td>
+<td>Estimate default probability and loss severity across portfolios</td>
+<td>Improved capital allocation, regulatory compliance, consistent underwriting decisions</td>
+</tr>
+<tr class="even">
+<td><strong>Risk-Based Pricing</strong></td>
+<td>Set loan pricing based on individual customer risk assessment</td>
+<td>Balanced profitability and risk, competitive pricing without margin erosion</td>
+</tr>
+<tr class="odd">
+<td><strong>Stress Testing</strong></td>
+<td>Assess financial stability under adverse economic scenarios</td>
+<td>Regulatory compliance, proactive capital planning, risk mitigation</td>
+</tr>
+<tr class="even">
+<td><strong>Fraud Detection</strong></td>
+<td>Identify fraudulent transactions in real time</td>
+<td>Reduced fraud losses, fewer false positives, improved customer experience</td>
+</tr>
+<tr class="odd">
+<td><strong>Customer Churn Models</strong></td>
+<td>Predict likelihood of customer attrition</td>
+<td>Targeted retention campaigns, reduced customer acquisition costs</td>
+</tr>
+<tr class="even">
+<td><strong>Customer Lifetime Value</strong></td>
+<td>Forecast long-term customer profitability</td>
+<td>Optimized marketing spend, prioritized relationship investment</td>
+</tr>
+<tr class="odd">
+<td><strong>Propensity Models</strong></td>
+<td>Identify customers likely to respond to specific offers</td>
+<td>Higher conversion rates, improved campaign ROI, reduced marketing waste</td>
+</tr>
+<tr class="even">
+<td><strong>Channel Performance</strong></td>
+<td>Optimize resource allocation across branches, digital, and ATM networks</td>
+<td>Improved operational efficiency, better customer access, reduced costs</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Where Predictive AI Reaches Its Limits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Across these domains, predictive AI excels where outcomes are measurable and historical data is available. Predictive models do not naturally interpret unstructured information such as documents, emails, or call transcripts, nor do they explain outcomes in human terms. This is where generative AI adds its most value.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="generative-ai-use-cases-in-banking" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="generative-ai-use-cases-in-banking"><span class="header-section-number">4</span> Generative AI Use Cases in Banking</h2>
+<p>Generative AI extends the scope of what AI can support in banking. Rather than predicting outcomes, these models interpret unstructured information, synthesize context, and communicate in human language—capabilities that address long-standing operational bottlenecks.</p>
+<section id="document-intelligence-and-knowledge-processing" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="document-intelligence-and-knowledge-processing"><span class="header-section-number">4.1</span> Document Intelligence and Knowledge Processing</h3>
+<p>Document intelligence is among the fastest areas of generative AI adoption in banking. Banks process vast volumes of contracts, financial statements, regulatory guidance, policies, and internal reports. Generative models can summarize lengthy documents, extract key themes, highlight risks, and draft standardized outputs such as credit memos, compliance summaries, or internal briefs. Human oversight remains essential, but generative AI dramatically reduces the time required to move from raw information to informed decision-making.</p>
+</section>
+<section id="customer-and-employee-assistants" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="customer-and-employee-assistants"><span class="header-section-number">4.2</span> Customer and Employee Assistants</h3>
+<p>Generative AI has moved conversational interfaces well beyond earlier chatbots, enabling more capable customer- and employee-facing assistants. Modern generative systems handle complex, multi-turn interactions and adapt responses based on context. For customers, this improves self-service for routine inquiries. Internally, generative assistants help employees navigate policies, retrieve institutional knowledge, and synthesize information across systems.</p>
+</section>
+<section id="generative-bi-and-decision-support" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="generative-bi-and-decision-support"><span class="header-section-number">4.3</span> Generative BI and Decision Support</h3>
+<p>Generative AI also enables a new interaction model for analytics, often referred to as Generative BI. Business users can ask questions in natural language and receive contextual explanations rather than relying solely on static dashboards. When grounded in curated semantic models and governed appropriately, this capability lowers the barrier to insight while preserving analytical rigor, particularly for executives and business leaders.</p>
+</section>
+<section id="core-generative-ai-applications" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="core-generative-ai-applications"><span class="header-section-number">4.4</span> Core Generative AI Applications</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 36%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Use Case</th>
+<th>Business Problem</th>
+<th>Business Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Credit Memo Generation</strong></td>
+<td>Manual underwriting documentation is slow and inconsistent</td>
+<td>Faster underwriting documentation with consistent structure and rationale across cases</td>
+</tr>
+<tr class="even">
+<td><strong>Contract Review &amp; Analysis</strong></td>
+<td>Legal document review creates underwriting bottlenecks</td>
+<td>Quicker identification of unusual terms, reduced legal review time, consistent analysis across deals</td>
+</tr>
+<tr class="odd">
+<td><strong>Document Summarization</strong></td>
+<td>Analysts spend hours reading research reports and compliance docs</td>
+<td>Analysts move from raw documents to informed decisions in minutes rather than hours</td>
+</tr>
+<tr class="even">
+<td><strong>Customer Service Assistants</strong></td>
+<td>High call volumes, long wait times, inconsistent service quality</td>
+<td>Improved self-service resolution, reduced wait times, consistent service quality across channels</td>
+</tr>
+<tr class="odd">
+<td><strong>Employee Knowledge Assistants</strong></td>
+<td>Employees struggle to navigate policies and institutional knowledge</td>
+<td>Immediate access to policies and institutional knowledge, improved compliance adherence</td>
+</tr>
+<tr class="even">
+<td><strong>Generative BI</strong></td>
+<td>Executives need quick insights without waiting for analyst reports</td>
+<td>Business users access insights without analyst dependency, faster executive decision-making</td>
+</tr>
+<tr class="odd">
+<td><strong>Fraud Investigation Support</strong></td>
+<td>Investigators manually review cases and draft summaries</td>
+<td>Investigators spend less time on evidence gathering and documentation, faster case resolution</td>
+</tr>
+<tr class="even">
+<td><strong>Meeting Notes &amp; Follow-up</strong></td>
+<td>Advisors spend significant time on administrative tasks post-meeting</td>
+<td>Advisors shift time from administrative tasks to client-facing work</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How Generative AI Complements Predictive Decisions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Across these use cases, generative AI does not replace predictive decision-making. Instead, it surrounds it. Generative models prepare inputs, interpret outputs, and accelerate follow-up by translating analytical results into plain language. Predictive models continue to determine what decision should be made; generative models help humans understand why and move faster on what comes next.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="real-world-impact-where-predictive-and-generative-ai-work-together" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="real-world-impact-where-predictive-and-generative-ai-work-together"><span class="header-section-number">5</span> Real-World Impact: Where Predictive and Generative AI Work Together</h2>
+<p>The value of combining predictive and generative AI is most visible in production banking workflows. In <strong>credit underwriting</strong>, predictive models still drive the risk decision, but generative AI accelerates the process by analyzing financial statements, extracting key metrics, and summarizing legal clauses. JPMorgan’s COiN platform saved over 360,000 hours by automating legal document reviews, while Zest AI reduced underwriting timelines from days to minutes and increased approval rates by up to 25% without adding credit risk.</p>
+<p>In <strong>fraud detection</strong>, predictive models identify anomalies in transaction patterns, but generative AI supports investigators by summarizing account histories, flagging unusual activity narratives, and drafting case summaries. Mastercard reported a 20% improvement in detection accuracy and an 85% reduction in false positives by combining both capabilities within a single decisioning workflow.</p>
+<p>In <strong>wealth management</strong>, predictive models power portfolio analytics and risk assessments, while generative AI handles post-meeting follow-up. Morgan Stanley’s AI @ Morgan Stanley Debrief automates meeting notes and generates personalized client summaries, saving advisors 10–15 hours per week and allowing them to focus on higher-value client interactions rather than administrative tasks.</p>
+<p>Across these examples, a consistent pattern emerges: predictive AI handles structured decision-making, while generative AI reduces friction in preparing inputs, interpreting results, and executing follow-up actions. The impact comes from embedding these capabilities within the same workflow. This same pattern sets the foundation for agentic AI, where workflows are not just supported but increasingly executed end-to-end within defined controls.</p>
+<hr>
+</section>
+<section id="architecture-to-enable-ai-in-banking" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="architecture-to-enable-ai-in-banking"><span class="header-section-number">6</span> Architecture to Enable AI in Banking</h2>
+<p>As banks move from isolated analytics use cases to AI-enabled data products, architecture becomes the primary determinant of whether those investments translate into durable business value. Traditional banking technology stacks—organized around products and channels—reinforce silos that complicate integration and slow change.</p>
+<p>A platform-oriented architecture breaks these silos by aligning data, analytics, and technology capabilities around shared foundations. In regulated environments, scalable AI depends less on individual models and more on consistent data foundations, reusable platform capabilities, and embedded governance that makes it easier to evolve systems over time.</p>
+<div id="fig-ai-architecture" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ai-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/ai_architecture.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ai-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: AI Capability Architecture for Banking — Predictive AI drives decisions, generative AI interprets and communicates insights, and agentic AI enables workflow execution, all supported by a shared data foundation and governed control framework.
+</figcaption>
+</figure>
+</div>
+<section id="data-foundations-and-semantic-consistency" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="data-foundations-and-semantic-consistency"><span class="header-section-number">6.1</span> Data Foundations and Semantic Consistency</h3>
+<p>A scalable AI architecture depends less on individual models and more on the data foundation that supports them. Banks that invest in shared, well-governed data infrastructure reduce duplication and accelerate deployment—each new model or use case builds on the same foundation rather than requiring custom data pipelines from scratch.</p>
+<p>Banks tend to adopt centralized or hybrid data architecture patterns. Centralized architectures provide strong governance and consistent definitions across the enterprise. Hybrid models balance enterprise standards with domain-level ownership, allowing business units to develop data products faster while adhering to shared governance controls. Regulatory and risk requirements—particularly around data lineage, access controls, and auditability—make these two patterns the most effective in banking environments.</p>
+<p>Within this foundation, predictive and generative AI operate as complementary capabilities. Predictive AI functions within the processing and analytics layers, where models score transactions, customers, and portfolios against structured data. Generative AI extends the same foundation by synthesizing unstructured information—documents, emails, call transcripts—and delivering insights through conversational and narrative interfaces. Both depend on the same underlying data quality, lineage, and governance controls to operate reliably.</p>
+</section>
+<section id="model-platforms" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="model-platforms"><span class="header-section-number">6.2</span> Model Platforms</h3>
+<p>Above the data foundation sits the model and analytics layer, where predictive and generative workloads coexist. Predictive AI typically runs on mature machine learning platforms that support feature engineering, training, validation, explainability, and model risk management. Generative AI introduces additional components, including large language models, embedding services, and retrieval mechanisms that ground outputs in enterprise data. Retrieval-augmented generation has emerged as the preferred approach for grounding generative outputs in enterprise data—allowing models to access proprietary information at query time without requiring sensitive data to be embedded in model weights.</p>
+</section>
+<section id="integration-and-workflow-enablement" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="integration-and-workflow-enablement"><span class="header-section-number">6.3</span> Integration and Workflow Enablement</h3>
+<p>Integration is where architecture either enables scale or becomes a bottleneck. Predictive models operate behind the scenes, scoring transactions or customers in real time. Generative models sit closer to users, embedded in dashboards, workflow tools, and internal applications. Both capabilities should be exposed through well-defined services and APIs, allowing them to be composed into end-to-end workflows—enabling predictive insights to trigger generative explanations or summaries without tightly coupling systems or duplicating logic.</p>
+<p>At the user-facing layer, this integration appears as advisor desktops, customer assistants, and analyst tools—where predictive scores and generative narratives are delivered together in a single, coherent experience. This is where architecture becomes visible to the business: not as infrastructure, but as capability that bankers and customers interact with directly.</p>
+</section>
+<section id="designing-for-change-and-future-capability" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="designing-for-change-and-future-capability"><span class="header-section-number">6.4</span> Designing for Change and Future Capability</h3>
+<p>AI architecture must be modular—models, vendors, and regulations will change. Banks that hard-code assumptions about specific vendors or model types limit their ability to adapt. A modular, layered architecture allows institutions to incorporate new predictive techniques or generative models without destabilizing existing systems, turning AI from a series of pilots into a durable enterprise capability.</p>
+<p>The same architectural principles apply as banks move toward agentic operations. Agentic deployments require three additional architectural elements:</p>
+<ul>
+<li>An action layer where domain agents execute core banking processes within defined policy boundaries</li>
+<li>An intelligence layer that coordinates agent planning and orchestration across multi-step workflows</li>
+<li>A data layer that provides agents controlled access to enterprise information at execution time, under strict access, logging, and audit controls</li>
+</ul>
+<p>The governance and security controls already embedded in the architecture must extend to cover agent activity—including agent registries, action limits, and audit trails for every agent decision. Banks that build modular, layered architectures now are better positioned to extend them for agentic workloads without rebuilding from scratch. <em>For a detailed treatment of agentic architecture, see <a href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html">Building the AI-First Bank: Agents, Architecture, and the Path to Autonomous Banking</a>.</em></p>
+<hr>
+</section>
+</section>
+<section id="governance-and-risk-management" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="governance-and-risk-management"><span class="header-section-number">7</span> Governance and Risk Management</h2>
+<p>Architecture defines what can be built. Governance and risk management define what should be deployed. In regulated banking, these are inseparable—AI systems must satisfy both technical requirements and regulatory expectations before they can operate at scale.</p>
+<p>Security and governance are design constraints, not afterthoughts. Generative AI introduces new risks, including unintended data exposure and opaque outputs, while predictive models remain subject to established model risk management expectations. Banks must enforce strong access controls, data segregation, auditability, and continuous monitoring across both model types. Governance frameworks should be embedded into existing risk, compliance, and technology control processes, ensuring accountability without duplicating existing control functions.</p>
+<section id="model-risk-management-for-predictive-and-generative-ai" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="model-risk-management-for-predictive-and-generative-ai"><span class="header-section-number">7.1</span> Model Risk Management for Predictive and Generative AI</h3>
+<p>Model risk management is a regulatory requirement for both predictive and generative AI in banking. The Federal Reserve’s SR 11-7 guidance on model risk management applies equally to traditional credit models and to generative AI systems that support business decisions. While the underlying principles remain consistent—effective challenge, ongoing monitoring, independent validation—the application of these principles must evolve to address the distinct characteristics of generative models.</p>
+<p>Predictive models benefit from decades of established validation practices. Banks understand how to assess conceptual soundness, verify implementation, and test outcomes against hold-out data. Model documentation, assumptions, limitations, and performance metrics follow well-understood formats, and model inventory, tiering, and validation cycles are embedded into standard risk management processes.</p>
+<p>Generative AI introduces fundamentally different validation challenges. Unlike predictive models that produce numeric scores with measurable accuracy, generative models produce language, summaries, and content whose quality is harder to quantify. There is no single ground truth for whether a credit memo is well-written, a customer response is helpful, or a compliance summary is complete. Validation must therefore extend beyond traditional metrics to include output quality assessments, bias detection, factual accuracy checks, and testing for hallucinations or inappropriate responses.</p>
+<p>The core MRM framework still applies. Generative models require clear documentation of intended use, known limitations, data lineage, and performance expectations. They need ongoing monitoring to detect drift, degradation, or misuse. Banks must establish accountability for model ownership, define escalation protocols when outputs fall outside defined limits, and ensure that human review remains part of high-stakes workflows. Independent validation teams must develop new competencies in prompt engineering, LLM evaluation techniques, and red-teaming methods, while maintaining the same rigor and independence expected for traditional models.</p>
+<p>Third-party and vendor-provided models present additional challenges. Many banks deploy generative AI through external LLM providers, APIs, or SaaS platforms, where model details may be proprietary or change without notice. Regulatory guidance makes clear that outsourcing does not eliminate accountability—banks remain responsible for understanding model behavior, validating outputs, and ensuring that vendor models meet the institution’s risk standards. This requires contractual protections, regular vendor assessments, and fallback procedures when third-party services fail or behave unexpectedly.</p>
+<p>As generative AI becomes more embedded in decision workflows, the boundary between “model” and “application” blurs. A customer-facing assistant or document summarization tool may not fit traditional model definitions, yet it influences outcomes, carries reputational risk, and must be governed accordingly. Banks are adapting MRM frameworks to cover these systems, extending validation principles to AI-enabled products rather than limiting oversight to standalone statistical models. This broader view ensures that governance keeps pace with how AI is actually deployed, rather than being constrained by legacy definitions.</p>
+</section>
+<section id="security-and-access-controls" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="security-and-access-controls"><span class="header-section-number">7.2</span> Security and Access Controls</h3>
+<p>Security requirements for AI systems cover more than traditional data protection—they include model access controls, output monitoring, and prevention of data leakage through generative interfaces. Banks must implement role-based access, audit trails, and data masking to ensure that AI systems respect the same information barriers that govern human access.</p>
+<p>Generative models pose unique risks. They can inadvertently expose sensitive information through responses, combine data across restricted boundaries, or be manipulated through adversarial prompts. Input validation, output filtering, and continuous monitoring address risks that access controls alone cannot prevent.</p>
+<p>Agentic deployments expand this attack surface further. Agents interact with production systems autonomously, meaning a compromised agent executes harmful operations rather than simply producing bad output. Controls must scale with autonomy—privilege separation, policy enforcement at the tool layer, and action limits are architectural requirements.</p>
+<p><em>For a detailed treatment of agentic AI security threats and defense strategies, see <a href="https://changezakram.github.io/agentic-ai/agentic_ai_security.html">Securing Agentic AI Systems: A Defense-in-Depth Approach</a>.</em></p>
+</section>
+<section id="regulatory-compliance-and-auditability" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="regulatory-compliance-and-auditability"><span class="header-section-number">7.3</span> Regulatory Compliance and Auditability</h3>
+<p>AI systems in banking operate under extensive regulatory oversight. In the United States, SR 11-7 governs model risk management across both predictive and generative AI. ECOA and Regulation B require that credit decisions—including those driven by AI—be explainable in specific, understandable terms. SR 13-19 holds banks accountable for third-party model behavior, even when underlying algorithms are proprietary. Banks operating across jurisdictions must also navigate the EU AI Act, which introduces risk-based requirements for AI systems used in consequential decisions.</p>
+<p>Auditability is a cross-cutting requirement. Regulators and internal audit teams must be able to reconstruct decisions, validate that models operate as intended, and verify that governance controls are effective. This requires comprehensive documentation, version control, and the ability to reproduce model outputs on demand—for both predictive scores and generative outputs.</p>
+<p>Banks that treat compliance as an afterthought face material regulatory risk. Those that embed it into architecture and operating processes from the start scale more effectively and spend less time retrofitting controls after deployment.</p>
+<hr>
+</section>
+</section>
+<section id="operating-model-and-organization" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="operating-model-and-organization"><span class="header-section-number">8</span> Operating Model and Organization</h2>
+<p>Successful AI programs require more than good architecture and strong governance—they require the right organizational structure, talent strategy, and change management approach. The operating model determines how decisions are made, how resources are allocated, and how capabilities are built and sustained across the enterprise.</p>
+<section id="operating-model" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="operating-model"><span class="header-section-number">8.1</span> Operating Model</h3>
+<p>As banks move from experimentation to enterprise-wide AI, the operating model becomes a key enabler of scale. It defines roles, decision rights, resource allocation, and how capabilities are delivered consistently across the organization. Institutions early in their AI journey typically adopt a centralized model—coordinating strategy, standards, and execution from a central team to allocate scarce talent and enforce consistent governance. As maturity grows, many evolve toward a federated model where strategic oversight stays central while execution is delegated to business units. The right choice depends on institutional structure, regulatory environment, and strategic priorities—with flexibility to evolve as capability matures.</p>
+</section>
+<section id="talent-and-organizational-readiness" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="talent-and-organizational-readiness"><span class="header-section-number">8.2</span> Talent and Organizational Readiness</h3>
+<p>New roles have emerged as AI has matured in banking. Prompt engineers, LLM evaluation specialists, and AI product managers are now essential alongside traditional data scientists and model risk managers. Validators must extend their competency to cover generative AI evaluation techniques, red-teaming methods, and output quality assessment—capabilities that go beyond traditional model validation.</p>
+<p>Build-buy-partner decisions require clear assessment of where competitive advantage lies. Core capabilities—credit risk modeling, fraud detection, customer analytics—warrant internal investment. Commoditized capabilities—infrastructure, model hosting—can be sourced externally without sacrificing strategic control.</p>
+<p>Change management is consistently underestimated. AI tools that sit unused because teams don’t trust them or can’t integrate them represent wasted investment. Adoption follows when tools demonstrably save time and reduce errors. Leadership commitment is non-negotiable—programs without sustained executive sponsorship rarely move beyond pilots.</p>
+<hr>
+</section>
+</section>
+<section id="from-strategy-to-execution-a-phased-approach" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="from-strategy-to-execution-a-phased-approach"><span class="header-section-number">9</span> From Strategy to Execution: A Phased Approach</h2>
+<p>Understanding what to build is only half the challenge. The more difficult question is how to get started—how to sequence investments, prioritize use cases, and maintain momentum while managing risk. Banks that succeed avoid both extremes: they neither pursue multi-year transformation programs that delay value, nor launch disconnected pilots that fail to scale. Instead, they adopt a phased approach that delivers measurable impact early while building the architectural foundations needed for long-term scale.</p>
+<div id="fig-ai-roadmap" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ai-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/ai-roadmap.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ai-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: AI Adoption Roadmap for Banking — A phased approach to move from initial pilots to scaled platforms and enterprise-wide AI capabilities, with governance and model risk management embedded from the start.
+</figcaption>
+</figure>
+</div>
+<section id="phase-1-foundation-and-proof-of-value-612-months" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="phase-1-foundation-and-proof-of-value-612-months"><span class="header-section-number">9.1</span> Phase 1: Foundation and Proof of Value (6–12 Months)</h3>
+<p>The first phase focuses on establishing technical foundations and early credibility. Banks should prioritize a small number of high-impact use cases that demonstrate value quickly while informing architecture and governance decisions. Foundation-building activities include defining data governance standards, establishing model risk management processes for generative AI, selecting core technology platforms, and implementing baseline security and access controls.</p>
+<p>Pilot use cases should be selected based on value versus complexity. High-value, lower-complexity use cases—document summarization for internal teams, conversational assistants for common customer inquiries, or generative BI for executive dashboards—deliver quick wins and build organizational confidence. These pilots should operate on production-grade infrastructure from the start to validate that security, governance, and integration patterns will scale.</p>
+<p>By the end of Phase 1, banks should have delivered at least one production use case, established governance and validation processes, and built internal competency in both predictive and generative AI.</p>
+</section>
+<section id="phase-2-scaling-capabilities-and-expanding-use-cases-1224-months" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="phase-2-scaling-capabilities-and-expanding-use-cases-1224-months"><span class="header-section-number">9.2</span> Phase 2: Scaling Capabilities and Expanding Use Cases (12–24 Months)</h3>
+<p>Phase 2 shifts from foundation-building to scaling. Platform investments made in Phase 1 now support a broader portfolio of use cases across multiple business lines. Platform expansion includes building out shared services—feature stores, model registries, API gateways, and reusable embedding and retrieval infrastructure. Model risk management processes mature to handle higher model volumes with streamlined validation and automated monitoring.</p>
+<p>Use case expansion should follow a disciplined prioritization framework. High-impact opportunities include credit underwriting acceleration, fraud investigation support, regulatory reporting automation, and personalized wealth management tools. Each new use case should build on shared platform capabilities rather than creating one-off solutions. Selectivity matters—a smaller portfolio of well-integrated, well-governed capabilities delivers more business value than a large number of fragmented pilots.</p>
+</section>
+<section id="phase-3-enterprise-maturity-and-continuous-evolution-24-months" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="phase-3-enterprise-maturity-and-continuous-evolution-24-months"><span class="header-section-number">9.3</span> Phase 3: Enterprise Maturity and Continuous Evolution (24+ Months)</h3>
+<p>By Phase 3, AI capabilities are embedded across core banking workflows and the focus shifts to optimization and continuous improvement. Governance is operationalized, the platform is stable, and the organization has developed the ability to deploy new models and use cases efficiently. Operational priorities include refining model monitoring and retraining processes, optimizing infrastructure costs, and embedding AI literacy across business and technology teams.</p>
+<p>Agentic AI, multimodal models, and real-time decisioning can be evaluated and selectively integrated where they deliver clear incremental value. Banks that reach this maturity move from institutions that use AI to institutions where AI is a core competency.</p>
+</section>
+<section id="prioritization-framework-selecting-the-right-use-cases" class="level3" data-number="9.4">
+<h3 data-number="9.4" class="anchored" data-anchor-id="prioritization-framework-selecting-the-right-use-cases"><span class="header-section-number">9.4</span> Prioritization Framework: Selecting the Right Use Cases</h3>
+<p>Not all AI opportunities are created equal. Effective frameworks assess use cases across four dimensions. Business value covers revenue potential, cost reduction, risk mitigation, and strategic alignment. Technical feasibility considers data availability, model complexity, and integration requirements. Risk and regulatory considerations determine validation rigor—customer-facing decisions require stronger governance while internal productivity tools can move faster. Organizational readiness accounts for team AI literacy and appetite for change.</p>
+<p>A balanced portfolio includes quick wins that build momentum, strategic bets that address high-value opportunities, and foundational investments that enable future scale. Most successful programs allocate roughly 30% of effort to near-term value delivery, 50% to scaling proven capabilities, and 20% to exploring emerging opportunities.</p>
+<hr>
+</section>
+</section>
+<section id="the-path-to-agentic-operations" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="the-path-to-agentic-operations"><span class="header-section-number">10</span> The Path to Agentic Operations</h2>
+<p>Generative AI reduces friction and accelerates decisions, but it still operates reactively—responding to prompts, summarizing documents, and supporting human judgment. The next stage moves beyond assistance to autonomous execution. Agentic AI systems plan, coordinate, and act across multi-step banking workflows without continuous human direction—shifting AI from a productivity tool to an operational capability.</p>
+<p>This means AI agents that execute loan origination workflows, monitor borrower covenant compliance, triage commercial banking communications, and run stress testing scenarios—coordinating specialized agents within defined risk and governance boundaries. The distinction from generative AI is operational: agents don’t just help bankers work faster, they do structured work independently within policy-governed limits.</p>
+<p>The transition to agentic operations follows the same staged logic as the predictive-to-generative progression described in this article. Banks begin with assistive agents that support human decisions before advancing to process execution agents that automate multi-step workflows, and ultimately to autonomous decisioning agents operating within defined guardrails.</p>
+<p>The architecture, governance, and operating model principles outlined in this roadmap apply directly to agentic deployments. A strong data foundation, disciplined model risk management, and embedded governance are prerequisites for deploying agents safely at scale in a regulated environment.</p>
+<p>For a detailed treatment of agentic AI architecture, agent levels, multi-agent orchestration, and banking use cases, see the companion article: <a href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html">Building the AI-First Bank: A Strategic Guide</a>.</p>
+<hr>
+</section>
+<section id="conclusion" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">11</span> Conclusion</h2>
+<p>AI in banking is no longer a question of experimentation—it is a question of execution. Predictive AI has proven its value across risk, fraud, and customer analytics. Generative AI extends these capabilities by interpreting unstructured information, accelerating decisions, and reducing operational friction. Agentic AI represents the next stage—where AI systems move from augmenting human judgment to executing work autonomously within governed boundaries. The opportunity lies not in choosing between these capabilities, but in integrating them within the same business workflows.</p>
+<p>Banks that succeed will avoid the trap of isolated pilots and focus on end-to-end transformation. That requires clarity on where predictive models drive decisions, where generative models augment human judgment, and how both are governed within a regulated environment. Without this clarity, AI investments remain fragmented and difficult to scale.</p>
+<p>Architecture is the decisive factor. A shared data foundation, disciplined model lifecycle management, secure integration patterns, and embedded governance turn AI from a collection of tools into an enterprise capability. Institutions that treat architecture as a first-class element of their AI roadmap position themselves to scale responsibly, adapt as technology evolves, and deliver durable business value.</p>
+<p>Competitive advantage will not come from adopting the latest model first, but from building the foundations that allow AI—predictive and generative alike—to be applied consistently, safely, and at scale.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

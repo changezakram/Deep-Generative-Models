@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-06-01">
+
+<title>RAG Is Not a Strategy: Document Intelligence Done Right in Financial Services</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://changezakram.github.io/"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Changez Akram</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="../index.html">
+ <span class="dropdown-text">Gen AI Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../vae.html">
+ <span class="dropdown-text">Variational Autoencoders (VAEs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../flows.html">
+ <span class="dropdown-text">Normalizing Flows</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ebm.html">
+ <span class="dropdown-text">Energy-Based Models (EBMs)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../diffusion.html">
+ <span class="dropdown-text">Diffusion Models</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-large-language-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Large Language Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-large-language-models">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/transformers.html">
+ <span class="dropdown-text">Transformers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/post-training.html">
+ <span class="dropdown-text">Post Training</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/nlp-eval.html">
+ <span class="dropdown-text">NLP Evaluation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-agentic-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Agentic AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-agentic-ai">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-ai.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic-analytics.html">
+ <span class="dropdown-text">Agentic Analytics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/slm.html">
+ <span class="dropdown-text">Small Language Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/Workflow-Orchestration.html">
+ <span class="dropdown-text">Multi-Agent Orchestration</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai-strategy" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">AI Strategy</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai-strategy">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai-roadmap-for-banking.html">
+ <span class="dropdown-text">AI Roadmap for Banking</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/ai_first_bank.html">
+ <span class="dropdown-text">Building the AI-First Bank</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/banking-use-cases.html">
+ <span class="dropdown-text">Gen AI in Banking</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/Deep-Generative-Models/gen-ai-use-cases/healthcare-use-cases.html">
+ <span class="dropdown-text">Gen AI in Healthcare</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-responsible-ai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Responsible AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-responsible-ai">    
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/agentic-ai/agentic_ai_security.html">
+ <span class="dropdown-text">AI Security</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://changezakram.github.io/responsible-ai/ai-safety.html">
+ <span class="dropdown-text">AI Safety</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction-the-demo-gap" id="toc-introduction-the-demo-gap" class="nav-link active" data-scroll-target="#introduction-the-demo-gap"><span class="header-section-number">1</span> Introduction: The Demo Gap</a></li>
+  <li><a href="#section-1-what-rag-actually-is-and-what-it-is-not" id="toc-section-1-what-rag-actually-is-and-what-it-is-not" class="nav-link" data-scroll-target="#section-1-what-rag-actually-is-and-what-it-is-not"><span class="header-section-number">2</span> Section 1: What RAG Actually Is — And What It Is Not</a></li>
+  <li><a href="#section-2-why-financial-documents-break-vanilla-rag" id="toc-section-2-why-financial-documents-break-vanilla-rag" class="nav-link" data-scroll-target="#section-2-why-financial-documents-break-vanilla-rag"><span class="header-section-number">3</span> Section 2: Why Financial Documents Break Vanilla RAG</a></li>
+  <li><a href="#section-3-the-hallucination-problem-is-not-solved" id="toc-section-3-the-hallucination-problem-is-not-solved" class="nav-link" data-scroll-target="#section-3-the-hallucination-problem-is-not-solved"><span class="header-section-number">4</span> Section 3: The Hallucination Problem Is Not Solved</a></li>
+  <li><a href="#section-4-rag-is-not-a-strategy-its-infrastructure" id="toc-section-4-rag-is-not-a-strategy-its-infrastructure" class="nav-link" data-scroll-target="#section-4-rag-is-not-a-strategy-its-infrastructure"><span class="header-section-number">5</span> Section 4: RAG Is Not a Strategy — It’s Infrastructure</a></li>
+  <li><a href="#section-5-what-document-intelligence-done-right-looks-like" id="toc-section-5-what-document-intelligence-done-right-looks-like" class="nav-link" data-scroll-target="#section-5-what-document-intelligence-done-right-looks-like"><span class="header-section-number">6</span> Section 5: What Document Intelligence Done Right Looks Like</a></li>
+  <li><a href="#section-6-a-framework-for-financial-services-leaders" id="toc-section-6-a-framework-for-financial-services-leaders" class="nav-link" data-scroll-target="#section-6-a-framework-for-financial-services-leaders"><span class="header-section-number">7</span> Section 6: A Framework for Financial Services Leaders</a></li>
+  <li><a href="#conclusion-infrastructure-in-service-of-strategy" id="toc-conclusion-infrastructure-in-service-of-strategy" class="nav-link" data-scroll-target="#conclusion-infrastructure-in-service-of-strategy"><span class="header-section-number">8</span> Conclusion: Infrastructure in Service of Strategy</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">RAG Is Not a Strategy: Document Intelligence Done Right in Financial Services</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-the-demo-gap" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction-the-demo-gap"><span class="header-section-number">1</span> Introduction: The Demo Gap</h2>
+<p>Walk into any financial institution today and you will hear the same story. A vendor demonstrates a retrieval-augmented generation system querying loan agreements, credit memos, or regulatory filings. The demo is flawless. Questions get answered. Sources get cited. Executives nod. A pilot gets approved.</p>
+<p>Six months later, the system is not in production.</p>
+<p>This pattern is not anecdotal. Research from NStarX (2025) estimates that <strong>40–60% of RAG implementations fail to reach production</strong> — not because the underlying technology is broken, but because retrieval quality issues, governance gaps, and the inability to explain decisions to regulators make enterprise deployment unviable at scale <span class="citation" data-cites="nstarx2025">[@nstarx2025]</span>.</p>
+<p>The problem is not RAG itself. The problem is that organizations have confused a retrieval <em>technique</em> with a document intelligence <em>strategy</em>. This article argues that financial services institutions need to stop asking “should we implement RAG?” and start asking “what does a production-grade, auditable, risk-aware document intelligence capability actually require?” Those are very different questions — and the answer to the second one is far more demanding.</p>
+<hr>
+</section>
+<section id="section-1-what-rag-actually-is-and-what-it-is-not" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="section-1-what-rag-actually-is-and-what-it-is-not"><span class="header-section-number">2</span> Section 1: What RAG Actually Is — And What It Is Not</h2>
+<p>It is worth returning to first principles before diagnosing the problem.</p>
+<p>Retrieval-Augmented Generation was introduced by Patrick Lewis and colleagues at Meta AI in their 2020 NeurIPS paper, “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” <span class="citation" data-cites="lewis2020retrieval">[@lewis2020retrieval]</span>. <strong>The core insight was elegant:</strong> rather than forcing a language model to encode all world knowledge in its parameters — making it both stale and prone to fabrication — you could combine a neural retriever with a sequence-to-sequence generator, dynamically surfacing relevant documents at inference time.</p>
+<p>Lewis et al.&nbsp;demonstrated that RAG models generate more specific, diverse, and factual language than a state-of-the-art parametric-only baseline <span class="citation" data-cites="lewis2020retrieval">[@lewis2020retrieval]</span>. The paper showed strong results on open-domain question answering and fact verification benchmarks. It was a research advance, not an enterprise deployment blueprint.</p>
+<p>What vendors subsequently sold as “RAG” was a simplified version of this: chunk documents into fixed-size text blocks, embed them in a vector database, retrieve the top-k most similar chunks to a user query, and pass them to an LLM. This pipeline is easy to stand up and spectacular in demos. It is also brittle at enterprise scale.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The distinction matters:</strong> RAG as originally conceived is a <em>training and retrieval architecture</em>. What most organizations deploy is a <em>prompt-augmentation pipeline</em> — closer to sophisticated document lookup than knowledge-integrated generation. Conflating the two creates false confidence.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="section-2-why-financial-documents-break-vanilla-rag" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="section-2-why-financial-documents-break-vanilla-rag"><span class="header-section-number">3</span> Section 2: Why Financial Documents Break Vanilla RAG</h2>
+<p>Financial documents are among the most structurally complex artifacts in any enterprise. Annual reports, credit memos, regulatory filings, loan agreements, and policy documents share characteristics that directly undermine the assumptions baked into standard RAG pipelines.</p>
+<section id="the-chunking-problem" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="the-chunking-problem"><span class="header-section-number">3.1</span> The Chunking Problem</h3>
+<p>The most fundamental issue is chunking — the process of breaking documents into retrievable segments before embedding them. Standard pipelines use fixed-size chunks (typically 256–512 tokens) regardless of document structure.</p>
+<p>Research by <span class="citation" data-cites="setty2024improving">@setty2024improving</span> found that <strong>ineffective chunking strategies lead to incomplete context in retrieved chunks</strong>, destroying the semantic integrity of financial content. A covenant buried across a page break, a table split mid-row, a cross-reference to another section — all of these become retrieval failures when chunked naively.</p>
+<p>A more recent study on financial document RAG <span class="citation" data-cites="findebate2025">[@findebate2025]</span> adopted context-sensitive segmentation that prioritizes semantic integrity — preserving paragraph boundaries first, then sentence boundaries, then lexical boundaries — preventing destructive splits and producing self-contained, interpretable segments. This is a requirement that fixed-size chunking cannot satisfy.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Chunking strategy is not a configuration choice, it is an architectural decision</strong> that determines whether your retrieval system works at all on real financial documents.</p>
+</div>
+</div>
+</section>
+<section id="the-cross-document-reasoning-problem" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="the-cross-document-reasoning-problem"><span class="header-section-number">3.2</span> The Cross-Document Reasoning Problem</h3>
+<p>Many high-value financial queries require synthesizing information across multiple documents — comparing covenant structures across credit facilities, reconciling a regulatory capital calculation against prior period filings, or tracing a policy exception through approval chains.</p>
+<p>Vanilla RAG retrieves chunks from a single embedding space and passes them to the LLM without structural reasoning. The FinDER benchmark <span class="citation" data-cites="choi2025finder">[@choi2025finder]</span> was specifically designed to evaluate RAG systems on ambiguous, brief queries that require retrieval — exactly the kind of expert-level financial analysis that practitioners actually need. Standard pipelines consistently underperform on these tasks because they lack multi-hop retrieval capability.</p>
+</section>
+<section id="the-structured-data-problem" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="the-structured-data-problem"><span class="header-section-number">3.3</span> The Structured Data Problem</h3>
+<p>Financial documents are not pure text. They contain tables, charts, footnotes, mathematical formulas, and embedded metadata. A 10-K filing may contain 50 data tables. A credit agreement may have complex defined-term hierarchies that require understanding the entire document structure to resolve a single clause.</p>
+<p>Research on multimodal RAG in finance <span class="citation" data-cites="gondhalekar2025multifinrag">[@gondhalekar2025multifinrag]</span> demonstrates that models must jointly model narrative text, tables, and figures to achieve reliable question answering over financial reports. Text-only embedding pipelines discard a substantial portion of the information content in the documents they are supposed to retrieve from.</p>
+<hr>
+</section>
+</section>
+<section id="section-3-the-hallucination-problem-is-not-solved" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="section-3-the-hallucination-problem-is-not-solved"><span class="header-section-number">4</span> Section 3: The Hallucination Problem Is Not Solved</h2>
+<p>Perhaps the most dangerous misconception in enterprise RAG deployments is the belief that retrieval eliminates hallucination. It does not.</p>
+<p>A landmark empirical study — “Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools” <span class="citation" data-cites="magesh2024hallucination">[@magesh2024hallucination]</span> — found that <strong>retrieval-augmented legal research tools exhibited hallucination rates up to 33%</strong>, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero. The finding applies with equal force to financial services, where document types and reasoning demands are similarly complex.</p>
+<p>The failure modes are structural, not incidental:</p>
+<p><strong>Topical relevance without factual sufficiency.</strong> A retrieved chunk can be on-topic but incomplete — containing partial information that causes the LLM to generate a plausible but incorrect synthesis. The document was found; the answer was not.</p>
+<p><strong>Conflicting information across documents.</strong> In a corpus of regulatory filings, policy documents, and internal memos, contradictions are common. Without a conflict-resolution layer, the LLM produces a confident blend of incompatible facts.</p>
+<p><strong>The lost-in-the-middle effect.</strong> LLMs systematically underweight information appearing in the middle of long context windows <span class="citation" data-cites="liu2024lost">[@liu2024lost]</span>. When multiple retrieved chunks are passed together, critical content may be effectively ignored regardless of its relevance score.</p>
+<p><strong>Compounding error in agentic settings.</strong> As <span class="citation" data-cites="sok2025agentic">@sok2025agentic</span> note, an intermediate generation containing a hallucinated claim may be used as context for subsequent retrieval or reasoning steps, causing the error to propagate and reinforce across iterations. Multi-step financial workflows — underwriting automation, compliance checking, exception processing — amplify this risk significantly.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Emerging Solution: Bayesian RAG
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="citation" data-cites="ngartera2026bayesian">@ngartera2026bayesian</span> demonstrated <strong>93.1% accuracy on Apple and Microsoft 10-K filings</strong> with a 27.8% hallucination reduction and 26.8% improvement in uncertainty calibration over traditional methods — by treating retrieval confidence as a probabilistic signal rather than a binary match. This class of approach is what serious production deployment requires.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="section-4-rag-is-not-a-strategy-its-infrastructure" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="section-4-rag-is-not-a-strategy-its-infrastructure"><span class="header-section-number">5</span> Section 4: RAG Is Not a Strategy — It’s Infrastructure</h2>
+<p>This is the central argument of this article. RAG is infrastructure in the same way that a relational database is infrastructure — necessary but not sufficient. You would not describe your analytics strategy as “we use SQL.” Similarly, describing your document intelligence strategy as “we use RAG” reveals an absence of strategy.</p>
+<p>A document intelligence <em>strategy</em> answers questions that RAG alone cannot:</p>
+<ul>
+<li><strong>What decisions will this system inform, and at what confidence threshold?</strong></li>
+<li><strong>Who is accountable when the system retrieves the wrong document and a human acts on it?</strong></li>
+<li><strong>How is the system validated, and by whom?</strong></li>
+<li><strong>What is the audit trail from user query to source document to generated output?</strong></li>
+<li><strong>How does the system handle documents it has never seen?</strong></li>
+<li><strong>What happens when the knowledge corpus is updated, and stale retrieval persists?</strong></li>
+</ul>
+<p>These are governance questions, not engineering questions. And in financial services, they are also regulatory questions.</p>
+<section id="the-compliance-architecture-problem" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="the-compliance-architecture-problem"><span class="header-section-number">5.1</span> The Compliance Architecture Problem</h3>
+<p>The distributed architecture of RAG systems creates exposure at every layer. <span class="citation" data-cites="kiteworks2026">@kiteworks2026</span> identifies that RAG systems in financial services can expose sensitive data through embedding vectors, which can be reverse-engineered to reveal personal and financial information — violating GDPR and GLBA if not properly secured.</p>
+<p>Exposure points exist at the vectorization layer, the embedding database, the retrieval mechanism, the LLM interface, and the response generation stage. <strong>Organizations that treat RAG deployments as purely technical implementations rather than compliance-sensitive architectures face enforcement actions, audit findings, and operational disruptions.</strong></p>
+<p>This is not theoretical. The GAO’s May 2025 report, “Artificial Intelligence: Use and Oversight in Financial Services” <span class="citation" data-cites="gao2025">[@gao2025]</span>, directly references NIST AI RMF, OMB M-25-21, and the evolving interagency regulatory landscape as active oversight frameworks for AI systems deployed in regulated institutions. RAG systems that process customer data, inform credit decisions, or support compliance functions are model-adjacent systems — and increasingly, regulators will treat them as such.</p>
+</section>
+<section id="the-sr-11-7-extension" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="the-sr-11-7-extension"><span class="header-section-number">5.2</span> The SR 11-7 Extension</h3>
+<p>Financial institutions have operated under the Federal Reserve and OCC’s SR 11-7 model risk management guidance since 2011 <span class="citation" data-cites="sr117">[@sr117]</span>. That framework defines a model as any system that takes data and outputs an estimate used to support business decisions, with risk management responsibilities shared across line of business, model development, and independent model risk management teams.</p>
+<p>Recent research on model risk management for generative AI <span class="citation" data-cites="mrmgenai2025">[@mrmgenai2025]</span> directly maps SR 11-7’s shared responsibility structure to RAG systems, noting that an enhanced and evolving model risk management framework with additional controls is required to support the successful implementation of GenAI in financial institutions.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Is your RAG system subject to model risk management oversight?</strong> If it informs a human decision — a credit approval, a compliance determination, an exception — the answer is almost certainly yes, even if your MRM team has not yet been asked.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="section-5-what-document-intelligence-done-right-looks-like" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="section-5-what-document-intelligence-done-right-looks-like"><span class="header-section-number">6</span> Section 5: What Document Intelligence Done Right Looks Like</h2>
+<p>The failure mode is not ambition. Organizations are right to want AI-assisted document intelligence. The failure mode is treating RAG as a destination rather than a component. Here is what a production-grade capability actually requires.</p>
+<section id="hybrid-retrieval-architecture" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="hybrid-retrieval-architecture"><span class="header-section-number">6.1</span> 1. Hybrid Retrieval Architecture</h3>
+<p>Production document intelligence uses hybrid retrieval — combining dense vector embeddings (semantic similarity) with sparse BM25 retrieval (keyword precision). Research shows hybrid indexing achieves <strong>15–30% precision improvements across enterprise deployments</strong> over vector-only approaches <span class="citation" data-cites="nstarx2025">[@nstarx2025]</span>.</p>
+<p>For financial documents specifically, this matters because practitioners often query with domain-specific terminology — “DSCR covenant,” “Tier 1 capital,” “ALCO policy exception” — that may not have strong semantic neighbors but requires exact lexical matching.</p>
+</section>
+<section id="semantic-aware-chunking" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="semantic-aware-chunking"><span class="header-section-number">6.2</span> 2. Semantic-Aware Chunking</h3>
+<p>Financial document chunking must respect document structure: section boundaries, table integrity, cross-reference resolution, and clause hierarchies. Fixed-size chunking is a prototype choice, not a production choice. Adaptive chunking aligned to logical topic boundaries has demonstrated <strong>87% accuracy versus 13% for fixed-size baselines</strong> in domain-specific document tasks <span class="citation" data-cites="firecrawl2025">[@firecrawl2025]</span>.</p>
+</section>
+<section id="metadata-driven-retrieval" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="metadata-driven-retrieval"><span class="header-section-number">6.3</span> 3. Metadata-Driven Retrieval</h3>
+<p>Raw text embeddings discard structured metadata that financial professionals rely on: document date, author, regulatory classification, version history, approval chain. Metadata-driven RAG architectures filter the retrieval space <em>before</em> semantic search, dramatically improving precision on queries like “the most recent credit policy approved after the merger” or “all SR 11-7 validation reports from the current examination cycle.”</p>
+</section>
+<section id="uncertainty-quantification-and-confidence-scoring" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="uncertainty-quantification-and-confidence-scoring"><span class="header-section-number">6.4</span> 4. Uncertainty Quantification and Confidence Scoring</h3>
+<p>Production systems must surface uncertainty, not suppress it. Every generated response should carry a retrieval confidence score and a clear citation trail to source documents. When confidence is below threshold, the system should escalate to human review rather than generate a low-confidence answer that looks identical to a high-confidence one.</p>
+</section>
+<section id="full-audit-logging" class="level3" data-number="6.5">
+<h3 data-number="6.5" class="anchored" data-anchor-id="full-audit-logging"><span class="header-section-number">6.5</span> 5. Full Audit Logging</h3>
+<p>Every query, every retrieved chunk, every generated response, and every user action must be logged with sufficient granularity to reconstruct the basis for any AI-assisted decision. This is not optional in a regulated environment. The audit trail is the difference between a governance-compatible system and an unexaminable black box.</p>
+</section>
+<section id="human-in-the-loop-design" class="level3" data-number="6.6">
+<h3 data-number="6.6" class="anchored" data-anchor-id="human-in-the-loop-design"><span class="header-section-number">6.6</span> 6. Human-in-the-Loop Design</h3>
+<p>Document intelligence in financial services is a decision-support capability, not a decision-making capability. System design must make this boundary explicit — through UI design, confidence display, mandatory review workflows for high-stakes outputs, and clear escalation paths. The combination of AI retrieval precision with human judgment and domain expertise is what creates genuine “hybrid intelligence” <span class="citation" data-cites="mckinsey2025">[@mckinsey2025]</span>.</p>
+<hr>
+</section>
+</section>
+<section id="section-6-a-framework-for-financial-services-leaders" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="section-6-a-framework-for-financial-services-leaders"><span class="header-section-number">7</span> Section 6: A Framework for Financial Services Leaders</h2>
+<p>Based on the research reviewed and practitioner experience deploying document intelligence in regulated financial institutions, I propose a four-stage maturity framework.</p>
+<div id="tbl-maturity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-maturity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Document Intelligence Maturity Framework
+</figcaption>
+<div aria-describedby="tbl-maturity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 51%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Label</th>
+<th>Key Characteristics</th>
+<th>Goal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>Pilot (PoC)</td>
+<td>Narrow corpus, no PII, human review of all outputs</td>
+<td>Validate retrieval quality</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>Governed MVP</td>
+<td>Structured chunking, hybrid retrieval, audit logging, MRM engaged</td>
+<td>Demonstrate auditability</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>Production</td>
+<td>Uncertainty quantification, HITL for high-stakes decisions, monitoring</td>
+<td>Operational reliability</td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td>Strategic Capability</td>
+<td>Embedded in core processes, feedback loops, multi-agent roadmap</td>
+<td>Compounding institutional value</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Stage 1 — Pilot (Proof of Concept):</strong> Narrow corpus, controlled use case, no PII, human review of all outputs. Goal: validate retrieval quality on your specific document types. Metric: retrieval precision on 100 expert-labeled queries.</p>
+<p><strong>Stage 2 — Governed MVP:</strong> Expanded corpus, structured chunking, hybrid retrieval, metadata tagging, audit logging enabled. MRM team engaged. Legal and compliance sign-off on data scope. Goal: demonstrate auditability.</p>
+<p><strong>Stage 3 — Production Deployment:</strong> Uncertainty quantification active, confidence thresholds enforced, human-in-the-loop for high-stakes decisions, integration with existing workflow systems. Ongoing monitoring for retrieval drift. Quarterly validation reviews.</p>
+<p><strong>Stage 4 — Strategic Capability:</strong> Document intelligence embedded in core business processes (underwriting, compliance, relationship management). Feedback loops from human reviewers improving retrieval quality. Linked to enterprise data governance. Roadmap toward multi-agent document reasoning.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most organizations piloting RAG today are operating at Stage 1 and calling it a strategy. The gap between Stage 1 and Stage 4 is not a technology gap. It is a governance, data, and organizational design gap.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="conclusion-infrastructure-in-service-of-strategy" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="conclusion-infrastructure-in-service-of-strategy"><span class="header-section-number">8</span> Conclusion: Infrastructure in Service of Strategy</h2>
+<p>The financial services industry is at an inflection point with document intelligence. Deloitte’s 2026 State of AI in the Enterprise report finds that <strong>worker access to AI rose 50% in 2025</strong>, with the number of companies moving projects to production expected to double in the following six months <span class="citation" data-cites="deloitte2026">[@deloitte2026]</span>. The pressure to deploy is real.</p>
+<p>But deployment pressure is precisely when strategic clarity matters most. Organizations that deploy RAG without addressing retrieval governance, hallucination risk, SR 11-7 implications, and audit architecture are not ahead of the curve — they are accumulating technical and regulatory debt that will surface during the next examination cycle or, worse, in a consequential decision error.</p>
+<p>RAG is a powerful and necessary component of document intelligence. But it is not a strategy. Document intelligence done right in financial services requires disciplined architecture, governed infrastructure, model risk awareness, and a clear theory of how AI-assisted retrieval connects to human accountability in consequential decisions.</p>
+<p>The institutions that get this right will not just have better document search. They will have a defensible, auditable, scalable intelligence capability that compounds in value as their document corpus grows and their workflows mature. That is worth building. That is what a strategy looks like.</p>
+<hr>
+</section>
+<section id="references" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="references"><span class="header-section-number">9</span> References</h2>
+<div id="refs" role="list">
+
+</div>
+<hr>
+<div class="author-bio">
+  <hr>
+  <p><strong>Changez Akram</strong> is Chief Data Analytics Officer at Beacon Financial Corporation and writes on AI governance, model risk, and enterprise analytics strategy. Connect on <a href="https://linkedin.com">LinkedIn</a> or follow at <a href="https://changezakram.github.io">changezakram.github.io</a>.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
