@@ -75,7 +75,7 @@ The failure modes are structural, not incidental:
 
 **Topical relevance without factual sufficiency.** A retrieved chunk can be on-topic but incomplete — containing partial information that causes the LLM to generate a plausible but incorrect synthesis. The document was found; the answer was not.
 
-**Conflicting information across documents.** In a corpus of regulatory filings, policy documents, and internal memos, contradictions are common. Without a conflict-resolution layer, the LLM produces a confident blend of incompatible facts.
+**Conflicting information across documents.** A superseded credit policy, a current update, and a one-time exception can all be retrieved together in response to the same query. Without a conflict-resolution layer, the LLM blends them into a single confident answer — one that is simultaneously sourced from real documents and factually wrong.
 
 **The lost-in-the-middle effect.** LLMs systematically underweight information appearing in the middle of long context windows [7]. When multiple retrieved chunks are passed together, critical content may be effectively ignored regardless of its relevance score.
 
