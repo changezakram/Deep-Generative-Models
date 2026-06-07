@@ -355,12 +355,12 @@ Emerging Solution: Bayesian RAG
 <h3 data-number="5.1" class="anchored" data-anchor-id="the-compliance-architecture-problem"><span class="header-section-number">5.1</span> The Compliance Architecture Problem</h3>
 <p>The distributed architecture of RAG systems creates exposure at every layer. RAG systems in financial services can expose sensitive data through embedding vectors. Research demonstrates that privacy issues in RAG are rooted in the leakage of information stored in vector embeddings, despite the inherent belief that embeddings may successfully obfuscate data — creating direct exposure under GDPR and GLBA customer information protection requirements [17].</p>
 <p>Exposure points exist at the vectorization layer, the embedding database, the retrieval mechanism, the LLM interface, and the response generation stage. <strong>Organizations that treat RAG deployments as purely technical implementations rather than compliance-sensitive architectures face enforcement actions, audit findings, and operational disruptions.</strong></p>
-<p>This is not theoretical. The GAO’s May 2025 report, “Artificial Intelligence: Use and Oversight in Financial Services” <span class="citation" data-cites="gao2025">[@gao2025]</span>, directly references NIST AI RMF, OMB M-25-21, and the evolving interagency regulatory landscape as active oversight frameworks for AI systems deployed in regulated institutions. RAG systems that process customer data, inform credit decisions, or support compliance functions are model-adjacent systems — and increasingly, regulators will treat them as such.</p>
+<p>This is not theoretical. A May 2025 government audit confirmed that federal regulators are actively applying existing oversight frameworks to AI systems deployed in financial institutions [10]. RAG systems that process customer data, inform credit decisions, or support compliance functions are model-adjacent systems — and increasingly, regulators will treat them as such.</p>
 </section>
 <section id="the-sr-11-7-extension" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="the-sr-11-7-extension"><span class="header-section-number">5.2</span> The SR 11-7 Extension</h3>
-<p>Financial institutions have operated under the Federal Reserve and OCC’s SR 11-7 model risk management guidance since 2011 <span class="citation" data-cites="sr117">[@sr117]</span>. That framework defines a model as any system that takes data and outputs an estimate used to support business decisions, with risk management responsibilities shared across line of business, model development, and independent model risk management teams.</p>
-<p>Recent research on model risk management for generative AI <span class="citation" data-cites="mrmgenai2025">[@mrmgenai2025]</span> directly maps SR 11-7’s shared responsibility structure to RAG systems, noting that an enhanced and evolving model risk management framework with additional controls is required to support the successful implementation of GenAI in financial institutions.</p>
+<p>Financial institutions have operated under federal model risk management guidance since 2011 [11]. That framework requires banks to treat any system that takes data and produces an output used in a business decision as a regulated model — subject to independent validation, documentation, and ongoing oversight.</p>
+<p>Recent research confirms that this same regulatory framework applies directly to RAG systems — and that additional controls beyond the existing guidance are required for safe GenAI deployment in financial institutions [12].</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -371,7 +371,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Is your RAG system subject to model risk management oversight?</strong> If it informs a human decision — a credit approval, a compliance determination, an exception — the answer is almost certainly yes, even if your MRM team has not yet been asked.</p>
+<p>Is your RAG system subject to regulatory oversight? If it informs any consequential decision — a credit approval, a compliance finding, an exception — the answer is almost certainly yes, even if your risk team has not yet been asked.</p>
 </div>
 </div>
 <hr>

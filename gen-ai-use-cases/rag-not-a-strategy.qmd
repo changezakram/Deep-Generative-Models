@@ -110,16 +110,16 @@ The distributed architecture of RAG systems creates exposure at every layer. RAG
 
 Exposure points exist at the vectorization layer, the embedding database, the retrieval mechanism, the LLM interface, and the response generation stage. **Organizations that treat RAG deployments as purely technical implementations rather than compliance-sensitive architectures face enforcement actions, audit findings, and operational disruptions.**
 
-This is not theoretical. The GAO's May 2025 report, "Artificial Intelligence: Use and Oversight in Financial Services" [@gao2025], directly references NIST AI RMF, OMB M-25-21, and the evolving interagency regulatory landscape as active oversight frameworks for AI systems deployed in regulated institutions. RAG systems that process customer data, inform credit decisions, or support compliance functions are model-adjacent systems — and increasingly, regulators will treat them as such.
+This is not theoretical. A May 2025 government audit confirmed that federal regulators are actively applying existing oversight frameworks to AI systems deployed in financial institutions [10]. RAG systems that process customer data, inform credit decisions, or support compliance functions are model-adjacent systems — and increasingly, regulators will treat them as such.
 
 ### The SR 11-7 Extension
 
-Financial institutions have operated under the Federal Reserve and OCC's SR 11-7 model risk management guidance since 2011 [@sr117]. That framework defines a model as any system that takes data and outputs an estimate used to support business decisions, with risk management responsibilities shared across line of business, model development, and independent model risk management teams.
+Financial institutions have operated under federal model risk management guidance since 2011 [11]. That framework requires banks to treat any system that takes data and produces an output used in a business decision as a regulated model — subject to independent validation, documentation, and ongoing oversight.
 
-Recent research on model risk management for generative AI [@mrmgenai2025] directly maps SR 11-7's shared responsibility structure to RAG systems, noting that an enhanced and evolving model risk management framework with additional controls is required to support the successful implementation of GenAI in financial institutions.
+Recent research confirms that this same regulatory framework applies directly to RAG systems — and that additional controls beyond the existing guidance are required for safe GenAI deployment in financial institutions [12].
 
 ::: {.callout-warning}
-**Is your RAG system subject to model risk management oversight?** If it informs a human decision — a credit approval, a compliance determination, an exception — the answer is almost certainly yes, even if your MRM team has not yet been asked.
+Is your RAG system subject to regulatory oversight? If it informs any consequential decision — a credit approval, a compliance finding, an exception — the answer is almost certainly yes, even if your risk team has not yet been asked.
 :::
 
 ---
