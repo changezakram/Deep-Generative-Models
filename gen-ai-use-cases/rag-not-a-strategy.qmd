@@ -45,9 +45,9 @@ Financial documents are among the most structurally complex artifacts in any ent
 
 The most fundamental issue is chunking — the process of breaking documents into retrievable segments before embedding them. Standard pipelines use fixed-size chunks (typically 256–512 tokens) regardless of document structure.
 
-Research by @setty2024improving found that **ineffective chunking strategies lead to incomplete context in retrieved chunks**, destroying the semantic integrity of financial content. A covenant buried across a page break, a table split mid-row, a cross-reference to another section — all of these become retrieval failures when chunked naively.
+Ineffective chunking strategies lead to incomplete context in retrieved chunks, destroying the semantic integrity of financial content [3]. A covenant buried across a page break, a table split mid-row, a cross-reference to another section — all of these become retrieval failures when chunked naively.
 
-A more recent study on financial document RAG [@findebate2025] adopted context-sensitive segmentation that prioritizes semantic integrity — preserving paragraph boundaries first, then sentence boundaries, then lexical boundaries — preventing destructive splits and producing self-contained, interpretable segments. This is a requirement that fixed-size chunking cannot satisfy.
+Research on financial report chunking confirms that naive fixed-size segmentation destroys document coherence — covenants buried across page breaks, tables split mid-row, cross-references severed from their targets all become retrieval failures [4]. Chunking aligned to the logical structure of financial documents is not optional; it is a prerequisite for reliable retrieval.
 
 ::: {.callout-important}
 **Chunking strategy is not a configuration choice, it is an architectural decision** that determines whether your retrieval system works at all on real financial documents.
