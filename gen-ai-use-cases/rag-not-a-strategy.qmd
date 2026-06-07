@@ -25,9 +25,9 @@ The problem is not RAG itself. The problem is that organizations have confused a
 
 It is worth returning to first principles before diagnosing the problem.
 
-Retrieval-Augmented Generation was introduced by Patrick Lewis and colleagues at Meta AI in their 2020 NeurIPS paper, "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" [@lewis2020retrieval]. **The core insight was elegant:** rather than forcing a language model to encode all world knowledge in its parameters — making it both stale and prone to fabrication — you could combine a neural retriever with a sequence-to-sequence generator, dynamically surfacing relevant documents at inference time.
+Retrieval-Augmented Generation was introduced by Patrick Lewis and colleagues at Meta AI in 2020 [2]. The core insight was elegant: rather than forcing a language model to encode all world knowledge in its parameters — making it both stale and prone to fabrication — you could combine a neural retriever with a sequence-to-sequence generator, dynamically surfacing relevant documents at inference time.
 
-Lewis et al. demonstrated that RAG models generate more specific, diverse, and factual language than a state-of-the-art parametric-only baseline [@lewis2020retrieval]. The paper showed strong results on open-domain question answering and fact verification benchmarks. It was a research advance, not an enterprise deployment blueprint.
+Their results showed RAG models generate more specific, diverse, and factual language than parametric-only baselines [2]. Strong performance on open-domain question answering and fact verification benchmarks confirmed it as a research advance — not an enterprise deployment blueprint.
 
 What vendors subsequently sold as "RAG" was a simplified version of this: chunk documents into fixed-size text blocks, embed them in a vector database, retrieve the top-k most similar chunks to a user query, and pass them to an LLM. This pipeline is easy to stand up and spectacular in demos. It is also brittle at enterprise scale.
 
