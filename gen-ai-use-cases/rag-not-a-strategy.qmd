@@ -80,9 +80,9 @@ The failure modes are structural, not incidental:
 **Compounding error in agentic settings.** An intermediate generation containing a hallucinated claim may be used as context for subsequent retrieval or reasoning steps, causing the error to propagate and reinforce across iterations [8]. Multi-step financial workflows — underwriting automation, compliance checking, exception processing — amplify this risk significantly.
 
 ::: {.callout-tip}
-## Emerging Solution: Bayesian RAG
+## Emerging Solution: Uncertainty-Aware Retrieval
 
-Recent research demonstrated **93.1% accuracy on Apple and Microsoft 10-K filings** with a 27.8% hallucination reduction and 26.8% improvement in uncertainty calibration over traditional methods — by treating retrieval confidence as a probabilistic signal rather than a binary match [9]. This class of approach is what serious production deployment requires.
+Recent research suggests that treating retrieval confidence as a probabilistic signal rather than a binary match can reduce hallucinations and improve reliability on complex financial documents [9]. This class of approach is more aligned with the reliability requirements of production deployment than traditional retrieval pipelines.
 :::
 
 ---
@@ -119,7 +119,7 @@ Financial institutions have operated under federal model risk management guidanc
 Recent research suggests that while existing model risk management principles remain highly relevant, additional controls may be necessary to address retrieval quality, hallucination risk, and the unique operational characteristics of GenAI systems in regulated environments [12].
 
 ::: {.callout-warning}
-Is your RAG system subject to regulatory oversight? If it informs any consequential decision — a credit approval, a compliance finding, an exception — the answer is almost certainly yes, even if your risk team has not yet been asked.
+Is your RAG system subject to regulatory oversight? If it informs consequential decisions, assume that regulators, auditors, and model risk teams will eventually ask how it is governed, validated, and monitored.
 :::
 
 ---
