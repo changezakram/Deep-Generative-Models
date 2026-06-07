@@ -69,7 +69,7 @@ Text-only embedding pipelines discard all of this. A table embedded as a text st
 
 Perhaps the most dangerous misconception in enterprise RAG deployments is the belief that retrieval eliminates hallucination. It does not.
 
-A landmark empirical study — "Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools" [@magesh2024hallucination] — found that **retrieval-augmented legal research tools exhibited hallucination rates up to 33%**, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero. The finding applies with equal force to financial services, where document types and reasoning demands are similarly complex.
+Empirical research found that retrieval-augmented legal research tools exhibited hallucination rates up to 33%, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero [6]. The finding applies with equal force to financial services, where document types and reasoning demands are similarly complex.
 
 The failure modes are structural, not incidental:
 
@@ -77,14 +77,14 @@ The failure modes are structural, not incidental:
 
 **Conflicting information across documents.** In a corpus of regulatory filings, policy documents, and internal memos, contradictions are common. Without a conflict-resolution layer, the LLM produces a confident blend of incompatible facts.
 
-**The lost-in-the-middle effect.** LLMs systematically underweight information appearing in the middle of long context windows [@liu2024lost]. When multiple retrieved chunks are passed together, critical content may be effectively ignored regardless of its relevance score.
+**The lost-in-the-middle effect.** LLMs systematically underweight information appearing in the middle of long context windows [7]. When multiple retrieved chunks are passed together, critical content may be effectively ignored regardless of its relevance score.
 
-**Compounding error in agentic settings.** As @sok2025agentic note, an intermediate generation containing a hallucinated claim may be used as context for subsequent retrieval or reasoning steps, causing the error to propagate and reinforce across iterations. Multi-step financial workflows — underwriting automation, compliance checking, exception processing — amplify this risk significantly.
+**Compounding error in agentic settings.** An intermediate generation containing a hallucinated claim may be used as context for subsequent retrieval or reasoning steps, causing the error to propagate and reinforce across iterations [8]. Multi-step financial workflows — underwriting automation, compliance checking, exception processing — amplify this risk significantly.
 
 ::: {.callout-tip}
 ## Emerging Solution: Bayesian RAG
 
-@ngartera2026bayesian demonstrated **93.1% accuracy on Apple and Microsoft 10-K filings** with a 27.8% hallucination reduction and 26.8% improvement in uncertainty calibration over traditional methods — by treating retrieval confidence as a probabilistic signal rather than a binary match. This class of approach is what serious production deployment requires.
+Recent research demonstrated **93.1% accuracy on Apple and Microsoft 10-K filings** with a 27.8% hallucination reduction and 26.8% improvement in uncertainty calibration over traditional methods — by treating retrieval confidence as a probabilistic signal rather than a binary match [9]. This class of approach is what serious production deployment requires.
 :::
 
 ---

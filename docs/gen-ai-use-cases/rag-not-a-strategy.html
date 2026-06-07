@@ -317,12 +317,12 @@ Important
 <section id="the-hallucination-problem-is-not-solved" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="the-hallucination-problem-is-not-solved"><span class="header-section-number">4</span> The Hallucination Problem Is Not Solved</h2>
 <p>Perhaps the most dangerous misconception in enterprise RAG deployments is the belief that retrieval eliminates hallucination. It does not.</p>
-<p>A landmark empirical study — “Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools” <span class="citation" data-cites="magesh2024hallucination">[@magesh2024hallucination]</span> — found that <strong>retrieval-augmented legal research tools exhibited hallucination rates up to 33%</strong>, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero. The finding applies with equal force to financial services, where document types and reasoning demands are similarly complex.</p>
+<p>Empirical research found that retrieval-augmented legal research tools exhibited hallucination rates up to 33%, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero [6]. The finding applies with equal force to financial services, where document types and reasoning demands are similarly complex.</p>
 <p>The failure modes are structural, not incidental:</p>
 <p><strong>Topical relevance without factual sufficiency.</strong> A retrieved chunk can be on-topic but incomplete — containing partial information that causes the LLM to generate a plausible but incorrect synthesis. The document was found; the answer was not.</p>
 <p><strong>Conflicting information across documents.</strong> In a corpus of regulatory filings, policy documents, and internal memos, contradictions are common. Without a conflict-resolution layer, the LLM produces a confident blend of incompatible facts.</p>
-<p><strong>The lost-in-the-middle effect.</strong> LLMs systematically underweight information appearing in the middle of long context windows <span class="citation" data-cites="liu2024lost">[@liu2024lost]</span>. When multiple retrieved chunks are passed together, critical content may be effectively ignored regardless of its relevance score.</p>
-<p><strong>Compounding error in agentic settings.</strong> As <span class="citation" data-cites="sok2025agentic">@sok2025agentic</span> note, an intermediate generation containing a hallucinated claim may be used as context for subsequent retrieval or reasoning steps, causing the error to propagate and reinforce across iterations. Multi-step financial workflows — underwriting automation, compliance checking, exception processing — amplify this risk significantly.</p>
+<p><strong>The lost-in-the-middle effect.</strong> LLMs systematically underweight information appearing in the middle of long context windows [7]. When multiple retrieved chunks are passed together, critical content may be effectively ignored regardless of its relevance score.</p>
+<p><strong>Compounding error in agentic settings.</strong> An intermediate generation containing a hallucinated claim may be used as context for subsequent retrieval or reasoning steps, causing the error to propagate and reinforce across iterations [8]. Multi-step financial workflows — underwriting automation, compliance checking, exception processing — amplify this risk significantly.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -333,7 +333,7 @@ Emerging Solution: Bayesian RAG
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="citation" data-cites="ngartera2026bayesian">@ngartera2026bayesian</span> demonstrated <strong>93.1% accuracy on Apple and Microsoft 10-K filings</strong> with a 27.8% hallucination reduction and 26.8% improvement in uncertainty calibration over traditional methods — by treating retrieval confidence as a probabilistic signal rather than a binary match. This class of approach is what serious production deployment requires.</p>
+<p>Recent research demonstrated <strong>93.1% accuracy on Apple and Microsoft 10-K filings</strong> with a 27.8% hallucination reduction and 26.8% improvement in uncertainty calibration over traditional methods — by treating retrieval confidence as a probabilistic signal rather than a binary match [9]. This class of approach is what serious production deployment requires.</p>
 </div>
 </div>
 <hr>
