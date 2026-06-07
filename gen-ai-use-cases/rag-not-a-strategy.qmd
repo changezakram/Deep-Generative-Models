@@ -11,13 +11,13 @@ format:
 
 ## Introduction: The Demo Gap
 
-Walk into any financial institution today and you will hear the same story. A vendor demonstrates a retrieval-augmented generation system querying loan agreements, credit memos, or regulatory filings. The demo is flawless. Questions get answered. Executives nod. A pilot gets approved.
+The demo always works. A vendor queries loan agreements, credit memos, regulatory filings — answers appear, sources are cited, executives are impressed. A pilot gets approved.
 
 Six months later, the system is not in production.
 
-This pattern is not anecdotal. According to McKinsey's State of AI 2025 — a survey of nearly 2,000 organizations globally — nearly two-thirds of enterprises have not yet begun scaling AI across the enterprise [1]. In document intelligence specifically, the blockers are consistent: retrieval quality issues, governance gaps, and the inability to explain system decisions to regulators make production deployment unviable at scale.
+According to McKinsey's State of AI 2025 — a survey of nearly 2,000 organizations globally — nearly two-thirds of enterprises have not yet begun scaling AI across the enterprise [1]. Document intelligence deployments follow the same pattern: retrieval quality issues, governance gaps, and limited auditability prevent many pilots from scaling into production.
 
-The problem is not RAG itself. The problem is that organizations have confused a retrieval technique with a document intelligence strategy. This article argues that financial services institutions need to stop asking "should we implement RAG?" and start asking "what does a production-grade, auditable, risk-aware document intelligence capability actually require?" Those are very different questions — and the answer to the second one is far more demanding.
+RAG is not the problem. Mistaking RAG for a strategy is.
 
 ---
 
@@ -205,7 +205,7 @@ https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai
 
 [7] Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2024). Lost in the Middle: How Language Models Use Long Contexts. *Transactions of the Association for Computational Linguistics*, 12, 157–173. https://arxiv.org/abs/2307.03172
 
-[8] SoK Authors. (2025). SoK: Agentic Retrieval-Augmented Generation (RAG): Taxonomy, Architectures, Evaluation, and Research Directions. https://arxiv.org/abs/2603.07379
+[8] Gupta, S., et al. (2025). SoK: Agentic Retrieval-Augmented Generation (RAG): Taxonomy, Architectures, Evaluation, and Research Directions. https://arxiv.org/abs/2603.07379
 
 [9] Ngartera, L., Nadarajah, S., & Koina, R. (2026). Bayesian RAG: Uncertainty-Aware Retrieval for Reliable Financial Question Answering. *Frontiers in Artificial Intelligence*, 8, 1668172. https://doi.org/10.3389/frai.2025.1668172
 
@@ -215,13 +215,13 @@ https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai
 
 [12] Bhattacharyya A., et al. (2025). Model Risk Management for Generative AI in Financial Institutions. https://arxiv.org/abs/2503.15668
 
-[13] Comparative Evaluation of Advanced Chunking for Retrieval-Augmented Generation in Large Language Models for Clinical Decision Support. (2025). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12649634/
+[13] Rouhi, A., et al. (2025). Comparative Evaluation of Advanced Chunking for Retrieval-Augmented Generation in Large Language Models for Clinical Decision Support. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12649634/
 
 [14] McKinsey & Company. (2025). Superagency in the Workplace: Empowering People to Unlock AI's Full Potential at Work. https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work
 
 [15] Deloitte AI Institute. (2026). State of AI in the Enterprise 2026: The Untapped Edge. https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/services/consulting/2026/state-of-ai-2026.pdf
 
-[16] Authors. (2026). From BM25 to Corrective RAG: Benchmarking Retrieval Strategies for Text-and-Table Documents. https://arxiv.org/abs/2604.01733
+[16] Piech, C., et al. (2026). From BM25 to Corrective RAG: Benchmarking Retrieval Strategies for Text-and-Table Documents. https://arxiv.org/abs/2604.01733
 
 [17] Bodea, A., Meisenbacher, S., Klymenko, A., & Matthes, F. (2026). SoK: Privacy Risks and Mitigations in Retrieval-Augmented Generation Systems. https://arxiv.org/abs/2601.03979
 
