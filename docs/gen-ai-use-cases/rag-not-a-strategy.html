@@ -262,7 +262,6 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="what-rag-actually-is-and-what-it-is-not" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="what-rag-actually-is-and-what-it-is-not"><span class="header-section-number">2</span> What RAG Actually Is — And What It Is Not</h2>
-<p>It is worth returning to first principles before diagnosing the problem.</p>
 <p>Retrieval-Augmented Generation was introduced by Patrick Lewis and colleagues at Meta AI in 2020 [2]. The core insight was elegant: rather than forcing a language model to encode all world knowledge in its parameters — making it both stale and prone to fabrication — you could combine a neural retriever with a sequence-to-sequence generator, dynamically surfacing relevant documents at inference time.</p>
 <p>Their results showed RAG models generate more specific, diverse, and factual language than parametric-only baselines [2]. Strong performance on open-domain question answering and fact verification benchmarks confirmed it as a research advance — not an enterprise deployment blueprint.</p>
 <p>What vendors subsequently sold as “RAG” was a simplified version of this: chunk documents into fixed-size text blocks, embed them in a vector database, retrieve the top-k most similar chunks to a user query, and pass them to an LLM. This pipeline is easy to stand up and spectacular in demos. It is also brittle at enterprise scale.</p>
@@ -340,7 +339,7 @@ Emerging Solution: Bayesian RAG
 </section>
 <section id="rag-is-not-a-strategy-its-infrastructure" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="rag-is-not-a-strategy-its-infrastructure"><span class="header-section-number">5</span> RAG Is Not a Strategy — It’s Infrastructure</h2>
-<p>This is the central argument of this article. RAG is infrastructure in the same way that a relational database is infrastructure — necessary but not sufficient. You would not describe your analytics strategy as “we use SQL.” Similarly, describing your document intelligence strategy as “we use RAG” reveals an absence of strategy.</p>
+<p>RAG is infrastructure in the same way that a relational database is infrastructure — necessary but not sufficient. You would not describe your analytics strategy as “we use SQL.” Similarly, describing your document intelligence strategy as “we use RAG” reveals an absence of strategy.</p>
 <p>A document intelligence <em>strategy</em> answers questions that RAG alone cannot:</p>
 <ul>
 <li>What decisions will this system inform, and at what confidence threshold?</li>
@@ -384,6 +383,16 @@ Warning
 <h3 data-number="6.1" class="anchored" data-anchor-id="hybrid-retrieval-architecture"><span class="header-section-number">6.1</span> Hybrid Retrieval Architecture</h3>
 <p>Production document intelligence uses hybrid retrieval — combining semantic search, which finds conceptually related content, with keyword search, which matches exact terminology. Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with keyword search alone outperforming pure semantic search on financial documents containing tables and structured data [16].</p>
 <p>For financial documents this matters because practitioners search using precise regulatory and credit terminology — “DSCR covenant,” “Tier 1 capital,” “ALCO policy exception” — that semantic search alone may not surface reliably.</p>
+<div id="fig-doc-intelligence-architecture" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-doc-intelligence-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/document-intelligence-architecture.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-doc-intelligence-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Conceptual architecture for production-grade document intelligence in financial services. Components may be implemented incrementally as institutions mature from pilot deployments to enterprise-scale document intelligence.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="semantic-aware-chunking" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="semantic-aware-chunking"><span class="header-section-number">6.2</span> Semantic-Aware Chunking</h3>

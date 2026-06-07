@@ -23,8 +23,6 @@ RAG is not the problem. Mistaking RAG for a strategy is.
 
 ## What RAG Actually Is — And What It Is Not
 
-It is worth returning to first principles before diagnosing the problem.
-
 Retrieval-Augmented Generation was introduced by Patrick Lewis and colleagues at Meta AI in 2020 [2]. The core insight was elegant: rather than forcing a language model to encode all world knowledge in its parameters — making it both stale and prone to fabrication — you could combine a neural retriever with a sequence-to-sequence generator, dynamically surfacing relevant documents at inference time.
 
 Their results showed RAG models generate more specific, diverse, and factual language than parametric-only baselines [2]. Strong performance on open-domain question answering and fact verification benchmarks confirmed it as a research advance — not an enterprise deployment blueprint.
@@ -91,7 +89,7 @@ Recent research demonstrated **93.1% accuracy on Apple and Microsoft 10-K filing
 
 ## RAG Is Not a Strategy — It's Infrastructure
 
-This is the central argument of this article. RAG is infrastructure in the same way that a relational database is infrastructure — necessary but not sufficient. You would not describe your analytics strategy as "we use SQL." Similarly, describing your document intelligence strategy as "we use RAG" reveals an absence of strategy.
+RAG is infrastructure in the same way that a relational database is infrastructure — necessary but not sufficient. You would not describe your analytics strategy as "we use SQL." Similarly, describing your document intelligence strategy as "we use RAG" reveals an absence of strategy.
 
 A document intelligence *strategy* answers questions that RAG alone cannot:
 
@@ -133,6 +131,8 @@ Organizations are right to want AI-assisted document intelligence. The failure m
 Production document intelligence uses hybrid retrieval — combining semantic search, which finds conceptually related content, with keyword search, which matches exact terminology. Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with keyword search alone outperforming pure semantic search on financial documents containing tables and structured data [16].
 
 For financial documents this matters because practitioners search using precise regulatory and credit terminology — "DSCR covenant," "Tier 1 capital," "ALCO policy exception" — that semantic search alone may not surface reliably.
+
+![Conceptual architecture for production-grade document intelligence in financial services. Components may be implemented incrementally as institutions mature from pilot deployments to enterprise-scale document intelligence.](images/document-intelligence-architecture.png){#fig-doc-intelligence-architecture fig-align="center" width="90%"}
 
 ### Semantic-Aware Chunking
 
