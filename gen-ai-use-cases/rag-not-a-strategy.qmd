@@ -106,11 +106,11 @@ These are governance questions, not engineering questions. And in financial serv
 
 ### The Compliance Architecture Problem
 
-The distributed architecture of RAG systems creates exposure at every layer. RAG systems in financial services can expose sensitive data through embedding vectors. Research demonstrates that privacy issues in RAG are rooted in the leakage of information stored in vector embeddings, despite the inherent belief that embeddings may successfully obfuscate data — creating direct exposure under GDPR and GLBA customer information protection requirements [17].
+RAG systems in financial services can expose sensitive data through embedding vectors. Research demonstrates that privacy issues in RAG are rooted in the leakage of information stored in vector embeddings, despite the inherent belief that embeddings may successfully obfuscate data — creating direct exposure under GDPR and GLBA customer information protection requirements [17].
 
 Exposure points exist at the vectorization layer, the embedding database, the retrieval mechanism, the LLM interface, and the response generation stage. Organizations that treat RAG deployments as purely technical implementations rather than compliance-sensitive architectures face enforcement actions, audit findings, and operational disruptions.
 
-This is not theoretical. A May 2025 government audit confirmed that federal regulators are actively applying existing oversight frameworks to AI systems deployed in financial institutions [10]. RAG systems that process customer data, inform credit decisions, or support compliance functions are model-adjacent systems — and increasingly, regulators will treat them as such.
+A May 2025 U.S. Government Accountability Office report confirmed that federal regulators are actively applying existing oversight frameworks to AI systems deployed in financial institutions [10]. RAG systems that process customer data, inform credit decisions, or support compliance functions are model-adjacent systems — and increasingly, regulators will treat them as such.
 
 ### The SR 11-7 Extension
 
@@ -128,31 +128,31 @@ Is your RAG system subject to regulatory oversight? If it informs any consequent
 
 The failure mode is not ambition. Organizations are right to want AI-assisted document intelligence. The failure mode is treating RAG as a destination rather than a component. Here is what a production-grade capability actually requires.
 
-### 1. Hybrid Retrieval Architecture
+### Hybrid Retrieval Architecture
 
-Production document intelligence uses hybrid retrieval — combining dense vector embeddings (semantic similarity) with sparse BM25 retrieval (keyword precision). Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with BM25 alone outperforming state-of-the-art dense retrieval on financial text-and-table documents [16].
+Production document intelligence uses hybrid retrieval — combining semantic search, which finds conceptually related content, with keyword search, which matches exact terminology. Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with BM25 alone outperforming state-of-the-art dense retrieval on financial text-and-table documents [16].
 
-For financial documents specifically, this matters because practitioners often query with domain-specific terminology — "DSCR covenant," "Tier 1 capital," "ALCO policy exception" — that may not have strong semantic neighbors but requires exact lexical matching.
+For financial documents this matters because practitioners search using precise regulatory and credit terminology — "DSCR covenant," "Tier 1 capital," "ALCO policy exception" — that semantic search alone may not surface reliably.
 
-### 2. Semantic-Aware Chunking
+### Semantic-Aware Chunking
 
 Financial document chunking must respect document structure: section boundaries, table integrity, cross-reference resolution, and clause hierarchies. Fixed-size chunking is a prototype choice, not a production choice. A peer-reviewed clinical decision support study found adaptive chunking aligned to logical topic boundaries achieved **87% accuracy versus 13% for fixed-size baselines**, with retrieval F1 of 0.64 versus 0.24 for fixed-size methods [13].
 
-### 3. Metadata-Driven Retrieval
+### Metadata-Driven Retrieval
 
 Raw text embeddings discard structured metadata that financial professionals rely on: document date, author, regulatory classification, version history, approval chain. Metadata-driven RAG architectures filter the retrieval space *before* semantic search, dramatically improving precision on queries like "the most recent credit policy approved after the merger" or "all SR 11-7 validation reports from the current examination cycle."
 
-### 4. Uncertainty Quantification and Confidence Scoring
+### Confidence Scoring
 
 Production systems must surface uncertainty, not suppress it. Every generated response should carry a retrieval confidence score and a clear citation trail to source documents. When confidence is below threshold, the system should escalate to human review rather than generate a low-confidence answer that looks identical to a high-confidence one.
 
-### 5. Full Audit Logging
+### Full Audit Logging
 
-Every query, every retrieved chunk, every generated response, and every user action must be logged with sufficient granularity to reconstruct the basis for any AI-assisted decision. This is not optional in a regulated environment. The audit trail is the difference between a governance-compatible system and an unexaminable black box.
+Every query, every retrieved chunk, every generated response, and every user action must be logged with sufficient granularity to reconstruct the basis for any AI-assisted decision. This is not optional in a regulated environment. The audit trail is the difference between a system regulators can examine and one they cannot.
 
-### 6. Human-in-the-Loop Design
+### Human-in-the-Loop Design
 
-Document intelligence in financial services is a decision-support capability, not a decision-making capability. System design must make this boundary explicit — through UI design, confidence display, mandatory review workflows for high-stakes outputs, and clear escalation paths. The combination of AI retrieval precision with human judgment and domain expertise is what creates genuine "hybrid intelligence" [@mckinsey2025].
+Document intelligence in financial services is a decision-support capability, not a decision-making capability. System design must make this boundary explicit — through UI design, confidence display, mandatory review workflows for high-stakes outputs, and clear escalation paths. The combination of AI retrieval precision with human judgment and domain expertise is what creates genuine "hybrid intelligence" [14].
 
 ---
 
