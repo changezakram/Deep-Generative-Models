@@ -213,12 +213,12 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#introduction-the-demo-gap" id="toc-introduction-the-demo-gap" class="nav-link active" data-scroll-target="#introduction-the-demo-gap"><span class="header-section-number">1</span> Introduction: The Demo Gap</a></li>
-  <li><a href="#section-1-what-rag-actually-is-and-what-it-is-not" id="toc-section-1-what-rag-actually-is-and-what-it-is-not" class="nav-link" data-scroll-target="#section-1-what-rag-actually-is-and-what-it-is-not"><span class="header-section-number">2</span> Section 1: What RAG Actually Is — And What It Is Not</a></li>
-  <li><a href="#section-2-why-financial-documents-break-vanilla-rag" id="toc-section-2-why-financial-documents-break-vanilla-rag" class="nav-link" data-scroll-target="#section-2-why-financial-documents-break-vanilla-rag"><span class="header-section-number">3</span> Section 2: Why Financial Documents Break Vanilla RAG</a></li>
-  <li><a href="#section-3-the-hallucination-problem-is-not-solved" id="toc-section-3-the-hallucination-problem-is-not-solved" class="nav-link" data-scroll-target="#section-3-the-hallucination-problem-is-not-solved"><span class="header-section-number">4</span> Section 3: The Hallucination Problem Is Not Solved</a></li>
-  <li><a href="#section-4-rag-is-not-a-strategy-its-infrastructure" id="toc-section-4-rag-is-not-a-strategy-its-infrastructure" class="nav-link" data-scroll-target="#section-4-rag-is-not-a-strategy-its-infrastructure"><span class="header-section-number">5</span> Section 4: RAG Is Not a Strategy — It’s Infrastructure</a></li>
-  <li><a href="#section-5-what-document-intelligence-done-right-looks-like" id="toc-section-5-what-document-intelligence-done-right-looks-like" class="nav-link" data-scroll-target="#section-5-what-document-intelligence-done-right-looks-like"><span class="header-section-number">6</span> Section 5: What Document Intelligence Done Right Looks Like</a></li>
-  <li><a href="#section-6-a-framework-for-financial-services-leaders" id="toc-section-6-a-framework-for-financial-services-leaders" class="nav-link" data-scroll-target="#section-6-a-framework-for-financial-services-leaders"><span class="header-section-number">7</span> Section 6: A Framework for Financial Services Leaders</a></li>
+  <li><a href="#what-rag-actually-is-and-what-it-is-not" id="toc-what-rag-actually-is-and-what-it-is-not" class="nav-link" data-scroll-target="#what-rag-actually-is-and-what-it-is-not"><span class="header-section-number">2</span> What RAG Actually Is — And What It Is Not</a></li>
+  <li><a href="#why-financial-documents-break-vanilla-rag" id="toc-why-financial-documents-break-vanilla-rag" class="nav-link" data-scroll-target="#why-financial-documents-break-vanilla-rag"><span class="header-section-number">3</span> Why Financial Documents Break Vanilla RAG</a></li>
+  <li><a href="#the-hallucination-problem-is-not-solved" id="toc-the-hallucination-problem-is-not-solved" class="nav-link" data-scroll-target="#the-hallucination-problem-is-not-solved"><span class="header-section-number">4</span> The Hallucination Problem Is Not Solved</a></li>
+  <li><a href="#rag-is-not-a-strategy-its-infrastructure" id="toc-rag-is-not-a-strategy-its-infrastructure" class="nav-link" data-scroll-target="#rag-is-not-a-strategy-its-infrastructure"><span class="header-section-number">5</span> RAG Is Not a Strategy — It’s Infrastructure</a></li>
+  <li><a href="#what-document-intelligence-done-right-looks-like" id="toc-what-document-intelligence-done-right-looks-like" class="nav-link" data-scroll-target="#what-document-intelligence-done-right-looks-like"><span class="header-section-number">6</span> What Document Intelligence Done Right Looks Like</a></li>
+  <li><a href="#a-framework-for-financial-services-leaders" id="toc-a-framework-for-financial-services-leaders" class="nav-link" data-scroll-target="#a-framework-for-financial-services-leaders"><span class="header-section-number">7</span> A Framework for Financial Services Leaders</a></li>
   <li><a href="#conclusion-infrastructure-in-service-of-strategy" id="toc-conclusion-infrastructure-in-service-of-strategy" class="nav-link" data-scroll-target="#conclusion-infrastructure-in-service-of-strategy"><span class="header-section-number">8</span> Conclusion: Infrastructure in Service of Strategy</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9</span> References</a></li>
   </ul>
@@ -260,8 +260,8 @@ ul.task-list li input[type="checkbox"] {
 <p>The problem is not RAG itself. The problem is that organizations have confused a retrieval technique with a document intelligence strategy. This article argues that financial services institutions need to stop asking “should we implement RAG?” and start asking “what does a production-grade, auditable, risk-aware document intelligence capability actually require?” Those are very different questions — and the answer to the second one is far more demanding.</p>
 <hr>
 </section>
-<section id="section-1-what-rag-actually-is-and-what-it-is-not" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="section-1-what-rag-actually-is-and-what-it-is-not"><span class="header-section-number">2</span> Section 1: What RAG Actually Is — And What It Is Not</h2>
+<section id="what-rag-actually-is-and-what-it-is-not" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="what-rag-actually-is-and-what-it-is-not"><span class="header-section-number">2</span> What RAG Actually Is — And What It Is Not</h2>
 <p>It is worth returning to first principles before diagnosing the problem.</p>
 <p>Retrieval-Augmented Generation was introduced by Patrick Lewis and colleagues at Meta AI in their 2020 NeurIPS paper, “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” <span class="citation" data-cites="lewis2020retrieval">[@lewis2020retrieval]</span>. <strong>The core insight was elegant:</strong> rather than forcing a language model to encode all world knowledge in its parameters — making it both stale and prone to fabrication — you could combine a neural retriever with a sequence-to-sequence generator, dynamically surfacing relevant documents at inference time.</p>
 <p>Lewis et al.&nbsp;demonstrated that RAG models generate more specific, diverse, and factual language than a state-of-the-art parametric-only baseline <span class="citation" data-cites="lewis2020retrieval">[@lewis2020retrieval]</span>. The paper showed strong results on open-domain question answering and fact verification benchmarks. It was a research advance, not an enterprise deployment blueprint.</p>
@@ -281,8 +281,8 @@ Note
 </div>
 <hr>
 </section>
-<section id="section-2-why-financial-documents-break-vanilla-rag" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="section-2-why-financial-documents-break-vanilla-rag"><span class="header-section-number">3</span> Section 2: Why Financial Documents Break Vanilla RAG</h2>
+<section id="why-financial-documents-break-vanilla-rag" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="why-financial-documents-break-vanilla-rag"><span class="header-section-number">3</span> Why Financial Documents Break Vanilla RAG</h2>
 <p>Financial documents are among the most structurally complex artifacts in any enterprise. Annual reports, credit memos, regulatory filings, loan agreements, and policy documents share characteristics that directly undermine the assumptions baked into standard RAG pipelines.</p>
 <section id="the-chunking-problem" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="the-chunking-problem"><span class="header-section-number">3.1</span> The Chunking Problem</h3>
@@ -315,8 +315,8 @@ Important
 <hr>
 </section>
 </section>
-<section id="section-3-the-hallucination-problem-is-not-solved" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="section-3-the-hallucination-problem-is-not-solved"><span class="header-section-number">4</span> Section 3: The Hallucination Problem Is Not Solved</h2>
+<section id="the-hallucination-problem-is-not-solved" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="the-hallucination-problem-is-not-solved"><span class="header-section-number">4</span> The Hallucination Problem Is Not Solved</h2>
 <p>Perhaps the most dangerous misconception in enterprise RAG deployments is the belief that retrieval eliminates hallucination. It does not.</p>
 <p>A landmark empirical study — “Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools” <span class="citation" data-cites="magesh2024hallucination">[@magesh2024hallucination]</span> — found that <strong>retrieval-augmented legal research tools exhibited hallucination rates up to 33%</strong>, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero. The finding applies with equal force to financial services, where document types and reasoning demands are similarly complex.</p>
 <p>The failure modes are structural, not incidental:</p>
@@ -339,8 +339,8 @@ Emerging Solution: Bayesian RAG
 </div>
 <hr>
 </section>
-<section id="section-4-rag-is-not-a-strategy-its-infrastructure" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="section-4-rag-is-not-a-strategy-its-infrastructure"><span class="header-section-number">5</span> Section 4: RAG Is Not a Strategy — It’s Infrastructure</h2>
+<section id="rag-is-not-a-strategy-its-infrastructure" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="rag-is-not-a-strategy-its-infrastructure"><span class="header-section-number">5</span> RAG Is Not a Strategy — It’s Infrastructure</h2>
 <p>This is the central argument of this article. RAG is infrastructure in the same way that a relational database is infrastructure — necessary but not sufficient. You would not describe your analytics strategy as “we use SQL.” Similarly, describing your document intelligence strategy as “we use RAG” reveals an absence of strategy.</p>
 <p>A document intelligence <em>strategy</em> answers questions that RAG alone cannot:</p>
 <ul>
@@ -378,8 +378,8 @@ Warning
 <hr>
 </section>
 </section>
-<section id="section-5-what-document-intelligence-done-right-looks-like" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="section-5-what-document-intelligence-done-right-looks-like"><span class="header-section-number">6</span> Section 5: What Document Intelligence Done Right Looks Like</h2>
+<section id="what-document-intelligence-done-right-looks-like" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="what-document-intelligence-done-right-looks-like"><span class="header-section-number">6</span> What Document Intelligence Done Right Looks Like</h2>
 <p>The failure mode is not ambition. Organizations are right to want AI-assisted document intelligence. The failure mode is treating RAG as a destination rather than a component. Here is what a production-grade capability actually requires.</p>
 <section id="hybrid-retrieval-architecture" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="hybrid-retrieval-architecture"><span class="header-section-number">6.1</span> 1. Hybrid Retrieval Architecture</h3>
@@ -408,8 +408,8 @@ Warning
 <hr>
 </section>
 </section>
-<section id="section-6-a-framework-for-financial-services-leaders" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="section-6-a-framework-for-financial-services-leaders"><span class="header-section-number">7</span> Section 6: A Framework for Financial Services Leaders</h2>
+<section id="a-framework-for-financial-services-leaders" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="a-framework-for-financial-services-leaders"><span class="header-section-number">7</span> A Framework for Financial Services Leaders</h2>
 <p>Based on the research reviewed and practitioner experience deploying document intelligence in regulated financial institutions, I propose a four-stage maturity framework.</p>
 <div id="tbl-maturity" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">

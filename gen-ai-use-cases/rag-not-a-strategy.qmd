@@ -21,7 +21,7 @@ The problem is not RAG itself. The problem is that organizations have confused a
 
 ---
 
-## Section 1: What RAG Actually Is — And What It Is Not
+## What RAG Actually Is — And What It Is Not
 
 It is worth returning to first principles before diagnosing the problem.
 
@@ -37,7 +37,7 @@ What vendors subsequently sold as "RAG" was a simplified version of this: chunk 
 
 ---
 
-## Section 2: Why Financial Documents Break Vanilla RAG
+## Why Financial Documents Break Vanilla RAG
 
 Financial documents are among the most structurally complex artifacts in any enterprise. Annual reports, credit memos, regulatory filings, loan agreements, and policy documents share characteristics that directly undermine the assumptions baked into standard RAG pipelines.
 
@@ -67,7 +67,7 @@ Research on multimodal RAG in finance [@gondhalekar2025multifinrag] demonstrates
 
 ---
 
-## Section 3: The Hallucination Problem Is Not Solved
+## The Hallucination Problem Is Not Solved
 
 Perhaps the most dangerous misconception in enterprise RAG deployments is the belief that retrieval eliminates hallucination. It does not.
 
@@ -91,7 +91,7 @@ The failure modes are structural, not incidental:
 
 ---
 
-## Section 4: RAG Is Not a Strategy — It's Infrastructure
+## RAG Is Not a Strategy — It's Infrastructure
 
 This is the central argument of this article. RAG is infrastructure in the same way that a relational database is infrastructure — necessary but not sufficient. You would not describe your analytics strategy as "we use SQL." Similarly, describing your document intelligence strategy as "we use RAG" reveals an absence of strategy.
 
@@ -126,7 +126,7 @@ Recent research on model risk management for generative AI [@mrmgenai2025] direc
 
 ---
 
-## Section 5: What Document Intelligence Done Right Looks Like
+## What Document Intelligence Done Right Looks Like
 
 The failure mode is not ambition. Organizations are right to want AI-assisted document intelligence. The failure mode is treating RAG as a destination rather than a component. Here is what a production-grade capability actually requires.
 
@@ -158,7 +158,7 @@ Document intelligence in financial services is a decision-support capability, no
 
 ---
 
-## Section 6: A Framework for Financial Services Leaders
+## A Framework for Financial Services Leaders
 
 Based on the research reviewed and practitioner experience deploying document intelligence in regulated financial institutions, I propose a four-stage maturity framework.
 
