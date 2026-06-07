@@ -1,5 +1,5 @@
 ---
-title: "RAG Is Not a Strategy: Document Intelligence Done Right in Financial Services"
+title: "RAG Is Not a Strategy: Building Governed Document Intelligence in Financial Services"
 date: 2026-06-01
 format:
   html:
@@ -112,7 +112,7 @@ Exposure points exist at the vectorization layer, the embedding database, the re
 
 A May 2025 U.S. Government Accountability Office report confirmed that federal regulators are actively applying existing oversight frameworks to AI systems deployed in financial institutions [10]. RAG systems that process customer data, inform credit decisions, or support compliance functions are model-adjacent systems — and increasingly, regulators will treat them as such.
 
-### The SR 11-7 Extension
+### Document Intelligence and Model Risk Management
 
 Financial institutions have operated under federal model risk management guidance since 2011 [11]. That framework requires institutions to maintain appropriate governance, validation, and oversight for models that materially influence business decisions. As document intelligence systems become increasingly integrated into credit, compliance, and operational workflows, many may fall within existing model risk management frameworks depending on the role their outputs play in decision-making.
 
