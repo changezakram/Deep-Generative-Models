@@ -95,12 +95,12 @@ This is the central argument of this article. RAG is infrastructure in the same 
 
 A document intelligence *strategy* answers questions that RAG alone cannot:
 
-- **What decisions will this system inform, and at what confidence threshold?**
-- **Who is accountable when the system retrieves the wrong document and a human acts on it?**
-- **How is the system validated, and by whom?**
-- **What is the audit trail from user query to source document to generated output?**
-- **How does the system handle documents it has never seen?**
-- **What happens when the knowledge corpus is updated, and stale retrieval persists?**
+- What decisions will this system inform, and at what confidence threshold?
+- Who is accountable when the system retrieves the wrong document and a human acts on it?
+- How is the system validated, and by whom?
+- What is the audit trail from user query to source document to generated output?
+- How does the system handle documents it has never seen?
+- What happens when the knowledge corpus is updated, and stale retrieval persists?
 
 These are governance questions, not engineering questions. And in financial services, they are also regulatory questions.
 
