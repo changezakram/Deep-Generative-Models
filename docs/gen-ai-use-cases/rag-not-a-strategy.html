@@ -317,7 +317,7 @@ Important
 <section id="the-hallucination-problem-is-not-solved" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="the-hallucination-problem-is-not-solved"><span class="header-section-number">4</span> The Hallucination Problem Is Not Solved</h2>
 <p>Perhaps the most dangerous misconception in enterprise RAG deployments is the belief that retrieval eliminates hallucination. It does not.</p>
-<p>Empirical research found that retrieval-augmented legal research tools exhibited hallucination rates up to 33%, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero [6]. The finding applies with equal force to financial services, where document types and reasoning demands are similarly complex.</p>
+<p>Empirical research found that retrieval-augmented legal research tools exhibited hallucination rates up to 33%, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero [6]. Financial services presents an identical challenge — complex documents, expert-level queries, high-stakes decisions.</p>
 <p>The failure modes are structural, not incidental:</p>
 <p><strong>Topical relevance without factual sufficiency.</strong> A retrieved chunk can be on-topic but incomplete — containing partial information that causes the LLM to generate a plausible but incorrect synthesis. The document was found; the answer was not.</p>
 <p><strong>Conflicting information across documents.</strong> In a corpus of regulatory filings, policy documents, and internal memos, contradictions are common. Without a conflict-resolution layer, the LLM produces a confident blend of incompatible facts.</p>

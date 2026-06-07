@@ -69,7 +69,7 @@ Text-only embedding pipelines discard all of this. A table embedded as a text st
 
 Perhaps the most dangerous misconception in enterprise RAG deployments is the belief that retrieval eliminates hallucination. It does not.
 
-Empirical research found that retrieval-augmented legal research tools exhibited hallucination rates up to 33%, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero [6]. The finding applies with equal force to financial services, where document types and reasoning demands are similarly complex.
+Empirical research found that retrieval-augmented legal research tools exhibited hallucination rates up to 33%, directly contradicting vendor claims that RAG dramatically reduces hallucinations to nearly zero [6]. Financial services presents an identical challenge — complex documents, expert-level queries, high-stakes decisions.
 
 The failure modes are structural, not incidental:
 
