@@ -15,9 +15,9 @@ Walk into any financial institution today and you will hear the same story. A ve
 
 Six months later, the system is not in production.
 
-This pattern is not anecdotal. Research from NStarX (2025) estimates that **40–60% of RAG implementations fail to reach production** — not because the underlying technology is broken, but because retrieval quality issues, governance gaps, and the inability to explain decisions to regulators make enterprise deployment unviable at scale [@nstarx2025].
+This pattern is not anecdotal. According to McKinsey's State of AI 2025 — a survey of nearly 2,000 organizations globally — nearly two-thirds of enterprises have not yet begun scaling AI across the enterprise [1]. In document intelligence specifically, the blockers are consistent: retrieval quality issues, governance gaps, and the inability to explain system decisions to regulators make production deployment unviable at scale.
 
-The problem is not RAG itself. The problem is that organizations have confused a retrieval *technique* with a document intelligence *strategy*. This article argues that financial services institutions need to stop asking "should we implement RAG?" and start asking "what does a production-grade, auditable, risk-aware document intelligence capability actually require?" Those are very different questions — and the answer to the second one is far more demanding.
+The problem is not RAG itself. The problem is that organizations have confused a retrieval technique with a document intelligence strategy. This article argues that financial services institutions need to stop asking "should we implement RAG?" and start asking "what does a production-grade, auditable, risk-aware document intelligence capability actually require?" Those are very different questions — and the answer to the second one is far more demanding.
 
 ---
 
@@ -108,7 +108,7 @@ These are governance questions, not engineering questions. And in financial serv
 
 ### The Compliance Architecture Problem
 
-The distributed architecture of RAG systems creates exposure at every layer. @kiteworks2026 identifies that RAG systems in financial services can expose sensitive data through embedding vectors, which can be reverse-engineered to reveal personal and financial information — violating GDPR and GLBA if not properly secured.
+The distributed architecture of RAG systems creates exposure at every layer. RAG systems in financial services can expose sensitive data through embedding vectors. Research demonstrates that privacy issues in RAG are rooted in the leakage of information stored in vector embeddings, despite the inherent belief that embeddings may successfully obfuscate data — creating direct exposure under GDPR and GLBA customer information protection requirements [17].
 
 Exposure points exist at the vectorization layer, the embedding database, the retrieval mechanism, the LLM interface, and the response generation stage. **Organizations that treat RAG deployments as purely technical implementations rather than compliance-sensitive architectures face enforcement actions, audit findings, and operational disruptions.**
 
@@ -132,13 +132,13 @@ The failure mode is not ambition. Organizations are right to want AI-assisted do
 
 ### 1. Hybrid Retrieval Architecture
 
-Production document intelligence uses hybrid retrieval — combining dense vector embeddings (semantic similarity) with sparse BM25 retrieval (keyword precision). Research shows hybrid indexing achieves **15–30% precision improvements across enterprise deployments** over vector-only approaches [@nstarx2025].
+Production document intelligence uses hybrid retrieval — combining dense vector embeddings (semantic similarity) with sparse BM25 retrieval (keyword precision). Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with BM25 alone outperforming state-of-the-art dense retrieval on financial text-and-table documents [16].
 
 For financial documents specifically, this matters because practitioners often query with domain-specific terminology — "DSCR covenant," "Tier 1 capital," "ALCO policy exception" — that may not have strong semantic neighbors but requires exact lexical matching.
 
 ### 2. Semantic-Aware Chunking
 
-Financial document chunking must respect document structure: section boundaries, table integrity, cross-reference resolution, and clause hierarchies. Fixed-size chunking is a prototype choice, not a production choice. Adaptive chunking aligned to logical topic boundaries has demonstrated **87% accuracy versus 13% for fixed-size baselines** in domain-specific document tasks [@firecrawl2025].
+Financial document chunking must respect document structure: section boundaries, table integrity, cross-reference resolution, and clause hierarchies. Fixed-size chunking is a prototype choice, not a production choice. A peer-reviewed clinical decision support study found adaptive chunking aligned to logical topic boundaries achieved **87% accuracy versus 13% for fixed-size baselines**, with retrieval F1 of 0.64 versus 0.24 for fixed-size methods [13].
 
 ### 3. Metadata-Driven Retrieval
 
@@ -203,21 +203,22 @@ The institutions that get this right will not just have better document search. 
 
 ## References
 
-[1] Kiteworks. (2026). Top 5 Compliance Risks in Financial Services RAG Implementations. https://www.kiteworks.com/regulatory-compliance/financial-services-rag-compliance-risks/
+[1] Singla, A., Sukharevsky, A., Yee, L., & Chui, M. (2025). The State of AI in 2025: Agents, Innovation, and Transformation. McKinsey & Company / QuantumBlack. 
+https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai
 
 [2] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W., Rocktäschel, T., Riedel, S., & Kiela, D. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. *Advances in Neural Information Processing Systems*, 33, 9459–9474. https://arxiv.org/abs/2005.11401
 
-[3] Setty, S., Thakkar, H., Lee, A., Chung, E., & Vidra, N. (2024). Improving Retrieval for RAG Based Question Answering Models on Financial Documents. arXiv preprint. https://arxiv.org/abs/2404.07221
+[3] Setty, S., Thakkar, H., Lee, A., Chung, E., & Vidra, N. (2024). Improving Retrieval for RAG Based Question Answering Models on Financial Documents. https://arxiv.org/abs/2404.07221
 
-[4] Yepes, A. J., You, Y., Milczek, J., Laverde, S., & Li, R. (2024). Financial Report Chunking for Effective Retrieval Augmented Generation. arXiv preprint. https://arxiv.org/abs/2402.05131
+[4] Yepes, A. J., You, Y., Milczek, J., Laverde, S., & Li, R. (2024). Financial Report Chunking for Effective Retrieval Augmented Generation. https://arxiv.org/abs/2402.05131
 
-[5] Choi, J., et al. (2025). FinDER: Financial Dataset for Question Answering and Evaluating Retrieval-Augmented Generation. arXiv preprint. https://arxiv.org/abs/2504.15800
+[5] Choi, J., et al. (2025). FinDER: Financial Dataset for Question Answering and Evaluating Retrieval-Augmented Generation. https://arxiv.org/abs/2504.15800
 
 [6] Magesh, V., Surani, F., Dahl, M., Suzgun, M., Manning, C. D., & Ho, D. E. (2025). Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools. *Journal of Empirical Legal Studies*, 22, 216–242. https://onlinelibrary.wiley.com/doi/full/10.1111/jels.12413
 
 [7] Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2024). Lost in the Middle: How Language Models Use Long Contexts. *Transactions of the Association for Computational Linguistics*, 12, 157–173. https://arxiv.org/abs/2307.03172
 
-[8] SoK Authors. (2025). SoK: Agentic Retrieval-Augmented Generation (RAG): Taxonomy, Architectures, Evaluation, and Research Directions. arXiv preprint. https://arxiv.org/abs/2603.07379
+[8] SoK Authors. (2025). SoK: Agentic Retrieval-Augmented Generation (RAG): Taxonomy, Architectures, Evaluation, and Research Directions. https://arxiv.org/abs/2603.07379
 
 [9] Ngartera, L., Nadarajah, S., & Koina, R. (2026). Bayesian RAG: Uncertainty-Aware Retrieval for Reliable Financial Question Answering. *Frontiers in Artificial Intelligence*, 8, 1668172. https://doi.org/10.3389/frai.2025.1668172
 
@@ -225,11 +226,15 @@ The institutions that get this right will not just have better document search. 
 
 [11] Board of Governors of the Federal Reserve System & Office of the Comptroller of the Currency. (2011). Supervisory Guidance on Model Risk Management. SR 11-7. https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm
 
-[12] Anonymous Authors. (2025). Model Risk Management for Generative AI in Financial Institutions. arXiv preprint. https://arxiv.org/abs/2503.15668
+[12] Bhattacharyya A., et al. (2025). Model Risk Management for Generative AI in Financial Institutions. https://arxiv.org/abs/2503.15668
 
-[13] Firecrawl. (2025). Best Chunking Strategies for RAG (and LLMs) in 2026. https://www.firecrawl.dev/blog/best-chunking-strategies-rag
+[13] Comparative Evaluation of Advanced Chunking for Retrieval-Augmented Generation in Large Language Models for Clinical Decision Support. (2025). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12649634/
 
-[14] McKinsey & Company. (2025). Superagency in the Workplace: Empowering People to Unlock AI's Full Potential at Work. https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work
+[14] McKinsey & Company. (2025). Superagency in the Workplace: Empowering People to Unlock AI's Full Potential at Work. https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work
 
-[15] Deloitte AI Institute. (2026). State of AI in the Enterprise 2026: The Untapped Edge. https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html
+[15] Deloitte AI Institute. (2026). State of AI in the Enterprise 2026: The Untapped Edge. https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/services/consulting/2026/state-of-ai-2026.pdf
+
+[16] Authors. (2026). From BM25 to Corrective RAG: Benchmarking Retrieval Strategies for Text-and-Table Documents. https://arxiv.org/abs/2604.01733
+
+[17] Bodea, A., Meisenbacher, S., Klymenko, A., & Matthes, F. (2026). SoK: Privacy Risks and Mitigations in Retrieval-Augmented Generation Systems. https://arxiv.org/abs/2601.03979
 
