@@ -379,10 +379,10 @@ Warning
 </section>
 <section id="what-document-intelligence-done-right-looks-like" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="what-document-intelligence-done-right-looks-like"><span class="header-section-number">6</span> What Document Intelligence Done Right Looks Like</h2>
-<p>The failure mode is not ambition. Organizations are right to want AI-assisted document intelligence. The failure mode is treating RAG as a destination rather than a component. Here is what a production-grade capability actually requires.</p>
+<p>Organizations are right to want AI-assisted document intelligence. The failure mode is treating RAG as a destination rather than a component. Here is what a production-grade capability actually requires.</p>
 <section id="hybrid-retrieval-architecture" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="hybrid-retrieval-architecture"><span class="header-section-number">6.1</span> Hybrid Retrieval Architecture</h3>
-<p>Production document intelligence uses hybrid retrieval — combining semantic search, which finds conceptually related content, with keyword search, which matches exact terminology. Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with BM25 alone outperforming state-of-the-art dense retrieval on financial text-and-table documents [16].</p>
+<p>Production document intelligence uses hybrid retrieval — combining semantic search, which finds conceptually related content, with keyword search, which matches exact terminology. Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with keyword search alone outperforming pure semantic search on financial documents containing tables and structured data [16].</p>
 <p>For financial documents this matters because practitioners search using precise regulatory and credit terminology — “DSCR covenant,” “Tier 1 capital,” “ALCO policy exception” — that semantic search alone may not surface reliably.</p>
 </section>
 <section id="semantic-aware-chunking" class="level3" data-number="6.2">
@@ -403,13 +403,13 @@ Warning
 </section>
 <section id="human-in-the-loop-design" class="level3" data-number="6.6">
 <h3 data-number="6.6" class="anchored" data-anchor-id="human-in-the-loop-design"><span class="header-section-number">6.6</span> Human-in-the-Loop Design</h3>
-<p>Document intelligence in financial services is a decision-support capability, not a decision-making capability. System design must make this boundary explicit — through UI design, confidence display, mandatory review workflows for high-stakes outputs, and clear escalation paths. The combination of AI retrieval precision with human judgment and domain expertise is what creates genuine “hybrid intelligence” [14].</p>
+<p>Document intelligence in financial services should inform human decisions, not replace them. System design must make this boundary explicit — through UI design, confidence display, mandatory review workflows for high-stakes outputs, and clear escalation paths. The combination of AI retrieval precision with human judgment and domain expertise is what creates genuine “hybrid intelligence” [14].</p>
 <hr>
 </section>
 </section>
 <section id="a-framework-for-financial-services-leaders" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="a-framework-for-financial-services-leaders"><span class="header-section-number">7</span> A Framework for Financial Services Leaders</h2>
-<p>Based on the research reviewed and practitioner experience deploying document intelligence in regulated financial institutions, I propose a four-stage maturity framework.</p>
+<p>Drawing on the research above, here is a four-stage maturity framework for financial institutions.</p>
 <div id="tbl-maturity" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-maturity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -435,19 +435,19 @@ Table&nbsp;1: Document Intelligence Maturity Framework
 <tr class="odd">
 <td><strong>1</strong></td>
 <td>Pilot (PoC)</td>
-<td>Narrow corpus, no PII, human review of all outputs</td>
+<td>Narrow corpus, no sensitive customer data, human review of all outputs</td>
 <td>Validate retrieval quality</td>
 </tr>
 <tr class="even">
 <td><strong>2</strong></td>
 <td>Governed MVP</td>
-<td>Structured chunking, hybrid retrieval, audit logging, MRM engaged</td>
+<td>Structured chunking, hybrid retrieval, audit logging, model risk team engaged</td>
 <td>Demonstrate auditability</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
 <td>Production</td>
-<td>Uncertainty quantification, HITL for high-stakes decisions, monitoring</td>
+<td>Uncertainty quantification, human review for high-stakes decisions, monitoring</td>
 <td>Operational reliability</td>
 </tr>
 <tr class="even">
@@ -461,10 +461,6 @@ Table&nbsp;1: Document Intelligence Maturity Framework
 </div>
 </figure>
 </div>
-<p><strong>Stage 1 — Pilot (Proof of Concept):</strong> Narrow corpus, controlled use case, no PII, human review of all outputs. Goal: validate retrieval quality on your specific document types. Metric: retrieval precision on 100 expert-labeled queries.</p>
-<p><strong>Stage 2 — Governed MVP:</strong> Expanded corpus, structured chunking, hybrid retrieval, metadata tagging, audit logging enabled. MRM team engaged. Legal and compliance sign-off on data scope. Goal: demonstrate auditability.</p>
-<p><strong>Stage 3 — Production Deployment:</strong> Uncertainty quantification active, confidence thresholds enforced, human-in-the-loop for high-stakes decisions, integration with existing workflow systems. Ongoing monitoring for retrieval drift. Quarterly validation reviews.</p>
-<p><strong>Stage 4 — Strategic Capability:</strong> Document intelligence embedded in core business processes (underwriting, compliance, relationship management). Feedback loops from human reviewers improving retrieval quality. Linked to enterprise data governance. Roadmap toward multi-agent document reasoning.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

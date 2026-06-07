@@ -126,11 +126,11 @@ Is your RAG system subject to regulatory oversight? If it informs any consequent
 
 ## What Document Intelligence Done Right Looks Like
 
-The failure mode is not ambition. Organizations are right to want AI-assisted document intelligence. The failure mode is treating RAG as a destination rather than a component. Here is what a production-grade capability actually requires.
+Organizations are right to want AI-assisted document intelligence. The failure mode is treating RAG as a destination rather than a component. Here is what a production-grade capability actually requires.
 
 ### Hybrid Retrieval Architecture
 
-Production document intelligence uses hybrid retrieval — combining semantic search, which finds conceptually related content, with keyword search, which matches exact terminology. Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with BM25 alone outperforming state-of-the-art dense retrieval on financial text-and-table documents [16].
+Production document intelligence uses hybrid retrieval — combining semantic search, which finds conceptually related content, with keyword search, which matches exact terminology. Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with keyword search alone outperforming pure semantic search on financial documents containing tables and structured data [16].
 
 For financial documents this matters because practitioners search using precise regulatory and credit terminology — "DSCR covenant," "Tier 1 capital," "ALCO policy exception" — that semantic search alone may not surface reliably.
 
@@ -152,34 +152,23 @@ Every query, every retrieved chunk, every generated response, and every user act
 
 ### Human-in-the-Loop Design
 
-Document intelligence in financial services is a decision-support capability, not a decision-making capability. System design must make this boundary explicit — through UI design, confidence display, mandatory review workflows for high-stakes outputs, and clear escalation paths. The combination of AI retrieval precision with human judgment and domain expertise is what creates genuine "hybrid intelligence" [14].
+Document intelligence in financial services should inform human decisions, not replace them. System design must make this boundary explicit — through UI design, confidence display, mandatory review workflows for high-stakes outputs, and clear escalation paths. The combination of AI retrieval precision with human judgment and domain expertise is what creates genuine "hybrid intelligence" [14].
 
 ---
 
 ## A Framework for Financial Services Leaders
 
-Based on the research reviewed and practitioner experience deploying document intelligence in regulated financial institutions, I propose a four-stage maturity framework.
+Drawing on the research above, here is a four-stage maturity framework for financial institutions.
 
 | Stage | Label | Key Characteristics | Goal |
 |-------|-------|---------------------|------|
-| **1** | Pilot (PoC) | Narrow corpus, no PII, human review of all outputs | Validate retrieval quality |
-| **2** | Governed MVP | Structured chunking, hybrid retrieval, audit logging, MRM engaged | Demonstrate auditability |
-| **3** | Production | Uncertainty quantification, HITL for high-stakes decisions, monitoring | Operational reliability |
+| **1** | Pilot (PoC) | Narrow corpus, no sensitive customer data, human review of all outputs | Validate retrieval quality |
+| **2** | Governed MVP | Structured chunking, hybrid retrieval, audit logging, model risk team engaged | Demonstrate auditability |
+| **3** | Production | Uncertainty quantification, human review for high-stakes decisions, monitoring | Operational reliability |
 | **4** | Strategic Capability | Embedded in core processes, feedback loops, multi-agent roadmap | Compounding institutional value |
 
 : Document Intelligence Maturity Framework {#tbl-maturity}
 
-**Stage 1 — Pilot (Proof of Concept):**
-Narrow corpus, controlled use case, no PII, human review of all outputs. Goal: validate retrieval quality on your specific document types. Metric: retrieval precision on 100 expert-labeled queries.
-
-**Stage 2 — Governed MVP:**
-Expanded corpus, structured chunking, hybrid retrieval, metadata tagging, audit logging enabled. MRM team engaged. Legal and compliance sign-off on data scope. Goal: demonstrate auditability.
-
-**Stage 3 — Production Deployment:**
-Uncertainty quantification active, confidence thresholds enforced, human-in-the-loop for high-stakes decisions, integration with existing workflow systems. Ongoing monitoring for retrieval drift. Quarterly validation reviews.
-
-**Stage 4 — Strategic Capability:**
-Document intelligence embedded in core business processes (underwriting, compliance, relationship management). Feedback loops from human reviewers improving retrieval quality. Linked to enterprise data governance. Roadmap toward multi-agent document reasoning.
 
 ::: {.callout-note}
 Most organizations piloting RAG today are operating at Stage 1 and calling it a strategy. The gap between Stage 1 and Stage 4 is not a technology gap. It is a governance, data, and organizational design gap.
