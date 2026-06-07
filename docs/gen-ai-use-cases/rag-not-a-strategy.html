@@ -298,18 +298,18 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Chunking strategy is not a configuration choice, it is an architectural decision</strong> that determines whether your retrieval system works at all on real financial documents.</p>
+<p>Chunking strategy is not a configuration choice, it is an architectural decision that determines whether your retrieval system works at all on real financial documents.</p>
 </div>
 </div>
 </section>
 <section id="the-cross-document-reasoning-problem" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="the-cross-document-reasoning-problem"><span class="header-section-number">3.2</span> The Cross-Document Reasoning Problem</h3>
-<p>Many high-value financial queries require connecting information across multiple documents — comparing covenant structures across credit facilities, reconciling capital calculations against prior period filings, or tracing a policy exception through an approval chain.</p>
+<p>Many high-value financial queries require connecting information across multiple documents — comparing loan terms across multiple borrower agreements, reconciling capital calculations against prior period filings, or tracing a policy exception through an approval chain.</p>
 <p>Vanilla RAG retrieves chunks from a single embedding space and passes them to the LLM without structural reasoning. It works for simple lookup but breaks down the moment a question requires following a chain across documents. Recent benchmarking confirms standard pipelines consistently underperform on exactly these tasks [5].</p>
 </section>
 <section id="the-structured-data-problem" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="the-structured-data-problem"><span class="header-section-number">3.3</span> The Structured Data Problem</h3>
-<p>Financial documents are not pure text. A 10-K filing may contain 50 data tables. A credit agreement may have defined-term hierarchies where a single clause only resolves by reading the entire document. Loan covenants reference calculations that span multiple schedules.</p>
+<p>Financial documents are not pure text. A 10-K filing may contain 50 data tables. A credit agreement may contain dozens of interlocking definitions where understanding one clause requires resolving references scattered across the entire document. Loan covenants reference calculations that span multiple schedules.</p>
 <p>Text-only embedding pipelines discard all of this. A table embedded as a text string loses its row-column relationships. A defined term stripped of its cross-references becomes unresolvable. The result is a retrieval system that indexes the words in a financial document but not the meaning — which is precisely where the analytical value lives.</p>
 <hr>
 </section>

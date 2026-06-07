@@ -48,18 +48,18 @@ The most fundamental issue is chunking — the process of breaking documents int
 Ineffective chunking destroys the semantic integrity of financial content [3]. A covenant buried across a page break, a table split mid-row, a defined term separated from its definition — all become retrieval failures when chunked naively. Research on financial report chunking confirms this directly: chunking aligned to the logical structure of financial documents is not optional; it is a prerequisite for reliable retrieval [4].
 
 ::: {.callout-important}
-**Chunking strategy is not a configuration choice, it is an architectural decision** that determines whether your retrieval system works at all on real financial documents.
+Chunking strategy is not a configuration choice, it is an architectural decision that determines whether your retrieval system works at all on real financial documents.
 :::
 
 ### The Cross-Document Reasoning Problem
 
-Many high-value financial queries require connecting information across multiple documents — comparing covenant structures across credit facilities, reconciling capital calculations against prior period filings, or tracing a policy exception through an approval chain.
+Many high-value financial queries require connecting information across multiple documents — comparing loan terms across multiple borrower agreements, reconciling capital calculations against prior period filings, or tracing a policy exception through an approval chain.
 
 Vanilla RAG retrieves chunks from a single embedding space and passes them to the LLM without structural reasoning. It works for simple lookup but breaks down the moment a question requires following a chain across documents. Recent benchmarking confirms standard pipelines consistently underperform on exactly these tasks [5].
 
 ### The Structured Data Problem
 
-Financial documents are not pure text. A 10-K filing may contain 50 data tables. A credit agreement may have defined-term hierarchies where a single clause only resolves by reading the entire document. Loan covenants reference calculations that span multiple schedules.
+Financial documents are not pure text. A 10-K filing may contain 50 data tables. A credit agreement may contain dozens of interlocking definitions where understanding one clause requires resolving references scattered across the entire document. Loan covenants reference calculations that span multiple schedules.
 
 Text-only embedding pipelines discard all of this. A table embedded as a text string loses its row-column relationships. A defined term stripped of its cross-references becomes unresolvable. The result is a retrieval system that indexes the words in a financial document but not the meaning — which is precisely where the analytical value lives.
 
