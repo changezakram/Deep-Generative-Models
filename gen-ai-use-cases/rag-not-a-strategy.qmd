@@ -132,7 +132,7 @@ Production document intelligence uses hybrid retrieval — combining semantic se
 
 For financial documents this matters because practitioners search using precise regulatory and credit terminology — "DSCR covenant," "Tier 1 capital," "ALCO policy exception" — that semantic search alone may not surface reliably.
 
-![Conceptual architecture for production-grade document intelligence in financial services. Components may be implemented incrementally as institutions mature from pilot deployments to enterprise-scale document intelligence.](images/document-intelligence-architecture.png){#fig-doc-intelligence-architecture fig-align="center" width="80%"}
+![Conceptual architecture for production-grade document intelligence in financial services. Components may be implemented incrementally as institutions mature from pilot deployments to enterprise-scale document intelligence.](images/document-intel-architecture.png){#fig-doc-intelligence-architecture fig-align="center" width="80%"}
 
 ### Semantic-Aware Chunking
 
