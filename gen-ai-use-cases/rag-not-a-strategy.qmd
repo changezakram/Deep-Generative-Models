@@ -158,7 +158,7 @@ Document intelligence in financial services should inform human decisions, not r
 
 ## A Framework for Financial Services Leaders
 
-Drawing on the research above, here is a four-stage maturity framework for financial institutions.
+Document intelligence capability does not emerge fully formed. It develops in stages — each building the governance, technical, and organizational foundations the next requires. Here is a four-stage framework for financial institutions.
 
 | Stage | Label | Key Characteristics | Goal |
 |-------|-------|---------------------|------|
@@ -176,11 +176,11 @@ Most organizations piloting RAG today are operating at Stage 1 and calling it a 
 
 ---
 
-## Conclusion: Infrastructure in Service of Strategy
+## Conclusion
 
-The financial services industry is at an inflection point with document intelligence. Deloitte's 2026 State of AI in the Enterprise report finds that **worker access to AI rose 50% in 2025**, with the number of companies moving projects to production expected to double in the following six months [@deloitte2026]. The pressure to deploy is real.
+The financial services industry is at an inflection point with document intelligence. Industry research finds that **worker access to AI rose 50% in 2025**, with the number of companies moving projects to production expected to double in the following six months [15]. The pressure to deploy is real.
 
-But deployment pressure is precisely when strategic clarity matters most. Organizations that deploy RAG without addressing retrieval governance, hallucination risk, SR 11-7 implications, and audit architecture are not ahead of the curve — they are accumulating technical and regulatory debt that will surface during the next examination cycle or, worse, in a consequential decision error.
+But deployment pressure is precisely when strategic clarity matters most. Organizations that deploy RAG without addressing retrieval governance, hallucination risk, regulatory obligations, and audit architecture are not ahead of the curve — they are accumulating technical and regulatory debt that will surface during the next examination cycle or, worse, in a consequential decision error.
 
 RAG is a powerful and necessary component of document intelligence. But it is not a strategy. Document intelligence done right in financial services requires disciplined architecture, governed infrastructure, model risk awareness, and a clear theory of how AI-assisted retrieval connects to human accountability in consequential decisions.
 
