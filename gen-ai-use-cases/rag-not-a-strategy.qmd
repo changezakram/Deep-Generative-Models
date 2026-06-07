@@ -102,6 +102,8 @@ A document intelligence *strategy* answers questions that RAG alone cannot:
 
 These are governance questions, not engineering questions. And in financial services, they are also regulatory questions.
 
+Governance ultimately comes down to accountability. When a document intelligence system influences a consequential decision, responsibility for the outcome remains with the institution and its decision-makers—not the retrieval engine or the language model.
+
 ### The Compliance Architecture Problem
 
 RAG systems in financial services can expose sensitive data through embedding vectors. Research demonstrates that privacy issues in RAG are rooted in the leakage of information stored in vector embeddings, despite the inherent belief that embeddings may successfully obfuscate data — creating direct exposure under GDPR and GLBA customer information protection requirements [17].
@@ -112,9 +114,9 @@ A May 2025 U.S. Government Accountability Office report confirmed that federal r
 
 ### The SR 11-7 Extension
 
-Financial institutions have operated under federal model risk management guidance since 2011 [11]. That framework requires banks to treat any system that takes data and produces an output used in a business decision as a regulated model — subject to independent validation, documentation, and ongoing oversight.
+Financial institutions have operated under federal model risk management guidance since 2011 [11]. That framework requires institutions to maintain appropriate governance, validation, and oversight for models that materially influence business decisions. As document intelligence systems become increasingly integrated into credit, compliance, and operational workflows, many may fall within existing model risk management frameworks depending on the role their outputs play in decision-making.
 
-Recent research confirms that this same regulatory framework applies directly to RAG systems — and that additional controls beyond the existing guidance are required for safe GenAI deployment in financial institutions [12].
+Recent research suggests that while existing model risk management principles remain highly relevant, additional controls may be necessary to address retrieval quality, hallucination risk, and the unique operational characteristics of GenAI systems in regulated environments [12].
 
 ::: {.callout-warning}
 Is your RAG system subject to regulatory oversight? If it informs any consequential decision — a credit approval, a compliance finding, an exception — the answer is almost certainly yes, even if your risk team has not yet been asked.
@@ -130,7 +132,7 @@ Organizations are right to want AI-assisted document intelligence. The failure m
 
 Production document intelligence uses hybrid retrieval — combining semantic search, which finds conceptually related content, with keyword search, which matches exact terminology. Research benchmarking retrieval strategies on financial documents finds that hybrid retrieval with reranking outperforms all single-stage methods by a large margin — with keyword search alone outperforming pure semantic search on financial documents containing tables and structured data [16].
 
-For financial documents this matters because practitioners search using precise regulatory and credit terminology — "DSCR covenant," "Tier 1 capital," "ALCO policy exception" — that semantic search alone may not surface reliably.
+For financial documents this matters because practitioners search using precise regulatory and credit terminology — "DSCR covenant," "Tier 1 capital," "ALCO policy exception" — that semantic search alone may not surface reliably. Hybrid retrieval is only one component of a production-grade document intelligence capability. Figure 1 illustrates the broader architecture required to support governance, auditability, and reliable decision support in financial services.
 
 ![Conceptual architecture for production-grade document intelligence in financial services. Components may be implemented incrementally as institutions mature from pilot deployments to enterprise-scale document intelligence.](images/document-intel-architecture.png){#fig-doc-intelligence-architecture fig-align="center" width="80%"}
 
@@ -158,7 +160,7 @@ Document intelligence in financial services should inform human decisions, not r
 
 ## A Framework for Financial Services Leaders
 
-Document intelligence capability does not emerge fully formed. It develops in stages — each building the governance, technical, and organizational foundations the next requires. Here is a four-stage framework for financial institutions.
+Document intelligence capabilities do not emerge fully formed. Organizations typically progress through predictable stages of maturity as retrieval capabilities, governance, operational controls, and business adoption evolve. Understanding these stages helps distinguish a successful pilot from a sustainable enterprise capability.
 
 | Stage | Label | Key Characteristics | Goal |
 |-------|-------|---------------------|------|
