@@ -1,7 +1,14 @@
 ---
-format: html
-title: "From Pilots to Production: The Capabilities That Actually Scale AI in Banking"
-toc: true
+title: "From Pilots to Production
+subtitle: "The Capabilities That Actually Scale AI in Banking"
+
+date: 2026-06-30
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    theme: cosmo
 ---
 
 
