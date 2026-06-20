@@ -1,5 +1,5 @@
 ---
-title: "From Pilots to Production
+title: "From Pilots to Production"
 subtitle: "The Capabilities That Actually Scale AI in Banking"
 
 date: 2026-06-30
