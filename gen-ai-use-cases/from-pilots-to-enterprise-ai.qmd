@@ -1,0 +1,66 @@
+---
+format: html
+title: "From Pilots to Production: The Capabilities That Actually Scale AI in Banking"
+toc: true
+---
+
+
+## Introduction
+
+Every bank can point to an AI pilot that worked. Few can point to one that scaled.
+
+That gap shows up with almost mechanical regularity in post-merger banking environments: a use case gets built, it works, it earns praise in a steering committee, and then it sits there — unrepeated, unintegrated, and quietly absent from next year's roadmap because nobody built the infrastructure to make it reusable. The gap isn't the technology. It's everything around the technology — the data foundation, the prioritization logic, the operating model, and, in banking specifically, the governance scaffolding that lets a model survive contact with an examiner.
+
+What separates the institutions that pull this off from the ones stuck running pilots indefinitely isn't model sophistication. It's five reinforcing capabilities — four of them organizational, one of them specific to regulated industries — built in parallel rather than sequence.
+
+---
+
+## A Decision-Grade Data Environment
+
+Every scaling failure traces back to the same root cause: data that's good enough for a pilot but not good enough for a decision. A pilot can tolerate a hand-curated extract, a one-time join, an analyst quietly reconciling three source systems in a spreadsheet. Production can't. It needs telematics-equivalent data — in banking's case, transaction streams, credit bureau feeds, core banking records, and customer interaction data — unified under consistent definitions and governance, not just consistent schemas.
+
+This is harder than it sounds in a post-merger environment, where "consistent definitions" means reconciling two institutions' worth of legacy logic before a model can be trusted to run unattended. The temptation is to treat this as a one-time cleanup project. It isn't. It's infrastructure that has to be maintained with the same discipline as the models that sit on top of it — because a model retrained on drifting upstream data will quietly degrade in ways that are much harder to detect than a model that fails outright.
+
+---
+
+## Tooling That Explains, Not Just Predicts
+
+In the absence of a deliberate prioritization framework, resources flow to whichever business line escalates loudest — which is exactly the dynamic playing out anywhere credit risk, fraud, and front-office analytics compete for the same model development capacity. The fix is to prioritize based on objective exposure, risk, and financial-impact analysis, not organizational volume.
+
+In practice this means a standing intake function that scores candidate use cases against consistent criteria before they enter the pipeline — expected loss reduction, regulatory exposure, implementation complexity, dependency on the shared data environment. It's unglamorous work, and it's also the difference between an analytics function that looks reactive from the outside and one that looks deliberate.
+
+---
+
+## Lighthouse Use Cases Built for Replication
+
+The instinct in a large, politically complex organization is to spread AI investment thin — a pilot in every department, to keep every stakeholder satisfied. This is precisely backwards. Scaling capability comes from a small number of carefully chosen use cases, selected not just for impact but for replicability: the data products, model components, and governance artifacts built for the first use case should be reusable for the fifth.
+
+A next-best-product recommendation model, for instance, isn't valuable only for the revenue it generates. Done right, the decisioning chain, the data requirements documentation, and the governance alignment work built around it become a template — the next model doesn't start from zero. Organizations that treat each new use case as a bespoke build never escape pilot purgatory, because they're paying the fixed cost of standing up infrastructure every single time.
+
+---
+
+## Operating Model and Decision Rights
+
+This is where most scaling efforts actually die — not in the modeling, but in the ambiguity over who owns the decision once the model produces an output. Clear ownership, defined decision rights, and workflows where the model's output is embedded into the process rather than advisory to it are what separate a capability from a demo. This is precisely where most analytics functions stall: output that never graduates past an advisory layer because no one was ever assigned to act on it.
+
+Banking has an additional wrinkle here that most industries don't: the operating model has to satisfy not just internal stakeholders but model risk governance and, ultimately, examiners. KPIs need to track not just lift and adoption but velocity, defensibility, and outcomes against the original validation thesis — because a model that can't demonstrate it's still performing as documented is a model an examiner will (correctly) flag, regardless of how well it scaled operationally.
+
+---
+
+## The Banking-Specific Layer: Governance as a Scaling Capability, Not a Constraint
+
+The four capabilities above generalize across industries. The fifth doesn't — or rather, it's specific to regulated industries in a way that changes how the other four get built, not just whether they get audited afterward.
+
+SR 26-2 and OCC Bulletin 2026-13 explicitly carve generative and agentic AI out of traditional model risk management scope, on the grounds that the technology is too novel for prescriptive rules. That's not a loophole. It's an invitation for institutions to build the governance architecture the regulation will eventually require, before it's mandated — and the institutions that treat governance as a parallel-track capability, rather than a compliance step bolted on after a model is built, are the ones whose pilots actually survive contact with production.
+
+In practice, this means the data environment in capability one is built with lineage and auditability as first-class requirements, not retrofitted. It means the explainability tooling in capability two is designed to produce validation-grade documentation, not just dashboards. It means the operating model in capability five assigns explicit accountability across the full decisioning chain — model owner, data owner, decision owner — because ambiguity here is exactly where agentic and AI-driven systems create risk that traditional MRM frameworks weren't built to catch.
+
+The institutions stuck running permanent pilots are usually the ones that treated governance as the last step. The ones that scale treat it as the architecture the other four capabilities are built on top of from day one.
+
+
+---
+
+## The Sequencing Question
+
+None of this requires an enterprise-wide redesign before the first use case ships. The capabilities build in layers — start with one well-chosen use case, build the data foundation and governance scaffolding it actually needs, prove the value, and let the infrastructure compound across the next use case rather than starting over. The mistake isn't moving fast on a pilot. It's mistaking a successful pilot for a scaled capability, and discovering the gap only when the second use case needs everything the first one never bothered to build.
+

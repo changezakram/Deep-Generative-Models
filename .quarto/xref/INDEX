@@ -75,5 +75,8 @@
   },
   "gen-ai-use-cases/rag-not-a-strategy.qmd": {
     "rag-not-a-strategy.html": "78b37421"
+  },
+  "gen-ai-use-cases/from-pilots-to-enterprise-ai.qmd": {
+    "from-pilots-to-enterprise-ai.html": "e69bbc1a"
   }
 }
