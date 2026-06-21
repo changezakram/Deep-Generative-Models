@@ -91,7 +91,7 @@ The practical approach: pick one good use case, and build the data, the explaina
 
 ---
 
-##Beyond the Pilot: Preparing for Generative and Agentic AI
+## Beyond the Pilot: Preparing for Generative and Agentic AI
 
 The six capabilities described here become increasingly important as institutions move beyond traditional predictive models toward generative and agentic AI. A reporting dashboard can tolerate fragmented ownership and manual processes. An autonomous system cannot. As AI systems gain the ability to generate content, recommend actions, and eventually execute workflows, weaknesses in data quality, governance, decision rights, and accountability become far more consequential.
 
