@@ -1,5 +1,5 @@
 ---
-title: "From Pilots to Production"
+title: "From Pilots to Scale"
 subtitle: "The Capabilities That Actually Scale AI in Banking"
 
 date: 2026-06-30
@@ -26,7 +26,7 @@ Getting from pilot to production takes six capabilities. Banks that scale build 
 
 Scaling AI requires more than successful use cases. It requires a set of reinforcing capabilities that transform isolated pilots into repeatable enterprise outcomes.
 
-![**Figure 1.** Six reinforcing capabilities required to transform isolated AI pilots into repeatable enterprise capabilities.](images/ai-scale-capabilities.png){fig-align="center"}
+![**Figure 1.** Six reinforcing pillars required to transform isolated AI pilots into repeatable enterprise outcomes.](images/ai-scale-capabilities.png){fig-align="center"}
 
 ### A Decision-Grade Data Environment
 
