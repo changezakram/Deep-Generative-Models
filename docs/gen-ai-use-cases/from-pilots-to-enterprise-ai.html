@@ -211,9 +211,17 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#the-capabilities-that-actually-scale-ai-in-banking" id="toc-the-capabilities-that-actually-scale-ai-in-banking" class="nav-link" data-scroll-target="#the-capabilities-that-actually-scale-ai-in-banking"><span class="header-section-number">2</span> The Capabilities That Actually Scale AI in Banking</a></li>
+  <li><a href="#the-capabilities-that-actually-scale-ai-in-banking" id="toc-the-capabilities-that-actually-scale-ai-in-banking" class="nav-link" data-scroll-target="#the-capabilities-that-actually-scale-ai-in-banking"><span class="header-section-number">2</span> The Capabilities That Actually Scale AI in Banking</a>
+  <ul class="collapse">
+  <li><a href="#a-decision-grade-data-environment" id="toc-a-decision-grade-data-environment" class="nav-link" data-scroll-target="#a-decision-grade-data-environment"><span class="header-section-number">2.1</span> A Decision-Grade Data Environment</a></li>
+  <li><a href="#tooling-that-explains-not-just-predicts" id="toc-tooling-that-explains-not-just-predicts" class="nav-link" data-scroll-target="#tooling-that-explains-not-just-predicts"><span class="header-section-number">2.2</span> Tooling That Explains, Not Just Predicts</a></li>
+  <li><a href="#economics-driven-prioritization" id="toc-economics-driven-prioritization" class="nav-link" data-scroll-target="#economics-driven-prioritization"><span class="header-section-number">2.3</span> Economics-Driven Prioritization</a></li>
+  <li><a href="#lighthouse-use-cases-built-for-replication" id="toc-lighthouse-use-cases-built-for-replication" class="nav-link" data-scroll-target="#lighthouse-use-cases-built-for-replication"><span class="header-section-number">2.4</span> Lighthouse Use Cases Built for Replication</a></li>
+  <li><a href="#operating-model-and-decision-rights" id="toc-operating-model-and-decision-rights" class="nav-link" data-scroll-target="#operating-model-and-decision-rights"><span class="header-section-number">2.5</span> Operating Model and Decision Rights</a></li>
+  <li><a href="#governance-as-a-build-requirement-not-an-afterthought" id="toc-governance-as-a-build-requirement-not-an-afterthought" class="nav-link" data-scroll-target="#governance-as-a-build-requirement-not-an-afterthought"><span class="header-section-number">2.6</span> Governance as a Build Requirement, Not an Afterthought</a></li>
+  </ul></li>
   <li><a href="#the-sequencing-question" id="toc-the-sequencing-question" class="nav-link" data-scroll-target="#the-sequencing-question"><span class="header-section-number">3</span> The Sequencing Question</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4</span> Conclusion</a></li>
   </ul>
@@ -287,18 +295,18 @@ ul.task-list li input[type="checkbox"] {
 <p>Banking has one more wrinkle most industries don’t. The operating model has to satisfy not just the business, but model risk governance and, eventually, examiners. That means tracking more than adoption and lift — it means tracking whether the model is still performing the way it was validated to perform. A model that can’t show that will get flagged, no matter how well it scaled operationally.</p>
 <hr>
 </section>
-<section id="governance-as-a-scaling-capability-not-a-constraint" class="level3" data-number="2.6">
-<h3 data-number="2.6" class="anchored" data-anchor-id="governance-as-a-scaling-capability-not-a-constraint"><span class="header-section-number">2.6</span> Governance as a Scaling Capability, Not a Constraint</h3>
+<section id="governance-as-a-build-requirement-not-an-afterthought" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="governance-as-a-build-requirement-not-an-afterthought"><span class="header-section-number">2.6</span> Governance as a Build Requirement, Not an Afterthought</h3>
 <p>The first five capabilities apply to any industry. This one is specific to banks, and it changes how the other five get built — not just whether someone checks them afterward.</p>
 <p>SR 26-2 and OCC Bulletin 2026-13 leave generative and agentic AI out of traditional model risk management, because regulators admit the technology is moving too fast for fixed rules. That’s not a gap to exploit. It’s a chance to build the governance the rules will eventually require, before anyone forces you to. Banks that treat governance as something built alongside the model — not added after — are the ones whose pilots actually make it to production.</p>
-<p>In practice, that means the data work in capability one tracks where data comes from and who touched it, from the start. It means the explainability work in capability two produces documentation good enough for a validation review, not just a dashboard. It means capability five assigns a named owner for the data, the model, and the decision — because that’s exactly where AI systems create risk that older model risk frameworks were never built to catch.</p>
+<p>This means the data work behind a decision-grade data environment tracks where data comes from and who touched it, from the start. It means the explainability tooling produces documentation good enough for a validation review, not just a dashboard. It means the operating model assigns a named owner for the data, the model, and the decision — because that’s exactly where AI systems create risk that older model risk frameworks were never built to catch.</p>
 <p>Banks stuck running permanent pilots usually treated governance as the last step. Banks that scale treat it as the foundation the other five capabilities sit on, from day one.</p>
 <hr>
 </section>
 </section>
 <section id="the-sequencing-question" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="the-sequencing-question"><span class="header-section-number">3</span> The Sequencing Question</h2>
-<p>None of this means redesigning the whole bank before the first use case ships. The six capabilities don’t all need to be fully built on day one — but they need to be built together from the start, not added one at a time as gaps show up. A data environment built without governance in mind has to be rebuilt later, once governance becomes mandatory. A use case picked without a real prioritization process behind it is just a guess that happened to work.</p>
+<p>None of this means redesigning the whole bank before the first use case ships. Sequencing doesn’t mean doing the six capabilities one at a time — it means deciding how much of each to build before you ship the first use case, and building all six together from there. Skip that, and you pay for it later: a use case picked without a real prioritization process behind it is just a guess that happened to work, and the rebuild costs more than building it right the first time would have.</p>
 <p>The practical approach: pick one good use case, and build the data, the explainability tooling, and the governance around it properly — not the minimum needed to ship, but a version built to be reused. Then let that work carry over into the next use case. Each new use case should be cheaper and faster to build than the last, because it’s drawing on data, governance, and decision-rights work that already exists. If the second use case costs about the same as the first, the first one wasn’t built to scale — it was just a pilot that happened to work.</p>
 <hr>
 </section>

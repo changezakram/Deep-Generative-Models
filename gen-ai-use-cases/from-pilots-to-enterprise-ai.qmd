@@ -6,7 +6,7 @@ date: 2026-06-30
 format:
   html:
     toc: true
-    toc-depth: 2
+    toc-depth: 3
     number-sections: true
     theme: cosmo
 ---
@@ -64,13 +64,13 @@ Banking has one more wrinkle most industries don't. The operating model has to s
 
 ---
 
-### Governance as a Scaling Capability, Not a Constraint
+### Governance as a Build Requirement, Not an Afterthought
 
 The first five capabilities apply to any industry. This one is specific to banks, and it changes how the other five get built — not just whether someone checks them afterward.
 
 SR 26-2 and OCC Bulletin 2026-13 leave generative and agentic AI out of traditional model risk management, because regulators admit the technology is moving too fast for fixed rules. That's not a gap to exploit. It's a chance to build the governance the rules will eventually require, before anyone forces you to. Banks that treat governance as something built alongside the model — not added after — are the ones whose pilots actually make it to production.
 
-In practice, that means the data work in capability one tracks where data comes from and who touched it, from the start. It means the explainability work in capability two produces documentation good enough for a validation review, not just a dashboard. It means capability five assigns a named owner for the data, the model, and the decision — because that's exactly where AI systems create risk that older model risk frameworks were never built to catch.
+This means the data work behind a decision-grade data environment tracks where data comes from and who touched it, from the start. It means the explainability tooling produces documentation good enough for a validation review, not just a dashboard. It means the operating model assigns a named owner for the data, the model, and the decision — because that's exactly where AI systems create risk that older model risk frameworks were never built to catch.
 
 Banks stuck running permanent pilots usually treated governance as the last step. Banks that scale treat it as the foundation the other five capabilities sit on, from day one.
 
@@ -79,7 +79,7 @@ Banks stuck running permanent pilots usually treated governance as the last step
 
 ## The Sequencing Question
 
-None of this means redesigning the whole bank before the first use case ships. The six capabilities don't all need to be fully built on day one — but they need to be built together from the start, not added one at a time as gaps show up. A data environment built without governance in mind has to be rebuilt later, once governance becomes mandatory. A use case picked without a real prioritization process behind it is just a guess that happened to work.
+None of this means redesigning the whole bank before the first use case ships. Sequencing doesn't mean doing the six capabilities one at a time — it means deciding how much of each to build before you ship the first use case, and building all six together from there. Skip that, and you pay for it later: a use case picked without a real prioritization process behind it is just a guess that happened to work, and the rebuild costs more than building it right the first time would have.
 
 The practical approach: pick one good use case, and build the data, the explainability tooling, and the governance around it properly — not the minimum needed to ship, but a version built to be reused. Then let that work carry over into the next use case. Each new use case should be cheaper and faster to build than the last, because it's drawing on data, governance, and decision-rights work that already exists. If the second use case costs about the same as the first, the first one wasn't built to scale — it was just a pilot that happened to work.
 
