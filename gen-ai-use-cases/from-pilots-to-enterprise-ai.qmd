@@ -102,6 +102,7 @@ Institutions often view data foundations, explainability, governance, and operat
 ---
 
 ## Conclusion
+
 The banks that get AI to scale aren't the ones with the best model. They're the ones that built all six capabilities together, instead of treating five of them as someone else's problem. Data, tooling, prioritization, replicable use cases, clear ownership, and governance — skip any one of them, and the next use case starts from zero again.
 
 That's the real difference between a pilot and a capability. A pilot proves the idea works. A capability means the next ten ideas get easier, not harder.
