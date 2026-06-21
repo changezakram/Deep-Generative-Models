@@ -34,9 +34,9 @@ This is harder than it sounds. Getting to one shared definition usually means un
 
 ### Tooling That Explains, Not Just Predicts
 
-A model that flags risk without saying why is a liability, not an asset. The tools need to do more than spot a problem — they need to explain it, by comparing the flagged case against similar ones and pointing to what actually drove the result, not just producing a score.
+A model that flags a problem is useful. A system that explains why the problem exists and what action should be taken is far more valuable. The tools need to do more than detect anomalies or generate scores — they need to support diagnosis by comparing outcomes across customers, products, segments, and time periods to identify the underlying drivers. Production systems should help users move from detection to explanation and, ultimately, to action.
 
-This matters for two different audiences. The business has to act on the output. Risk and the examiners have to understand why the model made that call, under SR 11-7's expectations for ongoing monitoring. If a model can't explain itself, it isn't validated yet, no matter how accurate it is. Spending tooling budget purely on prediction accuracy misses the point — that's the part the pilot already proved. Explanation is the part production actually needs.
+This matters for two different audiences. The business has to act on the output. Risk and the examiners have to understand why the model made that call, under SR 11-7's expectations for ongoing monitoring. If a model can’t support a credible explanation for its outputs, it isn’t ready for production, no matter how accurate it is. Spending tooling budget purely on prediction accuracy misses the point — that's the part the pilot already proved. Explanation is the part production actually needs.
 
 --- 
 
@@ -62,13 +62,15 @@ This is where most scaling efforts actually die. Not in the modeling — in the 
 
 Banking has one more wrinkle most industries don't. The operating model has to satisfy not just the business, but model risk governance and, eventually, examiners. That means tracking more than adoption and lift — it means tracking whether the model is still performing the way it was validated to perform. A model that can't show that will get flagged, no matter how well it scaled operationally.
 
+Scaled AI programs also create feedback loops. Model outputs, business outcomes, overrides, and exceptions should be captured and fed back into both the data environment and the operating model. Without that loop, organizations automate decisions but fail to improve them. The goal is not simply to deploy models, but to create a system that continuously learns from its own results.
+
 ---
 
 ### Governance as a Build Requirement, Not an Afterthought
 
 The first five capabilities apply to any industry. This one is specific to banks, and it changes how the other five get built — not just whether someone checks them afterward.
 
-SR 26-2 and OCC Bulletin 2026-13 leave generative and agentic AI out of traditional model risk management, because regulators admit the technology is moving too fast for fixed rules. That's not a gap to exploit. It's a chance to build the governance the rules will eventually require, before anyone forces you to. Banks that treat governance as something built alongside the model — not added after — are the ones whose pilots actually make it to production.
+Recent regulatory guidance recognizes that generative and agentic AI systems do not fit neatly within traditional model risk management frameworks. Existing controls remain important, but they do not fully address emerging risks such as prompt injection, autonomous decision-making, tool use, and multi-agent interactions. Rather than waiting for prescriptive requirements, banks can use this period to build governance capabilities that are proportional to the risks these systems create.
 
 This means the data work behind a decision-grade data environment tracks where data comes from and who touched it, from the start. It means the explainability tooling produces documentation good enough for a validation review, not just a dashboard. It means the operating model assigns a named owner for the data, the model, and the decision — because that's exactly where AI systems create risk that older model risk frameworks were never built to catch.
 
