@@ -87,7 +87,7 @@ Banks stuck running permanent pilots usually treated governance as the last step
 
 None of this means redesigning the whole bank before the first use case ships. It means building all six capabilities together, at whatever scale the first use case needs, instead of adding them one at a time as gaps show up. Skip that, and you pay for it later — a use case picked without real prioritization behind it is just a guess that happened to work.
 
-Pick one good use case. Build the data, the explainability tooling, and the governance around it properly — not the minimum to ship, but a version meant to be reused. Let that work carry into the next use case. Each one should be cheaper and faster to build than the last, because it's drawing on infrastructure that already exists. If the second use case costs about the same as the first, the first one wasn't built to scale.
+Pick one good use case. Build the data, the explainability tooling, and the governance around it properly — not the minimum to ship, but a version meant to be reused. Let that foundation carry into the next use case. Each one should be cheaper and faster to build than the last, because it's drawing on infrastructure that already exists. If the second use case costs about the same as the first, the first one wasn't built to scale.
 
 ---
 
