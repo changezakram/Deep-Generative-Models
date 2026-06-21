@@ -24,6 +24,8 @@ Getting from pilot to production takes six capabilities. Banks that scale build 
 
 ## The Capabilities That Actually Scale AI in Banking
 
+![**Figure 1.** Six reinforcing capabilities required to transform isolated AI pilots into repeatable enterprise capabilities.](ai-scale-pillars.png){fig-align="center"}
+
 ### A Decision-Grade Data Environment
 
 Most scaling failures start in the same place: the data was good enough for a pilot, but not good enough to run a real decision on. A pilot can get by on a one-time extract, a manual join, an analyst patching together three systems in a spreadsheet. Production can't. It needs transaction data, credit bureau feeds, core banking records, and customer data — all defined the same way across systems, not just stored in the same format.
