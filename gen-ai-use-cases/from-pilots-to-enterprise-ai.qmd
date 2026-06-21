@@ -24,7 +24,7 @@ Getting from pilot to production takes six capabilities. Banks that scale build 
 
 ## The Capabilities That Actually Scale AI in Banking
 
-![**Figure 1.** Six reinforcing capabilities required to transform isolated AI pilots into repeatable enterprise capabilities.](ai-scale-pillars.png){fig-align="center"}
+![**Figure 1.** Six reinforcing capabilities required to transform isolated AI pilots into repeatable enterprise capabilities.](images/ai-scale-pillars.png){fig-align="center"}
 
 ### A Decision-Grade Data Environment
 
