@@ -91,6 +91,16 @@ The practical approach: pick one good use case, and build the data, the explaina
 
 ---
 
+##Beyond the Pilot: Preparing for Generative and Agentic AI
+
+The six capabilities described here become increasingly important as institutions move beyond traditional predictive models toward generative and agentic AI. A reporting dashboard can tolerate fragmented ownership and manual processes. An autonomous system cannot. As AI systems gain the ability to generate content, recommend actions, and eventually execute workflows, weaknesses in data quality, governance, decision rights, and accountability become far more consequential.
+
+This is a recurring theme across my work on AI strategy, governance, and agentic systems. Whether the objective is deploying a predictive model, implementing a knowledge assistant, or orchestrating a network of AI agents, the same organizational foundations remain necessary. The technologies change. The operating principles do not.
+
+Institutions often view data foundations, explainability, governance, and operating models as separate initiatives. In reallity, they are different aspects of the same problem: creating an environment where AI can be trusted to influence decisions at scale. The organizations that solve this problem will be better positioned not only to deploy today’s AI capabilities, but also to adopt the more autonomous systems that are rapidly emerging.
+
+---
+
 ## Conclusion
 The banks that get AI to scale aren't the ones with the best model. They're the ones that built all six capabilities together, instead of treating five of them as someone else's problem. Data, tooling, prioritization, replicable use cases, clear ownership, and governance — skip any one of them, and the next use case starts from zero again.
 
