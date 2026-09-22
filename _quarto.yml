@@ -32,6 +32,11 @@ website:
           - text: NLP Evaluation
             href: https://changezakram.github.io/Deep-Generative-Models/nlp-eval.html
 
+      - text: AI Engineering
+        menu:
+          - text: Semantic Layer
+            href: https://changezakram.github.io/ai-engineering/semantic-layer.htm
+
       - text: Agentic AI
         menu:
           - text: Introduction
